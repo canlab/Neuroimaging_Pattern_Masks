@@ -1,0 +1,4 @@
+Radius is 10 mm.
+Setup. Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+DB structure saved in SETUP.mat

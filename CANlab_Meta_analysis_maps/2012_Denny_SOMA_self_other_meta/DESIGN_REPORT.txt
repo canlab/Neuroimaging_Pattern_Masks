@@ -1,0 +1,16 @@
+
+Design Reporting
+---------------------------
+Regressors:
+  1	SelfOthe_Other-Self	  0 Contrasts (rows)
+Intercept:   0 Contrast (sum of rows)
+
+Orthogonality: 
+
+Condition number (1 is good, higher is worse): 1.00
+
+Dependence (X'X) Matrix
+SelfOthe_Other-Self	
+152.0000	
+
+

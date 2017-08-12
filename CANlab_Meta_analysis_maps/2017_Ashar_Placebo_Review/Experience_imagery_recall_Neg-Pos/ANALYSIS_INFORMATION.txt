@@ -1,0 +1,118 @@
+Radius is 10 mm.
+Setup. Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+DB structure saved in SETUP.mat
+Radius is 10 mm.
+Setup. DB structure saved in SETUP.mat
+Radius is 10 mm.
+Setup. DB structure saved in SETUP.mat
+Radius is 10 mm.
+Setup. Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+{Index exceeds matrix dimensions.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('Meta_Setup', '/Users/tor/Documents/matlab_code_canlab/trunk/densityUtility/densityUtility3/Meta_Setup.m', 198)" style="font-weight:bold">Meta_Setup</a> (<a href="matlab: opentoline('/Users/tor/Documents/matlab_code_canlab/trunk/densityUtility/densityUtility3/Meta_Setup.m',198,0)">line 198</a>)
+        DB.rootn = DB.rootn(DB.pointind);
+} 
+DB
+
+DB = 
+
+                SourceList: [6968x1 double]
+                     Study: {6968x1 cell}
+                   Journal: {6968x1 cell}
+               FirstAuthor: {6968x1 cell}
+                      PMID: {6968x1 cell}
+                      Year: {6968x1 cell}
+                     Title: {6968x1 cell}
+                       Doi: {6968x1 cell}
+                    Coder1: {6968x1 cell}
+                    Coder2: {6968x1 cell}
+                         N: [6968x1 double]
+                     Women: [6968x1 double]
+                    Gender: {6968x1 cell}
+                      Scan: {6968x1 cell}
+                  CoordSys: {6968x1 cell}
+                       ROI: {6968x1 cell}
+               FixedRandom: [6968x1 double]
+                   Stimuli: {6968x1 cell}
+                    Method: {6968x1 cell}
+                   Emotion: {6968x1 cell}
+                   Valence: {6968x1 cell}
+                   FocMode: {6968x1 cell}
+                   CogLoad: {6968x1 cell}
+               AffectFocus: {6968x1 cell}
+                ObjectEval: {6968x1 cell}
+                   EERMean: {6968x1 cell}
+                     EERSD: {6968x1 cell}
+                     EERRS: {6968x1 cell}
+               PhysArousal: {6968x1 cell}
+               Subtraction: {6968x1 cell}
+                    Target: {6968x1 cell}
+                       Ref: {6968x1 cell}
+                  Contrast: [6968x1 double]
+                         x: [6968x1 double]
+                         y: [6968x1 double]
+                         z: [6968x1 double]
+              p_correction: {6968x1 cell}
+               ref_c_label: {6968x1 cell}
+                     ref_v: {6968x1 cell}
+                     ref_e: {6968x1 cell}
+                 task_type: {6968x1 cell}
+    ROI_ContrastsSeperated: [6968x1 double]
+         ROIprops_Contrast: [6968x1 double]
+                 radius_mm: 10
+                    radius: 5
+                  maskname: [1x130 char]
+                     maskV: [1x1 struct]
+                sphere_vol: 4.1888e+03
+                   voxsize: [-2 2 2]
+                 maskzeros: [91x109x91 double]
+                  Subjects: [2808x1 double]
+                     study: {2808x1 cell}
+                       xyz: [2808x1 double]
+                     rootn: [377x1 double]
+                connumbers: [377x1 double]
+                  pointind: [377x1 double]
+               studyweight: [377x1 double]
+                  connames: {377x1 cell}
+    included_from_original: [6968x1 double]
+             included_cons: [914x1 double]
+
+clear all
+Radius is 10 mm.
+Setup. Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+DB structure saved in SETUP.mat
+Radius is 10 mm.
+Setup. Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+{Index exceeds matrix dimensions.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('Meta_Setup', '/Users/tor/Documents/matlab_code_canlab/trunk/densityUtility/densityUtility3/Meta_Setup.m', 198)" style="font-weight:bold">Meta_Setup</a> (<a href="matlab: opentoline('/Users/tor/Documents/matlab_code_canlab/trunk/densityUtility/densityUtility3/Meta_Setup.m',198,0)">line 198</a>)
+        DB.rootn = DB.rootn(DB.pointind);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('Meta_2011_loadmetaanalysis', '/Users/tor/Dropbox/Working_items/T_JianKang_Bayes_Classifier/Emotion_Meta_Database_3_30_13/Meta_2011_loadmetaanalysis.m', 11)" style="font-weight:bold">Meta_2011_loadmetaanalysis</a> (<a href="matlab: opentoline('/Users/tor/Dropbox/Working_items/T_JianKang_Bayes_Classifier/Emotion_Meta_Database_3_30_13/Meta_2011_loadmetaanalysis.m',11,0)">line 11</a>)
+DB = Meta_Setup(DB);
+} 
+clear all
+Radius is 10 mm.
+Setup. Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+DB structure saved in SETUP.mat
+Radius is 10 mm.
+Setup. Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+DB structure saved in SETUP.mat
