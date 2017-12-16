@@ -1,0 +1,76 @@
+Radius is 10 mm.
+Setup. Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+{??? Error using ==> <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/elmat/flipud.m',19,0)">flipud at 19</a>
+X must be a 2-D matrix.
+
+Error in ==> <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/private/get_legendable_children.m',46,0)">get_legendable_children at 46</a>
+ch = flipud(legkids(goodkid));
+Error in ==> <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/graph2dhelper.m',31,0)">graph2dhelper at 31</a>
+        [varargout{1:nargout}] = feval(varargin{:});
+
+Error in ==> <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/legend.m',357,0)">legend>make_legend at 357</a>
+    children = graph2dhelper ('get_legendable_children', ha);
+
+Error in ==> <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/legend.m',290,0)">legend at 290</a>
+        [h,msg] = make_legend(ha,varargin(arg:end));
+
+Error in ==> <a href="matlab: opentoline('/Users/tor/Documents/matlab_code/densityUtility/densityUtility3/Meta_Setup.m',244,0)">Meta_Setup at 244</a>
+    legend({'Sqrt(N)' 'Study weights (scaled for display)'})
+} 
+<a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/elmat/flipud.m',19,1)">19  </a>  error('MATLAB:flipud:SizeX', 'X must be a 2-D matrix.'); 
+ opentoline('/Users/tor/Documents/matlab_code/densityUtility/densityUtility3/Meta_Setup.m',244,0)
+dbstack
+> In <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/elmat/flipud.m',19,1)">flipud at 19</a>
+  In <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/private/get_legendable_children.m',46,1)">scribe/private/get_legendable_children at 46</a>
+  In <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/graph2dhelper.m',31,1)">graph2dhelper at 31</a>
+  In <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/legend.m',357,1)">legend>make_legend at 357</a>
+  In <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/legend.m',290,1)">legend at 290</a>
+  In <a href="matlab: opentoline('/Users/tor/Documents/matlab_code/densityUtility/densityUtility3/Meta_Setup.m',244,1)">Meta_Setup at 244</a>
+whos X
+dbup
+In workspace belonging to <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/private/get_legendable_children.m',46,1)">scribe/private/get_legendable_children at 46</a>
+goodkid
+
+goodkid =
+
+     1
+     1
+
+legkids(goodkid)
+
+ans =
+
+  394.0060
+  393.0065
+
+flipud(ans)
+{??? Error using ==> <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/elmat/flipud.m',19,0)">flipud at 19</a>
+X must be a 2-D matrix.
+} 
+<a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/elmat/flipud.m',19,1)">19  </a>  error('MATLAB:flipud:SizeX', 'X must be a 2-D matrix.'); 
+dbup
+In workspace belonging to <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/elmat/flipud.m',19,1)">flipud at 19</a>
+dbquit
+dbup
+In workspace belonging to <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/graph2dhelper.m',31,1)">graph2dhelper at 31</a>
+dbup
+In workspace belonging to <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/legend.m',357,1)">legend>make_legend at 357</a>
+dbup
+In workspace belonging to <a href="matlab: opentoline('/Applications/MATLAB_R2010b.app/toolbox/matlab/scribe/legend.m',290,1)">legend at 290</a>
+dbup
+In workspace belonging to <a href="matlab: opentoline('/Users/tor/Documents/matlab_code/densityUtility/densityUtility3/Meta_Setup.m',244,1)">Meta_Setup at 244</a>
+dbquit all
+DB = Meta_Setup(DB);
+Radius is 10 mm.
+Setup. Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+Failed to make legend...Matlab 2010b bug?
+DB structure saved in SETUP.mat
+Radius is 10 mm.
+Setup. Cannot find Subjects field.  Copying from N.
+Cannot find study field.  Copying from Study.
+No xyz field in DB.  Creating from x, y, z.
+DB structure saved in SETUP.mat
