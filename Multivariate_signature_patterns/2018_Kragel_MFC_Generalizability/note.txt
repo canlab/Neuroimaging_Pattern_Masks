@@ -1,0 +1,6 @@
+This directory contains .nii files for PLS models described in Kragel et al. (In press). Generalizable representations 
+of pain, cognitive control, and negative emotion in medial frontal cortex. Nature Neuroscience.
+
+The .nii files contain PLS regression coefficients (bPLS) from an analysis of fMRI activity from 18 different studies. The
+files are named based on the region of interest used in the analysis (aMCC, dMFC, pACC, pMCC, sgACC, and vmPFC), and the 
+functional domain being predicted (pain, cognitive control, or negative emotion). 
