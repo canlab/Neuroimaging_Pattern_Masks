@@ -1,0 +1,45 @@
+% create_thalamus_atlas_group
+% 
+% Create a thalamus atlas with anatomically defined region groups, coarser
+% than Morel but still containing groups that match different functions.
+%
+% Notes: functional atlases probably do not [yet] have very good
+% subdivisions, and there is a clear demarcation of functions, inputs, and
+% outputs by anatomical subnuclei, which can be identified histologically.
+% So the anatomical atlases (Morel) are preferred
+
+% 'cm'      Centromedian thalamus   Morel thalamus atlas, Krauth 2010
+% 'md'      Mediodorsal thalamus    Morel thalamus atlas, Krauth 2010
+% 'lgn'     Lateral geniculate nuc  Morel thalamus atlas, Krauth 2010
+% 'mgn'     Medial geniculate nuc   Morel thalamus atlas, Krauth 2010
+% 'VPthal'  Ventral posterior thal  Morel thalamus atlas, Krauth 2010
+% 'intralaminar_thal' Intralaminar  Morel thalamus atlas, Krauth 2010
+
+% Load selected thalamic regions from Morel
+
+regionnames = {'cm' 'md' 'lgn' 'mgn' 'VPthal' 'intralaminar_thal'} ;
+
+% Define: 1 mm space by default, based on HCP image
+[~, thalamus_atlas] = canlab_load_ROI(regionname{1});
+
+%% add other regions
+
+for i = 1:length(regionnames)
+    regionname = regionnames{i};
+    
+    [~, roi_atlas] = canlab_load_ROI(regionname);
+    orthviews(roi_atlas);
+    a = input(' press');
+    
+end
+
+% Load morel, and select more region groups
+morel = load(morelfile); morel = morel.atlas_obj;
+
+pulv = select_atlas_subset(morel, {'Pu'}, 'flatten'); orthviews(pulv)
+
+% Load thalamic regions from Brainnetome
+% better maybe for functional divisions of anterior nuc.
+
+bn = load(bnfile); bn = bn.atlas_obj;
+bnthal = select_atlas_subset(bn, {'Tha'});

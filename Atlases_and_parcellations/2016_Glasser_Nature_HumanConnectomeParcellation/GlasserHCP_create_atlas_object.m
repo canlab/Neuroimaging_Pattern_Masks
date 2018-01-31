@@ -120,6 +120,13 @@ save(savename, 'r', 'region_names', labels{:});
 if dosave
     
     figure; han = isosurface(atlas_obj);
+    
+    set(han,'FaceAlpha', .5)
+    view(135, 20)
+    lightFollowView;
+    lightRestoreSingle
+    axis off
+    
     savename = fullfile(savedir, sprintf('%s_isosurface.png', atlas_name));
     saveas(gcf, savename);
     

@@ -18,7 +18,7 @@ dosave = true;
 
 % need to make sure we're using the one in MNI space
 % This is the full probabilistic atlas file:
-parcellation_file = 'CIT168toMNI152_prob_atlas_bilat_1mm.nii';  
+parcellation_file = which('CIT168toMNI152_prob_atlas_bilat_1mm.nii');  
 
 cd(fileparts(parcellation_file))
 
@@ -110,3 +110,18 @@ end
 savename = sprintf('%s_atlas_regions.mat', atlas_name);
 save(savename, 'r', 'region_names', labels{:});
 
+%%
+if dosave
+    
+    figure; han = isosurface(atlas_obj);
+    
+    set(han,'FaceAlpha', .5)
+    view(135, 20)
+    lightFollowView;
+    lightRestoreSingle
+    axis off
+    
+    savename = fullfile(savedir, sprintf('%s_isosurface.png', atlas_name));
+    saveas(gcf, savename);
+    
+end
