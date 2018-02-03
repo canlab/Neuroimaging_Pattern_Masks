@@ -46,52 +46,55 @@ morelfile = which('Morel_thalamus_atlas_object.mat');
 
 morel = load(morelfile); morel = morel.atlas_obj;
 %% Thalamus 
-% See Create_Morel_thalamus_atlas_object, bottom
+% Se
+group_codes = {'Pu' 'LGN', 'MGN', 'VPL', 'VPM', {'CL' 'CeM' 'CM' 'Pf'}, {'Pv' 'SPf'}, 'LD' 'VL', 'LP', 'VA' 'VM' 'MD' 'AM' 'AV'};  % each is a group to load and add
+group_names = {'Pulv' 'LGN', 'MGN', 'VPL', 'VPM', 'LD', 'Intralam', 'Midline' 'VL', 'LP' 'VA' 'VM', 'MD' 'AM', 'AV'};
 
-atlas_obj = load_atlas('thalamus');
+group_labels2 = {'Pulv' 'Genic', 'Genic', 'VPgroup', 'VPgroup', 'LD', 'Intralam', 'Midline' 'Ant_group' 'Ant_group' 'Ant_group'};
 
-% group_codes = {'Pu' 'LGN', 'MGN', 'VPL', 'VPM', {'CL' 'CeM' 'CM' 'Pf'}, {'Pv' 'SPf'}, 'LD' 'VL', 'LP', 'VA' 'VM' 'MD' 'AM' 'AV'};  % each is a group to load and add
-% group_names = {'Pulv' 'LGN', 'MGN', 'VPL', 'VPM', 'LD', 'Intralam', 'Midline' 'VL', 'LP' 'VA' 'VM', 'MD' 'AM', 'AV'};
-% 
-% group_labels2 = {'Pulv' 'Genic', 'Genic', 'VPgroup', 'VPgroup', 'LD', 'Intralam', 'Midline' 'Lat_group' 'Lat_group' 'Ant_group' 'Ant_group' 'MD_group' 'Ant_group' 'Ant_group'};
-% 
-% % VL: Motor/Emo, dentate/cerebellum
-% % VA, CM: Connections with BG, pallidum
-% % MD: ACC, insula
-% %https://www.dartmouth.edu/~rswenson/NeuroSci/chapter_10.html
-% % https://www.ncbi.nlm.nih.gov/pubmed/18273888
-% 
-% % AD is tiny and next to DM
-% 
-% for i = 1:length(group_codes)
-%     
-%     if iscell(group_codes{i})
-%         roi_atlas = select_atlas_subset(morel, group_codes{i}, 'flatten'); orthviews(roi_atlas)
-%     else
-%         roi_atlas = select_atlas_subset(morel, group_codes(i), 'flatten'); orthviews(roi_atlas)
-%     end
-%     
-%     if i == 1
-%         thalamus_atlas = roi_atlas;
-%     else
-%         thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
-%     end
-%     
-% end
-% 
-% thalamus_atlas.labels_2 = group_labels2;
-% 
-% thalamus_atlas.atlas_name = 'Morel_groups_combined';
-% thalamus_atlas.labels{1} = 'Other_thalamus';
-% 
-% 
-% 
-% %% Save
-% 
-% cd('/Users/tor/Documents/Code_Repositories/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas');
-% 
-% savefile = 'Thalamus_atlas_combined_Morel.mat';
-% save(savefile, 'thalamus_atlas');
+% VL: Motor/Emo, dentate/cerebellum
+% VA, CM: Connections with BG, pallidum
+% MD: ACC, insula
+%https://www.dartmouth.edu/~rswenson/NeuroSci/chapter_10.html
+% https://www.ncbi.nlm.nih.gov/pubmed/18273888
+
+% AD is tiny and next to DM
+
+for i = 1:length(group_codes)
+    
+    if iscell(group_codes{i})
+        
+        roi_atlas = select_atlas_subset(morel, group_codes{i}, 'flatten'); orthviews(roi_atlas)
+    else
+        
+    roi_atlas = select_atlas_subset(morel, group_codes(i), 'flatten'); orthviews(roi_atlas)
+    
+    end
+    
+    % a = input('press...');
+    
+    if i == 1
+        thalamus_atlas = roi_atlas;
+        
+    else
+        
+        thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+        
+    end
+    
+end
+
+thalamus_atlas.atlas_name = 'Morel_groups_combined';
+thalamus_atlas.labels{1} = 'Other_thalamus';
+
+
+
+%% Save
+
+cd('/Users/tor/Documents/Code_Repositories/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas');
+
+savefile = 'Thalamus_atlas_combined_Morel.mat';
+save(savefile, 'thalamus_atlas');
 
 
 %% Load thalamic regions from Brainnetome
