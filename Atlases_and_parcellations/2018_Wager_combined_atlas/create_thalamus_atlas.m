@@ -1,86 +1,81 @@
-% create_thalamus_atlas_group
-% 
-% Create a thalamus atlas with anatomically defined region groups, coarser
-% than Morel but still containing groups that match different functions.
-%
-% Notes: functional atlases probably do not [yet] have very good
-% subdivisions, and there is a clear demarcation of functions, inputs, and
-% outputs by anatomical subnuclei, which can be identified histologically.
-% So the anatomical atlases (Morel) are preferred
+%% Group atlas
 
-% 'cm'      Centromedian thalamus   Morel thalamus atlas, Krauth 2010
-% 'md'      Mediodorsal thalamus    Morel thalamus atlas, Krauth 2010
-% 'lgn'     Lateral geniculate nuc  Morel thalamus atlas, Krauth 2010
-% 'mgn'     Medial geniculate nuc   Morel thalamus atlas, Krauth 2010
-% 'VPthal'  Ventral posterior thal  Morel thalamus atlas, Krauth 2010
-% 'intralaminar_thal' Intralaminar  Morel thalamus atlas, Krauth 2010
+% Combine atlases to create a thalamus, hypothalamus, epithalamus atlas set
+% Remove the "other thalamus"
+% Add CIT168 STN and Hypothal regions
 
-% Load selected thalamic regions from Morel
+morel = load_atlas('morel');
 
-% Define: 1 mm space by default, based on HCP image
-% This initial image covers the whole space
+%% Thalamus 
+% See Create_Morel_thalamus_atlas_object, bottom
 
-[~, thalamus_atlas] = canlab_load_ROI('thalamus');
+group_codes = {'Pu' 'LGN', 'MGN', 'VPL', 'VPM', {'CL' 'CeM' 'CM' 'Pf'}, {'Pv' 'SPf'}, 'LD' 'VL', 'LP', 'VA' 'VM' 'MD' 'AM' 'AV' 'Hb'};  % each is a group to load and add
+group_names = {'Pulv' 'LGN', 'MGN', 'VPL', 'VPM', 'LD', 'Intralam', 'Midline' 'VL', 'LP' 'VA' 'VM', 'MD' 'AM', 'AV' 'Hb'};
 
-%% add other regions
-% ...replacing voxels where new one overlaps
+group_labels2 = {'Pulv' 'Genic', 'Genic', 'VPgroup', 'VPgroup', 'LD', 'Intralam', 'Midline' 'Lat_group' 'Lat_group' 'Ant_group' 'Ant_group' 'MD_group' 'Ant_group' 'Ant_group' 'Habenula'};
 
-regionnames = {'cm' 'md' 'lgn' 'mgn' 'VPthal' 'intralaminar_thal'} ;
-
-for i = 1:length(regionnames)
-    regionname = regionnames{i};
-    
-    [~, roi_atlas] = canlab_load_ROI(regionname);
-    orthviews(roi_atlas);
-
-    thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
-    
-end
-
-%% add other regions not in canlab_load_ROI
-% Load morel, and select more region groups
-
-morelfile = which('Morel_thalamus_atlas_object.mat');
-
-morel = load(morelfile); morel = morel.atlas_obj;
-%%
-group_codes = {'Pu' 'VA' 'VM' 'AM' 'AV' 'LD'};  % each is a group to load and add
+% VL: Motor/Emo, dentate/cerebellum
+% VA, CM: Connections with BG, pallidum
+% MD: ACC, insula
+%https://www.dartmouth.edu/~rswenson/NeuroSci/chapter_10.html
+% https://www.ncbi.nlm.nih.gov/pubmed/18273888
 
 % AD is tiny and next to DM
 
 for i = 1:length(group_codes)
     
-roi_atlas = select_atlas_subset(morel, group_codes(i), 'flatten'); orthviews(roi_atlas)
-
-% a = input('press...');
-
-thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
-
+    if iscell(group_codes{i})
+        roi_atlas = select_atlas_subset(morel, group_codes{i}, 'flatten'); orthviews(roi_atlas)
+    else
+        roi_atlas = select_atlas_subset(morel, group_codes(i), 'flatten'); orthviews(roi_atlas)
+    end
+    
+    if i == 1
+        thalamus_atlas = roi_atlas;
+    else
+        thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+    end
+    
 end
 
-% view stuff left out so far
-% orthviews(select_atlas_subset(thalamus_atlas, 1))
+thalamus_atlas.labels_2 = group_labels2;
 
-roi_atlas = select_atlas_subset(morel,{'VL'}, 'flatten'); orthviews(roi_atlas)
-thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+thalamus_atlas.atlas_name = 'CANlab_thalamus_combined';
 
-roi_atlas = select_atlas_subset(morel,{'LP'}, 'flatten'); orthviews(roi_atlas)
-thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+%% Re-label with group names
 
-thalamus_atlas.atlas_name = 'Morel_groups_combined';
-thalamus_atlas.labels{1} = 'Other_thalamus';
+group_names = {'Pulv' 'LGN', 'MGN', 'VPL', 'VPM', 'LD', 'Intralam', 'Midline' 'VL', 'LP' 'VA' 'VM', 'MD' 'AM', 'AV' 'Hb'};
+thalamus_atlas.labels = group_names;
+
+thalamus_atlas.labels_2 = group_labels2;
+
+%% Load CIT atlas and add regions
+
+cit168 = load_atlas('CIT168');
+
+group_codes = {'Hythal' 'STN'};
+
+for i = 1:length(group_codes)
+    
+    if iscell(group_codes{i})
+        roi_atlas = select_atlas_subset(cit168, group_codes{i}, 'flatten'); orthviews(roi_atlas)
+    else
+        roi_atlas = select_atlas_subset(cit168, group_codes(i), 'flatten'); orthviews(roi_atlas)
+    end
+    
+    thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+    
+end
+
+%% Enforce some var types and compress
+
+thalamus_atlas = check_properties(thalamus_atlas);
+thalamus_atlas = remove_empty(thalamus_atlas);
+
 
 %% Save
 
 cd('/Users/tor/Documents/Code_Repositories/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas');
 
-savefile = 'Thalamus_atlas_combined_Morel.mat';
+savefile = 'Thalamus_combined_atlas_object.mat';
 save(savefile, 'thalamus_atlas');
-
-
-%% Load thalamic regions from Brainnetome
-% better maybe for functional divisions of anterior nuc.
-% but maybe not...
-
-% bn = load(bnfile); bn = bn.atlas_obj;
-% bnthal = select_atlas_subset(bn, {'Tha'});
