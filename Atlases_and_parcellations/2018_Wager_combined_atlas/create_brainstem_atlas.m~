@@ -23,10 +23,81 @@ orthviews(bstem_atlas);
 
 %see also: bstemimg.fullpath = fullfile(pwd, 'brainstem_mask_tight_2018.img');
 
+%%
+shen = load_atlas('shen');
+
+shen = apply_mask(shen, bstemimg);
+
+r = atlas2region(shen);
+orthviews(shen)
+%[r, labels] = cluster_names(r,true);
+
+labels1 = {'xxx' 'Shen_Midb_Rrv' 'Shen_CerPed_R' 'Shen_CerPed_R' 'Shen_CerPed_R' 'xxx' 'xxx' 'xxx'};  % 1:8
+%for i = 1:8, orthviews(r(i), {[1 0 0]}); labels1{i}, input(''), end
+
+labels2 = {'xxx' 'Shen_Midb_Rd' 'xxx' 'Shen_Med_R' 'Shen_Pons_R' 'Shen_Pons_Rcv' 'Shen_Midb_R' 'Shen_Pons_Rcd'};
+rr = r(9:16);
+%for i = 1:8, orthviews(rr(i), {[1 0 0]}); labels2{i}, input(''), end
+
+labels3 = {'xxx' 'xxx' 'Shen_CerPed_L' 'xxx' 'xxx' 'xxx' 'xxx' 'Shen_Pons_Lrd'};
+rr = r(17:24);
+%for i = 1:8, orthviews(rr(i), {[1 0 0]}); labels3{i}, input(''), end
+
+labels4 = {'xxx' 'xxx' 'xxx' 'Shen_Midb_Ld' 'xxx' 'Shen_Midb_L' 'Shen_Med_L' 'Shen_Pons_Lcd' 'Shen_Pons_L'};
+rr = r(25:33);
+%for i = 1:9, orthviews(rr(i), {[1 0 0]}); labels4{i}, input(''), end
+
+labels = [labels1 labels2 labels3 labels4];
+wh_omit = strcmp(labels, 'xxx');
+
+r(wh_omit) = [];
+labels(wh_omit) = [];
+
+shen = remove_atlas_region(shen, find(wh_omit));
+shen.labels_3 = shen.labels_2;
+shen.labels_2 = shen.labels;
+shen.labels = labels;
+
+% to find clusters by hand:
+% [~,wh] = find_closest_cluster(r, spm_orthviews('pos')) 
+
+% Reorder Shen regions, leaving out peduncles
+
+[~, left] = select_atlas_subset(shen, {'_L'});
+[~, right] = select_atlas_subset(shen, {'_R'});
+
+[~, wh_midb] = select_atlas_subset(shen, {'Midb'});
+wh_midb = [find([wh_midb & left]) find([wh_midb & right])];
+
+[~, wh_pons] = select_atlas_subset(shen, {'Pons'});
+wh_pons = [find([wh_pons & left]) find([wh_pons & right])];
+
+[~, wh_med] = select_atlas_subset(shen, {'Med'});
+wh_med = [find([wh_med & left]) find([wh_med & right])];
+
+
+wh_order = [wh_midb wh_pons wh_med];
+
+shen = reorder_atlas_regions(shen, wh_order);
+
+
+%% Add shen brainstem, replacing old ones
+
+bstem_atlas = merge_atlases(bstem_atlas, shen, 'always_replace');
+
+
+
+
 %% add other regions
 % ...replacing voxels where new one overlaps
 
-regionnames = {'pag' 'PBP' 'sn' 'VTA' 'rn' 'pbn' 'lc' 'rvm' 'nts' 'drn' 'mrn' 'sc' 'ic'};
+% also include regions in other atlases that we want to remove here - so
+% that we remove these voxels
+
+% to-do: 'pbn' 'nts'
+
+regionnames = {'sc' 'ic' 'pag' 'PBP' 'sn' 'VTA' 'rn' 'drn' 'mrn' 'lc' 'rvm'};
+
 % NEW ONES TOO
 
 for i = 1:length(regionnames)
@@ -35,71 +106,59 @@ for i = 1:length(regionnames)
     [~, roi_atlas] = canlab_load_ROI(regionname);
     orthviews(roi_atlas);
 
-    thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+    bstem_atlas = merge_atlases(bstem_atlas, roi_atlas, 'always_replace');
     
 end
 
-%% add other regions not in canlab_load_ROI
-% Load morel, and select more region groups
+%% save object
 
-morelfile = which('Morel_thalamus_atlas_object.mat');
-
-morel = load(morelfile); morel = morel.atlas_obj;
-%% Thalamus 
-% Se
-group_codes = {'Pu' 'LGN', 'MGN', 'VPL', 'VPM', {'CL' 'CeM' 'CM' 'Pf'}, {'Pv' 'SPf'}, 'LD' 'VL', 'LP', 'VA' 'VM' 'MD' 'AM' 'AV'};  % each is a group to load and add
-group_names = {'Pulv' 'LGN', 'MGN', 'VPL', 'VPM', 'LD', 'Intralam', 'Midline' 'VL', 'LP' 'VA' 'VM', 'MD' 'AM', 'AV'};
-
-group_labels2 = {'Pulv' 'Genic', 'Genic', 'VPgroup', 'VPgroup', 'LD', 'Intralam', 'Midline' 'Ant_group' 'Ant_group' 'Ant_group'};
-
-% VL: Motor/Emo, dentate/cerebellum
-% VA, CM: Connections with BG, pallidum
-% MD: ACC, insula
-%https://www.dartmouth.edu/~rswenson/NeuroSci/chapter_10.html
-% https://www.ncbi.nlm.nih.gov/pubmed/18273888
-
-% AD is tiny and next to DM
-
-for i = 1:length(group_codes)
+if dosave
     
-    if iscell(group_codes{i})
-        
-        roi_atlas = select_atlas_subset(morel, group_codes{i}, 'flatten'); orthviews(roi_atlas)
-    else
-        
-    roi_atlas = select_atlas_subset(morel, group_codes(i), 'flatten'); orthviews(roi_atlas)
-    
-    end
-    
-    % a = input('press...');
-    
-    if i == 1
-        thalamus_atlas = roi_atlas;
-        
-    else
-        
-        thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
-        
-    end
+    savename = sprintf('%s_atlas_object.mat', atlas_name);
+    save(savename, 'atlas_obj');
     
 end
 
-thalamus_atlas.atlas_name = 'Morel_groups_combined';
-thalamus_atlas.labels{1} = 'Other_thalamus';
+%% write - this writes only the label image
 
+% Save: if creating from probabilty images only
+%
+% if dosave
+%     
+%     savename = sprintf('%s_atlas_regions.img', atlas_name);
+%     atlas_obj.fullpath = fullfile(pwd, savename);
+%     write(atlas_obj);
+%     
+% end
 
+%% Turn regions into separate list of names, for canlab_load_ROI
+% which loads regions by name from mat files.
 
-%% Save
+clear region_names
 
-cd('/Users/tor/Documents/Code_Repositories/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas');
+for i = 1:length(r)
+    
+    eval([labels{i} ' = r(i);']);
+    
+    region_names{i} = r(i).shorttitle;
+    
+end
 
-savefile = 'Thalamus_atlas_combined_Morel.mat';
-save(savefile, 'thalamus_atlas');
+savename = sprintf('%s_atlas_regions.mat', atlas_name);
+save(savename, 'r', 'region_names', labels{:});
 
-
-%% Load thalamic regions from Brainnetome
-% better maybe for functional divisions of anterior nuc.
-% but maybe not...
-
-% bn = load(bnfile); bn = bn.atlas_obj;
-% bnthal = select_atlas_subset(bn, {'Tha'});
+%%
+if dosave
+    
+    figure; han = isosurface(atlas_obj);
+    
+    set(han,'FaceAlpha', .5)
+    view(135, 20)
+    lightFollowView;
+    lightRestoreSingle
+    axis off
+    
+    savename = fullfile(savedir, sprintf('%s_isosurface.png', atlas_name));
+    saveas(gcf, savename);
+    
+end
