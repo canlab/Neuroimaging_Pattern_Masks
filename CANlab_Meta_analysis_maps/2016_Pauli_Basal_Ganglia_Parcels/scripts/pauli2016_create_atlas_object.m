@@ -32,7 +32,7 @@ cd(fileparts(parcellation_file))
 %% Get labels
 % -----------------------------------------------------------------------
 
-labels = {'Caudate_Cp' 'Putamen_Cp' 'Caudate_Ca' 'VS' 'Putamen_Pp'};
+labels = {'Caudate_Cp' 'Putamen_Pa' 'Caudate_Ca' 'VS' 'Putamen_Pp'};
 labels_2 = repmat({'Striatum'}, 1, 5);
 
 % Create object
