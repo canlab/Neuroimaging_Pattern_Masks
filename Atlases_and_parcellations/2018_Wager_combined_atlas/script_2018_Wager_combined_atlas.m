@@ -1,6 +1,6 @@
-cd('/Users/tor/Documents/Code_Repositories/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas')
+cd('/Users/torwager/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas')
 
-savedir = '/Users/tor/Documents/Code_Repositories/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas';
+savedir = '/Users/torwager/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas';
 
 % Cortex from Glasser
 % Striatum, STN, VTA, pallidum, BST from Pauli 2018  [alt striatum: Brainnetome] [alt: Keuken RN SN STN Pallidum]
@@ -73,21 +73,32 @@ clear suit
 
 %% Map in Morel combined atlas regions for thalamus
 
-savefile = which('Thalamus_atlas_combined_Morel.mat');
-load(savefile, 'thalamus_atlas');
+%savefile = which('Thalamus_atlas_combined_Morel.mat');
+
+%load(savefile, 'thalamus_atlas');
+% thalamus_atlas = load(morelfile);
+% thalamus_atlas = thalamus_atlas.thalamus_atlas;
+
+thalamus_atlas = load(which('Thalamus_combined_atlas_object.mat'));
 thalamus_atlas = thalamus_atlas.thalamus_atlas;
 
 % merge, using 'noreplace' to avoid overwriting habenula region already in.
 atlas_obj = merge_atlases(atlas_obj, thalamus_atlas, 'noreplace');
 %% Map in brainstem regions from canlab_load_ROI
-
+% Combined brainstem atlas
 
 % Load thalamic regions from Brainnetome
 % better maybe for functional divisions of anterior nuc.
 
-bn = load(bnfile); bn = bn.atlas_obj;
-bnthal = select_atlas_subset(bn, {'Tha'});
+% bn = load(bnfile); 
+% bn = bn.atlas_obj;
+% bnthal = select_atlas_subset(bn, {'Tha'});
 
+bstem = load(which('brainstem_combined_atlas_object.mat'));
+bstem = bstem.atlas_obj;
+
+% merge, using 'noreplace' to avoid overwriting 
+atlas_obj = merge_atlases(atlas_obj, bstem, 'noreplace');
 
 %% Map in Pauli regions for striatum
 
@@ -109,8 +120,48 @@ clear pauli
 save(fullfile(savedir, 'CANlab_combined_atlas_object_2018.mat'), 'atlas_obj');
 
 
-%% Map in Morel thalamus regions, without replacing existing
+
+%% SPM Anatomy
+
+% ****labels are wrong
+
+spmanat = load(spmanatfile); spmanat = spmanat.atlas_obj;
+
+amy_plus = select_atlas_subset(spmanat, {'Amy' 'Hipp' 'Subic'});
+
+orthviews(amy_plus);
+
+atlas_obj = merge_atlases(atlas_obj, amy_plus, 'noreplace');
+
+%orthviews(atlas_obj)
+
+%% SAVE combined atlas
+
+save(fullfile(savedir, 'CANlab_combined_atlas_object_2018.mat'), 'atlas_obj');
+
+%% Downsample for space efficiency and re-save
+
+mask = fmri_data(which('brainmask.nii'));
+
+atlas_obj = resample_space(atlas_obj, mask);
+
+save(fullfile(savedir, 'CANlab_combined_atlas_object_2018_2mm.mat'), 'atlas_obj');
+
+%% Add brainnetome without replacement
+% Glasser is too sparse in some areas of cortex.  Fill in missing areas
+% with brainnetome.
+% NOT DONE - NOT SURE WE SHOULD DO THIS
 % 
+% bn = load(bnfile); bn = bn.atlas_obj;
+% 
+% %wh_regions = cit.labels(3:end);
+% %subregions = select_atlas_subset(cit, wh_regions); orthviews(subregions); n = num_regions(subregions)
+% 
+% atlas_obj = merge_atlases(atlas_obj, bn, 'noreplace');
+
+
+%% Map in Morel thalamus regions, without replacing existing
+% NOT NEEDED - COMBINED THAL ATLAS NOW
 % morel = load(morelfile); morel = morel.atlas_obj;
 % 
 % %wh_regions = cit.labels(3:end);
@@ -123,30 +174,5 @@ save(fullfile(savedir, 'CANlab_combined_atlas_object_2018.mat'), 'atlas_obj');
 % % clear morel
 % 
 % orthviews(atlas_obj)
-
-%% SPM Anatomy
-
-% ****labels are wrong
-
-spmanat = load(spmanatfile); spmanat = spmanat.atlas_obj;
-
-wh_regions = {'Subiculum' 'CA1_Hippocampus_'}
-subregions = select_atlas_subset(spmanat, wh_regions); orthviews(subregions); n = num_regions(subregions)
-
-%% Add brainnetome without replacement
-% Glasser is too sparse in some areas of cortex.  Fill in missing areas
-% with brainnetome.
-
-bn = load(bnfile); bn = bn.atlas_obj;
-
-%wh_regions = cit.labels(3:end);
-%subregions = select_atlas_subset(cit, wh_regions); orthviews(subregions); n = num_regions(subregions)
-
-atlas_obj = merge_atlases(atlas_obj, bn, 'noreplace');
-
-orthviews(atlas_obj)
-
-clear bn
-
 
 
