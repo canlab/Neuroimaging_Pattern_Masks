@@ -123,8 +123,6 @@ save(fullfile(savedir, 'CANlab_combined_atlas_object_2018.mat'), 'atlas_obj');
 
 %% SPM Anatomy
 
-% ****labels are wrong
-
 spmanat = load(spmanatfile); spmanat = spmanat.atlas_obj;
 
 amy_plus = select_atlas_subset(spmanat, {'Amy' 'Hipp' 'Subic'});
