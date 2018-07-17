@@ -10,7 +10,9 @@
 
 atlas_name = 'CIT168_MNI_subcortical';
 space_description = 'MNI152 space';
-references = 'Pauli 2018 Bioarxiv: CIT168 from Human Connectome Project data';
+references = 'Pauli, Wolfgang M., Amanda N. Nili, and J. Michael Tyszka. 2018. ?A High-Resolution Probabilistic in Vivo Atlas of Human Subcortical Brain Nuclei.? Scientific Data 5 (April): 180063.';
+
+            %'Pauli 2018 Bioarxiv: CIT168 from Human Connectome Project data';
 
 % Run this from the directory containing the atlas files
 % -----------------------------------------------------------------------

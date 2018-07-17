@@ -23,7 +23,8 @@ orthviews(bstem_atlas);
 
 %see also: bstemimg.fullpath = fullfile(pwd, 'brainstem_mask_tight_2018.img');
 
-%%
+%% Shen regions: Fill in parcels not assigned to a named region
+
 shen = load_atlas('shen');
 
 shen = apply_mask(shen, bstemimg);
@@ -86,8 +87,6 @@ shen = reorder_atlas_regions(shen, wh_order);
 bstem_atlas = merge_atlases(bstem_atlas, shen, 'always_replace');
 
 
-
-
 %% add other regions
 % ...replacing voxels where new one overlaps
 
@@ -96,7 +95,7 @@ bstem_atlas = merge_atlases(bstem_atlas, shen, 'always_replace');
 
 % to-do: 'pbn' 'nts'
 
-regionnames = {'sc' 'ic' 'pag' 'PBP' 'sn' 'VTA' 'rn' 'drn' 'mrn' 'lc' 'rvm'};
+regionnames = {'pag' 'sc' 'ic' 'drn' 'mrn' 'PBP' 'sn' 'VTA' 'rn'  'pbn' 'lc' 'rvm' 'nrm' 'dmnx_nts' 'ncf' 'ncs_B6_B8' 'nrp_B5' 'nuc_ambiguus' 'medullary_raphe' 'spinal_trigeminal'};
 
 % NEW ONES TOO
 
@@ -111,9 +110,78 @@ for i = 1:length(regionnames)
 end
 
 % Fix - not sure why some labels not saving
-bstem_atlas.labels(end-2:end) = {'R_LC' 'L_LC' 'rvm'};
+% bstem_atlas.labels(end-2:end) = {'R_LC' 'L_LC' 'rvm'};
 
 atlas_obj = bstem_atlas;
+
+%% Adjust labels
+% make more consistent with other atlases
+% relabel L and R
+
+pat = 'Reg_1';
+atlas_obj.labels = regexprep(atlas_obj.labels, pat, 'other');
+
+pat = 'Shen_';
+atlas_obj.labels = regexprep(atlas_obj.labels, pat, '');
+
+atlas_obj = atlas_add_L_R_to_labels(atlas_obj);
+
+
+%% Add references
+
+references = {'Shen, X., F. Tokoglu, X. Papademetris, and R. T. Constable. 2013. ?Groupwise Whole-Brain Parcellation from Resting-State fMRI Data for Network Node Identification.? NeuroImage 82 (November): 403?15.'
+    'Pauli, Wolfgang M., Amanda N. Nili, and J. Michael Tyszka. 2018. ?A High-Resolution Probabilistic in Vivo Atlas of Human Subcortical Brain Nuclei.? Scientific Data 5 (April): 180063.'
+    'Fairhurst, Merle, Katja Wiech, Paul Dunckley, and Irene Tracey. 2007. ?Anticipatory Brainstem Activity Predicts Neural Processing of Pain in Humans.? Pain 128 (1-2):101?10.'
+    'Bär, Karl-Jürgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.'
+    'Zambreanu, L., R. G. Wise, J. C. W. Brooks, G. D. Iannetti, and I. Tracey. 2005. ?A Role for the Brainstem in Central Sensitisation in Humans. Evidence from Functional Magnetic Resonance Imaging.? Pain 114 (3):397?407.'
+    'Keuken, M. C., P-L Bazin, L. Crown, J. Hootsmans, A. Laufer, C. Müller-Axt, R. Sier, et al. 2014. ?Quantifying Inter-Individual Anatomical Variability in the Subcortex Using 7 T Structural MRI.? NeuroImage 94 (July): 40?46.'
+    'Beliveau, Vincent, Claus Svarer, Vibe G. Frokjaer, Gitte M. Knudsen, Douglas N. Greve, and Patrick M. Fisher. 2015. ?Functional Connectivity of the Dorsal and Median Raphe Nuclei at Rest.? NeuroImage 116 (August): 187?95.'
+    'Sclocco, Roberta, Florian Beissner, Gaelle Desbordes, Jonathan R. Polimeni, Lawrence L. Wald, Norman W. Kettner, Jieun Kim, et al. 2016. ?Neuroimaging Brainstem Circuitry Supporting Cardiovagal Response to Pain: A Combined Heart Rate Variability/ultrahigh-Field (7 T) Functional Magnetic Resonance Imaging Study.? Philosophical Transactions. Series A, Mathematical, Physical, and Engineering Sciences 374 (2067). rsta.royalsocietypublishing.org. https://doi.org/10.1098/rsta.2015.0189.'
+    'Nash, Paul G., Vaughan G. Macefield, Iven J. Klineberg, Greg M. Murray, and Luke A. Henderson. 2009. ?Differential Activation of the Human Trigeminal Nuclear Complex by Noxious and Non-Noxious Orofacial Stimulation.? Human Brain Mapping 30 (11):3772?82.'
+    'Keren, Noam I., Carl T. Lozar, Kelly C. Harris, Paul S. Morgan, and Mark A. Eckert. 2009. ?In Vivo Mapping of the Human Locus Coeruleus.? NeuroImage 47 (4): 1261?67.'
+    };
+
+atlas_obj.references = char(references);
+
+      
+% 'pag'        Periaqueductal gray, hand-drawn (Tor Wager 2018, mask out aqueduct/Keuken2014)
+% 'sc'         Superior colliculus, hand-drawn (Tor Wager 2018, mask out aqueduct/Keuken2014)
+% 'ic'         Inferior colliculus, hand-drawn (Tor Wager 2018, mask out aqueduct/Keuken2014)
+% 'drn'        Dorsal raphe nucleus, coords from Beliveau, 2015. mask out aqueduct/Keuken2014 ?Functional Connectivity of the Dorsal and Median Raphe Nuclei at Rest.? NeuroImage 116 (August). Elsevier:187?95.
+% 'mrn'        Median raphe nucleus, coords from Beliveau, 2015. mask out aqueduct/Keuken2014 ?Functional Connectivity of the Dorsal and Median Raphe Nuclei at Rest.? NeuroImage 116 (August). Elsevier:187?95.
+% 'PBP'        Parabrachial pigmented nuc.      % Pauli 2017 BioArxiv subcortical atlas
+% 'sn'         Substantia Nigra; Keuken 2014
+% 'SNc'        Substantia Nigra compacta        % Pauli 2017 BioArxiv subcortical atlas
+% 'SNr'        Substantia Nigra reticularis     % Pauli 2017 BioArxiv subcortical atlas
+% 'VTA'        Ventral tegmental area           % Pauli 2017 BioArxiv subcortical atlas
+% 'rn'         Red nucleus; Keuken 2014
+% 'pbn'        Parabrachial complex; Fairhurst, Merle, Katja Wiech, Paul Dunckley, and Irene Tracey. 2007. ?Anticipatory Brainstem Activity Predicts Neural Processing of Pain in Humans.? Pain 128 (1-2):101?10.
+% 'lc'         Locus coeruleus; Keren 2009, 2SD image
+% 'rvm_old'    Hand-drawn rostral ventral medulla (Tor) in anatomical rvm
+% 'rvm'        Rostral ventral medulla from Brooks et al. 2016(??)
+% 'nts'        Nuc. tractus solitarius (rough; hand-drawn, Tor)
+% 'olive'      Inferior olive; MISSING
+% 'nrm'        Nuc. raphe magnus; % Bär, Karl-Jürgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.
+% 'ncf'        Nuc. cuneiformis; Zambreanu, L., R. G. Wise, J. C. W. Brooks, G. D. Iannetti, and I. Tracey. 2005. ?A Role for the Brainstem in Central Sensitisation in Humans. Evidence from Functional Magnetic Resonance Imaging.? Pain 114 (3):397?407.
+% 'ncs_B6_B8'  Bär, Karl-Jürgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.
+% 'nrp_B5'     Bär, Karl-Jürgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.
+% 'nuc_ambiguus' Sclocco, Roberta, Florian Beissner, Gaelle Desbordes, Jonathan R. Polimeni, Lawrence L. Wald, Norman W. Kettner, Jieun Kim, et al. 2016. ?Neuroimaging Brainstem Circuitry Supporting Cardiovagal Response to Pain: A Combined Heart Rate Variability/ultrahigh-Field (7 T) Functional Magnetic Resonance Imaging Study.? Philosophical Transactions. Series A, Mathematical, Physical, and Engineering Sciences 374 (2067). rsta.royalsocietypublishing.org. https://doi.org/10.1098/rsta.2015.0189.
+% 'dmnx_nts'    Sclocco, Roberta, Florian Beissner, Gaelle Desbordes, Jonathan R. Polimeni, Lawrence L. Wald, Norman W. Kettner, Jieun Kim, et al. 2016. ?Neuroimaging Brainstem Circuitry Supporting Cardiovagal Response to Pain: A Combined Heart Rate Variability/ultrahigh-Field (7 T) Functional Magnetic Resonance Imaging Study.? Philosophical Transactions. Series A, Mathematical, Physical, and Engineering Sciences 374 (2067). rsta.royalsocietypublishing.org. https://doi.org/10.1098/rsta.2015.0189.
+% 'vep'          % Pauli 2017 BioArxiv CIT168 subcortical atlas 
+% 'medullary_raphe' Nash, Paul G., Vaughan G. Macefield, Iven J. Klineberg, Greg M. Murray, and Luke A. Henderson. 2009. ?Differential Activation of the Human Trigeminal Nuclear Complex by Noxious and Non-Noxious Orofacial Stimulation.? Human Brain Mapping 30 (11):3772?82.
+% 'spinal_trigeminal' Nash, Paul G., Vaughan G. Macefield, Iven J. Klineberg, Greg M. Murray, and Luke A. Henderson. 2009. ?Differential Activation of the Human Trigeminal Nuclear Complex by Noxious and Non-Noxious Orofacial Stimulation.? Human Brain Mapping 30 (11):3772?82.
+%
+
+%% REMOVE general region - not needed
+
+atlas_obj = remove_atlas_region(atlas_obj, {'other'});
+
+%% Save dir
+
+savedir = what('2018_Wager_combined_atlas');
+savedir = savedir.path;
+
+cd(savedir)
 
 %% save object
 

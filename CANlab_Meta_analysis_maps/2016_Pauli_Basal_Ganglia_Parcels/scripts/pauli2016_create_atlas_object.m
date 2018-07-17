@@ -10,7 +10,7 @@
 
 atlas_name = 'Pauli2016_striatum';
 space_description = 'MNI152 space';
-references = 'Pauli 2016 PNAS';
+references = 'Pauli, Wolfgang M., Randall C. O?Reilly, Tal Yarkoni, and Tor D. Wager. 2016. ?Regional Specialization within the Human Striatum for Diverse Psychological Functions.? Proceedings of the National Academy of Sciences of the United States of America 113 (7): 1907?12.';
 
 % Run this from the directory containing the atlas files
 % -----------------------------------------------------------------------
@@ -32,7 +32,7 @@ cd(fileparts(parcellation_file))
 %% Get labels
 % -----------------------------------------------------------------------
 
-labels = {'Caudate_Cp' 'Putamen_Cp' 'Caudate_Ca' 'VS' 'Putamen_Pp'};
+labels = {'Caudate_Cp' 'Putamen_Pa' 'Caudate_Ca' 'V_Striatum' 'Putamen_Pp'};
 labels_2 = repmat({'Striatum'}, 1, 5);
 
 % Create object
@@ -65,6 +65,12 @@ orthviews(atlas_obj, 'unique');
 
 % Display on montage (colors may not be the same!):
 % montage(r);
+
+
+%% Subdivide into L and R hemispheres, save separate copy
+
+atlas_obj_split_lr = split_atlas_by_hemisphere(atlas_obj); 
+
  
  %% save figure
 
@@ -91,7 +97,7 @@ end
 if dosave
     
     savename = sprintf('%s_atlas_object.mat', atlas_name);
-    save(savename, 'atlas_obj');
+    save(savename, 'atlas_obj', 'atlas_obj_split_lr');
     
 end
 
@@ -123,7 +129,8 @@ end
 savename = sprintf('%s_atlas_regions.mat', atlas_name);
 save(savename, 'r', 'region_names', labels{:});
 
-%%
+%% Isosurface
+
 if dosave
     
     figure; han = isosurface(atlas_obj);

@@ -1,6 +1,14 @@
-cd('/Users/torwager/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas')
 
-savedir = '/Users/torwager/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Wager_combined_atlas';
+%% Save dir
+
+savedir = what('2018_Wager_combined_atlas');
+savedir = savedir.path;
+
+cd(savedir)
+
+%%
+
+% NOTE: Some files/atlases are in MasksPrivate.  
 
 % Cortex from Glasser
 % Striatum, STN, VTA, pallidum, BST from Pauli 2018  [alt striatum: Brainnetome] [alt: Keuken RN SN STN Pallidum]
@@ -31,47 +39,66 @@ savedir = '/Users/torwager/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_a
 % Brainnetome_create_atlas_object
 % SPManatomy_create_atlas_object
 
+% These are used directly:
 glasserfile = which('Glasser2016HCP_atlas_object.mat');
+bgfile = which('Basal_ganglia_combined_atlas_object.mat'); % see create_basal_ganglia_atlas.m
 citfile = which('CIT168_MNI_subcortical_atlas_object.mat');
 suitfile = which('SUIT_Cerebellum_MNI_atlas_object.mat');
+thalamusfile = which('Thalamus_combined_atlas_object.mat');
+brainstemfile = which('brainstem_combined_atlas_object.mat');
+spmanatfile = which('SPMAnatomy22c_atlas_object.mat');
+
+% These are used indirectly and not loaded:
 shenfile = which('Shen_atlas_object.mat');
 morelfile = which('Morel_thalamus_atlas_object.mat');
-spmanatfile = which('SPMAnatomy22c_atlas_object.mat');
 paulifile = which('Pauli2016_striatum_atlas_object.mat');
 bnfile = which('Brainnetome_atlas_object.mat');
+
+% Scripts to recreate required files and sub-atlases:
+% GlasserHCP_create_atlas_object
+% CIT168_create_atlas_object
+% pauli2016_create_atlas_object
+% create_basal_ganglia_atlas
+% SUIT_create_atlas_object
+
+% Create_Morel_atlas_object.m
+% create_thalamus_atlas.m
+
+% create_brainstem_atlas
 
 %% Start with Glasser cortex
 
 glasser = load(glasserfile, 'atlas_obj'); glasser = glasser.atlas_obj;
 
 
-%% Map in CIT168 regions (BG, some subcortex)
+%% Map in combined BG atlas
 
-% ** may need 'split into contiguous' function **
+bg = load(bgfile); bg = bg.atlas_obj;
 
-cit = load(citfile); cit = cit.atlas_obj;
-wh_regions = cit.labels(3:end);
-
-%subregions = select_atlas_subset(cit, wh_regions); orthviews(subregions); n = num_regions(subregions)
-
-atlas_obj = merge_atlases(glasser, cit, wh_regions);
+atlas_obj = merge_atlases(glasser, bg);
 
 atlas_obj.atlas_name = 'CANlab_2018_combined';
 
-clear cit glasser
+clear bg glasser
+
+%% Map in CIT168 regions (only those not in other atlases)
+
+cit = load(citfile); cit = cit.atlas_obj;
+wh_regions = {'BST_SLEA' 'Haben' 'Mamm_Nuc'}; % some regions already in BG atlas.  cit.labels(3:end);  'Hythal' 
+
+atlas_obj = merge_atlases(atlas_obj, cit, wh_regions);
+
+clear cit
 
 %% Map in SUIT MNI regions for cerebellum
 
 suit = load(suitfile); suit = suit.atlas_obj;
 
-%wh_regions = cit.labels(3:end);
-%subregions = select_atlas_subset(cit, wh_regions); orthviews(subregions); n = num_regions(subregions)
-
 atlas_obj = merge_atlases(atlas_obj, suit);
 
 clear suit
 
-%% Map in Morel combined atlas regions for thalamus
+%% Map in Morel atlas-based combined atlas regions for thalamus
 
 %savefile = which('Thalamus_atlas_combined_Morel.mat');
 
@@ -79,11 +106,21 @@ clear suit
 % thalamus_atlas = load(morelfile);
 % thalamus_atlas = thalamus_atlas.thalamus_atlas;
 
-thalamus_atlas = load(which('Thalamus_combined_atlas_object.mat'));
+thalamus_atlas = load(thalamusfile);
 thalamus_atlas = thalamus_atlas.thalamus_atlas;
+
+% Add labels to make more consistent with other atlases
+for i = 1:length(thalamus_atlas.labels)
+    thalamus_atlas.labels{i} = [ 'Thal_' thalamus_atlas.labels{i}]; 
+end
+
+% Note: July 2018 - this fails for some reason (incorrect separation)
+% needs debugging.  this work ok on other atlases... 
+% thalamus_atlas = split_atlas_by_hemisphere(thalamus_atlas);
 
 % merge, using 'noreplace' to avoid overwriting habenula region already in.
 atlas_obj = merge_atlases(atlas_obj, thalamus_atlas, 'noreplace');
+
 %% Map in brainstem regions from canlab_load_ROI
 % Combined brainstem atlas
 
@@ -94,34 +131,25 @@ atlas_obj = merge_atlases(atlas_obj, thalamus_atlas, 'noreplace');
 % bn = bn.atlas_obj;
 % bnthal = select_atlas_subset(bn, {'Tha'});
 
-bstem = load(which('brainstem_combined_atlas_object.mat'));
+bstem = load(brainstemfile);
 bstem = bstem.atlas_obj;
+
+% Add labels to make more consistent with other atlases
+for i = 1:length(thalamus_atlas.labels)
+    bstem.labels{i} = [ 'Bstem_' bstem.labels{i}]; 
+end
 
 % merge, using 'noreplace' to avoid overwriting 
 atlas_obj = merge_atlases(atlas_obj, bstem, 'noreplace');
 
-%% Map in Pauli regions for striatum
-
-pauli = load(paulifile); pauli = pauli.atlas_obj;
-
-% Threshold some to clean up and avoid bleed-over
-pauli = threshold(pauli, .6);
-
-%wh_regions = cit.labels(3:end);
-%subregions = select_atlas_subset(cit, wh_regions); orthviews(subregions); n = num_regions(subregions)
-
-atlas_obj = merge_atlases(atlas_obj, pauli, 'noreplace');
-
-clear pauli
-
 
 %% Save temporary
+% 
+% save(fullfile(savedir, 'CANlab_combined_atlas_object_2018.mat'), 'atlas_obj');
+% 
 
-save(fullfile(savedir, 'CANlab_combined_atlas_object_2018.mat'), 'atlas_obj');
 
-
-
-%% SPM Anatomy
+%% SPM Anatomy for amygdala and hippocampus
 
 spmanat = load(spmanatfile); spmanat = spmanat.atlas_obj;
 
@@ -173,4 +201,42 @@ save(fullfile(savedir, 'CANlab_combined_atlas_object_2018_2mm.mat'), 'atlas_obj'
 % 
 % orthviews(atlas_obj)
 
+ %% save figure
 
+ atlas_name = atlas_obj.atlas_name;
+ 
+ r = atlas2region(atlas_obj);
+ 
+if dosave
+   
+    o2 = canlab_results_fmridisplay([], 'multirow', 1);
+    brighten(.6)
+    
+    o2 = montage(r, o2, 'wh_montages', 1:2);
+    
+    savedir = fullfile(pwd, 'png_images');
+    if ~exist(savedir, 'dir'), mkdir(savedir); end
+    
+    scn_export_papersetup(600);
+    savename = fullfile(savedir, sprintf('%s_montage.png', atlas_name));
+    saveas(gcf, savename);
+
+    
+end
+ 
+%% Isosurface
+
+if dosave
+    
+    figure; han = isosurface(atlas_obj);
+    
+    set(han,'FaceAlpha', .5)
+    view(135, 20)
+    lightFollowView;
+    lightRestoreSingle
+    axis off
+    
+    savename = fullfile(savedir, sprintf('%s_isosurface.png', atlas_name));
+    saveas(gcf, savename);
+    
+end
