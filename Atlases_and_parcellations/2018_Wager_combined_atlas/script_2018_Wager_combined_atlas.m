@@ -173,6 +173,11 @@ atlas_obj = resample_space(atlas_obj, mask);
 
 save(fullfile(savedir, 'CANlab_combined_atlas_object_2018_2mm.mat'), 'atlas_obj');
 
+%%  Add larger units to labels_2
+% Also save and write .nii images
+
+plugin_canlab_atlas_2018_relabel_larger_units
+
 %% Add brainnetome without replacement
 % Glasser is too sparse in some areas of cortex.  Fill in missing areas
 % with brainnetome.
