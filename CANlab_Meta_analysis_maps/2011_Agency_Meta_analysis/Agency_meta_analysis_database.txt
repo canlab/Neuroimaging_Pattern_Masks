@@ -1,5 +1,5 @@
 7						
-x	y	z	Study	Contrast	N	Original_Space
+x	y	z	study	Contrast	N	CoordSys
 44	-58	54	"Chaminade_&_Decety,_2002"	1	9	MNI
 32	-50	52	"Chaminade_&_Decety,_2002"	1	9	MNI
 -50	-58	16	David_et_al._2006	2	13	MNI
@@ -31,18 +31,18 @@ x	y	z	Study	Contrast	N	Original_Space
 44	-54	38	Farrer_2008_Study_1	13	15	MNI
 -48	-46	56	Farrer_2008_Study_2	14	18	MNI
 58	-46	48	Farrer_2008_Study_2	14	18	MNI
--49	-56	15	Spengler_2009	15	18	TAL
-54	-52	20	Spengler_2009	15	18	TAL
-62	-50	13	Nahab_in_press	16	20	TAL
-58	-45	19	Nahab_in_press	16	20	TAL
-45	-46	15	Nahab_in_press	16	20	TAL
-64	-50	40	Nahab_in_press	16	20	TAL
--52	-49	51	Nahab_in_press	16	20	TAL
-39	-56	41	Nahab_in_press	16	20	TAL
-56	-55	27	Nahab_in_press	16	20	TAL
-52	-60	43	Nahab_in_press	16	20	TAL
-52	-53	56	Nahab_in_press	16	20	TAL
--46	-48	44	Nahab_in_press	16	20	TAL
+-49	-56	15	Spengler_2009	15	18	T88
+54	-52	20	Spengler_2009	15	18	T88
+62	-50	13	Nahab_in_press	16	20	T88
+58	-45	19	Nahab_in_press	16	20	T88
+45	-46	15	Nahab_in_press	16	20	T88
+64	-50	40	Nahab_in_press	16	20	T88
+-52	-49	51	Nahab_in_press	16	20	T88
+39	-56	41	Nahab_in_press	16	20	T88
+56	-55	27	Nahab_in_press	16	20	T88
+52	-60	43	Nahab_in_press	16	20	T88
+52	-53	56	Nahab_in_press	16	20	T88
+-46	-48	44	Nahab_in_press	16	20	T88
 40	-58	26	Tsakiris_in_press	17	19	MNI
 52	-38	38	Tsakiris_in_press	17	19	MNI
 52	-58	12	Yomogida_2010	18	28	MNI
