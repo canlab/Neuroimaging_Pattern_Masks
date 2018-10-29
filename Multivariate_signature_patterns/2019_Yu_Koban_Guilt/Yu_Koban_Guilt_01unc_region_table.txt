@@ -1,0 +1,92 @@
+----------------------------------------------
+Yu_Koban_Guilt_01unc: Guilt-related, p<.01 unc
+----------------------------------------------
+Grouping contiguous voxels:  17 regions
+
+____________________________________________________________________________________________________________________________________________
+Positive Effects
+    <strong>  Region   </strong><strong>    Volume</strong><strong>           XYZ       </strong><strong>     maxZ </strong><strong>     modal_label_descriptions  </strong><strong>    Perc_covered_by_label</strong><strong>    Atlas_regions_covered</strong><strong>    region_index</strong>
+    <strong>___________</strong>    <strong>______</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>___________________________</strong>    <strong>_____________________</strong>    <strong>_____________________</strong>    <strong>____________</strong>
+
+    'Ctx_47s_L'     96       -32     18    -18    2.9358    'Cortex_Default_ModeB'          92                      0                        1           
+    'Ctx_47l_R'    184        42     24    -10    2.9747    'Cortex_Default_ModeB'          48                      0                        2           
+    'Ctx_PFm_L'      8       -54    -54     28    2.6001    'Cortex_Fronto_ParietalB'      100                      0                        4           
+    'Ctx_p24_R'    896         0     32     20    4.5575    'Cortex_Ventral_AttentionB'     56                      1                        3           
+
+
+Negative Effects
+    <strong>    Region    </strong><strong>    Volume</strong><strong>           XYZ       </strong><strong>     maxZ  </strong><strong>     modal_label_descriptions  </strong><strong>    Perc_covered_by_label</strong><strong>    Atlas_regions_covered</strong><strong>    region_index</strong>
+    <strong>______________</strong>    <strong>______</strong>    <strong>_________________</strong>    <strong>_______</strong>    <strong>___________________________</strong>    <strong>_____________________</strong>    <strong>_____________________</strong>    <strong>____________</strong>
+
+    'Putamen_Pa_L'    16        -26      4     10     -2.656    'Basal_ganglia'                100                      0                        12          
+    'Putamen_Pa_L'     8        -22      6     12     -2.576    'Basal_ganglia'                100                      0                        16          
+    'Cblm_CrusI_L'     8        -44    -72    -38    -2.7336    'Cerebellum'                   100                      0                         5          
+    'Ctx_47l_L'       16        -52     34     -8    -2.7219    'Cortex_Default_ModeB'         100                      0                         7          
+    'Ctx_a47r_L'      24        -46     36    -12    -2.8032    'Cortex_Fronto_ParietalB'       33                      0                         6          
+    'Ctx_a47r_L'       8        -46     42     -8    -2.7473    'Cortex_Fronto_ParietalB'      100                      0                         8          
+    'Ctx_PoI2_R'      16         40     -2      8    -2.7331    'Cortex_Ventral_AttentionA'    100                      0                        10          
+    'Ctx_6r_L'         8        -46      8     28    -2.6246    'Cortex_Ventral_AttentionA'    100                      0                        17          
+    'Thal_VA'         16          8     -2      8     -2.803    'Diencephalon'                 100                      0                        11          
+    'Thal_VA'         24         12     -6     10     -2.736    'Diencephalon'                 100                      0                        15          
+    'No label'         8        -42     36      6    -2.5815    'No description'                 0                      0                         9          
+    'No label'         8        -38     32      8    -2.5818    'No description'                 0                      0                        13          
+    'No label'         8        -36     38      8    -2.9215    'No description'                 0                      0                        14          
+
+
+____________________________________________________________________________________________________________________________________________
+Regions labeled by reference atlas CANlab_2018_combined
+                                                       
+Volume: Volume of contiguous region in cubic mm.
+MaxZ: Signed max over Z-score for each voxel.
+Atlas_regions_covered: Number of reference atlas regions covered at least 25% by the region. This relates to whether the region covers 
+multiple reference atlas regions                                                                                                       
+Region: Best reference atlas label, defined as reference region with highest number of in-region voxels. Regions covering >25% of >5 
+regions labeled as "Multiple regions"                                                                                                
+Perc_covered_by_label: Percentage of the region covered by the label.
+Ref_region_perc: Percentage of the label region within the target region.
+modal_atlas_index: Index number of label region in reference atlas
+all_regions_covered: All regions covered >5% in descending order of importance
+ 
+For example, if a region is labeled 'TE1a' and Perc_covered_by_label = 8, Ref_region_perc = 38, and Atlas_regions_covered = 17, this means 
+that 8% of the region's voxels are labeled TE1a, which is the highest percentage among reference label regions. 38% of the region TE1a is  
+covered by the region. However, the region covers at least 25% of 17 distinct labeled reference regions.                                   
+                                                                                                                                           
+References for atlases:
+                       
+Beliveau, Vincent, Claus Svarer, Vibe G. Frokjaer, Gitte M. Knudsen, Douglas N. Greve, and Patrick M. Fisher. 2015. Functional 
+Connectivity of the Dorsal and Median Raphe Nuclei at Rest. NeuroImage 116 (August): 18795.                                   
+Bär, Karl-Jürgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional 
+Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.                                           
+Diedrichsen, Jörn, Joshua H. Balsters, Jonathan Flavell, Emma Cussans, and Narender Ramnani. 2009. A Probabilistic MR Atlas of the Human 
+Cerebellum. NeuroImage 46 (1): 39?46.                                                                                                    
+Fairhurst, Merle, Katja Wiech, Paul Dunckley, and Irene Tracey. 2007. ?Anticipatory Brainstem Activity Predicts Neural Processing of Pain 
+in Humans.? Pain 128 (1-2):101?10.                                                                                                        
+Fan 2016 Cerebral Cortex; doi:10.1093/cercor/bhw157
+Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. A 
+Multi-Modal Parcellation of Human Cerebral Cortex. Nature 536 (7615): 171?78.                                                       
+Keren, Noam I., Carl T. Lozar, Kelly C. Harris, Paul S. Morgan, and Mark A. Eckert. 2009. In Vivo Mapping of the Human Locus Coeruleus. 
+NeuroImage 47 (4): 126167.                                                                                                               
+Keuken, M. C., P-L Bazin, L. Crown, J. Hootsmans, A. Laufer, C. Müller-Axt, R. Sier, et al. 2014. Quantifying Inter-Individual Anatomical 
+Variability in the Subcortex Using 7 T Structural MRI. NeuroImage 94 (July): 4046.                                                       
+Krauth A, Blanc R, Poveda A, Jeanmonod D, Morel A, Székely G. (2010) A mean three-dimensional atlas of the human thalamus: generation from 
+multiple histological data. Neuroimage. 2010 Feb 1;49(3):2053-62. Jakab A, Blanc R, Berényi EL, Székely G. (2012) Generation of            
+Individualized Thalamus Target Maps by Using Statistical Shape Models and Thalamocortical Tractography. AJNR Am J Neuroradiol. 33:         
+2110-2116, doi: 10.3174/ajnr.A3140                                                                                                         
+Nash, Paul G., Vaughan G. Macefield, Iven J. Klineberg, Greg M. Murray, and Luke A. Henderson. 2009. ?Differential Activation of the Human 
+Trigeminal Nuclear Complex by Noxious and Non-Noxious Orofacial Stimulation.? Human Brain Mapping 30 (11):3772?82.                         
+Pauli 2018 Bioarxiv: CIT168 from Human Connectome Project data
+Pauli, Wolfgang M., Amanda N. Nili, and J. Michael Tyszka. 2018. ?A High-Resolution Probabilistic in Vivo Atlas of Human Subcortical Brain 
+Nuclei.? Scientific Data 5 (April): 180063.                                                                                                
+Pauli, Wolfgang M., Randall C. O?Reilly, Tal Yarkoni, and Tor D. Wager. 2016. ?Regional Specialization within the Human Striatum for 
+Diverse Psychological Functions.? Proceedings of the National Academy of Sciences of the United States of America 113 (7): 1907?12.  
+Sclocco, Roberta, Florian Beissner, Gaelle Desbordes, Jonathan R. Polimeni, Lawrence L. Wald, Norman W. Kettner, Jieun Kim, et al. 2016. 
+?Neuroimaging Brainstem Circuitry Supporting Cardiovagal Response to Pain: A Combined Heart Rate Variability/ultrahigh-Field (7 T)       
+Functional Magnetic Resonance Imaging Study.? Philosophical Transactions. Series A, Mathematical, Physical, and Engineering Sciences 374 
+(2067). rsta.royalsocietypublishing.org. https://doi.org/10.1098/rsta.2015.0189.                                                         
+Shen, X., F. Tokoglu, X. Papademetris, and R. T. Constable. 2013. Groupwise Whole-Brain Parcellation from Resting-State fMRI Data for 
+Network Node Identification. NeuroImage 82 (November): 40315.                                                                        
+Zambreanu, L., R. G. Wise, J. C. W. Brooks, G. D. Iannetti, and I. Tracey. 2005. ?A Role for the Brainstem in Central Sensitisation in 
+Humans. Evidence from Functional Magnetic Resonance Imaging.? Pain 114 (3):397?407.                                                    
+                                                                                                     
+Note: Region object r(i).title contains full list of reference atlas regions covered by each cluster.
+____________________________________________________________________________________________________________________________________________
