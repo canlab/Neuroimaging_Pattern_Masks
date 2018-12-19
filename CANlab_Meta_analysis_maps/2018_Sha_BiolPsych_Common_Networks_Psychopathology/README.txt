@@ -4,6 +4,9 @@ Sha, Zhiqiang, Tor D. Wager, Andrea Mechelli, and Yong He. 2018. “Common Dysfu
 
 https://www.sciencedirect.com/science/article/pii/S0006322318320237
 
+Github repository available at:
+https://tinyurl.com/sha2018
+
 1. All the results maps for this study are in the folder of MKDA_Maps.
 2. In the folder of MKDA_Maps, there are two subfolders, including SB_FC and VBM. In the subfolder of SB_FC, there are resulting maps of DMN, FPN and SN. In the subfolder of VBM, there are the meta-analytic maps of VBM. 
 3. In each subfolder of these three networks, dysconnectivity, hypoconnectivity and hyperconnectivity maps are included, individually.
