@@ -1,0 +1,2352 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>sha_2018_visualize_maps</title><meta name="generator" content="MATLAB 9.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-12-19"><meta name="DC.source" content="sha_2018_visualize_maps.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeoutput">----------------------------------------------
+VBM_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   2 regions
+sagittal montage: 1064 voxels displayed, 36853 not displayed on these slices
+sagittal montage: 1053 voxels displayed, 36864 not displayed on these slices
+sagittal montage: 1079 voxels displayed, 36838 not displayed on these slices
+axial montage: 6605 voxels displayed, 31312 not displayed on these slices
+axial montage: 6639 voxels displayed, 31278 not displayed on these slices
+Grouping contiguous voxels:   2 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   48.4725
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 864
+37917 coords.  selecting: 3991
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+37917 coords.  selecting: 1464
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1182
+37917 coords.  selecting: 6025
+Running   7 sets of coordinates: 007 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+37917 coords.  selecting: 3517
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+37917 coords.  selecting: 1388
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 153146
+37917 coords.  selecting: 24275
+Running  25 sets of coordinates: 025 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+37917 coords.  selecting: 8785
+Running   9 sets of coordinates: 009 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+37917 coords.  selecting: 7884
+Running   8 sets of coordinates: 008 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+37917 coords.  selecting: 2245
+Running   3 sets of coordinates: 003 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+37917 coords.  selecting: 1328
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+37917 coords.  selecting: 824
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 2091
+37917 coords.  selecting: 3377
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 92803
+37917 coords.  selecting: 1324
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 10504
+37917 coords.  selecting: 808
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 42017
+37917 coords.  selecting: 20062
+Running  21 sets of coordinates: 021 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 11441
+37917 coords.  selecting: 4061
+Running   5 sets of coordinates: 005Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_01.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_02.png" alt=""> <pre class="codeoutput">----------------------------------------------
+VBM_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:  10 regions
+sagittal montage: 589 voxels displayed, 17039 not displayed on these slices
+sagittal montage: 629 voxels displayed, 16999 not displayed on these slices
+sagittal montage: 656 voxels displayed, 16972 not displayed on these slices
+axial montage: 3106 voxels displayed, 14522 not displayed on these slices
+axial montage: 3032 voxels displayed, 14596 not displayed on these slices
+Grouping contiguous voxels:  10 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   50.3131
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 864
+17628 coords.  selecting: 1389
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+17628 coords.  selecting: 413
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1182
+17628 coords.  selecting: 2116
+Running   3 sets of coordinates: 003 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+17628 coords.  selecting: 1035
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+17628 coords.  selecting: 352
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 90162
+17628 coords.  selecting: 11408
+Running  12 sets of coordinates: 012 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+17628 coords.  selecting: 3561
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+17628 coords.  selecting: 3288
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+17628 coords.  selecting: 849
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+17628 coords.  selecting: 443
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+17628 coords.  selecting: 161
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1913
+17628 coords.  selecting: 1224
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 9508
+17628 coords.  selecting:  74
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 9036
+17628 coords.  selecting:  74
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 27822
+17628 coords.  selecting: 9455
+Running  10 sets of coordinates: 010 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 7423
+17628 coords.  selecting: 2124
+Running   3 sets of coordinates: 003Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_03.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_04.png" alt=""> <pre class="codeoutput">----------------------------------------------
+DMN_Dec_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   3 regions
+sagittal montage: 585 voxels displayed, 9772 not displayed on these slices
+sagittal montage: 508 voxels displayed, 9849 not displayed on these slices
+sagittal montage: 602 voxels displayed, 9755 not displayed on these slices
+axial montage: 1790 voxels displayed, 8567 not displayed on these slices
+axial montage: 1877 voxels displayed, 8480 not displayed on these slices
+Grouping contiguous voxels:   3 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   82.1691
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 864
+10357 coords.  selecting: 535
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+10357 coords.  selecting:  26
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1182
+10357 coords.  selecting: 585
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+10357 coords.  selecting: 337
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+10357 coords.  selecting: 589
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 142123
+10357 coords.  selecting: 7235
+Running   8 sets of coordinates: 008 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+10357 coords.  selecting: 3235
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+10357 coords.  selecting: 2776
+Running   3 sets of coordinates: 003 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+10357 coords.  selecting: 338
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+10357 coords.  selecting:  47
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+10357 coords.  selecting:  70
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1761
+10357 coords.  selecting:  19
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 91779
+10357 coords.  selecting: 954
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 8665
+10357 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 28391
+10357 coords.  selecting: 5144
+Running   6 sets of coordinates: 006 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 11457
+10357 coords.  selecting: 2217
+Running   3 sets of coordinates: 003Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_05.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_06.png" alt=""> <pre class="codeoutput">----------------------------------------------
+DMN_Dec_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:  16 regions
+sagittal montage: 104 voxels displayed, 774 not displayed on these slices
+sagittal montage:  82 voxels displayed, 796 not displayed on these slices
+sagittal montage:  96 voxels displayed, 782 not displayed on these slices
+axial montage: 173 voxels displayed, 705 not displayed on these slices
+axial montage: 122 voxels displayed, 756 not displayed on these slices
+Grouping contiguous voxels:  16 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  122.8841
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 676
+878 coords.  selecting:   8
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+878 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1168
+878 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+878 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+878 coords.  selecting:  65
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 64705
+878 coords.  selecting: 805
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+878 coords.  selecting: 206
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+878 coords.  selecting: 175
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+878 coords.  selecting:   3
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+878 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+878 coords.  selecting:   3
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1451
+878 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 30217
+878 coords.  selecting:  13
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 5121
+878 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 11663
+878 coords.  selecting: 458
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 7813
+878 coords.  selecting: 362
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_07.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_08.png" alt=""> <pre class="codeoutput">----------------------------------------------
+DMN_Inc_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   5 regions
+sagittal montage: 113 voxels displayed, 4401 not displayed on these slices
+sagittal montage: 119 voxels displayed, 4395 not displayed on these slices
+sagittal montage: 166 voxels displayed, 4348 not displayed on these slices
+axial montage: 714 voxels displayed, 3800 not displayed on these slices
+axial montage: 806 voxels displayed, 3708 not displayed on these slices
+Grouping contiguous voxels:   5 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   96.2222
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 502
+4514 coords.  selecting:  77
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+4514 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1035
+4514 coords.  selecting: 157
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+4514 coords.  selecting: 172
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+4514 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 130677
+4514 coords.  selecting: 3212
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+4514 coords.  selecting: 818
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+4514 coords.  selecting: 652
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+4514 coords.  selecting: 181
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+4514 coords.  selecting:  39
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+4514 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1276
+4514 coords.  selecting:   3
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 85850
+4514 coords.  selecting: 736
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 7751
+4514 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 22674
+4514 coords.  selecting: 2657
+Running   3 sets of coordinates: 003 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 11219
+4514 coords.  selecting: 481
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_09.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_10.png" alt=""> <pre class="codeoutput">----------------------------------------------
+DMN_Inc_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   8 regions
+sagittal montage:   0 voxels displayed,  85 not displayed on these slices
+sagittal montage:   5 voxels displayed,  80 not displayed on these slices
+sagittal montage:   1 voxels displayed,  84 not displayed on these slices
+axial montage:  24 voxels displayed,  61 not displayed on these slices
+axial montage:  12 voxels displayed,  73 not displayed on these slices
+Grouping contiguous voxels:   8 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  230.5444
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 128
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1108
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:  33
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 1694
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 27835
+ 85 coords.  selecting:  50
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 6303
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 5662
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 1687
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 615
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 217
+ 85 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 3362
+ 85 coords.  selecting:  40
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 3070
+ 85 coords.  selecting: Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_11.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_12.png" alt=""> <pre class="codeoutput">----------------------------------------------
+DMN_Pool_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   2 regions
+sagittal montage: 787 voxels displayed, 14415 not displayed on these slices
+sagittal montage: 768 voxels displayed, 14434 not displayed on these slices
+sagittal montage: 848 voxels displayed, 14354 not displayed on these slices
+axial montage: 2627 voxels displayed, 12575 not displayed on these slices
+axial montage: 2675 voxels displayed, 12527 not displayed on these slices
+Grouping contiguous voxels:   2 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  101.8862
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 858
+15202 coords.  selecting: 761
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+15202 coords.  selecting:   7
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1182
+15202 coords.  selecting: 831
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+15202 coords.  selecting: 653
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+15202 coords.  selecting: 412
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 152910
+15202 coords.  selecting: 10133
+Running  11 sets of coordinates: 011 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+15202 coords.  selecting: 4042
+Running   5 sets of coordinates: 005 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+15202 coords.  selecting: 3441
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+15202 coords.  selecting: 655
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+15202 coords.  selecting: 178
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+15202 coords.  selecting:  47
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1681
+15202 coords.  selecting:  55
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 105274
+15202 coords.  selecting: 1885
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 9078
+15202 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 30733
+15202 coords.  selecting: 7027
+Running   8 sets of coordinates: 008 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 12416
+15202 coords.  selecting: 2916
+Running   3 sets of coordinates: 003Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_13.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_14.png" alt=""> <pre class="codeoutput">----------------------------------------------
+DMN_Pool_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:  30 regions
+sagittal montage: 133 voxels displayed, 1752 not displayed on these slices
+sagittal montage: 146 voxels displayed, 1739 not displayed on these slices
+sagittal montage: 188 voxels displayed, 1697 not displayed on these slices
+axial montage: 317 voxels displayed, 1568 not displayed on these slices
+axial montage: 314 voxels displayed, 1571 not displayed on these slices
+Grouping contiguous voxels:  30 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  169.7345
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 587
+1885 coords.  selecting:  63
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+1885 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1113
+1885 coords.  selecting:  56
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+1885 coords.  selecting:  35
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+1885 coords.  selecting:  13
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 102639
+1885 coords.  selecting: 1236
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+1885 coords.  selecting: 404
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+1885 coords.  selecting: 328
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+1885 coords.  selecting:  22
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+1885 coords.  selecting:   3
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+1885 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1370
+1885 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 62004
+1885 coords.  selecting: 223
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 6233
+1885 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 16653
+1885 coords.  selecting: 597
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 9563
+1885 coords.  selecting: 450
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_15.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_16.png" alt=""> <pre class="codeoutput">----------------------------------------------
+FPN_Dec_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   1 regions
+sagittal montage:  15 voxels displayed, 733 not displayed on these slices
+sagittal montage:  45 voxels displayed, 703 not displayed on these slices
+sagittal montage:  30 voxels displayed, 718 not displayed on these slices
+axial montage: 130 voxels displayed, 618 not displayed on these slices
+axial montage: 116 voxels displayed, 632 not displayed on these slices
+Grouping contiguous voxels:   1 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  101.7906
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting:  30
+748 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 1942
+748 coords.  selecting: 329
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 1424
+748 coords.  selecting: 199
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 4288
+748 coords.  selecting: 740
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 2102
+748 coords.  selecting: 656
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 931
+748 coords.  selecting: 204
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 278
+748 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting:  72
+748 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 1306
+748 coords.  selecting:  96
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 693
+748 coords.  selecting:  77
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_17.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_18.png" alt=""> <pre class="codeoutput">----------------------------------------------
+FPN_Dec_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   0 regions
+Grouping contiguous voxels:   0 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_19.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_20.png" alt=""> <pre class="codeoutput">----------------------------------------------
+FPN_Inc_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   1 regions
+sagittal montage:  46 voxels displayed, 506 not displayed on these slices
+sagittal montage:   1 voxels displayed, 551 not displayed on these slices
+sagittal montage:  29 voxels displayed, 523 not displayed on these slices
+axial montage:  80 voxels displayed, 472 not displayed on these slices
+axial montage: 108 voxels displayed, 444 not displayed on these slices
+Grouping contiguous voxels:   1 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   84.5996
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 6887
+552 coords.  selecting: 552
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 527
+552 coords.  selecting: 407
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 1084
+552 coords.  selecting: 198
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_21.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_22.png" alt=""> <pre class="codeoutput">----------------------------------------------
+FPN_Inc_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   0 regions
+Grouping contiguous voxels:   0 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_23.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_24.png" alt=""> <pre class="codeoutput">----------------------------------------------
+FPN_Pool_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   3 regions
+sagittal montage: 194 voxels displayed, 2276 not displayed on these slices
+sagittal montage: 103 voxels displayed, 2367 not displayed on these slices
+sagittal montage: 175 voxels displayed, 2295 not displayed on these slices
+axial montage: 424 voxels displayed, 2046 not displayed on these slices
+axial montage: 448 voxels displayed, 2022 not displayed on these slices
+Grouping contiguous voxels:   3 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  143.9030
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 349
+2470 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1491
+2470 coords.  selecting:   1
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 154
+2470 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 2064
+2470 coords.  selecting: 167
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+2470 coords.  selecting:   9
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 28925
+2470 coords.  selecting: 1527
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 6449
+2470 coords.  selecting: 466
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 5486
+2470 coords.  selecting: 481
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 1823
+2470 coords.  selecting: 230
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 726
+2470 coords.  selecting:  22
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+2470 coords.  selecting:   1
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 360
+2470 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 5754
+2470 coords.  selecting: 1086
+Running   2 sets of coordinates: 002 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 5551
+2470 coords.  selecting: 675
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_25.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_26.png" alt=""> <pre class="codeoutput">----------------------------------------------
+FPN_Pool_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   1 regions
+sagittal montage:   0 voxels displayed,   9 not displayed on these slices
+sagittal montage:   0 voxels displayed,   9 not displayed on these slices
+sagittal montage:   0 voxels displayed,   9 not displayed on these slices
+axial montage:   0 voxels displayed,   9 not displayed on these slices
+axial montage:   5 voxels displayed,   4 not displayed on these slices
+Grouping contiguous voxels:   1 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  431.9868
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 446
+  9 coords.  selecting:   9
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting:   1
+  9 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting:   0
+Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_27.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_28.png" alt=""> <pre class="codeoutput">----------------------------------------------
+SN_Dec_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   7 regions
+sagittal montage: 134 voxels displayed, 4226 not displayed on these slices
+sagittal montage:  55 voxels displayed, 4305 not displayed on these slices
+sagittal montage: 126 voxels displayed, 4234 not displayed on these slices
+axial montage: 726 voxels displayed, 3634 not displayed on these slices
+axial montage: 747 voxels displayed, 3613 not displayed on these slices
+Grouping contiguous voxels:   7 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   61.9180
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 858
+4360 coords.  selecting: 540
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1600
+4360 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 1182
+4360 coords.  selecting: 105
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 7690
+4360 coords.  selecting:  70
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+4360 coords.  selecting: 146
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 127794
+4360 coords.  selecting: 3033
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 8690
+4360 coords.  selecting: 767
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 7442
+4360 coords.  selecting: 640
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 2036
+4360 coords.  selecting: 137
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 792
+4360 coords.  selecting:  19
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+4360 coords.  selecting:  75
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 1681
+4360 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting: 82232
+4360 coords.  selecting: 619
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting: 9426
+4360 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 22508
+4360 coords.  selecting: 2740
+Running   3 sets of coordinates: 003 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 10200
+4360 coords.  selecting: 459
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_29.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_30.png" alt=""> <pre class="codeoutput">----------------------------------------------
+SN_Dec_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   1 regions
+sagittal montage:   0 voxels displayed, 161 not displayed on these slices
+sagittal montage:   0 voxels displayed, 161 not displayed on these slices
+sagittal montage:   0 voxels displayed, 161 not displayed on these slices
+axial montage:  15 voxels displayed, 146 not displayed on these slices
+axial montage:  39 voxels displayed, 122 not displayed on these slices
+Grouping contiguous voxels:   1 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  103.8336
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 129
+161 coords.  selecting:  57
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 2524
+161 coords.  selecting: 161
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting:  26
+161 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 961
+161 coords.  selecting: 161
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting:   0
+Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_31.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_32.png" alt=""> <pre class="codeoutput">----------------------------------------------
+SN_Inc_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   1 regions
+sagittal montage:   0 voxels displayed, 496 not displayed on these slices
+sagittal montage:   0 voxels displayed, 496 not displayed on these slices
+sagittal montage:   0 voxels displayed, 496 not displayed on these slices
+axial montage:  16 voxels displayed, 480 not displayed on these slices
+axial montage:  66 voxels displayed, 430 not displayed on these slices
+Grouping contiguous voxels:   1 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   56.9238
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 5016
+496 coords.  selecting: 496
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 1885
+496 coords.  selecting: 496
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting:   0
+Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_33.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_34.png" alt=""> <pre class="codeoutput">----------------------------------------------
+SN_Inc_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   0 regions
+Grouping contiguous voxels:   0 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_35.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_36.png" alt=""> <pre class="codeoutput">----------------------------------------------
+SN_Pool_FWE_extent_stringent.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   4 regions
+sagittal montage: 118 voxels displayed, 3862 not displayed on these slices
+sagittal montage: 125 voxels displayed, 3855 not displayed on these slices
+sagittal montage: 176 voxels displayed, 3804 not displayed on these slices
+axial montage: 649 voxels displayed, 3331 not displayed on these slices
+axial montage: 642 voxels displayed, 3338 not displayed on these slices
+Grouping contiguous voxels:   4 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+   94.5020
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 864
+3980 coords.  selecting: 727
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting: 1332
+3980 coords.  selecting:  14
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting: 298
+3980 coords.  selecting:  75
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting: 1694
+3980 coords.  selecting:   6
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting: 1302
+3980 coords.  selecting: 210
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 66791
+3980 coords.  selecting: 3086
+Running   4 sets of coordinates: 004 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 6303
+3980 coords.  selecting: 343
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 5665
+3980 coords.  selecting: 675
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 1687
+3980 coords.  selecting: 144
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting: 615
+3980 coords.  selecting:  41
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting: 508
+3980 coords.  selecting: 131
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting: 278
+3980 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 19462
+3980 coords.  selecting: 2620
+Running   3 sets of coordinates: 003 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting: 6153
+3980 coords.  selecting: 398
+Running   1 sets of coordinates: 001Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_37.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_38.png" alt=""> <pre class="codeoutput">----------------------------------------------
+SN_Pool_FWE_height.nii
+----------------------------------------------
+Setting up fmridisplay objects
+This takes a lot of memory, and can hang if you have too little.
+Grouping contiguous voxels:   3 regions
+sagittal montage:   0 voxels displayed, 180 not displayed on these slices
+sagittal montage:   0 voxels displayed, 180 not displayed on these slices
+sagittal montage:   0 voxels displayed, 180 not displayed on these slices
+axial montage:  17 voxels displayed, 163 not displayed on these slices
+axial montage:  44 voxels displayed, 136 not displayed on these slices
+Grouping contiguous voxels:   3 regions
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+Loading structural image: /Users/torwager/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/SPM8_colin27T1_seg.img
+Loading image SPM8_colin27T1_seg
+    loaded 50 slices
+    loaded 100 slices
+    loaded 150 slices
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.0186 0.9498 0.2456]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Using custom color maps.
+Found surface patch handles - plotting on existing surfaces.
+cluster_surf
+___________________________________________
+	  1 cluster structures entered
+  Colors are:
+ 1  0  0
+ Building XYZ coord list
+
+ans =
+
+  single
+
+  227.8785
+
+ Getting heat-mapped colors
+ Building color change function call
+ Using existing surface image
+ Running color change.
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 864 vertices.  selecting: 237
+180 coords.  selecting:  62
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1600 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1182 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7690 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 1302 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 221348 vertices.  selecting: 21611
+180 coords.  selecting: 180
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 8690 vertices.  selecting: 388
+180 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 7442 vertices.  selecting: 1331
+180 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2036 vertices.  selecting: 122
+180 coords.  selecting:  eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 792 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 508 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 2734 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 176784 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 13565 vertices.  selecting:   0
+ eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 72554 vertices.  selecting: 4279
+180 coords.  selecting: 180
+Running   1 sets of coordinates: 001 eval: [c,alld] = getVertexColors(xyz{1},p,mycolors{1},[.5 .5 .5],4,'ovlcolor',[0 1 1],'colorscale',actcolors{1},'alphascale',alphascale{1});
+Main color vertices: 16841 vertices.  selecting:   0
+Finished!
+___________________________________________
+
+ans = 
+
+  1&times;16 Patch array:
+
+  Columns 1 through 8
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+  Columns 9 through 16
+
+    Patch    Patch    Patch    Patch    Patch    Patch    Patch    Patch
+
+</pre><img vspace="5" hspace="5" src="sha_2018_visualize_maps_39.png" alt=""> <img vspace="5" hspace="5" src="sha_2018_visualize_maps_40.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Run this from the main directory above the "scripts" folder
+
+% Display helper functions
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+dashes = 'REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH';
+printstr = @(dashes) disp(dashes);
+printhdr = @(str) fprintf('%s\n%s\n%s\n', dashes, str, dashes);
+
+% Get file names
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+addpath('scripts')
+
+mapdir = fullfile(pwd, 'MKDA_Maps');
+
+imgs = dir(fullfile(mapdir, 'VBM', '*nii'));
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'DMN', 'DMN_Dec', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'DMN', 'DMN_Inc', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'DMN', 'DMN_Pool', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'FPN', 'FPN_Dec', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'FPN', 'FPN_Inc', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'FPN', 'FPN_Pool', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'SN', 'SN_Dec', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'SN', 'SN_Inc', '*nii'))];
+
+imgs = [imgs; dir(fullfile(mapdir, 'SB_FC', 'SN', 'SN_Pool', '*nii'))];
+
+% Load and display
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+for i = 1:length(imgs)
+    
+    img_to_load = fullfile(imgs(i).folder, imgs(i).name);
+    
+    printhdr(imgs(i).name)
+    
+    obj = fmri_data(img_to_load, 'noverbose');
+    
+    create_figure('montage'); axis off
+    montage(obj);
+    
+    surface(obj, 'cutaway', 'ycut_mm', -35)
+    
+    % montage(obj, 'full');
+    %surface(obj, 'cutaway');
+    
+    drawnow, snapnow
+    
+end
+
+
+##### SOURCE END #####
+--></body></html>
