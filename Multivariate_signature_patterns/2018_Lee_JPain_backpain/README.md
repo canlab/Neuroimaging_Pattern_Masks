@@ -6,3 +6,5 @@ individual difference in the PRE and POST-maneuver data. To apply the weight, th
 prepared into two forms: POST-PRE set and PRE-POST set. then apply
 classification for 'POST-PRE (e.g., positive class)' vs 'PRE-POST
 (negative)' (i.e., paired-SVM).
+
+The PCASL and HFHRV folders contain classifiers for those two modalities, respectively -- see the paper for details.
