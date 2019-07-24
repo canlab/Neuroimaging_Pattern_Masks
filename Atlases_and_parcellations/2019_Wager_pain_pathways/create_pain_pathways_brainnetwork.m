@@ -1,3 +1,22 @@
+
+% ----------------------------------------------------------------------
+% 68 defined regions known to be involved in nociceptive transmission in animals ('finegrained')
+% - does not include regions important for pain/pain regulation that do not
+% receive nociceptive affererents. These regions may be of great importance
+% for pain, but they are not included in this set of nociceptive brain
+% pathways.
+% 
+% grouped into 24 larger zones for application of local patterns and
+% pathway identification
+%
+% - 5 in thalamus and hypothalamus (sensory thalamus x 2, intralaminar,
+% mediodorsal, and hypothalamus)
+% - 4 in brainstem (PBN x 2, PAG, RVM)
+% - Amygdala (2)
+% - Cortex (13): Bilateral dpINS, S2, mIns, aIns, S1lowerlimb S1 upperlimb, and aMCC/MPFC.
+% ----------------------------------------------------------------------
+
+
 atlas_obj = load_atlas('canlab2018_2mm');
 thal = select_atlas_subset(atlas_obj, {'Thal'});
 
@@ -22,6 +41,10 @@ thal = split_atlas_into_contiguous_regions(thal);
 
 thal_finegrained = select_atlas_subset(thal, [{'VPL' 'VPM' 'Intralam' 'Midline' 'MD'}]);
 
+% re-do names for ease of visualization
+thal.labels = {'Thal_VPLM_R' 'Thal_VPLM_L' 'Thal_IL' 'Thal_MD'};
+
+
 %% select hypothalamus, masking out other regions to clean up (VTA/midbrain)
 
 % hy = select_atlas_subset(atlas_obj, {'Hy'});
@@ -39,7 +62,7 @@ rvm = select_atlas_subset(atlas_obj, {'rvm'});
 %% Add amygdala regions, dividing into L and R hemisphere for each
 
 amy_finegrained = select_atlas_subset(atlas_obj, {'Amy'});
-amy_finegrained = split_atlas_into_contiguous_regions(amamy_finegrainedy);
+amy_finegrained = split_atlas_into_contiguous_regions(amy_finegrained);
 
 amy = select_atlas_subset(atlas_obj, {'Amy'}, 'flatten');
 amy = split_atlas_into_contiguous_regions(amy);
@@ -57,6 +80,12 @@ dpins_finegrained = select_atlas_subset(atlas_obj, {'_OP1' 'Ctx_RI' '_OP2' 'Ctx_
 dpins = select_atlas_subset(atlas_obj, {'_OP1' 'Ctx_RI' '_OP2' 'Ctx_Ig'}, 'flatten'); % larger regions more suitable for identifying patterns within
 dpins = split_atlas_into_contiguous_regions(dpins);
 
+% clean up - remove small 3rd region in R angular gyrus
+dpins = select_atlas_subset(dpins, 1:2);
+
+% rename for ease of viz
+dpins.labels = {'dpIns_L' 'dpIns_R'};
+
 % S2 zones
 % op4 = select_atlas_subset(atlas_obj, {'_OP4'});
 % pfcm = select_atlas_subset(atlas_obj, {'Ctx_PFcm'});
@@ -66,16 +95,19 @@ s2_finegrained = select_atlas_subset(atlas_obj, {'_OP4' 'Ctx_PFcm'});
 s2 = select_atlas_subset(atlas_obj, {'_OP4' 'Ctx_PFcm'}, 'flatten');
 s2 = split_atlas_into_contiguous_regions(s2);
 
+s2.labels = {'S2_L' 'S2_R'};
+
 % mid-insula zones
 % poi2 = select_atlas_subset(atlas_obj, {'Ctx_PoI2'}); % posterior/ventral. extends into mid-insula, and large. keep separate from post insula.
 % fop2 = select_atlas_subset(atlas_obj, {'Ctx_FOP2'});
 % fop3 = select_atlas_subset(atlas_obj, {'Ctx_FOP3'});
 % mi = select_atlas_subset(atlas_obj, {'Ctx_MI'});     % anterior mid-insula
 
-midins_finegrained = select_atlas_subset(atlas_obj, {'Ctx_PoI2' 'Ctx_FOP2' 'Ctx_FOP3' 'Ctx_MI'});
+midins_finegrained = select_atlas_subset(atlas_obj, {'Ctx_PoI2' 'Ctx_FOP2' 'Ctx_FOP3' 'Ctx_MI_'});
 
-midins = select_atlas_subset(atlas_obj, {'Ctx_PoI2' 'Ctx_FOP2' 'Ctx_FOP3' 'Ctx_MI'}, 'flatten');
+midins = select_atlas_subset(atlas_obj, {'Ctx_PoI2' 'Ctx_FOP2' 'Ctx_FOP3' 'Ctx_MI_'}, 'flatten');
 midins = split_atlas_into_contiguous_regions(midins);
+midins.labels = {'mIns_L' 'mIns_R'};
 
 % auditory/temporal regions
 % lbelt = select_atlas_subset(atlas_obj, {'Ctx_LBelt'}); % nope
@@ -94,6 +126,7 @@ ains_finegrained = select_atlas_subset(atlas_obj, {'Ctx_45' 'Ctx_FOP4' 'Ctx_AVI'
 
 ains = select_atlas_subset(atlas_obj, {'Ctx_45' 'Ctx_FOP4' 'Ctx_AVI'  'Ctx_FOP5'}, 'flatten');
 ains = split_atlas_into_contiguous_regions(ains);
+ains.labels = {'aIns_L' 'aIns_R'};
 
 % 'Ctx_AAIC' very ventral anterior insula
 % 'Ctx_45' VLPFC
@@ -111,6 +144,8 @@ mylabels = obj.labels(wh);
 mpfc_finegrained = select_atlas_subset(atlas_obj, mylabels);
 
 mpfc = select_atlas_subset(atlas_obj, mylabels, 'flatten');
+
+mpfc.labels = {'aMCC_MPFC'};
 
 %% add S1 regions
 
@@ -139,13 +174,28 @@ s1_handplus_R.labels = {'s1_handplus_R'};
 
 pain_pathways_finegrained = [thal_finegrained hy pbn pag rvm amy_finegrained dpins_finegrained s2_finegrained midins_finegrained ains_finegrained mpfc_finegrained s1_foot s1_handplus];
 
-pain_pathways = [thal hy pbn pag rvm amy dpins_finegrained s2 midins ains mpfc s1_foot_L s1_foot_R s1_handplus_L s1_handplus_R];
+pain_pathways = [thal hy pbn pag rvm amy dpins s2 midins ains mpfc s1_foot_L s1_foot_R s1_handplus_L s1_handplus_R];
 
 %% save
 
 save pain_pathways_atlas_obj pain_pathways_finegrained pain_pathways
 
-%% Get NPS patterns within each region, in a series of clusters
+%% Plot these and save figures
+
+mkdir figures
+
+montage(pain_pathways, 'regioncenters');
+
+saveas(gcf, fullfile('figures', 'pain_pathways_regioncenters.png'));
+
+montage(pain_pathways_finegrained, 'regioncenters');
+
+saveas(gcf, fullfile('figures', 'pain_pathways_finegrained.png'));
+
+
+
+%% Get pain signatures patterns within each region, in a series of clusters
+% -----------------------------------------------------------------------------
 
 %% Mask PDM1 with these regions
 % Extract local PDM1 patterns within each region, save in .vals field
@@ -174,6 +224,8 @@ o2 = montage(pain_regions_pdm1, 'colormap');  % PDM1 weights within anatomically
 o2 = legend(o2);
 o2 = title_montage(o2, 5, 'PDM1 weights within anatomically defined nociceptive pathways');
 
+saveas(gcf, fullfile('figures', 'pain_pathways_PDM1.png'));
+
 %% Extract NPS patterns within each region, save in .vals field
 
 [nps, npsnames] = load_image_set('npsplus');
@@ -200,23 +252,74 @@ k = length(pain_regions_siips);
 for i = 1:k, is_empty(i) = all(abs(pain_regions_siips(i).val) < 1000*eps | isnan( pain_regions_siips(i).val)); end
 pain_regions_siips(is_empty) = [];
 
+
 o2 = montage(pain_regions_nps, 'colormap');  % PDM1 weights within anatomically defined nociceptive pathways
 o2 = legend(o2);
 o2 = title_montage(o2, 5, 'NPS weights within anatomically defined nociceptive pathways');
+
+saveas(gcf, fullfile('figures', 'pain_pathways_NPS.png'));
 
 o2 = montage(pain_regions_siips, 'colormap');  % PDM1 weights within anatomically defined nociceptive pathways
 o2 = legend(o2);
 o2 = title_montage(o2, 5, 'SIIPS weights within anatomically defined nociceptive pathways');
 
 
-%%
+saveas(gcf, fullfile('figures', 'pain_pathways_SIIPS.png'));
+%% Save
+
 save pain_pathways_region_obj_with_local_patterns pain_regions_pdm1 pain_regions_nps pain_regions_siips
 
-%% extract data from MV-mediation
+%% extract data from test pain dataset (BMRK3) and plot
 
-% - method to apply local signatures stored within regions
-% - region(x).vals contains the pattern weights
-test_dat = load_image_set('emotionreg');
+% Load test dataset
+test_dat = load_image_set('pain');  % bmrk3 data
+
+% Load regions with local patterns stored in them
+% Contains pain_regions_nps pain_regions_siips pain_regions_pdm1
+load pain_pathways_region_obj_with_local_patterns % in Neuroimaging_Pattern_Masks
+
+% NPS
+% ---------------------------------------------------------------
+[regions_with_testdata, local_pattern_responses] = extract_data(pain_regions_nps, test_dat);
+
+k = length(pain_regions_nps);
+rr = [];
+for i = 1:k
+    rr(i) = corr(regions_with_testdata(i).dat, local_pattern_responses{i});
+end
+
+names = strrep({pain_regions_nps.shorttitle}, '_', ' ');
+create_figure('Barplot_correlation_with_region_avgs: NPS');
+bar(rr);
+ylabel('Pearson''s r');
+title('Correlation between local pattern response and region average');
+set(gca, 'XTick', 1:length(rr), 'XLim', [0 length(rr)+1], 'XTickLabel', names, 'XTickLabelRotation', 45);
+saveas(gcf, fullfile('figures', 'r_local_pattern_region_average_nps.png'));
+
+% SIIPS
+% ---------------------------------------------------------------
+
+[regions_with_testdata, local_pattern_responses] = extract_data(pain_regions_siips, test_dat);
+
+k = length(pain_regions_siips);
+rr = [];
+for i = 1:k
+    rr(i) = corr(regions_with_testdata(i).dat, local_pattern_responses{i});
+    % rr(i) = rvals(1, 2);
+end
+
+names = strrep({pain_regions_siips.shorttitle}, '_', ' ');
+
+create_figure('Barplot_correlation_with_region_avgs: SIIPS');
+bar(rr);
+ylabel('Pearson''s r');
+title('Correlation between local pattern response and region average');
+set(gca, 'XTick', 1:length(rr), 'XLim', [0 length(rr)+1], 'XTickLabel', names, 'XTickLabelRotation', 45);
+saveas(gcf, fullfile('figures', 'r_local_pattern_region_average_siips.png'));
+
+% PDM1
+% ---------------------------------------------------------------
+
 [regions_with_testdata, local_pattern_responses] = extract_data(pain_regions_pdm1, test_dat);
 
 k = length(pain_regions_pdm1);
@@ -226,7 +329,136 @@ for i = 1:k
     % rr(i) = rvals(1, 2);
 end
 
+names = strrep({pain_regions_pdm1.shorttitle}, '_', ' ');
+
+create_figure('Barplot_correlation_with_region_avgs: PDM1');
+bar(rr);
+ylabel('Pearson''s r');
+title('Correlation between local pattern response and region average');
+set(gca, 'XTick', 1:length(rr), 'XLim', [0 length(rr)+1], 'XTickLabel', names, 'XTickLabelRotation', 45);
+saveas(gcf, fullfile('figures', 'r_local_pattern_region_average_pdm1.png'));
+
+%% Extract data from single_trial_database
+
+run('/Users/torwager/Google Drive/Wagerlab_Single_Trial_Pain_Analyses/Individual_Diffs/scripts/a_set_up_paths_always_run_first.m')
+run('/Users/torwager/Google Drive/Wagerlab_Single_Trial_Pain_Analyses/Individual_Diffs/scripts/b_load_check_prep_for_analysis.m')
+
+for i = 1:nstudies
+    
+    matfile = get_var(study_canlab_dataset{i}, 'ST_matfile');
+    
+end
+
+% See script: prep1_extrract_single_trial_pain_data.m
+
+load data/pain_pathways_single_trial_data_2019 Subject_Table ST_*
+
+% Cleaned data
+load data/pain_pathways_single_trial_data_2019 ST_cleaned
+
+%% Examine associations with key brainstem regions - fine-grained
+
+rmat = corr(ST_cleaned.fine_regions);
+labels = pain_pathways_finegrained.labels;
+
+create_figure('r');
+imagesc(rmat, [-1 1])
+axis tight
+set(gca, 'YDir', 'reverse', 'YTick', 1:length(rmat),  'YTickLabel', labels, 'XTick', 1:length(rmat), 'XTickLabel', labels, 'XTickLabelRotation', 45);
+colorbar
+cm = colormap_tor([0 0 1], [1 0 0], [1 1 1]);
+colormap(cm)
 
 
+% pain_pathways_finegrained.labels
+
+% max row values: most connected regions
+
+for i = 1:9 % do for brainstem regions 9 = rvm
+    
+    fprintf('%s connected to ', pain_pathways_finegrained.labels{i});
+    wh = rmat(i, :) > prctile(rmat(i, :), 90); lab = pain_pathways_finegrained.labels(wh);
+    for j = 1:length(lab), fprintf(' %s', lab{j}); end
+    fprintf('\n');
+    
+end
+
+% pre-windsorizing (z-score only)
+% VPLVPM_R connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Ctx_Ig_R Ctx_PoI2_R Ctx_MI_R
+% VPLVPM_L connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Ctx_Ig_L Ctx_MI_L
+% IntralamMidline_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Ctx_a24pr_L Ctx_a32pr_R
+% Thal_MD_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Ctx_a24pr_L Ctx_a24pr_R Ctx_a32pr_R
+% Hythal connected to  Hythal Bstem_PAG Amygdala_CM__L Amygdala_CM__R Amygdala_SF__R Amygdala_SF__L Amygdala_LB__L
+% pbn_R connected to  VPLVPM_L Hythal pbn_R pbn_L Bstem_PAG rvm_R Ctx_PoI2_R
+% pbn_L connected to  VPLVPM_R VPLVPM_L Hythal pbn_R pbn_L Bstem_PAG Ctx_PoI2_R
+% Bstem_PAG connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Hythal pbn_R pbn_L Bstem_PAG
+% rvm_R connected to  pbn_R pbn_L rvm_R Ctx_PoI2_R Ctx_MI_L Ctx_MI_R Ctx_p32pr_R
+
+% post-windsorizing (latest)
+% VPLVPM_R connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Ctx_Ig_R Ctx_PoI2_R Ctx_MI_R
+% VPLVPM_L connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Amygdala_AStr__L Ctx_Ig_L
+% IntralamMidline_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Ctx_a24pr_L Ctx_a32pr_R
+% Thal_MD_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Ctx_a24pr_L Ctx_a24pr_R Ctx_a32pr_R
+% Hythal connected to  Hythal Bstem_PAG Amygdala_CM__L Amygdala_CM__R Amygdala_SF__R Amygdala_SF__L Amygdala_LB__L
+% pbn_R connected to  Hythal pbn_R pbn_L Bstem_PAG rvm_R Ctx_PoI2_R Ctx_MI_R
+% pbn_L connected to  VPLVPM_L Hythal pbn_R pbn_L Bstem_PAG rvm_R Ctx_PoI2_R
+% Bstem_PAG connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Hythal pbn_R pbn_L Bstem_PAG
+% rvm_R connected to  pbn_R pbn_L rvm_R Ctx_PoI2_R Ctx_MI_L Ctx_MI_R Ctx_p32pr_R
+
+% VPLVPM to ipsiateral Ctx_Ig_L Ctx_MI_L maybe Ctx_PoI2_R
+
+% IntralamMidline_M to Ctx_a24pr_L Ctx_a32pr_R
+% Thal_MD_M to Ctx_a24pr_L Ctx_a24pr_R Ctx_a32pr_R
+
+% Hythal to Bstem_PAG 
+% PBN to Hythal Bstem_PAG Ctx_PoI2_R (R from both L and R)
+% rvm to Ctx_PoI2_R Ctx_MI_L Ctx_MI_R Ctx_p32pr_R
+
+%% Examine associations with key brainstem regions: PDM1
+
+% rmat = corr([ST_cleaned.pdm1 ST_cleaned.pain_rating]);
+% labels = format_strings_for_legend({pain_regions_pdm1.shorttitle ['pain_rating']});
+
+rmat = corr(ST_cleaned.pdm1);
+labels = format_strings_for_legend({pain_regions_pdm1.shorttitle});
+
+create_figure('r');
+imagesc(rmat, [-1 1])
+axis tight
+set(gca, 'YDir', 'reverse', 'YTick', 1:length(rmat),  'YTickLabel', labels, 'XTick', 1:length(rmat), 'XTickLabel', labels, 'XTickLabelRotation', 45);
+colorbar
+cm = colormap_tor([0 0 1], [1 0 0], [1 1 1]);
+colormap(cm)
+title('PDM1 inter-region single-trial correlations');
+saveas(gcf, 'figures/PDM1_local_pattern_ST_connectivity_matrix.png');
 
 
+%% Examine associations with key brainstem regions: SIIPS
+
+rmat = corr(ST_cleaned.SIIPS);
+labels = format_strings_for_legend({pain_regions_siips.shorttitle});
+
+create_figure('r');
+imagesc(rmat, [-1 1])
+axis tight
+set(gca, 'YDir', 'reverse', 'YTick', 1:length(rmat),  'YTickLabel', labels, 'XTick', 1:length(rmat), 'XTickLabel', labels, 'XTickLabelRotation', 45);
+colorbar
+cm = colormap_tor([0 0 1], [1 0 0], [1 1 1]);
+colormap(cm)
+title('SIIPS inter-region single-trial correlations');
+saveas(gcf, 'figures/SIIPS_local_pattern_ST_connectivity_matrix.png');
+
+%% Examine associations with key brainstem regions: NPS
+
+rmat = corr(ST_cleaned.SIIPS);
+labels = format_strings_for_legend({pain_regions_siips.shorttitle});
+
+create_figure('r');
+imagesc(rmat, [-1 1])
+axis tight
+set(gca, 'YDir', 'reverse', 'YTick', 1:length(rmat),  'YTickLabel', labels, 'XTick', 1:length(rmat), 'XTickLabel', labels, 'XTickLabelRotation', 45);
+colorbar
+cm = colormap_tor([0 0 1], [1 0 0], [1 1 1]);
+colormap(cm)
+title('NPS inter-region single-trial correlations');
+saveas(gcf, 'figures/NPS_local_pattern_ST_connectivity_matrix.png');
