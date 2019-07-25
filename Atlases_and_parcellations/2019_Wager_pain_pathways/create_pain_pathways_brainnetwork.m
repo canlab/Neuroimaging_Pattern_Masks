@@ -358,7 +358,9 @@ load data/pain_pathways_single_trial_data_2019 ST_cleaned
 
 %% Examine associations with key brainstem regions - fine-grained
 
-rmat = corr(ST_cleaned.fine_regions);
+%rmat = corr(ST_cleaned.fine_regions);
+rmat = partialcorr(ST_cleaned.fine_regions, 'type', 'Spearman');
+
 labels = pain_pathways_finegrained.labels;
 
 create_figure('r');
@@ -374,16 +376,16 @@ colormap(cm)
 
 % max row values: most connected regions
 
-for i = 1:9 % do for brainstem regions 9 = rvm
+for i = 1:9 % do for brainstem regions 
     
-    fprintf('%s connected to ', pain_pathways_finegrained.labels{i});
-    wh = rmat(i, :) > prctile(rmat(i, :), 90); lab = pain_pathways_finegrained.labels(wh);
+    fprintf('%s connected to ', labels{i});
+    wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
     for j = 1:length(lab), fprintf(' %s', lab{j}); end
     fprintf('\n');
     
 end
 
-% pre-windsorizing (z-score only)
+% pre-windsorizing (z-score only) standard Pearson's r
 % VPLVPM_R connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Ctx_Ig_R Ctx_PoI2_R Ctx_MI_R
 % VPLVPM_L connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Ctx_Ig_L Ctx_MI_L
 % IntralamMidline_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Ctx_a24pr_L Ctx_a32pr_R
@@ -394,7 +396,7 @@ end
 % Bstem_PAG connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Hythal pbn_R pbn_L Bstem_PAG
 % rvm_R connected to  pbn_R pbn_L rvm_R Ctx_PoI2_R Ctx_MI_L Ctx_MI_R Ctx_p32pr_R
 
-% post-windsorizing (latest)
+% post-windsorizing  standard Pearson's r
 % VPLVPM_R connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Ctx_Ig_R Ctx_PoI2_R Ctx_MI_R
 % VPLVPM_L connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Amygdala_AStr__L Ctx_Ig_L
 % IntralamMidline_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Bstem_PAG Ctx_a24pr_L Ctx_a32pr_R
@@ -414,12 +416,24 @@ end
 % PBN to Hythal Bstem_PAG Ctx_PoI2_R (R from both L and R)
 % rvm to Ctx_PoI2_R Ctx_MI_L Ctx_MI_R Ctx_p32pr_R
 
+% Spearman's 
+% VPLVPM_R connected to  VPLVPM_R VPLVPM_L IntralamMidline_M pbn_R rvm_R Amygdala_CM__R Ctx_RI_R Ctx_Ig_R Ctx_PoI2_R Ctx_5mv_R Ctx_2_R
+% VPLVPM_L connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Amygdala_CM__L Amygdala_AStr__L Ctx_RI_L Ctx_Ig_L Ctx_p24pr_L Ctx_2_L
+% IntralamMidline_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Hythal Bstem_PAG Ctx_RI_R Ctx_Ig_L Ctx_Ig_R Ctx_AVI_R Ctx_1_R Ctx_3a_L
+% Thal_MD_M connected to  IntralamMidline_M Thal_MD_M Amygdala_CM__L Amygdala_CM__R Amygdala_SF__L Ctx_OP1_R Ctx_a24pr_L Ctx_a32pr_R
+% Hythal connected to  IntralamMidline_M Hythal pbn_R pbn_L Bstem_PAG Amygdala_SF__R Amygdala_SF__L Ctx_45_L Ctx_AVI_L Ctx_a24pr_L Ctx_a32pr_R
+% pbn_R connected to  VPLVPM_R VPLVPM_L Hythal pbn_R pbn_L Bstem_PAG rvm_R Amygdala_AStr__R Ctx_PFcm_R Ctx_PoI2_R Ctx_MI_L Ctx_AVI_R Ctx_p32pr_L
+% pbn_L connected to  VPLVPM_L Hythal pbn_R pbn_L Bstem_PAG rvm_R Amygdala_LB__L Ctx_PoI2_L Ctx_FOP3_R Ctx_AVI_L Ctx_a24pr_L Ctx_1_L
+% Bstem_PAG connected to  IntralamMidline_M Hythal pbn_R pbn_L Bstem_PAG Amygdala_CM__R Amygdala_AStr__L Ctx_PFcm_L Ctx_FOP2_L Ctx_33pr_R Ctx_a24pr_R
+% rvm_R connected to  VPLVPM_R VPLVPM_L pbn_R pbn_L rvm_R Ctx_OP1_L Ctx_RI_L Ctx_PoI2_R Ctx_FOP5_L Ctx_p32pr_R Ctx_5mv_R
+
 %% Examine associations with key brainstem regions: PDM1
 
 % rmat = corr([ST_cleaned.pdm1 ST_cleaned.pain_rating]);
 % labels = format_strings_for_legend({pain_regions_pdm1.shorttitle ['pain_rating']});
 
-rmat = corr(ST_cleaned.pdm1);
+%rmat = corr(ST_cleaned.pdm1);
+rmat = partialcorr(ST_cleaned.pdm1, 'type', 'Spearman');
 labels = format_strings_for_legend({pain_regions_pdm1.shorttitle});
 
 create_figure('r');
@@ -432,10 +446,30 @@ colormap(cm)
 title('PDM1 inter-region single-trial correlations');
 saveas(gcf, 'figures/PDM1_local_pattern_ST_connectivity_matrix.png');
 
+for i = 1:9 % do for brainstem regions 
+    
+    fprintf('%s connected to ', labels{i});
+    wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
+    for j = 1:length(lab), fprintf(' %s', lab{j}); end
+    fprintf('\n');
+    
+end
+
+% Thal VPLM R connected to  Thal VPLM R Thal VPLM L Thal IL dpIns R
+% Thal VPLM L connected to  Thal VPLM R Thal VPLM L Thal IL dpIns L
+% Thal IL connected to  Thal VPLM R Thal VPLM L Thal IL Thal MD Hythal Bstem PAG aMCC MPFC
+% Thal MD connected to  Thal IL Thal MD Amy R
+% Hythal connected to  Thal IL Hythal pbn R Bstem PAG mIns R
+% pbn R connected to  Thal VPLM R Hythal pbn R pbn L Bstem PAG rvm R aIns R
+% pbn L connected to  Thal VPLM L Hythal pbn R pbn L Bstem PAG rvm R aIns L
+% Bstem PAG connected to  Thal IL Hythal pbn R pbn L Bstem PAG aMCC MPFC
+% rvm R connected to  Thal VPLM R Thal VPLM L Hythal pbn R pbn L rvm R s1 foot R
+
 
 %% Examine associations with key brainstem regions: SIIPS
 
-rmat = corr(ST_cleaned.SIIPS);
+% rmat = corr(ST_cleaned.SIIPS);
+rmat = partialcorr(ST_cleaned.SIIPS, 'type', 'Spearman');
 labels = format_strings_for_legend({pain_regions_siips.shorttitle});
 
 create_figure('r');
@@ -448,10 +482,31 @@ colormap(cm)
 title('SIIPS inter-region single-trial correlations');
 saveas(gcf, 'figures/SIIPS_local_pattern_ST_connectivity_matrix.png');
 
+for i = 1:9 % do for brainstem regions 
+    
+    fprintf('%s connected to ', labels{i});
+    wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
+    for j = 1:length(lab), fprintf(' %s', lab{j}); end
+    fprintf('\n');
+    
+end
+
+% Thal VPLM R connected to  Thal VPLM R Thal VPLM L Thal MD dpIns R
+% Thal VPLM L connected to  Thal VPLM R Thal VPLM L Thal MD Bstem PAG aIns L
+% Thal IL connected to  Thal IL Thal MD Hythal s1 handplus R
+% Thal MD connected to  Thal VPLM R Thal VPLM L Thal IL Thal MD Bstem PAG Amy R
+% Hythal connected to  Thal IL Hythal Amy L
+% pbn R connected to  Thal VPLM R pbn R pbn L rvm R mIns R
+% pbn L connected to  Thal VPLM R Thal VPLM L pbn R pbn L rvm R s1 handplus R
+% Bstem PAG connected to  Thal VPLM R Thal MD Bstem PAG aMCC MPFC
+% rvm R connected to  pbn R pbn L rvm R Amy L
+
 %% Examine associations with key brainstem regions: NPS
 
-rmat = corr(ST_cleaned.SIIPS);
-labels = format_strings_for_legend({pain_regions_siips.shorttitle});
+%rmat = corr(ST_cleaned.NPS);
+rmat = partialcorr(ST_cleaned.NPS, 'type', 'Spearman');
+
+labels = format_strings_for_legend({pain_regions_nps.shorttitle});
 
 create_figure('r');
 imagesc(rmat, [-1 1])
@@ -462,3 +517,79 @@ cm = colormap_tor([0 0 1], [1 0 0], [1 1 1]);
 colormap(cm)
 title('NPS inter-region single-trial correlations');
 saveas(gcf, 'figures/NPS_local_pattern_ST_connectivity_matrix.png');
+
+for i = 1:9 % do for brainstem regions 
+    
+    fprintf('%s connected to ', labels{i});
+    wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
+    for j = 1:length(lab), fprintf(' %s', lab{j}); end
+    fprintf('\n');
+    
+end
+
+% Partial Spearman corr:
+% Thal VPLM R connected to  Thal VPLM R Thal VPLM L Thal IL Thal MD dpIns R
+% Thal VPLM L connected to  Thal VPLM R Thal VPLM L Thal IL dpIns L
+% Thal IL connected to  Thal VPLM R Thal VPLM L Thal IL Thal MD Hythal pbn R Bstem PAG Amy R aIns R
+% Thal MD connected to  Thal VPLM R Thal IL Thal MD aMCC MPFC
+% Hythal connected to  Hythal Amy L aIns L
+% pbn R connected to  Thal VPLM R Thal VPLM L Thal IL pbn R Bstem PAG Amy R mIns R
+% Bstem PAG connected to  Thal IL pbn R Bstem PAG aMCC MPFC
+% Amy R connected to  Amy R mIns R
+% Amy L connected to  Hythal Amy L aIns L
+
+%% Examine associations with key brainstem regions: regions
+
+rmat = corr(ST_cleaned.big_regions);
+labels = format_strings_for_legend({pain_regions_siips.shorttitle});
+
+create_figure('r');
+imagesc(rmat, [-1 1])
+axis tight
+set(gca, 'YDir', 'reverse', 'YTick', 1:length(rmat),  'YTickLabel', labels, 'XTick', 1:length(rmat), 'XTickLabel', labels, 'XTickLabelRotation', 45);
+colorbar
+cm = colormap_tor([0 0 1], [1 0 0], [1 1 1]);
+colormap(cm)
+title('Region averages inter-region single-trial correlations');
+saveas(gcf, 'figures/Region_averages_ST_connectivity_matrix.png');
+
+for i = 1:9 % do for brainstem regions 9 = rvm
+    
+    fprintf('%s connected to ', pain_pathways.labels{i});
+    wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = pain_pathways.labels(wh);
+    for j = 1:length(lab), fprintf(' %s', lab{j}); end
+    fprintf('\n');
+    
+end
+
+% Thal_VPLM_R connected to  Thal_VPLM_R Thal_VPLM_L Thal_IL Thal_MD *mIns_R
+% Thal_VPLM_L connected to  Thal_VPLM_R Thal_VPLM_L Thal_IL Thal_MD Bstem_PAG *aMCC_MPFC
+% Thal_IL connected to  Thal_VPLM_R Thal_VPLM_L Thal_IL Thal_MD Bstem_PAG *aMCC_MPFC
+% Thal_MD connected to  Thal_VPLM_R Thal_VPLM_L Thal_IL Thal_MD *aMCC_MPFC
+% Hythal connected to  Hythal Bstem_PAG *Amy_L
+% pbn_R connected to  Thal_VPLM_R Thal_VPLM_L Hythal pbn_R pbn_L Bstem_PAG rvm_R *mIns_R
+% pbn_L connected to  Thal_VPLM_R Thal_VPLM_L Hythal pbn_R pbn_L Bstem_PAG rvm_R *mIns_R
+% Bstem_PAG connected to  Thal_VPLM_R Thal_VPLM_L Thal_IL Thal_MD Hythal pbn_R pbn_L Bstem_PAG *aMCC_MPFC
+% rvm_R connected to  pbn_R pbn_L rvm_R *mIns_R
+
+%% Notes
+
+% Notes on analysis so far:
+% Fine-grained regions seem to work fairly consistently in terms of
+% sensible thalamocortical pathways (spinothalamic) and lateral symmetry.
+% Pathways for patterns (PDM1, siips, nps) are less bilaterally symmetric
+% and make less sense. 
+% Thresholding methods are arbitrary (so far), so we need better connectivity metrics I think. 
+
+% ****NOTE: could do average within-person r and t-test on fisher's z
+% instead. ***
+% This does not allow for good covariate modeling and/or stable estimation
+% of partial correlations. We have a lot of trials (27174) so we can do
+% this well, but we probably want to make more assumptions and not allow
+% every subject to have a random intercept and random slope.  Actually,
+% data are z-scored so there is already a random subject intercept removed.
+
+
+
+
+
