@@ -192,6 +192,13 @@ montage(pain_pathways_finegrained, 'regioncenters');
 
 saveas(gcf, fullfile('figures', 'pain_pathways_finegrained.png'));
 
+montage(pain_pathways_finegrained, 'regioncenters', 'heatmap');
+
+saveas(gcf, fullfile('figures', 'pain_pathways_finegrained2.png'));
+
+o2 = montage(pain_pathways_finegrained, 'outline', 'trans');
+
+saveas(gcf, fullfile('figures', 'pain_pathways_finegrained_outlines.png'));
 
 
 %% Get pain signatures patterns within each region, in a series of clusters
@@ -227,6 +234,9 @@ o2 = title_montage(o2, 5, 'PDM1 weights within anatomically defined nociceptive 
 saveas(gcf, fullfile('figures', 'pain_pathways_PDM1.png'));
 
 %% Extract NPS patterns within each region, save in .vals field
+
+% SEE ALSO:
+% [parcel_means, parcel_pattern_expression, parcel_valence] = extract_data(pain_pathways, test_data_obj, 'pattern_expression', nps, 'cosine_similarity');
 
 [nps, npsnames] = load_image_set('npsplus');
 siips = get_wh_image(nps, 4);
