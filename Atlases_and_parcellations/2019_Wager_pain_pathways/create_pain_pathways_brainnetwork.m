@@ -16,7 +16,6 @@
 % - Cortex (13): Bilateral dpINS, S2, mIns, aIns, S1lowerlimb S1 upperlimb, and aMCC/MPFC.
 % ----------------------------------------------------------------------
 
-
 atlas_obj = load_atlas('canlab2018_2mm');
 thal = select_atlas_subset(atlas_obj, {'Thal'});
 
@@ -279,6 +278,69 @@ saveas(gcf, fullfile('figures', 'pain_pathways_SIIPS.png'));
 
 save pain_pathways_region_obj_with_local_patterns pain_regions_pdm1 pain_regions_nps pain_regions_siips
 
+
+%% Add cPDM (done later)
+% ---------------------------------------------------------------
+
+% load pain_pathways_region_obj_with_local_patterns  % has local weights extracted
+% load pain_pathways_atlas_obj
+
+cPDM = load('CombinedPDM.mat');
+cPDM = cPDM.CPDM2;
+
+pain_regions = atlas2region(pain_pathways);
+
+pain_regions_cpdm = extract_data(pain_regions, cPDM);
+
+% pain_regions_pdm1(1).all_data -> weights are stored in in all_data
+% save in .val field, which extract_data will use to extract
+for i = 1:length(pain_regions_cpdm)
+    pain_regions_cpdm(i).val = pain_regions_cpdm(i).all_data';
+    pain_regions_cpdm(i).Z = pain_regions_cpdm(i).all_data;
+end
+k = length(pain_regions_cpdm);
+is_empty = false;
+for i = 1:k, is_empty(i) = all(abs(pain_regions_cpdm(i).val) < 1000*eps | isnan( pain_regions_cpdm(i).val)); end
+pain_regions_cpdm(is_empty) = [];
+
+montage(cPDM, 'colormap')
+saveas(gcf, fullfile('figures', 'cPDM_full_brain_weights.png'));
+
+montage(pain_regions_cpdm, 'colormap')
+saveas(gcf, fullfile('figures', 'cPDM_painpathways_weights.png'));
+
+o2 = montage(pain_regions_cpdm, 'colormap');
+% add outlines:
+for i = 1:length(pain_regions_cpdm) 
+    o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]); 
+    %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map aleady registered, so add 1 here
+end
+saveas(gcf, fullfile('figures', 'cPDM_painpathways_weights_and_regions.png'));
+
+o2 = removeblobs(o2);
+% add outlines only:
+for i = 1:length(pain_regions_cpdm) 
+    o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]); 
+    %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map aleady registered, so add 1 here
+end
+saveas(gcf, fullfile('figures', 'Painpathways_region_outlines.png'));
+
+% regioncenters
+montage(pain_regions_cpdm, 'colormap', 'regioncenters');
+saveas(gcf, fullfile('figures', 'cPDM_painpathways_regioncenters.png'));
+
+save pain_pathways_region_obj_with_local_patterns -append pain_regions_cpdm
+
+
+%% 
+
+% --------------------------------------------------------------
+% --------------------------------------------------------------
+%  Data extraction and saving is done at this point
+% --------------------------------------------------------------
+% --------------------------------------------------------------
+
+
 %% extract data from test pain dataset (BMRK3) and plot
 
 % Load test dataset
@@ -348,6 +410,10 @@ title('Correlation between local pattern response and region average');
 set(gca, 'XTick', 1:length(rr), 'XLim', [0 length(rr)+1], 'XTickLabel', names, 'XTickLabelRotation', 45);
 saveas(gcf, fullfile('figures', 'r_local_pattern_region_average_pdm1.png'));
 
+
+
+
+
 %% Extract data from single_trial_database
 
 run('/Users/torwager/Google Drive/Wagerlab_Single_Trial_Pain_Analyses/Individual_Diffs/scripts/a_set_up_paths_always_run_first.m')
@@ -360,6 +426,9 @@ for i = 1:nstudies
 end
 
 % See script: prep1_extrract_single_trial_pain_data.m
+
+% and:
+% prep1_extract_single_trial_pain_data_cpdm_only
 
 load data/pain_pathways_single_trial_data_2019 Subject_Table ST_*
 
