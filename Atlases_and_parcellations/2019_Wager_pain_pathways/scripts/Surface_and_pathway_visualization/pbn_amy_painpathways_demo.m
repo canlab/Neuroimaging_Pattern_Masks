@@ -34,12 +34,19 @@ lightFollowView; lightRestoreSingle;
 
 r = [atlas2region(pbn) atlas2region(amy)];
 
+% Create a 'dummy' region for spinal input, connected to PBN
+[hpatch, cl] = cluster_image_sphere([0 -42 -70], 'color', [1 0 0], 'radius', 3);
+delete(hpatch);                         % We don't really need the sphere, so delete it.
+spinal_r = cluster2region(cl);
+
+r = [r spinal_r];
+
 % Render regions and connecting lines on the surface
 % -------------------------------------------------------------------------
 
 classes = ones(length(r), 1);   % which color/size group each region belongs to
 colors = {[1 0 0]};             %  colors is cell array of colors for each class (text or rgb vector)
-radiusvals = [2 2 4 4];         % radius of sphere for each region
+radiusvals = [2 2 4 4 2];         % radius of sphere for each region
 
 % sigmat is an important input. It specifies which regions to connect to
 % which other regions with lines. it should be a n_regions x n_regions
@@ -49,11 +56,15 @@ radiusvals = [2 2 4 4];         % radius of sphere for each region
 sigmat = zeros(length(r));      % matrix of which regions to connect with lines
 sigmat(1, 3) = 1;               % sigmat has signed values for significant relationships among clusters
 sigmat(2, 4) = 1; 
+sigmat(1, 5) = 1;               % spinal input
+sigmat(2, 5) = 1;               % spinal input
 sigmat2 = [];                   % sigmat2 is just like sigmat, but uses lighter line colors.
                                 % this is another way of customizing the plot.
                                 
 [mov, linehandles, linehandles2] = cluster_nmdsfig_glassbrain(r,classes,colors,sigmat,sigmat2, 'existingfig', 'nobrain', 'radius', radiusvals);
  
+set(linehandles, 'Color', [1 .3 0]);
+
 drawnow, snapnow;
 
 %   var args:
@@ -66,7 +77,7 @@ drawnow, snapnow;
 %   'movie', make movie
 %   'straight', no bend
  
-% A variant:
+%% A variant:
 % Render regions and connecting lines using region isosurfaces
 % -------------------------------------------------------------------------
 
@@ -82,6 +93,8 @@ lightFollowView; lightRestoreSingle;
 
 [mov, linehandles, linehandles2] = cluster_nmdsfig_glassbrain(r,classes,colors,sigmat,sigmat2, 'existingfig', 'nobrain', 'blobs');
  
+set(linehandles, 'Color', [1 .3 0]);
+
 drawnow, snapnow;
 
 %% Method 2: Rendering using object methods, and draw lines using nmdsfig_tools
@@ -102,7 +115,7 @@ lightFollowView; lightRestoreSingle;
 han_pbn = isosurface(pbn);
 han_amy = isosurface(amy);
 
-color = [.1 .1 .1];
+color = [.9 .3 .1];
 thickness = 2;
 bendpercent = .1;
 
@@ -113,7 +126,7 @@ for rindx = 1:length(r)
             
             x = [; r(rindx2).mm_center];
             
-            out = nmdsfig_tools('connect3d',r(rindx).mm_center,r(rindx2).mm_center, color, thickness, bendpercent);
+            out = nmdsfig_tools('connect3d',r(rindx),r(rindx2), 'color', color, 'thickness', thickness, 'bendpercent', bendpercent);
             
         end
         
