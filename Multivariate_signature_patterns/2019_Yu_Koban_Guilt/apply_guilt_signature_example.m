@@ -14,3 +14,4 @@ guilt = load_image_set('guilt');  % Load the Guilt Behavior map as an fmri_data 
 guilt_response = apply_mask(test_images, guilt, 'pattern_expression'); % Apply the weight map
 
 figure; plot(guilt_response, 'o'); title('Guilt response scores for each participant');
+
