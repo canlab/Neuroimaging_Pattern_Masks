@@ -97,6 +97,14 @@ set(linehandles, 'Color', [1 .3 0]);
 
 drawnow, snapnow;
 
+%%
+%mov = movie_tools('lines',startcoords,endcoords,mov,color,bendval,movlength,startt,endt,handles,targetaz,targetel);
+x = r(1).mm_center;
+y = r(3).mm_center;
+han = [han_surf];
+mov = movie_tools('lines',x,y,mov,'b',[0 -.1 0],2,0,.8,han,90,10);
+
+
 %% Method 2: Rendering using object methods, and draw lines using nmdsfig_tools
 
 % Create a brain surface on which to render pathways
