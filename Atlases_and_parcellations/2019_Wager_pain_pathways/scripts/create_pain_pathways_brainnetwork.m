@@ -5,7 +5,7 @@
 % receive nociceptive affererents. These regions may be of great importance
 % for pain, but they are not included in this set of nociceptive brain
 % pathways.
-% 
+%
 % grouped into 24 larger zones for application of local patterns and
 % pathway identification
 %
@@ -15,6 +15,8 @@
 % - Amygdala (2)
 % - Cortex (13): Bilateral dpINS, S2, mIns, aIns, S1lowerlimb S1 upperlimb, and aMCC/MPFC.
 % ----------------------------------------------------------------------
+
+dosave = false;
 
 atlas_obj = load_atlas('canlab2018_2mm');
 thal = select_atlas_subset(atlas_obj, {'Thal'});
@@ -177,7 +179,11 @@ pain_pathways = [thal hy pbn pag rvm amy dpins s2 midins ains mpfc s1_foot_L s1_
 
 %% save
 
-save pain_pathways_atlas_obj pain_pathways_finegrained pain_pathways
+if dosave
+    
+    save pain_pathways_atlas_obj pain_pathways_finegrained pain_pathways
+    
+end
 
 %% Plot these and save figures
 
@@ -185,19 +191,34 @@ mkdir figures
 
 montage(pain_pathways, 'regioncenters');
 
-saveas(gcf, fullfile('figures', 'pain_pathways_regioncenters.png'));
+if dosave
+    saveas(gcf, fullfile('figures', 'pain_pathways_regioncenters.png'));
+end
 
 montage(pain_pathways_finegrained, 'regioncenters');
 
-saveas(gcf, fullfile('figures', 'pain_pathways_finegrained.png'));
+if dosave
+    saveas(gcf, fullfile('figures', 'pain_pathways_finegrained.png'));
+end
 
 montage(pain_pathways_finegrained, 'regioncenters', 'heatmap');
 
-saveas(gcf, fullfile('figures', 'pain_pathways_finegrained2.png'));
+if dosave
+    saveas(gcf, fullfile('figures', 'pain_pathways_finegrained2.png'));
+end
 
 o2 = montage(pain_pathways_finegrained, 'outline', 'trans');
 
-saveas(gcf, fullfile('figures', 'pain_pathways_finegrained_outlines.png'));
+if dosave
+    saveas(gcf, fullfile('figures', 'pain_pathways_finegrained_outlines.png'));
+end
+
+
+% --------------------------------------------------------------
+% --------------------------------------------------------------
+%  Main atlas construction is done at this point
+% --------------------------------------------------------------
+% --------------------------------------------------------------
 
 
 %% Get pain signatures patterns within each region, in a series of clusters
@@ -311,16 +332,16 @@ saveas(gcf, fullfile('figures', 'cPDM_painpathways_weights.png'));
 
 o2 = montage(pain_regions_cpdm, 'colormap');
 % add outlines:
-for i = 1:length(pain_regions_cpdm) 
-    o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]); 
+for i = 1:length(pain_regions_cpdm)
+    o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]);
     %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map aleady registered, so add 1 here
 end
 saveas(gcf, fullfile('figures', 'cPDM_painpathways_weights_and_regions.png'));
 
 o2 = removeblobs(o2);
 % add outlines only:
-for i = 1:length(pain_regions_cpdm) 
-    o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]); 
+for i = 1:length(pain_regions_cpdm)
+    o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]);
     %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map aleady registered, so add 1 here
 end
 saveas(gcf, fullfile('figures', 'Painpathways_region_outlines.png'));
@@ -332,7 +353,7 @@ saveas(gcf, fullfile('figures', 'cPDM_painpathways_regioncenters.png'));
 save pain_pathways_region_obj_with_local_patterns -append pain_regions_cpdm
 
 
-%% 
+%%
 
 % --------------------------------------------------------------
 % --------------------------------------------------------------
@@ -356,7 +377,7 @@ load pain_pathways_region_obj_with_local_patterns % in Neuroimaging_Pattern_Mask
 
 % Plot correlation of pattern response with region averages
 % Should be positive in regions with uniform positive weights, neg with
-% negative weights. 
+% negative weights.
 
 k = length(pain_regions_nps);
 rr = [];
@@ -379,7 +400,7 @@ saveas(gcf, fullfile('figures', 'r_local_pattern_region_average_nps.png'));
 
 % Plot correlation of pattern response with region averages
 % Should be positive in regions with uniform positive weights, neg with
-% negative weights. 
+% negative weights.
 k = length(pain_regions_siips);
 rr = [];
 for i = 1:k
@@ -403,7 +424,7 @@ saveas(gcf, fullfile('figures', 'r_local_pattern_region_average_siips.png'));
 
 % Plot correlation of pattern response with region averages
 % Should be positive in regions with uniform positive weights, neg with
-% negative weights. 
+% negative weights.
 k = length(pain_regions_pdm1);
 rr = [];
 for i = 1:k
@@ -465,7 +486,7 @@ colormap(cm)
 
 % max row values: most connected regions
 
-for i = 1:9 % do for brainstem regions 
+for i = 1:9 % do for brainstem regions
     
     fprintf('%s connected to ', labels{i});
     wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
@@ -501,11 +522,11 @@ end
 % IntralamMidline_M to Ctx_a24pr_L Ctx_a32pr_R
 % Thal_MD_M to Ctx_a24pr_L Ctx_a24pr_R Ctx_a32pr_R
 
-% Hythal to Bstem_PAG 
+% Hythal to Bstem_PAG
 % PBN to Hythal Bstem_PAG Ctx_PoI2_R (R from both L and R)
 % rvm to Ctx_PoI2_R Ctx_MI_L Ctx_MI_R Ctx_p32pr_R
 
-% Spearman's 
+% Spearman's
 % VPLVPM_R connected to  VPLVPM_R VPLVPM_L IntralamMidline_M pbn_R rvm_R Amygdala_CM__R Ctx_RI_R Ctx_Ig_R Ctx_PoI2_R Ctx_5mv_R Ctx_2_R
 % VPLVPM_L connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Amygdala_CM__L Amygdala_AStr__L Ctx_RI_L Ctx_Ig_L Ctx_p24pr_L Ctx_2_L
 % IntralamMidline_M connected to  VPLVPM_R VPLVPM_L IntralamMidline_M Thal_MD_M Hythal Bstem_PAG Ctx_RI_R Ctx_Ig_L Ctx_Ig_R Ctx_AVI_R Ctx_1_R Ctx_3a_L
@@ -535,7 +556,7 @@ colormap(cm)
 title('PDM1 inter-region single-trial correlations');
 saveas(gcf, 'figures/PDM1_local_pattern_ST_connectivity_matrix.png');
 
-for i = 1:9 % do for brainstem regions 
+for i = 1:9 % do for brainstem regions
     
     fprintf('%s connected to ', labels{i});
     wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
@@ -571,7 +592,7 @@ colormap(cm)
 title('SIIPS inter-region single-trial correlations');
 saveas(gcf, 'figures/SIIPS_local_pattern_ST_connectivity_matrix.png');
 
-for i = 1:9 % do for brainstem regions 
+for i = 1:9 % do for brainstem regions
     
     fprintf('%s connected to ', labels{i});
     wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
@@ -607,7 +628,7 @@ colormap(cm)
 title('NPS inter-region single-trial correlations');
 saveas(gcf, 'figures/NPS_local_pattern_ST_connectivity_matrix.png');
 
-for i = 1:9 % do for brainstem regions 
+for i = 1:9 % do for brainstem regions
     
     fprintf('%s connected to ', labels{i});
     wh = rmat(i, :) > prctile(rmat(i, 10:end), 90); lab = labels(wh);
@@ -667,8 +688,8 @@ end
 % Fine-grained regions seem to work fairly consistently in terms of
 % sensible thalamocortical pathways (spinothalamic) and lateral symmetry.
 % Pathways for patterns (PDM1, siips, nps) are less bilaterally symmetric
-% and make less sense. 
-% Thresholding methods are arbitrary (so far), so we need better connectivity metrics I think. 
+% and make less sense.
+% Thresholding methods are arbitrary (so far), so we need better connectivity metrics I think.
 
 % ****NOTE: could do average within-person r and t-test on fisher's z
 % instead. ***
