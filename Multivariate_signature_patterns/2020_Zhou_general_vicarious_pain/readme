@@ -1,2 +1,16 @@
 
-Multivariate patterns for observed pictures of painful stimulation on body parts  (NS) and pain facial expression (FE) induced vicarious pain as well as for vicarious pain across stimulus types.
+Multivariate patterns for vicarious pain induced by observed pictures of painful stimulation on body parts (NS) and pain facial expressions (FE), 
+as well as for vicarious pain across stimulus types.
+
+Zhou. F, Li, J., Zhao, W., Xu, L., Zheng, X., Fu, M., Yao, S., Kendrick, K. M., Wager, T. D. & Becker, B.  (2020). 
+Empathic pain evoked by sensory and emotional-communicative cues share common and process-specific neural representation. 
+eLife. doi: 10.7554/eLife.56929.
+
+FE_vicarious_pain_pattern_FDR05.nii                 * description here
+FE_vicarious_pain_pattern_unthresholded.nii         * description here
+General_vicarious_pain_pattern_FDR05_Boot10000.nii
+General_vicarious_pain_pattern_unthresholded.nii
+NS_vicarious_pain_pattern_FDR05.nii
+NS_vicarious_pain_pattern_unthresholded.nii
+link-to-subj-beta-images.txt
+mask.nii
