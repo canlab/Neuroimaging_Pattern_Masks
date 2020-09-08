@@ -1,16 +1,16 @@
 
-Multivariate patterns for vicarious pain induced by observed pictures of painful stimulation on body parts (NS) and pain facial expressions (FE), 
+Multivariate patterns for vicarious pain induced by observed pictures of noxious stimulation on body parts (NS) and pain facial expressions (FE), 
 as well as for vicarious pain across stimulus types.
 
 Zhou. F, Li, J., Zhao, W., Xu, L., Zheng, X., Fu, M., Yao, S., Kendrick, K. M., Wager, T. D. & Becker, B.  (2020). 
 Empathic pain evoked by sensory and emotional-communicative cues share common and process-specific neural representation. 
 eLife. doi: 10.7554/eLife.56929.
 
-FE_vicarious_pain_pattern_FDR05.nii                 * description here
-FE_vicarious_pain_pattern_unthresholded.nii         * description here
-General_vicarious_pain_pattern_FDR05_Boot10000.nii
-General_vicarious_pain_pattern_unthresholded.nii
-NS_vicarious_pain_pattern_FDR05.nii
-NS_vicarious_pain_pattern_unthresholded.nii
-link-to-subj-beta-images.txt
-mask.nii
+FE_vicarious_pain_pattern_FDR05.nii                 observation of painful facial expressions induced vicarious pain (q<0.05, FDR corrected)
+FE_vicarious_pain_pattern_unthresholded.nii         observation of painful facial expressions induced vicarious pain (unthresholded)
+General_vicarious_pain_pattern_FDR05_Boot10000.nii  brain signature of vicarious pain across stimulus types (q<0.05, FDR corrected)
+General_vicarious_pain_pattern_unthresholded.nii    brain signature of vicarious pain across stimulus types (unthresholded)
+NS_vicarious_pain_pattern_FDR05.nii                 observation of noxious stimulation on body parts induced vicarious pain (q<0.05, FDR corrected)
+NS_vicarious_pain_pattern_unthresholded.nii         observation of noxious stimulation on body parts induced vicarious pain (unthresholded)
+link-to-subj-beta-images.txt                        link to subject-level vicarious pain beta maps
+mask.nii                                            whole-brain gray matter mask
