@@ -1,0 +1,73 @@
+
+    'LH_ContA       '
+    'RH_ContA       '
+    'LH_ContB       '
+    'RH_ContB       '
+    'LH_ContC       '
+    'RH_ContC       '
+    'LH_DefaultA    '
+    'RH_DefaultA    '
+    'LH_DefaultB    '
+    'RH_DefaultB    '
+    'LH_DefaultC    '
+    'RH_DefaultC    '
+    'LH_DorsAttnA   '
+    'RH_DorsAttnA   '
+    'LH_DorsAttnB   '
+    'RH_DorsAttnB   '
+    'LH_Limbic      '
+    'RH_Limbic      '
+    'LH_SalVentAttnA'
+    'RH_SalVentAttnA'
+    'LH_SalVentAttnB'
+    'RH_SalVentAttnB'
+    'LH_SomMotA     '
+    'RH_SomMotA     '
+    'LH_SomMotB     '
+    'RH_SomMotB     '
+    'LH_TempPar     '
+    'RH_TempPar     '
+    'LH_VisCent     '  'LH_VisPeri     ' 29
+    'RH_VisCent     '  'RH_VisCent     '
+    'LH_VisPeri     '  'LH_VisCent     '
+    'RH_VisPeri     '  'RH_VisPeri     '
+char(atl.labels{:})
+
+ans =
+
+  32×15 <a href="matlab:helpPopup char" style="font-weight:bold">char</a> array
+
+    'LH_ContA       '
+    'RH_ContA       '
+    'LH_ContB       '
+    'RH_ContB       '
+    'LH_ContC       '
+    'RH_ContC       '
+    'LH_DefaultA    ' 7
+    'RH_DefaultA    '
+    'LH_DefaultB    ' 9
+    'RH_DefaultB    '
+    'LH_DefaultC    '
+    'RH_DefaultC    '
+    'LH_DorsAttnA   ' 13
+    'RH_DorsAttnA   '
+    'LH_DorsAttnB   ' 15
+    'RH_DorsAttnB   '
+    'LH_Limbic      ' 17
+    'RH_Limbic      ' 18
+    'LH_SalVentAttnA' 19
+    'RH_SalVentAttnA'
+    'LH_SalVentAttnB'
+    'RH_SalVentAttnB'
+    'LH_SomMotA     '
+    'RH_SomMotA     '
+    'LH_SomMotB     ' 25
+    'RH_SomMotB     '
+    'LH_TempPar     ' 27
+    'RH_TempPar     '
+    'LH_VisCent     ' 29
+    'RH_VisCent     '
+    'LH_VisPeri     ' 31
+    'RH_VisPeri     ' 32
+
+diary off
