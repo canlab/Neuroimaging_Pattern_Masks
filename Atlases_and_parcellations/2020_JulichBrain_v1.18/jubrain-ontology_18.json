@@ -1,0 +1,1655 @@
+{
+ "name": "JuBrain Cytoarchitectonic Atlas",
+ "properties": {
+  "version": "1.0",
+  "description": "not yet",
+  "publications": [],
+  "regions": [
+   {
+    "name": "telencephalon",
+    "status": null,
+    "labelIndex": null,
+    "synonyms": [],
+    "rgb": null,
+    "children": [
+    {
+     "name": "cerebral nuclei",
+     "status": null,
+     "labelIndex": null,
+     "synonyms": [],
+     "rgb": null,
+     "children": [
+     {
+      "name": "basal forebrain",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "magnocellular group within septum",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Ch 123 (Basal Forebrain)",
+         "arealabel": "Ch-123",
+         "status": "publicP",
+         "labelIndex": "286",
+         "doi": "https://doi.org/10.25493/7SEP-P2V",
+         "synonyms": [],
+         "rgb": [124,233,167],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "sublenticular part of basal forebrain",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Ch 4 (Basal Forebrain)",
+         "arealabel": "Ch-4",
+         "status": "publicP",
+         "labelIndex": "264",
+         "doi": "https://doi.org/10.25493/VZJ5-8WJ",
+         "synonyms": [],
+         "rgb": [116,243,12],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "magnocellular group within horizontal limb of diagnoal band",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Ch 123 (Basal Forebrain)",
+         "arealabel": "Ch-123",
+         "status": "publicP",
+         "labelIndex": "286",
+         "doi": "https://doi.org/10.25493/7SEP-P2V",
+         "synonyms": [],
+         "rgb": [124,233,167],
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "amygdala",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "laterobasal group",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "LB (Amygdala)",
+         "arealabel": "LB",
+         "status": "publicP",
+         "labelIndex": "15",
+         "doi": "https://doi.org/10.25493/C3X0-NV3",
+         "synonyms": [],
+         "rgb": null,
+         "children": []
+        },
+        {
+         "name": "LB (Amygdala)",
+         "arealabel": "LB",
+         "status": "publicP",
+         "labelIndex": "11",
+         "doi": "https://doi.org/10.25493/C3X0-NV3",
+         "synonyms": [],
+         "rgb": null,
+         "children": []
+        },
+        {
+         "name": "LB (Amygdala)",
+         "arealabel": "LB",
+         "status": "publicP",
+         "labelIndex": "19",
+         "doi": "https://doi.org/10.25493/C3X0-NV3",
+         "synonyms": [],
+         "rgb": null,
+         "children": []
+        },
+        {
+         "name": "LB (Amygdala)",
+         "arealabel": "LB",
+         "status": "publicP",
+         "labelIndex": "13",
+         "doi": "https://doi.org/10.25493/C3X0-NV3",
+         "synonyms": [],
+         "rgb": null,
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "superficial group",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "SF (Amygdala)",
+         "arealabel": "SF",
+         "status": "publicP",
+         "labelIndex": "236",
+         "doi": "https://doi.org/10.25493/WD31-SEA",
+         "synonyms": [],
+         "rgb": null,
+         "children": []
+        },
+        {
+         "name": "SF (Amygdala)",
+         "arealabel": "SF",
+         "status": "publicP",
+         "labelIndex": "17",
+         "doi": "https://doi.org/10.25493/WD31-SEA",
+         "synonyms": [],
+         "rgb": null,
+         "children": []
+        },
+        {
+         "name": "SF (Amygdala)",
+         "arealabel": "SF",
+         "status": "publicP",
+         "labelIndex": "186",
+         "doi": "https://doi.org/10.25493/WD31-SEA",
+         "synonyms": [],
+         "rgb": [18,168,22],
+         "children": []
+        },
+        {
+         "name": "CM (Amygdala)",
+         "arealabel": "CM",
+         "status": "publicP",
+         "labelIndex": "22",
+         "doi": "https://doi.org/10.25493/36FR-C95",
+         "synonyms": [],
+         "rgb": [102,180,202],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fiber masses",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "VTM (Amygdala)",
+         "arealabel": "VTM",
+         "status": "publicP",
+         "labelIndex": "228",
+         "doi": "https://doi.org/10.25493/99HN-XRE",
+         "synonyms": [],
+         "rgb": [89,178,185],
+         "children": []
+        },
+        {
+         "name": "IF (Amygdala)",
+         "arealabel": "IF",
+         "status": "publicP",
+         "labelIndex": "237",
+         "doi": "https://doi.org/10.25493/GWPR-G6K",
+         "synonyms": [],
+         "rgb": [120,190,129],
+         "children": []
+        },
+        {
+         "name": "MF (Amygdala)",
+         "arealabel": "MF",
+         "status": "publicP",
+         "labelIndex": "235",
+         "doi": "https://doi.org/10.25493/9375-55V",
+         "synonyms": [],
+         "rgb": [190,200,9],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "centromedial group",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "CM (Amygdala)",
+         "arealabel": "CM",
+         "status": "publicP",
+         "labelIndex": "16",
+         "doi": "https://doi.org/10.25493/36FR-C95",
+         "synonyms": [],
+         "rgb": [89,4,190],
+         "children": []
+        },
+        {
+         "name": "CM (Amygdala)",
+         "arealabel": "CM",
+         "status": "publicP",
+         "labelIndex": "21",
+         "doi": "https://doi.org/10.25493/36FR-C95",
+         "synonyms": [],
+         "rgb": [9,120,220],
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    },
+    {
+     "name": "cerebral cortex",
+     "status": null,
+     "labelIndex": null,
+     "synonyms": [],
+     "rgb": null,
+     "children": [
+     {
+      "name": "parietal lobe",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "superior parietal lobule",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 5L (SPL)",
+         "arealabel": "Area-5L",
+         "status": "publicP",
+         "labelIndex": "130",
+         "doi": "https://doi.org/10.25493/C1FQ-2F",
+         "synonyms": [],
+         "rgb": [184,185,58],
+         "children": []
+        },
+        {
+         "name": "Area 7M (SPL)",
+         "arealabel": "Area-7M",
+         "status": "publicP",
+         "labelIndex": "135",
+         "doi": "https://doi.org/10.25493/F25F-EKW",
+         "synonyms": [],
+         "rgb": [205,61,236],
+         "children": []
+        },
+        {
+         "name": "Area 7PC (SPL)",
+         "arealabel": "Area-7PC",
+         "status": "publicP",
+         "labelIndex": "132",
+         "doi": "https://doi.org/10.25493/Z45N-1T",
+         "synonyms": [],
+         "rgb": [252,89,28],
+         "children": []
+        },
+        {
+         "name": "Area 5M (SPL)",
+         "arealabel": "Area-5M",
+         "status": "publicP",
+         "labelIndex": "131",
+         "doi": "https://doi.org/10.25493/Y12F-YMU",
+         "synonyms": [],
+         "rgb": [225,245,76],
+         "children": []
+        },
+        {
+         "name": "Area 7P (SPL)",
+         "arealabel": "Area-7P",
+         "status": "publicP",
+         "labelIndex": "208",
+         "doi": "https://doi.org/10.25493/C3HS-8R7",
+         "synonyms": [],
+         "rgb": [52,20,106],
+         "children": []
+        },
+        {
+         "name": "Area 5Ci (SPL)",
+         "arealabel": "Area-5Ci",
+         "status": "publicP",
+         "labelIndex": "136",
+         "doi": "https://doi.org/10.25493/SQVP-GK1",
+         "synonyms": [],
+         "rgb": [79,242,146],
+         "children": []
+        },
+        {
+         "name": "Area 7A (SPL)",
+         "arealabel": "Area-7A",
+         "status": "publicP",
+         "labelIndex": "134",
+         "doi": "https://doi.org/10.25493/7HX2-AJH",
+         "synonyms": [],
+         "rgb": [38,204,19],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "parietal operculum",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area OP3 (POperc)",
+         "arealabel": "Area-OP3",
+         "status": "publicP",
+         "labelIndex": "75",
+         "doi": "https://doi.org/10.25493/1Z8F-PX4",
+         "synonyms": [],
+         "rgb": [58,122,80],
+         "children": []
+        },
+        {
+         "name": "Area OP4 (POperc)",
+         "arealabel": "Area-OP4",
+         "status": "publicP",
+         "labelIndex": "72",
+         "doi": "https://doi.org/10.25493/BVT0-H3U",
+         "synonyms": [],
+         "rgb": [89,80,132],
+         "children": []
+        },
+        {
+         "name": "Area OP2 (POperc)",
+         "arealabel": "Area-OP2",
+         "status": "publicP",
+         "labelIndex": "74",
+         "doi": "https://doi.org/10.25493/5KBV-36J",
+         "synonyms": [],
+         "rgb": [36,47,221],
+         "children": []
+        },
+        {
+         "name": "Area OP1 (POperc)",
+         "arealabel": "Area-OP1",
+         "status": "publicP",
+         "labelIndex": "73",
+         "doi": "https://doi.org/10.25493/SH37-979",
+         "synonyms": [],
+         "rgb": [250,182,34],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "postcentral gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 3b (PostCG)",
+         "arealabel": "Area-3b",
+         "status": "publicP",
+         "labelIndex": "127",
+         "doi": "https://doi.org/10.25493/2JK3-QXR",
+         "synonyms": [],
+         "rgb": [239,246,155],
+         "children": []
+        },
+        {
+         "name": "Area 1 (PostCG)",
+         "arealabel": "Area-1",
+         "status": "publicP",
+         "labelIndex": "125",
+         "doi": "https://doi.org/10.25493/THB5-B64",
+         "synonyms": [],
+         "rgb": [232,185,250],
+         "children": []
+        },
+        {
+         "name": "Area 2 (PostCS)",
+         "arealabel": "Area-2",
+         "status": "publicP",
+         "labelIndex": "252",
+         "doi": "https://doi.org/10.25493/QA8F-DD2",
+         "synonyms": [],
+         "rgb": [23,13,35],
+         "children": []
+        },
+        {
+         "name": "Area 3a (PostCG)",
+         "arealabel": "Area-3a",
+         "status": "publicP",
+         "labelIndex": "126",
+         "doi": "https://doi.org/10.25493/C5QQ-EFB",
+         "synonyms": [],
+         "rgb": [187,133,50],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "inferior parietal lobule",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area PF (IPL)",
+         "arealabel": "Area-PF",
+         "status": "publicP",
+         "labelIndex": "206",
+         "doi": "https://doi.org/10.25493/F1TJ-54W",
+         "synonyms": [],
+         "rgb": [226,211,61],
+         "children": []
+        },
+        {
+         "name": "Area PFcm (IPL)",
+         "arealabel": "Area-PFcm",
+         "status": "publicP",
+         "labelIndex": "113",
+         "doi": "https://doi.org/10.25493/8DP8-8HE",
+         "synonyms": [],
+         "rgb": [98,128,120],
+         "children": []
+        },
+        {
+         "name": "Area PGa (IPL)",
+         "arealabel": "Area-PGa",
+         "status": "publicP",
+         "labelIndex": "110",
+         "doi": "https://doi.org/10.25493/V5HY-XTS",
+         "synonyms": [],
+         "rgb": [42,236,131],
+         "children": []
+        },
+        {
+         "name": "Area PFt (IPL)",
+         "arealabel": "Area-PFt",
+         "status": "publicP",
+         "labelIndex": "109",
+         "doi": "https://doi.org/10.25493/JGM9-ZET",
+         "synonyms": [],
+         "rgb": [120,135,232],
+         "children": []
+        },
+        {
+         "name": "Area PFm (IPL)",
+         "arealabel": "Area-PFm",
+         "status": "publicP",
+         "labelIndex": "112",
+         "doi": "https://doi.org/10.25493/TB94-HRK",
+         "synonyms": [],
+         "rgb": [53,76,145],
+         "children": []
+        },
+        {
+         "name": "Area PGp (IPL)",
+         "arealabel": "Area-PGp",
+         "status": "publicP",
+         "labelIndex": "108",
+         "doi": "https://doi.org/10.25493/FPFJ-ZCD",
+         "synonyms": [],
+         "rgb": [92,116,83],
+         "children": []
+        },
+        {
+         "name": "Area PFop (IPL)",
+         "arealabel": "Area-PFop",
+         "status": "publicP",
+         "labelIndex": "111",
+         "doi": "https://doi.org/10.25493/M2PM-92Q",
+         "synonyms": [],
+         "rgb": [146,153,177],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "parieto-occipital sulcus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area hPO1 (POS)",
+         "arealabel": "Area-hPO1",
+         "status": "publicP",
+         "labelIndex": "297",
+         "doi": "https://doi.org/10.25493/W50A-FAP",
+         "synonyms": [],
+         "rgb": [153,232,235],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "intraparietal sulcus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area hIP1 (IPS)",
+         "arealabel": "Area-hIP1",
+         "status": "publicP",
+         "labelIndex": "128",
+         "doi": "https://doi.org/10.25493/92FE-7S6",
+         "synonyms": [],
+         "rgb": [66,149,82],
+         "children": []
+        },
+        {
+         "name": "Area hIP7 (IPS)",
+         "arealabel": "Area-hIP7",
+         "status": "publicP",
+         "labelIndex": "296",
+         "doi": "https://doi.org/10.25493/WRCY-8Z1",
+         "synonyms": [],
+         "rgb": [71,196,218],
+         "children": []
+        },
+        {
+         "name": "Area hIP3 (IPS)",
+         "arealabel": "Area-hIP3",
+         "status": "publicP",
+         "labelIndex": "133",
+         "doi": "https://doi.org/10.25493/P8X0-V1G",
+         "synonyms": [],
+         "rgb": [113,172,229],
+         "children": []
+        },
+        {
+         "name": "Area hIP2 (IPS)",
+         "arealabel": "Area-hIP2",
+         "status": "publicP",
+         "labelIndex": "129",
+         "doi": "https://doi.org/10.25493/EJTM-NDY",
+         "synonyms": [],
+         "rgb": [127,245,203],
+         "children": []
+        },
+        {
+         "name": "Area hIP4 (IPS)",
+         "arealabel": "Area-hIP4",
+         "status": "publicP",
+         "labelIndex": "294",
+         "doi": "https://doi.org/10.25493/TSEN-QSY",
+         "synonyms": [],
+         "rgb": [254,52,184],
+         "children": []
+        },
+        {
+         "name": "Area hIP5 (IPS)",
+         "arealabel": "Area-hIP5",
+         "status": "publicP",
+         "labelIndex": "295",
+         "doi": "https://doi.org/10.25493/RNSM-Y4Y",
+         "synonyms": [],
+         "rgb": [217,87,210],
+         "children": []
+        },
+        {
+         "name": "Area hIP6 (IPS)",
+         "arealabel": "Area-hIP6",
+         "status": "publicP",
+         "labelIndex": "292",
+         "doi": "https://doi.org/10.25493/AFQR-50Q",
+         "synonyms": [],
+         "rgb": [237,233,37],
+         "children": []
+        },
+        {
+         "name": "Area hIP8 (IPS)",
+         "arealabel": "Area-hIP8",
+         "status": "publicP",
+         "labelIndex": "293",
+         "doi": "https://doi.org/10.25493/YYT8-FT8",
+         "synonyms": [],
+         "rgb": [223,109,3],
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "occiptal lobe",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "dorsal occipital cortex",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area hOc6 (POS)",
+         "arealabel": "Area-hOc6",
+         "status": "publicP",
+         "labelIndex": "291",
+         "doi": "https://doi.org/10.25493/4101-1ZG",
+         "synonyms": [],
+         "rgb": [239,66,26],
+         "children": []
+        },
+        {
+         "name": "Area hOc4d (Cuneus)",
+         "arealabel": "Area-hOc4d",
+         "status": "publicP",
+         "labelIndex": "119",
+         "doi": "https://doi.org/10.25493/VSK5-DET",
+         "synonyms": [],
+         "rgb": [109,218,10],
+         "children": []
+        },
+        {
+         "name": "Area hOc3d (Cuneus)",
+         "arealabel": "Area-hOc3d",
+         "status": "publicP",
+         "labelIndex": "120",
+         "doi": "https://doi.org/10.25493/F9X3-JVJ",
+         "synonyms": [],
+         "rgb": [105,191,48],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "ventral occipital cortex",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area hOc3v (LingG)",
+         "arealabel": "Area-hOc3v",
+         "status": "publicP",
+         "labelIndex": "10",
+         "doi": "https://doi.org/10.25493/E5E8-1VV",
+         "synonyms": [],
+         "rgb": [83,179,155],
+         "children": []
+        },
+        {
+         "name": "Area hOc4v (LingG)",
+         "arealabel": "Area-hOc4v",
+         "status": "publicP",
+         "labelIndex": "9",
+         "doi": "https://doi.org/10.25493/AASR-M8P",
+         "synonyms": [],
+         "rgb": [222,77,155],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "occipital cortex",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area hOc2 (V2, 18)",
+         "arealabel": "Area-hOc2",
+         "status": "publicP",
+         "labelIndex": "7",
+         "doi": "https://doi.org/10.25493/QG9C-THD",
+         "synonyms": [],
+         "rgb": [84,110,22],
+         "children": []
+        },
+        {
+         "name": "Area hOc1 (V1, 17, CalcS)",
+         "arealabel": "Area-hOc1",
+         "status": "publicP",
+         "labelIndex": "8",
+         "doi": "https://doi.org/10.25493/MXJ6-6DH",
+         "synonyms": [],
+         "rgb": [190,132,147],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "lateral occipital cortex",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area hOc4lp (LOC)",
+         "arealabel": "Area-hOc4lp",
+         "status": "publicP",
+         "labelIndex": "117",
+         "doi": "https://doi.org/10.25493/4B87-Q8X",
+         "synonyms": [],
+         "rgb": [96,113,253],
+         "children": []
+        },
+        {
+         "name": "Area hOc5 (LOC)",
+         "arealabel": "Area-hOc5",
+         "status": "publicP",
+         "labelIndex": "6",
+         "doi": "https://doi.org/10.25493/2WSH-MCT",
+         "synonyms": [],
+         "rgb": [255,0,0],
+         "children": []
+        },
+        {
+         "name": "Area hOc4la (LOC)",
+         "arealabel": "Area-hOc4la",
+         "status": "publicP",
+         "labelIndex": "118",
+         "doi": "https://doi.org/10.25493/Z9JX-WKB",
+         "synonyms": [],
+         "rgb": [233,168,189],
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "frontal lobe",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "inferior frontal gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 44 (IFG)",
+         "arealabel": "Area-44",
+         "status": "publicP",
+         "labelIndex": "2",
+         "doi": "https://doi.org/10.25493/F9P8-ZVW",
+         "synonyms": [],
+         "rgb": [54,74,75],
+         "children": []
+        },
+        {
+         "name": "Area 45 (IFG)",
+         "arealabel": "Area-45",
+         "status": "publicP",
+         "labelIndex": "1",
+         "doi": "https://doi.org/10.25493/MR1V-BJ3",
+         "synonyms": [],
+         "rgb": [167,103,146],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dorsal precentral gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 6d2 (PreCG)",
+         "arealabel": "Area-6d2",
+         "status": "publicDOI",
+         "labelIndex": "288",
+         "doi": "https://doi.org/10.25493/KXHS-N90",
+         "synonyms": [],
+         "rgb": [170,151,180],
+         "children": []
+        },
+        {
+         "name": "Area 6d1 (PreCG)",
+         "arealabel": "Area-6d1",
+         "status": "publicDOI",
+         "labelIndex": "287",
+         "doi": "https://doi.org/10.25493/4WSQ-8FM",
+         "synonyms": [],
+         "rgb": [45,33,27],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "posterior medial superior frontal gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 6ma (preSMA, mesial SFG)",
+         "arealabel": "Area-6ma",
+         "status": "publicP",
+         "labelIndex": "299",
+         "doi": "https://doi.org/10.25493/WVNR-SPT",
+         "synonyms": [],
+         "rgb": [204,108,222],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "superior frontal sulcus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 6d3 (SFS)",
+         "arealabel": "Area-6d3",
+         "status": "publicDOI",
+         "labelIndex": "289",
+         "doi": "https://doi.org/10.25493/NVJ5-JJ",
+         "synonyms": [],
+         "rgb": [55,239,21],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "frontal pole",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Fp1 (FPole)",
+         "arealabel": "Area-Fp1",
+         "status": "publicP",
+         "labelIndex": "212",
+         "doi": "https://doi.org/10.25493/PTKW-R7W",
+         "synonyms": [],
+         "rgb": [226,14,200],
+         "children": []
+        },
+        {
+         "name": "Area Fp2 (FPole)",
+         "arealabel": "Area-Fp2",
+         "status": "publicP",
+         "labelIndex": "211",
+         "doi": "https://doi.org/10.25493/GZW1-7R3",
+         "synonyms": [],
+         "rgb": [239,137,211],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "precentral gyrus ",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 4p (PreCG)",
+         "arealabel": "Area-4p",
+         "status": "publicP",
+         "labelIndex": "123",
+         "doi": "https://doi.org/10.25493/5HSF-81J",
+         "synonyms": [],
+         "rgb": [116,92,124],
+         "children": []
+        },
+        {
+         "name": "Area 4a (PreCG)",
+         "arealabel": "Area-4a",
+         "status": "publicP",
+         "labelIndex": "124",
+         "doi": "https://doi.org/10.25493/PVPP-P3Q",
+         "synonyms": [],
+         "rgb": [118,239,183],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "mesial precentral gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area 6mp (SMA, mesial SFG)",
+         "arealabel": "Area-6mp",
+         "status": "publicP",
+         "labelIndex": "298",
+         "doi": "https://doi.org/10.25493/2E1T-47F",
+         "synonyms": [],
+         "rgb": [75,95,87],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "medial orbitofrontal cortex",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Fo1 (OFC)",
+         "arealabel": "Area-Fo1",
+         "status": "publicP",
+         "labelIndex": "3",
+         "doi": "https://doi.org/10.25493/H2N2-6J2",
+         "synonyms": [],
+         "rgb": [7,255,179],
+         "children": []
+        },
+        {
+         "name": "Area Fo3 (OFC)",
+         "arealabel": "Area-Fo3",
+         "status": "publicP",
+         "labelIndex": "5",
+         "doi": "https://doi.org/10.25493/E1YQ-65U",
+         "synonyms": [],
+         "rgb": [182,189,250],
+         "children": []
+        },
+        {
+         "name": "Area Fo2 (OFC)",
+         "arealabel": "Area-Fo2",
+         "status": "publicP",
+         "labelIndex": "4",
+         "doi": "https://doi.org/10.25493/3JB9-2V2",
+         "synonyms": [],
+         "rgb": [0,255,0],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "frontal operculum ",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area OP8 (Frontal Operculum)",
+         "arealabel": "Area-OP8",
+         "status": "publicDOI",
+         "labelIndex": "273",
+         "doi": "https://doi.org/10.25493/NGF8-TA4",
+         "synonyms": [],
+         "rgb": [29,76,168],
+         "children": []
+        },
+        {
+         "name": "Area OP9 (Frontal Operculum)",
+         "arealabel": "Area-OP9",
+         "status": "publicDOI",
+         "labelIndex": "274",
+         "doi": "https://doi.org/10.25493/3A30-5E4",
+         "synonyms": [],
+         "rgb": [175,123,34],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "lateral orbitofrontal cortex",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Fo5 (OFC)",
+         "arealabel": "Area-Fo5",
+         "status": "publicDOI",
+         "labelIndex": "325",
+         "doi": "https://doi.org/10.25493/HJMY-ZZP",
+         "synonyms": [],
+         "rgb": [219,11,91],
+         "children": []
+        },
+        {
+         "name": "Area Fo4 (OFC)",
+         "arealabel": "Area-Fo4",
+         "status": "publicDOI",
+         "labelIndex": "324",
+         "doi": "https://doi.org/10.25493/29G0-66F",
+         "synonyms": [],
+         "rgb": [163,204,53],
+         "children": []
+        },
+        {
+         "name": "Area Fo6 (OFC)",
+         "arealabel": "Area-Fo6",
+         "status": "publicDOI",
+         "labelIndex": "326",
+         "doi": "https://doi.org/10.25493/34Q4-H62",
+         "synonyms": [],
+         "rgb": [199,156,187],
+         "children": []
+        },
+        {
+         "name": "Area Fo7 (OFC)",
+         "arealabel": "Area-Fo7",
+         "status": "publicDOI",
+         "labelIndex": "327",
+         "doi": "https://doi.org/10.25493/3WEV-561",
+         "synonyms": [],
+         "rgb": [64,211,186],
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "insula",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "granular insula",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Ig1 (Insula)",
+         "arealabel": "Area-Ig1",
+         "status": "publicP",
+         "labelIndex": "115",
+         "doi": "https://doi.org/10.25493/EKV9-29D",
+         "synonyms": [],
+         "rgb": [18,111,40],
+         "children": []
+        },
+        {
+         "name": "Area Ig3 (Insula)",
+         "arealabel": "Area-Ig3",
+         "status": "publicDOI",
+         "labelIndex": "336",
+         "doi": "",
+         "synonyms": [],
+         "rgb": [105,253,197],
+         "children": []
+        },
+        {
+         "name": "Area Ig2 (Insula)",
+         "arealabel": "Area-Ig2",
+         "status": "publicP",
+         "labelIndex": "114",
+         "doi": "https://doi.org/10.25493/662G-E0W",
+         "synonyms": [],
+         "rgb": [105,61,82],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "agranular insula",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Ia (Insula)",
+         "arealabel": "Area-Ia",
+         "status": "publicDOI",
+         "labelIndex": "339",
+         "doi": "https://doi.org/10.25493/WW8G-T2G",
+         "synonyms": [],
+         "rgb": [71,217,62],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dys-/agranular insula",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Id7 (Insula)",
+         "arealabel": "Area-Id7",
+         "status": "publicDOI",
+         "labelIndex": "159",
+         "doi": "https://doi.org/10.25493/88QG-JMS",
+         "synonyms": [],
+         "rgb": [101,202,38],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dysgranular insula",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area Id2 (Insula)",
+         "arealabel": "Area-Id2",
+         "status": "publicDOI",
+         "labelIndex": "56",
+         "doi": "",
+         "synonyms": [],
+         "rgb": [225,126,73],
+         "children": []
+        },
+        {
+         "name": "Area Id1 (Insula)",
+         "arealabel": "Area-Id1",
+         "status": "publicP",
+         "labelIndex": "116",
+         "doi": "https://doi.org/10.25493/F37H-8WB",
+         "synonyms": [],
+         "rgb": [141,112,216],
+         "children": []
+        },
+        {
+         "name": "Area Id3 (Insula)",
+         "arealabel": "Area-Id3",
+         "status": "publicDOI",
+         "labelIndex": "57",
+         "doi": "",
+         "synonyms": [],
+         "rgb": [32,32,58],
+         "children": []
+        },
+        {
+         "name": "Area Id5 (Insula)",
+         "arealabel": "Area-Id5",
+         "status": "publicDOI",
+         "labelIndex": "338",
+         "doi": "https://doi.org/10.25493/5CK1-B1G",
+         "synonyms": [],
+         "rgb": [112,6,50],
+         "children": []
+        },
+        {
+         "name": "Area Id6 (Insula)",
+         "arealabel": "Area-Id6",
+         "status": "publicDOI",
+         "labelIndex": "340",
+         "doi": "https://doi.org/10.25493/54HZ-KFQ",
+         "synonyms": [],
+         "rgb": [138,127,119],
+         "children": []
+        },
+        {
+         "name": "Area Id4 (Insula)",
+         "arealabel": "Area-Id4",
+         "status": "publicDOI",
+         "labelIndex": "337",
+         "doi": "https://doi.org/10.25493/K63G-89H",
+         "synonyms": [],
+         "rgb": [38,174,113],
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "temporal lobe",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "superior temporal sulcus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area STS2 (STS)",
+         "arealabel": "Area-STS2",
+         "status": "publicDOI",
+         "labelIndex": "272",
+         "doi": "https://doi.org/10.25493/KHY9-J3Y",
+         "synonyms": [],
+         "rgb": [62,117,123],
+         "children": []
+        },
+        {
+         "name": "Area STS1 (STS)",
+         "arealabel": "Area-STS1",
+         "status": "publicDOI",
+         "labelIndex": "271",
+         "doi": "https://doi.org/10.25493/F6DF-H8P",
+         "synonyms": [],
+         "rgb": [205,228,4],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "superior temporal gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area TE 3 (STG)",
+         "arealabel": "Area-TE-3",
+         "status": "publicP",
+         "labelIndex": "31",
+         "doi": "https://doi.org/10.25493/BN5J-JT8",
+         "synonyms": [],
+         "rgb": [159,104,108],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "Heschl's gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area TE 1.2 (HESCHL)",
+         "arealabel": "Area-TE-1.2",
+         "status": "publicP",
+         "labelIndex": "30",
+         "doi": "https://doi.org/10.25493/R382-617",
+         "synonyms": [],
+         "rgb": [202,251,192],
+         "children": []
+        },
+        {
+         "name": "Area TE 1.1 (HESCHL)",
+         "arealabel": "Area-TE-1.1",
+         "status": "publicP",
+         "labelIndex": "33",
+         "doi": "https://doi.org/10.25493/4HA3-BBE",
+         "synonyms": [],
+         "rgb": [8,113,68],
+         "children": []
+        },
+        {
+         "name": "Area TE 1.0 (HESCHL)",
+         "arealabel": "Area-TE-1.0",
+         "status": "publicP",
+         "labelIndex": "27",
+         "doi": "https://doi.org/10.25493/MV3G-RET",
+         "synonyms": [],
+         "rgb": [252,84,222],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fusiform gyrus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area FG2 (FusG)",
+         "arealabel": "Area-FG2",
+         "status": "publicP",
+         "labelIndex": "106",
+         "doi": "https://doi.org/10.25493/F2JH-KVV",
+         "synonyms": [],
+         "rgb": [67,94,149],
+         "children": []
+        },
+        {
+         "name": "Area FG3 (FusG)",
+         "arealabel": "Area-FG3",
+         "status": "publicP",
+         "labelIndex": "239",
+         "doi": "https://doi.org/10.25493/Z0F6-0SY",
+         "synonyms": [],
+         "rgb": [120,147,37],
+         "children": []
+        },
+        {
+         "name": "Area FG1 (FusG)",
+         "arealabel": "Area-FG1",
+         "status": "publicP",
+         "labelIndex": "107",
+         "doi": "https://doi.org/10.25493/5ZVQ-R8R",
+         "synonyms": [],
+         "rgb": [131,183,58],
+         "children": []
+        },
+        {
+         "name": "Area FG4 (FusG)",
+         "arealabel": "Area-FG4",
+         "status": "publicP",
+         "labelIndex": "238",
+         "doi": "https://doi.org/10.25493/13RG-FYV",
+         "synonyms": [],
+         "rgb": [170,220,175],
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "limbic lobe",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "cingulate gyrus, frontal part",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Area p24c (pACC)",
+         "arealabel": "Area-p24c",
+         "status": "publicP",
+         "labelIndex": "232",
+         "doi": "https://doi.org/10.25493/QA7B-JM9",
+         "synonyms": [],
+         "rgb": [241,164,195],
+         "children": []
+        },
+        {
+         "name": "Area 25 (sACC)",
+         "arealabel": "Area-25",
+         "status": "publicP",
+         "labelIndex": "184",
+         "doi": "https://doi.org/10.25493/51AM-WN4",
+         "synonyms": [],
+         "rgb": [170,68,220],
+         "children": []
+        },
+        {
+         "name": "Area p24ab (pACC)",
+         "arealabel": "Area-p24ab",
+         "status": "publicP",
+         "labelIndex": "231",
+         "doi": "https://doi.org/10.25493/DHXC-2KN",
+         "synonyms": [],
+         "rgb": [153,195,229],
+         "children": []
+        },
+        {
+         "name": "Area s32 (sACC)",
+         "arealabel": "Area-s32",
+         "status": "publicP",
+         "labelIndex": "46",
+         "doi": "https://doi.org/10.25493/XTRR-172",
+         "synonyms": [],
+         "rgb": [193,94,250],
+         "children": []
+        },
+        {
+         "name": "Area 33 (ACC)",
+         "arealabel": "Area-33",
+         "status": "publicP",
+         "labelIndex": "39",
+         "doi": "https://doi.org/10.25493/X9QP-C6F",
+         "synonyms": [],
+         "rgb": [51,57,245],
+         "children": []
+        },
+        {
+         "name": "Area p32 (pACC)",
+         "arealabel": "Area-p32",
+         "status": "publicP",
+         "labelIndex": "47",
+         "doi": "https://doi.org/10.25493/3JX0-7E5",
+         "synonyms": [],
+         "rgb": [87,135,14],
+         "children": []
+        },
+        {
+         "name": "Area s24 (sACC)",
+         "arealabel": "Area-s24",
+         "status": "publicP",
+         "labelIndex": "183",
+         "doi": "https://doi.org/10.25493/HXWM-NRX",
+         "synonyms": [],
+         "rgb": [133,34,201],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "hippocampal formation",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "HATA (Hippocampus)",
+         "arealabel": "HATA",
+         "status": "publicP",
+         "labelIndex": "68",
+         "doi": "https://doi.org/10.25493/M1XP-VSQ",
+         "synonyms": [],
+         "rgb": [137,12,73],
+         "children": []
+        },
+        {
+         "name": "Entorhinal Cortex",
+         "arealabel": "Entorhinal-Cortex",
+         "status": "publicP",
+         "labelIndex": "60",
+         "doi": "https://doi.org/10.25493/KNXY-B1Z",
+         "synonyms": [],
+         "rgb": [35,159,214],
+         "children": []
+        },
+        {
+         "name": "CA (Hippocampus)",
+         "arealabel": "CA",
+         "status": "publicP",
+         "labelIndex": "191",
+         "doi": "https://doi.org/10.25493/B85T-D88",
+         "synonyms": [],
+         "rgb": [250,191,217],
+         "children": []
+        },
+        {
+         "name": "DG (Hippocampus)",
+         "arealabel": "DG",
+         "status": "publicP",
+         "labelIndex": "61",
+         "doi": "https://doi.org/10.25493/M8JP-XQT",
+         "synonyms": [],
+         "rgb": [149,55,120],
+         "children": []
+        },
+        {
+         "name": "Subiculum (Hippocampus)",
+         "arealabel": "Subiculum",
+         "status": "publicP",
+         "labelIndex": "192",
+         "doi": "https://doi.org/10.25493/QKJH-F45",
+         "synonyms": [],
+         "rgb": [111,125,219],
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    }
+    ]
+   },
+   {
+    "name": "metencephalon",
+    "status": null,
+    "labelIndex": null,
+    "synonyms": [],
+    "rgb": null,
+    "children": [
+    {
+     "name": "cerebellum",
+     "status": null,
+     "labelIndex": null,
+     "synonyms": [],
+     "rgb": null,
+     "children": [
+     {
+      "name": "cerebellar nuclei",
+      "status": null,
+      "labelIndex": null,
+      "synonyms": [],
+      "rgb": null,
+      "children": [
+      {
+       "name": "globose nucleus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Interposed Nucleus (Cerebellum)",
+         "arealabel": "Interposed-Nucleus",
+         "status": "publicP",
+         "labelIndex": "251",
+         "doi": "https://doi.org/10.25493/8PTB-JDH",
+         "synonyms": [],
+         "rgb": [170,29,10],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dentate nucleus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Dorsal Dentate Nucleus (Cerebellum)",
+         "arealabel": "Dorsal-Dentate-Nucleus",
+         "status": "publicP",
+         "labelIndex": "240",
+         "doi": "https://doi.org/10.25493/M5QG-SHH",
+         "synonyms": [],
+         "rgb": [89,201,99],
+         "children": []
+        },
+        {
+         "name": "Ventral Dentate Nucleus (Cerebellum)",
+         "arealabel": "Ventral-Dentate-Nucleus",
+         "status": "publicP",
+         "labelIndex": "241",
+         "doi": "https://doi.org/10.25493/FQE5-5QR",
+         "synonyms": [],
+         "rgb": [39,129,9],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fastigial nucleus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Fastigial Nucleus (Cerebellum)",
+         "arealabel": "Fastigial-Nucleus",
+         "status": "publicP",
+         "labelIndex": "219",
+         "doi": "https://doi.org/10.25493/3YJ9-S6G",
+         "synonyms": [],
+         "rgb": [200,100,10],
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "emboliform nucleus",
+       "status": null,
+       "labelIndex": null,
+       "synonyms": [],
+       "rgb": null,
+       "children": [
+        {
+         "name": "Interposed Nucleus (Cerebellum)",
+         "arealabel": "Interposed-Nucleus",
+         "status": "publicP",
+         "labelIndex": "251",
+         "doi": "https://doi.org/10.25493/8PTB-JDH",
+         "synonyms": [],
+         "rgb": [170,29,10],
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    }
+    ]
+   }
+  ]
+ }
+}
