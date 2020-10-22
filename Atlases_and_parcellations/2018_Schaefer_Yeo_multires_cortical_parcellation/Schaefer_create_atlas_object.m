@@ -92,6 +92,16 @@ r = atlas2region(atlas_obj);
 all_colors = match_colors_left_right(r);
 orthviews(r, all_colors);
 
+%% correction
+
+% Two network labels were wrong - LVisCent and LVisPeri were switched.
+% correct
+wh_lvisperi = atlas_obj.dat == 29;
+wh_lviscent = atlas_obj.dat == 31;
+atlas_obj.dat(wh_lvisperi) = 31;
+atlas_obj.dat(wh_lviscent) = 29;
+
+
  %% save figure
 
 if dosave

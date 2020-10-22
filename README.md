@@ -13,12 +13,11 @@ The three types of brain maps included are:
 
 Getting help and additional information:
 ------------------------------------------------------------
-We have several sources of documentation for this toolbox:
+We have several sources of documentation for this repository. A website with references and pictures is here: https://sites.google.com/dartmouth.edu/canlab-brainpatterns/home
 
-1.  For function-by-function help documents on the Core Tools objects and functions, see the <a href = http://canlabcore.readthedocs.org/en/latest/>help pages on Readthedocs</a>.
-2.  For brief, documented code examples of some specific functions, and a batch script system that uses the CanlabCore object-oriented tools for second-level neuroimaging analysis, see <a href='https://github.com/canlab/CANlab_help_examples'>CANlab_help_examples github repository</a>
+1.  You can use any software to load, view, and apply the models. We have an object-oriented Matlab toolbox that makes it easy to load and apply the models. For the philosophy behind the  object-oriented toolbox and code walkthroughs in Matlab, see canlab.github.io. For function-by-function help documents on the Core Tools objects and functions, see the <a href = http://canlabcore.readthedocs.org/en/latest/>help pages on Readthedocs</a>. The code to create the walkthroughs, and a batch script system that uses the CanlabCore object-oriented tools for second-level neuroimaging analysis, is here: <a href='https://github.com/canlab/CANlab_help_examples'>CANlab_help_examples github repository</a>
 
-The CANlab website is https://canlabweb.colorado.edu/, and we also maintain a WIKI with more information on some of our toolboxes and fMRI analysis more generally, which is <a href = "https://canlabweb.colorado.edu/wiki/doku.php/help/fmri_tools_documentation">here</a>.  For more information on fMRI analysis generally, see <a href = "https://leanpub.com/principlesoffmri">Martin and Tor's online book</a> and our free Coursera videos and classes <a href = "https://www.coursera.org/learn/functional-mri">Principles of fMRI Part 1</a> and <a href = "https://www.coursera.org/learn/functional-mri-2">Part 2 </a>.
+2. The CANlab website is https://sites.google.com/dartmouth.edu/, and we also maintain a WIKI with more information on some of our toolboxes and fMRI analysis more generally, which is <a href = "https://canlabweb.colorado.edu/wiki/doku.php/help/fmri_tools_documentation">here</a>.  For more information on fMRI analysis generally, see <a href = "https://leanpub.com/principlesoffmri">Martin and Tor's online book</a> and our free Coursera videos and classes <a href = "https://www.coursera.org/learn/functional-mri">Principles of fMRI Part 1</a> and <a href = "https://www.coursera.org/learn/functional-mri-2">Part 2 </a>.
 
 Dependencies: These should be installed to use this toolbox
 ------------------------------------------------------------
@@ -34,4 +33,6 @@ Matlab www.mathworks.com
   
 <recommended> the canlab_help_examples repository  https://github.com/canlab/CANlab_help_examples
   
-  
+Want to contribute? Please get in touch
+------------------------------------------------------------  
+Most of the maps/models come from our lab, but some are those that other groups have agreed to share and which we find particularly useful. We'd love to grow the collection, so if you want to contribute an atlas, meta-analysis results, or multivariate model, please get in touch! Maryam Amini is a good contact <maryam.amini@dartmouth.edu>.
