@@ -3,9 +3,6 @@ function yhat = classify_somatovisceral_pain(dat)
 %that discriminates between somatic and visceral pain from Van Oudenhove,
 %Kragel et al. 2020 Nature Communications.
 %
-% This function makes a specific kind of ROC curve plot, based on input
-% values along a continuous distribution and a binary outcome variable
-% (logical)
 %
 % :Usage:
 % ::
