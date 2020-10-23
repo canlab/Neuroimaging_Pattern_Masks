@@ -5,7 +5,7 @@ function pexp_tabl = apply_multiaversive_mpa2_patterns(dat)
 
     pats = load_image_set('mpa2');
     
-    pexps = apply_mask(dat, pats, 'pattern_expression');
+    pexps = apply_mask(dat, pats, 'pattern_expression', 'cosine_similarity');
     
     pexp_tabl = array2table(pexps, 'VariableNames', {'general' 'mechanical' 'thermal' 'sound' 'visual'});
     
