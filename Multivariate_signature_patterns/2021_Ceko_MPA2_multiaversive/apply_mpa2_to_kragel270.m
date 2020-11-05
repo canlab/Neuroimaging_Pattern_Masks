@@ -9,7 +9,7 @@ figure; plot(pexpdat); legend(pattnames);
 
 set(gca, 'Xtick', 1:270, 'XTickLabel', allimgnames, 'XTickLabelRotation', 90);
 
-studyid = imgs.dat_descrip.Studynumber;
+studyid = imgs.metadata_table.Studynumber;
 
 studylist = studyid(1:15:end); % in non-sequential order that we want
 
