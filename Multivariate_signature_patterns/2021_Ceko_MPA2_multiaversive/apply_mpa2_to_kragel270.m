@@ -37,14 +37,36 @@ end
 %%
 colors = [repmat({[1 0 0]}, 1, 2) repmat({[1 .5 0]}, 1, 2) repmat({[.7 .6 0]}, 1, 2) repmat({[0 0 1]}, 1, 2) repmat({[0 .5 1]}, 1, 2) repmat({[0 .6 .7]}, 1, 2) repmat({[0 1 0]}, 1, 2) repmat({[.5 1 0]}, 1, 2) repmat({[0 .7 .6]}, 1, 2)];
 
+imgnames = format_strings_for_legend(imgnames);
+
+create_figure('patterns', 5, 1);
+
 for i = 1:5
     
-    create_figure(pattnames{i});
+    %create_figure(pattnames{i});
+    subplot(5, 1, i);
     
-    barplot_columns(PEXP.(pattnames{i}), 'nofigure', 'noviolins', 'colors', colors);
+    barplot_columns(PEXP.(pattnames{i}), 'nofigure', 'noviolin', 'colors', colors);
+    
     set(gca, 'XTickLabel', imgnames, 'XTickLabelRotation', 45);
+    
+%     if i == 5
+%         
+%     else
+%         set(gca, 'XTickLabel', ' ');
+%     end
+    
+    xlabel(' ');
+    
     title(pattnames{i}, 'FontSize', 18);
     
     drawnow
+    
+end
+
+for i = 1:4
+
+    subplot(5, 1, i);
+    set(gca, 'XColor', 'none');
     
 end
