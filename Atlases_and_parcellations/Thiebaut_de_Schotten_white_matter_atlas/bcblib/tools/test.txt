@@ -1,0 +1,8 @@
+++une phrase
++une autre
+une erreur
++lol
++lol
+deuxième erreur
++poulet
+
