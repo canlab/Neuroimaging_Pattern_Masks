@@ -1,0 +1,73 @@
+ID,Bundle Name,File Name,#HCP,#BLSA,#VU,#ALL
+0,Arcuate fascicle left,AF_left,1061,963,303,2327
+1,Arcuate fascicle right,AF_right,1061,963,303,2327
+2,Anterior Thalamic Radiation left,ATR_left,1061,963,303,2327
+3,Anterior Thalamic Radiation right,ATR_right,1061,963,302,2326
+4,Commissure Anterior,CA,1061,950,284,2295
+5,Rostrum,CC_1,1061,961,302,2324
+6,Genu,CC_2,1061,963,303,2327
+7,Rostral body (Premotor),CC_3,1061,963,302,2326
+8,Anterior midbody (Primary Motor),CC_4,1061,960,298,2319
+9,Posterior midbody (Primary Somatosensory),CC_5,1061,958,297,2316
+10,Isthmus,CC_6,1061,963,303,2327
+11,Splenium,CC_7,1061,963,303,2327
+12,Corpus Callosum - all,CC,1061,963,303,2327
+13,Cingulum left,CG_left,1061,963,303,2327
+14,Cingulum right,CG_right,1061,963,303,2327
+15,Corticospinal tract left,CST_left,1061,962,297,2320
+16,Corticospinal tract right,CST_right,1061,961,294,2316
+17,Fronto-pontine tract left,FPT_left,1061,963,303,2327
+18,Fronto-pontine tract right,FPT_right,1061,963,302,2326
+19,Fornix left,FX_left,1061,904,297,2262
+20,Fornix right,FX_right,1061,893,294,2248
+21,Inferior cerebellar peduncle left,ICP_left,1061,962,286,2309
+22,Inferior cerebellar peduncle right,ICP_right,1061,962,283,2306
+23,Inferior occipito-frontal fascicle left,IFO_left,1061,963,303,2327
+24,Inferior occipito-frontal fascicle right,IFO_right,1061,963,303,2327
+25,Inferior longitudinal fascicle left,ILF_left,1061,963,303,2327
+26,Inferior longitudinal fascicle right,ILF_right,1061,963,303,2327
+27,Middle cerebellar peduncle,MCP,1061,962,293,2316
+28,Middle longitudinal fascicle left,MLF_left,1061,963,303,2327
+29,Middle longitudinal fascicle right,MLF_right,1061,963,303,2327
+30,Optic radiation left,OR_left,1061,963,303,2327
+31,Optic radiation right,OR_right,1061,963,303,2327
+32,Parieto-occipital pontine left,POPT_left,1061,963,303,2327
+33,Parieto-occipital pontine right,POPT_right,1061,963,303,2327
+34,Superior cerebellar peduncle left,SCP_left,1061,962,301,2324
+35,Superior cerebellar peduncle right,SCP_right,1061,962,298,2321
+36,Superior longitudinal fascicle III left,SLF_III_left,1061,963,301,2325
+37,Superior longitudinal fascicle III right,SLF_III_right,1061,963,302,2326
+38,Superior longitudinal fascicle II left,SLF_II_left,1061,963,303,2327
+39,Superior longitudinal fascicle II right,SLF_II_right,1061,963,303,2327
+40,Superior longitudinal fascicle I left,SLF_I_left,1061,963,303,2327
+41,Superior longitudinal fascicle I right,SLF_I_right,1061,963,303,2327
+42,Striato-fronto-orbital left,ST_FO_left,1061,962,301,2324
+43,Striato-fronto-orbital right,ST_FO_right,1061,961,301,2323
+44,Striato-occipital left,ST_OCC_left,1061,963,303,2327
+45,Striato-occipital right,ST_OCC_right,1061,963,303,2327
+46,Striato-parietal left,ST_PAR_left,1061,963,303,2327
+47,Striato-parietal right,ST_PAR_right,1061,963,303,2327
+48,Striato-postcentral left,ST_POSTC_left,1061,963,301,2325
+49,Striato-postcentral right,ST_POSTC_right,1061,963,301,2325
+50,Striato-precentral left,ST_PREC_left,1061,963,301,2325
+51,Striato-precentral right,ST_PREC_right,1061,963,301,2325
+52,Striato-prefrontal left,ST_PREF_left,1061,963,303,2327
+53,Striato-prefrontal right,ST_PREF_right,1061,963,303,2327
+54,Striato-premotor left,ST_PREM_left,1061,963,301,2325
+55,Striato-premotor right,ST_PREM_right,1061,963,301,2325
+56,Superior Thalamic Radiation left,STR_left,1061,960,295,2316
+57,Superior Thalamic Radiation right,STR_right,1061,962,300,2323
+58,Thalamo-occipital left,T_OCC_left,1061,963,303,2327
+59,Thalamo-occipital right,T_OCC_right,1061,963,303,2327
+60,Thalamo-parietal left,T_PAR_left,1061,963,303,2327
+61,Thalamo-parietal right,T_PAR_right,1061,963,303,2327
+62,Thalamo-postcentral left,T_POSTC_left,1061,963,299,2323
+63,Thalamo-postcentral right,T_POSTC_right,1061,962,298,2321
+64,Thalamo-precentral left,T_PREC_left,1061,963,300,2324
+65,Thalamo-precentral right,T_PREC_right,1061,963,301,2325
+66,Thalamo-prefrontal left,T_PREF_left,1061,963,303,2327
+67,Thalamo-prefrontal right,T_PREF_right,1061,963,303,2327
+68,Thalamo-premotor left,T_PREM_left,1061,962,301,2324
+69,Thalamo-premotor right,T_PREM_right,1061,962,300,2323
+70,Uncinate fascicle left,UF_left,1061,955,298,2314
+71,Uncinate fascicle right,UF_right,1061,960,299,2320
