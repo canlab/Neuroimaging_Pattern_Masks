@@ -1,0 +1,43 @@
+ID,Bundle Name,File Name,#HCP,#BLSA,#VU,#ALL
+0,Anterior Commissure,ac,1061,949,302,2312
+1,Arcuate Fascile left,af_l,1061,960,302,2323
+2,Arcuate Fascile right,af_r,1061,960,302,2323
+3,Acoustic Radiation left,ar_l,1061,834,288,2183
+4,Acoustic Radiation right,ar_r,1061,903,283,2247
+5,Anterior Thalamic Radiation left,atr_l,1061,960,302,2323
+6,Anterior Thalamic Radiation right,atr_r,1061,960,302,2323
+7,Cingulum Bundle Dorsal left,cbd_l,1061,959,265,2285
+8,Cingulum Bundle Dorsal right,cbd_r,1061,960,263,2284
+9,Cingulum Bundle Parahippocampal left,cbp_l,1061,852,213,2126
+10,Cingulum Bundle Parahippocampal right,cbp_r,1061,831,219,2111
+11,Cingulum Bundle Temporal left,cbt_l,1061,960,294,2315
+12,Cingulum Bundle Temporal right,cbt_r,1061,960,296,2317
+13,Corticospinal Tract left,cst_l,1061,957,287,2305
+14,Corticospinal Tract right,cst_r,1061,958,287,2306
+15,Frontal Aslant left,fa_l,1061,960,302,2323
+16,Frontal Aslant right,fa_r,1061,960,302,2323
+17,Forceps Major,fma,1061,960,301,2322
+18,Forceps Minor,fmi,1061,960,302,2323
+19,Fornix left,fx_l,1058,899,244,2201
+20,Fornix right,fx_r,1060,904,222,2186
+21,Inferior Fronto-occipital Fasciculus left,ifo_l,1061,960,301,2322
+22,Inferior Fronto-occipital Fasciculus right,ifo_r,1061,960,301,2322
+23,Inferior Longitudinal Fasciculus left,ilf_l,1061,959,301,2321
+24,Inferior Longitudinal Fasciculus right,ilf_r,1061,960,302,2323
+25,Middle Cerebellar Peduncle,mcp,1061,951,285,2297
+26,Medio-Dorsal Longitudinal Fasciculus left,mdlf_l,1061,959,302,2322
+27,Medio-Dorsal Longitudinal Fasciculus right,mdlf_r,1061,960,302,2323
+28,Optic Radiation left,or_l,1061,960,302,2323
+29,Optic Radiation right,or_r,1061,960,302,2323
+30,Superior Longitudinal Fasciculus 1 left,slf1_l,1061,957,299,2317
+31,Superior Longitudinal Fasciculus 1 right,slf1_r,1061,955,301,2317
+32,Superior Longitudinal Fasciculus 2 left,slf2_l,1061,957,291,2309
+33,Superior Longitudinal Fasciculus 2 right,slf2_r,1061,954,289,2304
+34,Superior Longitudinal Fasciculus 3 left,slf3_l,1061,959,298,2318
+35,Superior Longitudinal Fasciculus 3 right,slf3_r,1061,960,297,2318
+36,Superior Thalamic Radiation left,str_l,1061,960,302,2323
+37,Superior Thalamic Radiation right,str_r,1061,960,302,2323
+38,Uncinate Fasciculus left,uf_l,1061,959,302,2322
+39,Uncinate Fasciculus right,uf_r,1061,960,302,2323
+40,Vertical Occipital Fasciculus left,vof_l,1061,960,302,2323
+41,Vertical Occipital Fasciculus right,vof_r,1061,960,302,2323
