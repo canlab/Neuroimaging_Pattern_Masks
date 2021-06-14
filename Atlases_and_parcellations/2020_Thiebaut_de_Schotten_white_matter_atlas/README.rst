@@ -8,8 +8,13 @@ According to Michel Thiebaut, 2020 NATCOMMS divided the white matter anatomy int
 
 The white matter of the neurosynth database can be found here
 A–C terms: https://identifiers.org/neurovault.collection:7756. 
+
 D–H terms: https://identifiers.org/neurovault.collection:7757. 
+
 I–N terms: https://identifiers.org/neurovault.collection:7758. 
+
 O–R terms: https://identifiers.org/neurovault.collection:7759. 
+
 S–U terms: https://identifiers.org/neurovault.collection:7760. 
+
 V–Z terms: https://identifiers.org/neurovault.collection:7761.  
