@@ -1,0 +1,19 @@
+% subcortex+cortex atlas are in CIFTI file format. So will load in
+% subcortical files only. Will load in atlases in 2009cAsym space, as this
+% is the standard space used by fMRIprep
+
+% atlas file names
+basedir = fileparts(which('Tian_Subcortex_S4_3T_2009cAsym.nii.gz'))
+
+atlas_fnames = filenames(fullfile(basedir, 'Tian_Subcortex_S*_3T_2009cAsym.nii.gz'))
+
+label_fnames = filenames(fullfile(basedir, 'Tian_Subcortex_S*_label.txt'))
+
+% scales 1 to 4
+tian_subcortical_S1 = atlas(atlas_fnames(1), 'labels', importdata(label_fnames{1}));
+tian_subcortical_S2 = atlas(atlas_fnames(2), 'labels', importdata(label_fnames{1}));
+tian_subcortical_S3 = atlas(atlas_fnames(3), 'labels', importdata(label_fnames{1}));
+tian_subcortical_S4 = atlas(atlas_fnames(4), 'labels', importdata(label_fnames{1}));
+    
+    %%
+    nac = load_atlas('subcortical_rl')
