@@ -146,5 +146,33 @@ drawnow, snapnow;
 
  
  
+%% Demo: Connect VMPFC and hipp
 
+r = canlab_load_ROI('hipp');
+r = [r canlab_load_ROI('vmpfc')];
+create_figure('surf'); h = surface(r);
+out = nmdsfig_tools('connect3d',r(1).mm_center, r(2).mm_center, 'nstreamlines', 50, 'streamlineshift', 25);
+
+cm = colormap_tor([.9 .4 0], [1 .7 0], 'n', length(out.h));
+for i = 1:length(out.h), set(out.h(i), 'Color', cm(i, :)); end
+
+add amy
+
+amy = select_atlas_subset(atl, {'Amygdala_LB'}, 'flatten');
+hh = isosurface(amy);
+set(hh, 'FaceColor', [.3 .3 1]);
+
+amyr = atlas2region(amy);
+amyr = reparse_continguous(amyr); % separate R and L
+out = nmdsfig_tools('connect3d',r(2).mm_center, amyr(1).mm_center, 'nstreamlines', 25, 'streamlineshift', 20);
+cm = colormap_tor([.3 .3 1], [.1 .3 .9], 'n', length(out.h));
+for i = 1:length(out.h), set(out.h(i), 'Color', cm(i, :)); end
+
+
+nac = canlab_load_ROI('nac');
+hh2 = isosurface(nac);
+set(hh2, 'FaceColor', [.3 1 .3]);
   
+out = nmdsfig_tools('connect3d',r(2).mm_center, nac(1).mm_center, 'nstreamlines', 25, 'streamlineshift', 18);
+cm = colormap_tor([.3 1 .3], [.1 .9 .3], 'n', length(out.h));
+for i = 1:length(out.h), set(out.h(i), 'Color', cm(i, :)); end

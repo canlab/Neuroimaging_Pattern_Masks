@@ -1,0 +1,1795 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>BASIC_result</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-06-22"><meta name="DC.source" content="BASIC_result.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Load data object</a></li><li><a href="#2">Load svm results</a></li><li><a href="#3">Treshold images</a></li><li><a href="#4">Create image overlap three weight maps</a></li><li><a href="#5">Create weight map of overlap unc 05</a></li><li><a href="#6">table of results unc</a></li><li><a href="#7">Table of regions</a></li><li><a href="#8">Table of regions with Glasser atlas</a></li><li><a href="#9">Write BASIC to nifti</a></li><li><a href="#10">Visualization BASIC model</a></li><li><a href="#11">create movie</a></li><li><a href="#12">test SVM model Sex vs. Neutral on pos/neg/sex/neu affective images</a></li><li><a href="#13">All together in barplot</a></li><li><a href="#14">ROC plot forced choice</a></li><li><a href="#15">Effect size</a></li><li><a href="#16">Compare to Phil's independent dataset</a></li><li><a href="#17">test SVM model Sex vs. Neutral on sex/pos/neg IAPS data</a></li><li><a href="#18">ROC plot</a></li><li><a href="#19">ROC plot for sex-pos both dependent and independent dataset</a></li><li><a href="#20">ROC plot for sex-neg both dependent and independent dataset</a></li><li><a href="#21">colors</a></li></ul></div><h2 id="1">Load data object</h2><pre class="codeinput">DATA_OBJ = importdata(which(<span class="string">'/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/sophie/results/FINAL FOR PAPER PUBLISH/svm sex-pnn/forced choice/data_objects.mat'</span>))
+pos_stark = fmri_data(DATA_OBJ{1, 2});
+neg_stark = fmri_data(DATA_OBJ{1, 3});
+sex_stark = fmri_data(DATA_OBJ{1, 1});
+neu_stark = fmri_data(DATA_OBJ{1, 4});
+</pre><pre class="codeoutput">
+DATA_OBJ =
+
+  1&times;4 cell array
+
+    {1&times;1 fmri_data}    {1&times;1 fmri_data}    {1&times;1 fmri_data}    {1&times;1 fmri_data}
+
+</pre><h2 id="2">Load svm results</h2><pre class="codeinput">svm_stats_results = importdata(which(<span class="string">'/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/sophie/results/FINAL FOR PAPER PUBLISH/svm sex-pnn/forced choice/svm_stats_results_contrasts_masked.mat'</span>));
+obj_sex_neu = svm_stats_results{1, 1}.weight_obj;
+obj_sex_pos = svm_stats_results{1, 2}.weight_obj;
+obj_sex_neg = svm_stats_results{1, 3}.weight_obj;
+</pre><h2 id="3">Treshold images</h2><p>these weight maps are 0.05 unc by default</p><pre class="codeinput">obj_sex_neu_fdr_05 = threshold(obj_sex_neu, 0.05, <span class="string">'fdr'</span>);
+
+obj_sex_pos_fdr_05 = threshold(obj_sex_pos, 0.05, <span class="string">'fdr'</span>);
+
+obj_sex_neg_fdr_05 = threshold(obj_sex_neg, 0.05, <span class="string">'fdr'</span>);
+</pre><pre class="codeoutput">Image   1 FDR q &lt; 0.050 threshold is 0.009595
+
+Image   1
+ 84 contig. clusters, sizes   1 to 4106
+Positive effect: 5282 voxels, min p-value: 0.00000000
+Negative effect: 7076 voxels, min p-value: 0.00000000
+Image   1 FDR q &lt; 0.050 threshold is 0.009225
+
+Image   1
+ 70 contig. clusters, sizes   1 to 5089
+Positive effect: 5108 voxels, min p-value: 0.00000000
+Negative effect: 6774 voxels, min p-value: 0.00000000
+Image   1 FDR q &lt; 0.050 threshold is 0.008279
+
+Image   1
+ 60 contig. clusters, sizes   1 to 3235
+Positive effect: 5734 voxels, min p-value: 0.00000000
+Negative effect: 4927 voxels, min p-value: 0.00000000
+</pre><h2 id="4">Create image overlap three weight maps</h2><pre class="codeinput"><span class="comment">% unc 05</span>
+create_figure(<span class="string">'Weight map overlap 3 contrasts'</span>)
+color_sex_neu = [  0.8889    0.9444    0.4000];
+color_sex_pos = [   0.3492    0.6746    0.4000];
+color_sex_neg = [   0    0.5000    0.6000];
+my_display_obj = canlab_results_fmridisplay(obj_sex_neu, <span class="string">'compact2'</span>, <span class="string">'color'</span>, color_sex_neu, <span class="string">'nooutline'</span>, <span class="string">'trans'</span>);
+my_display_obj = addblobs(my_display_obj, region(obj_sex_pos), <span class="string">'color'</span>, color_sex_pos, <span class="string">'nooutline'</span>, <span class="string">'trans'</span>);
+my_display_obj = addblobs(my_display_obj, region(obj_sex_neg), <span class="string">'color'</span>, color_sex_neg, <span class="string">'nooutline'</span>, <span class="string">'trans'</span>);
+<span class="comment">% legend({'Sex-Neu', 'Sex-Pos', 'Sex-Neg'}, 'Location','NorthEastOutside')</span>
+drawnow, snapnow
+
+<span class="comment">% fdr 05</span>
+create_figure(<span class="string">'Weight map overlap 3 contrasts'</span>)
+color_sex_neu = [  0.8889    0.9444    0.4000];
+color_sex_pos = [   0.3492    0.6746    0.4000];
+color_sex_neg = [   0    0.5000    0.6000];
+my_display_obj = canlab_results_fmridisplay(obj_sex_neu_fdr_05, <span class="string">'compact2'</span>, <span class="string">'color'</span>, color_sex_neu, <span class="string">'nooutline'</span>, <span class="string">'trans'</span>);
+my_display_obj = addblobs(my_display_obj, region(obj_sex_pos_fdr_05), <span class="string">'color'</span>, color_sex_pos, <span class="string">'nooutline'</span>, <span class="string">'trans'</span>);
+my_display_obj = addblobs(my_display_obj, region(obj_sex_neg_fdr_05), <span class="string">'color'</span>, color_sex_neg, <span class="string">'nooutline'</span>, <span class="string">'trans'</span>);
+<span class="comment">% legend({'Sex-Neu', 'Sex-Pos', 'Sex-Neg'}, 'Location','NorthEastOutside')</span>
+drawnow, snapnow
+</pre><pre class="codeoutput">
+ans = 
+
+  Figure (Weight map overlap 3 contrasts) with properties:
+
+      Number: 1
+        Name: 'Weight map overlap 3 contrasts'
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Grouping contiguous voxels:  72 regions
+Setting up fmridisplay objects
+axial montage: 5992 voxels displayed, 14179 not displayed on these slices
+sagittal montage: 1008 voxels displayed, 19163 not displayed on these slices
+Grouping contiguous voxels:  67 regions
+axial montage: 6077 voxels displayed, 13859 not displayed on these slices
+sagittal montage: 1178 voxels displayed, 18758 not displayed on these slices
+Grouping contiguous voxels:  93 regions
+axial montage: 5399 voxels displayed, 12707 not displayed on these slices
+sagittal montage: 1247 voxels displayed, 16859 not displayed on these slices
+</pre><img vspace="5" hspace="5" src="BASIC_result_01.png" alt=""> <img vspace="5" hspace="5" src="BASIC_result_02.png" alt=""> <pre class="codeoutput">
+ans = 
+
+  Figure (Weight map overlap 3 contrasts) with properties:
+
+      Number: 1
+        Name: 'Weight map overlap 3 contrasts'
+       Color: [1 1 1]
+    Position: [1281 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Grouping contiguous voxels:  84 regions
+Setting up fmridisplay objects
+axial montage: 3599 voxels displayed, 8759 not displayed on these slices
+sagittal montage: 604 voxels displayed, 11754 not displayed on these slices
+Grouping contiguous voxels:  70 regions
+axial montage: 3473 voxels displayed, 8409 not displayed on these slices
+sagittal montage: 649 voxels displayed, 11233 not displayed on these slices
+Grouping contiguous voxels:  60 regions
+axial montage: 3223 voxels displayed, 7438 not displayed on these slices
+sagittal montage: 788 voxels displayed, 9873 not displayed on these slices
+</pre><img vspace="5" hspace="5" src="BASIC_result_03.png" alt=""> <img vspace="5" hspace="5" src="BASIC_result_04.png" alt=""> <h2 id="5">Create weight map of overlap unc 05</h2><pre class="codeinput">neu_pos = apply_mask(obj_sex_neu, obj_sex_pos);
+BASIC = apply_mask(neu_pos, obj_sex_neg);
+
+orthviews(BASIC)
+drawnow, snapnow
+create_figure(<span class="string">'Overlap 3 SVM weight maps montage'</span>)
+axis(<span class="string">'off'</span>)
+montage(BASIC)
+drawnow, snapnow
+</pre><pre class="codeoutput">
+SPM12: spm_check_registration (v6245)              09:20:27 - 22/06/2020
+========================================================================
+Display &lt;a href="matlab:spm_image('display','/Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/keuken_2014_enhanced_for_underlay.img,1');"&gt;/Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/keuken_2014_enhanced_for_underlay.img,1&lt;/a&gt;
+
+ans =
+
+  1&times;1 cell array
+
+    {1&times;97 struct}
+
+</pre><img vspace="5" hspace="5" src="BASIC_result_05.png" alt=""> <img vspace="5" hspace="5" src="BASIC_result_06.png" alt=""> <pre class="codeoutput">
+ans = 
+
+  Figure (Overlap 3 SVM weight maps montage) with properties:
+
+      Number: 5
+        Name: 'Overlap 3 SVM weight maps montage'
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Setting up fmridisplay objects
+Grouping contiguous voxels:  97 regions
+sagittal montage: 260 voxels displayed, 7101 not displayed on these slices
+sagittal montage: 268 voxels displayed, 7093 not displayed on these slices
+sagittal montage: 249 voxels displayed, 7112 not displayed on these slices
+axial montage: 1298 voxels displayed, 6063 not displayed on these slices
+axial montage: 1556 voxels displayed, 5805 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/keuken_2014_enhanced_for_underlay.img'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+</pre><img vspace="5" hspace="5" src="BASIC_result_07.png" alt=""> <h2 id="6">table of results unc</h2><pre class="codeinput">r_BASIC = region(BASIC);
+keuken_atlas = load_atlas(<span class="string">'keuken'</span>);
+
+schaefer_atlas = load_atlas(<span class="string">'schaefer400'</span> );
+shen_atlas = load_atlas(<span class="string">'shen'</span>);
+glasser_atlas = load_atlas(<span class="string">'glasser'</span>)
+</pre><pre class="codeoutput">Grouping contiguous voxels:  97 regions
+Loading atlas: /Users/sophievanthof/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2014_Keuken_7T_subcortex/Keuken_7T_atlas_object.mat
+Loading atlas: /Users/sophievanthof/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Schaefer_Yeo_multires_cortical_parcellation/Schaefer2018Cortex_atlas_regions.mat
+Warning: Variable 'atlas_obj' not found. 
+Cannot find variable: atlas_obj
+Loading atlas: /Users/sophievanthof/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2013_Shen_Constable_NIMG_268_parcellation/Shen_atlas_object.mat
+Loading atlas: /Users/sophievanthof/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2016_Glasser_Nature_HumanConnectomeParcellation/Glasser2016HCP_atlas_object.mat
+
+glasser_atlas = 
+
+  atlas with properties:
+
+               atlas_name: 'Glasser2016HCP'
+         probability_maps: []
+                   labels: {1&times;360 cell}
+       label_descriptions: {360&times;1 cell}
+                 labels_2: {''}
+                 labels_3: {''}
+                 labels_4: {''}
+                 labels_5: {''}
+               references: 'Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. A Multi-Modal Parcellation of Human Cerebral Cortex. Nature 536 (7615): 171?78.'
+        space_description: 'MNI152 space'
+    property_descriptions: {1&times;8 cell}
+          additional_info: [0&times;0 struct]
+                      dat: [2817524&times;1 double]
+              dat_descrip: []
+                  volInfo: [1&times;1 struct]
+           removed_voxels: 0
+           removed_images: 0
+              image_names: 'HCP-MMP1_on_MNI152_ICBM2009a_nlin.nii'
+                 fullpath: '/Users/torwager/Documents/GitHub/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2016_Glasser_Nature_HumanConnectomeParcellation/HCP-MMP1_on_MNI152_ICBM2009a_nlin.nii'
+              files_exist: 1
+                  history: {1&times;4 cell}
+
+</pre><h2 id="7">Table of regions</h2><pre class="codeinput">r_BASIC = subdivide_by_atlas(r_BASIC);
+ [rpos, rneg] = table(r_BASIC);       <span class="comment">% add labels</span>
+    r_BASIC = [rpos rneg];               <span class="comment">% re-concatenate labeled regions</span>
+drawnow, snapnow
+</pre><pre class="codeoutput">Using default mask: /Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask.nii
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 1409312 bytes
+Loading image number:     1
+Elapsed time is 0.052793 seconds.
+Image names entered, but fullpath attribute is empty. Getting path info.
+ 77 unique atlas labels in mask (label = 0 will be excluded).
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   6 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   6 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   3 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   3 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:  21 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:  21 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   5 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   5 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   3 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   3 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   9 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   9 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   3 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   3 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   4 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   4 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   4 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   4 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   4 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   4 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:  12 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:  12 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   4 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   4 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   6 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   6 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   5 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   5 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   5 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   5 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   4 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   4 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   1 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   1 regions
+Done.
+&gt; Found image data, extracting region averages.
+image_vector.extract_roi_averages: 
+Grouping voxels with unique mask values, assuming integer-valued mask:   2 regions
+Averaging data. Averaging over unique mask values, assuming integer-valued mask:   2 regions
+Done.
+  0 original regions do not have any labeled voxels.
+
+____________________________________________________________________________________________________________________________________________
+Positive Effects
+          Region          Volume            XYZ             maxZ      modal_label_descriptions      Perc_covered_by_label    Atlas_regions_covered    region_index
+    __________________    ______    ___________________    ______    ___________________________    _____________________    _____________________    ____________
+
+    'Amygdala_LB_'          432     -30      -7     -17    7.0345    'Amygdala'                               46                       0                   79     
+    'V_Striatum_R'          144      15      26      -8    7.0345    'Basal_ganglia'                          56                       0                   72     
+    'Cau_R'                 296      15      26      -2    7.0345    'Basal_ganglia'                          59                       0                   75     
+    'NAC_R'                 704       3       8      -5    7.0345    'Basal_ganglia'                          38                       0                  103     
+    'Putamen_Pp_L'         2504     -27     -13       4    7.0345    'Basal_ganglia'                          56                       1                  120     
+    'Putamen_Pp_R'          816      27     -13      10    7.0345    'Basal_ganglia'                          72                       0                  128     
+    'Cau_R'                 384      27     -31      16    7.0345    'Basal_ganglia'                          40                       0                  138     
+    'Bstem_Ponscd_L'        288     -12     -43     -38    7.0345    'Brainstem'                              42                       0                   16     
+    'Bstem_Pons_R'          312      18     -28     -41    7.0345    'Brainstem'                              23                       0                   22     
+    'Multiple regions'     2504       3     -34     -14    7.0345    'Brainstem'                              33                       9                   78     
+    'Cblm_VIIb_L'            80      -9     -73     -50    7.0345    'Cerebellum'                            100                       0                    1     
+    'Cblm_VIIIa_L'          808     -15     -67     -50    7.0345    'Cerebellum'                             70                       0                    2     
+    'Cblm_VIIIa_L'          520     -27     -46     -47    7.0345    'Cerebellum'                             75                       0                    3     
+    'Cblm_VIIIb_L'           96     -27     -43     -50    7.0345    'Cerebellum'                             67                       0                    4     
+    'Cblm_VI_R'              80      39     -52     -26    7.0345    'Cerebellum'                             70                       0                    7     
+    'Cblm_CrusI_R'         2016      42     -52     -32    7.0345    'Cerebellum'                             98                       0                    8     
+    'Cblm_CrusII_R'         320      45     -49     -44    7.0345    'Cerebellum'                             82                       0                    9     
+    'Cblm_VIIb_R'           144      42     -49     -47    7.0345    'Cerebellum'                             61                       0                   10     
+    'Cblm_VIIIa_R'          336      30     -46     -47    7.0345    'Cerebellum'                             81                       0                   11     
+    'Cblm_CrusII_R'         200      24     -70     -41    7.0345    'Cerebellum'                             64                       0                   13     
+    'Cblm_CrusII_R'        1440      24     -76     -41    7.0345    'Cerebellum'                             99                       0                   14     
+    'Cblm_Dentate_L'       1240     -12     -49     -38    7.0345    'Cerebellum'                             48                       0                   15     
+    'Cblm_IX_L'             800      -9     -49     -38    7.0345    'Cerebellum'                             93                       0                   17     
+    'Cblm_CrusII_L'         360     -12     -79     -41    7.0345    'Cerebellum'                             84                       0                   20     
+    'Cblm_I_IV_R'           312      21     -25     -38    7.0345    'Cerebellum'                             31                       0                   21     
+    'Cblm_CrusII_R'         192      36     -76     -38    2.3824    'Cerebellum'                             88                       0                   25     
+    'Cblm_CrusII_R'         744       9     -82     -32    7.0345    'Cerebellum'                            100                       0                   26     
+    'Cblm_CrusII_R'         216      30     -79     -35    2.0881    'Cerebellum'                             59                       0                   27     
+    'Cblm_Dentate_R'        288      12     -49     -35    7.0345    'Cerebellum'                             47                       0                   28     
+    'Cblm_IX_R'             480       6     -49     -35    7.0345    'Cerebellum'                             75                       0                   29     
+    'Cblm_CrusI_L'          432     -39     -61     -32    7.0345    'Cerebellum'                            100                       0                   32     
+    'Cblm_CrusI_L'          360     -21     -73     -29    7.0345    'Cerebellum'                            100                       0                   35     
+    'Cblm_I_IV_L'           512       0     -46      -2    7.0345    'Cerebellum'                             50                       0                   52     
+    'Cblm_I_IV_L'           632      -9     -46      -5    7.0345    'Cerebellum'                             90                       0                   53     
+    'Cblm_I_IV_R'           544       6     -49      -2    7.0345    'Cerebellum'                            100                       0                   54     
+    'Cblm_V_L'             1912     -21     -43     -20    7.0345    'Cerebellum'                             92                       0                   55     
+    'Cblm_VI_L'             784     -24     -49     -20    7.0345    'Cerebellum'                             94                       0                   56     
+    'Cblm_V_R'             1072      24     -40     -23    7.0345    'Cerebellum'                             84                       0                   60     
+    'Cblm_VI_R'             296      24     -49     -20    7.0345    'Cerebellum'                             92                       0                   61     
+    'Cblm_VI_R'             216      12     -67     -23    2.2549    'Cerebellum'                            100                       0                   62     
+    'Cblm_CrusI_R'          528      24     -88     -20    7.0345    'Cerebellum'                             59                       0                   76     
+    'Ctx_RSC_R'             536       6     -46       7    7.0345    'Cortex_Default_ModeA'                   33                       0                   50     
+    'Ctx_10r_L'           11136      -6      50      -2    7.0345    'Cortex_Default_ModeA'                   18                       5                   67     
+    'Ctx_10v_R'            6808       6      53      -2    7.0345    'Cortex_Default_ModeA'                   20                       5                   68     
+    'Ctx_p32_L'            1368     -15      56      -5    7.0345    'Cortex_Default_ModeA'                   12                       0                   69     
+    'Multiple regions'     8624      -3      32      13    7.0345    'Cortex_Default_ModeA'                   12                       7                   73     
+    'Ctx_a24_R'            5968       6      35      10    7.0345    'Cortex_Default_ModeA'                   18                       3                   74     
+    'Ctx_9m_R'              824       3      56      22    7.0345    'Cortex_Default_ModeA'                   83                       0                  146     
+    'Ctx_31pd_L'            240     -12     -58      31    7.0345    'Cortex_Default_ModeA'                   27                       0                  147     
+    'Ctx_7m_L'             3584      -3     -61      31    7.0345    'Cortex_Default_ModeA'                   38                       2                  148     
+    'Ctx_7m_R'              488       3     -55      31    7.0345    'Cortex_Default_ModeA'                   52                       0                  149     
+    'Ctx_RSC_R'            2272       0     -28      31    7.0345    'Cortex_Default_ModeA'                   15                       0                  150     
+    'Ctx_RSC_R'            2808       3     -34      31    7.0345    'Cortex_Default_ModeA'                   17                       1                  151     
+    'Ctx_s6_8_L'            608     -21      26      61    7.0345    'Cortex_Default_ModeA'                   55                       0                  179     
+    'Ctx_TGd_L'             360     -54      -1     -38    7.0345    'Cortex_Default_ModeB'                   84                       0                   18     
+    'Ctx_TGd_L'            1568     -24      11     -38    7.0345    'Cortex_Default_ModeB'                   65                       0                   23     
+    'Ctx_TGd_L'             184     -45      14     -32    7.0345    'Cortex_Default_ModeB'                   96                       0                   30     
+    'Ctx_TGd_L'             672     -51      11     -35    7.0345    'Cortex_Default_ModeB'                   90                       0                   31     
+    'Ctx_STSda_L'          4112     -57      -1     -11    7.0345    'Cortex_Default_ModeB'                   36                       2                   64     
+    'Ctx_TE1a_L'           2976     -54     -13     -14    7.0345    'Cortex_Default_ModeB'                   16                       1                   65     
+    'Ctx_47s_R'             288      36      20     -14    7.0345    'Cortex_Default_ModeB'                   72                       0                   83     
+    'Ctx_47l_L'             408     -45      26     -11    7.0345    'Cortex_Default_ModeB'                   78                       0                   98     
+    'Ctx_STSvp_R'           552      63     -40       1    7.0345    'Cortex_Default_ModeB'                   36                       0                  121     
+    'Ctx_STSdp_L'           432     -60     -28       1    7.0345    'Cortex_Default_ModeB'                   48                       0                  122     
+    'Ctx_44_R'             3960      51      29      19    7.0345    'Cortex_Default_ModeB'                   22                       2                  137     
+    'Ctx_9m_L'             2112      -6      56      22    7.0345    'Cortex_Default_ModeB'                   52                       0                  145     
+    'Ctx_55b_L'             480     -42       5      43    7.0345    'Cortex_Default_ModeB'                   55                       0                  174     
+    'Ctx_SFL_R'             664       0      23      64    7.0345    'Cortex_Default_ModeB'                   20                       0                  180     
+    'Ctx_SFL_R'             648       3      26      64    7.0345    'Cortex_Default_ModeB'                   60                       0                  181     
+    'Ctx_POS1_L'           1192     -15     -61      13    7.0345    'Cortex_Default_ModeC'                   68                       1                   37     
+    'Ctx_POS1_R'           1544      15     -55      16    7.0345    'Cortex_Default_ModeC'                   38                       0                   38     
+    'Ctx_POS1_L'            576      -9     -55      10    7.0345    'Cortex_Default_ModeC'                   60                       0                   39     
+    'Ctx_POS1_R'           1096       9     -55      13    7.0345    'Cortex_Default_ModeC'                   69                       0                   40     
+    'Ctx_PHA1_L'           4304     -24     -34     -14    7.0345    'Cortex_Default_ModeC'                   32                       2                   44     
+    'Ctx_PHA3_L'           4560     -30     -46     -14    7.0345    'Cortex_Default_ModeC'                   22                       4                   48     
+    'Ctx_RSC_L'            1760      -6     -46       7    7.0345    'Cortex_Default_ModeC'                   16                       0                   49     
+    'Ctx_H_L'              1960     -27     -16     -20    7.0345    'Cortex_Default_ModeC'                   29                       0                   51     
+    'Ctx_PHA2_R'           2584      27     -37     -11    7.0345    'Cortex_Default_ModeC'                   33                       2                   57     
+    'Ctx_H_R'              2080      27     -13     -20    7.0345    'Cortex_Default_ModeC'                   35                       1                   63     
+    'Ctx_TE2p_R'           1912      51     -40     -20    7.0345    'Cortex_Dorsal_AttentionA'               33                       0                    5     
+    'Ctx_TE2p_R'           3336      45     -46     -23    7.0345    'Cortex_Dorsal_AttentionA'               28                       2                    6     
+    'Ctx_TE2p_L'            432     -42     -40     -17    7.0345    'Cortex_Dorsal_AttentionA'               37                       0                   77     
+    'Ctx_PH_L'             1232     -54     -49     -11    7.0345    'Cortex_Dorsal_AttentionA'               32                       0                   88     
+    'Multiple regions'     9816      48     -70       1    7.0345    'Cortex_Dorsal_AttentionA'               10                       7                   94     
+    'Ctx_FST_R'             408      42     -70      -5    7.0345    'Cortex_Dorsal_AttentionA'               47                       0                   95     
+    'Ctx_TPOJ2_R'          4168      54     -58       4    7.0345    'Cortex_Dorsal_AttentionA'               34                       2                   96     
+    'Ctx_PH_R'             2000      51     -61      -5    7.0345    'Cortex_Dorsal_AttentionA'               51                       1                   97     
+    'Ctx_TPOJ2_L'          1864     -48     -64      13    7.0345    'Cortex_Dorsal_AttentionA'               37                       2                   99     
+    'Ctx_IP0_L'             336     -30     -79      31    7.0345    'Cortex_Dorsal_AttentionA'               60                       0                  162     
+    'Multiple regions'    28264      27     -49      58    7.0345    'Cortex_Dorsal_AttentionA'               12                      10                  166     
+    'Ctx_2_L'               136     -21     -37      58    7.0345    'Cortex_Dorsal_AttentionB'               24                       0                  115     
+    'Ctx_2_L'              2808     -51     -25      40    7.0345    'Cortex_Dorsal_AttentionB'               28                       0                  139     
+    'Multiple regions'    20248     -30     -49      55    7.0345    'Cortex_Dorsal_AttentionB'               12                       8                  140     
+    'Ctx_7Am_L'             464      -9     -58      58    7.0345    'Cortex_Dorsal_AttentionB'               81                       0                  143     
+    'Ctx_FEF_R'            1312      42      -1      46    7.0345    'Cortex_Dorsal_AttentionB'               23                       0                  173     
+    'Ctx_PHT_L'            4792     -54     -64       4    7.0345    'Cortex_Fronto_ParietalA'                24                       3                  102     
+    'Ctx_p9_46v_L'         3880     -48      29      28    7.0345    'Cortex_Fronto_ParietalA'                39                       1                  124     
+    'Ctx_IFSp_L'           8912     -51      26      16    7.0345    'Cortex_Fronto_ParietalA'                17                       4                  125     
+    'Ctx_p9_46v_R'         1120      51      32      28    7.0345    'Cortex_Fronto_ParietalA'                76                       0                  136     
+    'Ctx_AIP_L'             400     -36     -52      46    7.0345    'Cortex_Fronto_ParietalA'                32                       0                  142     
+    'Ctx_AIP_R'            1144      39     -34      43    7.0345    'Cortex_Fronto_ParietalA'                20                       0                  167     
+    'Ctx_IP2_R'             856      42     -46      52    7.0345    'Cortex_Fronto_ParietalA'                24                       0                  168     
+    'Ctx_IP1_L'             288     -30     -64      40    7.0345    'Cortex_Fronto_ParietalA'                72                       0                  169     
+    'Ctx_TE1m_R'            528      54     -22     -14    7.0345    'Cortex_Fronto_ParietalB'                24                       0                   82     
+    'Ctx_a47r_R'           1264      45      44     -14    7.0345    'Cortex_Fronto_ParietalB'                44                       0                   86     
+    'Ctx_TE1p_L'           4704     -60     -43      -8    7.0345    'Cortex_Fronto_ParietalB'                51                       2                   87     
+    'Ctx_a47r_L'           3000     -45      47      -5    7.0345    'Cortex_Fronto_ParietalB'                53                       2                   89     
+    'Ctx_a47r_L'            392     -48      47     -14    7.0345    'Cortex_Fronto_ParietalB'                88                       0                   90     
+    'Ctx_8BM_L'            2312      -6      38      49    7.0345    'Cortex_Fronto_ParietalB'                45                       1                  175     
+    'Ctx_PFm_R'             360      48     -49      43    7.0345    'Cortex_Fronto_ParietalB'                62                       0                  176     
+    'Ctx_PFm_L'             288     -48     -55      46    7.0345    'Cortex_Fronto_ParietalB'                75                       0                  177     
+    'Ctx_8BM_R'             672       9      29      46    7.0345    'Cortex_Fronto_ParietalB'                42                       0                  178     
+    'Ctx_POS2_R'           2384      12     -73      43    7.0345    'Cortex_Fronto_ParietalC'                47                       1                  155     
+    'Ctx_POS2_L'            736      -3     -79      43    7.0345    'Cortex_Fronto_ParietalC'                21                       0                  156     
+    'Ctx_POS2_R'            856       6     -76      43    7.0345    'Cortex_Fronto_ParietalC'                79                       0                  157     
+    'Ctx_POS2_L'            504     -18     -73      37    7.0345    'Cortex_Fronto_ParietalC'                29                       0                  163     
+    'Ctx_TGd_R'             480      39      14     -47    7.0345    'Cortex_Limbic'                          47                       0                   12     
+    'Ctx_TGv_L'            1272     -51      -4     -41    7.0345    'Cortex_Limbic'                          69                       0                   19     
+    'Ctx_PeEc_L'            200     -24       5     -38    7.0345    'Cortex_Limbic'                          80                       0                   24     
+    'Ctx_TGd_R'            4336      54       2     -23    7.0345    'Cortex_Limbic'                          30                       2                   34     
+    'Ctx_TF_L'              192     -42     -13     -23    7.0345    'Cortex_Limbic'                          71                       0                   66     
+    'Ctx_10pp_R'           3112      18      65      -5    7.0345    'Cortex_Limbic'                          16                       0                   70     
+    'Ctx_10pp_L'            864     -15      59     -17    7.0345    'Cortex_Limbic'                          80                       0                   71     
+    'Ctx_13l_L'             432     -27      32     -20    7.0345    'Cortex_Limbic'                          81                       0                   80     
+    'Ctx_6mp_L'            7664      -6     -13      58    7.0345    'Cortex_SomatomotorA'                    19                       2                  109     
+    'Ctx_24dd_R'           5808       6     -13      58    7.0345    'Cortex_SomatomotorA'                    21                       3                  110     
+    'Ctx_4_L'             18832     -21     -22      61    7.0345    'Cortex_SomatomotorA'                    29                       3                  111     
+    'Ctx_4_R'              8376      12     -22      67    7.0345    'Cortex_SomatomotorA'                    28                       0                  112     
+    'Ctx_3b_L'            18112     -36     -25      52    7.0345    'Cortex_SomatomotorA'                    24                       4                  113     
+    'Ctx_3b_R'             4080      21     -28      64    7.0345    'Cortex_SomatomotorA'                    31                       1                  114     
+    'Ctx_1_R'              2656      63      -4      31    7.0345    'Cortex_SomatomotorA'                    39                       0                  154     
+    'Ctx_1_R'               760      42     -34      55    7.0345    'Cortex_SomatomotorA'                    42                       0                  165     
+    'Ctx_4_R'              1544      39     -16      49    7.0345    'Cortex_SomatomotorA'                    61                       0                  170     
+    'Ctx_1_R'              4448      45     -16      49    7.0345    'Cortex_SomatomotorA'                    28                       0                  171     
+    'Ctx_OP1_L'             424     -42     -19      22    7.0345    'Cortex_SomatomotorB'                    40                       0                  116     
+    'Ctx_OP1_L'            2664     -54     -16      10    7.0345    'Cortex_SomatomotorB'                    21                       3                  117     
+    'Ctx_Ig_L'             2280     -36     -16      16    7.0345    'Cortex_SomatomotorB'                    30                       2                  118     
+    'Ctx_OP4_R'             408      51     -10      16    7.0345    'Cortex_SomatomotorB'                    39                       0                  132     
+    'Ctx_OP4_R'             440      51     -13      16    7.0345    'Cortex_SomatomotorB'                    80                       0                  133     
+    'Ctx_OP4_R'             448      48     -10      13    7.0345    'Cortex_SomatomotorB'                    39                       0                  134     
+    'Ctx_43_R'               80      45      -7      13    7.0345    'Cortex_SomatomotorB'                    40                       0                  135     
+    'Ctx_A4_L'              288     -66     -31      16    7.0345    'Cortex_SomatomotorB'                    69                       0                  144     
+    'Ctx_6v_R'             1064      60      -1      34    7.0345    'Cortex_SomatomotorB'                    37                       0                  153     
+    'Ctx_STSda_R'          9208      54       2     -14    7.0345    'Cortex_Temporal_Parietal'               24                       3                   33     
+    'Ctx_PSL_R'             216      63     -40      25    3.3885    'Cortex_Temporal_Parietal'               96                       0                  160     
+    'Ctx_AAIC_R'           1696      33      17     -14    7.0345    'Cortex_Ventral_AttentionA'              69                       1                   84     
+    'Ctx_PoI2_L'           1096     -42       2      -2    7.0345    'Cortex_Ventral_AttentionA'              48                       0                  104     
+    'Ctx_23c_R'             144       6      -7      43    7.0345    'Cortex_Ventral_AttentionA'              44                       0                  119     
+    'Ctx_PF_L'            16944     -54     -31      34    7.0345    'Cortex_Ventral_AttentionA'              31                       4                  141     
+    'Ctx_PF_R'             8888      57     -28      34    7.0345    'Cortex_Ventral_AttentionA'              37                       3                  152     
+    'Ctx_55b_R'             240      42       2      46    7.0345    'Cortex_Ventral_AttentionA'              57                       0                  172     
+    'Ctx_p47r_R'            680      48      44      -8    7.0345    'Cortex_Ventral_AttentionB'              59                       0                   85     
+    'Ctx_V2_R'               88      18     -64      16    7.0345    'Cortex_Visual_Central'                  82                       0                   41     
+    'Ctx_V8_L'              312     -30     -67      -8    7.0345    'Cortex_Visual_Central'                  69                       0                   42     
+    'Ctx_V2_R'              480      12     -61      16    7.0345    'Cortex_Visual_Central'                  58                       0                   43     
+    'Ctx_VVC_R'            5016      30     -46     -14    7.0345    'Cortex_Visual_Central'                  13                       3                   59     
+    'Ctx_VVC_L'             360     -36     -61     -17    7.0345    'Cortex_Visual_Central'                  69                       0                   81     
+    'Multiple regions'     8128     -45     -76       4    7.0345    'Cortex_Visual_Central'                  13                       7                  100     
+    'Ctx_V4_L'              512     -39     -76      -5    7.0345    'Cortex_Visual_Central'                  13                       0                  101     
+    'Ctx_V4_L'              712     -30     -88       7    7.0345    'Cortex_Visual_Central'                  65                       0                  123     
+    'Ctx_V2_R'              840       0     -88      13    7.0345    'Cortex_Visual_Central'                  38                       0                  129     
+    'Ctx_V2_R'             1576       3     -85      19    7.0345    'Cortex_Visual_Central'                  42                       0                  130     
+    'Ctx_V7_L'              600     -27     -79      31    7.0345    'Cortex_Visual_Central'                  32                       0                  161     
+    'Ctx_PreS_R'           1480       9     -40       4    7.0345    'Cortex_Visual_Peripheral'               21                       0                   45     
+    'Ctx_VMV1_L'           5424     -15     -52      -2    7.0345    'Cortex_Visual_Peripheral'               15                       1                   46     
+    'Ctx_V1_R'             2928      12     -52       4    7.0345    'Cortex_Visual_Peripheral'               26                       1                   47     
+    'Ctx_VMV2_R'           2432      27     -49      -8    7.0345    'Cortex_Visual_Peripheral'               28                       2                   58     
+    'Ctx_V1_L'             3744     -18    -100      -2    7.0345    'Cortex_Visual_Peripheral'               50                       0                   91     
+    'Ctx_V1_L'              256     -12    -100     -11    7.0345    'Cortex_Visual_Peripheral'               88                       0                   92     
+    'Ctx_V1_L'              448      -9     -97      -8    7.0345    'Cortex_Visual_Peripheral'               84                       0                   93     
+    'Ctx_V6_R'             2560      18     -79      37    7.0345    'Cortex_Visual_Peripheral'               28                       2                  158     
+    'Ctx_V3A_R'             424       6     -79      43    7.0345    'Cortex_Visual_Peripheral'               49                       0                  159     
+    'Ctx_DVT_L'             144     -18     -73      34    7.0345    'Cortex_Visual_Peripheral'               83                       0                  164     
+    'Thal_Pulv'             176       9     -34       4         7    'Diencephalon'                           77                       0                   36     
+    'Thal_VPL'              624     -18     -19       4         1    'Diencephalon'                           53                       1                  105     
+    'Thal_VPL'              184     -21     -22       4         2    'Diencephalon'                           61                       0                  106     
+    'Thal_Intralam'         128     -15     -19       4         5    'Diencephalon'                           38                       0                  107     
+    'Thal_MGN'              592     -18     -25      -2         6    'Diencephalon'                           32                       1                  108     
+    'Thal_Intralam'         624       9     -19      10         4    'Diencephalon'                           38                       0                  126     
+    'Thal_Intralam'         192       6     -19      13         7    'Diencephalon'                           67                       0                  127     
+    'Thal_Pulv'             280     -24     -25      10         6    'Diencephalon'                           29                       0                  131     
+
+
+Negative Effects
+        Region        Volume           XYZ            maxZ       modal_label_descriptions     Perc_covered_by_label    Atlas_regions_covered    region_index
+    ______________    ______    _________________    _______    __________________________    _____________________    _____________________    ____________
+
+    'Putamen_Pp_L'     216      -30     -7     -8    -1.9806    'Basal_ganglia'                         85                       0                  188     
+    'Cau_L'            216      -24    -25     19    -3.8041    'Basal_ganglia'                         96                       0                  199     
+    'Ctx_TGd_L'        216      -45     14    -23    -2.0974    'Cortex_Default_ModeB'                  96                       0                  185     
+    'Ctx_STSda_L'      208      -54     -7     -8    -3.0585    'Cortex_Default_ModeB'                  65                       0                  189     
+    'Ctx_STSvp_R'      216       54    -40     -2    -2.2665    'Cortex_Default_ModeB'                  52                       0                  191     
+    'Ctx_PGi_L'        216      -51    -49     22    -2.2028    'Cortex_Default_ModeB'                  41                       0                  200     
+    'Ctx_8BL_R'        216       12     32     52    -2.3489    'Cortex_Default_ModeB'                  59                       0                  201     
+    'Ctx_8BL_R'        216        3     41     55    -2.0291    'Cortex_Default_ModeB'                 100                       0                  202     
+    'Ctx_8BL_R'        288        3     35     61    -2.0379    'Cortex_Default_ModeB'                  75                       0                  203     
+    'Ctx_TE1m_R'       216       66    -28    -14    -5.3535    'Cortex_Fronto_ParietalB'               85                       0                  186     
+    'Ctx_TE1p_R'       216       69    -46    -11    -4.4189    'Cortex_Fronto_ParietalB'                4                       0                  187     
+    'Ctx_TE1p_R'       216       69    -46     -5    -3.7389    'Cortex_Fronto_ParietalB'               19                       0                  190     
+    'Ctx_PeEc_R'       216       27    -22    -35    -2.4218    'Cortex_Limbic'                          7                       0                  182     
+    'Ctx_TGd_R'        216       30      5    -35    -2.2131    'Cortex_Limbic'                         26                       0                  183     
+    'Ctx_TF_R'         216       42    -13    -29    -1.9949    'Cortex_Limbic'                        100                       0                  184     
+    'Ctx_A4_R'         216       69    -19      4    -3.3648    'Cortex_SomatomotorB'                   48                       0                  194     
+    'Ctx_PBelt_R'      216       51    -28     10    -3.0585    'Cortex_SomatomotorB'                   33                       0                  195     
+    'Ctx_RI_R'         216       42    -37     19    -2.6214    'Cortex_SomatomotorB'                    4                       0                  198     
+    'Ctx_A5_R'         216       51    -22      1    -2.5611    'Cortex_Temporal_Parietal'              41                       0                  193     
+    'Ctx_TPOJ1_L'      216      -54    -40     13    -3.1357    'Cortex_Temporal_Parietal'              15                       0                  196     
+    'Ctx_V1_L'         216      -12    -82      1    -2.7063    'Cortex_Visual_Peripheral'              41                       0                  192     
+    'Thal_VL'          216       18    -16     13    -2.1124    'Diencephalon'                          52                       0                  197     
+
+
+____________________________________________________________________________________________________________________________________________
+Regions labeled by reference atlas CANlab_2018_combined
+                                                       
+Volume: Volume of contiguous region in cubic mm.
+MaxZ: Signed max over Input mask image values for each voxel.
+Atlas_regions_covered: Number of reference atlas regions covered at least 25% by the region. This relates to whether the region covers 
+multiple reference atlas regions                                                                                                       
+Region: Best reference atlas label, defined as reference region with highest number of in-region voxels. Regions covering &gt;25% of &gt;5 
+regions labeled as "Multiple regions"                                                                                                
+Perc_covered_by_label: Percentage of the region covered by the label.
+Ref_region_perc: Percentage of the label region within the target region.
+modal_atlas_index: Index number of label region in reference atlas
+all_regions_covered: All regions covered &gt;5% in descending order of importance
+ 
+For example, if a region is labeled 'TE1a' and Perc_covered_by_label = 8, Ref_region_perc = 38, and Atlas_regions_covered = 17, this means 
+that 8% of the region's voxels are labeled TE1a, which is the highest percentage among reference label regions. 38% of the region TE1a is  
+covered by the region. However, the region covers at least 25% of 17 distinct labeled reference regions.                                   
+                                                                                                                                           
+References for atlases:
+                       
+Beliveau, Vincent, Claus Svarer, Vibe G. Frokjaer, Gitte M. Knudsen, Douglas N. Greve, and Patrick M. Fisher. 2015. &#8220;Functional 
+Connectivity of the Dorsal and Median Raphe Nuclei at Rest.&#8221; NeuroImage 116 (August): 187&#8211;95.                                   
+B&auml;r, Karl-J&uuml;rgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional 
+Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.                                           
+Diedrichsen, J&ouml;rn, Joshua H. Balsters, Jonathan Flavell, Emma Cussans, and Narender Ramnani. 2009. A Probabilistic MR Atlas of the Human 
+Cerebellum. NeuroImage 46 (1): 39?46.                                                                                                    
+Fairhurst, Merle, Katja Wiech, Paul Dunckley, and Irene Tracey. 2007. ?Anticipatory Brainstem Activity Predicts Neural Processing of Pain 
+in Humans.? Pain 128 (1-2):101?10.                                                                                                        
+Fan 2016 Cerebral Cortex; doi:10.1093/cercor/bhw157
+Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. A 
+Multi-Modal Parcellation of Human Cerebral Cortex. Nature 536 (7615): 171?78.                                                       
+Keren, Noam I., Carl T. Lozar, Kelly C. Harris, Paul S. Morgan, and Mark A. Eckert. 2009. &#8220;In Vivo Mapping of the Human Locus Coeruleus.&#8221; 
+NeuroImage 47 (4): 1261&#8211;67.                                                                                                               
+Keuken, M. C., P-L Bazin, L. Crown, J. Hootsmans, A. Laufer, C. M&uuml;ller-Axt, R. Sier, et al. 2014. &#8220;Quantifying Inter-Individual Anatomical 
+Variability in the Subcortex Using 7 T Structural MRI.&#8221; NeuroImage 94 (July): 40&#8211;46.                                                       
+Krauth A, Blanc R, Poveda A, Jeanmonod D, Morel A, Sz&eacute;kely G. (2010) A mean three-dimensional atlas of the human thalamus: generation from 
+multiple histological data. Neuroimage. 2010 Feb 1;49(3):2053-62. Jakab A, Blanc R, Ber&eacute;nyi EL, Sz&eacute;kely G. (2012) Generation of            
+Individualized Thalamus Target Maps by Using Statistical Shape Models and Thalamocortical Tractography. AJNR Am J Neuroradiol. 33:         
+2110-2116, doi: 10.3174/ajnr.A3140                                                                                                         
+Nash, Paul G., Vaughan G. Macefield, Iven J. Klineberg, Greg M. Murray, and Luke A. Henderson. 2009. ?Differential Activation of the Human 
+Trigeminal Nuclear Complex by Noxious and Non-Noxious Orofacial Stimulation.? Human Brain Mapping 30 (11):3772?82.                         
+Pauli 2018 Bioarxiv: CIT168 from Human Connectome Project data
+Pauli, Wolfgang M., Amanda N. Nili, and J. Michael Tyszka. 2018. ?A High-Resolution Probabilistic in Vivo Atlas of Human Subcortical Brain 
+Nuclei.? Scientific Data 5 (April): 180063.                                                                                                
+Pauli, Wolfgang M., Randall C. O?Reilly, Tal Yarkoni, and Tor D. Wager. 2016. ?Regional Specialization within the Human Striatum for 
+Diverse Psychological Functions.? Proceedings of the National Academy of Sciences of the United States of America 113 (7): 1907?12.  
+Sclocco, Roberta, Florian Beissner, Gaelle Desbordes, Jonathan R. Polimeni, Lawrence L. Wald, Norman W. Kettner, Jieun Kim, et al. 2016. 
+?Neuroimaging Brainstem Circuitry Supporting Cardiovagal Response to Pain: A Combined Heart Rate Variability/ultrahigh-Field (7 T)       
+Functional Magnetic Resonance Imaging Study.? Philosophical Transactions. Series A, Mathematical, Physical, and Engineering Sciences 374 
+(2067). rsta.royalsocietypublishing.org. https://doi.org/10.1098/rsta.2015.0189.                                                         
+Shen, X., F. Tokoglu, X. Papademetris, and R. T. Constable. 2013. &#8220;Groupwise Whole-Brain Parcellation from Resting-State fMRI Data for 
+Network Node Identification.&#8221; NeuroImage 82 (November): 403&#8211;15.                                                                        
+Zambreanu, L., R. G. Wise, J. C. W. Brooks, G. D. Iannetti, and I. Tracey. 2005. ?A Role for the Brainstem in Central Sensitisation in 
+Humans. Evidence from Functional Magnetic Resonance Imaging.? Pain 114 (3):397?407.                                                    
+                                                                                                     
+Note: Region object r(i).title contains full list of reference atlas regions covered by each cluster.
+____________________________________________________________________________________________________________________________________________
+</pre><h2 id="8">Table of regions with Glasser atlas</h2><pre class="codeinput">      [r_BASIC, region_table, table_legend_text] = autolabel_regions_using_atlas(r_BASIC, glasser_atlas);
+
+    [rpos, rneg] = table(r_BASIC);       <span class="comment">% add labels</span>
+    r_BASIC = [rpos rneg];               <span class="comment">% re-concatenate labeled regions</span>
+drawnow, snapnow
+</pre><pre class="codeoutput">
+____________________________________________________________________________________________________________________________________________
+Positive Effects
+          Region          Volume            XYZ             maxZ      modal_label_descriptions      Perc_covered_by_label    Atlas_regions_covered    region_index
+    __________________    ______    ___________________    ______    ___________________________    _____________________    _____________________    ____________
+
+    'Amygdala_LB_'          432     -30      -7     -17    7.0345    'Amygdala'                               46                       0                   79     
+    'V_Striatum_R'          144      15      26      -8    7.0345    'Basal_ganglia'                          56                       0                   72     
+    'Cau_R'                 296      15      26      -2    7.0345    'Basal_ganglia'                          59                       0                   75     
+    'NAC_R'                 704       3       8      -5    7.0345    'Basal_ganglia'                          38                       0                  103     
+    'Putamen_Pp_L'         2504     -27     -13       4    7.0345    'Basal_ganglia'                          56                       1                  120     
+    'Putamen_Pp_R'          816      27     -13      10    7.0345    'Basal_ganglia'                          72                       0                  128     
+    'Cau_R'                 384      27     -31      16    7.0345    'Basal_ganglia'                          40                       0                  138     
+    'Bstem_Ponscd_L'        288     -12     -43     -38    7.0345    'Brainstem'                              42                       0                   16     
+    'Bstem_Pons_R'          312      18     -28     -41    7.0345    'Brainstem'                              23                       0                   22     
+    'Multiple regions'     2504       3     -34     -14    7.0345    'Brainstem'                              33                       9                   78     
+    'Cblm_VIIb_L'            80      -9     -73     -50    7.0345    'Cerebellum'                            100                       0                    1     
+    'Cblm_VIIIa_L'          808     -15     -67     -50    7.0345    'Cerebellum'                             70                       0                    2     
+    'Cblm_VIIIa_L'          520     -27     -46     -47    7.0345    'Cerebellum'                             75                       0                    3     
+    'Cblm_VIIIb_L'           96     -27     -43     -50    7.0345    'Cerebellum'                             67                       0                    4     
+    'Cblm_VI_R'              80      39     -52     -26    7.0345    'Cerebellum'                             70                       0                    7     
+    'Cblm_CrusI_R'         2016      42     -52     -32    7.0345    'Cerebellum'                             98                       0                    8     
+    'Cblm_CrusII_R'         320      45     -49     -44    7.0345    'Cerebellum'                             82                       0                    9     
+    'Cblm_VIIb_R'           144      42     -49     -47    7.0345    'Cerebellum'                             61                       0                   10     
+    'Cblm_VIIIa_R'          336      30     -46     -47    7.0345    'Cerebellum'                             81                       0                   11     
+    'Cblm_CrusII_R'         200      24     -70     -41    7.0345    'Cerebellum'                             64                       0                   13     
+    'Cblm_CrusII_R'        1440      24     -76     -41    7.0345    'Cerebellum'                             99                       0                   14     
+    'Cblm_Dentate_L'       1240     -12     -49     -38    7.0345    'Cerebellum'                             48                       0                   15     
+    'Cblm_IX_L'             800      -9     -49     -38    7.0345    'Cerebellum'                             93                       0                   17     
+    'Cblm_CrusII_L'         360     -12     -79     -41    7.0345    'Cerebellum'                             84                       0                   20     
+    'Cblm_I_IV_R'           312      21     -25     -38    7.0345    'Cerebellum'                             31                       0                   21     
+    'Cblm_CrusII_R'         192      36     -76     -38    2.3824    'Cerebellum'                             88                       0                   25     
+    'Cblm_CrusII_R'         744       9     -82     -32    7.0345    'Cerebellum'                            100                       0                   26     
+    'Cblm_CrusII_R'         216      30     -79     -35    2.0881    'Cerebellum'                             59                       0                   27     
+    'Cblm_Dentate_R'        288      12     -49     -35    7.0345    'Cerebellum'                             47                       0                   28     
+    'Cblm_IX_R'             480       6     -49     -35    7.0345    'Cerebellum'                             75                       0                   29     
+    'Cblm_CrusI_L'          432     -39     -61     -32    7.0345    'Cerebellum'                            100                       0                   32     
+    'Cblm_CrusI_L'          360     -21     -73     -29    7.0345    'Cerebellum'                            100                       0                   35     
+    'Cblm_I_IV_L'           512       0     -46      -2    7.0345    'Cerebellum'                             50                       0                   52     
+    'Cblm_I_IV_L'           632      -9     -46      -5    7.0345    'Cerebellum'                             90                       0                   53     
+    'Cblm_I_IV_R'           544       6     -49      -2    7.0345    'Cerebellum'                            100                       0                   54     
+    'Cblm_V_L'             1912     -21     -43     -20    7.0345    'Cerebellum'                             92                       0                   55     
+    'Cblm_VI_L'             784     -24     -49     -20    7.0345    'Cerebellum'                             94                       0                   56     
+    'Cblm_V_R'             1072      24     -40     -23    7.0345    'Cerebellum'                             84                       0                   60     
+    'Cblm_VI_R'             296      24     -49     -20    7.0345    'Cerebellum'                             92                       0                   61     
+    'Cblm_VI_R'             216      12     -67     -23    2.2549    'Cerebellum'                            100                       0                   62     
+    'Cblm_CrusI_R'          528      24     -88     -20    7.0345    'Cerebellum'                             59                       0                   76     
+    'Ctx_RSC_R'             536       6     -46       7    7.0345    'Cortex_Default_ModeA'                   33                       0                   50     
+    'Ctx_10r_L'           11136      -6      50      -2    7.0345    'Cortex_Default_ModeA'                   18                       5                   67     
+    'Ctx_10v_R'            6808       6      53      -2    7.0345    'Cortex_Default_ModeA'                   20                       5                   68     
+    'Ctx_p32_L'            1368     -15      56      -5    7.0345    'Cortex_Default_ModeA'                   12                       0                   69     
+    'Multiple regions'     8624      -3      32      13    7.0345    'Cortex_Default_ModeA'                   12                       7                   73     
+    'Ctx_a24_R'            5968       6      35      10    7.0345    'Cortex_Default_ModeA'                   18                       3                   74     
+    'Ctx_9m_R'              824       3      56      22    7.0345    'Cortex_Default_ModeA'                   83                       0                  146     
+    'Ctx_31pd_L'            240     -12     -58      31    7.0345    'Cortex_Default_ModeA'                   27                       0                  147     
+    'Ctx_7m_L'             3584      -3     -61      31    7.0345    'Cortex_Default_ModeA'                   38                       2                  148     
+    'Ctx_7m_R'              488       3     -55      31    7.0345    'Cortex_Default_ModeA'                   52                       0                  149     
+    'Ctx_RSC_R'            2272       0     -28      31    7.0345    'Cortex_Default_ModeA'                   15                       0                  150     
+    'Ctx_RSC_R'            2808       3     -34      31    7.0345    'Cortex_Default_ModeA'                   17                       1                  151     
+    'Ctx_s6_8_L'            608     -21      26      61    7.0345    'Cortex_Default_ModeA'                   55                       0                  179     
+    'Ctx_TGd_L'             360     -54      -1     -38    7.0345    'Cortex_Default_ModeB'                   84                       0                   18     
+    'Ctx_TGd_L'            1568     -24      11     -38    7.0345    'Cortex_Default_ModeB'                   65                       0                   23     
+    'Ctx_TGd_L'             184     -45      14     -32    7.0345    'Cortex_Default_ModeB'                   96                       0                   30     
+    'Ctx_TGd_L'             672     -51      11     -35    7.0345    'Cortex_Default_ModeB'                   90                       0                   31     
+    'Ctx_STSda_L'          4112     -57      -1     -11    7.0345    'Cortex_Default_ModeB'                   36                       2                   64     
+    'Ctx_TE1a_L'           2976     -54     -13     -14    7.0345    'Cortex_Default_ModeB'                   16                       1                   65     
+    'Ctx_47s_R'             288      36      20     -14    7.0345    'Cortex_Default_ModeB'                   72                       0                   83     
+    'Ctx_47l_L'             408     -45      26     -11    7.0345    'Cortex_Default_ModeB'                   78                       0                   98     
+    'Ctx_STSvp_R'           552      63     -40       1    7.0345    'Cortex_Default_ModeB'                   36                       0                  121     
+    'Ctx_STSdp_L'           432     -60     -28       1    7.0345    'Cortex_Default_ModeB'                   48                       0                  122     
+    'Ctx_44_R'             3960      51      29      19    7.0345    'Cortex_Default_ModeB'                   22                       2                  137     
+    'Ctx_9m_L'             2112      -6      56      22    7.0345    'Cortex_Default_ModeB'                   52                       0                  145     
+    'Ctx_55b_L'             480     -42       5      43    7.0345    'Cortex_Default_ModeB'                   55                       0                  174     
+    'Ctx_SFL_R'             664       0      23      64    7.0345    'Cortex_Default_ModeB'                   20                       0                  180     
+    'Ctx_SFL_R'             648       3      26      64    7.0345    'Cortex_Default_ModeB'                   60                       0                  181     
+    'Ctx_POS1_L'           1192     -15     -61      13    7.0345    'Cortex_Default_ModeC'                   68                       1                   37     
+    'Ctx_POS1_R'           1544      15     -55      16    7.0345    'Cortex_Default_ModeC'                   38                       0                   38     
+    'Ctx_POS1_L'            576      -9     -55      10    7.0345    'Cortex_Default_ModeC'                   60                       0                   39     
+    'Ctx_POS1_R'           1096       9     -55      13    7.0345    'Cortex_Default_ModeC'                   69                       0                   40     
+    'Ctx_PHA1_L'           4304     -24     -34     -14    7.0345    'Cortex_Default_ModeC'                   32                       2                   44     
+    'Ctx_PHA3_L'           4560     -30     -46     -14    7.0345    'Cortex_Default_ModeC'                   22                       4                   48     
+    'Ctx_RSC_L'            1760      -6     -46       7    7.0345    'Cortex_Default_ModeC'                   16                       0                   49     
+    'Ctx_H_L'              1960     -27     -16     -20    7.0345    'Cortex_Default_ModeC'                   29                       0                   51     
+    'Ctx_PHA2_R'           2584      27     -37     -11    7.0345    'Cortex_Default_ModeC'                   33                       2                   57     
+    'Ctx_H_R'              2080      27     -13     -20    7.0345    'Cortex_Default_ModeC'                   35                       1                   63     
+    'Ctx_TE2p_R'           1912      51     -40     -20    7.0345    'Cortex_Dorsal_AttentionA'               33                       0                    5     
+    'Ctx_TE2p_R'           3336      45     -46     -23    7.0345    'Cortex_Dorsal_AttentionA'               28                       2                    6     
+    'Ctx_TE2p_L'            432     -42     -40     -17    7.0345    'Cortex_Dorsal_AttentionA'               37                       0                   77     
+    'Ctx_PH_L'             1232     -54     -49     -11    7.0345    'Cortex_Dorsal_AttentionA'               32                       0                   88     
+    'Multiple regions'     9816      48     -70       1    7.0345    'Cortex_Dorsal_AttentionA'               10                       7                   94     
+    'Ctx_FST_R'             408      42     -70      -5    7.0345    'Cortex_Dorsal_AttentionA'               47                       0                   95     
+    'Ctx_TPOJ2_R'          4168      54     -58       4    7.0345    'Cortex_Dorsal_AttentionA'               34                       2                   96     
+    'Ctx_PH_R'             2000      51     -61      -5    7.0345    'Cortex_Dorsal_AttentionA'               51                       1                   97     
+    'Ctx_TPOJ2_L'          1864     -48     -64      13    7.0345    'Cortex_Dorsal_AttentionA'               37                       2                   99     
+    'Ctx_IP0_L'             336     -30     -79      31    7.0345    'Cortex_Dorsal_AttentionA'               60                       0                  162     
+    'Multiple regions'    28264      27     -49      58    7.0345    'Cortex_Dorsal_AttentionA'               12                      10                  166     
+    'Ctx_2_L'               136     -21     -37      58    7.0345    'Cortex_Dorsal_AttentionB'               24                       0                  115     
+    'Ctx_2_L'              2808     -51     -25      40    7.0345    'Cortex_Dorsal_AttentionB'               28                       0                  139     
+    'Multiple regions'    20248     -30     -49      55    7.0345    'Cortex_Dorsal_AttentionB'               12                       8                  140     
+    'Ctx_7Am_L'             464      -9     -58      58    7.0345    'Cortex_Dorsal_AttentionB'               81                       0                  143     
+    'Ctx_FEF_R'            1312      42      -1      46    7.0345    'Cortex_Dorsal_AttentionB'               23                       0                  173     
+    'Ctx_PHT_L'            4792     -54     -64       4    7.0345    'Cortex_Fronto_ParietalA'                24                       3                  102     
+    'Ctx_p9_46v_L'         3880     -48      29      28    7.0345    'Cortex_Fronto_ParietalA'                39                       1                  124     
+    'Ctx_IFSp_L'           8912     -51      26      16    7.0345    'Cortex_Fronto_ParietalA'                17                       4                  125     
+    'Ctx_p9_46v_R'         1120      51      32      28    7.0345    'Cortex_Fronto_ParietalA'                76                       0                  136     
+    'Ctx_AIP_L'             400     -36     -52      46    7.0345    'Cortex_Fronto_ParietalA'                32                       0                  142     
+    'Ctx_AIP_R'            1144      39     -34      43    7.0345    'Cortex_Fronto_ParietalA'                20                       0                  167     
+    'Ctx_IP2_R'             856      42     -46      52    7.0345    'Cortex_Fronto_ParietalA'                24                       0                  168     
+    'Ctx_IP1_L'             288     -30     -64      40    7.0345    'Cortex_Fronto_ParietalA'                72                       0                  169     
+    'Ctx_TE1m_R'            528      54     -22     -14    7.0345    'Cortex_Fronto_ParietalB'                24                       0                   82     
+    'Ctx_a47r_R'           1264      45      44     -14    7.0345    'Cortex_Fronto_ParietalB'                44                       0                   86     
+    'Ctx_TE1p_L'           4704     -60     -43      -8    7.0345    'Cortex_Fronto_ParietalB'                51                       2                   87     
+    'Ctx_a47r_L'           3000     -45      47      -5    7.0345    'Cortex_Fronto_ParietalB'                53                       2                   89     
+    'Ctx_a47r_L'            392     -48      47     -14    7.0345    'Cortex_Fronto_ParietalB'                88                       0                   90     
+    'Ctx_8BM_L'            2312      -6      38      49    7.0345    'Cortex_Fronto_ParietalB'                45                       1                  175     
+    'Ctx_PFm_R'             360      48     -49      43    7.0345    'Cortex_Fronto_ParietalB'                62                       0                  176     
+    'Ctx_PFm_L'             288     -48     -55      46    7.0345    'Cortex_Fronto_ParietalB'                75                       0                  177     
+    'Ctx_8BM_R'             672       9      29      46    7.0345    'Cortex_Fronto_ParietalB'                42                       0                  178     
+    'Ctx_POS2_R'           2384      12     -73      43    7.0345    'Cortex_Fronto_ParietalC'                47                       1                  155     
+    'Ctx_POS2_L'            736      -3     -79      43    7.0345    'Cortex_Fronto_ParietalC'                21                       0                  156     
+    'Ctx_POS2_R'            856       6     -76      43    7.0345    'Cortex_Fronto_ParietalC'                79                       0                  157     
+    'Ctx_POS2_L'            504     -18     -73      37    7.0345    'Cortex_Fronto_ParietalC'                29                       0                  163     
+    'Ctx_TGd_R'             480      39      14     -47    7.0345    'Cortex_Limbic'                          47                       0                   12     
+    'Ctx_TGv_L'            1272     -51      -4     -41    7.0345    'Cortex_Limbic'                          69                       0                   19     
+    'Ctx_PeEc_L'            200     -24       5     -38    7.0345    'Cortex_Limbic'                          80                       0                   24     
+    'Ctx_TGd_R'            4336      54       2     -23    7.0345    'Cortex_Limbic'                          30                       2                   34     
+    'Ctx_TF_L'              192     -42     -13     -23    7.0345    'Cortex_Limbic'                          71                       0                   66     
+    'Ctx_10pp_R'           3112      18      65      -5    7.0345    'Cortex_Limbic'                          16                       0                   70     
+    'Ctx_10pp_L'            864     -15      59     -17    7.0345    'Cortex_Limbic'                          80                       0                   71     
+    'Ctx_13l_L'             432     -27      32     -20    7.0345    'Cortex_Limbic'                          81                       0                   80     
+    'Ctx_6mp_L'            7664      -6     -13      58    7.0345    'Cortex_SomatomotorA'                    19                       2                  109     
+    'Ctx_24dd_R'           5808       6     -13      58    7.0345    'Cortex_SomatomotorA'                    21                       3                  110     
+    'Ctx_4_L'             18832     -21     -22      61    7.0345    'Cortex_SomatomotorA'                    29                       3                  111     
+    'Ctx_4_R'              8376      12     -22      67    7.0345    'Cortex_SomatomotorA'                    28                       0                  112     
+    'Ctx_3b_L'            18112     -36     -25      52    7.0345    'Cortex_SomatomotorA'                    24                       4                  113     
+    'Ctx_3b_R'             4080      21     -28      64    7.0345    'Cortex_SomatomotorA'                    31                       1                  114     
+    'Ctx_1_R'              2656      63      -4      31    7.0345    'Cortex_SomatomotorA'                    39                       0                  154     
+    'Ctx_1_R'               760      42     -34      55    7.0345    'Cortex_SomatomotorA'                    42                       0                  165     
+    'Ctx_4_R'              1544      39     -16      49    7.0345    'Cortex_SomatomotorA'                    61                       0                  170     
+    'Ctx_1_R'              4448      45     -16      49    7.0345    'Cortex_SomatomotorA'                    28                       0                  171     
+    'Ctx_OP1_L'             424     -42     -19      22    7.0345    'Cortex_SomatomotorB'                    40                       0                  116     
+    'Ctx_OP1_L'            2664     -54     -16      10    7.0345    'Cortex_SomatomotorB'                    21                       3                  117     
+    'Ctx_Ig_L'             2280     -36     -16      16    7.0345    'Cortex_SomatomotorB'                    30                       2                  118     
+    'Ctx_OP4_R'             408      51     -10      16    7.0345    'Cortex_SomatomotorB'                    39                       0                  132     
+    'Ctx_OP4_R'             440      51     -13      16    7.0345    'Cortex_SomatomotorB'                    80                       0                  133     
+    'Ctx_OP4_R'             448      48     -10      13    7.0345    'Cortex_SomatomotorB'                    39                       0                  134     
+    'Ctx_43_R'               80      45      -7      13    7.0345    'Cortex_SomatomotorB'                    40                       0                  135     
+    'Ctx_A4_L'              288     -66     -31      16    7.0345    'Cortex_SomatomotorB'                    69                       0                  144     
+    'Ctx_6v_R'             1064      60      -1      34    7.0345    'Cortex_SomatomotorB'                    37                       0                  153     
+    'Ctx_STSda_R'          9208      54       2     -14    7.0345    'Cortex_Temporal_Parietal'               24                       3                   33     
+    'Ctx_PSL_R'             216      63     -40      25    3.3885    'Cortex_Temporal_Parietal'               96                       0                  160     
+    'Ctx_AAIC_R'           1696      33      17     -14    7.0345    'Cortex_Ventral_AttentionA'              69                       1                   84     
+    'Ctx_PoI2_L'           1096     -42       2      -2    7.0345    'Cortex_Ventral_AttentionA'              48                       0                  104     
+    'Ctx_23c_R'             144       6      -7      43    7.0345    'Cortex_Ventral_AttentionA'              44                       0                  119     
+    'Ctx_PF_L'            16944     -54     -31      34    7.0345    'Cortex_Ventral_AttentionA'              31                       4                  141     
+    'Ctx_PF_R'             8888      57     -28      34    7.0345    'Cortex_Ventral_AttentionA'              37                       3                  152     
+    'Ctx_55b_R'             240      42       2      46    7.0345    'Cortex_Ventral_AttentionA'              57                       0                  172     
+    'Ctx_p47r_R'            680      48      44      -8    7.0345    'Cortex_Ventral_AttentionB'              59                       0                   85     
+    'Ctx_V2_R'               88      18     -64      16    7.0345    'Cortex_Visual_Central'                  82                       0                   41     
+    'Ctx_V8_L'              312     -30     -67      -8    7.0345    'Cortex_Visual_Central'                  69                       0                   42     
+    'Ctx_V2_R'              480      12     -61      16    7.0345    'Cortex_Visual_Central'                  58                       0                   43     
+    'Ctx_VVC_R'            5016      30     -46     -14    7.0345    'Cortex_Visual_Central'                  13                       3                   59     
+    'Ctx_VVC_L'             360     -36     -61     -17    7.0345    'Cortex_Visual_Central'                  69                       0                   81     
+    'Multiple regions'     8128     -45     -76       4    7.0345    'Cortex_Visual_Central'                  13                       7                  100     
+    'Ctx_V4_L'              512     -39     -76      -5    7.0345    'Cortex_Visual_Central'                  13                       0                  101     
+    'Ctx_V4_L'              712     -30     -88       7    7.0345    'Cortex_Visual_Central'                  65                       0                  123     
+    'Ctx_V2_R'              840       0     -88      13    7.0345    'Cortex_Visual_Central'                  38                       0                  129     
+    'Ctx_V2_R'             1576       3     -85      19    7.0345    'Cortex_Visual_Central'                  42                       0                  130     
+    'Ctx_V7_L'              600     -27     -79      31    7.0345    'Cortex_Visual_Central'                  32                       0                  161     
+    'Ctx_PreS_R'           1480       9     -40       4    7.0345    'Cortex_Visual_Peripheral'               21                       0                   45     
+    'Ctx_VMV1_L'           5424     -15     -52      -2    7.0345    'Cortex_Visual_Peripheral'               15                       1                   46     
+    'Ctx_V1_R'             2928      12     -52       4    7.0345    'Cortex_Visual_Peripheral'               26                       1                   47     
+    'Ctx_VMV2_R'           2432      27     -49      -8    7.0345    'Cortex_Visual_Peripheral'               28                       2                   58     
+    'Ctx_V1_L'             3744     -18    -100      -2    7.0345    'Cortex_Visual_Peripheral'               50                       0                   91     
+    'Ctx_V1_L'              256     -12    -100     -11    7.0345    'Cortex_Visual_Peripheral'               88                       0                   92     
+    'Ctx_V1_L'              448      -9     -97      -8    7.0345    'Cortex_Visual_Peripheral'               84                       0                   93     
+    'Ctx_V6_R'             2560      18     -79      37    7.0345    'Cortex_Visual_Peripheral'               28                       2                  158     
+    'Ctx_V3A_R'             424       6     -79      43    7.0345    'Cortex_Visual_Peripheral'               49                       0                  159     
+    'Ctx_DVT_L'             144     -18     -73      34    7.0345    'Cortex_Visual_Peripheral'               83                       0                  164     
+    'Thal_Pulv'             176       9     -34       4         7    'Diencephalon'                           77                       0                   36     
+    'Thal_VPL'              624     -18     -19       4         1    'Diencephalon'                           53                       1                  105     
+    'Thal_VPL'              184     -21     -22       4         2    'Diencephalon'                           61                       0                  106     
+    'Thal_Intralam'         128     -15     -19       4         5    'Diencephalon'                           38                       0                  107     
+    'Thal_MGN'              592     -18     -25      -2         6    'Diencephalon'                           32                       1                  108     
+    'Thal_Intralam'         624       9     -19      10         4    'Diencephalon'                           38                       0                  126     
+    'Thal_Intralam'         192       6     -19      13         7    'Diencephalon'                           67                       0                  127     
+    'Thal_Pulv'             280     -24     -25      10         6    'Diencephalon'                           29                       0                  131     
+
+
+Negative Effects
+        Region        Volume           XYZ            maxZ       modal_label_descriptions     Perc_covered_by_label    Atlas_regions_covered    region_index
+    ______________    ______    _________________    _______    __________________________    _____________________    _____________________    ____________
+
+    'Putamen_Pp_L'     216      -30     -7     -8    -1.9806    'Basal_ganglia'                         85                       0                  188     
+    'Cau_L'            216      -24    -25     19    -3.8041    'Basal_ganglia'                         96                       0                  199     
+    'Ctx_TGd_L'        216      -45     14    -23    -2.0974    'Cortex_Default_ModeB'                  96                       0                  185     
+    'Ctx_STSda_L'      208      -54     -7     -8    -3.0585    'Cortex_Default_ModeB'                  65                       0                  189     
+    'Ctx_STSvp_R'      216       54    -40     -2    -2.2665    'Cortex_Default_ModeB'                  52                       0                  191     
+    'Ctx_PGi_L'        216      -51    -49     22    -2.2028    'Cortex_Default_ModeB'                  41                       0                  200     
+    'Ctx_8BL_R'        216       12     32     52    -2.3489    'Cortex_Default_ModeB'                  59                       0                  201     
+    'Ctx_8BL_R'        216        3     41     55    -2.0291    'Cortex_Default_ModeB'                 100                       0                  202     
+    'Ctx_8BL_R'        288        3     35     61    -2.0379    'Cortex_Default_ModeB'                  75                       0                  203     
+    'Ctx_TE1m_R'       216       66    -28    -14    -5.3535    'Cortex_Fronto_ParietalB'               85                       0                  186     
+    'Ctx_TE1p_R'       216       69    -46    -11    -4.4189    'Cortex_Fronto_ParietalB'                4                       0                  187     
+    'Ctx_TE1p_R'       216       69    -46     -5    -3.7389    'Cortex_Fronto_ParietalB'               19                       0                  190     
+    'Ctx_PeEc_R'       216       27    -22    -35    -2.4218    'Cortex_Limbic'                          7                       0                  182     
+    'Ctx_TGd_R'        216       30      5    -35    -2.2131    'Cortex_Limbic'                         26                       0                  183     
+    'Ctx_TF_R'         216       42    -13    -29    -1.9949    'Cortex_Limbic'                        100                       0                  184     
+    'Ctx_A4_R'         216       69    -19      4    -3.3648    'Cortex_SomatomotorB'                   48                       0                  194     
+    'Ctx_PBelt_R'      216       51    -28     10    -3.0585    'Cortex_SomatomotorB'                   33                       0                  195     
+    'Ctx_RI_R'         216       42    -37     19    -2.6214    'Cortex_SomatomotorB'                    4                       0                  198     
+    'Ctx_A5_R'         216       51    -22      1    -2.5611    'Cortex_Temporal_Parietal'              41                       0                  193     
+    'Ctx_TPOJ1_L'      216      -54    -40     13    -3.1357    'Cortex_Temporal_Parietal'              15                       0                  196     
+    'Ctx_V1_L'         216      -12    -82      1    -2.7063    'Cortex_Visual_Peripheral'              41                       0                  192     
+    'Thal_VL'          216       18    -16     13    -2.1124    'Diencephalon'                          52                       0                  197     
+
+
+____________________________________________________________________________________________________________________________________________
+Regions labeled by reference atlas CANlab_2018_combined
+                                                       
+Volume: Volume of contiguous region in cubic mm.
+MaxZ: Signed max over Input mask image values for each voxel.
+Atlas_regions_covered: Number of reference atlas regions covered at least 25% by the region. This relates to whether the region covers 
+multiple reference atlas regions                                                                                                       
+Region: Best reference atlas label, defined as reference region with highest number of in-region voxels. Regions covering &gt;25% of &gt;5 
+regions labeled as "Multiple regions"                                                                                                
+Perc_covered_by_label: Percentage of the region covered by the label.
+Ref_region_perc: Percentage of the label region within the target region.
+modal_atlas_index: Index number of label region in reference atlas
+all_regions_covered: All regions covered &gt;5% in descending order of importance
+ 
+For example, if a region is labeled 'TE1a' and Perc_covered_by_label = 8, Ref_region_perc = 38, and Atlas_regions_covered = 17, this means 
+that 8% of the region's voxels are labeled TE1a, which is the highest percentage among reference label regions. 38% of the region TE1a is  
+covered by the region. However, the region covers at least 25% of 17 distinct labeled reference regions.                                   
+                                                                                                                                           
+References for atlases:
+                       
+Beliveau, Vincent, Claus Svarer, Vibe G. Frokjaer, Gitte M. Knudsen, Douglas N. Greve, and Patrick M. Fisher. 2015. &#8220;Functional 
+Connectivity of the Dorsal and Median Raphe Nuclei at Rest.&#8221; NeuroImage 116 (August): 187&#8211;95.                                   
+B&auml;r, Karl-J&uuml;rgen, Feliberto de la Cruz, Andy Schumann, Stefanie Koehler, Heinrich Sauer, Hugo Critchley, and Gerd Wagner. 2016. ?Functional 
+Connectivity and Network Analysis of Midbrain and Brainstem Nuclei.? NeuroImage 134 (July):53?63.                                           
+Diedrichsen, J&ouml;rn, Joshua H. Balsters, Jonathan Flavell, Emma Cussans, and Narender Ramnani. 2009. A Probabilistic MR Atlas of the Human 
+Cerebellum. NeuroImage 46 (1): 39?46.                                                                                                    
+Fairhurst, Merle, Katja Wiech, Paul Dunckley, and Irene Tracey. 2007. ?Anticipatory Brainstem Activity Predicts Neural Processing of Pain 
+in Humans.? Pain 128 (1-2):101?10.                                                                                                        
+Fan 2016 Cerebral Cortex; doi:10.1093/cercor/bhw157
+Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. A 
+Multi-Modal Parcellation of Human Cerebral Cortex. Nature 536 (7615): 171?78.                                                       
+Keren, Noam I., Carl T. Lozar, Kelly C. Harris, Paul S. Morgan, and Mark A. Eckert. 2009. &#8220;In Vivo Mapping of the Human Locus Coeruleus.&#8221; 
+NeuroImage 47 (4): 1261&#8211;67.                                                                                                               
+Keuken, M. C., P-L Bazin, L. Crown, J. Hootsmans, A. Laufer, C. M&uuml;ller-Axt, R. Sier, et al. 2014. &#8220;Quantifying Inter-Individual Anatomical 
+Variability in the Subcortex Using 7 T Structural MRI.&#8221; NeuroImage 94 (July): 40&#8211;46.                                                       
+Krauth A, Blanc R, Poveda A, Jeanmonod D, Morel A, Sz&eacute;kely G. (2010) A mean three-dimensional atlas of the human thalamus: generation from 
+multiple histological data. Neuroimage. 2010 Feb 1;49(3):2053-62. Jakab A, Blanc R, Ber&eacute;nyi EL, Sz&eacute;kely G. (2012) Generation of            
+Individualized Thalamus Target Maps by Using Statistical Shape Models and Thalamocortical Tractography. AJNR Am J Neuroradiol. 33:         
+2110-2116, doi: 10.3174/ajnr.A3140                                                                                                         
+Nash, Paul G., Vaughan G. Macefield, Iven J. Klineberg, Greg M. Murray, and Luke A. Henderson. 2009. ?Differential Activation of the Human 
+Trigeminal Nuclear Complex by Noxious and Non-Noxious Orofacial Stimulation.? Human Brain Mapping 30 (11):3772?82.                         
+Pauli 2018 Bioarxiv: CIT168 from Human Connectome Project data
+Pauli, Wolfgang M., Amanda N. Nili, and J. Michael Tyszka. 2018. ?A High-Resolution Probabilistic in Vivo Atlas of Human Subcortical Brain 
+Nuclei.? Scientific Data 5 (April): 180063.                                                                                                
+Pauli, Wolfgang M., Randall C. O?Reilly, Tal Yarkoni, and Tor D. Wager. 2016. ?Regional Specialization within the Human Striatum for 
+Diverse Psychological Functions.? Proceedings of the National Academy of Sciences of the United States of America 113 (7): 1907?12.  
+Sclocco, Roberta, Florian Beissner, Gaelle Desbordes, Jonathan R. Polimeni, Lawrence L. Wald, Norman W. Kettner, Jieun Kim, et al. 2016. 
+?Neuroimaging Brainstem Circuitry Supporting Cardiovagal Response to Pain: A Combined Heart Rate Variability/ultrahigh-Field (7 T)       
+Functional Magnetic Resonance Imaging Study.? Philosophical Transactions. Series A, Mathematical, Physical, and Engineering Sciences 374 
+(2067). rsta.royalsocietypublishing.org. https://doi.org/10.1098/rsta.2015.0189.                                                         
+Shen, X., F. Tokoglu, X. Papademetris, and R. T. Constable. 2013. &#8220;Groupwise Whole-Brain Parcellation from Resting-State fMRI Data for 
+Network Node Identification.&#8221; NeuroImage 82 (November): 403&#8211;15.                                                                        
+Zambreanu, L., R. G. Wise, J. C. W. Brooks, G. D. Iannetti, and I. Tracey. 2005. ?A Role for the Brainstem in Central Sensitisation in 
+Humans. Evidence from Functional Magnetic Resonance Imaging.? Pain 114 (3):397?407.                                                    
+                                                                                                     
+Note: Region object r(i).title contains full list of reference atlas regions covered by each cluster.
+____________________________________________________________________________________________________________________________________________
+</pre><h2 id="9">Write BASIC to nifti</h2><pre class="codeinput">fname = <span class="string">'BASIC.nii'</span>;
+write(BASIC, <span class="string">'fname'</span>, fname, <span class="string">'overwrite'</span>);
+</pre><pre class="codeoutput">Writing: 
+BASIC.nii
+</pre><h2 id="10">Visualization BASIC model</h2><pre class="codeinput">create_figure(<span class="string">'BASIC on surface'</span>)
+surface(BASIC);
+drawnow, snapnow
+
+create_figure(<span class="string">'lateral surfaces'</span>);
+surface_handles = surface(BASIC, <span class="string">'foursurfaces'</span>);
+
+render_on_surface(BASIC, surface_handles);
+drawnow, snapnow
+
+<span class="comment">% full montage</span>
+my_display_obj = canlab_results_fmridisplay([], <span class="string">'montagetype'</span>, <span class="string">'full'</span>);
+my_display_obj = addblobs(my_display_obj, region(BASIC));
+title(<span class="string">'BASIC'</span>)
+drawnow, snapnow
+
+create_figure(<span class="string">'Montage BASIC unc 05'</span>)
+axis <span class="string">off</span>
+my_display_obj = canlab_results_fmridisplay([], <span class="string">'montagetype'</span>, <span class="string">'compact'</span>);
+my_display_obj = addblobs(my_display_obj, region(BASIC));
+drawnow, snapnow
+
+<span class="comment">% 3d coronal slabs</span>
+create_figure(<span class="string">'cutaways'</span>)
+axis <span class="string">off</span>
+surface_handles = surface(BASIC, <span class="string">'coronal_slabs'</span>);
+drawnow, snapnow
+
+create_figure(<span class="string">'cutaways'</span>)
+axis <span class="string">off</span>
+surface_handles = surface(BASIC, <span class="string">'coronal_slabs_4'</span>);
+drawnow, snapnow
+</pre><pre class="codeoutput">
+ans = 
+
+  Figure (BASIC on surface) with properties:
+
+      Number: 6
+        Name: 'BASIC on surface'
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+
+ans = 
+
+  Light with properties:
+
+       Color: [1 1 1]
+       Style: 'infinite'
+    Position: [1.4142 -8.6596e-17 0]
+     Visible: 'on'
+
+  Use GET to show all properties
+
+Anatomical image: Adapted from the 7T high-resolution atlas of Keuken, Forstmann et al.                                                                                                                                             
+Keuken et al. (2014). Quantifying inter-individual anatomical variability in the subcortex using 7T structural MRI.                                                                                                                 
+Forstmann, Birte U., Max C. Keuken, Andreas Schafer, Pierre-Louis Bazin, Anneke Alkemade, and Robert Turner. 2014. ?Multi-Modal Ultra-High Resolution Structural 7-Tesla MRI Data Repository.? Scientific Data 1 (December): 140050.
+</pre><img vspace="5" hspace="5" src="BASIC_result_08.png" alt=""> <img vspace="5" hspace="5" src="BASIC_result_09.png" alt=""> <pre class="codeoutput">Setting up fmridisplay objects
+    48
+
+Grouping contiguous voxels:  97 regions
+sagittal montage: 1637 voxels displayed, 5724 not displayed on these slices
+coronal montage: 1687 voxels displayed, 5674 not displayed on these slices
+axial montage: 2046 voxels displayed, 5315 not displayed on these slices
+axial montage: 1964 voxels displayed, 5397 not displayed on these slices
+</pre><img vspace="5" hspace="5" src="BASIC_result_10.png" alt=""> <pre class="codeoutput">
+ans = 
+
+  Figure (Montage BASIC unc 05) with properties:
+
+      Number: 9
+        Name: 'Montage BASIC unc 05'
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Setting up fmridisplay objects
+Grouping contiguous voxels:  97 regions
+sagittal montage: 260 voxels displayed, 7101 not displayed on these slices
+sagittal montage: 268 voxels displayed, 7093 not displayed on these slices
+sagittal montage: 249 voxels displayed, 7112 not displayed on these slices
+axial montage: 1298 voxels displayed, 6063 not displayed on these slices
+axial montage: 1556 voxels displayed, 5805 not displayed on these slices
+</pre><img vspace="5" hspace="5" src="BASIC_result_11.png" alt=""> <pre class="codeoutput">
+ans = 
+
+  Figure (cutaways) with properties:
+
+      Number: 10
+        Name: 'cutaways'
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Anatomical image: Adapted from the 7T high-resolution atlas of Keuken, Forstmann et al.                                                                                                                                             
+Keuken et al. (2014). Quantifying inter-individual anatomical variability in the subcortex using 7T structural MRI.                                                                                                                 
+Forstmann, Birte U., Max C. Keuken, Andreas Schafer, Pierre-Louis Bazin, Anneke Alkemade, and Robert Turner. 2014. ?Multi-Modal Ultra-High Resolution Structural 7-Tesla MRI Data Repository.? Scientific Data 1 (December): 140050.
+</pre><img vspace="5" hspace="5" src="BASIC_result_12.png" alt=""> <pre class="codeoutput">
+ans = 
+
+  Figure (cutaways) with properties:
+
+      Number: 10
+        Name: 'cutaways'
+       Color: [1 1 1]
+    Position: [1281 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Anatomical image: Adapted from the 7T high-resolution atlas of Keuken, Forstmann et al.                                                                                                                                             
+Keuken et al. (2014). Quantifying inter-individual anatomical variability in the subcortex using 7T structural MRI.                                                                                                                 
+Forstmann, Birte U., Max C. Keuken, Andreas Schafer, Pierre-Louis Bazin, Anneke Alkemade, and Robert Turner. 2014. ?Multi-Modal Ultra-High Resolution Structural 7-Tesla MRI Data Repository.? Scientific Data 1 (December): 140050.
+</pre><img vspace="5" hspace="5" src="BASIC_result_13.png" alt=""> <h2 id="11">create movie</h2><p>create_figure('lateral surfaces'); surface_handles = surface(BASIC);</p><p>% Then, choose movie option % mov = movie_tools('rotate',270,30) % rotate   mov = movie_tools('batch360.1'); % rotate 360 %  mov = movie_tools('zoom',.8,mov,1); % zooms out</p><p>%% Save video</p><pre>  vid = VideoWriter('BASIC_unc05_maps', 'MPEG-4');
+ open(vid)
+ for i = 1:length(mov), writeVideo(vid, mov(i)); end
+ close(vid)</pre><h2 id="12">test SVM model Sex vs. Neutral on pos/neg/sex/neu affective images</h2><p>[dist_from_hyperplane, Y, svm_dist_pos_neg, svm_dist_pos_neg_matrix] = plugin_svm_contrasts_get_results_per_subject(DAT, svm_stats_results, DATA_OBJ)</p><pre class="codeinput">    load(<span class="string">'/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/sophie/MATLAB/MASTER_FOLDER_SEXUALBIOMARKER/results/Y.mat'</span>);
+
+
+pos_stark_pattern_expression=apply_mask(pos_stark,replace_empty(BASIC), logical(Y{1,1} &gt; 0), <span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+neg_stark_pattern_expression=apply_mask(neg_stark,replace_empty(BASIC), logical(Y{1,1} &gt; 0), <span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+sex_stark_pattern_expression=apply_mask(sex_stark,replace_empty(BASIC), logical(Y{1,1} &gt; 0), <span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+neu_stark_pattern_expression=apply_mask(neu_stark,replace_empty(BASIC), logical(Y{1,1} &gt; 0), <span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+</pre><pre class="codeoutput">Warning: Some images have zero values in some of the 7361 voxels in weight mask. These will be excluded from similarity analysis image-wise.
+Number of zero or NaN values within weight mask, by input image:
+  0   6   0   2   1   0   2   0   0   0   0   0   0   0   0   0   0   0   0   0   1   1   0   0   0   0   0   1   0   0   5   0   0   0   0   0   0   2   1   2   0   0   1   0   0   3   0   0   0   3   0   0   0   0   0   0   0   0   0  40   0   0   3   1   0   3   0   0   0   0   0   0   1   0   0   9   2   0   0   0   1  16   0   0   0   0   0   0   0   0   0   0   0   7   3   0   0 
+Warning: Some images have zero values in some of the 7361 voxels in weight mask. These will be excluded from similarity analysis image-wise.
+Number of zero or NaN values within weight mask, by input image:
+  0   6   0   2   1   0   2   0   0   0   0   0   0   0   0   0   0   0   0   0   1   1   0   0   0   0   0   1   0   0   5   0   0   0   0   0   0   2   1   2   0   0   1   0   0   3   0   0   0   3   0   0   0   0   0   0   0   0   0  40   0   0   3   1   0   3   0   0   0   0   0   0   1   0   0   9   2   0   0   0   1  16   0   0   0   0   0   0   0   0   0   0   0   7   3   0   0 
+Warning: Some images have zero values in some of the 7361 voxels in weight mask. These will be excluded from similarity analysis image-wise.
+Number of zero or NaN values within weight mask, by input image:
+  0   6   0   2   1   0   2   0   0   0   0   0   0   0   0   0   0   0   0   0   1   1   0   0   0   0   0   1   0   0   5   0   0   0   0   0   0   2   1   2   0   0   1   0   0   3   0   0   0   3   0   0   0   0   0   0   0   0   0  40   0   0   3   1   0   3   0   0   0   0   0   0   1   0   0   9   2   0   0   0   1  16   0   0   0   0   0   0   0   0   0   0   0   7   3   0   0 
+Warning: Some images have zero values in some of the 7361 voxels in weight mask. These will be excluded from similarity analysis image-wise.
+Number of zero or NaN values within weight mask, by input image:
+  0   6   0   2   1   0   2   0   0   0   0   0   0   0   0   0   0   0   0   0   1   1   0   0   0   0   0   1   0   0   5   0   0   0   0   0   0   2   1   2   0   0   1   0   0   3   0   0   0   3   0   0   0   0   0   0   0   0   0  40   0   0   3   1   0   3   0   0   0   0   0   0   1   0   0   9   2   0   0   0   1  16   0   0   0   0   0   0   0   0   0   0   0   7   3   0   0 
+</pre><h2 id="13">All together in barplot</h2><pre class="codeinput">mycolors = seaborn_colors;
+
+create_figure(<span class="string">'Barplot Model Similarity to all conditions '</span>)
+barplot_columns([sex_stark_pattern_expression,pos_stark_pattern_expression, neg_stark_pattern_expression, neu_stark_pattern_expression],<span class="string">'dolines'</span>,<span class="string">'names'</span>,{<span class="string">'Sexual'</span>,<span class="string">'Positive'</span>, <span class="string">'Negative'</span>,<span class="string">'Neutral'</span>},<span class="string">'colors'</span>,mycolors,<span class="string">'nofigure'</span>)
+ylabel(<span class="string">'Cosine Similarity'</span>)
+drawnow, snapnow
+</pre><pre class="codeoutput">
+ans = 
+
+  Figure (Barplot Model Similarity to all conditions ) with properties:
+
+      Number: 11
+        Name: 'Barplot Model Similarity to all conditions '
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+Col   1: Sexual	Col   2: Positive	Col   3: Negative	Col   4: Neutral	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name       Mean_Value    Std_Error       T            P         Cohens_d 
+    __________    __________    _________    ________    __________    _________
+
+    'Sexual'         0.33954     0.005907      57.481    2.2204e-15       5.8363
+    'Positive'    0.00019872    0.0094849    0.020951       0.98333    0.0021272
+    'Negative'       0.12231     0.007096      17.237    2.2204e-15       1.7501
+    'Neutral'      -0.043308    0.0093311     -4.6412     1.097e-05     -0.47124
+
+
+ans = 
+
+  struct with fields:
+
+              fig_han: [1&times;1 struct]
+             axis_han: [1&times;1 Axes]
+             bar_han1: [1&times;1 Bar]
+              bar_han: {[1&times;1 Bar]  [1&times;1 Bar]  [1&times;1 Bar]  [1&times;1 Bar]}
+         errorbar_han: {1&times;4 cell}
+    parallel_line_han: {1&times;97 cell}
+           point_han1: {97&times;4 cell}
+            point_han: {97&times;4 cell}
+         star_handles: [13.0009 14.0009 15.0009 16.0009]
+
+</pre><img vspace="5" hspace="5" src="BASIC_result_14.png" alt=""> <h2 id="14">ROC plot forced choice</h2><pre class="codeinput">create_figure(<span class="string">'ROC plot'</span>)
+ROC_sex_neu_forced_choice = roc_plot([sex_stark_pattern_expression; neu_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{1}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+ROC_sex_neu_single_interval = roc_plot([sex_stark_pattern_expression; neu_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'color'</span>,mycolors{1}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+
+ROC_sex_pos_forced_choice = roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{2});
+ROC_sex_pos_single_interval= roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'color'</span>,mycolors{2},<span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+
+ROC_sex_neg_forced_choice = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{3});
+ROC_sex_neg_single_interval = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'color'</span>,mycolors{3}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+</pre><pre class="codeoutput">
+ans = 
+
+  Figure (ROC plot) with properties:
+
+      Number: 12
+        Name: 'ROC plot'
+       Color: [1 1 1]
+    Position: [360 278 560 420]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ROC for two-choice classification of paired observations.
+Assumes pos and null outcome observations have the same subject order.
+Using a priori threshold of 0 for pairwise differences.
+
+ROC_PLOT Output: Two-alternative forced choice, A priori threshold
+Threshold:	0.00	Sens:	100% CI(100%-100%)	Spec:	100% CI(100%-100%)	PPV:	100% CI(100%-100%)	Nonparametric AUC:	1.00	Parametric d_a:	5.37	  Accuracy:	100% +- 0.0% (SE), P = 0.000000
+
+ROC_PLOT Output: Single-interval, Optimal balanced error rate
+Threshold:	0.20	Sens:	100% CI(100%-100%)	Spec:	100% CI(100%-100%)	PPV:	100% CI(100%-100%)	Nonparametric AUC:	1.00	Parametric d_a:	4.98	  Accuracy:	100% +- 0.0% (SE), P = 0.000000
+ROC for two-choice classification of paired observations.
+Assumes pos and null outcome observations have the same subject order.
+Using a priori threshold of 0 for pairwise differences.
+
+ROC_PLOT Output: Two-alternative forced choice, A priori threshold
+Threshold:	0.00	Sens:	100% CI(100%-100%)	Spec:	100% CI(100%-100%)	PPV:	100% CI(100%-100%)	Nonparametric AUC:	1.00	Parametric d_a:	4.61	  Accuracy:	100% +- 0.0% (SE), P = 0.000000
+
+ROC_PLOT Output: Single-interval, Optimal balanced error rate
+Threshold:	0.21	Sens:	 99% CI(97%-100%)	Spec:	 99% CI(97%-100%)	PPV:	 99% CI(97%-100%)	Nonparametric AUC:	1.00	Parametric d_a:	4.36	  Accuracy:	 99% +- 0.7% (SE), P = 0.000000
+ROC for two-choice classification of paired observations.
+Assumes pos and null outcome observations have the same subject order.
+Using a priori threshold of 0 for pairwise differences.
+
+ROC_PLOT Output: Two-alternative forced choice, A priori threshold
+Threshold:	0.00	Sens:	100% CI(100%-100%)	Spec:	100% CI(100%-100%)	PPV:	100% CI(100%-100%)	Nonparametric AUC:	1.00	Parametric d_a:	4.43	  Accuracy:	100% +- 0.0% (SE), P = 0.000000
+
+ROC_PLOT Output: Single-interval, Optimal balanced error rate
+Threshold:	0.25	Sens:	 97% CI(93%-100%)	Spec:	 97% CI(93%-100%)	PPV:	 97% CI(93%-100%)	Nonparametric AUC:	0.99	Parametric d_a:	3.38	  Accuracy:	 97% +- 1.2% (SE), P = 0.000000
+</pre><img vspace="5" hspace="5" src="BASIC_result_15.png" alt=""> <h2 id="15">Effect size</h2><pre class="codeinput"><span class="comment">% Effect size, cross-validated, paired samples</span>
+dfun_paired = @(x, Y) mean(x(Y &gt; 0) - x(Y &lt; 0)) ./ std(x(Y &gt; 0) - x(Y &lt; 0))
+
+d_paired_sex_neu = dfun_paired(svm_stats_results{1, 1}.dist_from_hyperplane_xval, Y{1,1});
+    fprintf(<span class="string">'Effect size sex-neu, cross-val: Forced choice: d = %3.2f\n\n'</span>, d_paired_sex_neu);
+
+    d_paired_sex_pos = dfun_paired(svm_stats_results{1, 2}.dist_from_hyperplane_xval, Y{1,2});
+    fprintf(<span class="string">'Effect size sex-pos, cross-val: Forced choice: d = %3.2f\n\n'</span>, d_paired_sex_pos);
+
+    d_paired_sex_neg = dfun_paired(svm_stats_results{1, 3}.dist_from_hyperplane_xval, Y{1,3});
+    fprintf(<span class="string">'Effect size sex-neg, cross-val: Forced choice: d = %3.2f\n\n'</span>, d_paired_sex_neg);
+</pre><pre class="codeoutput">
+dfun_paired =
+
+  function_handle with value:
+
+    @(x,Y)mean(x(Y&gt;0)-x(Y&lt;0))./std(x(Y&gt;0)-x(Y&lt;0))
+
+Effect size sex-neu, cross-val: Forced choice: d = 3.92
+
+Effect size sex-pos, cross-val: Forced choice: d = 4.03
+
+Effect size sex-neg, cross-val: Forced choice: d = 3.25
+
+</pre><h2 id="16">Compare to Phil's independent dataset</h2><pre class="codeinput"><span class="comment">% Load images</span>
+
+    sex_kragel=fmri_data(<span class="string">'/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/neuroimaging data/IAPS_firstlevel_contrasts_sexual_positive_negative/IAPS_n18_sexual.nii'</span>);
+    pos_kragel=fmri_data(<span class="string">'/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/neuroimaging data/IAPS_firstlevel_contrasts_sexual_positive_negative/IAPS_n18_positive.nii'</span>);
+    neg_kragel=fmri_data(<span class="string">'/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/neuroimaging data/IAPS_firstlevel_contrasts_sexual_positive_negative/IAPS_n18_negative.nii'</span>);
+</pre><pre class="codeoutput">Using default mask: /Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask.nii
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 7515936 bytes
+Loading image number:    18
+Elapsed time is 0.258609 seconds.
+Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+Using default mask: /Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask.nii
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 7515936 bytes
+Loading image number:    18
+Elapsed time is 0.277822 seconds.
+Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+Using default mask: /Users/sophievanthof/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask.nii
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 7515936 bytes
+Loading image number:    18
+Elapsed time is 0.328340 seconds.
+Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+</pre><h2 id="17">test SVM model Sex vs. Neutral on sex/pos/neg IAPS data</h2><p>BASIC.p=[]; BASIC.ste=[]; BASIC.sig=[];</p><pre class="codeinput">sex_kragel_pattern_expression=apply_mask(sex_kragel,replace_empty(BASIC),<span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+pos_kragel_pattern_expression=apply_mask(pos_kragel,replace_empty(BASIC),<span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+neg_kragel_pattern_expression=apply_mask(neg_kragel,replace_empty(BASIC),<span class="string">'pattern_expression'</span>, <span class="string">'cosine_similarity'</span>);
+
+<span class="comment">% cols=[0 114 198;217 84 26; 237 177 32; 114 14 138]./255;</span>
+<span class="comment">% for c=1:length(cols); COLS{c}=cols(c,:); end;</span>
+<span class="comment">% COLS=COLS([4 1 2 3]);</span>
+
+mycolors = seaborn_colors;
+cols=[0.5921    0.6418    0.1935; 0.3127    0.6929    0.1924; 0.2031    0.6881    0.5178];
+<span class="keyword">for</span> c=1:length(cols); COLS{c}=cols(c,:); <span class="keyword">end</span>;
+<span class="comment">% kragel_colors=COLS([1 2 3]);</span>
+
+create_figure(<span class="string">'Barplot Model Similarity to Independent Dataset '</span>)
+barplot_columns([sex_kragel_pattern_expression,pos_kragel_pattern_expression,neg_kragel_pattern_expression],<span class="string">'dolines'</span>,<span class="string">'names'</span>,{<span class="string">'Sexual'</span>,<span class="string">'Positive'</span>,<span class="string">'Negative'</span>},<span class="string">'colors'</span>,COLS,<span class="string">'nofigure'</span>)
+ylabel(<span class="string">'Cosine similarity'</span>)
+</pre><pre class="codeoutput error">Index in position 1 exceeds array bounds (must not exceed 153594).
+
+Error in image_vector/resample_space (line 184)
+    if ~isempty(obj.p), obj_out.p = p(Vto.wh_inmask, :); end
+
+Error in image_vector/apply_mask (line 119)
+    mask = resample_space(mask, dat);
+
+Error in BASIC_result (line 189)
+sex_kragel_pattern_expression=apply_mask(sex_kragel,replace_empty(BASIC),'pattern_expression', 'cosine_similarity'); 
+</pre><h2 id="18">ROC plot</h2><pre class="codeinput">create_figure(<span class="string">'ROC plot independent dataset'</span>)
+
+ROC_sex_pos_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{6});
+ROC_sex_pos_kragel_single_interval = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'color'</span>,mycolors{2}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+
+ROC_sex_neg_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{3});
+ROC_sex_neg_kragel_single_interval = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'color'</span>,mycolors{4}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+
+plot([0 1],[0 1],<span class="string">'k'</span>,<span class="string">'linestyle'</span>,<span class="string">'-.'</span>)
+set(gca,<span class="string">'Fontsize'</span>,11)
+hl=findobj(gca,<span class="string">'type'</span>,<span class="string">'line'</span>);
+legend(hl([2 1]),{<span class="string">'Sex vs. Pos'</span> <span class="string">'Sex vs. Neg'</span>})
+</pre><h2 id="19">ROC plot for sex-pos both dependent and independent dataset</h2><pre class="codeinput">create_figure(<span class="string">'ROC plot sex-pos'</span>)
+colorcube_colors = colorcube_colors
+ROC_sex_pos_forced_choice = roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,colorcube_colors{54});
+ROC_sex_pos_single_interval= roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'color'</span>,colorcube_colors{56},<span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+ROC_sex_pos_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,colorcube_colors{30});
+ROC_sex_pos_kragel_single_interval = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'color'</span>,colorcube_colors{51}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+
+
+plot([0 1],[0 1],<span class="string">'k'</span>,<span class="string">'linestyle'</span>,<span class="string">'-.'</span>)
+set(gca,<span class="string">'Fontsize'</span>,22)
+</pre><h2 id="20">ROC plot for sex-neg both dependent and independent dataset</h2><pre class="codeinput">create_figure(<span class="string">'ROC plot sex-neg'</span>)
+</pre><h2 id="21">colors</h2><pre class="codeinput">ROC_sex_neg_forced_choice = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{23});
+
+ROC_sex_neg_single_interval = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],<span class="string">'color'</span>,mycolors{25}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+ROC_sex_neg_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'twochoice'</span>,<span class="string">'color'</span>,mycolors{41});
+ROC_sex_neg_kragel_single_interval = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],<span class="string">'color'</span>,mycolors{43}, <span class="string">'threshold_type'</span>, <span class="string">'Optimal balanced error rate'</span>);
+
+plot([0 1],[0 1],<span class="string">'k'</span>,<span class="string">'linestyle'</span>,<span class="string">'-.'</span>)
+set(gca,<span class="string">'Fontsize'</span>,22)
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Load data object
+DATA_OBJ = importdata(which('/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/sophie/results/FINAL FOR PAPER PUBLISH/svm sex-pnn/forced choice/data_objects.mat'))
+pos_stark = fmri_data(DATA_OBJ{1, 2});
+neg_stark = fmri_data(DATA_OBJ{1, 3});
+sex_stark = fmri_data(DATA_OBJ{1, 1});
+neu_stark = fmri_data(DATA_OBJ{1, 4});
+
+%% Load svm results
+
+svm_stats_results = importdata(which('/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/sophie/results/FINAL FOR PAPER PUBLISH/svm sex-pnn/forced choice/svm_stats_results_contrasts_masked.mat'));
+obj_sex_neu = svm_stats_results{1, 1}.weight_obj; 
+obj_sex_pos = svm_stats_results{1, 2}.weight_obj;
+obj_sex_neg = svm_stats_results{1, 3}.weight_obj;
+
+%% Treshold images
+% these weight maps are 0.05 unc by default
+obj_sex_neu_fdr_05 = threshold(obj_sex_neu, 0.05, 'fdr');
+
+obj_sex_pos_fdr_05 = threshold(obj_sex_pos, 0.05, 'fdr');
+
+obj_sex_neg_fdr_05 = threshold(obj_sex_neg, 0.05, 'fdr');
+
+
+%% Create image overlap three weight maps
+
+% unc 05
+create_figure('Weight map overlap 3 contrasts')
+color_sex_neu = [  0.8889    0.9444    0.4000];
+color_sex_pos = [   0.3492    0.6746    0.4000];
+color_sex_neg = [   0    0.5000    0.6000];
+my_display_obj = canlab_results_fmridisplay(obj_sex_neu, 'compact2', 'color', color_sex_neu, 'nooutline', 'trans');
+my_display_obj = addblobs(my_display_obj, region(obj_sex_pos), 'color', color_sex_pos, 'nooutline', 'trans');
+my_display_obj = addblobs(my_display_obj, region(obj_sex_neg), 'color', color_sex_neg, 'nooutline', 'trans');
+% legend({'Sex-Neu', 'Sex-Pos', 'Sex-Neg'}, 'Location','NorthEastOutside')
+drawnow, snapnow
+
+% fdr 05
+create_figure('Weight map overlap 3 contrasts')
+color_sex_neu = [  0.8889    0.9444    0.4000];
+color_sex_pos = [   0.3492    0.6746    0.4000];
+color_sex_neg = [   0    0.5000    0.6000];
+my_display_obj = canlab_results_fmridisplay(obj_sex_neu_fdr_05, 'compact2', 'color', color_sex_neu, 'nooutline', 'trans');
+my_display_obj = addblobs(my_display_obj, region(obj_sex_pos_fdr_05), 'color', color_sex_pos, 'nooutline', 'trans');
+my_display_obj = addblobs(my_display_obj, region(obj_sex_neg_fdr_05), 'color', color_sex_neg, 'nooutline', 'trans');
+% legend({'Sex-Neu', 'Sex-Pos', 'Sex-Neg'}, 'Location','NorthEastOutside')
+drawnow, snapnow
+%% Create weight map of overlap unc 05
+
+neu_pos = apply_mask(obj_sex_neu, obj_sex_pos);
+BASIC = apply_mask(neu_pos, obj_sex_neg);
+
+orthviews(BASIC)
+drawnow, snapnow
+create_figure('Overlap 3 SVM weight maps montage')
+axis('off')
+montage(BASIC)
+drawnow, snapnow
+%% table of results unc
+r_BASIC = region(BASIC);    
+keuken_atlas = load_atlas('keuken');
+ 
+schaefer_atlas = load_atlas('schaefer400' );
+shen_atlas = load_atlas('shen');
+glasser_atlas = load_atlas('glasser')
+
+%% Table of regions
+r_BASIC = subdivide_by_atlas(r_BASIC);
+ [rpos, rneg] = table(r_BASIC);       % add labels
+    r_BASIC = [rpos rneg];               % re-concatenate labeled regions
+drawnow, snapnow
+%% Table of regions with Glasser atlas
+      [r_BASIC, region_table, table_legend_text] = autolabel_regions_using_atlas(r_BASIC, glasser_atlas);
+      
+    [rpos, rneg] = table(r_BASIC);       % add labels
+    r_BASIC = [rpos rneg];               % re-concatenate labeled regions
+drawnow, snapnow
+
+%% Write BASIC to nifti
+fname = 'BASIC.nii';
+write(BASIC, 'fname', fname, 'overwrite');
+%% Visualization BASIC model
+
+create_figure('BASIC on surface')
+surface(BASIC);
+drawnow, snapnow
+
+create_figure('lateral surfaces');
+surface_handles = surface(BASIC, 'foursurfaces');
+
+render_on_surface(BASIC, surface_handles);
+drawnow, snapnow
+
+% full montage
+my_display_obj = canlab_results_fmridisplay([], 'montagetype', 'full');
+my_display_obj = addblobs(my_display_obj, region(BASIC));
+title('BASIC')
+drawnow, snapnow
+
+create_figure('Montage BASIC unc 05')
+axis off
+my_display_obj = canlab_results_fmridisplay([], 'montagetype', 'compact');
+my_display_obj = addblobs(my_display_obj, region(BASIC));
+drawnow, snapnow
+
+% 3d coronal slabs
+create_figure('cutaways')
+axis off
+surface_handles = surface(BASIC, 'coronal_slabs');
+drawnow, snapnow
+
+create_figure('cutaways')
+axis off
+surface_handles = surface(BASIC, 'coronal_slabs_4');
+drawnow, snapnow
+
+%% create movie
+% create_figure('lateral surfaces');
+% surface_handles = surface(BASIC);
+% 
+% % Then, choose movie option
+% % mov = movie_tools('rotate',270,30) % rotate
+%   mov = movie_tools('batch360.1'); % rotate 360
+% %  mov = movie_tools('zoom',.8,mov,1); % zooms out
+% 
+% %% Save video
+%   
+%    vid = VideoWriter('BASIC_unc05_maps', 'MPEG-4');
+%   open(vid)
+%   for i = 1:length(mov), writeVideo(vid, mov(i)); end
+%   close(vid)
+%% test SVM model Sex vs. Neutral on pos/neg/sex/neu affective images
+% [dist_from_hyperplane, Y, svm_dist_pos_neg, svm_dist_pos_neg_matrix] = plugin_svm_contrasts_get_results_per_subject(DAT, svm_stats_results, DATA_OBJ)
+    load('/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/sophie/MATLAB/MASTER_FOLDER_SEXUALBIOMARKER/results/Y.mat');
+
+
+pos_stark_pattern_expression=apply_mask(pos_stark,replace_empty(BASIC), logical(Y{1,1} > 0), 'pattern_expression', 'cosine_similarity');
+neg_stark_pattern_expression=apply_mask(neg_stark,replace_empty(BASIC), logical(Y{1,1} > 0), 'pattern_expression', 'cosine_similarity');
+sex_stark_pattern_expression=apply_mask(sex_stark,replace_empty(BASIC), logical(Y{1,1} > 0), 'pattern_expression', 'cosine_similarity');
+neu_stark_pattern_expression=apply_mask(neu_stark,replace_empty(BASIC), logical(Y{1,1} > 0), 'pattern_expression', 'cosine_similarity');
+
+%% All together in barplot
+mycolors = seaborn_colors;
+
+create_figure('Barplot Model Similarity to all conditions ')
+barplot_columns([sex_stark_pattern_expression,pos_stark_pattern_expression, neg_stark_pattern_expression, neu_stark_pattern_expression],'dolines','names',{'Sexual','Positive', 'Negative','Neutral'},'colors',mycolors,'nofigure')
+ylabel('Cosine Similarity')
+drawnow, snapnow
+
+%% ROC plot forced choice
+create_figure('ROC plot')
+ROC_sex_neu_forced_choice = roc_plot([sex_stark_pattern_expression; neu_stark_pattern_expression],[ones(97,1);zeros(97,1)],'twochoice','color',mycolors{1}, 'threshold_type', 'Optimal balanced error rate');
+ROC_sex_neu_single_interval = roc_plot([sex_stark_pattern_expression; neu_stark_pattern_expression],[ones(97,1);zeros(97,1)],'color',mycolors{1}, 'threshold_type', 'Optimal balanced error rate');
+
+ROC_sex_pos_forced_choice = roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],'twochoice','color',mycolors{2});
+ROC_sex_pos_single_interval= roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],'color',mycolors{2},'threshold_type', 'Optimal balanced error rate');
+
+ROC_sex_neg_forced_choice = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],'twochoice','color',mycolors{3});
+ROC_sex_neg_single_interval = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],'color',mycolors{3}, 'threshold_type', 'Optimal balanced error rate');
+
+%% Effect size
+
+% Effect size, cross-validated, paired samples
+dfun_paired = @(x, Y) mean(x(Y > 0) - x(Y < 0)) ./ std(x(Y > 0) - x(Y < 0))
+
+d_paired_sex_neu = dfun_paired(svm_stats_results{1, 1}.dist_from_hyperplane_xval, Y{1,1});
+    fprintf('Effect size sex-neu, cross-val: Forced choice: d = %3.2f\n\n', d_paired_sex_neu);
+
+    d_paired_sex_pos = dfun_paired(svm_stats_results{1, 2}.dist_from_hyperplane_xval, Y{1,2});
+    fprintf('Effect size sex-pos, cross-val: Forced choice: d = %3.2f\n\n', d_paired_sex_pos);
+    
+    d_paired_sex_neg = dfun_paired(svm_stats_results{1, 3}.dist_from_hyperplane_xval, Y{1,3});
+    fprintf('Effect size sex-neg, cross-val: Forced choice: d = %3.2f\n\n', d_paired_sex_neg);
+
+    
+
+%% Compare to Phil's independent dataset
+
+% Load images
+    
+    sex_kragel=fmri_data('/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/neuroimaging data/IAPS_firstlevel_contrasts_sexual_positive_negative/IAPS_n18_sexual.nii');
+    pos_kragel=fmri_data('/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/neuroimaging data/IAPS_firstlevel_contrasts_sexual_positive_negative/IAPS_n18_positive.nii');
+    neg_kragel=fmri_data('/Users/sophievanthof/Dropbox (Dartmouth College)/Cooperation Valencespace/neuroimaging data/IAPS_firstlevel_contrasts_sexual_positive_negative/IAPS_n18_negative.nii');
+
+
+%% test SVM model Sex vs. Neutral on sex/pos/neg IAPS data
+% BASIC.p=[];
+% BASIC.ste=[];
+% BASIC.sig=[];
+sex_kragel_pattern_expression=apply_mask(sex_kragel,replace_empty(BASIC),'pattern_expression', 'cosine_similarity'); 
+pos_kragel_pattern_expression=apply_mask(pos_kragel,replace_empty(BASIC),'pattern_expression', 'cosine_similarity');
+neg_kragel_pattern_expression=apply_mask(neg_kragel,replace_empty(BASIC),'pattern_expression', 'cosine_similarity');
+
+% cols=[0 114 198;217 84 26; 237 177 32; 114 14 138]./255;
+% for c=1:length(cols); COLS{c}=cols(c,:); end; 
+% COLS=COLS([4 1 2 3]);
+
+mycolors = seaborn_colors;
+cols=[0.5921    0.6418    0.1935; 0.3127    0.6929    0.1924; 0.2031    0.6881    0.5178];
+for c=1:length(cols); COLS{c}=cols(c,:); end; 
+% kragel_colors=COLS([1 2 3]);
+
+create_figure('Barplot Model Similarity to Independent Dataset ')
+barplot_columns([sex_kragel_pattern_expression,pos_kragel_pattern_expression,neg_kragel_pattern_expression],'dolines','names',{'Sexual','Positive','Negative'},'colors',COLS,'nofigure')
+ylabel('Cosine similarity')
+
+%% ROC plot
+create_figure('ROC plot independent dataset')
+
+ROC_sex_pos_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'twochoice','color',mycolors{6});
+ROC_sex_pos_kragel_single_interval = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'color',mycolors{2}, 'threshold_type', 'Optimal balanced error rate');
+
+ROC_sex_neg_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'twochoice','color',mycolors{3});
+ROC_sex_neg_kragel_single_interval = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'color',mycolors{4}, 'threshold_type', 'Optimal balanced error rate');
+
+plot([0 1],[0 1],'k','linestyle','-.')
+set(gca,'Fontsize',11)
+hl=findobj(gca,'type','line');
+legend(hl([2 1]),{'Sex vs. Pos' 'Sex vs. Neg'})
+
+%% ROC plot for sex-pos both dependent and independent dataset
+create_figure('ROC plot sex-pos')
+colorcube_colors = colorcube_colors
+ROC_sex_pos_forced_choice = roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],'twochoice','color',colorcube_colors{54});
+ROC_sex_pos_single_interval= roc_plot([sex_stark_pattern_expression; pos_stark_pattern_expression],[ones(97,1);zeros(97,1)],'color',colorcube_colors{56},'threshold_type', 'Optimal balanced error rate');
+ROC_sex_pos_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'twochoice','color',colorcube_colors{30});
+ROC_sex_pos_kragel_single_interval = roc_plot([sex_kragel_pattern_expression; pos_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'color',colorcube_colors{51}, 'threshold_type', 'Optimal balanced error rate');
+
+
+plot([0 1],[0 1],'k','linestyle','-.')
+set(gca,'Fontsize',22)
+
+%% ROC plot for sex-neg both dependent and independent dataset
+create_figure('ROC plot sex-neg')
+
+%% colors
+
+ROC_sex_neg_forced_choice = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],'twochoice','color',mycolors{23});
+
+ROC_sex_neg_single_interval = roc_plot([sex_stark_pattern_expression; neg_stark_pattern_expression],[ones(97,1);zeros(97,1)],'color',mycolors{25}, 'threshold_type', 'Optimal balanced error rate');
+ROC_sex_neg_kragel_forced_choice = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'twochoice','color',mycolors{41});
+ROC_sex_neg_kragel_single_interval = roc_plot([sex_kragel_pattern_expression;neg_kragel_pattern_expression],[ones(18,1);zeros(18,1)],'color',mycolors{43}, 'threshold_type', 'Optimal balanced error rate');
+
+plot([0 1],[0 1],'k','linestyle','-.')
+set(gca,'Fontsize',22)
+
+##### SOURCE END #####
+--></body></html>
