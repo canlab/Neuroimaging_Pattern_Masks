@@ -59,7 +59,7 @@
 %    [out1,out2] = func_call(param1, param2)
 %
 % :References:
-%   Ceko et al. 2021 (working paper). Marta Ceko and Tor Wager.
+%   Ceko et al. 2022 Nat Neurosci. Marta Ceko and Tor Wager.
 %
 % :See also:
 %   - apply_all_signatures.m, apply_nps.m, apply_siips.m
