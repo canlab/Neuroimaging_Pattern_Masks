@@ -50,6 +50,7 @@ function [siips_values, image_names, data_objects, siipspos_exp_by_region, siips
 %                       Note:Similarity metric passed through to canlab_pattern_similarity
 % 'cosine_similarity'   Use cosine similarity measure instead of dot product
 % 'correlation'         Use correlation measure instead of dot product
+% 'donorm'              L1 norm the pattern expression for all regions
 
 % Outputs:
 % -------------------------------------------------------------------------
@@ -118,6 +119,7 @@ function [siips_values, image_names, data_objects, siipspos_exp_by_region, siips
 verbose = 1;
 verbosestr = 'verbose';
 dotables = 1;
+normstr='nonorm'; % default is No L1 Norm
 mask = which('nonnoc_v11_4_137subjmap_weighted_mean.nii');
 
 if nargout > 3
@@ -142,7 +144,9 @@ for i = 1:length(varargin)
             
             case 'noverbose', verbose = 0; verbosestr = 'noverbose'; dotables = 0;
             case 'notables', dotables = 0;
-                
+            case 'donorm', normstr='donorm';
+            case 'nonorm', normstr='nonorm';
+
             case {'cosine_similarity', 'correlation'}
                 % do nothing here - these will be passed in to apply_mask
                 % and applied in that function.
@@ -243,9 +247,9 @@ for i = 1:length(data_objects)
         % no norm so that we preserve relative contributions to whole
         
         % Similarity metric passed in, passed through to canlab_pattern_similarity
-        clpos = extract_roi_averages(data_objects{i}, siipspos, 'pattern_expression', 'contiguous_regions', 'nonorm', verbosestr, varargin{:});
-        clneg = extract_roi_averages(data_objects{i}, siipsneg, 'pattern_expression', 'contiguous_regions', 'nonorm', verbosestr, varargin{:});
-        
+        clpos = extract_roi_averages(data_objects{i}, siipspos, 'pattern_expression', 'contiguous_regions', normstr, verbosestr, varargin{:});
+        clneg = extract_roi_averages(data_objects{i}, siipsneg, 'pattern_expression', 'contiguous_regions', normstr, verbosestr, varargin{:});
+
         % add names
         for j = 1:length(clpos)
             
