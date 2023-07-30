@@ -1,12 +1,21 @@
 These spectral basis functions were generated for instructional purposes during
-the journal club discussion of Pang et al. (2023) Nature. The provide spatial
+the journal club discussion of Pang et al. (2023) Nature. They provide spatial
 harmonics of cortical and subcortical structures of the hcp 91k midthickness
-surfaces and 2mm subcortical volumes. Surface harmonics were generated using
-spharapy with inverse euclidean distance edge weights. Pang et al. used finite
-element methods. See the spharapy docs for theoretical considerations related
-to this choice.
+surfaces and 2mm subcortical volumes. The specific surface meshes used are 
+available in the hcp_utils repo,
+
+https://github.com/rmldj/hcp-utils/blob/master/hcp_utils/data/S1200.L.midthickness_MSMAll.32k_fs_LR.surf.gii
+https://github.com/rmldj/hcp-utils/blob/master/hcp_utils/data/S1200.R.midthickness_MSMAll.32k_fs_LR.surf.gii
+
+Surface harmonics were generated using spharapy with inverse euclidean 
+distance edge weights. Pang et al. used finite element methods. See the 
+spharapy docs for theoretical considerations related to this choice.
 
 https://spharapy.readthedocs.io/en/latest/
+
+Inverse euclidean distance was used because it's easier to implement manually
+and for subcortical harmonics I had to manually construct adjacency matrices,
+including manual computation of a distance metric.
 
 Subcortical basis functions were generated using a manually generated adjacency
 representation of subcortical structures. Each voxel defines a node, and all
@@ -14,6 +23,11 @@ voxels are connected to any voxel with which they share a surface, edge or
 corner, so called 26-connectivity. Edge weights are also inverse euclidean 
 distance. This was implemented manually using networkx in python. The graph
 laplacian was then computed manally and its eigenfunctions were used to define
-the eigenmodes of subcortical structures.
+the eigenmodes of subcortical structures. Alternative graph representations
+include 6 and 18-connectivity as well as tetrahedral representations like those
+used by Pang et al. (2023) Nature. It's unclear which is best, but Pang offers
+a method of evaluating spectral representations in terms of functional gradients
+which could be used as an objective criteria to select one representation over
+another. I have not explored this.
 
 Bogdan 7/30/23
