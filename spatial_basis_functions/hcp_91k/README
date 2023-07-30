@@ -30,4 +30,22 @@ a method of evaluating spectral representations in terms of functional gradients
 which could be used as an objective criteria to select one representation over
 another. I have not explored this.
 
+:: Visualization ::
+
+cifti visualization is best done using connectome workbench which you can get here:
+	https://www.humanconnectome.org/software/get-connectome-workbench
+Data files and surface models are stored separately for cifti files. There's no structure in my dsalar.nii 
+file for instance. It can be visualized on any surface model you like (although, note that it only represents
+the spatial bases of a specific surface, see above). Sometimes it's helpful to visualize things on an inflated 
+surface to be able to get a better view into sulci. So in order to visualize any data in connectome workbench 
+you also need the surface mesh models to which your data maps. I've found the hcp_utils git repo helpful for 
+this.
+
+Also if you need other parcellations in this space I've found this git repo helpful:
+	https://github.com/DiedrichsenLab/fs_LR_32
+That includes the glasser atlas (as does the HCP repo, they call it MMP), but also several other surface atlases that may
+be of use. If you need the canlab2018_2mm atlas (glasser + subcortical) it's available in this repo.
+
+
+
 Bogdan 7/30/23
