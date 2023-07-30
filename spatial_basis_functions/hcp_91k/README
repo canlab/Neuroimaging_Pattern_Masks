@@ -1,0 +1,19 @@
+These spectral basis functions were generated for instructional purposes during
+the journal club discussion of Pang et al. (2023) Nature. The provide spatial
+harmonics of cortical and subcortical structures of the hcp 91k midthickness
+surfaces and 2mm subcortical volumes. Surface harmonics were generated using
+spharapy with inverse euclidean distance edge weights. Pang et al. used finite
+element methods. See the spharapy docs for theoretical considerations related
+to this choice.
+
+https://spharapy.readthedocs.io/en/latest/
+
+Subcortical basis functions were generated using a manually generated adjacency
+representation of subcortical structures. Each voxel defines a node, and all
+voxels are connected to any voxel with which they share a surface, edge or
+corner, so called 26-connectivity. Edge weights are also inverse euclidean 
+distance. This was implemented manually using networkx in python. The graph
+laplacian was then computed manally and its eigenfunctions were used to define
+the eigenmodes of subcortical structures.
+
+Bogdan 7/30/23
