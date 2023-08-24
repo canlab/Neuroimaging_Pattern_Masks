@@ -1,0 +1,51 @@
+These spectral basis functions were generated for instructional purposes during
+the journal club discussion of Pang et al. (2023) Nature. They provide spatial
+harmonics of cortical and subcortical structures of the hcp 91k midthickness
+surfaces and 2mm subcortical volumes. The specific surface meshes used are 
+available in the hcp_utils repo,
+
+https://github.com/rmldj/hcp-utils/blob/master/hcp_utils/data/S1200.L.midthickness_MSMAll.32k_fs_LR.surf.gii
+https://github.com/rmldj/hcp-utils/blob/master/hcp_utils/data/S1200.R.midthickness_MSMAll.32k_fs_LR.surf.gii
+
+Surface harmonics were generated using spharapy with inverse euclidean 
+distance edge weights. Pang et al. used finite element methods. See the 
+spharapy docs for theoretical considerations related to this choice.
+
+https://spharapy.readthedocs.io/en/latest/
+
+Inverse euclidean distance was used because it's easier to implement manually
+and for subcortical harmonics I had to manually construct adjacency matrices,
+including manual computation of a distance metric.
+
+Subcortical basis functions were generated using a manually generated adjacency
+representation of subcortical structures. Each voxel defines a node, and all
+voxels are connected to any voxel with which they share a surface, edge or
+corner, so called 26-connectivity. Edge weights are also inverse euclidean 
+distance. This was implemented manually using networkx in python. The graph
+laplacian was then computed manally and its eigenfunctions were used to define
+the eigenmodes of subcortical structures. Alternative graph representations
+include 6 and 18-connectivity as well as tetrahedral representations like those
+used by Pang et al. (2023) Nature. It's unclear which is best, but Pang offers
+a method of evaluating spectral representations in terms of functional gradients
+which could be used as an objective criteria to select one representation over
+another. I have not explored this.
+
+:: Visualization ::
+
+cifti visualization is best done using connectome workbench which you can get here:
+	https://www.humanconnectome.org/software/get-connectome-workbench
+Data files and surface models are stored separately for cifti files. There's no structure in my dsalar.nii 
+file for instance. It can be visualized on any surface model you like (although, note that it only represents
+the spatial bases of a specific surface, see above). Sometimes it's helpful to visualize things on an inflated 
+surface to be able to get a better view into sulci. So in order to visualize any data in connectome workbench 
+you also need the surface mesh models to which your data maps. I've found the hcp_utils git repo helpful for 
+this.
+
+Also if you need other parcellations in this space I've found this git repo helpful:
+	https://github.com/DiedrichsenLab/fs_LR_32
+That includes the glasser atlas (as does the HCP repo, they call it MMP), but also several other surface atlases that may
+be of use. If you need the canlab2018_2mm atlas (glasser + subcortical) it's available in this repo.
+
+
+
+Bogdan 7/30/23
