@@ -316,7 +316,8 @@ end
 
 reordered_canlab.references = unique(reordered_canlab.references,'rows');
 reordered_canlab.atlas_name = 'CANlab_2023_combined';
-reordered_canlab.fullpath = 'canlab_2023_2mm.nii.gz';
+reordered_canlab.fullpath = 'canlab_2023_2mm.nii';
 reordered_canlab.write();
+system('gzip canlab_2023_2mm.nii')
 
 save('canlab_2023_2mm.mat','reordered_canlab');
