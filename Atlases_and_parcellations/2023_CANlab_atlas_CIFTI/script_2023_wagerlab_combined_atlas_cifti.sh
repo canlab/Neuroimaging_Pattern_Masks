@@ -43,3 +43,12 @@ cat <<END >> atlas_config.json
 }
 END
 
+rm -f canlab_2023_2mm_labels.txt 
+
+# this is used during the matlab scripts execution and are no longer needed
+rm -f lctx_labels.txt rctx_labels.txt
+
+source /optnfs/common/miniconda3/etc/profile.d/conda.sh
+conda activate pain_hyperalignment
+
+./zero_sform.py
