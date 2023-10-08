@@ -4,6 +4,8 @@ function atlas = lateralize(atlas)
     % Assumes all areas are bilateral
     % Assuming R=x+ orientation
 
+    atlas = atlas.replace_empty();
+
     % make values lateralized
     xyz = atlas.volInfo.mat*[atlas.volInfo.xyzlist'; ones(1,length(atlas.volInfo.xyzlist))];
     atlas.dat(xyz(1,:)' > 0 & atlas.dat ~= 0) = atlas.dat(xyz(1,:)' > 0 & atlas.dat ~= 0) + length(atlas.labels);
