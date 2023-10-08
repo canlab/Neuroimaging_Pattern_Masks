@@ -11,7 +11,7 @@ wb_command -cifti-create-label canlab_2023_2mm.dlabel.nii \
 cat <<END > atlas_config.json
 {
   "canlab2023": {
-    "file": "canlab_2023_2mm.nii.gz",
+    "file": "canlab_2023_MNI152NLin2009cAsym_1mm_lps.nii.gz",
     "node_names": [
 END
 

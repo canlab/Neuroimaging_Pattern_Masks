@@ -1,6 +1,6 @@
 {
   "canlab2023": {
-    "file": "canlab_2023_2mm.nii.gz",
+    "file": "canlab_2023_MNI152NLin2009cAsym_1mm_lps.nii.gz",
     "node_names": [
       "L_V1_ROI",
       "L_MST_ROI",
