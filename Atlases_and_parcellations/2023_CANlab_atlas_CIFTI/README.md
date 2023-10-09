@@ -24,7 +24,7 @@ same way and indexed by the same values using the same labels.
 ## Canlab 2023 vs. Canlab 2018
 
 * 2023 has more lateralized structures. Except for some ambiguous ones (e.g. thalamic midline), most structures that were previously bilateral (hippocampus, amygdala, subiculum, all thalamic structures, etc.) have been split into left and right lateralized regions
-* 2023 omits white matter structures. In particular some cerebellar structures that do not overlap meaningfully with grayordinate space were removed
+* 2023 omits white matter structures. In particular some cerebellar structures that do not overlap meaningfully with grayordinate space were removed. This ensures consistency across grayordinate and volumetric atlas versions.
 * 2023 was designed for use with qsirecon in mind, and includes example configuration files
 
 ## QSIPrep use
