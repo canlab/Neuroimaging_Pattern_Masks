@@ -32,7 +32,7 @@ same way and indexed by the same values using the same labels.
 QSIprep allows for use of custom atlases. To make use of these you need to pass the atlas directory and the atlas_config.json file in during the QSIprep run. If running qsiprep in a singularity container you do this by mounting this folder at a particular location within the virtual environment by using the --bind <full_atlas_directory_path>:/atlas/qsirecon_atlases. For use without a singularity container refer to the QSIprep docs,
 https://qsiprep.readthedocs.io/en/latest/reconstruction.html
 
-For the most basic usage (e.g. you only want to use the canlab2023 atlas in your qsirecon pipelines, and no other atlases) you can simply mount this directory in your singularity container and it should work out of the box. You will only need to create your own container if you wish to combine multiple atlases into a single reconstruction workflow. In the latter case you will need the stock qsiprep atlases presumably. They're linked to in the qsiprep docs, but for your convenience they can be found here,
+For the most basic usage (e.g. you only want to use the canlab2023 atlas in your qsirecon pipelines, and no other atlases) you can simply mount this directory in your singularity container and it should work out of the box. You will only need to create your own custom atlases folder and merge atlas_config.json with the stock atlas_config.json file if you wish to combine multiple atlases into a single reconstruction workflow. In the latter case you will need the stock qsiprep files. They're linked to in the qsiprep docs, but for your convenience they can be found here,
 https://upenn.box.com/shared/static/8k17yt2rfeqm3emzol5sa0j9fh3dhs0i.xz
 
 ## Developer notes
