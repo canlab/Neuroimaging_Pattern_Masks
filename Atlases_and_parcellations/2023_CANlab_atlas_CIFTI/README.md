@@ -4,9 +4,11 @@ This directory contains an updated version of the canlab2018 atlas that is desig
 There equivalent atlases are provided, which differ in format but identify identical regions ordered in the
 same way and indexed by the same values using the same labels.
 
+1) 2mm volumetric
 * canlab_2023_2mm.mat    - a drop in replacement for the workhorse canlab2018 atlas. Contains a canlabCore/@atlas object
 * canlab_2023_2mm.nii.gz - same as the above, except in nifti format (no metadata)
 
+2) 1mm volumetric
 * canlab_2023_1mm.mat    - a higher resolution version of the above. The former were generated from this by downsampling.
                            This also forms the basis of the QSIprep compatable atlas, and therefore is in LPS+ orientation,
                            while the 2mm versions are in the LAS+ orientation which seems more common in this repo.
@@ -15,6 +17,7 @@ same way and indexed by the same values using the same labels.
                            is compatable with qsirecon
 * atlas_config.json      - qsirecon atlas config file.
 
+3) 2mm grayordinate
 * canlab_2023_2mm.dlable.nii
                          - CIFTI version of the above atlases.
 
