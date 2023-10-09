@@ -1,6 +1,6 @@
 ## Overview
 
-This directory contains an updated version of the canlab2018 atlas that is designed to be more general purpose.
+This directory contains an updated version of the canlab2018 (aka 2018_Wager_combined) atlas that is designed to be more general purpose.
 Three equivalent atlases are provided, which differ in format but identify identical regions ordered in the
 same way and indexed by the same values using the same labels.
 
