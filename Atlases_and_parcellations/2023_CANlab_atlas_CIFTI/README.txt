@@ -3,10 +3,8 @@ script_2023_wagerlab_combined_atlas_prep.sh should be run before matlab or other
 script_2023_wagerlab_combined_atlas_cifti.m will produce subcortical volumetric structures and two nifti 
 atlases to accompany the subsequently generated CIFTI atlas. The parcel labels and order of the nifti atlases
 will match the cifti atlas, unlike canlab2018. Some canlab2018 regions will be missing though due to
-the way subcortical structures are segmented in grayordinate space. Coincidentally, the total number of regions
-remains unchanged, but don't get the wrong idea. The addition of bilateralized regions in some cases compensates
-for the ommision of regions outside the grayordinate boundaries in others. One cifti atlas will be 1mm, the other
-will be 2mm.
+the way subcortical structures are segmented in grayordinate space, while others will have been split into left
+and right side structures. One cifti atlas will be 1mm, the other will be 2mm.
 
 script_2013_wagerlab_combined_atlas_cifti.sh does three things,
 1) produces the cifti dlabel file using Diedrichsen's version of the Glasser atlas. The subcortical structures
@@ -34,3 +32,14 @@ files are designed for use with qsirecon, which requires right-left, anterior-po
 orientation. See here,
 https://qsiprep.readthedocs.io/en/latest/reconstruction.html
 Most software should handle this under the hood, but be aware all the same in case you get funny results when using these.
+
+
+
+** QSIPREP usage nodes **
+If you wish to use this atlas as a source for tractography targets you can pass it to qsiprep's singularity container
+using the --custom-atlases <path> option. Specify this folder as the path. If you wish to use multiple atlases in
+addition to this one during reconstruction you will need to create your own atlas_config.json file by combining this
+file with equivalent files for other atlases, for instance the default atlas_config.json file used by qsiprep, and
+put that new file along with all related nifti files in a new folder that you pass in instead. It should be straight-
+forward. See here for details: https://qsiprep.readthedocs.io/en/latest/reconstruction.html But if you only wish to
+use this atlas it's trivially simple to just pass this folder in during your qsiprep singularity container invocation.

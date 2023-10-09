@@ -160,8 +160,7 @@ cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti
 
 % Add in smaller areas we don't want to dilute: mammilary nucleus and habenula
 atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref);
-wh_regions = {'Haben' 'Mamm_Nuc'};
-atlas_obj = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels, wh_regions)));
+wh_regions = {'Haben' 'Mamm_Nuc','Hythal'};
 
 % lateralize habenula and mammillary bodies
 
@@ -170,7 +169,14 @@ atlas_obj = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,wh_regi
 % make values lateralized
 atlas_obj = lateralize(atlas_obj);
 
-atlas_obj = merge_atlases(atlas_obj, load(thalamusfile).thalamus_atlas, 'noreplace');
+% we lateralize some areas and exclude others, like Hb, because we already
+% have habenula from the CIT atlas
+thal_atlas = load(thalamusfile).thalamus_atlas;
+lat_thal = lateralize(thal_atlas.select_atlas_subset(find(~ismember(thal_atlas.labels,{'Midline','Hb','Hythal'}))));
+bilat_thal = thal_atlas.select_atlas_subset(find(ismember(thal_atlas.labels,'Midline')));
+thal_atlas = lat_thal.merge_atlases(bilat_thal);
+
+atlas_obj = merge_atlases(atlas_obj, thal_atlas, 'noreplace');
 
 % Add labels to make more consistent with other atlases
 for i = 5:length(atlas_obj.labels)
@@ -198,6 +204,8 @@ thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_L')} = 'Haben_L';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_R')} = 'Haben_R';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Mamm_Nuc_L')} = 'Mamm_Nuc_L';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Mamm_Nuc_R')} = 'Mamm_Nuc_R';
+thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Hythal_L')} = 'Hythal_L';
+thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Hythal_R')} = 'Hythal_R';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Dorsal_raphe_DR')} = 'Dorsal_raphe_DR';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Median_raphe_MR_R')} = 'Median_raphe_MR_R';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'PBP_L')} = 'PBP_L';
@@ -340,13 +348,14 @@ reordered_canlab.labels_4 = {};
 reordered_canlab.labels_5 = {};
 
 for i = 1:length(reordered_canlab.labels)
-    if ~contains(reordered_canlab.labels{i}, {'Hippocampus','Amygdala','Subiculum','Haben','Mamm_Nuc','BST_SLEA'})
+    if ~contains(reordered_canlab.labels{i}, {'Hippocampus','Amygdala','Subiculum','Haben','Mamm_Nuc','BST_SLEA','Hythal','Thal'})
         ind2018 = find(ismember(canlab.labels, reordered_canlab.labels{i}));
+        if isempty(ind2018), ind2018 = find(ismember(canlab.labels, strrep(reordered_canlab.labels{i},'Bstem_',''))); end
         for fname = {'label_descriptions','labels_2','labels_3'}
             reordered_canlab.(fname{1}){end+1} = canlab.(fname{1}){ind2018};
         end
     else
-        % deal with the hippocampi and amygdalae
+        % deal with lateralized structures
         ind2018 = find(contains(canlab.labels, reordered_canlab.labels{i}(1:end-2)));
         for fname = {'label_descriptions','labels_2','labels_3'}
             reordered_canlab.(fname{1}){end+1} = canlab.(fname{1}){ind2018};
