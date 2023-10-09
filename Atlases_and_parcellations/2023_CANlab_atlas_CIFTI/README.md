@@ -64,3 +64,6 @@ https://rmldj.github.io/hcp-utils/
 
 The differing orientations of 2mm and 1mm files are a consequence of the fact that the 2mm grayordinate files were derived from HCP data, which is in LAS+ orientation, while the 1mm files were designed for use with qsiprep which requires LPS+ orietnation. Most software should handle this under the hood, but be aware all the same in case you get funny results when using these. If you want to query the orientation you can use fslhd. LPS+ orientation should result in left-right, anterior-posterior and inferior-superior designations for the x y and z axes, respectively.
 
+##
+Bogdan Petre
+10/8/2023
