@@ -6,6 +6,7 @@ same way and indexed by the same values using the same labels.
 
 * canlab_2023_2mm.mat    - a drop in replacement for the workhorse canlab2018 atlas. Contains a canlabCore/@atlas object
 * canlab_2023_2mm.nii.gz - same as the above, except in nifti format (no metadata)
+
 * canlab_2023_1mm.mat    - a higher resolution version of the above. The former were generated from this by downsampling.
                            This also forms the basis of the QSIprep compatable atlas, and therefore is in LPS+ orientation,
                            while the 2mm versions are in the LAS+ orientation which seems more common in this repo.
@@ -13,6 +14,7 @@ same way and indexed by the same values using the same labels.
                          - same as the above, but nifti format (no metadata), and stripped of sform data too. This version
                            is compatable with qsirecon
 * atlas_config.json      - qsirecon atlas config file.
+
 * canlab_2023_2mm.dlable.nii
                          - CIFTI version of the above atlases.
 
