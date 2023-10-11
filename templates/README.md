@@ -10,9 +10,12 @@ The Montreal Neurological Institute originally created their standard space
 coordinates for use with MNI305, which was the result of linearly coregistering
 305 individuals to 241 brains that had been coregistered to the Taliarch atlas.
 Subsequent refinements have been made, resulting in a variety of standard
-spaces that all use MNI coordinates. Differences between templates are 
-generally small, but might be important for achieving voxel level precision in 
-various special cases.
+spaces that all use MNI coordinates but differ in their particular geometry due
+to differences in registration approaches and subject samples used. Differences 
+between templates are generally small, and likely don't matter if you're doing
+traditional fMRI analysis with low resolution acquistions and spatial smoothing
+but might be important for achieving voxel level precision in various more
+exacting applications.
 
 For a helpful discussion on templates you can refer here,
 https://www.lead-dbs.org/about-the-mni-spaces/
