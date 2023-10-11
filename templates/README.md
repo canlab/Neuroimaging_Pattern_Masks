@@ -41,7 +41,7 @@ MNI152NLin6ASym_T1_2mm.nii.gz
 ### FSL
 
 As of the time of this writing FSL uses the same template as HCP above. You can
-confirm by verifying that <FSLROOT>/data/standard/MNI152_T1_2mm.nii.gz is 
+confirm by verifying that \<FSLROOT\>/data/standard/MNI152_T1_2mm.nii.gz is 
 identical to MNI152NLin6ASym_T1_2mm.nii.gz if in doubt with future releases of
 FSL.
 
