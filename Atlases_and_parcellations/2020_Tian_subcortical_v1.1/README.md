@@ -28,6 +28,9 @@ This aligns all data to the MNI152NLin2009cAsym reference space. To use this atl
 use the Tian_3T_S4_2mm_fmriprep20 segmentation, and use the appropriate underlay
 for visualization. Please see the "templates" folder of this repo for more details.
 
+Note: fmriprep20 refers to version 20 of fmriprep, which as of this writing is the 
+most recent "long term release" of this software. fsl6 likewise refers to fsl version 6.
+
 ## 
 
 Bogdan Petre <br />
