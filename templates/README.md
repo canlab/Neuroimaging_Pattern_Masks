@@ -63,7 +63,7 @@ And to ensure consistency with the fMRIPrep repo I've pulled a copy from the Tem
 
 https://www.templateflow.org/browse/
 
-QSIprep doesn't document it's defaults in as explicit a form, but there are repeated references throughout to this being its default template, and most importantly for this repo, this is the default template that atlases need to be registered to.
+QSIprep doesn't document it's defaults in as explicit a form, but there are repeated references throughout to this being its default template, and most importantly for this repo, this is the default template that atlases need to be registered to for use in qsiprep.
 
 The source file is called, <br />
 MNI152NLin2009CAsym_T1_1mm.nii.gz
