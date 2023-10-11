@@ -37,7 +37,10 @@ MNI152NLin6ASym_T1_2mm.nii.gz
 
 ### FSL
 
-As of the time of this writing FSL uses the same template as HCP above
+As of the time of this writing FSL uses the same template as HCP above. You can
+confirm by verifying that <FSLROOT>/data/standard/MNI152_T1_2mm.nii.gz is 
+identical to MNI152NLin6ASym_T1_2mm.nii.gz if in doubt with future releases of
+FSL.
 
 ### fMRIPrep (and QSIPrep)
 fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what the HCP template, and newer than what SPM or FSL use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
