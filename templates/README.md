@@ -45,6 +45,15 @@ confirm by verifying that \<FSLROOT\>/data/standard/MNI152_T1_2mm.nii.gz is
 identical to MNI152NLin6ASym_T1_2mm.nii.gz if in doubt with future releases of
 FSL.
 
+### SPM 12
+SPM uses the MNI152 linear template with some slight modifications. It is 
+distributed with spm12 and is available from canonical/avg152T1.nii, but is 
+provided again here for convenience for non SPM users that are working with 
+SPM derivatives. 
+
+Source file is called, <br />
+IXI549Space_T1_2mm.nii.gz
+
 ### fMRIPrep (and QSIPrep)
 fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what FSL or SPM use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
 
@@ -58,15 +67,6 @@ QSIprep doesn't document it's defaults in as explicit a form, but there are repe
 
 The source file is called, <br />
 MNI152NLin2009CAsym_T1_1mm.nii.gz
-
-### SPM 12
-SPM uses the MNI152 linear template with some slight modifications. It is 
-distributed with spm12 and is available from canonical/avg152T1.nii, but is 
-provided again here for convenience for non SPM users that are working with 
-SPM derivatives. 
-
-Source file is called, <br />
-IXI549Space_T1_2mm.nii.gz
 
 ##
 Bogdan Petre 10/10/23
