@@ -34,7 +34,7 @@ filename, similar to those already included. If you need it spelled out,
 HCP uses the assymetric version of the MNI152 nonlinear 6th generation template, aka MNI152NLin6ASym. This is different from the official atlas. Rather than the MNI, HCP templates can be obtained from 
 https://github.com/Washington-University/HCPpipelines/tree/master/global/templates
 
-Source files are called,
+Source files are called, <br />
 MNI152NLin6ASym_T1_1mm.nii.gz <br />
 MNI152NLin6ASym_T1_2mm.nii.gz
 
@@ -56,7 +56,7 @@ https://www.templateflow.org/browse/
 
 QSIprep doesn't document it's defaults in as explicit a form, but there are repeated references throughout to this being it's default template, and most importantly for this repo, this is the default template that atlases need to be registered to.
 
-The source file is called,
+The source file is called, <br />
 MNI152NLin2009CAsym_T1_1mm.nii.gz
 
 ### SPM 12
@@ -65,5 +65,5 @@ distributed with spm12 and is available from canonical/avg152T1.nii, but is
 provided again here for convenience for non SPM users that are working with 
 SPM derivatives. 
 
-Source file is called,
+Source file is called, <br />
 IXI549Space_T1_2mm.nii.gz
