@@ -35,7 +35,7 @@ HCP uses the assymetric version of the MNI152 nonlinear 6th generation template,
 https://github.com/Washington-University/HCPpipelines/tree/master/global/templates
 
 Source files are called,
-MNI152NLin6ASym_T1_1mm.nii.gz \\
+MNI152NLin6ASym_T1_1mm.nii.gz \
 MNI152NLin6ASym_T1_2mm.nii.gz
 
 ### FSL
