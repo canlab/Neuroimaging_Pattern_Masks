@@ -26,7 +26,7 @@ Add any you find useful here, with comments in this document regarding when to u
 The reference template, spatial resolution and imaging modality should be clear from the
 filename, similar to those already included. If you need it spelled out,
 
-<ref_space>_<modality>_<resolution>.<extension>
+\<ref_space\>_\<modality\>_\<resolution\>.\<extension\>
 
 ## Templates
 
