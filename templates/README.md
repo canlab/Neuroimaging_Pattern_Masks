@@ -46,11 +46,11 @@ identical to MNI152NLin6ASym_T1_2mm.nii.gz if in doubt with future releases of
 FSL.
 
 ### fMRIPrep (and QSIPrep)
-fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what the HCP template, and newer than what SPM or FSL use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
+fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what FSL or SPM use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
 
 https://fmriprep.org/en/stable/spaces.html#standard-spaces
 
-And to ensure consistency with the fMRIPrep repo I've pulled a copy from the TemplateFlow repository linked to above, via this page, 
+And to ensure consistency with the fMRIPrep repo I've pulled a copy from the TemplateFlow repository linked to in the fmriprep docs above, via this page,
 
 https://www.templateflow.org/browse/
 
