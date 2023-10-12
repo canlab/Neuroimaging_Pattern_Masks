@@ -8,7 +8,7 @@ Group-Parcellation files were copied here for posterity, but the main contributi
 this repo is the contribution of canlabCore atlas objects.
 
 This atlas was generated in a hierarchical fashion with finer and finer parcellations
-at each hierarchy until a natural stopping condition in the parcellation algorithm
+at each level until a natural stopping condition in the parcellation algorithm
 was reached (see Tian et al \[2020\] Nat Neuro for details). Different parcellations
 are indicated by the "scale", and there are 4. Furthermore, This atlas is provided 
 registered to two different reference templates for use with FSL/HCP or fMRIprep data
