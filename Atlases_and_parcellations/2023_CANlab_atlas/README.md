@@ -27,6 +27,11 @@ same way and indexed by the same values using the same labels.
 * 2023 omits white matter structures. In particular some cerebellar structures that do not overlap meaningfully with grayordinate space were removed. This ensures consistency across grayordinate and volumetric atlas versions.
 * 2023 was designed for use with qsirecon in mind, and includes example configuration files
 
+Planned updates:
+* Reproject glasser into known volumetric spaces and use that instead of currently ambiguous glasser parcels
+* Substitute Tian basal ganglia structures for Pauli
+* Update thalamus, hippocampus and amygdala with Julich v3 histological parcellations (same parcellation, but in fmriprep and fsl reference spaces, not the [misaligned] colin27 space like the versions used in canalb2018)
+
 ## QSIPrep use
 
 QSIprep is to DWI analysis what fMRIPrep is to fMRI analysis and some. Whereas fMRIprep only performs preprocessing, QSIPrep also performs what might be a the DWI analog of a first level analysis in the sense that its qsirecon workflows automated common aspects of post-preprocessing analysis. In the case of tractography, the question of interest is what regions are connected to what other regions. The regions are defined by atlas files. Several default atlases are provided with qsiprep, but none are more detailed or exhaustive than the CANLab atlas. Thankfully qsiprep allows for use of custom atlases if appropriately formatted and accompanied by the necessary metadata (specified in a json file). To use the CANLab 2023 atlas with qsiprep you need to pass a path to a directory containing the atlas and its atlas_config.json file in during the QSIprep run. If running qsiprep in a singularity container you do this by mounting this folder at a particular location within the virtual environment by using the --bind <full_atlas_directory_path>:/atlas/qsirecon_atlases. For use without a singularity container refer to the QSIprep docs,
