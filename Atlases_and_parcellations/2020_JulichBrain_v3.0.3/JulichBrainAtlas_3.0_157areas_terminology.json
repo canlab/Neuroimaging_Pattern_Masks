@@ -1,0 +1,1384 @@
+{
+ "name": "Julich-Brain Probabilistic Cytoarchitectonic Atlas",
+ "properties": {
+  "version": "3.0",
+  "description": "not yet",
+  "publications": [],
+  "regions": [
+   {
+    "name": "telencephalon",
+    "status": null,
+    "children": [
+    {
+     "name": "cerebral nuclei",
+     "status": null,
+     "children": [
+     {
+      "name": "basal forebrain",
+      "status": null,
+      "children": [
+      {
+       "name": "hippocampal formation",
+       "status": null,
+       "children": [
+        {
+         "name": "Ch 4 (Basal Forebrain)",
+         "arealabel": "Ch-4",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "sublenticular part of basal forebrain",
+       "status": null,
+       "children": [
+        {
+         "name": "Ch 4 (Basal Forebrain)",
+         "arealabel": "Ch-4",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "bed nucleus",
+       "status": null,
+       "children": [
+        {
+         "name": "BST (Bed Nucleus)",
+         "arealabel": "BST",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "magnocellular group",
+       "status": null,
+       "children": [
+        {
+         "name": "Ch 123 (Basal Forebrain)",
+         "arealabel": "Ch-123",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "amygdala",
+      "status": null,
+      "children": [
+      {
+       "name": "amygdaloid groups",
+       "status": null,
+       "children": [
+        {
+         "name": "CM (Amygdala)",
+         "arealabel": "CM",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "SF (Amygdala)",
+         "arealabel": "SF",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "LB (Amygdala)",
+         "arealabel": "LB",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "SF (Amygdala)",
+         "arealabel": "SF",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "SF (Amygdala)",
+         "arealabel": "SF",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fiber masses",
+       "status": null,
+       "children": [
+        {
+         "name": "VTM (Amygdala)",
+         "arealabel": "VTM",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "IF (Amygdala)",
+         "arealabel": "IF",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "MF (Amygdala)",
+         "arealabel": "MF",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    },
+    {
+     "name": "cerebral cortex",
+     "status": null,
+     "children": [
+     {
+      "name": "parietal lobe",
+      "status": null,
+      "children": [
+      {
+       "name": "superior parietal lobule",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 5L (SPL)",
+         "arealabel": "Area-5L",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 7M (SPL)",
+         "arealabel": "Area-7M",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 7PC (SPL)",
+         "arealabel": "Area-7PC",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 5M (SPL)",
+         "arealabel": "Area-5M",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 7P (SPL)",
+         "arealabel": "Area-7P",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 5Ci (SPL)",
+         "arealabel": "Area-5Ci",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 7A (SPL)",
+         "arealabel": "Area-7A",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "parietal operculum",
+       "status": null,
+       "children": [
+        {
+         "name": "Area OP3 (POperc)",
+         "arealabel": "Area-OP3",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area OP4 (POperc)",
+         "arealabel": "Area-OP4",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area OP2 (POperc)",
+         "arealabel": "Area-OP2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area OP1 (POperc)",
+         "arealabel": "Area-OP1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "postcentral gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 3b (PostCG)",
+         "arealabel": "Area-3b",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 1 (PostCG)",
+         "arealabel": "Area-1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 2 (PostCS)",
+         "arealabel": "Area-2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 3a (PostCG)",
+         "arealabel": "Area-3a",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "inferior parietal lobule",
+       "status": null,
+       "children": [
+        {
+         "name": "Area PF (IPL)",
+         "arealabel": "Area-PF",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area PFcm (IPL)",
+         "arealabel": "Area-PFcm",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area PGa (IPL)",
+         "arealabel": "Area-PGa",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area PFt (IPL)",
+         "arealabel": "Area-PFt",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area PFm (IPL)",
+         "arealabel": "Area-PFm",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area PGp (IPL)",
+         "arealabel": "Area-PGp",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area PFop (IPL)",
+         "arealabel": "Area-PFop",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "parieto-occipital sulcus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area hPO1 (POS)",
+         "arealabel": "Area-hPO1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "intraparietal sulcus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area hIP1 (IPS)",
+         "arealabel": "Area-hIP1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP7 (IPS)",
+         "arealabel": "Area-hIP7",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP3 (IPS)",
+         "arealabel": "Area-hIP3",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP2 (IPS)",
+         "arealabel": "Area-hIP2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP4 (IPS)",
+         "arealabel": "Area-hIP4",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP5 (IPS)",
+         "arealabel": "Area-hIP5",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP6 (IPS)",
+         "arealabel": "Area-hIP6",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hIP8 (IPS)",
+         "arealabel": "Area-hIP8",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "insula",
+      "status": null,
+      "children": [
+      {
+       "name": "agranular insula",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Ia2 (Insula)",
+         "arealabel": "Area-Ia2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Ia1 (Insula)",
+         "arealabel": "Area-Ia1",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Ia3 (Insula)",
+         "arealabel": "Area-Ia3",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "granular insula",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Ig3 (Insula)",
+         "arealabel": "Area-Ig3",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Ig1 (Insula)",
+         "arealabel": "Area-Ig1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Ig2 (Insula)",
+         "arealabel": "Area-Ig2",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dysgranular insula",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Id2 (Insula)",
+         "arealabel": "Area-Id2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id8 (Insula)",
+         "arealabel": "Area-Id8",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id1 (Insula)",
+         "arealabel": "Area-Id1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Id9 (Insula)",
+         "arealabel": "Area-Id9",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id7 (Insula)",
+         "arealabel": "Area-Id7",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id5 (Insula)",
+         "arealabel": "Area-Id5",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id6 (Insula)",
+         "arealabel": "Area-Id6",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id10 (Insula)",
+         "arealabel": "Area-Id10",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id4 (Insula)",
+         "arealabel": "Area-Id4",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Id3 (Insula)",
+         "arealabel": "Area-Id3",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "Temporal-to-Parietal",
+      "status": null,
+      "children": [
+      {
+       "name": "Temporal-to-Parietal",
+       "status": null,
+       "children": [
+        {
+         "name": "Temporal-to-Parietal (GapMap)",
+         "arealabel": "Temporal-to-Parietal",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "limbic lobe",
+      "status": null,
+      "children": [
+      {
+       "name": "cingulate gyrus, frontal part",
+       "status": null,
+       "children": [
+        {
+         "name": "Area p24c (pACC)",
+         "arealabel": "Area-p24c",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 25 (sACC)",
+         "arealabel": "Area-25",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area p24ab (pACC)",
+         "arealabel": "Area-p24ab",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area s32 (sACC)",
+         "arealabel": "Area-s32",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 33 (ACC)",
+         "arealabel": "Area-33",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area p32 (pACC)",
+         "arealabel": "Area-p32",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area s24 (sACC)",
+         "arealabel": "Area-s24",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "hippocampal formation",
+       "status": null,
+       "children": [
+        {
+         "name": "Subiculum (Hippocampus)",
+         "arealabel": "Subiculum",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "HATA (Hippocampus)",
+         "arealabel": "HATA",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Entorhinal Cortex",
+         "arealabel": "Entorhinal-Cortex",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "CA3 (Hippocampus)",
+         "arealabel": "CA3",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "HC-Transsubiculum (Hippocampus)",
+         "arealabel": "HC-Transsubiculum",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "DG (Hippocampus)",
+         "arealabel": "DG",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "CA2 (Hippocampus)",
+         "arealabel": "CA2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "CA1 (Hippocampus)",
+         "arealabel": "CA1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "olfactory cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Terminal islands (Basal Forebrain)",
+         "arealabel": "Terminal-islands",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Tuberculum (Basal Forebrain)",
+         "arealabel": "Tuberculum",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "frontal lobe",
+      "status": null,
+      "children": [
+      {
+       "name": "inferior frontal sulcus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area IFJ1 (IFS,PreCS)",
+         "arealabel": "Area-IFJ1",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area IFS4 (IFS)",
+         "arealabel": "Area-IFS4",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area IFS2 (IFS)",
+         "arealabel": "Area-IFS2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area IFS1 (IFS)",
+         "arealabel": "Area-IFS1",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area IFS3 (IFS)",
+         "arealabel": "Area-IFS3",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area IFJ2 (IFS,PreCS)",
+         "arealabel": "Area-IFJ2",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fronto-marginal sulcus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area MFG2 (MFG)",
+         "arealabel": "Area-MFG2",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "middle frontal gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 8v2 (MFG)",
+         "arealabel": "Area-8v2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area 8v1 (MFG)",
+         "arealabel": "Area-8v1",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area MFG1 (MFG)",
+         "arealabel": "Area-MFG1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "inferior frontal gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 44 (IFG)",
+         "arealabel": "Area-44",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 45 (IFG)",
+         "arealabel": "Area-45",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dorsal precentral gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 6d2 (PreCG)",
+         "arealabel": "Area-6d2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area 6d1 (PreCG)",
+         "arealabel": "Area-6d1",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "frontal lobe",
+       "status": null,
+       "children": [
+        {
+         "name": "Frontal-I (GapMap)",
+         "arealabel": "Frontal-I",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Frontal-II (GapMap)",
+         "arealabel": "Frontal-II",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "posterior medial superior frontal gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 6ma (preSMA, mesial SFG)",
+         "arealabel": "Area-6ma",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "frontal pole",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Fp1 (FPole)",
+         "arealabel": "Area-Fp1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Fp2 (FPole)",
+         "arealabel": "Area-Fp2",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "superior frontal sulcus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area SFS2 (SFS)",
+         "arealabel": "Area-SFS2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 6d3 (SFS)",
+         "arealabel": "Area-6d3",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area SFS1 (SFS)",
+         "arealabel": "Area-SFS1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "mesial precentral gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 6mp (SMA, mesial SFG)",
+         "arealabel": "Area-6mp",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "precentral gyrus ",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 4p (PreCG)",
+         "arealabel": "Area-4p",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area 4a (PreCG)",
+         "arealabel": "Area-4a",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "medial orbitofrontal cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Fo1 (OFC)",
+         "arealabel": "Area-Fo1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Fo3 (OFC)",
+         "arealabel": "Area-Fo3",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Fo2 (OFC)",
+         "arealabel": "Area-Fo2",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "frontal operculum ",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Op7 (Frontal Operculum)",
+         "arealabel": "Area-Op7",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Op8 (Frontal Operculum)",
+         "arealabel": "Area-Op8",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Op5 (Frontal Operculum)",
+         "arealabel": "Area-Op5",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Op6 (Frontal Operculum)",
+         "arealabel": "Area-Op6",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Op9 (Frontal Operculum)",
+         "arealabel": "Area-Op9",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "lateral orbitofrontal cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Fo6 (OFC)",
+         "arealabel": "Area-Fo6",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Fo5 (OFC)",
+         "arealabel": "Area-Fo5",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Fo7 (OFC)",
+         "arealabel": "Area-Fo7",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area Fo4 (OFC)",
+         "arealabel": "Area-Fo4",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "superior frontal gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area 8d2 (SFG)",
+         "arealabel": "Area-8d2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area 8d1 (SFG)",
+         "arealabel": "Area-8d1",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "Frontal-to-Temporal",
+      "status": null,
+      "children": [
+      {
+       "name": "Frontal-to-Temporal",
+       "status": null,
+       "children": [
+        {
+         "name": "Frontal-to-Temporal-II (GapMap)",
+         "arealabel": "Frontal-to-Temporal-II",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Frontal-to-Temporal-I (GapMap)",
+         "arealabel": "Frontal-to-Temporal-I",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "Frontal-to-Occipital",
+      "status": null,
+      "children": [
+      {
+       "name": "Frontal-to-Occipital",
+       "status": null,
+       "children": [
+        {
+         "name": "Frontal-to-Occipital (GapMap)",
+         "arealabel": "Frontal-to-Occipital",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "occiptal lobe",
+      "status": null,
+      "children": [
+      {
+       "name": "occipital cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Area hOc2 (V2, 18)",
+         "arealabel": "Area-hOc2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hOc1 (V1, 17, CalcS)",
+         "arealabel": "Area-hOc1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dorsal occipital cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Area hOc6 (POS)",
+         "arealabel": "Area-hOc6",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hOc4d (Cuneus)",
+         "arealabel": "Area-hOc4d",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hOc3d (Cuneus)",
+         "arealabel": "Area-hOc3d",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "ventral occipital cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Area hOc3v (LingG)",
+         "arealabel": "Area-hOc3v",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hOc4v (LingG)",
+         "arealabel": "Area-hOc4v",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "lateral occipital cortex",
+       "status": null,
+       "children": [
+        {
+         "name": "Area hOc4lp (LOC)",
+         "arealabel": "Area-hOc4lp",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hOc5 (LOC)",
+         "arealabel": "Area-hOc5",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area hOc4la (LOC)",
+         "arealabel": "Area-hOc4la",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     },
+     {
+      "name": "temporal lobe",
+      "status": null,
+      "children": [
+      {
+       "name": "superior temporal sulcus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area STS2 (STS)",
+         "arealabel": "Area-STS2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area STS1 (STS)",
+         "arealabel": "Area-STS1",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "superior temporal gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area TE 3 (STG)",
+         "arealabel": "Area-TE-3",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area TE 2.2 (STG)",
+         "arealabel": "Area-TE-2.2",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area TE 2.1 (STG)",
+         "arealabel": "Area-TE-2.1",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "temporal-insula",
+       "status": null,
+       "children": [
+        {
+         "name": "Area TI (STG)",
+         "arealabel": "Area-TI",
+         "status": "publicDOI",
+         "children": []
+        },
+        {
+         "name": "Area TeI (STG)",
+         "arealabel": "Area-TeI",
+         "status": " publicDOI",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "Heschl's gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area TE 1.2 (HESCHL)",
+         "arealabel": "Area-TE-1.2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area TE 1.1 (HESCHL)",
+         "arealabel": "Area-TE-1.1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area TE 1.0 (HESCHL)",
+         "arealabel": "Area-TE-1.0",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "parahippocampal gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area Ph1 (PhG)",
+         "arealabel": "Area-Ph1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Ph2 (PhG)",
+         "arealabel": "Area-Ph2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area Ph3 (PhG)",
+         "arealabel": "Area-Ph3",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fusiform gyrus",
+       "status": null,
+       "children": [
+        {
+         "name": "Area FG2 (FusG)",
+         "arealabel": "Area-FG2",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area FG3 (FusG)",
+         "arealabel": "Area-FG3",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area FG1 (FusG)",
+         "arealabel": "Area-FG1",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Area FG4 (FusG)",
+         "arealabel": "Area-FG4",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "collateral sulcus ",
+       "status": null,
+       "children": [
+        {
+         "name": "Area CoS1 (CoS)",
+         "arealabel": "Area-CoS1",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "temporo-parietal junction",
+       "status": null,
+       "children": [
+        {
+         "name": "Area TPJ (STG/SMG)",
+         "arealabel": "Area-TPJ",
+         "status": "publicDOI",
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    }
+    ]
+   },
+   {
+    "name": "metencephalon",
+    "status": null,
+    "children": [
+    {
+     "name": "cerebellum",
+     "status": null,
+     "children": [
+     {
+      "name": "cerebellar nuclei",
+      "status": null,
+      "children": [
+      {
+       "name": "globose nucleus",
+       "status": null,
+       "children": [
+        {
+         "name": "Interposed Nucleus (Cerebellum)",
+         "arealabel": "Interposed-Nucleus",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "dentate nucleus",
+       "status": null,
+       "children": [
+        {
+         "name": "Dorsal Dentate Nucleus (Cerebellum)",
+         "arealabel": "Dorsal-Dentate-Nucleus",
+         "status": "publicP",
+         "children": []
+        },
+        {
+         "name": "Ventral Dentate Nucleus (Cerebellum)",
+         "arealabel": "Ventral-Dentate-Nucleus",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "fastigial nucleus",
+       "status": null,
+       "children": [
+        {
+         "name": "Fastigial Nucleus (Cerebellum)",
+         "arealabel": "Fastigial-Nucleus",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "emboliform nucleus",
+       "status": null,
+       "children": [
+        {
+         "name": "Interposed Nucleus (Cerebellum)",
+         "arealabel": "Interposed-Nucleus",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    }
+    ]
+   },
+   {
+    "name": "diencephalon",
+    "status": null,
+    "children": [
+    {
+     "name": "thalamus",
+     "status": null,
+     "children": [
+     {
+      "name": "metathalamus",
+      "status": null,
+      "children": [
+      {
+       "name": "medial geniculate body",
+       "status": null,
+       "children": [
+        {
+         "name": "CGM (Metathalamus)",
+         "arealabel": "CGM",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      },
+      {
+       "name": "lateral geniculate body",
+       "status": null,
+       "children": [
+        {
+         "name": "CGL (Metathalamus)",
+         "arealabel": "CGL",
+         "status": "publicP",
+         "children": []
+        }
+       ]
+      }
+      ]
+     }
+     ]
+    }
+    ]
+   }
+  ]
+ }
+}

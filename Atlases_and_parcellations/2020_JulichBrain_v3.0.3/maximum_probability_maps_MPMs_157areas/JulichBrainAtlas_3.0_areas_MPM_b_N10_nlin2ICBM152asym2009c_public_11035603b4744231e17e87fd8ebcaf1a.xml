@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JulichBrainAtlas version="3.0">
+ <Structures numStructures="157">
+  <Structure num="0" id="1" leftgrayvalue="1" rightgrayvalue="1001" color="rgb(167,103,146)">Area 45 (IFG)</Structure>
+  <Structure num="1" id="2" leftgrayvalue="2" rightgrayvalue="1002" color="rgb(54,74,75)">Area 44 (IFG)</Structure>
+  <Structure num="2" id="3" leftgrayvalue="3" rightgrayvalue="1003" color="rgb(7,255,179)">Area Fo1 (OFC)</Structure>
+  <Structure num="3" id="4" leftgrayvalue="4" rightgrayvalue="1004" color="rgb(0,255,0)">Area Fo2 (OFC)</Structure>
+  <Structure num="4" id="5" leftgrayvalue="5" rightgrayvalue="1005" color="rgb(182,189,250)">Area Fo3 (OFC)</Structure>
+  <Structure num="5" id="6" leftgrayvalue="6" rightgrayvalue="1006" color="rgb(255,0,0)">Area hOc5 (LOC)</Structure>
+  <Structure num="6" id="7" leftgrayvalue="7" rightgrayvalue="1007" color="rgb(84,110,22)">Area hOc2 (V2, 18)</Structure>
+  <Structure num="7" id="8" leftgrayvalue="8" rightgrayvalue="1008" color="rgb(190,132,147)">Area hOc1 (V1, 17, CalcS)</Structure>
+  <Structure num="8" id="9" leftgrayvalue="9" rightgrayvalue="1009" color="rgb(222,77,155)">Area hOc4v (LingG)</Structure>
+  <Structure num="9" id="10" leftgrayvalue="10" rightgrayvalue="1010" color="rgb(83,179,155)">Area hOc3v (LingG)</Structure>
+  <Structure num="10" id="27" leftgrayvalue="11" rightgrayvalue="1011" color="rgb(252,84,222)">Area TE 1.0 (HESCHL)</Structure>
+  <Structure num="11" id="28" leftgrayvalue="12" rightgrayvalue="1012" color="rgb(67,254,44)">Area TE 2.1 (STG)</Structure>
+  <Structure num="12" id="29" leftgrayvalue="13" rightgrayvalue="1013" color="rgb(95,195,50)">Area TPJ (STG/SMG)</Structure>
+  <Structure num="13" id="30" leftgrayvalue="14" rightgrayvalue="1014" color="rgb(202,251,192)">Area TE 1.2 (HESCHL)</Structure>
+  <Structure num="14" id="31" leftgrayvalue="15" rightgrayvalue="1015" color="rgb(159,104,108)">Area TE 3 (STG)</Structure>
+  <Structure num="15" id="33" leftgrayvalue="16" rightgrayvalue="1016" color="rgb(8,113,68)">Area TE 1.1 (HESCHL)</Structure>
+  <Structure num="16" id="34" leftgrayvalue="17" rightgrayvalue="1017" color="rgb(58,104,125)">Area TE 2.2 (STG)</Structure>
+  <Structure num="17" id="39" leftgrayvalue="18" rightgrayvalue="1018" color="rgb(51,57,245)">Area 33 (ACC)</Structure>
+  <Structure num="18" id="46" leftgrayvalue="19" rightgrayvalue="1019" color="rgb(193,94,250)">Area s32 (sACC)</Structure>
+  <Structure num="19" id="47" leftgrayvalue="20" rightgrayvalue="1020" color="rgb(87,135,14)">Area p32 (pACC)</Structure>
+  <Structure num="20" id="56" leftgrayvalue="21" rightgrayvalue="1021" color="rgb(225,126,73)">Area Id2 (Insula)</Structure>
+  <Structure num="21" id="57" leftgrayvalue="22" rightgrayvalue="1022" color="rgb(32,32,58)">Area Id3 (Insula)</Structure>
+  <Structure num="22" id="58" leftgrayvalue="23" rightgrayvalue="1023" color="rgb(145,67,101)">CA2 (Hippocampus)</Structure>
+  <Structure num="23" id="59" leftgrayvalue="24" rightgrayvalue="1024" color="rgb(233,211,221)">CA3 (Hippocampus)</Structure>
+  <Structure num="24" id="60" leftgrayvalue="25" rightgrayvalue="1025" color="rgb(35,159,214)">Entorhinal Cortex</Structure>
+  <Structure num="25" id="61" leftgrayvalue="26" rightgrayvalue="1026" color="rgb(149,55,120)">DG (Hippocampus)</Structure>
+  <Structure num="26" id="66" leftgrayvalue="27" rightgrayvalue="1027" color="rgb(125,9,167)">CA1 (Hippocampus)</Structure>
+  <Structure num="27" id="68" leftgrayvalue="28" rightgrayvalue="1028" color="rgb(137,12,73)">HATA (Hippocampus)</Structure>
+  <Structure num="28" id="72" leftgrayvalue="29" rightgrayvalue="1029" color="rgb(89,80,132)">Area OP4 (POperc)</Structure>
+  <Structure num="29" id="73" leftgrayvalue="30" rightgrayvalue="1030" color="rgb(250,182,34)">Area OP1 (POperc)</Structure>
+  <Structure num="30" id="74" leftgrayvalue="31" rightgrayvalue="1031" color="rgb(36,47,221)">Area OP2 (POperc)</Structure>
+  <Structure num="31" id="75" leftgrayvalue="32" rightgrayvalue="1032" color="rgb(58,122,80)">Area OP3 (POperc)</Structure>
+  <Structure num="32" id="106" leftgrayvalue="33" rightgrayvalue="1033" color="rgb(167,94,149)">Area FG2 (FusG)</Structure>
+  <Structure num="33" id="107" leftgrayvalue="34" rightgrayvalue="1034" color="rgb(131,183,58)">Area FG1 (FusG)</Structure>
+  <Structure num="34" id="108" leftgrayvalue="35" rightgrayvalue="1035" color="rgb(92,116,83)">Area PGp (IPL)</Structure>
+  <Structure num="35" id="109" leftgrayvalue="36" rightgrayvalue="1036" color="rgb(120,135,232)">Area PFt (IPL)</Structure>
+  <Structure num="36" id="110" leftgrayvalue="37" rightgrayvalue="1037" color="rgb(42,236,131)">Area PGa (IPL)</Structure>
+  <Structure num="37" id="111" leftgrayvalue="38" rightgrayvalue="1038" color="rgb(146,153,177)">Area PFop (IPL)</Structure>
+  <Structure num="38" id="112" leftgrayvalue="39" rightgrayvalue="1039" color="rgb(53,76,145)">Area PFm (IPL)</Structure>
+  <Structure num="39" id="113" leftgrayvalue="40" rightgrayvalue="1040" color="rgb(98,128,120)">Area PFcm (IPL)</Structure>
+  <Structure num="40" id="114" leftgrayvalue="41" rightgrayvalue="1041" color="rgb(105,61,82)">Area Ig2 (Insula)</Structure>
+  <Structure num="41" id="115" leftgrayvalue="42" rightgrayvalue="1042" color="rgb(18,111,40)">Area Ig1 (Insula)</Structure>
+  <Structure num="42" id="116" leftgrayvalue="43" rightgrayvalue="1043" color="rgb(141,112,216)">Area Id1 (Insula)</Structure>
+  <Structure num="43" id="117" leftgrayvalue="44" rightgrayvalue="1044" color="rgb(96,113,253)">Area hOc4lp (LOC)</Structure>
+  <Structure num="44" id="118" leftgrayvalue="45" rightgrayvalue="1045" color="rgb(233,168,189)">Area hOc4la (LOC)</Structure>
+  <Structure num="45" id="119" leftgrayvalue="46" rightgrayvalue="1046" color="rgb(109,218,10)">Area hOc4d (Cuneus)</Structure>
+  <Structure num="46" id="120" leftgrayvalue="47" rightgrayvalue="1047" color="rgb(105,191,48)">Area hOc3d (Cuneus)</Structure>
+  <Structure num="47" id="123" leftgrayvalue="48" rightgrayvalue="1048" color="rgb(116,92,124)">Area 4p (PreCG)</Structure>
+  <Structure num="48" id="124" leftgrayvalue="49" rightgrayvalue="1049" color="rgb(118,239,183)">Area 4a (PreCG)</Structure>
+  <Structure num="49" id="125" leftgrayvalue="50" rightgrayvalue="1050" color="rgb(232,185,250)">Area 1 (PostCG)</Structure>
+  <Structure num="50" id="126" leftgrayvalue="51" rightgrayvalue="1051" color="rgb(187,133,50)">Area 3a (PostCG)</Structure>
+  <Structure num="51" id="127" leftgrayvalue="52" rightgrayvalue="1052" color="rgb(239,246,155)">Area 3b (PostCG)</Structure>
+  <Structure num="52" id="128" leftgrayvalue="53" rightgrayvalue="1053" color="rgb(66,149,82)">Area hIP1 (IPS)</Structure>
+  <Structure num="53" id="129" leftgrayvalue="54" rightgrayvalue="1054" color="rgb(127,245,203)">Area hIP2 (IPS)</Structure>
+  <Structure num="54" id="130" leftgrayvalue="55" rightgrayvalue="1055" color="rgb(184,185,58)">Area 5L (SPL)</Structure>
+  <Structure num="55" id="131" leftgrayvalue="56" rightgrayvalue="1056" color="rgb(225,245,76)">Area 5M (SPL)</Structure>
+  <Structure num="56" id="132" leftgrayvalue="57" rightgrayvalue="1057" color="rgb(252,89,28)">Area 7PC (SPL)</Structure>
+  <Structure num="57" id="133" leftgrayvalue="58" rightgrayvalue="1058" color="rgb(113,172,229)">Area hIP3 (IPS)</Structure>
+  <Structure num="58" id="134" leftgrayvalue="59" rightgrayvalue="1059" color="rgb(38,204,19)">Area 7A (SPL)</Structure>
+  <Structure num="59" id="135" leftgrayvalue="60" rightgrayvalue="1060" color="rgb(205,61,236)">Area 7M (SPL)</Structure>
+  <Structure num="60" id="136" leftgrayvalue="61" rightgrayvalue="1061" color="rgb(79,242,146)">Area 5Ci (SPL)</Structure>
+  <Structure num="61" id="159" leftgrayvalue="62" rightgrayvalue="1062" color="rgb(188,250,216)">Area Id7 (Insula)</Structure>
+  <Structure num="62" id="183" leftgrayvalue="63" rightgrayvalue="1063" color="rgb(133,34,201)">Area s24 (sACC)</Structure>
+  <Structure num="63" id="184" leftgrayvalue="64" rightgrayvalue="1064" color="rgb(170,68,220)">Area 25 (sACC)</Structure>
+  <Structure num="64" id="185" leftgrayvalue="65" rightgrayvalue="1065" color="rgb(22,204,194)">SF (Amygdala)</Structure>
+  <Structure num="65" id="187" leftgrayvalue="66" rightgrayvalue="1066" color="rgb(141,138,254)">LB (Amygdala)</Structure>
+  <Structure num="66" id="192" leftgrayvalue="67" rightgrayvalue="1067" color="rgb(0,0,255)">Subiculum (Hippocampus)</Structure>
+  <Structure num="67" id="206" leftgrayvalue="68" rightgrayvalue="1068" color="rgb(226,211,61)">Area PF (IPL)</Structure>
+  <Structure num="68" id="208" leftgrayvalue="69" rightgrayvalue="1069" color="rgb(52,20,106)">Area 7P (SPL)</Structure>
+  <Structure num="69" id="211" leftgrayvalue="70" rightgrayvalue="1070" color="rgb(239,137,211)">Area Fp2 (FPole)</Structure>
+  <Structure num="70" id="212" leftgrayvalue="71" rightgrayvalue="1071" color="rgb(226,14,200)">Area Fp1 (FPole)</Structure>
+  <Structure num="71" id="219" leftgrayvalue="72" rightgrayvalue="1072" color="rgb(77,3,15)">Fastigial Nucleus (Cerebellum)</Structure>
+  <Structure num="72" id="228" leftgrayvalue="73" rightgrayvalue="1073" color="rgb(60,28,100)">VTM (Amygdala)</Structure>
+  <Structure num="73" id="231" leftgrayvalue="74" rightgrayvalue="1074" color="rgb(153,195,229)">Area p24ab (pACC)</Structure>
+  <Structure num="74" id="232" leftgrayvalue="75" rightgrayvalue="1075" color="rgb(241,164,195)">Area p24c (pACC)</Structure>
+  <Structure num="75" id="235" leftgrayvalue="76" rightgrayvalue="1076" color="rgb(120,179,230)">MF (Amygdala)</Structure>
+  <Structure num="76" id="237" leftgrayvalue="77" rightgrayvalue="1077" color="rgb(204,82,17)">IF (Amygdala)</Structure>
+  <Structure num="77" id="238" leftgrayvalue="78" rightgrayvalue="1078" color="rgb(170,220,175)">Area FG4 (FusG)</Structure>
+  <Structure num="78" id="239" leftgrayvalue="79" rightgrayvalue="1079" color="rgb(120,147,37)">Area FG3 (FusG)</Structure>
+  <Structure num="79" id="240" leftgrayvalue="80" rightgrayvalue="1080" color="rgb(133,179,114)">Dorsal Dentate Nucleus (Cerebellum)</Structure>
+  <Structure num="80" id="241" leftgrayvalue="81" rightgrayvalue="1081" color="rgb(96,239,250)">Ventral Dentate Nucleus (Cerebellum)</Structure>
+  <Structure num="81" id="242" leftgrayvalue="82" rightgrayvalue="1082" color="rgb(23,78,92)">Area TeI (STG)</Structure>
+  <Structure num="82" id="243" leftgrayvalue="83" rightgrayvalue="1083" color="rgb(86,101,22)">Area TI (STG)</Structure>
+  <Structure num="83" id="244" leftgrayvalue="84" rightgrayvalue="1084" color="rgb(112,48,160)">Area IFS1 (IFS)</Structure>
+  <Structure num="84" id="245" leftgrayvalue="85" rightgrayvalue="1085" color="rgb(255,0,0)">Area IFS2 (IFS)</Structure>
+  <Structure num="85" id="246" leftgrayvalue="86" rightgrayvalue="1086" color="rgb(2,128,50)">Area IFS3 (IFS)</Structure>
+  <Structure num="86" id="247" leftgrayvalue="87" rightgrayvalue="1087" color="rgb(31,73,125)">Area IFS4 (IFS)</Structure>
+  <Structure num="87" id="248" leftgrayvalue="88" rightgrayvalue="1088" color="rgb(229,0,160)">Area IFJ1 (IFS,PreCS)</Structure>
+  <Structure num="88" id="249" leftgrayvalue="89" rightgrayvalue="1089" color="rgb(223,106,22)">Area IFJ2 (IFS,PreCS)</Structure>
+  <Structure num="89" id="251" leftgrayvalue="90" rightgrayvalue="1090" color="rgb(186,53,149)">Interposed Nucleus (Cerebellum)</Structure>
+  <Structure num="90" id="252" leftgrayvalue="91" rightgrayvalue="1091" color="rgb(23,13,35)">Area 2 (PostCS)</Structure>
+  <Structure num="91" id="264" leftgrayvalue="92" rightgrayvalue="1092" color="rgb(171,71,170)">Ch 4 (Basal Forebrain)</Structure>
+  <Structure num="92" id="271" leftgrayvalue="93" rightgrayvalue="1093" color="rgb(205,228,4)">Area STS1 (STS)</Structure>
+  <Structure num="93" id="272" leftgrayvalue="94" rightgrayvalue="1094" color="rgb(62,117,123)">Area STS2 (STS)</Structure>
+  <Structure num="94" id="273" leftgrayvalue="95" rightgrayvalue="1095" color="rgb(29,76,168)">Area Op8 (Frontal Operculum)</Structure>
+  <Structure num="95" id="274" leftgrayvalue="96" rightgrayvalue="1096" color="rgb(175,123,34)">Area Op9 (Frontal Operculum)</Structure>
+  <Structure num="96" id="286" leftgrayvalue="97" rightgrayvalue="1097" color="rgb(161,148,71)">Ch 123 (Basal Forebrain)</Structure>
+  <Structure num="97" id="287" leftgrayvalue="98" rightgrayvalue="1098" color="rgb(45,33,27)">Area 6d1 (PreCG)</Structure>
+  <Structure num="98" id="288" leftgrayvalue="99" rightgrayvalue="1099" color="rgb(170,151,180)">Area 6d2 (PreCG)</Structure>
+  <Structure num="99" id="289" leftgrayvalue="100" rightgrayvalue="1100" color="rgb(55,239,21)">Area 6d3 (SFS)</Structure>
+  <Structure num="100" id="290" leftgrayvalue="101" rightgrayvalue="1101" color="rgb(131,143,115)">CM (Amygdala)</Structure>
+  <Structure num="101" id="291" leftgrayvalue="102" rightgrayvalue="1102" color="rgb(239,66,26)">Area hOc6 (POS)</Structure>
+  <Structure num="102" id="292" leftgrayvalue="103" rightgrayvalue="1103" color="rgb(237,233,37)">Area hIP6 (IPS)</Structure>
+  <Structure num="103" id="293" leftgrayvalue="104" rightgrayvalue="1104" color="rgb(223,109,3)">Area hIP8 (IPS)</Structure>
+  <Structure num="104" id="294" leftgrayvalue="105" rightgrayvalue="1105" color="rgb(254,52,184)">Area hIP4 (IPS)</Structure>
+  <Structure num="105" id="295" leftgrayvalue="106" rightgrayvalue="1106" color="rgb(217,87,210)">Area hIP5 (IPS)</Structure>
+  <Structure num="106" id="296" leftgrayvalue="107" rightgrayvalue="1107" color="rgb(71,196,218)">Area hIP7 (IPS)</Structure>
+  <Structure num="107" id="297" leftgrayvalue="108" rightgrayvalue="1108" color="rgb(153,232,235)">Area hPO1 (POS)</Structure>
+  <Structure num="108" id="298" leftgrayvalue="109" rightgrayvalue="1109" color="rgb(75,95,87)">Area 6mp (SMA, mesial SFG)</Structure>
+  <Structure num="109" id="299" leftgrayvalue="110" rightgrayvalue="1110" color="rgb(204,108,222)">Area 6ma (preSMA, mesial SFG)</Structure>
+  <Structure num="110" id="305" leftgrayvalue="111" rightgrayvalue="1111" color="rgb(109,251,212)">HC-Transsubiculum (Hippocampus)</Structure>
+  <Structure num="111" id="321" leftgrayvalue="112" rightgrayvalue="1112" color="rgb(51,91,49)">Tuberculum (Basal Forebrain)</Structure>
+  <Structure num="112" id="322" leftgrayvalue="113" rightgrayvalue="1113" color="rgb(29,124,250)">Terminal islands (Basal Forebrain)</Structure>
+  <Structure num="113" id="324" leftgrayvalue="114" rightgrayvalue="1114" color="rgb(163,204,53)">Area Fo4 (OFC)</Structure>
+  <Structure num="114" id="325" leftgrayvalue="115" rightgrayvalue="1115" color="rgb(219,11,91)">Area Fo5 (OFC)</Structure>
+  <Structure num="115" id="326" leftgrayvalue="116" rightgrayvalue="1116" color="rgb(199,156,187)">Area Fo6 (OFC)</Structure>
+  <Structure num="116" id="327" leftgrayvalue="117" rightgrayvalue="1117" color="rgb(64,211,186)">Area Fo7 (OFC)</Structure>
+  <Structure num="117" id="332" leftgrayvalue="118" rightgrayvalue="1118" color="rgb(175,131,102)">Area 8d1 (SFG)</Structure>
+  <Structure num="118" id="333" leftgrayvalue="119" rightgrayvalue="1119" color="rgb(192,186,225)">Area 8d2 (SFG)</Structure>
+  <Structure num="119" id="334" leftgrayvalue="120" rightgrayvalue="1120" color="rgb(29,109,19)">Area 8v2 (MFG)</Structure>
+  <Structure num="120" id="335" leftgrayvalue="121" rightgrayvalue="1121" color="rgb(169,187,180)">Area 8v1 (MFG)</Structure>
+  <Structure num="121" id="336" leftgrayvalue="122" rightgrayvalue="1122" color="rgb(105,253,197)">Area Ig3 (Insula)</Structure>
+  <Structure num="122" id="337" leftgrayvalue="123" rightgrayvalue="1123" color="rgb(38,174,113)">Area Id4 (Insula)</Structure>
+  <Structure num="123" id="338" leftgrayvalue="124" rightgrayvalue="1124" color="rgb(112,6,50)">Area Id5 (Insula)</Structure>
+  <Structure num="124" id="339" leftgrayvalue="125" rightgrayvalue="1125" color="rgb(71,217,62)">Area Ia1 (Insula)</Structure>
+  <Structure num="125" id="340" leftgrayvalue="126" rightgrayvalue="1126" color="rgb(138,127,119)">Area Id6 (Insula)</Structure>
+  <Structure num="126" id="341" leftgrayvalue="127" rightgrayvalue="1127" color="rgb(0,165,226)">Area SFS1 (SFS)</Structure>
+  <Structure num="127" id="342" leftgrayvalue="128" rightgrayvalue="1128" color="rgb(242,148,0)">Area SFS2 (SFS)</Structure>
+  <Structure num="128" id="343" leftgrayvalue="129" rightgrayvalue="1129" color="rgb(98,33,129)">Area MFG1 (MFG)</Structure>
+  <Structure num="129" id="344" leftgrayvalue="130" rightgrayvalue="1130" color="rgb(255,236,0)">Area MFG2 (MFG)</Structure>
+  <Structure num="130" id="348" leftgrayvalue="131" rightgrayvalue="1131" color="rgb(222,78,253)">Area Op5 (Frontal Operculum)</Structure>
+  <Structure num="131" id="349" leftgrayvalue="132" rightgrayvalue="1132" color="rgb(138,63,100)">Area Op6 (Frontal Operculum)</Structure>
+  <Structure num="132" id="350" leftgrayvalue="133" rightgrayvalue="1133" color="rgb(134,116,192)">Area Op7 (Frontal Operculum)</Structure>
+  <Structure num="133" id="355" leftgrayvalue="134" rightgrayvalue="1134" color="rgb(0,128,0)">Area Ph1 (PhG)</Structure>
+  <Structure num="134" id="356" leftgrayvalue="135" rightgrayvalue="1135" color="rgb(128,128,0)">Area Ph2 (PhG)</Structure>
+  <Structure num="135" id="357" leftgrayvalue="136" rightgrayvalue="1136" color="rgb(128,0,0)">Area Ph3 (PhG)</Structure>
+  <Structure num="136" id="358" leftgrayvalue="137" rightgrayvalue="1137" color="rgb(0,0,128)">Area CoS1 (CoS)</Structure>
+  <Structure num="137" id="359" leftgrayvalue="138" rightgrayvalue="1138" color="rgb(74,185,41)">Medial Accumbens, ventral Striatum (Basal Ganglia)</Structure>
+  <Structure num="138" id="360" leftgrayvalue="139" rightgrayvalue="1139" color="rgb(177,53,65)">Fundus of Caudate Nucleus, ventral Striatum (Basal Ganglia)</Structure>
+  <Structure num="139" id="361" leftgrayvalue="140" rightgrayvalue="1140" color="rgb(196,248,208)">Fundus of Putamen, Ventral Striatum (Basal Ganglia)</Structure>
+  <Structure num="140" id="362" leftgrayvalue="141" rightgrayvalue="1141" color="rgb(145,80,62)">Lateral Accumbens, ventral Striatum (Basal Ganglia)</Structure>
+  <Structure num="141" id="363" leftgrayvalue="142" rightgrayvalue="1142" color="rgb(40,178,3)">VP, ventral Pallidum (Basal Ganglia)</Structure>
+  <Structure num="142" id="367" leftgrayvalue="143" rightgrayvalue="1143" color="rgb(250,211,242)">CGL (Metathalamus)</Structure>
+  <Structure num="143" id="368" leftgrayvalue="144" rightgrayvalue="1144" color="rgb(108,241,204)">CGM (Metathalamus)</Structure>
+  <Structure num="144" id="369" leftgrayvalue="145" rightgrayvalue="1145" color="rgb(64,208,56)">STN (Subthalamus)</Structure>
+  <Structure num="145" id="373" leftgrayvalue="146" rightgrayvalue="1146" color="rgb(23,54,170)">Area Id9 (Insula)</Structure>
+  <Structure num="146" id="374" leftgrayvalue="147" rightgrayvalue="1147" color="rgb(49,247,90)">Area Ia3 (Insula)</Structure>
+  <Structure num="147" id="375" leftgrayvalue="148" rightgrayvalue="1148" color="rgb(116,24,2)">Area Ia2 (Insula)</Structure>
+  <Structure num="148" id="376" leftgrayvalue="149" rightgrayvalue="1149" color="rgb(79,187,42)">Area Id8 (Insula)</Structure>
+  <Structure num="149" id="377" leftgrayvalue="150" rightgrayvalue="1150" color="rgb(179,101,192)">Area Id10 (Insula)</Structure>
+  <Structure num="150" id="378" leftgrayvalue="151" rightgrayvalue="1151" color="rgb(214,120,42)">BST (Bed Nucleus)</Structure>
+  <Structure num="151" id="500" leftgrayvalue="152" rightgrayvalue="1152" color="rgb(186,255,25)">Frontal-I (GapMap)</Structure>
+  <Structure num="152" id="501" leftgrayvalue="153" rightgrayvalue="1153" color="rgb(255,135,15)">Frontal-II (GapMap)</Structure>
+  <Structure num="153" id="503" leftgrayvalue="154" rightgrayvalue="1154" color="rgb(76,90,161)">Temporal-to-Parietal (GapMap)</Structure>
+  <Structure num="154" id="504" leftgrayvalue="155" rightgrayvalue="1155" color="rgb(104,161,93)">Frontal-to-Occipital (GapMap)</Structure>
+  <Structure num="155" id="505" leftgrayvalue="156" rightgrayvalue="1156" color="rgb(64,126,100)">Frontal-to-Temporal-I (GapMap)</Structure>
+  <Structure num="156" id="506" leftgrayvalue="157" rightgrayvalue="1157" color="rgb(161,24,74)">Frontal-to-Temporal-II (GapMap)</Structure>
+ </Structures>
+</JulichBrainAtlas>
