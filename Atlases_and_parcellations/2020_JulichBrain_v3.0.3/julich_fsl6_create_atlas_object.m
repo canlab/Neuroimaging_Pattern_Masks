@@ -1,18 +1,18 @@
 clear all; close all;
 
-addpath(genpath('/home/bogdan/.matlab/spm/spm12'));
+addpath(genpath('~/software/spm12'));
 
-addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore'))
-addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
-addpath(genpath('/home/bogdan/.matlab/canlab/MasksPrivate'))
+addpath(genpath('~/software/canlab/CanlabCore'))
+addpath(genpath('~/software/canlab/Neuroimaging_Pattern_Masks'))
+addpath(genpath('~/software/canlab/MasksPrivate'))
 
-addpath(genpath('/home/bogdan/Downloads/d-d69b70e2-3002-4eaf-9c61-9c56f019bbc8'));
-
-atlas_name = 'julich_fmriprep20';
-space_description = 'MNI152NLin2009cAsym';
+atlas_name = 'julich_fsl6';
+space_description = 'MNI152NLin6Asym';
 references = 'Amunts K, Mohlberg H, Blubau S, Zilles K. (2020) Julich_Brain: A 3D probablistic atlas of the human brain''s cytoarchitecture. Science 369(6506), 988-992.';
 
 % imort atlas file in MNI152NLin2009cAsym space
+% we just use this as a stand in template that we'll modify later, since
+% this is the wrong space
 MNI152NLin2009cAsym_bilat = which('JulichBrainAtlas_3.0_areas_MPM_b_N10_nlin2ICBM152asym2009c_public_11035603b4744231e17e87fd8ebcaf1a.nii.gz');
 
 juStruct = parseXML(which('JulichBrainAtlas_3.0_areas_MPM_b_N10_nlin2ICBM152asym2009c_public_11035603b4744231e17e87fd8ebcaf1a.xml'));
@@ -25,7 +25,9 @@ labels_R = cellfun(@(x1)(['R_',x1]),labels,'UniformOutput',false);
 labels_L = cellfun(@(x1)(['L_',x1]),labels,'UniformOutput',false);
 
 % combine data with labels
-juData = fmri_data(MNI152NLin2009cAsym_bilat).remove_empty;
+ref_file = which('MNI152NLin6ASym_T1_1mm.nii.gz');
+ref = fmri_data(ref_file);
+juData = fmri_data(MNI152NLin2009cAsym_bilat).resample_space(ref,'nearest').remove_empty;
 [~,~,juData.dat] = unique(juData.dat,'stable');
 juAtlas = atlas(juData, ...
     'atlas_name', atlas_name,...
@@ -37,7 +39,6 @@ juAtlas = atlas(juData, ...
 juAtlas = juAtlas.replace_empty();
 
 % import probability maps
-d = dir(which('julich_brain_atlas_v3.0.3.zip'));
 pmap = zeros(size(juAtlas.dat,1), length(juAtlas.labels));
 parfor i = 1:length(juAtlas.labels)
     areaName = regexprep(strrep(regexprep(regexprep(juAtlas.labels{i},' \(.*',''),',.*',''),' ','-'),'[RL]_','');
@@ -52,9 +53,17 @@ parfor i = 1:length(juAtlas.labels)
             areaName = 'FuP';
     end
     side = lower(regexprep(juAtlas.labels{i},'(^[RL]).*','$1'));
-    file = dir([d.folder,'/probabilistic_maps_pmaps_157areas/', ...
-        areaName, '/', areaName, '_pmap_', side, '_*nlin2ICBM152asym2009c*nii.gz']);
-    pdata = fmri_data([file.folder, '/', file.name]);
+    file = dir(['probabilistic_maps_pmaps_157areas/', ...
+        areaName, '/', areaName, '_pmap_', side, '_*nlin2ICBM152asym6*nii.gz']);
+    try
+        pdata = fmri_data([file.folder, '/', file.name]);
+    catch
+        error('failed to open %s', [file.folder, '/', file.name]);
+    end
+
+    % all this data is resampled, so let's get rid of small values which
+    % are likely to extend outside the mas area
+    pdata.dat(pdata.dat < 1e-4) = 0;
 
     % the gapmap probabilitys are bogus, so let's reset them. We pick 0.2
     % because anything below that gets thresholded later.
@@ -84,8 +93,8 @@ dosave = true;
 % -----------------------------------------------------------------------
 
 % Display with unique colors for each region:
-orthviews(pureJuAtlas, 'unique', 'overlay', which('MNI152NLin2009cAsym_res-01_desc-brain_T1w.nii.gz'));
- 
+orthviews(pureJuAtlas, 'unique', 'overlay', which('fsl6_hcp_template.nii.gz'));
+figure;
 % Convert to regions
 % -----------------------------------------------------------------------
 
@@ -99,7 +108,7 @@ pureR = atlas2region(pureJuAtlas)
 
 if dosave
    
-    o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('MNI152NLin2009cAsym_res-01_desc-brain_T1w.nii.gz'),'surface',false);
+    o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('fsl6_hcp_template.nii.gz'));
     brighten(.6)
     
     o2 = montage(pureR, o2);
@@ -154,7 +163,7 @@ if dosave
     
     figure; han = isosurface(pureJuAtlas);
     
-    cellfun(@(x1)set(x1,'FaceAlpha', .5), han)
+    arrayfun(@(x1)set(x1,'FaceAlpha', .5), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle

@@ -18,6 +18,19 @@
 %   because of the grayordinate segmentation, it's intrinsically small.
 %   It's also bilateral AND discontinuous across the midline.
 
+% ToDo:
+% Deal with overlapping Glasser vs. volumetric hippocampal segmentations.
+%  The hippocampus and presubiculum surface ROIs overlap the hippocampal 
+%  volume. Glasser calls these 
+%    {'Ctx_PreS_L'  }
+%    {'Ctx_H_L'     }
+%  Question: are grayordinates redundant, or are our volumetric probability
+%  maps confusing the situation?
+% If redundant: Merge ROI indices if possible. The same area should not
+%  have two different labels
+% If it's a probability map issue set MTL volume probabilities outside of
+%   grayordinate space to zero. Cede it all to Glasser.
+
 clear all; close all;
 
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/spm12'));
@@ -26,7 +39,7 @@ addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/CanlabCore'))
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/Neuroimaging_Pattern_Masks'))
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/MasksPrivate'))
 
-ROOT = '/dartfs-hpc/rc/lab/C/CANlab/modules/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANlab_atlas_CIFTI/';
+ROOT = '/dartfs-hpc/rc/lab/C/CANlab/modules/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANlab_atlas/';
 
 labels = fmri_data([ROOT, 'hcp_cifti_subctx_labels.nii']);
 labels_txt = textscan(fopen([ROOT, 'hcp_cifti_subctx_labels.txt']),'%s');
@@ -86,8 +99,8 @@ toc
 %% Putamen
 % It's not clear why Caudate_Ca overlaps with the putamen ROI, but it's
 % a major hunk, so we include it here.
-%put = bg.select_atlas_subset(find(contains(bg.labels,{'V_Striatum','Putamen','VeP', 'BST_SLEA','Caudate_Ca_L', 'Caudate_Ca_R'}))).remove_empty();
-put = bg.select_atlas_subset(find(contains(bg.labels,{'V_Striatum','Putamen','VeP', 'BST_SLEA'}))).remove_empty();
+put = bg.select_atlas_subset(find(contains(bg.labels,{'V_Striatum','Putamen','VeP', 'BST_SLEA','Caudate_Ca_L', 'Caudate_Ca_R'}))).remove_empty();
+%put = bg.select_atlas_subset(find(contains(bg.labels,{'V_Striatum','Putamen','VeP', 'BST_SLEA'}))).remove_empty();
 
 cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'putamen'))));
 cifti_mask = cifti_mask.replace_empty();
@@ -200,7 +213,7 @@ thal_bstem_dil = dilate(atlas_obj, cifti_mask);
 toc
 
 % these have had Thal_ or bstem_ prefixed onto them. Let's get rid of that
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_L')} = 'Haben_L';
+thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_L')} = 'Ha-ben_L';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_R')} = 'Haben_R';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Mamm_Nuc_L')} = 'Mamm_Nuc_L';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Mamm_Nuc_R')} = 'Mamm_Nuc_R';
@@ -213,12 +226,17 @@ thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'PBP_R')} = 'PBP_R';
 thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'IC_L')} = 'IC_L';
 
 %% Hippocampus
+% note the references in the spmanatfile are wrong, so we need to orrect
+% them. The correct references were found here: 
+% https://github.com/inm7/jubrain-anatomy-toolbox
 spmanat = load_atlas(spmanatfile).resample_space(ref);
 
 % 12.8% of the entorhinal cortex volume is in the cifti hippocampal volume
 % mask, but this should be a cortical structure and most is subsumed by the 
 % glasser atlas, so we only include CA1-3, DG and Subiculum here
 hipp = spmanat.select_atlas_subset(find(contains(spmanat.labels,{'Hipp', 'Subic'}))).replace_empty();
+hipp.references = char([{'Amunts,K. et al., (2005). Anat. Embryol. 210 (5-6), 343-352.'}; ...
+{'Eickhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. (2005) NeuroImage 25(4), 1325-1335'}]);
 
 % make values lateralized
 hipp = lateralize(hipp);
@@ -241,10 +259,9 @@ hipp_dil = dilate(hipp, cifti_mask);
 
 %% Amygdala
 
-% 12.8% of the entorhinal cortex volume is in the cifti hippocampal volume
-% mask, but this should be a cortical structure and most is subsumed by the 
-% glasser atlas, so we only include CA1-3, DG and Subiculum here
 amyg = spmanat.select_atlas_subset(find(contains(spmanat.labels,{'Amy'}))).replace_empty();
+amyg.references = char([{'Amunts,K. et al., (2005). Anat. Embryol. 210 (5-6), 343-352.'}; ...
+{'Eickhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. (2005) NeuroImage 25(4), 1325-1335'}]);
 
 % make values lateralized
 amyg = lateralize(amyg);
