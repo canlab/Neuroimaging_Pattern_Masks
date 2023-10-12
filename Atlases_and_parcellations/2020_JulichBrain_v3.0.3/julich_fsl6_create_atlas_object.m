@@ -25,7 +25,7 @@ labels_R = cellfun(@(x1)(['R_',x1]),labels,'UniformOutput',false);
 labels_L = cellfun(@(x1)(['L_',x1]),labels,'UniformOutput',false);
 
 % combine data with labels
-ref_file = which('MNI152NLin6ASym_T1_1mm.nii.gz');
+ref_file = which('fsl6_hcp_template.nii');
 ref = fmri_data(ref_file);
 juData = fmri_data(MNI152NLin2009cAsym_bilat).resample_space(ref,'nearest').remove_empty;
 [~,~,juData.dat] = unique(juData.dat,'stable');
@@ -56,7 +56,8 @@ parfor i = 1:length(juAtlas.labels)
     file = dir(['probabilistic_maps_pmaps_157areas/', ...
         areaName, '/', areaName, '_pmap_', side, '_*nlin2ICBM152asym6*nii.gz']);
     try
-        pdata = fmri_data([file.folder, '/', file.name]);
+        pdata = fmri_data([file.folder, '/', file.name]);    
+        system(['rm -f ', file.folder, '/', strrep(file.name,'.gz','')]);
     catch
         error('failed to open %s', [file.folder, '/', file.name]);
     end
@@ -93,7 +94,7 @@ dosave = true;
 % -----------------------------------------------------------------------
 
 % Display with unique colors for each region:
-orthviews(pureJuAtlas, 'unique', 'overlay', which('fsl6_hcp_template.nii.gz'));
+orthviews(pureJuAtlas, 'unique', 'overlay', which('fsl6_hcp_template.nii'));
 figure;
 % Convert to regions
 % -----------------------------------------------------------------------
@@ -108,7 +109,7 @@ pureR = atlas2region(pureJuAtlas)
 
 if dosave
    
-    o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('fsl6_hcp_template.nii.gz'));
+    o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('fsl6_hcp_template.nii'));
     brighten(.6)
     
     o2 = montage(pureR, o2);
@@ -128,7 +129,7 @@ end
 if dosave
     
     savename = sprintf('%s_atlas_object.mat', atlas_name);
-    save(savename, 'juAtlas');
+    save([pwd, '/' savename], 'juAtlas');
     
 end
 
@@ -156,14 +157,14 @@ for i = 1:length(r)
 end
 
 savename = sprintf('%s_atlas_regions.mat', atlas_name);
-save(savename, 'r', 'region_names', juAtlas.labels{:});
+save([pwd, '/' savename], 'r', 'region_names', juAtlas.labels{:});
 
 %%
 if dosave
     
     figure; han = isosurface(pureJuAtlas);
     
-    arrayfun(@(x1)set(x1,'FaceAlpha', .5), han)
+    cellfun(@(x1)set(x1,'FaceAlpha', .5), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle
