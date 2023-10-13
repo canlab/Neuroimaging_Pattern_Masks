@@ -54,13 +54,27 @@ SPM derivatives.
 Source file is called, <br />
 IXI549Space_T1_2mm.nii.gz
 
+### SPM99 to SPM8
+These use MNI152Lin.
+
+Source file is called, <br />
+MNI152Lin_T1_1mm.nii.gz
+
+It was obtained here:
+https://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152Lin
+
 ### SPM96 and BioImage Suite
 These packages use MNIColin27. This is a template based on one subject (Colin) as opposed to the more typical N=152 sample.
 It benefits from more detail at the expense of being less representative. In particular it features a somewhat squat 
-appearance with more laterally displaced ventral structures.
+appearance with more laterally displaced ventral structures. Colin was scanned 27 times, and those 27 images were 
+coregistered and averaged to produce this template, hence Colin27. This template seems to be used most often when there's
+a need for exquisite detail. An example of such a scenario would be coregistration of histological sections, which have
+micron resolution.
 
 Source file is called, <br />
 MNIColin27_T1_1mm.nii.gz
+
+It comes from https://nist.mni.mcgill.ca/colin-27-average-brain/
 
 ### fMRIPrep (and QSIPrep)
 fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what FSL or SPM use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
