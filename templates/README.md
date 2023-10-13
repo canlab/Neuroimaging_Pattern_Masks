@@ -54,6 +54,14 @@ SPM derivatives.
 Source file is called, <br />
 IXI549Space_T1_2mm.nii.gz
 
+### SPM96 and BioImage Suite
+These packages use MNIColin27. This is a template based on one subject (Colin) as opposed to the more typical N=152 sample.
+It benefits from more detail at the expense of being less representative. In particular it features a somewhat squat 
+appearance with more laterally displaced ventral structures.
+
+Source file is called, <br />
+MNIColin27_T1_1mm.nii.gz
+
 ### fMRIPrep (and QSIPrep)
 fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what FSL or SPM use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
 
