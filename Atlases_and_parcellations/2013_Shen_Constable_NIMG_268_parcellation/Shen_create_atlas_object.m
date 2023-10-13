@@ -9,7 +9,7 @@
 %       canlab_load_ROI
 
 atlas_name = 'Shen';
-space_description = 'MNI152 space';
+space_description = 'MNI Colin27';
 references = 'Shen 2013 Neuroimage';
 
 % Run this from the directory containing the atlas files
@@ -18,7 +18,7 @@ dosave = true;
 
 % need to make sure we're using the one in MNI space
 % This is the index image only file:
-parcellation_file = which('shen_1mm_268_parcellation.nii');
+parcellation_file = which('shen_1mm_268_parcellation.nii.gz');
 
 cd(fileparts(parcellation_file))
 
@@ -59,7 +59,7 @@ atlas_obj = atlas(which(parcellation_file), ...
 % -----------------------------------------------------------------------
 
 % Display with unique colors for each region:
-orthviews(atlas_obj, 'unique');
+orthviews(atlas_obj, 'unique','overlay',which('MNIColin27_T1_1mm.nii.gz'));
  
 % Convert to regions
 % -----------------------------------------------------------------------
@@ -73,10 +73,10 @@ orthviews(atlas_obj, 'unique');
 
 if dosave
    
-    o2 = canlab_results_fmridisplay([], 'multirow', 1);
+    o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('MNIColin27_T1_1mm.nii.gz'));
     brighten(.6)
     
-    o2 = montage(r, o2, 'wh_montages', 1:2);
+    o2 = montage(r, o2);
     
     savedir = fullfile(pwd, 'png_images');
     if ~exist(savedir, 'dir'), mkdir(savedir); end
@@ -131,7 +131,7 @@ if dosave
     
     figure; han = isosurface(atlas_obj);
     
-    set(han,'FaceAlpha', .5)
+    cellfun(@(x1)(set(x1,'FaceAlpha', .5)),han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle
