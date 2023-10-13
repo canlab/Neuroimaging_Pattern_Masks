@@ -53,7 +53,7 @@ naturally to a hierarchy of parcellation with increasingly 'soft' watersheds as 
 In my opinion the Tian atlas provides a better parcellation than Pauli for several reasons,
 1) it's directly derived form data based based on a large and high quality sample (1000 HCP participants). This gives it 
 greater precision than is possible with neurosynth meta-analysis maps.
-2) It produces more plausible macroscopic boundaries as demonstrated by the putamen/caudate division. Pauli mixes parts of the caudate into areas that look intuitively like caudate. Given the issues with spatial precision in neurosynth 
+2) It produces more plausible macroscopic boundaries as demonstrated by the putamen/caudate division. Pauli mixes parts of the caudate into areas that look intuitively like putamen. Given the issues with spatial precision in neurosynth 
 it's hard to trust this.
 3) Tian delineates accumbens core and shell, which is something pauli doesn't do, but which I think is especially relevant 
 for a lab interested in affect and pain like the Wager lab. Additionally, I find this particularly impressive because I've 
