@@ -22,6 +22,10 @@ https://www.lead-dbs.org/about-the-mni-spaces/
 
 Most official MNI atlases are found here: https://nist.mni.mcgill.ca/atlases/
 
+This index is also a useful record of the different templates and what 
+software uses what templates:
+https://bids-specification.readthedocs.io/en/stable/appendices/coordinate-systems.html
+
 Add any you find useful here, with comments in this document regarding when to use them.
 The reference template, spatial resolution and imaging modality should be clear from the
 filename, similar to those already included. If you need it spelled out,
@@ -75,6 +79,9 @@ Source file is called, <br />
 MNIColin27_T1_1mm.nii.gz
 
 It comes from https://nist.mni.mcgill.ca/colin-27-average-brain/
+
+There are two versions of this, one from 1998 and another from 2008. 
+This is the 1998 version. The 2008 version has slightly different geometry.
 
 ### fMRIPrep (and QSIPrep)
 fMRIPrep and QSIPrep use MNI152 Nonlinear 2009c Asymmetric, aka MNI152NLin2009CAsym. This is newer than what FSL or SPM use by default as of the time of this writing. Use of this template by fMRIPrep is documented here, 
