@@ -57,9 +57,7 @@ antsApplyTransform from the fmriprep 20.0.3 LTS singularity container was used t
 
 ## Comparison between spaces
 
-Given the small scale of these structures accurate alignment is critically important for localization. Diedrichsen has specific brainstem alignment protocols that may be worth looking into, but at the very least you should be using the same reference template.
-
-ToDo: Add examples of parcellations aligned to MNI152NLin6Asym and MNI152NLin2009cAsym here.
+Given the small scale of these structures accurate alignment may be more important for localization than for other atlases. Diedrichsen has specific brainstem alignment protocols (SUIT) that may be worth looking into, but at the very least you should be using the same reference template. The difference between MNI152NLin6Asym and MNI152NLin2009cAsym is minor but better safe than sorry.
 
 ### Copyright
 
