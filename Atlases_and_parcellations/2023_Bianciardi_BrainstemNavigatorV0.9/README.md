@@ -42,7 +42,7 @@ A high resolution map of DSAB ligand binding on 5-HT transporter shows good over
 ![Salvi_5HTT](tracer_overlays/raphe_vs_dsab_salvi_5HTT.png)
 As you can see, this DSAB ligand binding map is truncated in the caudal arts of the image, but not in the subthalamic area where it shows good overlap with the CLi-Rli structure of Bianciardi (blue). We can corroborate these results by looking at binding for 5-HT1a autoreceptor, which will be less specific but should also be collocalized with the raphe nuclei
 
-![Beliveau_5HT1a](tracer_overalys/raphe_vs_cumi_beliveau_5HT1a.png)
+![Beliveau_5HT1a](tracer_overlays/raphe_vs_cumi_beliveau_5HT1a.png)
 CUMI ligand binding map shows location of 5-HT1a sites that collocalize with the more dorsal Bianciardi atlas (blue) better than the more ventral CANLab2018 structures (white).
 
 These results give me confidence that the approach taken by Bianciardi's group in their atlas construction works fairly well, although you should still find ways of corroborating any nuclear location with additional sources if it's critical to your question.
