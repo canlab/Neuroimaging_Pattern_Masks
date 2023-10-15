@@ -12,9 +12,9 @@ The nuclei have obscure names and in many cases multiple names. We have shorthan
 
 ### Evaluation of atlas quality
 
-The standard for brainstem nuclei in the Wager lab was established by CANLab 2018 (which predates this atlas). In CANLab2018 coordinates were aggregated from multiple studies, mostly pain studies, which reported task evoked responses in particular nuclei. Most of these studies were conducted between 2005-2010, and would be considered archaic by today's standards, but they had the advantage of linking anatomy with function or sometimes behavior for validation. The Bianciardi atlas does not do this for the most part (although see Bianciardi [2016] Magnetic Resonnance Materials in Physics, Biology and Medicine). Consequently you should approach these regions with some skepticism. However, the atlas has thus far held up under my own scrutiny.
+The standard for brainstem nuclei in the Wager lab was established by CANLab 2018 (which predates this atlas). In CANLab2018 coordinates were aggregated from multiple studies, mostly pain studies, which reported task evoked responses in particular nuclei. Most of these studies were conducted between 2005-2010, and would be considered archaic by today's standards, but they had the advantage of linking anatomy with function or sometimes behavior for validation. The Bianciardi atlas does not do this for the most part (although see Bianciardi 2016). Consequently you should approach these regions with some skepticism. However, the atlas has thus far held up under my own scrutiny.
 
-Some of the regions here disagree with those of CANLab2018. The raphe nuclei present an opportunity for robust comparison, since there are several of them distributed along the rostro-caudal axis of the brainstem and most express 5-HT transporter and 5-HT1a autoreceptors, for which we have multiple PET tracer maps available, courtesy of Hansen et al (2022) Nature Neuro. The viability of identifying these nuclei by 5-HT transporter ligand was established in a series of papers which identified 3-amin-4-(2-dimethylaminomethylphenylthio) benzonitrile (DASB) as an effective ligand (Son Y et al. [2012] Neuroimage & Son Y et al. [2014] Radiology). Hansen et al. provides two such maps and a third using a second 5-HT transporter ligand MADAM. Additionally, serotonin release appears regulated by 5-HT1a autoreceptors, for which Hansen provides two more PET contrast maps using two different radioligands, offering a second independent method of validating the raphe nuclei. We can overlay the raphe parcels from the Bianciardi and CANLab2018 atlases onto the PET tracer maps to evaluate their relative accuracy.
+Some of the regions here disagree with those of CANLab2018. The raphe nuclei present an opportunity for robust comparison, since there are several of them distributed along the rostro-caudal axis of the brainstem and most express 5-HT transporter and 5-HT1a autoreceptors, for which we have multiple PET tracer maps available (Hansen et al, 2022). The viability of identifying these nuclei by 5-HT transporter ligand was established in a series of papers which identified 3-amin-4-(2-dimethylaminomethylphenylthio) benzonitrile (DASB) as an effective ligand (Son Y et al. 2012 & Son Y et al. 2014). Hansen et al. provides two such maps and a third using a second 5-HT transporter ligand MADAM. Additionally, serotonin release appears regulated by 5-HT1a autoreceptors (Garcia-Garcia 2014), for which Hansen provides two more PET contrast maps using two different radioligands, offering a second independent method of validating the raphe nuclei. We can overlay the raphe parcels from the Bianciardi and CANLab2018 atlases onto the PET tracer maps to evaluate their relative accuracy.
 
 Bianciardi offers the following raphe nuclei,
 * Caudal-rostral linear raphe (CLi_RLi) (missing from canlab 2018)
@@ -46,6 +46,14 @@ As you can see, this DSAB ligand binding map is truncated in the caudal arts of 
 CUMI ligand binding map shows location of 5-HT1a sites that collocalize with the more dorsal Bianciardi atlas better than the more ventral CANLab2018 structures.
 
 These results give me confidence that the approach taken by Bianciardi's group in their atlas construction works fairly well, although you should still find ways of corroborating any nuclear location with additional sources if it's critical to your question.
+
+### Methods
+
+The mapping from the MNI152NLin6Asym space to MNI152NLin2009cAsym space was performed using transformations computed by Lead-DBS in conjunction with Vladimir Fonov from the MNI. The transforms were obtained here,
+
+https://figshare.com/articles/dataset/MNI_T1_6thGen_NLIN_to_MNI_2009b_NLIN_ANTs_transform/3502238
+
+antsApplyTransform from the fmriprep 20.0.3 LTS singularity container was used to perform the alignment on the to probablistic versions of the parcels and was implemented by the script warp_to_MNI152NLin2009cAsym0.sh. This was in turn invoked by warp_to_MNI152NLin2009cAsym.sh on the Dartmouth HPC system. The probablistic versions of the parcels were then used to regenerate the atlas in MNI152NLin2009cAsym space, and the result is also provided in this directory.
 
 ### Copyright
 
@@ -89,3 +97,9 @@ Bianciardi m, Toschi N, Eichner C, Polimeni J, Setsompop K, Brown E, Hamalainen 
 
 Bianciardi M, Toschi N, Edlow BL, Eichner C, Setsompop K, Polimeni JR, Brown EN, Kinney HC, Rosen BR, Wald LL. Toward an In Vivo Neuroimaging Template of Human Brainstem Nuclei of the Ascending Arousal, Autonomic, and Motor Systems. Brain Connect. 2015 Dec;5(10):597-607. doi: 10.1089/brain.2015.0347. Epub 2015 Aug 11. PMID: 26066023; PMCID: PMC4684653.
 For nuclei: DR, ION, MnR, PAG, RMg, RN, SN (brainstem), and STh (diencephalon)
+
+Garcia-Garcia A, Newman-Tancredi A, Leonardo E. P5-HT1A receptors in mood and anxiety: Recent insights into autoreceptor versus heteroreceptor functoin. Psychopharmacology 231(4), 623-636, 2014. DOI: 10.1007/s00213-013-3389-x
+
+Son YD, Cho ZH, Kim HK, Choi EJ, L SY, C JG, Park CW, Kim YB. Glucose metabolism of the midline nuclei raphe in the brainstem observed by PET-MRI fusion. Neuroimage 59(2), 1094-1097, 2012. DOI: 10.1016/j.neuroimage.2011.09.036
+
+Son Y, Cho Z, CHoi E, Kim J, Kim H, Lee S, Chi J, Park C, Kim J, Kim Y. Individually differentiated serotonergic raphe nuclei measured with brain PET/MR. Radiology 272(2), 541-548, 2014. DOI: 10.1148/radiol.14131547
