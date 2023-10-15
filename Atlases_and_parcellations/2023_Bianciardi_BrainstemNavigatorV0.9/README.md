@@ -34,16 +34,16 @@ Meanwhile CANLab2018 offers these,
 
 The first thing to notice is that they don't have identical coverage. Some ROIs are only in one but not the other. The other thing to notice is that CANLab2018 has both Median Raphe and Raphe Nucleus Centralis Superior which is a subdivision of the Median Raphe, but is suspect. Additionally the latter is associated with two nucleu, B6/B8. The B system is an independent numbering system for the Raphe to help distinguish them given redundant naming conventions, but this single nucleus is associated with two raphe nuclei. This might be fine for a nucleus with well defined boundaries, but the CANLab2018 ROIs are coordinate based and a 3 voxel sphere was simply drawn at those coordinates, so no meaningful subdivisions are possible.
 
-How doe these atlases compare when overlaid on the pet tracer data? All pet tracer overlays are available in the tracer_overlays directory of this folder, but I want to highlight three key ones. All overlays are using the MNI152NLin6Asym space of the Bianciardi atlas, since the CANLab2018 atlas doesn't use a single consistent space.
+How do these atlases compare when overlaid on the pet tracer data? All pet tracer overlays are available in the tracer_overlays directory of this folder, but I want to highlight three key ones. All overlays are using the MNI152NLin6Asym space of the Bianciardi atlas, since the CANLab2018 atlas doesn't use a single consistent space. Bianciardi is outlined in light blue, while CANLab2018 is outlined in white.
 
 ![Beliveau_5HTT](tracer_overlays/raphe_vs_dsab_beliveau_5HTT.png)
-A high resolution map of DSAB ligand binding on 5-HT transporter shows good overlap with Bianciardi's Raphe, but the CANLab2018 shows some outliers. In particular a nucleus near the pons is in a 5-HTT deadzone. This atlas is masked in the subthalamic area though so it's hard to judge the accuracy of the CLi-RLi structure which extends into that masked region. For that we turn to the next tracer map.
+A high resolution map of DSAB ligand binding on 5-HT transporter shows good overlap with Bianciardi's Raphe (blue), but the CANLab2018 shows some outliers (white). In particular a nucleus near the pons is in a 5-HTT deadzone. This atlas is masked in the subthalamic area though so it's hard to judge the accuracy of the CLi-RLi structure which extends into that masked region. For that we turn to the next tracer map.
 
 ![Salvi_5HTT](tracer_overlays/raphe_vs_dsab_salvi_5HTT.png)
-As you can see, this DSAB ligand binding map is truncated in the caudal arts of the image, but not in the subthalamic area where it shows good overlap with the CLi-Rli structure. We can corroborate these results by looking at binding for 5-HT1a autoreceptor, which will be less specific but should also be collocalized with the raphe nuclei
+As you can see, this DSAB ligand binding map is truncated in the caudal arts of the image, but not in the subthalamic area where it shows good overlap with the CLi-Rli structure of Bianciardi (blue). We can corroborate these results by looking at binding for 5-HT1a autoreceptor, which will be less specific but should also be collocalized with the raphe nuclei
 
 ![Beliveau_5HT1a](tracer_overalys/raphe_vs_cumi_beliveau_5HT1a.png)
-CUMI ligand binding map shows location of 5-HT1a sites that collocalize with the more dorsal Bianciardi atlas better than the more ventral CANLab2018 structures.
+CUMI ligand binding map shows location of 5-HT1a sites that collocalize with the more dorsal Bianciardi atlas (blue) better than the more ventral CANLab2018 structures (white).
 
 These results give me confidence that the approach taken by Bianciardi's group in their atlas construction works fairly well, although you should still find ways of corroborating any nuclear location with additional sources if it's critical to your question.
 
