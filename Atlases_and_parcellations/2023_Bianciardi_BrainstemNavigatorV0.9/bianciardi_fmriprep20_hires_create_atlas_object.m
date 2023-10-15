@@ -5,11 +5,11 @@
 
 clear all; close all;
 
-addpath(genpath('~/software/spm12'));
+addpath('~/.matlab/spm/spm12');
 
-addpath(genpath('~/software/canlab/CanlabCore'))
-addpath(genpath('~/software/canlab/Neuroimaging_Pattern_Masks'))
-addpath(genpath('~/software/canlab/MasksPrivate'))
+addpath(genpath('~/.matlab/canlab/CanlabCore'))
+addpath(genpath('~/.matlab/canlab/Neuroimaging_Pattern_Masks'))
+addpath(genpath('~/.matlab/canlab/MasksPrivate'))
 
 atlas_name = 'bianciardi_fmriprep20_hires';
 space_description = 'MNI152NLin2009cAsym';
@@ -42,7 +42,7 @@ end
 for i = 1:length(label_descriptions), label_descriptions{i}(2:end) = lower(label_descriptions{i}(2:end)); end
 
 % combine data with labels
-ref_file = which('fmriprep20_template.nii');
+ref_file = which('fmriprep20_template.nii.gz');
 ref = fmri_data(ref_file);
 bianciaData = ref;
 bianciaAtlas = atlas(bianciaData, ...

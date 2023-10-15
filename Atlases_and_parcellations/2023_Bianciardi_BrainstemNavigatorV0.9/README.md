@@ -55,6 +55,12 @@ https://figshare.com/articles/dataset/MNI_T1_6thGen_NLIN_to_MNI_2009b_NLIN_ANTs_
 
 antsApplyTransform from the fmriprep 20.0.3 LTS singularity container was used to perform the alignment on the to probablistic versions of the parcels and was implemented by the script warp_to_MNI152NLin2009cAsym0.sh. This was in turn invoked by warp_to_MNI152NLin2009cAsym.sh on the Dartmouth HPC system. The probablistic versions of the parcels were then used to regenerate the atlas in MNI152NLin2009cAsym space, and the result is also provided in this directory.
 
+## Comparison between spaces
+
+Given the small scale of these structures accurate alignment is critically important for localization. Diedrichsen has specific brainstem alignment protocols that may be worth looking into, but at the very least you should be using the same reference template.
+
+ToDo: Add examples of parcellations aligned to MNI152NLin6Asym and MNI152NLin2009cAsym here.
+
 ### Copyright
 
 Brainstem Navigator License
