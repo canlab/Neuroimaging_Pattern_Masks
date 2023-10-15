@@ -1,3 +1,8 @@
+% if rerun this would benefit from replacing regexp with 
+% format_text_letters_only(...,'numbers','cleanup') I think. That's what
+% other scripts use, but I didn't know about it when running this the first
+% time through.
+
 clear all; close all;
 
 addpath(genpath('~/software/spm12'));

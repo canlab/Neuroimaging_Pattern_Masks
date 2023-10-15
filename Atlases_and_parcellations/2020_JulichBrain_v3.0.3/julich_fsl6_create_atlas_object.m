@@ -1,10 +1,15 @@
+% if rerun this would benefit from replacing regexp with 
+% format_text_letters_only(...,'numbers','cleanup') I think. That's what
+% other scripts use, but I didn't know about it when running this the first
+% time through.
+
 clear all; close all;
 
-addpath(genpath('~/software/spm12'));
+addpath('/home/bogdan/.matlab/spm/spm12');
 
-addpath(genpath('~/software/canlab/CanlabCore'))
-addpath(genpath('~/software/canlab/Neuroimaging_Pattern_Masks'))
-addpath(genpath('~/software/canlab/MasksPrivate'))
+addpath(genpath('/home/bogdan/.matlab//canlab/CanlabCore'))
+addpath(genpath('/home/bogdan/.matlab//canlab/Neuroimaging_Pattern_Masks'))
+addpath(genpath('/home/bogdan/.matlab//canlab/MasksPrivate'))
 
 atlas_name = 'julich_fsl6';
 space_description = 'MNI152NLin6Asym';
