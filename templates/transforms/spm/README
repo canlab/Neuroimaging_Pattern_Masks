@@ -1,0 +1,18 @@
+Here is some example code for applying the affine matrices:
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+moving_img = spm_vol('img.nii') % image you want to transform
+fixed_img = spm_vol('MNI152NLin2009cAsym_T1_1mm.nii') % your reference image defining the space you want to get into
+
+M = csvread('00_fsl_to_fmriprep_AffineTransform.csv')
+
+spm_get_space('img.nii', M*moving_img.mat);
+spm_reslice({'MNI152NLin2009cAsym_T1_1mm.nii', 'img.nii'},...
+            {'interp', 1, 'mask', 1, 'mean', 0, 'which', 1, 'wrap', [0,0,0]'});
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Meanwhile the warpfields can be applied from the batch GUI using the
+"normalise: write" option under spatial transforms. It's fairly self 
+explanatory.
