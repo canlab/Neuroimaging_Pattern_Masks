@@ -16,3 +16,4 @@ spm_reslice({'MNI152NLin2009cAsym_T1_1mm.nii', 'img.nii'},...
 Meanwhile the warpfields can be applied from the batch GUI using the
 "normalise: write" option under spatial transforms. It's fairly self 
 explanatory.
+
