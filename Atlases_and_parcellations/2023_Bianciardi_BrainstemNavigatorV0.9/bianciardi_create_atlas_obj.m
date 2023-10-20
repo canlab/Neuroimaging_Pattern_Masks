@@ -55,27 +55,8 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     % fix capitalization
     for i = 1:length(label_descriptions), label_descriptions{i}(2:end) = lower(label_descriptions{i}(2:end)); end
     
+    areaFile = get_area_file(labels, labels_2, this_dir);
 
-    [areaFile, areaName] = deal(cell(length(labels),1));
-    for i = 1:length(labels)
-        areaName{i} = labels{i};
-        switch areaName{i}
-            case {'isRt_l', 'isRt_r','mRt_l'}
-                areaName{i} = strrep(areaName{i},'t','T');
-            case {'mRta_l','mRta_r'}
-                areaName{i} = strrep(areaName{i},'t','T');
-                areaName{i} = strrep(areaName{i},'a','A');
-        end
-        switch labels_2{i}
-            case 'Brainstem'
-                areaFile{i} = dir([this_dir.folder, '/BrainstemNavigator/0.9/2a.BrainstemNucleiAtlas_MNI/labels_probabilistic/', ...
-                    areaName{i}, '.nii.gz']);
-            case 'Diencephalic'
-                areaFile{i} = dir([this_dir.folder, '/BrainstemNavigator/0.9/2b.DiencephalicNucleiAtlas_MNI/labels_probabilistic/', ...
-                    areaName{i}, '.nii.gz']);
-        end
-    end
-    
     %% download files
     if any(cellfun(@isempty,areaFile))
         % Download necessary files
@@ -109,6 +90,8 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         rmdir([this_dir.folder, '/BrainstemNavigator/0.9/1a.BrainstemNucleiAtlas_IIT'],'s')
         rmdir([this_dir.folder, '/BrainstemNavigator/0.9/1b.DiencephalicNucleiAtlas_IIT'],'s')
         rmdir([this_dir.folder, '/BrainstemNavigator/0.9/1c.Templates_IIT'],'s')
+
+        areaFile = get_area_file(labels, labels_2, this_dir);
     end
 
     % import recently downloaded files
@@ -159,7 +142,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
             aligned, 1);
         delete(original_parcel.fullpath);
         pdata = fmri_data(aligned);
-        delete(aligned.fullpath)
+        delete(aligned)
     else
         pdata = original_parcel;
     end
@@ -193,4 +176,26 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save([this_dir.folder, '/' savename], 'bianciaAtlas');
+end
+
+function areaFile = get_area_file(labels, labels_2, parentDir)
+    [areaFile, areaName] = deal(cell(length(labels),1));
+    for i = 1:length(labels)
+        areaName{i} = labels{i};
+        switch areaName{i}
+            case {'isRt_l', 'isRt_r','mRt_l'}
+                areaName{i} = strrep(areaName{i},'t','T');
+            case {'mRta_l','mRta_r'}
+                areaName{i} = strrep(areaName{i},'t','T');
+                areaName{i} = strrep(areaName{i},'a','A');
+        end
+        switch labels_2{i}
+            case 'Brainstem'
+                areaFile{i} = dir([parentDir.folder, '/BrainstemNavigator/0.9/2a.BrainstemNucleiAtlas_MNI/labels_probabilistic/', ...
+                    areaName{i}, '.nii.gz']);
+            case 'Diencephalic'
+                areaFile{i} = dir([parentDir.folder, '/BrainstemNavigator/0.9/2b.DiencephalicNucleiAtlas_MNI/labels_probabilistic/', ...
+                    areaName{i}, '.nii.gz']);
+        end
+    end
 end
