@@ -9,7 +9,7 @@
 %       canlab_load_ROI
 
 atlas_name = 'Shen';
-space_description = 'MNI Colin27';
+space_description = 'MNIColin27v1998';
 references = 'Shen 2013 Neuroimage';
 
 % Run this from the directory containing the atlas files
