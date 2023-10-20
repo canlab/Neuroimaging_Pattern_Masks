@@ -30,7 +30,7 @@ labels_R = cellfun(@(x1)(['R_',x1]),labels,'UniformOutput',false);
 labels_L = cellfun(@(x1)(['L_',x1]),labels,'UniformOutput',false);
 
 % combine data with labels
-ref_file = which('fsl6_hcp_template.nii');
+ref_file = which('fsl6_hcp_template.nii.gz');
 ref = fmri_data(ref_file);
 juData = fmri_data(MNI152NLin2009cAsym_bilat).resample_space(ref,'nearest').remove_empty;
 [~,~,juData.dat] = unique(juData.dat,'stable');

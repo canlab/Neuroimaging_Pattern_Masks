@@ -41,7 +41,7 @@ juAtlas = juAtlas.replace_empty();
 
 % import probability maps
 pmap = zeros(size(juAtlas.dat,1), length(juAtlas.labels));
-parfor i = 1:length(juAtlas.labels)
+for i = 1:length(juAtlas.labels)
     areaName = regexprep(strrep(regexprep(regexprep(juAtlas.labels{i},' \(.*',''),',.*',''),' ','-'),'[RL]_','');
     switch areaName
         case 'Medial-Accumbens'
