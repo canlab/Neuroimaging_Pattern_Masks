@@ -1,3 +1,15 @@
+% For most atlases in this repo the atlas generation script serves as
+% documentation of how an atlas was created. In the case of the Bianciardi
+% Brainstem Navigator atlas we can't distribute the atlas itself, so
+% instead of a record of how an atlas was created we have scripts that
+% download and create the atlas dynamically for each person who invokes the
+% load_atlas() command for one of these atlases or runs this script. Unlike
+% the load_atlas path, this script will generate all the usual accompanying
+% files that most atlases have, like the png_images and the regions files.
+% It also serves as a useful oneshot script to download and assemble all
+% variations of atlas in one shot, rather than waiting for the first time
+% you invoke load_atlas() on them.
+
 clear all; close all;
 
 addpath('~/.matlab/spm/spm12');

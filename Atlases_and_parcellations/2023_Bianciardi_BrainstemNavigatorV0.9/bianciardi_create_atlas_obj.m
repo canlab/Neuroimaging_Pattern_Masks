@@ -33,7 +33,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     % we bianciast use this as a stand in template that we'll modify later, since
     % this is the wrong space
     if fine
-        labels_file = 'bianciardi_hires_labels.csv';
+        labels_file = 'bianciardi_fine_labels.csv';
     else 
         labels_file = 'bianciardi_labels.csv';
     end
