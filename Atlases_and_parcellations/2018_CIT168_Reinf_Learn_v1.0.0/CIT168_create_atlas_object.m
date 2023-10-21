@@ -9,7 +9,7 @@
 %       canlab_load_ROI
 
 atlas_name = 'CIT168_MNI_subcortical';
-space_description = 'MNI152 space';
+space_description = 'MNI152NLin2009cAsym space';
 references = 'Pauli, Wolfgang M., Amanda N. Nili, and J. Michael Tyszka. 2018. ?A High-Resolution Probabilistic in Vivo Atlas of Human Subcortical Brain Nuclei.? Scientific Data 5 (April): 180063.';
 
             %'Pauli 2018 Bioarxiv: CIT168 from Human Connectome Project data';
@@ -20,7 +20,7 @@ dosave = true;
 
 % need to make sure we're using the one in MNI space
 % This is the full probabilistic atlas file:
-parcellation_file = which('CIT168toMNI152_prob_atlas_bilat_1mm.nii');  
+parcellation_file = which('CIT168toMNI152_prob_atlas_bilat_1mm.nii.gz');  
 
 cd(fileparts(parcellation_file))
 
@@ -48,7 +48,7 @@ atlas_obj = threshold(atlas_obj, .2, 'k', 3);
 % -----------------------------------------------------------------------
 
 % Display with unique colors for each region:
-orthviews(atlas_obj, 'unique');
+orthviews(atlas_obj, 'unique','overlay',which('fmriprep20_template.nii.gz'));
  
 % Convert to regions
 % -----------------------------------------------------------------------
@@ -62,7 +62,7 @@ r = atlas2region(atlas_obj);
 
 if dosave
    
-    o2 = canlab_results_fmridisplay([], 'multirow', 1);
+    o2 = canlab_results_fmridisplay([], 'multirow', 1,'overlay',which('fmriprep20_template.nii.gz'));
     brighten(.6)
     
     o2 = montage(r, o2, 'wh_montages', 1:2);
@@ -92,7 +92,7 @@ if dosave
     
     savename = sprintf('%s_atlas_regions.img', atlas_name);
     atlas_obj.fullpath = fullfile(pwd, savename);
-    write(atlas_obj);
+    write(atlas_obj, 'overwrite');
     
 end
 
@@ -117,7 +117,7 @@ if dosave
     
     figure; han = isosurface(atlas_obj);
     
-    set(han,'FaceAlpha', .5)
+    cellfun(@(x1)set(x1,'FaceAlpha', .5), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle

@@ -53,11 +53,11 @@ These results give me confidence that the approach taken by Bianciardi's group i
 
 ### Methods
 
-The mapping from the MNI152NLin6Asym space to MNI152NLin2009cAsym space was performed using transformations computed by Lead-DBS in conjunction with Vladimir Fonov from the MNI. The transforms were obtained here,
+The mapping from the MNI152NLin6Asym space to MNI152NLin2009cAsym space was performed using transformations computed by fmriprep 20.0.3 (LTS). Specifically fmriprep was run on MNI152NLin6Asym using MNI152NLin2009cAsym as the template.
+ 
 
-https://figshare.com/articles/dataset/MNI_T1_6thGen_NLIN_to_MNI_2009b_NLIN_ANTs_transform/3502238
-
-antsApplyTransform from the fmriprep 20.0.3 LTS singularity container was used to perform the alignment on the to probablistic versions of the parcels and was implemented by the script warp_to_MNI152NLin2009cAsym0.sh. This was in turn invoked by warp_to_MNI152NLin2009cAsym.sh on the Dartmouth HPC system. The probablistic versions of the parcels were then used to regenerate the atlas in MNI152NLin2009cAsym space, and the result is also provided in this directory.
+Because we cannot distribute the original parcels nor any derivatives based on those parcels, the transformed versions
+must be regenerated for each user on their own machine based on the files they themselves download. This entire process is automated the bianciardi_create_atlas_obj.m script, which is invoked whenever this atlas is requested but not found by dependent scripts. The catch is that the transformation must be performed within matlab, since we cannot assume anything else about the user's environment. For instance, although fmriprep uses ANTs for registration, we cannot assume users have installed ANTs. This required converting the transformations computed by fmriprep into an SPM compatable format, since SPM is the only cross platform library for applying the transformation, and we can assume users have it installed because it's a dependency of this repo (by way of canlabCore). For documentation on the conversion process please refer to Neuroimaging_Pattern_Masks/templates/transforms/code/
 
 ## Comparison between spaces
 
