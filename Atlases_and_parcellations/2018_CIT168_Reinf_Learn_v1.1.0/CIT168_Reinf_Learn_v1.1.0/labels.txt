@@ -1,0 +1,16 @@
+0   Pu
+1   Ca
+2   NAC
+3   EXA
+4   GPe
+5   GPi
+6   SNc
+7   RN
+8   SNr
+9   PBP
+10  VTA
+11  VeP
+12  HN
+13  HTH
+14  MN
+15  STH
