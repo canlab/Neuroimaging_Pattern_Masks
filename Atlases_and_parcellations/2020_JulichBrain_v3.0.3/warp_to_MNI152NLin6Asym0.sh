@@ -13,7 +13,7 @@ for INPUT in $(find probabilistic_maps_pmaps_157areas/ -type f -name "*nii.gz");
     echo "Aligning $INPUT"
 
     antsApplyTransforms \
-        -i $INPUT -r $TEMPLATE_DIR/MNI152NLin6ASym_T1_1mm.nii.gz \
+        -i $INPUT -r $TEMPLATE_DIR/MNI152NLin6Asym_T1_1mm.nii.gz \
         -o $OUTPUT -n LanczosWindowedSinc \
         -t $XFM_DIR/MNI152NLin2009cAsym_to_MNI152NLin6Asym.h5
 done
