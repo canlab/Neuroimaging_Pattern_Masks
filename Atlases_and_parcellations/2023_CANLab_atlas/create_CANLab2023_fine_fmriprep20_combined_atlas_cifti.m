@@ -92,6 +92,7 @@ if strcmp(REALSPACE, 'MNI152NLin6Asym')
 else
     morelfile = which(sprintf('Morel_thalamus_%s_atlas_object.mat',REALSPACE));
 end
+julichfile = which(sprintf('julich_%s_atlas_object.mat',SPACE));
 %paulifile = which('Pauli2016_striatum_atlas_object.mat');
 %bnfile = which('Brainnetome_atlas_object.mat');
 
@@ -110,7 +111,9 @@ bg = load(bgfile); bg = bg.atlas_obj.resample_space(ref);
 
 %% incorporate BST_SLEA into BG and make it lateralized
 % we include parts that overlap with acumbens, GP and caudate, but not
-% putamen because it's a trivial segment. Is this the right move though?
+% putamen because it's a trivial segment (4vxls) and not worth the mess,
+% and not GP because it's a small segment and fragments the ROI which is
+% mostly in caudate.
 atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref);
 
 BST = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,{'BST_SLEA'}))).replace_empty();
@@ -159,7 +162,6 @@ cifti_mask = cifti_mask.replace_empty();
 
 tic
 pal_dil = dilate(pal, cifti_mask);
-pal_dil = BST.apply_mask(cifti_mask).merge_atlases(pal_dil,'noreplace');
 toc
 
 %% Accumbens
@@ -176,7 +178,7 @@ accumbens_dil = BST.apply_mask(cifti_mask).merge_atlases(accumbens_dil,'noreplac
 toc
 
 %% bg atlas
-bg_dil = caud_dil.merge_atlases(put_dil).merge_atlases(pal_dil).merge_atlases(accumbens_dil);
+bg_dil = caud_dil.merge_atlases(put_dil).merge_atlases(pal_dil.select_atlas_subset('GP')).merge_atlases(accumbens_dil);
 % deal with redundant labels
 uniq_labels = unique(bg_dil.labels);
 remove = [];
@@ -223,7 +225,7 @@ wh_regions = {'Haben' 'Mamm_Nuc','Hythal'};
 
 % lateralize habenula and mammillary bodies
 
-atlas_obj = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,wh_regions))).replace_empty();
+atlas_obj = atlas_obj.select_atlas_subset(wh_regions).replace_empty();
 
 % make values lateralized
 atlas_obj = lateralize(atlas_obj);
@@ -275,12 +277,12 @@ thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'IC_L')} = 'IC_L';
 % note the references in the spmanatfile are wrong, so we need to orrect
 % them. The correct references were found here: 
 % https://github.com/inm7/jubrain-anatomy-toolbox
-spmanat = load_atlas(spmanatfile).resample_space(ref);
+julich = load_atlas(julichfile).resample_space(ref);
 
 % 12.8% of the entorhinal cortex volume is in the cifti hippocampal volume
 % mask, but this should be a cortical structure and most is subsumed by the 
 % glasser atlas, so we only include CA1-3, DG and Subiculum here
-hipp = spmanat.select_atlas_subset(find(contains(spmanat.labels,{'Hipp', 'Subic'}))).replace_empty();
+hipp = julich.select_atlas_subset({'Hipp', 'Subic'}).replace_empty();
 hipp.references = char([{'Amunts,K. et al., (2005). Anat. Embryol. 210 (5-6), 343-352.'}; ...
 {'Eickhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. (2005) NeuroImage 25(4), 1325-1335'}]);
 
@@ -305,7 +307,7 @@ hipp_dil = dilate(hipp, cifti_mask);
 
 %% Amygdala
 
-amyg = spmanat.select_atlas_subset(find(contains(spmanat.labels,{'Amy'}))).replace_empty();
+amyg = julich.select_atlas_subset(find(contains(julich.labels,{'Amy'}))).replace_empty();
 amyg.references = char([{'Amunts,K. et al., (2005). Anat. Embryol. 210 (5-6), 343-352.'}; ...
 {'Eickhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. (2005) NeuroImage 25(4), 1325-1335'}]);
 
