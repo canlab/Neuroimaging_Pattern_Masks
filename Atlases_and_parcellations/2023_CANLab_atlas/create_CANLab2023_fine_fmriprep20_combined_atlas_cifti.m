@@ -31,19 +31,21 @@
 % If it's a probability map issue set MTL volume probabilities outside of
 %   grayordinate space to zero. Cede it all to Glasser.
 
-addpath([LIB, '/spm/spm12']);
-
-addpath(genpath([LIB, '/canlab/CanlabCore']))
-addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
-addpath(genpath([LIB, '/canlab/MasksPrivate']))
-
 clear all; close all;
 
 %HOME = '/dartfs-hpc/rc/home/m/f0042vm/software'
 LIB = '/home/bogdan/.matlab';
 ROOT = [LIB, '/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANLab_atlas/'];
 
-SPACE = 'fsl6';
+addpath([LIB, '/spm/spm12']);
+
+addpath(genpath([LIB, '/canlab/CanlabCore']))
+addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
+addpath(genpath([LIB, '/canlab/MasksPrivate']))
+
+parpool(10);
+
+SPACE = 'fmriprep20';
 SCALE = 'fine';
 
 switch SPACE
@@ -53,7 +55,7 @@ switch SPACE
         TEMPLATE = which('MNI152NLin2009cAsym_T1_1mm.nii.gz');
 
 
-        labels = fmri_data([ROOT, 'hcp_cifti_subctx_labels_fmriprep20.nii']);
+        labels = fmri_data(sprintf('%s/hcp_cifti_subctx_labels_%s.nii',ROOT,REALSPACE));
         labels_txt = textscan(fopen([ROOT, 'hcp_cifti_subctx_labels.txt']),'%s');
     case 'fsl6'
         REALSPACE = 'MNI152NLin6Asym';
@@ -66,7 +68,7 @@ end
 
 
 cifti_atlas = atlas(labels);
-cifti_atlas.labels = labels_txt{1};
+cifti_atlas.labels = labels_txt{1}';
 
 switch SCALE
     case 'fine'
@@ -108,6 +110,7 @@ ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
 ref = fmri_data(TEMPLATE);
 
 bg = load(bgfile); bg = bg.atlas_obj.resample_space(ref);
+bg.labels_5 = repmat({'Tian'},1,num_regions(bg));
 
 %% incorporate BST_SLEA into BG and make it lateralized
 % we include parts that overlap with acumbens, GP and caudate, but not
@@ -118,6 +121,7 @@ atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref);
 
 BST = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,{'BST_SLEA'}))).replace_empty();
 BST = lateralize(BST);
+BST.labels_5 = repmat({'CIT168'},1,num_regions(BST));
 
 %% Caudate
 % some of V_Striatum is in the CIFTI accumben (13%), but most is in the
@@ -178,8 +182,9 @@ accumbens_dil = BST.apply_mask(cifti_mask).merge_atlases(accumbens_dil,'noreplac
 toc
 
 %% bg atlas
-bg_dil = caud_dil.merge_atlases(put_dil).merge_atlases(pal_dil.select_atlas_subset('GP')).merge_atlases(accumbens_dil);
+bg_dil = caud_dil.merge_atlases(put_dil).merge_atlases(pal_dil).merge_atlases(accumbens_dil);
 % deal with redundant labels
+n_labels = length(bg_dil.labels);
 uniq_labels = unique(bg_dil.labels);
 remove = [];
 for i = 1:length(uniq_labels)
@@ -188,18 +193,23 @@ for i = 1:length(uniq_labels)
     for j = 2:length(this_ind)
         bg_dil.dat(bg_dil.dat == this_ind(j)) = this_ind(1);
         remove(end+1) = this_ind(j);
+        bg_dil.probability_maps(:,this_ind(1)) = max(bg_dil.probability_maps(:,this_ind),[],2);
     end
 end
 [~,~,dat] = unique(bg_dil.dat);
 bg_dil.dat = dat - 1;
+fnames = {'labels','labels_2','labels_3','labels_4','labels_5'};
+for i = 1:length(fnames)
+    if length(bg_dil.(fnames{i})) == n_labels
+        bg_dil.(fnames{i})(remove) = [];
+    end
+end
 bg_dil.probability_maps(:,remove) = [];
-bg_dil.labels(remove) = [];
 
-cifti_mask = fmri_mask_image(cifti_atlas);
-bg_dil = bg_dil.apply_mask(cifti_mask);
 
 %% Cerebellum
 cerebellum = load(suitfile); cerebellum = cerebellum.atlas_obj.resample_space(ref);
+cerebellum.labels_5 = repmat({'SUIT/Diedrichsen'},1,num_regions(cerebellum));
 
 % remove white matter structures that aren't well represented in
 % grayordinate space
@@ -217,18 +227,6 @@ cerebellum_dil = cerebellum_dil.resample_space(bg_dil,'nearest');
 %% thalamus and brainstem
 % this block's dilation takes abount 40 minutes to run
 % Map in Morel atlas-based combined atlas regions for thalamus
-cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,{'thalamus','dienc','brain_stem'}))));
-
-% Add in smaller areas we don't want to dilute: mammilary nucleus and habenula
-atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref);
-wh_regions = {'Haben' 'Mamm_Nuc','Hythal'};
-
-% lateralize habenula and mammillary bodies
-
-atlas_obj = atlas_obj.select_atlas_subset(wh_regions).replace_empty();
-
-% make values lateralized
-atlas_obj = lateralize(atlas_obj);
 
 % we lateralize some areas and exclude others, like Hb, because we already
 % have habenula from the CIT atlas
@@ -237,102 +235,75 @@ lat_thal = lateralize(thal_atlas.select_atlas_subset(find(~ismember(thal_atlas.l
 bilat_thal = thal_atlas.select_atlas_subset(find(ismember(thal_atlas.labels,'Midline')));
 thal_atlas = lat_thal.merge_atlases(bilat_thal);
 
-atlas_obj = merge_atlases(atlas_obj, thal_atlas, 'noreplace');
-
 % Add labels to make more consistent with other atlases
-for i = 5:length(atlas_obj.labels)
-    atlas_obj.labels{i} = [ 'Thal_' atlas_obj.labels{i}]; 
+% create probability maps too and default to 50% so that any conflicts with
+% non-thalamic regions that are better than not to be correct are ceded to 
+% said regions
+pmap = zeros(size(thal_atlas.dat,1), num_regions(thal_atlas));
+for i = 1:num_regions(thal_atlas)
+    thal_atlas.labels{i} = [ 'Thal_' thal_atlas.labels{i}]; 
+    pmap(thal_atlas.dat == i,i) = 0.5;
 end
+thal_atlas.probability_maps = pmap;
+thal_atlas.labels_5 = repmat({'Morel'}, 1, num_regions(thal_atlas));
 
 
 bstem = load(brainstemfile);
 bstem = bstem.atlas_obj.resample_space(ref);
 
 % Add labels to make more consistent with other atlases
-for i = 1:length(atlas_obj.labels)
+for i = 1:length(bstem.labels)
     bstem.labels{i} = [ 'Bstem_' bstem.labels{i}]; 
 end
 
-% merge, using 'noreplace' to avoid overwriting 
-atlas_obj = merge_atlases(atlas_obj, bstem, 'noreplace');
+cit = load_atlas(citfile);
+cit = lateralize(cit.select_atlas_subset({'Haben','Hythal'}));
+cit.labels_5 = repmat({'CIT168'}, 1, num_regions(cit));
 
-tic
-thal_bstem_dil = dilate(atlas_obj, cifti_mask);
-toc
+thal_bstem = bstem.merge_atlases(cit).merge_atlases(thal_atlas);
 
 % these have had Thal_ or bstem_ prefixed onto them. Let's get rid of that
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_L')} = 'Ha-ben_L';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Haben_R')} = 'Haben_R';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Mamm_Nuc_L')} = 'Mamm_Nuc_L';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Mamm_Nuc_R')} = 'Mamm_Nuc_R';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Hythal_L')} = 'Hythal_L';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Hythal_R')} = 'Hythal_R';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Dorsal_raphe_DR')} = 'Dorsal_raphe_DR';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'Median_raphe_MR_R')} = 'Median_raphe_MR_R';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'PBP_L')} = 'PBP_L';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'PBP_R')} = 'PBP_R';
-thal_bstem_dil.labels{contains(thal_bstem_dil.labels,'IC_L')} = 'IC_L';
+thal_bstem.labels{contains(thal_bstem.labels,'Haben_L')} = 'Haben_L';
+thal_bstem.labels{contains(thal_bstem.labels,'Haben_R')} = 'Haben_R';
+thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_L')} = 'Mamm_Nuc_L';
+thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_R')} = 'Mamm_Nuc_R';
+thal_bstem.labels{contains(thal_bstem.labels,'Hythal_L')} = 'Hythal_L';
+thal_bstem.labels{contains(thal_bstem.labels,'Hythal_R')} = 'Hythal_R';
 
-%% Hippocampus
-% note the references in the spmanatfile are wrong, so we need to orrect
-% them. The correct references were found here: 
-% https://github.com/inm7/jubrain-anatomy-toolbox
+%% Hippocampus and Hippocampus
 julich = load_atlas(julichfile).resample_space(ref);
 
-% 12.8% of the entorhinal cortex volume is in the cifti hippocampal volume
-% mask, but this should be a cortical structure and most is subsumed by the 
-% glasser atlas, so we only include CA1-3, DG and Subiculum here
-hipp = julich.select_atlas_subset({'Hipp', 'Subic'}).replace_empty();
-hipp.references = char([{'Amunts,K. et al., (2005). Anat. Embryol. 210 (5-6), 343-352.'}; ...
-{'Eickhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. (2005) NeuroImage 25(4), 1325-1335'}]);
-
-% make values lateralized
-hipp = lateralize(hipp);
-hipp.labels = cellfun(@(x1)strrep(x1,'__','_'), hipp.labels,'UniformOutput',false);
-% create surrogate prob map
-uniq_hipp = unique(hipp.dat);
-uniq_hipp = uniq_hipp(uniq_hipp~=0);
-pmap = zeros(size(hipp.dat,1), length(uniq_hipp));
-for i = 1:length(uniq_hipp)
-    pmap(hipp.dat == uniq_hipp(i),uniq_hipp(i)) = 1;
-end
-hipp.probability_maps = pmap;
+% SF - superficial amygdala
+% LB - laterobasal amygdala
+% CM - centromedian amygdala
+% CA - cornu ammonis
+% DG - dentate gyrus
+% HATA - hippocampal-amygdaloid transition area
+hipp_amyg = julich.select_atlas_subset({'Subic', 'HATA', 'CA', 'DG', 'Transsubic','L_SF','R_SF','LB','CM'}).replace_empty();
+hipp_amyg.references = char([{'Amunts, K., Kedo, O., Kindler, M., Pieperhoff, P., Mohlberg, H., Shah, N. J., Habel, U., Schneider, F., & Zilles, K. (2005). Cytoarchitectonic mapping of the human amygdala, hippocampal region and entorhinal cortex: intersubject variability and probability maps. Anatomy and Embryology, 210(5–6), 343–352. https://doi.org/10.1007/s00429-005-0025-5 DOI: 10.1007/s00429-005-0025-5'}; ...
+    {'Kedo, O., Zilles, K., Palomero-Gallagher, N., Schleicher, A., Mohlberg, H., Bludau, S., & Amunts, K. (2017). Receptor-driven, multimodal mapping of the human amygdala. Brain Structure and Function. https://doi.org/10.1007/s00429-017-1577-x DOI: 10.1007/s00429-017-1577-x'}; ...
+    {'Amunts, K., Mohlberg, H., Bludau, S., & Zilles, K. (2020). Julich-Brain: A 3D probabilistic atlas of the human brain s cytoarchitecture. Science, 369(6506), 988–992. https://doi.org/10.1126/science.abb4588 DOI: 10.1126/science.abb4588'}; ...
+    {'Amunts et al (2023) [Dataset v3.0.3] DOI:10.25493/56EM-75H'}]);
+hipp_amyg.labels_5 = repmat({'Julich/Amunts'},1,num_regions(hipp_amyg));
 
 % get cifti hippocampal mask and for each voxel find its nearest
 % hippocampal structure from hipp.
-cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'hipp'))));
+cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,{'hipp','amygdala'}))));
 cifti_mask = cifti_mask.replace_empty();
+hipp_amyg_dil = dilate(hipp_amyg, cifti_mask);
 
-hipp_dil = dilate(hipp, cifti_mask);
-
-%% Amygdala
-
-amyg = julich.select_atlas_subset(find(contains(julich.labels,{'Amy'}))).replace_empty();
-amyg.references = char([{'Amunts,K. et al., (2005). Anat. Embryol. 210 (5-6), 343-352.'}; ...
-{'Eickhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. (2005) NeuroImage 25(4), 1325-1335'}]);
-
-% make values lateralized
-amyg = lateralize(amyg);
-amyg.labels = cellfun(@(x1)strrep(x1,'__','_'), amyg.labels, 'UniformOutput',false); % create surrogate prob map
-
-uniq_hipp = unique(amyg.dat);
-uniq_hipp = uniq_hipp(uniq_hipp~=0);
-pmap = zeros(size(amyg.dat,1), length(uniq_hipp));
-for i = 1:length(uniq_hipp)
-    pmap(amyg.dat == uniq_hipp(i),uniq_hipp(i)) = 1;
-end
-amyg.probability_maps = pmap;
-
-% get cifti hippocampal mask and for each voxel find its nearest
-% hippocampal structure from hipp.
-cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'amygdala'))));
-cifti_mask = cifti_mask.replace_empty();
-
-amyg_dil = dilate(amyg, cifti_mask);
+% note that {'VTM','MF','IF'} are listed as fiber bundles, so we want to
+% exclude them from the dilution above
+% VTM - Tractus ventromedialis (Stria terminalis) of Brockhaus
+% MF - medial fiber bundles
+% IF - intermediate fiber bundles
+amygdalar_fiber_structures = julich.select_atlas_subset({'VTM','MF','IF'});
+amygdalar_fiber_structures.labels_5 = repmat({'Julich/Kedo'},1,num_regions(amygdalar_fiber_structures));
+hipp_amyg_dil = hipp_amyg_dil.merge_atlases(amygdalar_fiber_structures, 'always_replace').apply_mask(cifti_mask);
 
 %% combinate atlases
 
-atlas_obj = bg.select_atlas_subset(find(contains(bg.labels,'STN'))).merge_atlases(thal_bstem_dil,'noreplace').merge_atlases(cerebellum_dil).merge_atlases(bg_dil).merge_atlases(hipp_dil).merge_atlases(amyg_dil);
+atlas_obj = thal_bstem.merge_atlases(cerebellum_dil).merge_atlases(bg_dil).merge_atlases(hipp_amyg_dil);
 atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 
 %% create label file
@@ -340,25 +311,38 @@ atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 % NIFTI at the full brain level below. Meanwhile we only need 2mm data for
 % CIFTI, so we make a downsampled copy here and save that.
 
-% reimport as reference
-cifti_orig = fmri_data([ROOT, 'hcp_cifti_subctx_labels.nii']);
-
 cmap = round(255*colormap('lines'));
+cmap = [cmap;cmap;cmap;cmap];
 
-atlas_obj_ds = atlas_obj.resample_space(cifti_orig);
+atlas_obj_ds = atlas_obj.resample_space(cifti_atlas);
 
 atlas_obj_ds.fullpath = [ROOT, 'subctx_atlas.nii'];
 atlas_obj_ds.write('overwrite')
+gzip(atlas_obj_ds.fullpath);
+
 n_roi = length(atlas_obj_ds.labels);
 
 fid = fopen([ROOT, 'subctx_atlas.txt'],'w+');
+[right_ind, left_ind] = deal(0);
+bilateral_ind = size(cmap,1);
 for i = 1:n_roi
     fprintf(fid, [atlas_obj_ds.labels{i}, '\n']);
-    fprintf(fid, [int2str(i), ' ' num2str(cmap(i,1)), ' ', num2str(cmap(i,2)), ' ', num2str(cmap(i,3)), ' 255\n']);
+    % keep colors on left and right sides in sync. Color bilateral areas
+    % independently
+    if strcmp(atlas_obj_ds.labels{i}(end-1:end),'_R')
+        right_ind = right_ind + 1;
+        fprintf(fid, [int2str(i), ' ' num2str(cmap(right_ind,1)), ' ', num2str(cmap(right_ind,2)), ' ', num2str(cmap(right_ind,3)), ' 255\n']);
+    elseif strcmp(atlas_obj_ds.labels{i}(end-1:end),'_L')
+        left_ind = left_ind + 1;
+        fprintf(fid, [int2str(i), ' ' num2str(cmap(left_ind,1)), ' ', num2str(cmap(left_ind,2)), ' ', num2str(cmap(left_ind,3)), ' 255\n']);
+    else
+        fprintf(fid, [int2str(i), ' ' num2str(cmap(bilateral_ind,1)), ' ', num2str(cmap(bilateral_ind,2)), ' ', num2str(cmap(bilateral_ind,3)), ' 255\n']);
+        bilateral_ind = bilateral_ind - 1;
+    end
 end
 fclose(fid);
 
-%% create a full brain NIFTI atals
+%% create a full brain NIFTI atlas
 % combine subctx and canlab20187 cortical parcels, but resort the cortical
 % parcels to match the surface based Glasser parcels we intend to combine
 % with the subctx volumes in our CIFTI volume.
@@ -368,10 +352,30 @@ fclose(fid);
 % - canlab2018 structures missing from canlab2023: Cau_L, Cau_R, BST_SLEA,
 %   Cblm_Interposed_R, Cblm_Fastigial_L, Cblm_Fastigial_R
 
-canlab = load_atlas('canlab2018').resample_space(ref);
-canlab = canlab.resample_space(atlas_obj,'nearest');
-canlab_ctx_L = canlab.select_atlas_subset(1:2:360);
-canlab_ctx_R = canlab.select_atlas_subset(2:2:360);
+canlab = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
+canlab_dil = fmri_data(which('HCP-MMP1_on_MNI152_ICBM2009a_nlin_dil.nii.gz')).apply_mask(fmri_mask_image(cifti_atlas), 'invert');
+canlab_dil = canlab_dil.resample_space(canlab,'nearest');
+canlab = canlab.replace_empty;
+canlab_dil = canlab_dil.replace_empty;
+pmap = zeros(size(canlab.dat,1), num_regions(canlab));
+for i = 1:num_regions(canlab)
+    pmap(canlab_dil.dat == i,i) = 0.2;
+    pmap(canlab.dat == i,i) = 0.7;
+end
+canlab.probability_maps = pmap;
+canlab.labels_5 = repmat({'Glasser'},1,num_regions(canlab));
+
+% remove hippocampal ROI because it's redundant with volumes
+canlab_mask = fmri_mask_image(canlab);
+ctx_regions_less_hipp = find(~ismember(1:num_regions(canlab),find(contains(canlab.labels,'_H'))));
+canlab = canlab.select_atlas_subset(ctx_regions_less_hipp);
+delete(gcp('nocreate')); parpool(2); % this is memory intensive, but a short process, so let's limit number of threads to avoid out of memory errors
+canlab = dilate(canlab, canlab_mask);
+delete(gcp('nocreate'))
+
+canlab = canlab.resample_space(ref,'nearest');
+canlab_ctx_L = canlab.select_atlas_subset(1:2:num_regions(canlab));
+canlab_ctx_R = canlab.select_atlas_subset(2:2:num_regions(canlab));
 % make sure left and right ctx labels are in the same order as in the
 % Glasser atlas
 
@@ -380,11 +384,15 @@ canlab_ctx_R = canlab.select_atlas_subset(2:2:360);
 fid = fopen('lctx_labels.txt');
 lbls_L = textscan(fid,'%s');
 lbls_L = lbls_L{1}(1:6:end);
+ctx_regions_less_hipp = ~ismember(1:length(lbls_L),find(contains(lbls_L,'_H')));
+lbls_L = lbls_L(ctx_regions_less_hipp);
 fclose(fid);
 
 fid = fopen('rctx_labels.txt');
 lbls_R = textscan(fid,'%s');
 lbls_R = lbls_R{1}(1:6:end);
+ctx_regions_less_hipp = ~ismember(1:length(lbls_R),find(contains(lbls_R,'_H')));
+lbls_R = lbls_R(ctx_regions_less_hipp);
 fclose(fid);
 
 labels = canlab_ctx_L.labels;
@@ -403,46 +411,20 @@ assert(all(is_equal))
 
 reordered_canlab = canlab_ctx_L.merge_atlases(canlab_ctx_R).merge_atlases(atlas_obj);
 
-% except for hippocampus and amygdala, which have been lateralized in this
-% new atlas, all labels should be the same as in the old atlas, so let's
-% just import the corresponding label descriptions.
-reordered_canlab.label_descriptions = {};
-reordered_canlab.labels_2 = {};
-reordered_canlab.labels_3 = {};
-reordered_canlab.labels_4 = {};
-reordered_canlab.labels_5 = {};
-
-for i = 1:length(reordered_canlab.labels)
-    if ~contains(reordered_canlab.labels{i}, {'Hippocampus','Amygdala','Subiculum','Haben','Mamm_Nuc','BST_SLEA','Hythal','Thal'})
-        ind2018 = find(ismember(canlab.labels, reordered_canlab.labels{i}));
-        if isempty(ind2018), ind2018 = find(ismember(canlab.labels, strrep(reordered_canlab.labels{i},'Bstem_',''))); end
-        for fname = {'label_descriptions','labels_2','labels_3'}
-            reordered_canlab.(fname{1}){end+1} = canlab.(fname{1}){ind2018};
-        end
-    else
-        % deal with lateralized structures
-        ind2018 = find(contains(canlab.labels, reordered_canlab.labels{i}(1:end-2)));
-        for fname = {'label_descriptions','labels_2','labels_3'}
-            reordered_canlab.(fname{1}){end+1} = canlab.(fname{1}){ind2018};
-        end
-    end
-end
-
 reordered_canlab.references = unique(reordered_canlab.references,'rows');
-reordered_canlab.atlas_name = 'CANLab_2023';
-reordered_canlab.fullpath = 'canlab_2023_1mm.nii';
+reordered_canlab.atlas_name = sprintf('CANLab_2023_%s_%s', SCALE, SPACE);
+reordered_canlab.fullpath = sprintf('%s_1mm.nii', reordered_canlab.atlas_name);
 reordered_canlab.write();
-system('gzip canlab_2023_1mm.nii')
+gzip(sprintf('%s_1mm.nii', reordered_canlab.atlas_name))
 
-save('canlab_2023_1mm.mat','reordered_canlab');
+save(sprintf('%s_1mm.mat', reordered_canlab.atlas_name)','reordered_canlab');
 
 %% make 2mm version
+reordered_canlab_ds = reordered_canlab.resample_space(cifti_atlas);
+reordered_canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
 
-reordered_canlab_ds = reordered_canlab.resample_space(cifti_orig);
-reordered_canlab_ds.atlas_name = 'CANLab_2023_2mm';
-
-reordered_canlab_ds.fullpath = 'canlab_2023_2mm.nii';
+reordered_canlab_ds.fullpath = sprintf('%s_2mm.nii', reordered_canlab.atlas_name);
 reordered_canlab_ds.write();
-system('gzip canlab_2023_2mm.nii')
+system(sprintf('gzip %s_2mm.nii', reordered_canlab_ds.atlas_name))
 
-save('canlab_2023_2mm.mat','reordered_canlab_ds');
+save(sprintf('%s_1mm.mat', reordered_canlab_ds.atlas_name)','reordered_canlab');

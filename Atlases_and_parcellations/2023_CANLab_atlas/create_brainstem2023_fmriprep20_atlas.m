@@ -117,10 +117,13 @@ else
     shen_references = bstem_atlas.references;
 end
 
+bstem_atlas.labels_2 = repmat({'Brainstem'},1,num_regions(bstem_atlas));
+diencephalic_ind = find(contains(bstem_atlas.labels, {'Midb_Lrd','Midb_Rrd'}));
+bstem_atlas.labels_2(diencephalic_ind) = repmat({'Diencephalic'},1,length(diencephalic_ind));
+
 %% add other regions
 
 biancia = load_atlas(sprintf('bianciardi_%s_%s', scale, space));
-biancia.labels = cellfun(@(x1)(['nuclei_', x1]), biancia.labels, 'UniformOutput', false);
 biancia.labels_4 = repmat({'Restricted (see BrainstemNavigator v0.9 license)'}, 1, num_regions(biancia));
 biancia.labels_5 = repmat({'Bianciardi brainstem navigator v.0.9'}, 1, num_regions(biancia));
 
@@ -158,7 +161,6 @@ biancia = biancia.select_atlas_subset(biancia_regions);
 cit = load_atlas(sprintf('cit168_%s', space));
 
 cit_regions = {'PBP', 'VTA','Mamm'};
-cit.labels = cellfun(@(x1)(['nuclei_', x1]), cit.labels, 'UniformOutput', false);
 
 cit = lateralize(cit.select_atlas_subset(cit_regions));
 cit.labels_5 = repmat({'CIT168'}, 1, num_regions(cit));
@@ -181,7 +183,6 @@ for i = 1:length(regionnames)
     regionname = regionnames{i};
     
     [~, roi_atlas] = canlab_load_ROI(regionname);
-    roi_atlas.labels = cellfun(@(x1)(['nuclei_', x1]), roi_atlas.labels, 'UniformOutput', false);
 
     % since these ROIs are poorly specified we cede ground to competition
     % anytime odds are better than not that the competition is right by
@@ -192,7 +193,7 @@ for i = 1:length(regionnames)
         pmap(roi_atlas.dat == 1,i) = 0.5;
     end
     roi_atlas.probability_maps = pmap;
-    roi_atlas.labels_5 = repmat({'Manually drawn coordinate based ROI'}, 1, num_regions(roi_atlas));
+    roi_atlas.labels_5 = repmat({'Manually drawn coordinate based ROI/Nash'}, 1, num_regions(roi_atlas));
 
     orthviews(roi_atlas, 'overlay', which(template));
 
@@ -219,6 +220,7 @@ pat = 'Shen_';
 atlas_obj.labels = regexprep(atlas_obj.labels, pat, '');
 
 atlas_obj = atlas_add_L_R_to_labels(atlas_obj);
+
 
 
 %% Add references

@@ -19,11 +19,11 @@ function dilated_atlas = dilate(img, mask)
     imgR = imgR.remove_empty();
 
     nearest = zeros(size(mask.volInfo.xyzlist,1),1);
-    ind = find(mask.dat);
-    target_mm = mask.volInfo.mat*[mask.volInfo.xyzlist(ind,:)';ones(1,length(ind))];
+    new_voxels = find(mask.apply_mask(fmri_mask_image(img),'invert').replace_empty.dat); % only consider areas not already in img
+    target_mm = mask.volInfo.mat*[mask.volInfo.xyzlist(new_voxels,:)';ones(1,length(new_voxels))];
     target_mm = target_mm(1:3,:);
-    region_found = zeros(length(ind),1);
-    parfor i = 1:length(ind)
+    region_found = zeros(length(new_voxels),1);
+    parfor i = 1:length(new_voxels)
         if target_mm(1,i) < 0
             this_img = imgL;
         else
@@ -32,31 +32,30 @@ function dilated_atlas = dilate(img, mask)
         region_found(i) = this_img.find_closest_region(target_mm(:,i)).region_number;
     end
 
-    for i = 1:length(ind)
-        this_ind = ind(i);
+    for i = 1:length(new_voxels)
+        this_ind = new_voxels(i);
         nearest(this_ind) = region_found(i);
     end
     
     dilated_atlas = img.replace_empty();
 
-    dilated_atlas.dat = nearest;
+    dilated_atlas.dat(new_voxels) = nearest(new_voxels);
     if ~isempty(dilated_atlas.probability_maps)
         dilated_atlas.probability_maps(~mask.dat,:) = 0;
-        new_voxels = find(mask.dat & ~img.dat);
         for i = 1:length(new_voxels)
             roi = dilated_atlas.dat(new_voxels(i));
             % the value we assign here is arbitrary, but we know this
             % expansion is artificial so let's cede the region to whatever
             % competition we may encounter from other ROIs
-            dilated_atlas.probability_maps(new_voxels(i),roi) = 0.01;
+            dilated_atlas.probability_maps(new_voxels(i),roi) = 0.2;
         end
     end
     
     % drop any null ROIs
-    ind = zeros(1,length(dilated_atlas.labels));
-    ind(unique(dilated_atlas.dat(dilated_atlas.dat ~=0))) = true;
+    new_voxels = zeros(1,length(dilated_atlas.labels));
+    new_voxels(unique(dilated_atlas.dat(dilated_atlas.dat ~=0))) = true;
 
-    remove = ~ind & ~any(dilated_atlas.probability_maps);
+    remove = ~new_voxels & ~any(dilated_atlas.probability_maps);
     keep = find(~remove);
     remove = find(remove);
     if any(remove)
