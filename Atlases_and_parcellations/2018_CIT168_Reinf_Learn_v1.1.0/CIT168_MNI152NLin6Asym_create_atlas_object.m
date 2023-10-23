@@ -62,7 +62,7 @@ r = atlas2region(atlas_obj);
 
 if dosave
    
-    o2 = canlab_results_fmridisplay([], 'multirow', 1,'overlay',which('fsl6_hcp_template.nii.gz'));
+    o2 = canlab_results_fmridisplay([], 'full2','overlay',which('fsl6_hcp_template.nii.gz'));
     brighten(.6)
     
     o2 = montage(r, o2, 'wh_montages', 1:2);

@@ -10,7 +10,7 @@
 
 atlas_name = 'Shen';
 space_description = 'MNIColin27v1998';
-references = 'Shen 2013 Neuroimage';
+references = 'Shen, X., F. Tokoglu, X. Papademetris, and R. T. Constable. 2013. ?Groupwise Whole-Brain Parcellation from Resting-State fMRI Data for Network Node Identification.? NeuroImage 82 (November): 403?15.';
 
 % Run this from the directory containing the atlas files
 % -----------------------------------------------------------------------
