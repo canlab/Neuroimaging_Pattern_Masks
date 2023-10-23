@@ -316,13 +316,14 @@ cmap = [cmap;cmap;cmap;cmap];
 
 atlas_obj_ds = atlas_obj.resample_space(cifti_atlas);
 
-atlas_obj_ds.fullpath = [ROOT, 'subctx_atlas.nii'];
+atlas_obj_ds.fullpath = sprintf('%s/subctx_atlas_%s_%s.nii', ROOT, SCALE, SPACE);
 atlas_obj_ds.write('overwrite')
 gzip(atlas_obj_ds.fullpath);
+delete(atlas_obj_ds.fullpath);
 
 n_roi = length(atlas_obj_ds.labels);
 
-fid = fopen([ROOT, 'subctx_atlas.txt'],'w+');
+fid = fopen(sprintf('%s/subctx_atlas_%s_%s.txt', ROOT, SCALE, SPACE),'w+');
 [right_ind, left_ind] = deal(0);
 bilateral_ind = size(cmap,1);
 for i = 1:n_roi
@@ -416,6 +417,7 @@ reordered_canlab.atlas_name = sprintf('CANLab_2023_%s_%s', SCALE, SPACE);
 reordered_canlab.fullpath = sprintf('%s_1mm.nii', reordered_canlab.atlas_name);
 reordered_canlab.write();
 gzip(sprintf('%s_1mm.nii', reordered_canlab.atlas_name))
+delete(sprintf('%s_1mm.nii', reordered_canlab.atlas_name));
 
 save(sprintf('%s_1mm.mat', reordered_canlab.atlas_name)','reordered_canlab');
 

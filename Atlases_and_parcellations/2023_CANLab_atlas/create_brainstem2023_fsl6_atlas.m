@@ -190,7 +190,7 @@ for i = 1:length(regionnames)
     roi_atlas = roi_atlas.replace_empty;
     pmap = zeros(size(roi_atlas.dat,1),num_regions(roi_atlas));
     for j = 1:num_regions(roi_atlas)
-        pmap(roi_atlas.dat == 1,i) = 0.5;
+        pmap(roi_atlas.dat == j,j) = 0.5;
     end
     roi_atlas.probability_maps = pmap;
     roi_atlas.labels_5 = repmat({'Manually drawn coordinate based ROI/Nash'}, 1, num_regions(roi_atlas));
@@ -198,7 +198,7 @@ for i = 1:length(regionnames)
 
     orthviews(roi_atlas, 'overlay', which(template));
 
-    cit = merge_atlases(cit, roi_atlas, 'noreplace');
+    cit = merge_atlases(cit, roi_atlas);
 end
 
 
