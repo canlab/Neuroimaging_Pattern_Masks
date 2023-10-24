@@ -9,7 +9,7 @@
 %       canlab_load_ROI
 
 atlas_name = 'Glasser2016HCP';
-space_description = 'MNI152 space';
+space_description = 'MNI152NLin2009aAsym';
 references = 'Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. A Multi-Modal Parcellation of Human Cerebral Cortex. Nature 536 (7615): 171?78.';
 
 % Run this from the directory containing the atlas files

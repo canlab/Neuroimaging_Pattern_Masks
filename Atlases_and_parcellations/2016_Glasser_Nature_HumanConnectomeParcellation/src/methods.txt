@@ -1,0 +1,102 @@
+PainGen Participants:
+
+Participants were recruited by telephone from the Colorado Community Twin Sample, which is
+derived from the Colorado Twin Registry, a population-based registry which has been run by the
+Institute of Behavioral Genetics (IBG) at the University of Colorado since 1984. The study
+includes a larger sample of participants, but the data here are from a subset of 248 unrelated 
+participants. Subjects from the same families, or subjects with image quality metrics greater
+than 3SD away form the mean were excluded. MRIQC 0.16.1 was was used to compute image quality
+metrics. Participants were excluded from participation in the study if they did not pass MRI 
+screening (e.g., add metals in their body) or had a history of liver disease/damage, allergies 
+to local analgesics, or were breastfeeding.
+
+In the full dataset (including siblings and participants with bad image quality metrics) 
+Participants’ age ranged from approximately 30 to 43 years (M = 35, SD = 2.6), and the sample 
+included approximately 100 men and 140 women. All participants provided their informed consent 
+at the beginning of the experiment. The experiment was approved by the institutional review board 
+of the University of Colorado Boulder. 
+
+
+PainGen Imaging data acquisition:
+
+Imaging data were acquired using a 3T Siemens Prisma MRI scanner with a 32-channels head
+coil, at the University of Colorado at Boulder. First, a T1-weighted structural scan was acquired
+using a magnetization prepared rapid gradient echo (MPRAGE) pulse sequence with parallel
+imaging factor (iPAT) of 3, TR=2000 ms, TE=2.11ms, flip angle=8 degrees, FOV=256mm,
+resolution=0.8 x 0.8 x 0.8mm. Additional functional and structural scans were collected but are not
+relevant to this dataset.
+
+
+BMRK5 participants:
+
+Participants. Participants are part of a larger sample of 97 individuals 
+(47 male, age 19–54 years; M = 28.98, s.d. = 5.56) 33 AA individuals (15 male), 
+32 non-Hispanic WA individuals (16 male) and 32 HA individuals (16 males), based 
+on self-reported ethnicity. 89 had data available for this analysis.
+
+Participants were recruited from the greater Denver area through Craigslist or
+one of three different participant pools from the University of Colorado Boulder
+Institute for Behavioral Genetics (IBG) to capitalize on existing genetic data on
+these participants in future analyses. Participants reported no current or recent
+(past 6 months) neurological or psychiatric diagnosis and reported no current use
+of psychoactive or pain medications. Participants also reported no pain-related
+medical conditions.
+
+The study was approved by the University of Colorado Boulder Institutional Review Board 
+and we complied with all relevant ethical regulations when carrying out the study. Written 
+informed consent was obtained from all participants, who were financially compensated 
+for their participation.
+
+
+Data acquisition. 
+
+Data were collected on a 3 Tesla Siemens Trio MRI scanner at the University of 
+Colorado Boulder Center for Innovation and Creativity. A high-resolution T1-weighted 
+magnetization-prepared rapid gradient echo (MPRAGE) structural scan (1x1x1 mm3 voxels,
+repetition time (TR): 2,530 ms, echo time (TE): 1.64 ms, flip angle: 7*, inversion
+time (Tl): 1,200 ms, field of view (FoV) read: 256 mm, echo spacing: 12.2 ms,
+bandwidth: 651 Hz Px-1, time: 6:03) was performed on each participant.
+
+
+Anatomical data preprocessing (identical for PainGen and BMRK5): 
+
+The T1-weighted (T1w) image was corrected for intensity nonuniformity (INU) with N4BiasFieldCorrection, 
+distributed with ANTs 2.3.3 (RRID:SCR_004757), and used as T1w-reference throughout the workflow. The 
+T1w-reference was then skullstripped with a Nipype implementation of the antsBrainExtraction.sh workflow 
+(from ANTs), using OASIS30ANTs as target template. Brain tissue segmentation of cerebrospinal fluid (CSF), 
+whitematter (WM) and gray-matter (GM) was performed on the brain-extracted T1w using fast (FSL 5.0.9, 
+RRID:SCR_002823). Brain surfaces were reconstructed using recon-all (FreeSurfer 6.0.1, RRID:SCR_001847), 
+and the brain mask estimated previously was refined with a custom variation of the method to reconcile 
+ANTs-derived and FreeSurfer-derived segmentations of the cortical gray-matter of Mindboggle 
+(RRID:SCR_002438). Volume-based spatial normalization to two standard spaces (MNI152NLin2009cAsym, 
+MNI152NLin6Asym) was performed through nonlinear registration with antsRegistration (ANTs 2.3.3), using 
+brain extracted versions of both T1w reference and the T1w template. The following templates were selected 
+for spatial normalization: ICBM 152 Nonlinear Asymmetrical template version 2009c (RRID:SCR_008796; 
+TemplateFlow ID: MNI152NLin2009cAsym], FSL's MNI ICBM 152 nonlinear 6th Generation Asymmetric Average 
+Brain Stereotaxic Registration Model (RRID:SCR_002823; TemplateFlow ID: MNI152NLin6Asym).
+
+
+Data analysis:
+
+Registration fusion was performed using the approach detailed by Wu, Ngo, Greve, et al. (2018) Human
+Brain Mapping, except that all transformations used were computed by fmriprep as detailed above. 
+Registration fusion was implemented on an HPC system with one job instance per participant. An example
+script is included with this data release. See single_subject_registration_fusion.sh for comprehensive
+methods. Briefly, data was resampled from a freesurfer 164k sphere, obtained from,
+https://github.com/Washington-University/HCPpipelines/blob/master/global/templates/standard_mesh_atlases/fs_R/fs_L-to-fs_LR_fsaverage.L_LR.spherical_std.164k_fs_L.surf.gii
+https://github.com/Washington-University/HCPpipelines/blob/master/global/templates/standard_mesh_atlases/fs_R/fs_R-to-fs_LR_fsaverage.R_LR.spherical_std.164k_fs_R.surf.gii
+onto the subject specific registered spherical surface ([lr]h.sphere.reg in the freesurfer output 
+directory). This was then projected into subject native space using and then transformed from native
+space intor MNI152NLin2009cAsym and MNI152NLin6Asym spaces. The results for the left and right hemisphere
+were combined into a single image and concatenated across subjects for each space and study.
+
+
+References:
+BMRK5 has been published here,
+Losin, Woo, Medina, Andrews, Eisenbarth, Wager. (2020). Nature Human Behavior 4(5) 517-530.
+
+PainGen has had data partially published here,
+Botvinik-Nezer, Petre, Ceko, Lindquist, Friedman, Wager. (2023). BioRxiv. DOI:https://doi.org/10.1101/2023.09.21.558825
+
+Registration fusion is described here:
+Wu, Ngo, Greve. (2018). Human Brain Mapping 39(9) 37930-3808. DOI: 10.1002/hbm.24213
