@@ -35,7 +35,7 @@ with Vladimir Fonov from the MNI. The transforms were obtained here,
 
 https://figshare.com/articles/dataset/MNI_T1_6thGen_NLIN_to_MNI_2009b_NLIN_ANTs_transform/3502238
 
-antsApplyTransform from the fmriprep 20.0.3 LTS singularity container was used to perform the alignment on the to 
+antsApplyTransform from the fmriprep 20.2.3 LTS singularity container was used to perform the alignment on the to 
 probablistic versions of the parcels and was implemented by the script warp_to_MNI152NLin6Asym0.sh. This was in turn
 invoked by warp_to_MNI152NLin6Asym.sh on the Dartmouth HPC system. The probablistic versions of the parcels were then used
 to regenerate the atlas in MNI152NLin6Asym space, and the result is also provided in this directory.
