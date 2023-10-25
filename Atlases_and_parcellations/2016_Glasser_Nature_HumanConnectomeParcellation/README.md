@@ -103,12 +103,12 @@ the target space of the old space, to whatever extent one might claim the old pa
 Quantitative comparisons between the old and new parcellations are much more damning. Dice coefficients, which
 measure the degree of overlap (1 = 100% overlap, 0 = no overlap), indicate dramatic differences between the two 
 templates
-![Old vs. new glasser parcel histograms (20% probability)](diagnostics/dice_coef_old_vs_new_glasser.png | width=500)
+<img alt="Old vs. new glasser parcel histograms (20% probability)" src="diagnostics/dice_coef_old_vs_new_glasser.png" width="500" />
 
 Part of the problem is the difference in relative size of the parcells in the new vs. old atlas. We can remove
 this from the equation though by masking the new atlas by the old one and recomputing the dice coefficient. This
 improves the alignment slightly, but there are still many regions that show poor overlap (Dice coefficient < 0.5).
-![old vs. new glasser with threshold](diagnostics/dice_hist_old_vs_new_glasser_masked_by_old.png | width=500)
+<img alt="old vs. new glasser with threshold" src="diagnostics/dice_hist_old_vs_new_glasser_masked_by_old.png" width="500" />
 
 The distribution of dice coefficients is organized in a seemingly systematic way across the cortex.
 ![old vs. new map](diagnostics/dice_map_old_vs_new_glasser_masked_by_old.png)
@@ -116,7 +116,7 @@ The distribution of dice coefficients is organized in a seemingly systematic way
 We can look at the relative agreement between MNI152NLin2009cAsym and MNi152NLin6Asym templates for a reference
 point. What we see is no terrible dice coefficients (all > 0.5). There's a surprisingly lateralization bias to this
 with left lateralized regions showing worse dice coefficients (~0.1 worse) than right side regions. 
-![fmriprep vs. fsl template glassers](diagnostics/dice_hist_fmriprep_vs_fsl_glassers.png | width=500)
+<img alt="fmriprep vs. fsl template glassers" src="diagnostics/dice_hist_fmriprep_vs_fsl_glassers.png" width="500" />
 
 There seems to be a greater degree of lateralization of the MNI152NLin2009cAsym template than the	MNI152NLin6Asym	 
 template. Notably, MNI does not	distributed an asymmetric template, and	it seems that the Asym version is an FSL
@@ -130,7 +130,7 @@ misattribution of labels.
 
 Alternatively we can look at the difference between studies, since we have two studies here. These show the
 greatest agreement, with practically all dice coefficients greater than 0.7
-![paingen vs. bmrk5 to MNi152NLin2009cAsym](diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png | width=500)
+<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" width=500" />
 ![paingen vs. bmrk5 map](diagnostics/dice_map_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png)
 
 Dice coefficients in the range of 0.8 are what the original authors who came up with registration fusion (wu et al 2018)
