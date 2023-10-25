@@ -14,8 +14,9 @@ Invoke the following to load this atlas.
 load_atlas('glasser_fmriprep20')
 load_atlas('glasser_fsl6')
 
-DO NOT USE load_atlas('glasser') or load_atlas('cortex'). These are legacy aliases that load the old glasser
-projection. See section below on comparisons with this version for why you don't want to use it.
+DO NOT USE load_atlas('glasser') or load_atlas('cortex') intending to access the best version of this atlas. 
+These are legacy aliases that load the old glasser projection. See section below on comparisons with this 
+version for improvements now available.
 
 ## Probabilities
 
