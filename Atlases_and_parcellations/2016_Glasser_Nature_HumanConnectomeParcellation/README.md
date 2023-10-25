@@ -1,4 +1,4 @@
-### Overview
+## Overview
 
 This is the HCP multimodal parcellation v. 1 published by Glasser, Coalson, Robinson, Hacker, et al. 2016 Nature,
 projected into volumetric space using registration fusion, which Thomas Yeo's group has shown to be the best
@@ -17,7 +17,7 @@ load_atlas('glasser_fsl6')
 DO NOT USE load_atlas('glasser') or load_atlas('cortex'). These are legacy aliases that load the old glasser
 projection. See section below on comparisons with this version for why you don't want to use it.
 
-### Probabilities
+## Probabilities
 
 The atlas is probablistic. The original atlas is defined on a surface, but this surface is folded in different 
 ways for different people. Misalignment of gyri and sucli results in parcels projecting into different locations
@@ -51,7 +51,7 @@ towards an improved version of this atlas.
 
 ![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
 
-### Methods
+## Methods
 
 Mappings were created using "registration fusion". Projections from native space to fsaverage spherical surfaces
 were computed for each of many subjects. Transformations from native space to different MNI space templates
@@ -69,7 +69,7 @@ This might be improved by taking a precision weighted average, but both studies 
 coefficients of mean parcellations between the two studies are fairly close to 1, so it's likely unnecessary.
 
 
-### Comparison to "old" Glasser
+## Comparison to "old" Glasser
 
 Prior to Oct 2023 there was already a Glasser atlas in this repo. It's now housed in the "old" subfolder of this directory
 and is still (as of Oct 2023) returned by load_atlas('glasser'). The source scripts for this atlas accompany it in the
@@ -137,6 +137,7 @@ Alternatively we can look at the difference between studies, since we have two s
 greatest agreement, with practically all dice coefficients greater than 0.7
 
 <img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" width="500" />
+
 ![paingen vs. bmrk5 map](diagnostics/dice_map_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png)
 
 Dice coefficients in the range of 0.8 are what the original authors who came up with registration fusion (wu et al 2018)
@@ -146,7 +147,7 @@ possible and encouraged, hence why I've shared the subject specific parcellation
 directly if you want more insight into what's going on here.
 
 
-### References
+## References
 
 If using this parcellation please cite the original paper and the registration fusion papers accordingly.
 
@@ -156,6 +157,6 @@ Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John 
 Registration Fusion Paper:
 Wu J, Ngo GH, Greve D, Li J, He T, Fischl B, Eickhoff SB, Yeo T. Accurate nonlinear mapping between MNI volumetric and FreeSurfer surface coordinate systems. 2018. Human Brain Mapping 39(9) 3793-3808. DOI: 10.1002/hbm.24213
 
-####
+##
 Bogdan Petre
 10/24/2023
