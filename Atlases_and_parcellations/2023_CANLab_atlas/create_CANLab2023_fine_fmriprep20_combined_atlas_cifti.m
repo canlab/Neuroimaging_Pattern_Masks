@@ -425,8 +425,9 @@ save(sprintf('%s_1mm.mat', reordered_canlab.atlas_name)','reordered_canlab');
 reordered_canlab_ds = reordered_canlab.resample_space(cifti_atlas);
 reordered_canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
 
-reordered_canlab_ds.fullpath = sprintf('%s_2mm.nii', reordered_canlab.atlas_name);
-reordered_canlab_ds.write();
-system(sprintf('gzip %s_2mm.nii', reordered_canlab_ds.atlas_name))
+reordered_canlab_ds.fullpath = sprintf('%s.nii', reordered_canlab_ds.atlas_name);
+reordered_canlab_ds.write('overwrite');
+gzip(sprintf('%s.nii', reordered_canlab_ds.atlas_name));
+delete(sprintf('%s.nii', reordered_canlab_ds.atlas_name))
 
 save(sprintf('%s_1mm.mat', reordered_canlab_ds.atlas_name)','reordered_canlab');
