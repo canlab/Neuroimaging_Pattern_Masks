@@ -33,17 +33,20 @@
 
 clear all; close all;
 
-%HOME = '/dartfs-hpc/rc/home/m/f0042vm/software'
-LIB = '/home/bogdan/.matlab';
+LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
+%LIB = '/home/bogdan/.matlab';
 ROOT = [LIB, '/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANLab_atlas/'];
 
-addpath([LIB, '/spm/spm12']);
+addpath([LIB, '/spm12']);
+%addpath([LIB, '/spm/spm12']);
 
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
 addpath(genpath([LIB, '/canlab/MasksPrivate']))
 
-parpool(10);
+if isempty(gcp('nocreate'))
+    parpool(4);
+end
 
 SPACE = 'fmriprep20';
 SCALE = 'fine';
@@ -55,7 +58,7 @@ switch SPACE
         TEMPLATE = which('MNI152NLin2009cAsym_T1_1mm.nii.gz');
 
 
-        labels = fmri_data(sprintf('%s/hcp_cifti_subctx_labels_%s.nii',ROOT,REALSPACE));
+        labels = fmri_data(sprintf('%s/hcp_cifti_subctx_labels_%s.nii.gz',ROOT,REALSPACE));
         labels_txt = textscan(fopen([ROOT, 'hcp_cifti_subctx_labels.txt']),'%s');
     case 'fsl6'
         REALSPACE = 'MNI152NLin6Asym';
@@ -353,30 +356,20 @@ fclose(fid);
 % - canlab2018 structures missing from canlab2023: Cau_L, Cau_R, BST_SLEA,
 %   Cblm_Interposed_R, Cblm_Fastigial_L, Cblm_Fastigial_R
 
-canlab = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
-canlab_dil = fmri_data(which('HCP-MMP1_on_MNI152_ICBM2009a_nlin_dil.nii.gz')).apply_mask(fmri_mask_image(cifti_atlas), 'invert');
-canlab_dil = canlab_dil.resample_space(canlab,'nearest');
-canlab = canlab.replace_empty;
-canlab_dil = canlab_dil.replace_empty;
-pmap = zeros(size(canlab.dat,1), num_regions(canlab));
-for i = 1:num_regions(canlab)
-    pmap(canlab_dil.dat == i,i) = 0.2;
-    pmap(canlab.dat == i,i) = 0.7;
-end
-canlab.probability_maps = pmap;
-canlab.labels_5 = repmat({'Glasser'},1,num_regions(canlab));
+glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
+glasser.labels_5 = repmat({'Glasser with registration fusion volume projection'},1,num_regions(glasser));
 
 % remove hippocampal ROI because it's redundant with volumes
-canlab_mask = fmri_mask_image(canlab);
-ctx_regions_less_hipp = find(~ismember(1:num_regions(canlab),find(contains(canlab.labels,'_H'))));
-canlab = canlab.select_atlas_subset(ctx_regions_less_hipp);
+canlab_mask = fmri_mask_image(glasser);
+ctx_regions_less_hipp = find(~ismember(1:num_regions(glasser),find(contains(glasser.labels,'_H'))));
+glasser = glasser.select_atlas_subset(ctx_regions_less_hipp);
 delete(gcp('nocreate')); parpool(2); % this is memory intensive, but a short process, so let's limit number of threads to avoid out of memory errors
-canlab = dilate(canlab, canlab_mask);
+glasser = dilate(glasser, canlab_mask);
 delete(gcp('nocreate'))
 
-canlab = canlab.resample_space(ref,'nearest');
-canlab_ctx_L = canlab.select_atlas_subset(1:2:num_regions(canlab));
-canlab_ctx_R = canlab.select_atlas_subset(2:2:num_regions(canlab));
+glasser = glasser.resample_space(ref,'nearest');
+glasser_L = glasser.select_atlas_subset(1:num_regions(glasser)/2);
+glasser_R = glasser.select_atlas_subset(num_regions(glasser)/2+1:num_regions(glasser));
 % make sure left and right ctx labels are in the same order as in the
 % Glasser atlas
 
@@ -396,38 +389,38 @@ ctx_regions_less_hipp = ~ismember(1:length(lbls_R),find(contains(lbls_R,'_H')));
 lbls_R = lbls_R(ctx_regions_less_hipp);
 fclose(fid);
 
-labels = canlab_ctx_L.labels;
+labels = glasser_L.labels;
 is_equal = [];
 for i = 1:length(labels)
     is_equal(end+1) = strcmp(['L_', labels{i}(5:end-2), '_ROI'], strrep(lbls_L{i},'-','_'));
 end
 assert(all(is_equal))
 
-labels = canlab_ctx_R.labels;
+labels = glasser_R.labels;
 is_equal = [];
 for i = 1:length(labels)
     is_equal(end+1) = strcmp(['R_', labels{i}(5:end-2), '_ROI'], strrep(lbls_R{i},'-','_'));
 end
 assert(all(is_equal))
 
-reordered_canlab = canlab_ctx_L.merge_atlases(canlab_ctx_R).merge_atlases(atlas_obj);
+canlab = glasser_L.merge_atlases(glasser_R).merge_atlases(atlas_obj);
 
-reordered_canlab.references = unique(reordered_canlab.references,'rows');
-reordered_canlab.atlas_name = sprintf('CANLab_2023_%s_%s', SCALE, SPACE);
-reordered_canlab.fullpath = sprintf('%s_1mm.nii', reordered_canlab.atlas_name);
-reordered_canlab.write();
-gzip(sprintf('%s_1mm.nii', reordered_canlab.atlas_name))
-delete(sprintf('%s_1mm.nii', reordered_canlab.atlas_name));
+canlab.references = unique(canlab.references,'rows');
+canlab.atlas_name = sprintf('CANLab_2023_%s_%s', SCALE, SPACE);
+canlab.fullpath = sprintf('%s_1mm.nii', canlab.atlas_name);
+canlab.write();
+gzip(sprintf('%s_1mm.nii', canlab.atlas_name))
+delete(sprintf('%s_1mm.nii', canlab.atlas_name));
 
-save(sprintf('%s_1mm.mat', reordered_canlab.atlas_name)','reordered_canlab');
+save(sprintf('%s_1mm.mat', canlab.atlas_name)','canlab');
 
 %% make 2mm version
-reordered_canlab_ds = reordered_canlab.resample_space(cifti_atlas);
-reordered_canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
+canlab_ds = canlab.resample_space(cifti_atlas);
+canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
 
-reordered_canlab_ds.fullpath = sprintf('%s.nii', reordered_canlab_ds.atlas_name);
-reordered_canlab_ds.write('overwrite');
-gzip(sprintf('%s.nii', reordered_canlab_ds.atlas_name));
-delete(sprintf('%s.nii', reordered_canlab_ds.atlas_name))
+canlab_ds.fullpath = sprintf('%s.nii', canlab_ds.atlas_name);
+canlab_ds.write('overwrite');
+gzip(sprintf('%s.nii', canlab_ds.atlas_name));
+delete(sprintf('%s.nii', canlab_ds.atlas_name))
 
-save(sprintf('%s_1mm.mat', reordered_canlab_ds.atlas_name)','reordered_canlab');
+save(sprintf('%s_1mm.mat', canlab_ds.atlas_name)','canlab');
