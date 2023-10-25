@@ -119,11 +119,12 @@ The distribution of dice coefficients is organized in a seemingly systematic way
 ![old vs. new map](diagnostics/dice_map_old_vs_new_glasser_masked_by_old.png)
 
 We can look at the relative agreement between MNI152NLin2009cAsym and MNi152NLin6Asym templates for a reference
-point. What we see is no terrible dice coefficients (all > 0.5). There's a surprisingly lateralization bias to this
-with left lateralized regions showing worse dice coefficients (~0.1 worse) than right side regions. 
+point. What we see is no terrible dice coefficients (all > 0.5).  
 
 <img alt="fmriprep vs. fsl template glassers" src="diagnostics/dice_hist_fmriprep_vs_fsl_glassers.png" width="500" />
 
+There's a surprisingly lateralization bias to this
+with left lateralized regions showing worse dice coefficients (~0.1 worse) than right side regions.
 There seems to be a greater degree of lateralization of the MNI152NLin2009cAsym template than the	MNI152NLin6Asym	 
 template. Notably, MNI does not	distributed an asymmetric template, and	it seems that the Asym version is an FSL
 specific thing.	It's not clear what they did to	generate it, but the absence of	an asymmetric template from the
