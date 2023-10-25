@@ -3,7 +3,7 @@
 # This is an example of our "registration fusion" implementation, modeled after
 # Wu, Ngo, Greve, et al. (2018) Human Brain Mapping.
 #
-# this script is run within an fmriprep 20.0.3 (LTS) singularity container.
+# this script is run within an fmriprep 20.2.3 (LTS) singularity container.
 # it produces left and right hemispheric projections into volumetric space
 # for a specified subject that's already had fmriprep and freesurfer recon-all
 # run on its T1w volume. It is only an example script which was specifically
