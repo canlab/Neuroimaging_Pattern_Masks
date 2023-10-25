@@ -134,7 +134,7 @@ misattribution of labels.
 Alternatively we can look at the difference between studies, since we have two studies here. These show the
 greatest agreement, with practically all dice coefficients greater than 0.7
 
-<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" width=500" />
+<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" width="500" />
 ![paingen vs. bmrk5 map](diagnostics/dice_map_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png)
 
 Dice coefficients in the range of 0.8 are what the original authors who came up with registration fusion (wu et al 2018)
