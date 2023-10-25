@@ -3,7 +3,7 @@ close all; clear all;
 addpath('/dartfs-hpc/rc/home/m/f0042vm/software/spm12')
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/CanlabCore/'))
 
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 lh_lbls = readtable('lctx_labels.txt');
 rh_lbls = readtable('rctx_labels.txt');
@@ -52,7 +52,7 @@ meanPmap = mean(cat(3,pmap{:}),3);
 pdata.dat = meanPmap;
 atlas_obj = atlas(pdata, ...
     'atlas_name', sprintf('glasser_%s',SPACE), ...
-    'labels', lbls',...
+    'labels', labels',...
     'space_description', SPACE, ...
     'references', references, 'noverbose');
 atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
