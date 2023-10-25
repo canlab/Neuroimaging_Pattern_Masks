@@ -49,6 +49,8 @@ To my knowledge Glasser et al. have not published their subject specific region 
 but I think subject specific parcellations may be avialable from the HCP dataset, and might provide an avenue 
 towards an improved version of this atlas.
 
+![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
+
 ### Methods
 
 Mappings were created using "registration fusion". Projections from native space to fsaverage spherical surfaces
