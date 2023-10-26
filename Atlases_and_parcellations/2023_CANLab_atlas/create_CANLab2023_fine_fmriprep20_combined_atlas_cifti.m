@@ -99,7 +99,7 @@ ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
 %}
 ref = fmri_data(TEMPLATE);
 
-bg = load(bgfile); bg = bg.atlas_obj.resample_space(ref, 'nearest');
+bg = load(bgfile); bg = bg.atlas_obj.resample_space(ref,'nearest');
 bg.labels_5 = repmat({'Tian'},1,num_regions(bg));
 
 %% incorporate BST_SLEA into BG and make it lateralized
@@ -107,7 +107,7 @@ bg.labels_5 = repmat({'Tian'},1,num_regions(bg));
 % putamen because it's a trivial segment (4vxls) and not worth the mess,
 % and not GP because it's a small segment and fragments the ROI which is
 % mostly in caudate.
-atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref , 'nearest');
+atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref );
 
 BST = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,{'BST_SLEA'}))).replace_empty();
 BST = lateralize(BST);
@@ -200,7 +200,7 @@ bg_dil.labels_3 = {};
 bg_dil.labels_4 = {};
 
 %% Cerebellum
-cerebellum = load(suitfile); cerebellum = cerebellum.atlas_obj.resample_space(ref, 'nearest');
+cerebellum = load(suitfile); cerebellum = cerebellum.atlas_obj.resample_space(ref);
 cerebellum.labels_5 = repmat({'SUIT/Diedrichsen'},1,num_regions(cerebellum));
 
 % remove white matter structures that aren't well represented in
@@ -214,7 +214,7 @@ tic
 cerebellum_dil = dilate(cerebellum, cifti_mask);
 toc
 
-cerebellum_dil = cerebellum_dil.resample_space(bg_dil,'nearest');
+cerebellum_dil = cerebellum_dil.resample_space(bg_dil);
 
 %% thalamus and brainstem
 % this block's dilation takes abount 40 minutes to run
@@ -244,7 +244,7 @@ thal_atlas.labels_5 = repmat({'Morel'}, 1, num_regions(thal_atlas));
 
 
 bstem = load(brainstemfile);
-bstem = bstem.atlas_obj.resample_space(ref, 'nearest');
+bstem = bstem.atlas_obj.resample_space(ref);
 
 % Add labels to make more consistent with other atlases
 for i = 1:length(bstem.labels)
@@ -266,7 +266,7 @@ thal_bstem.labels{contains(thal_bstem.labels,'Hythal_L')} = 'Hythal_L';
 thal_bstem.labels{contains(thal_bstem.labels,'Hythal_R')} = 'Hythal_R';
 
 %% Hippocampus and Hippocampus
-julich = load_atlas(julichfile).resample_space(ref, 'nearest');
+julich = load_atlas(julichfile).resample_space(ref);
 
 % SF - superficial amygdala
 % LB - laterobasal amygdala
@@ -309,7 +309,7 @@ atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 cmap = round(255*colormap('lines'));
 cmap = [cmap;cmap;cmap;cmap];
 
-atlas_obj_ds = atlas_obj.resample_space(cifti_atlas, 'nearest');
+atlas_obj_ds = atlas_obj.resample_space(cifti_atlas);
 
 atlas_obj_ds.fullpath = sprintf('%s/subctx_atlas_%s_%s.nii', ROOT, SCALE, SPACE);
 atlas_obj_ds.write('overwrite')
@@ -359,7 +359,7 @@ delete(gcp('nocreate')); parpool(2); % this is memory intensive, but a short pro
 glasser = dilate(glasser, canlab_mask);
 delete(gcp('nocreate'))
 
-glasser = glasser.resample_space(ref,'nearest');
+glasser = glasser.resample_space(ref);
 glasser_L = glasser.select_atlas_subset(1:num_regions(glasser)/2);
 glasser_R = glasser.select_atlas_subset(num_regions(glasser)/2+1:num_regions(glasser));
 % make sure left and right ctx labels are in the same order as in the
@@ -407,7 +407,7 @@ delete(sprintf('%s_1mm.nii', canlab.atlas_name));
 save(sprintf('%s_1mm.mat', canlab.atlas_name)','canlab');
 
 %% make 2mm version
-canlab_ds = canlab.resample_space(cifti_atlas, 'nearest');
+canlab_ds = canlab.resample_space(cifti_atlas);
 canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
 
 canlab_ds.fullpath = sprintf('%s.nii', canlab_ds.atlas_name);
