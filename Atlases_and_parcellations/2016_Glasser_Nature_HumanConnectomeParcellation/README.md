@@ -34,14 +34,25 @@ the src subfolder here for a new study and combine it with these maps for a cumu
 
 https://doi.org/10.6084/m9.figshare.24431146
 
-Note, even in surface space not all subjects have perfect correspondence of region boundaries. Glasser et al.
-developed pattern classifiers to identify subject specific boundaries, and a fully developed version of this
-atlas would take variability of labels in surface space into account too. We do not do that here. In that sense
-these probabilities indicate something very technical, not something biologically meaningful. They tell us how
-likely a signal from a voxel is to be circumscribed by a particular label if projected to surface space through
-a subject specific transformation, but that label may or may not correspond to the true identity of the 
-underlying area in surface space. That identity is not determined by the group template these probabilities 
-inform, but rather by subject specific myelin and resting state network features.
+Note, even in surface space not all subjects have perfect correspondence of region boundaries. There are two 
+missing pieces needed to correctly identify subject level surface boundaries.
+* Functional alignment (e.g. MSMAll, like in Glasser et al. 2016)
+* Areal feature based identification 
+Glasser et al. developed pattern classifiers to identify subject specific boundaries, in addition to performing
+multimodal functional alignment. One or both of these methods would be needed to identify subject specific
+parcel boundaries and then project those into volumetric space using registration fusion. This would be something
+like (1) run fmriprep, (2) do functional surface alignment (3) run areal classifier to identify subject specific
+boundaries (4) back project subject specific boundaries through (a) subject specific functional alignments, 
+(b) surface to native T1 volume transformations and finally (c) native volume to standard template volume 
+transformations.
+
+A subject specific parcel projection approach would take into account variability in surface space parcel 
+boundaries. We do not do that here. In that sense these probabilities indicate something very technical, not 
+something biologically meaningful. They tell us how likely a signal from a voxel is to be circumscribed by a 
+particular label in the group parcellation if projected to surface space through a subject specific transformation, 
+but even so that label may still not correspond to the designated area for any particular subject. 
+That identity is not determined by the group template these probabilities inform, but rather by subject specific 
+myelin and resting state network features.
 
 The purpose of these probability maps is to adjudicate between competing atlases when making composites or to
 provide an objective basis for boundary delineation, not for direct physiological inference.
@@ -50,7 +61,7 @@ To my knowledge Glasser et al. have not published their subject specific region 
 but I think subject specific parcellations may be avialable from the HCP dataset, and might provide an avenue 
 towards an improved version of this atlas. Coalsen et al. 2018 PNAS achieve precise this kind of surface
 to volume mapping that takes variability of the subject specific surface parcellations into account and compares
-it to a projection that doesnt. They do not share their templates, but their paper may provide some guidance 
+it to a projection that doesn't. They do not share their templates, but their paper may provide some guidance 
 on whether or not it's worthwhile to pursue such an improvement on this atlas here.
 
 ![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
