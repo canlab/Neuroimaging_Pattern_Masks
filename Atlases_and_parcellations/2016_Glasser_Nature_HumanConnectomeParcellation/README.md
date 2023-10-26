@@ -48,7 +48,10 @@ provide an objective basis for boundary delineation, not for direct physiologica
 
 To my knowledge Glasser et al. have not published their subject specific region classifiers (as of 10/24/23), 
 but I think subject specific parcellations may be avialable from the HCP dataset, and might provide an avenue 
-towards an improved version of this atlas.
+towards an improved version of this atlas. Coalsen et al. 2018 PNAS achieve precise this kind of surface
+to volume mapping that takes variability of the subject specific surface parcellations into account and compares
+it to a projection that doesnt. They do not share their templates, but their paper may provide some guidance 
+on whether or not it's worthwhile to pursue such an improvement on this atlas here.
 
 ![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
 
@@ -158,6 +161,9 @@ Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John 
 
 Registration Fusion Paper:
 Wu J, Ngo GH, Greve D, Li J, He T, Fischl B, Eickhoff SB, Yeo T. Accurate nonlinear mapping between MNI volumetric and FreeSurfer surface coordinate systems. 2018. Human Brain Mapping 39(9) 3793-3808. DOI: 10.1002/hbm.24213
+
+Comparison of surface and volumetric atlases
+Coalson T, Van Essen D, Glasser MF. The impact of traditional neuroimaging methods on the spatial localization of cortical areas.  2018. PNAS 115(27)
 
 ##
 Bogdan Petre
