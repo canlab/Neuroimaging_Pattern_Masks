@@ -2,21 +2,8 @@
 % structures to more accurately abide by CIFTI volumetric boundaries. For
 % example, CA1-3, DG and Subiculum are restricted to the hippocampal
 % volume, and other structures are excluded from it, even though the fornix 
-% approaches the thalamus, and the% entorhinal cortex potentially bleeds 
+% approaches the thalamus, and the=% entorhinal cortex potentially bleeds 
 % into this volume in MNI space.
-
-% There are several ROIs we'll want to drop for hyperalignment because
-% they're too fragmented. We can use them for post-hoc BSC, but we don't
-% want to restirct hyperalignment to their boundaries. These could be
-% 'VeP' - split across CIFTI pallidum, putamen and NAc, and quite 
-%   fragmented in some cases
-% 'BST_SLEA' - part of the extended amgydala, dorsal to pallidum and 
-%   putamen, but much of it is in white matter excluded from the
-%   grayordinate space.
-% 'Cblm_Vermis_CrusI' - this is part of the cerebellar midline towards the
-%   posterior part of the cerebellum. It's very small, and not simply
-%   because of the grayordinate segmentation, it's intrinsically small.
-%   It's also bilateral AND discontinuous across the midline.
 
 % ToDo:
 % Deal with overlapping Glasser vs. volumetric hippocampal segmentations.
@@ -112,7 +99,7 @@ ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
 %}
 ref = fmri_data(TEMPLATE);
 
-bg = load(bgfile); bg = bg.atlas_obj.resample_space(ref);
+bg = load(bgfile); bg = bg.atlas_obj.resample_space(ref, 'nearest');
 bg.labels_5 = repmat({'Tian'},1,num_regions(bg));
 
 %% incorporate BST_SLEA into BG and make it lateralized
@@ -120,7 +107,7 @@ bg.labels_5 = repmat({'Tian'},1,num_regions(bg));
 % putamen because it's a trivial segment (4vxls) and not worth the mess,
 % and not GP because it's a small segment and fragments the ROI which is
 % mostly in caudate.
-atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref);
+atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref , 'nearest');
 
 BST = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,{'BST_SLEA'}))).replace_empty();
 BST = lateralize(BST);
@@ -201,17 +188,19 @@ for i = 1:length(uniq_labels)
 end
 [~,~,dat] = unique(bg_dil.dat);
 bg_dil.dat = dat - 1;
-fnames = {'labels','labels_2','labels_3','labels_4','labels_5'};
+fnames = {'labels','label_descriptions','labels_2','labels_3','labels_4','labels_5'};
 for i = 1:length(fnames)
     if length(bg_dil.(fnames{i})) == n_labels
         bg_dil.(fnames{i})(remove) = [];
     end
 end
 bg_dil.probability_maps(:,remove) = [];
-
+bg_dil.labels_2 = {};
+bg_dil.labels_3 = {};
+bg_dil.labels_4 = {};
 
 %% Cerebellum
-cerebellum = load(suitfile); cerebellum = cerebellum.atlas_obj.resample_space(ref);
+cerebellum = load(suitfile); cerebellum = cerebellum.atlas_obj.resample_space(ref, 'nearest');
 cerebellum.labels_5 = repmat({'SUIT/Diedrichsen'},1,num_regions(cerebellum));
 
 % remove white matter structures that aren't well represented in
@@ -248,11 +237,14 @@ for i = 1:num_regions(thal_atlas)
     pmap(thal_atlas.dat == i,i) = 0.5;
 end
 thal_atlas.probability_maps = pmap;
+thal_atlas.labels_2 = {};
+thal_atlas.labels_3 = {};
+thal_atlas.labels_4 = repmat({'Restricted (contact the secretariat of the Computer Vision Lab, ETH Zürich to confirm permission for use/distribution)'}, 1, num_regions(thal_atlas));
 thal_atlas.labels_5 = repmat({'Morel'}, 1, num_regions(thal_atlas));
 
 
 bstem = load(brainstemfile);
-bstem = bstem.atlas_obj.resample_space(ref);
+bstem = bstem.atlas_obj.resample_space(ref, 'nearest');
 
 % Add labels to make more consistent with other atlases
 for i = 1:length(bstem.labels)
@@ -274,7 +266,7 @@ thal_bstem.labels{contains(thal_bstem.labels,'Hythal_L')} = 'Hythal_L';
 thal_bstem.labels{contains(thal_bstem.labels,'Hythal_R')} = 'Hythal_R';
 
 %% Hippocampus and Hippocampus
-julich = load_atlas(julichfile).resample_space(ref);
+julich = load_atlas(julichfile).resample_space(ref, 'nearest');
 
 % SF - superficial amygdala
 % LB - laterobasal amygdala
@@ -317,7 +309,7 @@ atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 cmap = round(255*colormap('lines'));
 cmap = [cmap;cmap;cmap;cmap];
 
-atlas_obj_ds = atlas_obj.resample_space(cifti_atlas);
+atlas_obj_ds = atlas_obj.resample_space(cifti_atlas, 'nearest');
 
 atlas_obj_ds.fullpath = sprintf('%s/subctx_atlas_%s_%s.nii', ROOT, SCALE, SPACE);
 atlas_obj_ds.write('overwrite')
@@ -415,7 +407,7 @@ delete(sprintf('%s_1mm.nii', canlab.atlas_name));
 save(sprintf('%s_1mm.mat', canlab.atlas_name)','canlab');
 
 %% make 2mm version
-canlab_ds = canlab.resample_space(cifti_atlas);
+canlab_ds = canlab.resample_space(cifti_atlas, 'nearest');
 canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
 
 canlab_ds.fullpath = sprintf('%s.nii', canlab_ds.atlas_name);
@@ -423,4 +415,4 @@ canlab_ds.write('overwrite');
 gzip(sprintf('%s.nii', canlab_ds.atlas_name));
 delete(sprintf('%s.nii', canlab_ds.atlas_name))
 
-save(sprintf('%s_1mm.mat', canlab_ds.atlas_name)','canlab');
+save(sprintf('%s_2mm.mat', canlab_ds.atlas_name)','canlab');
