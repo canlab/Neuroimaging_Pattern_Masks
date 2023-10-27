@@ -13,7 +13,7 @@ addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'));
 
 dosave = true;
 space = 'fsl6';
-scale = 'fine';
+scale = 'coarse';
 
 template = 'fmriprep20_template.nii.gz';
 if strcmp(space,'fsl6')
@@ -206,7 +206,7 @@ end
 % the smallest regions) go first so that we resample to their spaces.
 atlas_obj = biancia.merge_atlases(cit).merge_atlases(bstem_atlas);
 
-atlas_obj = atlas_obj.apply_mask(bstem_mask);
+%atlas_obj = atlas_obj.apply_mask(bstem_mask);
 %atlas_obj = atlas_obj.threshold(0.2,'k',10);
 
 
