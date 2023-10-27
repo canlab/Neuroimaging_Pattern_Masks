@@ -5,8 +5,7 @@
 # are composite affine/warp files.
 # these files were created by converting ants *.h5 files into fsl formated files using code like this:
 
-# this is my fmriprep output. Copies of the necessary files are also in the sister directory of this one, "ants"
-srcRoot=/dartfs-hpc/rc/lab/C/CANlab/labdata/projects/bogdan_atlas/preproc/fmriprep/sub-MNI152NLin6Asym/anat
+srcRoot=../ants/
 
 # source data we passed for alignment to fmriprep
 # this file can be obtained here
@@ -18,10 +17,10 @@ REF_FSL=~/software/canlab/Neuroimaging_Pattern_Masks/templates/MNI152NLin6Asym_T
 REF_FMRIPREP=~/software/canlab/Neuroimaging_Pattern_Masks/templates/MNI152NLin2009cAsym_T1_1mm.nii.gz
 
 # these operations break down the h5 files into constituent affine matrices and warp field files
-CompositeTransformUtil --disassemble $srcRoot/sub-MNI152NLin6Asym_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5 \
-    fmriprep_to_fsl
+CompositeTransformUtil --disassemble $srcRoot/MNI152NLin6Asym_to_MNI152NLin2009cAsym_subctx_InverseComposite.h5 \
+    fmriprep_to_fsl_subctx
 
-mv [0-9][0-9]*fmriprep_to_fsl* ../ants/
+mv [0-9][0-9]*fmriprep_to_fsl_subctx* ../ants/
 
 # Both Affine matrix files and warp fields need to be modified to work with FSL. We can do this with
 # two different tools, c3d_affine_tool obtained here,
@@ -31,7 +30,7 @@ mv [0-9][0-9]*fmriprep_to_fsl* ../ants/
  
 c3d=~/software/c3d-1.1.0-Linux-x86_64/bin/c3d_affine_tool
 
-$c3d -src $REF_FMRIPREP -ref $REF_FSL -itk ../ants/01_fmriprep_to_fsl_AffineTransform.mat -ras2fsl \
-    -o ../fsl/01_fmriprep_to_fsl_AffineTransform_mod.mat
-wb_command -convert-warpfield -from-itk ../ants/00_fmriprep_to_fsl_DisplacementFieldTransform.nii.gz \
-    -to-fnirt ../fsl/00_fmriprep_to_fsl_DisplacementFieldTransform_mod.nii.gz $REF_FMRIPREP
+$c3d -src $REF_FMRIPREP -ref $REF_FSL -itk ../ants/01_fmriprep_to_fsl_subctx_AffineTransform.mat -ras2fsl \
+    -o ../fsl/01_fmriprep_to_fsl_subctx_AffineTransform_mod.mat
+wb_command -convert-warpfield -from-itk ../ants/00_fmriprep_to_fsl_subctx_DisplacementFieldTransform.nii.gz \
+    -to-fnirt ../fsl/00_fmriprep_to_fsl_subctx_DisplacementFieldTransform_mod.nii.gz $REF_FMRIPREP
