@@ -36,7 +36,7 @@ if isempty(gcp('nocreate'))
 end
 
 SPACE = 'fmriprep20';
-SCALE = 'coarse';
+SCALE = 'fine';
 
 switch SPACE
     case 'fmriprep20'

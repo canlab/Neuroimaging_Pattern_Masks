@@ -404,10 +404,11 @@ canlab.write();
 gzip(sprintf('%s_1mm.nii', canlab.atlas_name))
 delete(sprintf('%s_1mm.nii', canlab.atlas_name));
 
+canlab_ds = canlab.resample_space(cifti_atlas);
+canlab.probability_maps = sparse(canlab.probability_maps);
 save(sprintf('%s_1mm.mat', canlab.atlas_name)','canlab');
 
 %% make 2mm version
-canlab_ds = canlab.resample_space(cifti_atlas);
 canlab_ds.atlas_name = sprintf('CANLab_2023_%s_%s_2mm', SCALE, SPACE);
 
 canlab_ds.fullpath = sprintf('%s.nii', canlab_ds.atlas_name);
@@ -415,4 +416,5 @@ canlab_ds.write('overwrite');
 gzip(sprintf('%s.nii', canlab_ds.atlas_name));
 delete(sprintf('%s.nii', canlab_ds.atlas_name))
 
-save(sprintf('%s_2mm.mat', canlab_ds.atlas_name)','canlab');
+canlab_ds.probability_maps = sparse(canlab_ds.probability_maps);
+save(sprintf('%s.mat', canlab_ds.atlas_name)','canlab_ds');
