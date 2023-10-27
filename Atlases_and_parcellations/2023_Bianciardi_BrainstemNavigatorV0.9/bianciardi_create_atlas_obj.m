@@ -107,8 +107,8 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         % identify necessary transformation files from atlas native
         % space (MNI152NLin6Asym) to desired space
         case 'MNI152NLin2009cAsym'
-            premat = which('00_fsl_to_fmriprep_AffineTransform.csv');
-            warp = which('y_01_fsl_to_fmriprep_DisplacementFieldTransform.nii');
+            premat = which('00_fsl_to_fmriprep_subctx_AffineTransform.csv');
+            warp = which('y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii');
             postmat = [];
             if isempty(warp)
                 % this should be updated in the future to download the
@@ -117,7 +117,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
                 
                 download_warpfield('MNI152NLin6Asym', 'MNI152NLin2009cAsym', 'spm');
                 
-                warp = which('y_01_fsl_to_fmriprep_DisplacementFieldTransform.nii');
+                warp = which('y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii');
             end
         case 'MNI152NLin6Asym'
             premat = [];
