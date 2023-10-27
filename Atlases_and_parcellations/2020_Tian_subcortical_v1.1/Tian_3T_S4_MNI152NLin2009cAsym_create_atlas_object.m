@@ -26,6 +26,7 @@ parcellation_file = which('Schaefer2018_100Parcels_7Networks_order_Tian_Subcorte
 fid = fopen(which('Tian_Subcortex_S4_3T_label.txt'));
 labels = textscan(fid,'%s');
 labels = cellfun(@(x1)strrep(x1,'-','_'),labels{1},'UniformOutput',false);
+labels = labels(:)';
 fclose(fid);
 
 % truncate cortical areas
