@@ -70,7 +70,7 @@ mri_surf2surf --srcsubject ico \
     --trgsubject ${SID} \
     --tval $SCRATCH_DIR/lh.gii \
     --hemi lh \
-    --mapmethod nnfr \
+    --mapmethod nnf \
     --sd $SRCROOT/freesurfer/
 
 # now that we have the labels in the subject sphere's space, let's go from that to the subject's native space volume
@@ -102,7 +102,7 @@ mri_surf2surf --srcsubject ico \
     --trgsubject ${SID} \
     --tval $SCRATCH_DIR/rh.gii \
     --hemi rh \
-    --mapmethod nnfr \
+    --mapmethod nnf \
     --sd $SRCROOT/freesurfer/
 
 mri_surf2vol --surfval $SCRATCH_DIR/rh.gii \

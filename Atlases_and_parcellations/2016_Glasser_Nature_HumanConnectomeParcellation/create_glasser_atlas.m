@@ -3,7 +3,7 @@ close all; clear all;
 addpath('/dartfs-hpc/rc/home/m/f0042vm/software/spm12')
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/CanlabCore/'))
 
-SPACE = 'MNI152NLin6Asym';
+SPACE = 'MNI152NLin2009cAsym';
 
 lh_lbls = readtable('lctx_labels.txt');
 rh_lbls = readtable('rctx_labels.txt');
