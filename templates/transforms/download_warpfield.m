@@ -16,10 +16,18 @@ function download_warpfield(from, to, format)
             file = tempname;
             websave(file, 'https://figshare.com/ndownloader/files/42771256');
             movefile(file, [this_dir.folder, '/', format, '/y_01_fsl_to_fmriprep_DisplacementFieldTransform.nii']);
+
+            file = tempname;
+            websave(file, 'https://figshare.com/ndownloader/files/42771256');
+            movefile(file, [this_dir.folder, '/', format, '/y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii']);
         case 'MNI152NLin2009cAsym-MNI152NLin6Asym'
             file = tempname;
             websave(file, 'https://figshare.com/ndownloader/files/42771259');
             movefile(file, [this_dir. folder, '/', format, '/y_00_fmriprep_to_fsl_DisplacementFieldTransform.nii']);
+
+            file = tempname;
+            websave(file, 'https://figshare.com/ndownloader/files/42771256');
+            movefile(file, [this_dir.folder, '/', format, '/y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii']);
         otherwise
             error('Could not find transform from %s to %s in %s format', from, to, format);
     end

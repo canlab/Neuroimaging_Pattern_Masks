@@ -7,7 +7,7 @@ import numpy as np
 import nibabel as ni
 
 # handle fsl to fmriprep
-orig_nii = ni.load('../ants/01_fsl_to_fmriprep_DisplacementFieldTransform.nii.gz')
+orig_nii = ni.load('../ants/01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii.gz')
 aff = orig_nii.header.get_best_affine() # all offset by 1 for zero indexed python format
 
 dat = orig_nii.get_fdata()
@@ -27,11 +27,11 @@ vec_dat_mm = vec_dat_mm[:,:3].reshape(coord.shape)
 # Displacements are for data in LPS orientation, but SPM uses RAS, so flip x and y
 dat[:,:,:,0,:2] = -1*dat[:,:,:,0,:2]
 new_nii = ni.Nifti1Image(vec_dat_mm + dat, aff, header=orig_nii.header)
-ni.save(new_nii,'../spm/y_01_fsl_to_fmriprep_DisplacementFieldTransform.nii')
+ni.save(new_nii,'../spm/y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii')
 
 
 # handle fmriprep to fsl
-orig_nii = ni.load('../ants/00_fmriprep_to_fsl_DisplacementFieldTransform.nii.gz')
+orig_nii = ni.load('../ants/00_fmriprep_to_fsl_subctx_DisplacementFieldTransform.nii.gz')
 aff = orig_nii.header.get_best_affine() # all offset by 1 for zero indexed python format
 
 dat = orig_nii.get_fdata()
@@ -51,6 +51,6 @@ vec_dat_mm = vec_dat_mm[:,:3].reshape(coord.shape)
 # Displacements are for data in LPS orientation, but SPM uses RAS, so flip x and y
 dat[:,:,:,0,:2] = -1*dat[:,:,:,0,:2]
 new_nii = ni.Nifti1Image(vec_dat_mm + dat, aff, header=orig_nii.header)
-ni.save(new_nii,'../spm/y_00_fmriprep_to_fsl_DisplacementFieldTransform.nii')
+ni.save(new_nii,'../spm/y_00_fmriprep_to_fsl_subctx_DisplacementFieldTransform.nii')
 
 

@@ -1,6 +1,6 @@
 ### MNIColin27v1988
 
-Transformation matrices were computed by running the Colin27 template through fmriprep 20.0.3 with surface reconstruction
+Transformation matrices were computed by running the Colin27 template through fmriprep 20.2.3 with surface reconstruction
 enabled with MNI152NLin6Asym and MNI152NLin2009cAsym selected as output spaces. There are two versions of Colin27, one from 
 1998 and another that's higher resolution and includes T2 and PD images from 2008. They are not coregistered. This was run 
 on the 1998 version. In theory it should be possible to obtain better transforms to MNI152NLin2009cAsym space in particular
@@ -11,11 +11,15 @@ to the MNI152NLin2009cAsym equivalents, but this seemed like more work than it w
 ### MNI152NLin6Asym to MNI152NLin2009cAsym
 
 Transformation matrices were computed by aligning the templateFlow MNI152NLin6Asym 1mm T1 image to MNI152NLin2009cAsym
-1mm T1 image using fmriprep 20.0.3 with surface reconstruction enabled. fsl_to_fmriprep.sh and fmriprep_to_fsl.sh then 
-used the resultant h5 files to populate the ants and fsl sister folders here and fsl_to_fmriprep.py and fmriprep_to_fsl.py 
-were then run to convert ants to SPM format.
+1mm T1 image using fmriprep 20.2.3 with surface reconstruction enabled. An additional set of subcortical specific alignments
+were produced by copying fmriprep's ANTs alignment parameters, using the cifti volumetric mask as a metric mask (so alignment
+is only optimized for the subcortical structures) and making the SyN parameters ~2x as aggressive as those of fmriprep's
+for a more detailed alignment.  fsl_to_fmriprep.sh and fmriprep_to_fsl.sh were then used with the resultant h5 files to 
+populate the ants and fsl sister folders here and fsl_to_fmriprep.py and fmriprep_to_fsl.py were then run to convert ants 
+to SPM format. This was done for both fmriprep transformations and subcortically weighted transformations. The subcortically
+weighted alignment was implemented by subctx_alignment.sh.
 
-use antsApplyTransform to use the files in the ants directory. The order of application is important. antsApplyTransform
+Use antsApplyTransform to use the files in the ants directory. The order of application is important. antsApplyTransform
 can apply multiple transforms at once, but the arguments need to be specified in the first in last out order, which is
 counterintuitive (the last transform you specify is applied first). If in doubt use antsApplyTransform in multiple
 separate invocations applying one transform each time. The prefixed numbers indicate the order in which a transform should
