@@ -70,7 +70,7 @@ end
 %% Resample to standard space - 1 x 1 x 1 mm
 
 % ref obj in 1 mm space
-ref_obj = fmri_data(which('MNI152NLin6Asym_T1_1mm.nii'));
+ref_obj = fmri_data(which('MNI152NLin6Asym_T1_1mm.nii.gz'));
 
 thalamus_atlas = resample_space(thalamus_atlas, ref_obj);
 
