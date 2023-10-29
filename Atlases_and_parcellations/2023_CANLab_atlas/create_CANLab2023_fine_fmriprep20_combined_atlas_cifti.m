@@ -20,12 +20,12 @@
 
 clear all; close all;
 
-%LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
-LIB = '/home/bogdan/.matlab';
+LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
+%LIB = '/home/bogdan/.matlab';
 ROOT = [LIB, '/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANLab_atlas/'];
 
-%addpath([LIB, '/spm12']);
-addpath([LIB, '/spm/spm12']);
+addpath([LIB, '/spm12']);
+%addpath([LIB, '/spm/spm12']);
 
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
