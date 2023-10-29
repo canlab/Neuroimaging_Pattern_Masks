@@ -144,9 +144,31 @@ cifti_mask = cifti_mask.replace_empty();
 
 tic
 put_dil = dilate(put, cifti_mask);
-put_dil = bg.select_atlas_subset('NAc').apply_mask(cifti_mask).merge_atlases(put_dil,'noreplace');
 toc
 
+% trim dilated left and right margins of putamen to avoid bleedover into insula
+for i = 1:5
+    put_xyz = put_dil.volInfo.xyzlist;
+    trim_x = [min(put_xyz(put_dil.dat > 0,1)), max(put_xyz(put_dil.dat > 0,1))];
+    trim_ind = ismember(put_xyz(:,1), trim_x);
+    put_dil.probability_maps(trim_ind,:) = 0;
+    put_dil = put_dil.probability_maps_to_region_index();
+end
+% let side looks like it needs more trimming than the right
+for i = 1:2
+    put_xyz = put_dil.volInfo.xyzlist;
+    trim_x = min(put_xyz(put_dil.dat > 0,1));
+    trim_ind = ismember(put_xyz(:,1), trim_x);
+    put_dil.probability_maps(trim_ind,:) = 0;
+    put_dil = put_dil.probability_maps_to_region_index();
+end
+
+% add back in any original voxels we'd removed (we only want to trim from
+% the newly dilated voxels)
+put = put.replace_empty;
+put_dil.probability_maps(put.dat > 0,:) = put.probability_maps(put.dat > 0,:);
+
+put_dil = bg.select_atlas_subset('NAc').apply_mask(cifti_mask).merge_atlases(put_dil,'noreplace');
 
 %% Pallidum
 pal = bg.select_atlas_subset(find(contains(bg.labels,{'GP'}))).remove_empty();
@@ -349,6 +371,9 @@ fclose(fid);
 %   Cblm_Interposed_R, Cblm_Fastigial_L, Cblm_Fastigial_R
 
 glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
+% get rid of regions dismembered by cifti_atlas masking
+glasser = glasser.threshold('remove_parcel_fragments');
+glasser = glasser.threshold('remove_pracel_fragments');
 glasser.labels_5 = repmat({'Glasser with registration fusion volume projection'},1,num_regions(glasser));
 
 % remove hippocampal ROI because it's redundant with volumes
