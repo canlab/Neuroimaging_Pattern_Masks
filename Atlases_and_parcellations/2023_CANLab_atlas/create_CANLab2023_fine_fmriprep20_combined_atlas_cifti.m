@@ -371,8 +371,7 @@ fclose(fid);
 
 glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
 % get rid of regions dismembered by cifti_atlas masking
-glasser = glasser.threshold('remove_parcel_fragments');
-glasser = glasser.threshold('remove_pracel_fragments');
+glasser = glasser.threshold(0.05,'remove_parcel_fragments');
 glasser.labels_5 = repmat({'Glasser with registration fusion volume projection'},1,num_regions(glasser));
 
 % remove hippocampal ROI because it's redundant with volumes
