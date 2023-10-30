@@ -369,7 +369,7 @@ fclose(fid);
 % - canlab2018 structures missing from canlab2023: Cau_L, Cau_R, BST_SLEA,
 %   Cblm_Interposed_R, Cblm_Fastigial_L, Cblm_Fastigial_R
 
-glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
+glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(atlas_obj), 'invert');
 % get rid of regions dismembered by cifti_atlas masking
 glasser = glasser.threshold(0.05,'remove_parcel_fragments');
 glasser.labels_5 = repmat({'Glasser with registration fusion volume projection'},1,num_regions(glasser));

@@ -152,9 +152,6 @@ biancia.labels_5 = repmat({'Bianciardi brainstem navigator v.0.9'}, 1, num_regio
 biancia_regions = {'PAG', 'SC' 'IC', 'DR', 'MnR', 'SN', 'LC', 'RMg', 'VSM', ...
     'CnF', 'RPa', 'ROb', 'CLi_RLi', 'Rt', 'ION', 'SOC', 'LDTg_CGPn', ...
     'MiTg_PBG', 'PnO_PnC', 'PTg', 'RN', 'SubC', 'Ve', 'STh', 'LPB', 'MPB'};
-% there's a clear right side bias in the alignment
-% MnR seems to be a single voxel. Look more carefully at this
-% 
 biancia = biancia.select_atlas_subset(biancia_regions);
 
 
@@ -164,8 +161,6 @@ cit_regions = {'PBP', 'VTA','Mamm'};
 
 cit = lateralize(cit.select_atlas_subset(cit_regions));
 cit.labels_5 = repmat({'CIT168'}, 1, num_regions(cit));
-
-%biancia = biancia.merge_atlases(cit.select_atlas_subset(cit_regions),'noreplace');
 
 % also include regions in other atlases that we want to remove here - so
 % that we remove these voxels

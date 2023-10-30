@@ -330,7 +330,7 @@ atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 cmap = round(255*colormap('lines'));
 cmap = [cmap;cmap;cmap;cmap];
 
-atlas_obj_ds = atlas_obj.resample_space(cifti_atlas).apply_mask(fmri_mask_image(cifti_atlas));
+atlas_obj_ds = atlas_obj.resample_space(cifti_atlas);
 
 atlas_obj_ds.fullpath = sprintf('%s/subctx_atlas_%s_%s.nii', ROOT, SCALE, SPACE);
 atlas_obj_ds.write('overwrite')
@@ -369,9 +369,10 @@ fclose(fid);
 % - canlab2018 structures missing from canlab2023: Cau_L, Cau_R, BST_SLEA,
 %   Cblm_Interposed_R, Cblm_Fastigial_L, Cblm_Fastigial_R
 
-glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(cifti_atlas), 'invert');
+glasser = load_atlas('glasser_fmriprep20').apply_mask(fmri_mask_image(atlas_obj), 'invert');
 % get rid of regions dismembered by cifti_atlas masking
-glasser = glasser.threshold(0.05,'remove_parcel_fragments');
+glasser = glasser.threshold('remove_parcel_fragments');
+glasser = glasser.threshold('remove_pracel_fragments');
 glasser.labels_5 = repmat({'Glasser with registration fusion volume projection'},1,num_regions(glasser));
 
 % remove hippocampal ROI because it's redundant with volumes
