@@ -330,7 +330,7 @@ atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 cmap = round(255*colormap('lines'));
 cmap = [cmap;cmap;cmap;cmap];
 
-atlas_obj_ds = atlas_obj.resample_space(cifti_atlas);
+atlas_obj_ds = atlas_obj.resample_space(cifti_atlas).apply_mask(fmri_mask_image(cifti_atlas));
 
 atlas_obj_ds.fullpath = sprintf('%s/subctx_atlas_%s_%s.nii', ROOT, SCALE, SPACE);
 atlas_obj_ds.write('overwrite')

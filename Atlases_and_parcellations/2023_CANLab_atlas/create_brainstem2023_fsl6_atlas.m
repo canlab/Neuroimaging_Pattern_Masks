@@ -117,6 +117,16 @@ else
     shen_references = bstem_atlas.references;
 end
 
+switch space
+    case 'fsl6'
+        cifti_mask = fmri_mask_image('hcp_cifti_subctx_labels.nii');
+    case 'fmriprep20'
+        cifti_mask = fmri_mask_image('hcp_cifti_subctx_labels_MNI152NLin2009cAsym.nii');
+    otherwise 
+        error('No cifti atlas available in space %s', space);
+end
+bstem_atlas = bstem_atlas.apply_mask(cifti_mask);
+
 bstem_atlas.labels_2 = repmat({'Brainstem'},1,num_regions(bstem_atlas));
 diencephalic_ind = find(contains(bstem_atlas.labels, {'Midb_Lrd','Midb_Rrd'}));
 bstem_atlas.labels_2(diencephalic_ind) = repmat({'Diencephalic'},1,length(diencephalic_ind));
