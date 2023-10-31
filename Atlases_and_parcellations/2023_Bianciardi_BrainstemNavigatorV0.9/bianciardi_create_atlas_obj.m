@@ -174,6 +174,22 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
 
     bianciaAtlas.labels = labels;
 
+    % add b labels to raphe
+    raphe_ind = contains(bianciaAtlas.label_descriptions,'pallidus');
+    bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B1';
+    raphe_ind = contains(bianciaAtlas.label_descriptions,'obscurus');
+    bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B2';
+    raphe_ind = contains(bianciaAtlas.label_descriptions,'magnus');
+    bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B3';
+    raphe_ind = find(contains(bianciaAtlas.labels,'L_PnO_PnC'));
+    bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B5';
+    raphe_ind = find(contains(bianciaAtlas.labels,'R_PnO_PnC'));
+    bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B5';
+    raphe_ind = contains(bianciaAtlas.label_descriptions,'Dorsal');
+    bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B7'; 
+    raphe_ind = contains(bianciaAtlas.label_descriptions,'Median');
+    bianciaAtlas.labels{raphe_ind}(end+1:end+6) = '_B6_B8'; 
+
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save([this_dir.folder, '/' savename], 'bianciaAtlas');
 end
