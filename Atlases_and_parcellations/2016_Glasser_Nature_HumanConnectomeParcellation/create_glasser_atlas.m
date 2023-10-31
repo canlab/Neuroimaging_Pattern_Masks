@@ -3,7 +3,7 @@ close all; clear all;
 addpath('/dartfs-hpc/rc/home/m/f0042vm/software/spm12')
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/CanlabCore/'))
 
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 lh_lbls = readtable('lctx_labels.txt');
 rh_lbls = readtable('rctx_labels.txt');
@@ -11,12 +11,17 @@ lbls = [lh_lbls{:,1}; rh_lbls{:,1}];
 
 pmap = {};
 for study = {'bmrk5', 'paingen'}
-    pdata = fmri_data(sprintf('%s_%s.nii.gz', study{1}, SPACE));
-    
-    pmap{end+1} = zeros(size(pdata.dat,1), length(lbls));
-    for i = 1:length(lbls)
-        pmap{end}(:,i) = mean(pdata.dat == i,2);
+    for hemi = {'lh' 'rh'}
+        pdata = fmri_data(sprintf('%s_%s_%s.nii.gz', hemi{1}, study{1}, SPACE));
+        
+        pmap{end+1} = zeros(size(pdata.dat,1), length(lbls)/2);
+        for i = 1:length(lbls)/2
+            pmap{end}(:,i) = mean(pdata.dat == i,2);
+        end
     end
+    % combine left and right hemispheres
+    pmap{end-1} = cat(2,pmap{end-1:end});
+    pmap(end) = [];
 end
 
 pdata = pdata.get_wh_image(1);
@@ -57,11 +62,18 @@ atlas_obj = atlas(pdata, ...
     'references', references, 'noverbose');
 atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 
-% save nifti version
-atlas_obj.fullpath = sprintf('glasser_%s_atlas.nii', SPACE);
-atlas_obj.threshold(0.2).write('overwrite');
-gzip(atlas_obj.fullpath)
-
 
 savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
 save(savename, 'atlas_obj');
+
+
+% save nifti version
+nii = fmri_data(atlas_obj);
+nii.fullpath = sprintf('glasser_%s_atlas.nii', SPACE);
+nii.dat = single(full(atlas_obj.probability_maps));
+nii.write('overwrite');
+gzip(nii.fullpath);
+delete(nii.fullpath);
+fid = fopen(sprintf('glasser_%s_atlas_labels.txt',SPACE),'w+');
+fprintf(fid,'%s\n', atlas_obj.labels{:})
+fclose(fid);
