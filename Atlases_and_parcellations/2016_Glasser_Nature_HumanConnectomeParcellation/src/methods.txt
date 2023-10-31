@@ -48,7 +48,7 @@ informed consent was obtained from all participants, who were financially compen
 for their participation.
 
 
-Data acquisition. 
+BMRK5 Data acquisition. 
 
 Data were collected on a 3 Tesla Siemens Trio MRI scanner at the University of 
 Colorado Boulder Center for Innovation and Creativity. A high-resolution T1-weighted 

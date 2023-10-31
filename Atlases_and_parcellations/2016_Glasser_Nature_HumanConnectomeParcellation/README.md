@@ -83,6 +83,22 @@ and averaged first within study and then the study specific probability maps wer
 This might be improved by taking a precision weighted average, but both studies are fairly large, and dice
 coefficients of mean parcellations between the two studies are fairly close to 1, so it's likely unnecessary.
 
+Notably, the original Glasser MMP atlas is in an HCP specific surface space called fs_LR. We had only computed
+transformations from native to fsaverage space though, not fs_LR space. Therefore rather than resampling atlas
+labels from the original Glasser MMP atlas, we resampled them from a fs_LR to fsaverage transformed atlas. The
+transformation was obtained from HCP here,
+
+https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/standard_mesh_atlases
+
+Specifically the fs_L/fs_L-to-fs_LR_fsaverage.L_LR.spherical_std.164k_fs_L.surf.gii and 
+fs_R/fs_R-to-fs_LR_fsaverage.R_LR.spherical_std.164k_fs_R.surf.gii were used.
+
+It's not clear to me if fsaverage and fs_LR differ in any way besides vertex locations (fs_LR is symmetric by
+design, while fsaverage is not), but it seems like an improved atlas could be obtained by using native space
+to fs_LR *sphere.reg transformation files, and this may be warranted if this atlas is updated.
+
+Implementation details are available in the src subfolder, which contains examples of scripts that were used
+and a short methods write up.
 
 ## Comparison to "old" Glasser
 
