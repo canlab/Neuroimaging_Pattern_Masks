@@ -166,7 +166,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     bianciaAtlas.probability_maps = sparse(double(bianciaAtlas.probability_maps));
     
     % Threshold at probability 0.2 or greater and k = 3 voxels or greater
-    bianciaAtlas = threshold(bianciaAtlas, .2, 'k', 3);
+    bianciaAtlas = threshold(bianciaAtlas, .01, 'k', 3);
 
     % prefix laterality for consistency with other atlases
     for i = 1:length(labels), labels{i} = regexprep(labels{i},'(.*)_l$','L_$1'); end
