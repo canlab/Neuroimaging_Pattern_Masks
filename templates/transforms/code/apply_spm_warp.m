@@ -79,31 +79,59 @@ function apply_spm_warp(mvg_img0, fxd_img0, pre_affine_mat, warp_img, post_affin
                                                'prefix','w'))}});
 
     spm_deformations(job);
+    mvg_img_fname = dir(mvg_img);
+    wmvg_img = sprintf('%s/w%s', mvg_img_fname.folder, mvg_img_fname.name);
 
     old_mvg_img = mvg_img;
-    mvg_img_fname = dir(mvg_img);
     delete(old_mvg_img);
-    wmvg_img = sprintf('%s/w%s', mvg_img_fname.folder, mvg_img_fname.name);
 
     fprintf('Warped data written to %s/w%s\n', mvg_img_fname.folder, mvg_img_fname.name);
 
     if ~isempty(post_affine_mat)
         M = csvread(post_affine_mat);
-        wmvg_img_hdr = spm_vol(wmvg_img);
-        for i = 1:length(wmvg_img_hdr)
-            spm_get_space(sprintf('%s,%d',wmvg_img,i), M*wmvg_img_hdr(1).mat);
+        final_img_hdr = spm_vol(wmvg_img);
+        for i = 1:length(final_img_hdr)
+            spm_get_space(sprintf('%s,%d',wmvg_img,i), M*final_img_hdr(1).mat);
         end
         flags = struct('interp',interp, 'mask', 0, 'mean', 0, 'which', 2, 'wrap', zeros(3,1));
         spm_reslice({fxd_img, wmvg_img},flags);
         
-        rwmvg_img = sprintf('%s/rw%s', mvg_img_fname.folder, mvg_img_fname.name);
-        movefile(rwmvg_img, out_img);
-        fprintf('Warped data moved to %s\n', out_img);
-        delete(wmvg_img);
+        final_img = sprintf('%s/rw%s', mvg_img_fname.folder, mvg_img_fname.name);
     else
-        movefile(wmvg_img, out_img);
-        fprintf('Warped data moved to %s\n', out_img);
+        final_img = wmvg_img;
     end
+
+    % reorient to reference if needed
+    final_img_hdr = spm_vol(final_img);
+    for i = 1:length(final_img_hdr)
+        assert(all(final_img_hdr(1).mat == final_img_hdr(i).mat,'all'),'Transformed images have different header matrices across volumes. This shouldn''t happen');
+        assert(all(final_img_hdr(1).dim == final_img_hdr(i).dim,'all'), 'Transformed images have different volume sizes. This shouldn''t happen');
+    end
+    
+    reorient_mat = final_img_hdr(1).mat\fxd_img_hdr(1).mat;
+    if any(reorient_mat ~= eye(4),'all')
+        assert(all(abs(diag(reorient_mat)) == ones(4,1)),'Image was not correctly resampled');
+
+        % flip the data and header matrix
+        V = spm_read_vols(final_img_hdr);
+        [X,Y,Z] = ndgrid(1:size(V,1), 1:size(V,2), 1:size(V,3));
+        XYZ = [X(:),Y(:),Z(:)]';
+        XYZ_new = reorient_mat*[XYZ; ones(1,numel(X))];
+
+        for i = 1:length(final_img_hdr)
+            V0 = V(:,:,:,i);
+            V1 = reshape(V0(sub2ind(size(V0), XYZ_new(1,:), XYZ_new(2,:), XYZ_new(3,:))), size(V0));
+
+            final_img_hdr(i).mat = fxd_img_hdr(1).mat;
+            spm_write_vol(final_img_hdr(i),V1);
+        end
+
+        % write it out
+    end
+
+    movefile(final_img, out_img);
+    fprintf('Warped data moved to %s\n', out_img);
+
 
     if ~isempty(dir(mvg_img))
         delete(mvg_img)
