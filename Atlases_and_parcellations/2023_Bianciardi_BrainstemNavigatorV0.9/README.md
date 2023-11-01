@@ -61,7 +61,7 @@ must be regenerated for each user on their own machine based on the files they t
 
 ## Comparison between spaces
 
-Given the small scale of these structures accurate alignment may be more important for localization than for other atlases. Diedrichsen has specific brainstem alignment protocols (SUIT) that may be worth looking into, but at the very least you should be using the same reference template. The difference between MNI152NLin6Asym and MNI152NLin2009cAsym is minor but better safe than sorry.
+Given the small scale of these structures accurate alignment may be more important for localization than for other atlases. The difference between MNI152NLin6Asym and MNI152NLin2009cAsym is minor but better safe than sorry. Extra effort is warranted to ensure proper alignment. In light of this we've used a subcortically weighted nonlinear alignment, instead of a full brain alignment, which only evaluates alignment cost in the thalamus, basal ganglia, hippocampal formation, brainstem and crebellum, without optimizing for cortical alignment. Additionally we've included 2mm versions of the atlas which were created by enchaining downsampling with any spantial transformation to minimize the number of interpolation steps.
 
 ### Copyright
 
