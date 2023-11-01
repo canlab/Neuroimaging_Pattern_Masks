@@ -163,11 +163,6 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         'references',references, 'noverbose');
     bianciaAtlas = bianciaAtlas.replace_empty();
 
-    bianciaAtlas.probability_maps = sparse(double(bianciaAtlas.probability_maps));
-    
-    % Threshold at probability 0.2 or greater and k = 3 voxels or greater
-    bianciaAtlas = threshold(bianciaAtlas, .01, 'k', 3);
-
     % prefix laterality for consistency with other atlases
     for i = 1:length(labels), labels{i} = regexprep(labels{i},'(.*)_l$','L_$1'); end
     for i = 1:length(labels), labels{i} = regexprep(labels{i},'(.*)_r$','R_$1'); end
@@ -189,6 +184,9 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B7'; 
     raphe_ind = contains(bianciaAtlas.label_descriptions,'Median');
     bianciaAtlas.labels{raphe_ind}(end+1:end+6) = '_B6_B8'; 
+
+    bianciaAtlas = threshold(bianciaAtlas, .01);
+    bianciaAtlas.probability_maps = sparse(double(bianciaAtlas.probability_maps));
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save([this_dir.folder, '/' savename], 'bianciaAtlas');
