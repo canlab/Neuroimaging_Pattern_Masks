@@ -36,7 +36,9 @@ function apply_spm_warp(mvg_img0, fxd_img0, pre_affine_mat, warp_img, post_affin
 
     if ~isempty(pre_affine_mat)
         M = csvread(pre_affine_mat);
-        spm_get_space(mvg_img, M*mvg_img_hdr(1).mat);
+        for i = 1:length(mvg_img_hdr)
+            spm_get_space(sprintf('%s,%d',mvg_img,i), M*mvg_img_hdr(1).mat);
+        end
         
         res = diag(fxd_img_hdr.mat);
     else
@@ -82,7 +84,9 @@ function apply_spm_warp(mvg_img0, fxd_img0, pre_affine_mat, warp_img, post_affin
     if ~isempty(post_affine_mat)
         M = csvread(post_affine_mat);
         wmvg_img_hdr = spm_vol(wmvg_img);
-        spm_get_space(wmvg_img, M*wmvg_img_hdr(1).mat);
+        for i = 1:length(wmvg_img_hdr)
+            spm_get_space(sprintf('%s,%d',wmvg_img,i), M*wmvg_img_hdr(1).mat);
+        end
         flags = struct('interp',interp, 'mask', 1, 'mean', 0, 'which', 2, 'wrap', zeros(3,1));
         spm_reslice({fxd_img, wmvg_img},flags);
         
