@@ -21,9 +21,9 @@ addpath(genpath('~/.matlab/canlab/MasksPrivate'))
 for space = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     space = space{1};
     switch space
-        case 'MNI152NLin6Asym'
+        case {'MNI152NLin6Asym','MNI152NLin6Asym_2mm'}
             alias = 'fsl6';
-        case 'MNI152NLin2009cAsym'
+        case {'MNI152NLin2009cAsym','MNI152NLin2009cAsym_2mm'}
             alias = 'fmriprep20';
         otherwise
             alias = space;

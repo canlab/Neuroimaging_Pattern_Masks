@@ -1,17 +1,30 @@
 function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     % build the bianciardi atlas in the specified space either the coarse
     % parcellation or the fine parcellation
-    % space - 'MNI152NLin6Asym' or 'MNI152NLin2009cAsym'
+    % space - 'MNI152NLin6Asym', 'MNI152NLin6Asym_2mm', 'MNI152NLin2009cAsym', or 'MNI152NLin2009cAsym_2mm'
     % fine - boolean
+    %
+    % Note that this atlas has many tiny regions. It really helps to
+    % minimize the number of interpolation steps, hence the 2mm versions of
+    % atlas included here. It's much better to incorporate transformations
+    % directly into 2mm space rather than transform into 1mm and then
+    % resample using canlab tools. Take note if using any other spaces
+    % besides those already included.
     this_dir = dir(which('bianciardi_create_atlas_obj.m'));
 
     switch space
         case 'MNI152NLin6Asym'
             space_lbl = 'fsl6';
             ref_file_base = 'MNI152NLin6Asym_T1_1mm';
+        case 'MNI152NLin6Asym_2mm'
+            space_lbl = 'fsl6_2mm';
+            ref_file_base = 'MNI152NLin6Asym_T1_1mm';
         case 'MNI152NLin2009cAsym'
             space_lbl = 'fmriprep20';
             ref_file_base = 'MNI152NLin2009cAsym_T1_1mm';
+        case 'MNI152NLin2009cAsym_2mm'
+            space_lbl = 'fmriprep20_2mm';
+            ref_file_base = 'MNI152NLin2009cAsym_T1_2mm';
         otherwise
             error('Unrecognized space %s',space);
     end
@@ -106,7 +119,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     switch space
         % identify necessary transformation files from atlas native
         % space (MNI152NLin6Asym) to desired space
-        case 'MNI152NLin2009cAsym'
+        case {'MNI152NLin2009cAsym', 'MNI152NLin2009cAsym_2mm'}
             premat = which('00_fsl_to_fmriprep_subctx_AffineTransform.csv');
             warp = which('y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii');
             postmat = [];
@@ -119,7 +132,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
                 
                 warp = which('y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii');
             end
-        case 'MNI152NLin6Asym'
+        case {'MNI152NLin6Asym','MNI152NLin6Asym_2mm'}
             premat = [];
             postmat = [];
             warp = [];
@@ -127,24 +140,28 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
             error('Could not find transformation matrices to project atlas into desired space');
     end
 
-    if ~strcmp(space,'MNI152NLin6Asym')
-        % project data to necessary space if needed
-        fprintf('Transforming from MNI152NLin6Asym to %s space\n', space);
-
-        original_parcel.fullpath = [tempname, '.nii'];
-        original_parcel.write('overwrite');
-
-        aligned = [tempname, '.nii'];
-        % align using precomputed warp fields and trilinear
-        % interpolation
-        apply_spm_warp(original_parcel.fullpath, ref_file,...
-            premat,warp,postmat,...
-            aligned, 1);
-        delete(original_parcel.fullpath);
-        pdata = fmri_data(aligned);
-        delete(aligned)
-    else
-        pdata = original_parcel;
+    switch space
+        case {'MNI152NLin2009cAsym','MNI152NLin2009cAsym_2mm'}
+            % project data to necessary space if needed
+            fprintf('Transforming from MNI152NLin6Asym to %s space\n', space);
+    
+            original_parcel.fullpath = [tempname, '.nii'];
+            original_parcel.write('overwrite');
+    
+            aligned = [tempname, '.nii'];
+            % align using precomputed warp fields and trilinear
+            % interpolation
+            apply_spm_warp(original_parcel.fullpath, ref_file,...
+                premat,warp,postmat,...
+                aligned, 1);
+            delete(original_parcel.fullpath);
+            pdata = fmri_data(aligned);
+            delete(aligned)
+        case {'MNI152NLin6Asym','MNI152NLin6Asym_2mm'}
+            % does nothing for MNI152NLin6Asym, but resamples otherwise
+            pdata = original_parcel.resample_space(ref_file);
+        otherwise
+            error('Unrecognized space %s',space);        
     end
     % super low value errors are likely resampling issues. Not a problem
     % for FSL6 space, but a problem for any other spaces we might resample
@@ -182,8 +199,10 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B5';
     raphe_ind = contains(bianciaAtlas.label_descriptions,'Dorsal');
     bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B7'; 
-    raphe_ind = contains(bianciaAtlas.label_descriptions,'Median');
-    bianciaAtlas.labels{raphe_ind}(end+1:end+6) = '_B6_B8'; 
+    raphe_ind = find(contains(bianciaAtlas.labels,'Mn'));
+    for ind = raphe_ind
+        bianciaAtlas.labels{ind}(end+1:end+6) = '_B6_B8'; 
+    end
 
     bianciaAtlas = threshold(bianciaAtlas, .01);
     bianciaAtlas.probability_maps = sparse(double(bianciaAtlas.probability_maps));
