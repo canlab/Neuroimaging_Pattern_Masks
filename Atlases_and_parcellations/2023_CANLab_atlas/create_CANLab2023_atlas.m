@@ -163,10 +163,6 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     atlas_obj = atlas_obj.merge_atlases(biancia);
     atlas_obj.fullpath = '';
 
-    if res == 2
-        atlas_obj = atlas_obj.threshold(0.2);
-    end
-
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
     atlas_obj.references = char(unique(atlas_obj.references));
 
