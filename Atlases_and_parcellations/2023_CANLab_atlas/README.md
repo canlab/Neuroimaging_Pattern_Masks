@@ -196,12 +196,5 @@ structures. Additionally, the parcellation provided here, particularly for the b
 not yet included may be involved, which if involved might have a much more probable boundary for a region than any yet
 included here. For instance, we don't have an RVM or a trigeminal nucleus in this parcellation, but they certainly exist. 
 
-There are two parcels in particular which I would treat with extreme caution
-* RVM
-* Trigeminal nucleus
-
-These were adopted from point localizations in past studies of dubious quality and with no clear standard space defined from
-which I could transform the nuclei.
-
 
 ## References
