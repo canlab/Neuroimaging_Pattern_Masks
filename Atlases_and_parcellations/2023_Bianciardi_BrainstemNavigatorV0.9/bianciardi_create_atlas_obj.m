@@ -28,12 +28,12 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         otherwise
             error('Unrecognized space %s',space);
     end
-    if fine, space_lbl = [space_lbl, '_fine']; end
+    if fine, SCALE='fine'; else, SCALE='coarse'; end
     ref_file = which([ref_file_base '.nii.gz']);
     if isempty(dir(ref_file)), ref_file = which([ref_file_base '.nii']); end
     if isempty(dir(ref_file)), error('Could not locate reference file for %s', space); end
 
-    atlas_name = ['bianciardi_', space_lbl];
+    atlas_name = sprintf('bianciardi_%s_%s', SCALE, space);
     space_description = space;
     references = char({'García-Gomar MG, Videnovic A, Singh K, Stauder M, Lewis LD, Wald LL, Rosen BR, Bianciardi M. Disruption of brainstem structural connectivity in RBD using 7 Tesla MRI. Mov Disord. 2021 Dec 29. doi: 10.1002/mds.28895. Online ahead of print. PMID: 34964520',...
         'Singh K, García-Gomar MG, Bianciardi M. Probabilistic Atlas of the Mesencephalic Reticular Formation, Isthmic Reticular Formation, Microcellular Tegmental Nucleus, Ventral Tegmental Area Nucleus Complex, and Caudal-Rostral Linear Raphe Nucleus Complex in Living Humans from 7 Tesla Magnetic Resonance Imaging. Brain Connect. 2021 Oct;11(8):613-623. doi: 10.1089/brain.2020.0975. Epub 2021 biancian 17. PMID: 33926237.',...
@@ -206,9 +206,18 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
 
     bianciaAtlas = threshold(bianciaAtlas, .01);
     bianciaAtlas.probability_maps = sparse(double(bianciaAtlas.probability_maps));
+    timestamp = posixtime(datetime('Now'));
+    bianciaAtlas.additional_info = struct('creation_date', {posixtime(datetime('Now'))});
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save([this_dir.folder, '/' savename], 'bianciaAtlas');
+    
+    % we can't upload the mat file to github due to licensing issues, but
+    % we can upload a timestamp that will flag out of date versions and
+    % cause other uesrs to recreate the atlas when appropriate.
+    fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, bianciaAtlas.atlas_name), 'w+');
+    fprintf(fid,'%f',timestamp);
+    fclose(fid);
 end
 
 function areaFile = get_area_file(labels, labels_2, parentDir)

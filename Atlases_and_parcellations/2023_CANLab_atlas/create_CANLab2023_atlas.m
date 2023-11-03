@@ -174,9 +174,19 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
     atlas_obj.references = char(unique(atlas_obj.references));
 
+    timestamp = posixtime(datetime('Now'));
+    atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))});
+
     this_dir = dir(which('create_CANLab2023_atlas.m'));
     savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
     save([this_dir.folder, '/' savename], 'atlas_obj');
+
+    % we can't upload the mat file to github due to licensing issues, but
+    % we can upload a timestamp that will flag out of date versions and
+    % cause other uesrs to recreate the atlas when appropriate.
+    fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name),'w+');
+    fprintf(fid,'%f',timestamp);
+    fclose(fid);
 
     if any(ismember(SPACE,{'MNI152NLin6Asym'})) && strcmp(SCALE,'coarse') && res == 2
         % save subcortical volume for use in CIFTI creation

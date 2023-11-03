@@ -16,7 +16,7 @@ for SPACE = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     SPACE = SPACE{1};
     for SCALE = {'fine','coarse'}
         SCALE = SCALE{1};
-        create_CANLab2023_unrestricted
+        %create_CANLab2023_unrestricted
         switch SCALE
             case 'fine'
                 fine = true;
@@ -24,12 +24,14 @@ for SPACE = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
                 fine = false;
         end
         for res = 1:2
+            %{
             if res == 1
                 bianciardi_create_atlas_obj(SPACE,fine);
             elseif res == 2
                 bianciardi_create_atlas_obj([SPACE,'_2mm'],fine);
             end
-            create_CANLab2023_atlas(SPACE,SCALE,res)
+            %}
+            create_CANLab2023_atlas(SPACE,SCALE,res);
         end
     end
 end
