@@ -108,12 +108,21 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     end
 
     % import recently downloaded files
+    % this version is faster but requires a lot of temp disk space
+    %{
     area_path = cell(length(areaFile),1);
     for i=1:length(areaFile)
         this_file = areaFile{i};
-        area_path{i} = sprintf('%s/%s',this_file.folder, this_file.name);
+        %area_path{i} = sprintf('%s/%s',this_file.folder, this_file.name);
     end
     original_parcel = fmri_data(area_path);
+    %}
+    area_path = cell(length(areaFile),1);
+    for i=1:length(areaFile)
+        this_file = areaFile{i};
+        area_data{i} = fmri_data(sprintf('%s/%s',this_file.folder, this_file.name), 'noverbose');
+    end
+    original_parcel = cat(area_data{:});
 
     %% transform files
     switch space
