@@ -47,17 +47,20 @@ switch SPACE
         TEMPLATE = which('MNI152NLin2009cAsym_T1_1mm.nii.gz');
 
 
-        labels = fmri_data(sprintf('%s/hcp_cifti_subctx_labels_%s.nii.gz',ROOT,SPACE));
-        labels_txt = textscan(fopen([ROOT, 'hcp_cifti_subctx_labels.txt']),'%s');
+        labels = fmri_data(sprintf('%s/src/hcp_cifti_subctx_labels_%s.nii.gz',ROOT,SPACE));
+        labels_txt = textscan(fopen([ROOT, 'src/hcp_cifti_subctx_labels.txt']),'%s');
     case 'MNI152NLin6Asym'
         ALIAS = 'fsl6';
         OVERLAY = which('fsl6_hcp_template.nii.gz');
         TEMPLATE = which('MNI152NLin6Asym_T1_1mm.nii.gz');
         
-        labels = fmri_data([ROOT, 'hcp_cifti_subctx_labels.nii']);
-        labels_txt = textscan(fopen([ROOT, 'hcp_cifti_subctx_labels.txt']),'%s');
+        labels = fmri_data([ROOT, 'src/hcp_cifti_subctx_labels.nii']);
+        labels_txt = textscan(fopen([ROOT, 'src/hcp_cifti_subctx_labels.txt']),'%s');
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% only the above code is needed to run child scripts (I think) %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 cifti_atlas = atlas(labels);
 cifti_atlas.labels = labels_txt{1}';
@@ -126,9 +129,9 @@ if strcmp(SCALE,'fine')
     % there's a fiber structure in the thalamic atlas you may also want to
     % include, the 'mtt' region from Morel. You need to add it to
     % create_halamus2023_atlas.m
-    %amygdalar_fiber_structures = julich.select_atlas_subset({'VTM','MF','IF'});
-    %amygdalar_fiber_structures.labels_5 = repmat({'Julich/Kedo'},1,num_regions(amygdalar_fiber_structures));
-    %hipp_amyg = hipp_amyg.merge_atlases(amygdalar_fiber_structures, 'always_replace');
+    amygdalar_fiber_structures = julich.select_atlas_subset({'VTM','MF','IF'});
+    amygdalar_fiber_structures.labels_5 = repmat({'Julich/Kedo'},1,num_regions(amygdalar_fiber_structures));
+    hipp_amyg = hipp_amyg.merge_atlases(amygdalar_fiber_structures, 'always_replace');
 elseif strcmp(SCALE,'coarse')
     for i = 1:length(group_names)
         if i == 1
@@ -253,19 +256,25 @@ assert(all(is_equal))
 canlab = glasser_L.merge_atlases(glasser_R).merge_atlases(atlas_obj);
 
 canlab.references = unique(canlab.references,'rows');
-atlas_name = sprintf('CANLab_2023_%s_%s', SCALE, SPACE);
-nii = fmri_data(canlab);
-nii.dat = single(full(canlab.probability_maps));
-nii.fullpath = sprintf('%s_scaffold.nii', atlas_name);
-nii.write();
-gzip(sprintf('%s_scaffold.nii', atlas_name))
-delete(sprintf('%s_scaffold.nii', atlas_name));
 
 % reformat laterality labels
 canlab.labels = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_$1')), canlab.labels, 'UniformOutput', false);
 canlab.labels = cellfun(@(x1)(regexprep(x1,'_rh$','_R')), canlab.labels, 'UniformOutput', false);
 canlab.labels = cellfun(@(x1)(regexprep(x1,'_lh$','_L')), canlab.labels, 'UniformOutput', false);
 canlab.labels = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_$1')), canlab.labels, 'UniformOutput', false);
+
+atlas_name = sprintf('CANLab2023_%s_%s', SCALE, SPACE);
+canlab.atlas_name = atlas_name;
+
+canlab.probability_maps = sparse(canlab.probability_maps);
+save(sprintf('%s_scaffold.mat',atlas_name), 'canlab');  
+
+nii = fmri_data(canlab);
+nii.dat = single(full(canlab.probability_maps));
+nii.fullpath = sprintf('%s_scaffold.nii', atlas_name);
+nii.write();
+gzip(sprintf('%s_scaffold.nii', atlas_name))
+delete(sprintf('%s_scaffold.nii', atlas_name));
 
 labels = table(canlab.labels', canlab.label_descriptions, canlab.labels_2', canlab.labels_3', canlab.labels_4', canlab.labels_5', ...
     'VariableNames', {'labels', 'label_descriptions', 'labels_2', 'labels_3', 'labels_4', 'labels_5'});

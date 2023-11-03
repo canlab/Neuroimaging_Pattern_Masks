@@ -9,10 +9,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
 % SCALE - fine | coarse, describes scale of the parcellation
 % res - 1 | 2. Resolution of final files in mm. If 2 then data is
 % additionally thresholded in a number of ways.
-    pmap = fmri_data(which(sprintf('CANLab_2023_%s_%s_scaffold.nii.gz',SCALE, SPACE)));
-    ref = readtable(which(sprintf('CANLab_2023_%s_%s_ref.txt',SCALE, SPACE)));
-    lbl = readcell(which(sprintf('CANLab_2023_%s_%s_labels.csv',SCALE, SPACE)),'Delimiter',',', 'NumHeaderLines', 1);
-
+    
     switch SPACE
         case 'MNI152NLin2009cAsym'
             alias = 'fmriprep20';
@@ -21,6 +18,13 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         otherwise
             error('No atlas available in %s space', SPACE)
     end
+
+    fprintf('Creating volumetric CANLab2023 %s %s %0.1fmm atlas\n', SCALE, SPACE, res);
+
+    %{
+    pmap = fmri_data(which(sprintf('CANLab2023_%s_%s_scaffold.nii.gz',SCALE, SPACE)));
+    ref = readtable(which(sprintf('CANLab2023_%s_%s_ref.txt',SCALE, SPACE)));
+    lbl = readcell(which(sprintf('CANLab2023_%s_%s_labels.csv',SCALE, SPACE)),'Delimiter',',', 'NumHeaderLines', 1);
 
     for i = 1:size(lbl,1)
         for j = 1:size(lbl,2)
@@ -40,6 +44,10 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         'label_descriptions', lbl(:,2), ...
         'space_description', SPACE,...
         'references', char(ref.references));
+    %}
+    fname = dir(which('create_CANLab2023_atlas.m'));
+    atlas_obj = load(sprintf('%s/src/CANLab2023_%s_%s_scaffold.mat',fname.folder,SCALE,SPACE),'canlab');
+    atlas_obj = atlas_obj.canlab;
 
     if res == 2
         template = which(sprintf('%s_T1_2mm.nii.gz',SPACE));
@@ -169,4 +177,70 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     this_dir = dir(which('create_CANLab2023_atlas.m'));
     savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
     save([this_dir.folder, '/' savename], 'atlas_obj');
+
+    if any(ismember(SPACE,{'MNI152NLin6Asym'})) && strcmp(SCALE,'coarse') && res == 2
+        % save subcortical volume for use in CIFTI creation
+        fprintf('Creating CIFTI atlas...\n')
+        create_CANLab2023_CIFTI_subctx(SPACE,SCALE,res,atlas_obj);
+    end
+
+    if any(ismember(SPACE,{'MNI152NLin2009cAsym'})) && strcmp(SCALE,'coarse') && res == 1
+        fprintf('Creating QSIPrep compatable CANLab2023 %s %s %0.1fmm atlas...\n', SCALE, SPACE, res);
+
+        % throw a warning. We don't want to be resamlling atlases again. We
+        % should only resample once per atlas and this has already been
+        % resampled when its source atlases were projected into whatever
+        % space we're operating in now. In particular the Bianciardi atlas
+        % is likely to have some misalignment as a result of this second
+        % interpolation. We need to integrate sampling to the qsiprep
+        % template into the original constituent atlas creation scripts.
+        warning('QSIPrep atlas being created needs more work. Resampling non-optimal atlas for now.');
+        ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
+        atlas_obj = atlas_obj.resample_space(ref);
+        atlas_obj.fullpath = sprintf('%s/qsiprep/CANLab2023_%s_%s_%dmm_qsiprep.nii', this_dir.folder, SCALE, SPACE, round(res));
+        atlas_obj.write('overwrite');
+        
+        % zero sform for compliance with qsiprep reqs. See here under 
+        % "Using custom atlases",
+        % https://qsiprep.readthedocs.io/en/latest/reconstruction.html
+        V = niftiread(atlas_obj.fullpath);
+        info = niftiinfo(atlas_obj.fullpath);
+        info.TransformName = 'Qform';
+        niftiwrite(V,atlas_obj.fullpath,info);
+        
+        gzip(atlas_obj.fullpath);
+        delete(atlas_obj.fullpath);
+
+        % create atlas_config.json file
+        jsonstruct = struct(sprintf('canlab2023_%s',SCALE),...
+            struct('file', {[atlas_obj.fullpath, '.gz']}, ...
+                'node_names', {atlas_obj.labels}, ...
+                'node_ids', {1:length(atlas_obj.labels)}));
+        json_file = sprintf('%s/qsiprep/atlas_config.json', this_dir.folder);
+        if exist(json_file,'file')
+            fid = fopen(json_file);
+            oldtxt = fread(fid,inf);
+            fclose(fid);
+
+            jsonOld = jsondecode(char(oldtxt'));
+            old_fields = fieldnames(jsonOld);
+            new_fields = fieldnames(jsonstruct);
+            if any(ismember(old_fields,fieldnames(jsonstruct)))
+                warning('Will overwrite old JSON atlas entry %s\n', old_fields{ismember(old_fields, new_fields)});
+                warning('Copying old json from %s to %s',json_file, [json_file '_bak']);
+
+                copyfile(json_file, [json_file '_bak']);
+            end
+            for fname = old_fields
+                jsonstruct.(fname{1}) = jsonOld.(fname{1});
+            end
+        end
+        jsontxt = jsonencode(jsonstruct, PrettyPrint=true);
+
+        fid = fopen(json_file,'w+');
+        fprintf(fid, '%s', jsontxt);
+        fclose(fid);
+
+        fprintf('Wrote qsiprep compatable atlas to %s/qsiprep/\n', this_dir.folder);
+    end
 end

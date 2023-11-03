@@ -11,8 +11,8 @@ addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
 addpath(genpath([LIB, '/canlab/MasksPrivate']))
 
-%for SPACE = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
-for SPACE = {'MNI152NLin2009cAsym'}
+t0 = tic()
+for SPACE = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     SPACE = SPACE{1};
     for SCALE = {'fine','coarse'}
         SCALE = SCALE{1};
@@ -33,3 +33,5 @@ for SPACE = {'MNI152NLin2009cAsym'}
         end
     end
 end
+tval = toc(t0);
+sprintf('%0.2f\n',tval)
