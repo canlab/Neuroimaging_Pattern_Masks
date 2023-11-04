@@ -26,13 +26,15 @@ done
 
 wait
 
-for SPACE in MNI152NLin2009cAsym MNI152NLin6Asym; do
-    fslmaths $OUTDIR/rh_paingen_${SPACE}.nii.gz \
-	-add 180 \
-	-thr 181 \
-	-add $OUTDIR/lh_paingen_${SPACE}.nii.gz \
-	-uthr 360 \
-	$OUTIDR/paingen_${SPACE}.nii.gz &
-done
-
-wait
+# this was run in an original version but there was slight overlab between projections to each hemisphere
+# which was causing problems, so now the hemispheres are treated separately all the way through.
+#for SPACE in MNI152NLin2009cAsym MNI152NLin6Asym; do
+#    fslmaths $OUTDIR/rh_paingen_${SPACE}.nii.gz \
+#	-add 180 \
+#	-thr 181 \
+#	-add $OUTDIR/lh_paingen_${SPACE}.nii.gz \
+#	-uthr 360 \
+#	$OUTIDR/paingen_${SPACE}.nii.gz &
+#done
+#
+#wait
