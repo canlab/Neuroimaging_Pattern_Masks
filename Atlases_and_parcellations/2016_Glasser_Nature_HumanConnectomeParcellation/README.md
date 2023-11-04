@@ -158,12 +158,11 @@ point. What we see is no terrible dice coefficients (all > 0.5).
 
 There's a surprisingly lateralization bias to this
 with left lateralized regions showing worse dice coefficients (~0.1 worse) than right side regions.
-There seems to be a greater degree of lateralization of the MNI152NLin2009cAsym template than the	MNI152NLin6Asym	 
-template. Notably, MNI does not	distributed an asymmetric template, and	it seems that the Asym version is an FSL
-specific thing.	It's not clear what they did to	generate it, but the absence of	an asymmetric template from the
-template's original authors suggests that perhaps FSL used some	kind of	imperfect post-hoc manipulation	to introduce
-asymmetry. This is apparently upon visual inspection if you cycle between the two templates in	fsleyes	or 
-connectome workbench. There's more shift in gyri on the	left side than the right side as you cycle (not	shown). 
+This may be a trivial effect though. The MNI152NLin6Asym template has a slightly smaller size and is slightly translated
+rightwards relative to MNI152NLin2009cAsym. This combination results in reduced displacement on the right side of the brain
+going from one to the other than on the left side of the brain. Overlay them in fsleyes or wb_view and toggle between them
+to see this effect.	 
+ 
 Regardless of the cause, this recommends using the atlas projection that matches your reference space to avoid
 misattribution of labels.
 ![fmriprep vs fsl template maps](diagnostics/dice_map_fmriprep_vs_fsl_glassers.png)
