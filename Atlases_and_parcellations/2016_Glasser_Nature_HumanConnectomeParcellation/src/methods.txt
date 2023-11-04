@@ -7,7 +7,7 @@ includes a larger sample of participants, but the data here are from a subset of
 participants. Subjects from the same families, or subjects with image quality metrics greater
 than 3SD away form the mean were excluded. MRIQC 0.16.1 was was used to compute image quality
 metrics. Participants were excluded from participation in the study if they did not pass MRI 
-screening (e.g., add metals in their body) or had a history of liver disease/damage, allergies 
+screening (e.g., had metals in their body) or had a history of liver disease/damage, allergies 
 to local analgesics, or were breastfeeding.
 
 In the full dataset (including siblings and participants with bad image quality metrics) 
@@ -32,7 +32,7 @@ BMRK5 participants:
 Participants. Participants are part of a larger sample of 97 individuals 
 (47 male, age 19–54 years; M = 28.98, s.d. = 5.56) 33 AA individuals (15 male), 
 32 non-Hispanic WA individuals (16 male) and 32 HA individuals (16 males), based 
-on self-reported ethnicity. 89 had data available for this analysis.
+on self-reported ethnicity. 88 had data available for this analysis.
 
 Participants were recruited from the greater Denver area through Craigslist or
 one of three different participant pools from the University of Colorado Boulder
@@ -60,6 +60,9 @@ bandwidth: 651 Hz Px-1, time: 6:03) was performed on each participant.
 
 Anatomical data preprocessing (identical for PainGen and BMRK5): 
 
+All data was preprocssed by running fmriprep 20.2.3 with surface reconstruction enabled. What follows
+is the fmriprep boilerplate:
+
 The T1-weighted (T1w) image was corrected for intensity nonuniformity (INU) with N4BiasFieldCorrection, 
 distributed with ANTs 2.3.3 (RRID:SCR_004757), and used as T1w-reference throughout the workflow. The 
 T1w-reference was then skullstripped with a Nipype implementation of the antsBrainExtraction.sh workflow 
@@ -78,17 +81,18 @@ Brain Stereotaxic Registration Model (RRID:SCR_002823; TemplateFlow ID: MNI152NL
 
 Data analysis:
 
-Registration fusion was performed using the approach detailed by Wu, Ngo, Greve, et al. (2018) Human
-Brain Mapping, except that all transformations used were computed by fmriprep as detailed above. 
+Registration fusion was performed using the approach detailed by Wu, Ngo, Greve, et al. (2018), except 
+that all transformations used were computed by fmriprep as detailed above. 
 Registration fusion was implemented on an HPC system with one job instance per participant. An example
 script is included with this data release. See single_subject_registration_fusion.sh for comprehensive
 methods. Briefly, data was resampled from a freesurfer 164k sphere, obtained from,
 https://github.com/Washington-University/HCPpipelines/blob/master/global/templates/standard_mesh_atlases/fs_R/fs_L-to-fs_LR_fsaverage.L_LR.spherical_std.164k_fs_L.surf.gii
 https://github.com/Washington-University/HCPpipelines/blob/master/global/templates/standard_mesh_atlases/fs_R/fs_R-to-fs_LR_fsaverage.R_LR.spherical_std.164k_fs_R.surf.gii
 onto the subject specific registered spherical surface ([lr]h.sphere.reg in the freesurfer output 
-directory). This was then projected into subject native space using and then transformed from native
-space intor MNI152NLin2009cAsym and MNI152NLin6Asym spaces. The results for the left and right hemisphere
-were combined into a single image and concatenated across subjects for each space and study.
+directory). This was then projected into the native subject surface space using the inverse transforms from
+the fmriprep outputed freesurfer directories  and then transformed from native space into 
+MNI152NLin2009cAsym and MNI152NLin6Asym spaces. The results for the left and right hemisphere
+concatenated across subjects for each space, study and hemisphere.
 
 
 References:
