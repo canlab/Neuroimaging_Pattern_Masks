@@ -216,12 +216,15 @@ estimates in this case). The results are shown in the figure below.
 
 The first thing to notice is that group t-stats are more than 2x higher in the surface data than the volumetric data.
 This is not the case when evaluating individual participants (not shown), showing that this improvement in second
-level t-stats is the result of projecting data to a surface. On the one hand the data may be better aligned, but on
-the other hand it also may be smoothed due to interpolation from voxels to surface vertices. That aside we see that both
-old and new volumetric glasser parcels show good correlations with the values measured by the surface parcels, but that
-the new volumetric parcels more accurately explain the variance across surface parcels than the old parcels do. It's
-about a 3% improvement, which is not that great, but another way of looking at it is that it nearly halves the error
-of the old parcels.
+level t-stats is the result of projecting data to a surface. On the one hand there's some smoothing that happens due to 
+interpolation from voxels to surface verticeswhen projecting data to surfaces, but you would expect to see that at the 
+individual subject level too, and we don't see a similar asymmetry in t-stats. Rather this is the result of averaging
+across subject specifically, suggesting that averaging across surfaces results in more constructive and less destructive
+interference than averaging across volumes. In other words, surface alignment is much more accurate than volumetric 
+alignment. That aside we see that both old and new volumetric glasser parcels show good correlations with the values 
+measured by the surface parcels, but that the new volumetric parcels more accurately explain the variance across surface 
+parcels than the old parcels do. It's about a 3% improvement, which is not that great, but another way of looking at it is 
+that it nearly halves the error of the old parcels.
 
 The second thing to notice is that group level correlations are much better than subject level correlations. This is 
 because subjects have idiosyncratic cortical folding which cannot be accurately captured by a single volumetric projection
