@@ -94,7 +94,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         end
 
         %% download data
-        outfile = [this_dir.folder, '/', 'brainstemnavigatorv09.zip'];
+        outfile = fullfile(this_dir.folder, 'brainstemnavigatorv09.zip');
         fprintf('Saving file to %s\n',outfile);
         websave(outfile, 'https://www.nitrc.org/frs/download.php/12427/BrainstemNavigator.zip/','i_agree','1','release_id','4544','download_now', '1');
         fprintf('Extracting file to %s\n',this_dir.folder)
