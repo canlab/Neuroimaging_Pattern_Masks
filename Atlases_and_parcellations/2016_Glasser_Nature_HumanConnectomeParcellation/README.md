@@ -203,7 +203,7 @@ aversive significance (e.g. someone screaming). We can't test our parcellation o
 double dipping, but we can take a cross validation approach to evaluate our registration fusion method by generating
 parcels from BMRK5 to test in PainGen and generating parcels from PainGen to test on BMRK5 data. This is what we do below.
 
-For paingen we fit an evoked response model that captures the mean response to heat and pressure stimuli across trials.
+For paingen we fit an evoked response model that captures the mean BOLD response to heat and pressure stimuli across trials.
 We convert this to a t-statistic for each individual and average them across 218 independent individuals (no familial
 relationships, which is significant because PainGen is a twin study) for whom such data is available. We do this using
 both surface and volumetric data, which is analyzed completely independently after running through fmriprep. We repeat
