@@ -2,13 +2,15 @@
 
 This is the HCP multimodal parcellation v. 1 published by Glasser, Coalson, Robinson, Hacker, et al. 2016 Nature,
 
+![Volumetric Glasser Atlas](images/old_vs_new_display_edited.png)
+
 This folder mainly provides a version of this atlas projected into volumetric space using registration fusion, which 
 Thomas Yeo's group has shown to be the best approach (Wu et al 2018 HBM).
 
 Two versions are available, MNI152NLin2009cAsym space (fmriprep 20.2.3 default) and MNI152NLin6Asym space (fsl 5/6
 default).
 
-There are additionally surface versions of the atlas available in fs_LR and fsaverage spaces
+There are additionally surface versions of the atlas available in fs_LR and fsaverage spaces, for completion.
 
 ## Usage (important)
 
@@ -27,6 +29,10 @@ The atlas is probablistic. The original atlas is defined on a surface, but this 
 ways for different people. Misalignment of gyri and sucli results in parcels projecting into different locations
 for different people. The probabilities indicate the likelihood an individual's parcel will project to the 
 designated location.
+
+![Examples of probablistic labels](images/probability_maps_vis_ctx.png)
+
+![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
 
 Probabilities were computed first based on alignments in each of two studies (BMRK5, PainGen) separately and
 then averaged. Different studies have different acquisition parameters, which can result in systematic
@@ -61,13 +67,13 @@ The purpose of these probability maps is to adjudicate between competing atlases
 provide an objective basis for boundary delineation, not for direct physiological inference.
 
 To my knowledge Glasser et al. have not published their subject specific region classifiers (as of 10/24/23), 
-but I think subject specific parcellations may be avialable from the HCP dataset, and might provide an avenue 
-towards an improved version of this atlas. Coalsen et al. 2018 PNAS achieve precise this kind of surface
-to volume mapping that takes variability of the subject specific surface parcellations into account and compares
-it to a projection that doesn't. They do not share their templates, but their paper may provide some guidance 
-on whether or not it's worthwhile to pursue such an improvement on this atlas here.
-
-![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
+nor a multimodal alignment template, so subject specific parcel identification is not yet possible outside the
+Van Essen lab. However, subject specific parcellations may be avialable from the HCP dataset, and might provide 
+an avenue towards an improved version of this atlas if someone were to obtain appropriate surface to volume
+mappings from the HCP study. Coalsen et al. 2018 PNAS achieve precise this kind of surface to volume mapping 
+that takes variability of the subject specific surface parcellations into account and compares it to a projection 
+that doesn't. They do not share their templates, but their paper may provide some guidance on whether or not it's 
+worthwhile to pursue such an improvement on this atlas here.
 
 ## Methods
 
