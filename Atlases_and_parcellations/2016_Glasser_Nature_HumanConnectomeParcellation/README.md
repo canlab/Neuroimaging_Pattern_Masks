@@ -212,7 +212,7 @@ the most different from noxious painful stimuli. We extract the mean T-stat for 
 surface and volumetric parcels) and from the group mean maps (which are equivalent to second level random effects 
 estimates in this case). The results are shown in the figure below.
 
-![old vs. new parcel t-stats](images/surf_vs_volume_corr.png)
+![old vs. new parcel t-stats](images/surf_vs_vol_corr.png)
 
 The first thing to notice is that group t-stats are more than 2x higher in the surface data than the volumetric data.
 This is not the case when evaluating individual participants (not shown), showing that this improvement in second
