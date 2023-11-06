@@ -245,7 +245,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
                 jsonstruct.(fname{1}) = jsonOld.(fname{1});
             end
         end
-        jsontxt = jsonencode(jsonstruct, PrettyPrint=true);
+        jsontxt = jsonencode(jsonstruct, 'PrettyPrint', true);
 
         fid = fopen(json_file,'w+');
         fprintf(fid, '%s', jsontxt);
