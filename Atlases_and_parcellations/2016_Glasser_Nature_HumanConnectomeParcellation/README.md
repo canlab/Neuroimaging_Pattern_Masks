@@ -230,8 +230,8 @@ The second thing to notice is that group level correlations are much better than
 because subjects have idiosyncratic cortical folding which cannot be accurately captured by a single volumetric projection
 but is captured by the surface models. The relatively large decrement in correlations between surface and volumetric
 parcels at the individual subject level (~15-20% less variance explained, or conversely a 7-fold increase in error relative
-to group level estimates) cautions against overreliance on these volumetric parcels for individual subject level
-applications.
+to group level estimates, in the case of the larger dataset with more accurage group level estimates) cautions against 
+overreliance on these volumetric parcels for individual subject level applications.
 
 Finally, at the subject level, there's a 6-7% improvement in variance explained with the new parcels relative to the
 old parcels. This isn't huge, but it's still enough to be meaningful I think.
