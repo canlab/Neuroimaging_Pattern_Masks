@@ -236,6 +236,11 @@ applications.
 Finally, at the subject level, there's a 6-7% improvement in variance explained with the new parcels relative to the
 old parcels. This isn't huge, but it's still enough to be meaningful I think.
 
+Long story short, you should be doing surface analysis if you can, because there's no way to compensate for misalignment
+of cortical folds otherwise, and this misalignment will significantly impact your power and accuracy of your parcel
+boundaries, but if you have to work with volumetric data, the new glasser parcels derived from registration fusion
+are better than the alternatives according to all metrics I could think of.
+
 
 ## References
 
