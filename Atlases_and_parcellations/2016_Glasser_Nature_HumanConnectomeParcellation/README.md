@@ -224,7 +224,7 @@ interference than averaging across volumes. In other words, surface alignment is
 alignment. That aside we see that both old and new volumetric glasser parcels show good correlations with the values 
 measured by the surface parcels, but that the new volumetric parcels more accurately explain the variance across surface 
 parcels than the old parcels do. It's about a 3% improvement, which is not that great, but another way of looking at it is 
-that it nearly halves the error of the old parcels.
+that it nearly halves the error of the old parcels in the case of the heat/pressure evoked responses.
 
 The second thing to notice is that group level correlations are much better than subject level correlations. This is 
 because subjects have idiosyncratic cortical folding which cannot be accurately captured by a single volumetric projection
