@@ -2,10 +2,10 @@
 
 This is the HCP multimodal parcellation v. 1 published by Glasser, Coalson, Robinson, Hacker, et al. 2016 Nature,
 
-![Volumetric Glasser Atlas](images/old_vs_new_display_edited.png)
-
 This folder mainly provides a version of this atlas projected into volumetric space using registration fusion, which 
 Thomas Yeo's group has shown to be the best approach (Wu et al 2018 HBM).
+
+![Volumetric Glasser Atlas](images/old_vs_new_display_edited.png)
 
 Two versions are available, MNI152NLin2009cAsym space (fmriprep 20.2.3 default) and MNI152NLin6Asym space (fsl 5/6
 default).
@@ -16,7 +16,7 @@ There are additionally surface versions of the atlas available in fs_LR and fsav
 
 Invoke the following to load this atlas.
 
-load_atlas('glasser_fmriprep20')
+load_atlas('glasser_fmriprep20') <br />
 load_atlas('glasser_fsl6')
 
 DO NOT USE load_atlas('glasser') or load_atlas('cortex') intending to access the best version of this atlas. 
@@ -28,9 +28,14 @@ version for improvements now available.
 The atlas is probablistic. The original atlas is defined on a surface, but this surface is folded in different 
 ways for different people. Misalignment of gyri and sucli results in parcels projecting into different locations
 for different people. The probabilities indicate the likelihood an individual's parcel will project to the 
-designated location.
+designated location. For instance, V1 and V2 probability maps are shown below, and although one is always more
+probable than another there are also regions where identity at the group level is ambiguous.
 
 ![Examples of probablistic labels](images/probability_maps_vis_ctx.png)
+
+You can threshold the map at different probability values to obtain more or less eroded versions of the atlas 
+using the atlas object's threshold method. This offers a more rigorous dilation/erosion method than was available 
+for the older glasser atlas. Some example thresholds are shown below.
 
 ![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
 
@@ -45,8 +50,8 @@ https://doi.org/10.6084/m9.figshare.24431146
 
 Note, even in surface space not all subjects have perfect correspondence of region boundaries. There are two 
 missing pieces needed to correctly identify subject level surface boundaries.
-* Functional alignment (e.g. MSMAll, like in Glasser et al. 2016)
-* Areal feature based identification 
+* Surface functional alignment (e.g. MSMAll, like in Glasser et al. 2016)
+* Personalized multimodal feature based identification of surface boundaries
 Glasser et al. developed pattern classifiers to identify subject specific boundaries, in addition to performing
 multimodal functional alignment. One or both of these methods would be needed to identify subject specific
 parcel boundaries and then project those into volumetric space using registration fusion. This would be something
@@ -64,7 +69,8 @@ That identity is not determined by the group template these probabilities inform
 myelin and resting state network features.
 
 The purpose of these probability maps is to adjudicate between competing atlases when making composites or to
-provide an objective basis for boundary delineation, not for direct physiological inference.
+provide an objective basis for boundary delineation, not for direct physiological inference at the individual
+subject level. The probabilities are therefore most accurate when applied to group level summary statistics.
 
 To my knowledge Glasser et al. have not published their subject specific region classifiers (as of 10/24/23), 
 nor a multimodal alignment template, so subject specific parcel identification is not yet possible outside the
@@ -129,13 +135,14 @@ parcellation. Clearly though there's room for improvement. Boundaries are constr
 but individual subjects do not get their gyri and sulci aligned to this template that accurately. Some might see this
 level of precision as an advantage, but any degree of 'precision' is an illusion. Look at the cerebellum and you'll see
 the atlas bleeding over into the superior aspects of it, despite being a cortical surface atlas. It's not a matter of
-precision, it's a matter of an imprecise fit to a mean template. What we offer here instead is the mean of many precise 
-fits to individual templates, which is clearly better in this regard. While different individuals may have different
-ventral visual cortical foldings, none of them have have visual cortex in the cerebellum. Finally, the old atlas is
-necessarily non-probablistic, which limits its versatility. Note that in the figure below underlay is 
-MNI152NLin2009cAsym, which is nearly indistiguishable from MNI152NLin2009aAsym, the asymmetric version of the 
-template the old glasser parcellation was projected to. The fmriprep20 registration fusion image it cycles with is 
-thresholded at 20% probability, which is a default threshold used throughout much of this repo.
+precision, it's a matter of an imprecise fit to a mean template. 
+
+What we offer here instead is the mean of many precise fits to individual templates, which is clearly better in this 
+regard. While different individuals may have different ventral visual cortical foldings, none of them have have visual 
+cortex in the cerebellum. Finally, the old atlas is necessarily non-probablistic, which limits its versatility. Note that 
+in the figure below underlay is MNI152NLin2009cAsym, which is nearly indistiguishable from MNI152NLin2009aAsym, the 
+asymmetric version of the template the old glasser parcellation was projected to. The fmriprep20 registration fusion 
+image it cycles with is thresholded at 20% probability, which is a default threshold used throughout much of this repo.
 
 ![Old Glasser parcellation](diagnostics/gifs/old_vs_new.gif)
 Old glasser parcellation vs. new parcellation thresholded at probability >= 20%. Underlay is the fmriprep standard
@@ -162,19 +169,21 @@ point. What we see is no terrible dice coefficients (all > 0.5).
 
 <img alt="fmriprep vs. fsl template glassers" src="diagnostics/dice_hist_fmriprep_vs_fsl_glassers.png" width="500" />
 
-There's a surprisingly lateralization bias to this
-with left lateralized regions showing worse dice coefficients (~0.1 worse) than right side regions.
-This may be a trivial effect though. The MNI152NLin6Asym template has a slightly smaller size and is slightly translated
-rightwards relative to MNI152NLin2009cAsym. This combination results in reduced displacement on the right side of the brain
-going from one to the other than on the left side of the brain. Overlay them in fsleyes or wb_view and toggle between them
-to see this effect.	 
+There's a surprisingly lateralization bias to this with left lateralized regions showing worse dice coefficients 
+(~0.1 worse) than right side regions. This may be a trivial effect though. The MNI152NLin6Asym template has a slightly 
+smaller size and is slightly translated rightwards relative to MNI152NLin2009cAsym. This combination results in reduced 
+displacement on the right side of the brain going from one to the other than on the left side of the brain. Overlay them 
+in fsleyes or wb_view and toggle between them to see this effect.	 
  
 Regardless of the cause, this recommends using the atlas projection that matches your reference space to avoid
 misattribution of labels.
 ![fmriprep vs fsl template maps](diagnostics/dice_map_fmriprep_vs_fsl_glassers.png)
 
 Alternatively we can look at the difference between studies, since we have two studies here. These show the
-greatest agreement, with practically all dice coefficients greater than 0.7
+greatest agreement, with practically all dice coefficients greater than 0.7. This is fortunate, since it means
+between study variability is small relative to between subject variability, and it means we're closer to the number
+of degrees of freedom we need for stable estimates of parcel boundaries (Using a single study, so no study related 
+error, Wu et al. claim you need 300 participants for boundaries to fully stabalize).
 
 <img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" width="500" />
 
@@ -185,6 +194,52 @@ found when comparing their best methods with a gold standard comparator. This de
 here are not too biased towards one study or another, although improvement by including additional studies is both
 possible and encouraged, hence why I've shared the subject specific parcellations on figshare. You can inspect these
 directly if you want more insight into what's going on here.
+
+Consistency across studies is a nice feature, but it doesn't actually tell us how well these parcellations approximate
+their true surface labels. For that we need to apply the parcels to real data available in both surface and volumetric
+space. The two studies used to generate these parcellations were PainGen and BMRK5, which include noxious heat, 
+pressure and two types of auditory stimuli: ones with aversive qualities (e.g. nails on a chalkboard) and ones with 
+aversive significance (e.g. someone screaming). We can't test our parcellation on these directly, because that would be
+double dipping, but we can take a cross validation approach to evaluate our registration fusion method by generating
+parcels from BMRK5 to test in PainGen and generating parcels from PainGen to test on BMRK5 data. This is what we do below.
+
+For paingen we fit an evoked response model that captures the mean BOLD response to heat and pressure stimuli across trials.
+We convert this to a t-statistic for each individual and average them across 218 independent individuals (no familial
+relationships, which is significant because PainGen is a twin study) for whom such data is available. We do this using
+both surface and volumetric data, which is analyzed completely independently after running through fmriprep. We repeat
+this process for BMRK5 and specifically look at responses evoked by sounds with aversive significance, since these are
+the most different from noxious painful stimuli. We extract the mean T-stat for each parcel in each individual (both
+surface and volumetric parcels) and from the group mean maps (which are equivalent to second level random effects 
+estimates in this case). The results are shown in the figure below.
+
+![old vs. new parcel t-stats](images/surf_vs_vol_corr.png)
+
+The first thing to notice is that group t-stats are more than 2x higher in the surface data than the volumetric data.
+This is not the case when evaluating individual participants (not shown), showing that this improvement in second
+level t-stats is the result of projecting data to a surface. On the one hand there's some smoothing that happens due to 
+interpolation from voxels to surface verticeswhen projecting data to surfaces, but you would expect to see that at the 
+individual subject level too, and we don't see a similar asymmetry in t-stats. Rather this is the result of averaging
+across subject specifically, suggesting that averaging across surfaces results in more constructive and less destructive
+interference than averaging across volumes. In other words, surface alignment is much more accurate than volumetric 
+alignment. That aside we see that both old and new volumetric glasser parcels show good correlations with the values 
+measured by the surface parcels, but that the new volumetric parcels more accurately explain the variance across surface 
+parcels than the old parcels do. It's about a 3% improvement, which is not that great, but another way of looking at it is 
+that it reduces the error of the old parcels by roughly a third (on average across the two datasets).
+
+The second thing to notice is that group level correlations are much better than subject level correlations. This is 
+because subjects have idiosyncratic cortical folding which cannot be accurately captured by a single volumetric projection
+but is captured by the surface models. The relatively large decrement in correlations between surface and volumetric
+parcels at the individual subject level (~15-20% less variance explained, or conversely a 7-fold increase in error relative
+to group level estimates, in the case of the larger dataset with more accurage group level estimates) cautions against 
+overreliance on these volumetric parcels for individual subject level applications.
+
+Finally, at the subject level, there's a 6-7% improvement in variance explained with the new parcels relative to the
+old parcels. This isn't huge, but it's still enough to be meaningful I think.
+
+Long story short, you should be doing surface analysis if you can, because there's no way to compensate for misalignment
+of cortical folds otherwise, and this misalignment will significantly impact your power and accuracy of your parcel
+boundaries, but if you have to work with volumetric data, the new glasser parcels derived from registration fusion
+are better than the alternatives according to all metrics I could think of.
 
 
 ## References
