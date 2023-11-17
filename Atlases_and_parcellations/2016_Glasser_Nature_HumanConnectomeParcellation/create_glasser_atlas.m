@@ -3,14 +3,14 @@ close all; clear all;
 addpath('/dartfs-hpc/rc/home/m/f0042vm/software/spm12')
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/CanlabCore/'))
 
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 lh_lbls = readtable('lctx_labels.txt');
 rh_lbls = readtable('rctx_labels.txt');
 lbls = [lh_lbls{:,1}; rh_lbls{:,1}];
 
 pmap = {};
-for study = {'bmrk5', 'paingen'}
+for study = {'bmrk5', 'paingen', 'spacetop'}
     for hemi = {'lh' 'rh'}
         pdata = fmri_data(sprintf('%s_%s_%s.nii.gz', hemi{1}, study{1}, SPACE));
         
@@ -37,10 +37,13 @@ end
 % save individual atlases for inspection
 glasser{1}.fullpath = sprintf('bmrk5_%s_atlas.nii', SPACE);
 glasser{2}.fullpath = sprintf('paingen_%s_atlas.nii', SPACE);
+glasser{3}.fullpath = sprintf('spacetop_%s_atlas.nii', SPACE);
 glasser{1}.threshold(0.2).write();
 glasser{2}.threshold(0.2).write();
+glasser{3}.threshold(0.2).write();
 gzip(glasser{1}.fullpath)
 gzip(glasser{2}.fullpath)
+gzip(glasser{3}.fullpath)
 
 
 %% generate final mean atlas
@@ -50,6 +53,9 @@ labels = strrep(labels, '_ROI', '');
 
 labels = regexprep(labels, '(^[LR])_(.*)', 'Ctx_$2_$1');
 
+lbl_descrip = table2cell(readtable('src/label_descriptions.csv','Delimiter','\t'));
+lbl_descrip = [cellfun(@(x1)([x1, ' (Left)']), lbl_descrip, 'UniformOutput', false);  cellfun(@(x1)([x1, ' (Right)']), lbl_descrip, 'UniformOutput', false)];
+
 references = char([{'Glasser, Matthew F., Timothy S. Coalson, Emma C. Robinson, Carl D. Hacker, John Harwell, Essa Yacoub, Kamil Ugurbil, et al. 2016. A Multi-Modal Parcellation of Human Cerebral Cortex. Nature 536 (7615): 171?78.'; ...
     'Wu J, Ngo GH, Greve D, Li J, He T, Fischl B, Eickhoff SB, Yeo T. Accurate nonlinear mapping between MNI volumetric and FreeSurfer surface coordinate systems. 2018. Human Brain Mapping 39(9) 3793-3808. DOI: 10.1002/hbm.24213'}]);
 
@@ -58,6 +64,7 @@ pdata.dat = meanPmap;
 atlas_obj = atlas(pdata, ...
     'atlas_name', sprintf('glasser_%s',SPACE), ...
     'labels', labels',...
+    'label_descriptions', lbl_descrip,...
     'space_description', SPACE, ...
     'references', references, 'noverbose');
 atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
