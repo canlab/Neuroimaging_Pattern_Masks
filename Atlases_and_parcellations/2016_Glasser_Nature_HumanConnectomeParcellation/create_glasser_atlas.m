@@ -3,7 +3,7 @@ close all; clear all;
 addpath('/dartfs-hpc/rc/home/m/f0042vm/software/spm12')
 addpath(genpath('/dartfs-hpc/rc/home/m/f0042vm/software/canlab/CanlabCore/'))
 
-SPACE = 'MNI152NLin6Asym';
+SPACE = 'MNI152NLin2009cAsym';
 
 lh_lbls = readtable('lctx_labels.txt');
 rh_lbls = readtable('rctx_labels.txt');
@@ -45,6 +45,25 @@ gzip(glasser{1}.fullpath)
 gzip(glasser{2}.fullpath)
 gzip(glasser{3}.fullpath)
 
+% save subset atlases for evaluation on held out data
+glasser_joint = cell(length(pmap),2);
+for i = 1:length(pmap)
+    these_ind = find(~ismember(1:length(pmap),i));
+    pdata.dat = mean(cat(3,pmap{these_ind}),3);
+    glasser_joint{i} = atlas(pdata);
+    glasser_joint{i}.labels = lbls';
+    glasser_joint{i}.probability_maps = sparse(glasser_joint{i}.probability_maps);
+end
+
+glasser_joint{1}.fullpath = sprintf('no_bmrk5_%s_atlas.nii', SPACE);
+glasser_joint{2}.fullpath = sprintf('no_paingen_%s_atlas.nii', SPACE);
+glasser_joint{3}.fullpath = sprintf('no_spacetop_%s_atlas.nii', SPACE);
+glasser_joint{1}.threshold(0.2).write();
+glasser_joint{2}.threshold(0.2).write();
+glasser_joint{3}.threshold(0.2).write();
+gzip(glasser_joint{1}.fullpath)
+gzip(glasser_joint{2}.fullpath)
+gzip(glasser_joint{3}.fullpath)
 
 %% generate final mean atlas
 labels = lbls;
