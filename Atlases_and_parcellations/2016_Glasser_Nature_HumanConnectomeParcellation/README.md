@@ -39,12 +39,12 @@ for the older glasser atlas. Some example thresholds are shown below.
 
 ![Different probability thresholds](diagnostics/gifs/MNI152NLin2009cAsym_20_50_80_prob.gif)
 
-Probabilities were computed first based on alignments in each of two studies (BMRK5, PainGen) separately and
-then averaged. Different studies have different acquisition parameters, which can result in systematic
+Probabilities were computed first based on alignments in each of three studies (BMRK5, PainGen, SpaceTop) separately
+and then averaged. Different studies have different acquisition parameters, which can result in systematic
 differences in resulting alignments. Averaging over more studies would be better. In the interest of facilitating
-futher updates to this dataset these two studies have had their subject specific MNI space projections uploaded
+futher updates to this dataset these three studies have had their subject specific MNI space projections uploaded
 to figshare. If you want to recompute the probability maps/parcel boundaries you can follow the approach in
-the src subfolder here for a new study and combine it with these maps for a cumulative improvement. Maps are here:
+the src subfolder here for a new study and combine it with these maps for an incremental improvement. Maps are here:
 
 https://doi.org/10.6084/m9.figshare.24431146
 
@@ -70,7 +70,9 @@ myelin and resting state network features.
 
 The purpose of these probability maps is to adjudicate between competing atlases when making composites or to
 provide an objective basis for boundary delineation, not for direct physiological inference at the individual
-subject level. The probabilities are therefore most accurate when applied to group level summary statistics.
+subject level. The probabilities are therefore most accurate when applied to group level summary statistics, 
+for instance if you're working in volumetric space but trying to verify group level activity in a brain region 
+from a study previously analyzed and reported in surface space.
 
 To my knowledge Glasser et al. have not published their subject specific region classifiers (as of 10/24/23), 
 nor a multimodal alignment template, so subject specific parcel identification is not yet possible outside the
@@ -87,16 +89,17 @@ Mappings were created using "registration fusion". Projections from native space
 were computed for each of many subjects. Transformations from native space to different MNI space templates
 were also computed. By enchaining the inverse transform to surface space with the forward transform to mni
 space we can get a fsaverage surface to MNI space projection for each subject. The Glasser surface parcellation
-was transformed with this enchained set of transforms for each of 241 unrelated participants in paingen and 89
-participants from BMRK5. All transformations were computed by running fmriprep 20.2.3 with recon-all enabled
-on these participants, so this probablistic atlas is ideally calibrated for use with fmriprep aligned volumes.
-Resulting parcellations were uploaded to figshare
+was transformed with this enchained set of transforms for each of 241 unrelated participants in paingen, 88
+participants from BMRK5 and 112 participants from SpaceTop. All transformations were computed by running fmriprep 
+20.2.3 (BMRK5, PainGen) or 21.0.2 (SpaceTop) with recon-all enabled on these participants, so this probablistic 
+atlas is ideally calibrated for use with fmriprep aligned volumes. Resulting parcellations were uploaded to 
+figshare
 
 https://doi.org/10.6084/m9.figshare.24431146
 
 and averaged first within study and then the study specific probability maps were averaged with one another.
-This might be improved by taking a precision weighted average, but both studies are fairly large, and dice
-coefficients of mean parcellations between the two studies are fairly close to 1, so it's likely unnecessary.
+This might be improved by taking a precision weighted average, but all studies are fairly large, and dice
+coefficients of mean parcellations between the three studies are fairly close to 1, so it's likely unnecessary.
 
 Notably, the original Glasser MMP atlas is in an HCP specific surface space called fs_LR. We had only computed
 transformations from native to fsaverage space though, not fs_LR space. Therefore rather than resampling atlas
@@ -118,7 +121,7 @@ and a short methods write up.
 ## Comparison to "old" Glasser
 
 Prior to Oct 2023 there was already a Glasser atlas in this repo. It's now housed in the "old" subfolder of this directory
-and is still (as of Oct 2023) returned by load_atlas('glasser'). The source scripts for this atlas accompany it in the
+and is still (as of Nov 2023) returned by load_atlas('glasser'). The source scripts for this atlas accompany it in the
 "old" folder. It appears that the strategy for voxel label assignment was simply identifying the nearest neighbor voxel
 of a particular surface coordinate. This does not take into account differences in radii between different volumetric and
 surface templates. For instance, MNI152NLin2009cAsym and MNI152NLin6Asym (fmriprep's default and FSL's "standard" template)
@@ -258,4 +261,4 @@ Coalson T, Van Essen D, Glasser MF. The impact of traditional neuroimaging metho
 
 ##
 Bogdan Petre
-10/24/2023
+11/22/2023
