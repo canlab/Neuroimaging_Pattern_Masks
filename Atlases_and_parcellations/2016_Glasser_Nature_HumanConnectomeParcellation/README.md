@@ -179,15 +179,15 @@ Regardless of the cause, this recommends using the atlas projection that matches
 misattribution of labels.
 ![fmriprep vs fsl template maps](diagnostics/dice_map_fmriprep_vs_fsl_glassers.png)
 
-Alternatively we can look at the difference between studies, since we have two studies here. These show the
+Alternatively we can look at the difference between studies, since we have three studies here. These show the
 greatest agreement, with practically all dice coefficients greater than 0.7. This is fortunate, since it means
 between study variability is small relative to between subject variability, and it means we're closer to the number
 of degrees of freedom we need for stable estimates of parcel boundaries (Using a single study, so no study related 
 error, Wu et al. claim you need 300 participants for boundaries to fully stabalize).
 
-<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" width="500" />
+<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_mean_bt_study_glassers_MNI152NLin2009cAsym.png" width="500" />
 
-<img alt="paingen vs. bmrk5 map" src="diagnostics/dice_map_paingen_vs_bmrk5_glassers_MNI152NLin2009cAsym.png" />
+<img alt="paingen vs. bmrk5 map" src="diagnostics/dice_map_interstudy_glassers_glassers_MNI152NLin2009cAsym.png" />
 
 Dice coefficients in the range of 0.8 are what the original authors who came up with registration fusion (wu et al 2018)
 found when comparing their best methods with a gold standard comparator. This demonstrates that the alignments we have
@@ -197,11 +197,12 @@ directly if you want more insight into what's going on here.
 
 Consistency across studies is a nice feature, but it doesn't actually tell us how well these parcellations approximate
 their true surface labels. For that we need to apply the parcels to real data available in both surface and volumetric
-space. The two studies used to generate these parcellations were PainGen and BMRK5, which include noxious heat, 
+space. Two of the studies used to generate these parcellations were PainGen and BMRK5, which include noxious heat, 
 pressure and two types of auditory stimuli: ones with aversive qualities (e.g. nails on a chalkboard) and ones with 
 aversive significance (e.g. someone screaming). We can't test our parcellation on these directly, because that would be
 double dipping, but we can take a cross validation approach to evaluate our registration fusion method by generating
-parcels from BMRK5 to test in PainGen and generating parcels from PainGen to test on BMRK5 data. This is what we do below.
+parcels from BMRK5 and spacetop to test in PainGen and generating parcels from PainGen and spacetop to test on BMRK5 data. 
+This is what we do below.
 
 For paingen we fit an evoked response model that captures the mean BOLD response to heat and pressure stimuli across trials.
 We convert this to a t-statistic for each individual and average them across 218 independent individuals (no familial
@@ -217,7 +218,7 @@ estimates in this case). The results are shown in the figure below.
 The first thing to notice is that group t-stats are more than 2x higher in the surface data than the volumetric data.
 This is not the case when evaluating individual participants (not shown), showing that this improvement in second
 level t-stats is the result of projecting data to a surface. On the one hand there's some smoothing that happens due to 
-interpolation from voxels to surface verticeswhen projecting data to surfaces, but you would expect to see that at the 
+interpolation from voxels to surface vertices when projecting data to surfaces, but you would expect to see that at the 
 individual subject level too, and we don't see a similar asymmetry in t-stats. Rather this is the result of averaging
 across subject specifically, suggesting that averaging across surfaces results in more constructive and less destructive
 interference than averaging across volumes. In other words, surface alignment is much more accurate than volumetric 

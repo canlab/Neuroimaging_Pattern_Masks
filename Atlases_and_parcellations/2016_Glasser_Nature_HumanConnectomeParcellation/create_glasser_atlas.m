@@ -49,10 +49,9 @@ gzip(glasser{3}.fullpath)
 glasser_joint = cell(length(pmap),2);
 for i = 1:length(pmap)
     these_ind = find(~ismember(1:length(pmap),i));
-    pdata.dat = mean(cat(3,pmap{these_ind}),3);
+    pdata.dat = sparse(mean(cat(3,pmap{these_ind}),3));
     glasser_joint{i} = atlas(pdata);
     glasser_joint{i}.labels = lbls';
-    glasser_joint{i}.probability_maps = sparse(glasser_joint{i}.probability_maps);
 end
 
 glasser_joint{1}.fullpath = sprintf('no_bmrk5_%s_atlas.nii', SPACE);
