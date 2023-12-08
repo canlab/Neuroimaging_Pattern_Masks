@@ -1,5 +1,5 @@
-% this script applies transforms using spm and custom code (I don't know how SPM applies affine transforms, it's not well
-% documented, so I implemented something myself built off SPM utils).
+% this function applies transforms using spm and custom code (I don't know how SPM applies affine transforms, it's not well
+% documented, so I implemented something myself built off SPM utils). - Bogdan Petre
 
 function apply_spm_warp(mvg_img0, fxd_img0, pre_affine_mat, warp_img, post_affine_mat, out_img, interp)
     % all arguments are paths except for interp which is an integer corresponding to the following
