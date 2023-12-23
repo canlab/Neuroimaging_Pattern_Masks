@@ -17,7 +17,7 @@ for study = {'bmrk5', 'paingen', 'spacetop'}
         pmap{end+1} = zeros(size(pdata.dat,1), length(lbls)/2);
         for i = 1:length(lbls)/2
             pmap{end}(:,i) = mean(pdata.dat == i,2);
-        end
+        end 
     end
     % combine left and right hemispheres
     pmap{end-1} = cat(2,pmap{end-1:end});
@@ -38,9 +38,9 @@ end
 glasser{1}.fullpath = sprintf('bmrk5_%s_atlas.nii', SPACE);
 glasser{2}.fullpath = sprintf('paingen_%s_atlas.nii', SPACE);
 glasser{3}.fullpath = sprintf('spacetop_%s_atlas.nii', SPACE);
-glasser{1}.threshold(0.2).write();
-glasser{2}.threshold(0.2).write();
-glasser{3}.threshold(0.2).write();
+glasser{1}.threshold(0.2).write('overwrite');
+glasser{2}.threshold(0.2).write('overwrite');
+glasser{3}.threshold(0.2).write('overwrite');
 gzip(glasser{1}.fullpath)
 gzip(glasser{2}.fullpath)
 gzip(glasser{3}.fullpath)
@@ -57,9 +57,9 @@ end
 glasser_joint{1}.fullpath = sprintf('no_bmrk5_%s_atlas.nii', SPACE);
 glasser_joint{2}.fullpath = sprintf('no_paingen_%s_atlas.nii', SPACE);
 glasser_joint{3}.fullpath = sprintf('no_spacetop_%s_atlas.nii', SPACE);
-glasser_joint{1}.threshold(0.2).write();
-glasser_joint{2}.threshold(0.2).write();
-glasser_joint{3}.threshold(0.2).write();
+glasser_joint{1}.threshold(0.2).write('overwrite');
+glasser_joint{2}.threshold(0.2).write('overwrite');
+glasser_joint{3}.threshold(0.2).write('overwrite');
 gzip(glasser_joint{1}.fullpath)
 gzip(glasser_joint{2}.fullpath)
 gzip(glasser_joint{3}.fullpath)
@@ -102,3 +102,9 @@ delete(nii.fullpath);
 fid = fopen(sprintf('glasser_%s_atlas_labels.txt',SPACE),'w+');
 fprintf(fid,'%s\n', atlas_obj.labels{:})
 fclose(fid);
+
+% save thresholded convenience labels
+nii = fmri_data(atlas_obj.threshold(0.2));
+nii.fullpath = sprintf('glasser_%s_atlas_p20.nii', SPACE);
+nii.write('overwrite');
+gzip(nii.fullpath);

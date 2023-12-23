@@ -4,13 +4,15 @@ This atlas was adapted from a different repo,
 
 https://github.com/yetianmed/subcortex/tree/e80ee787732536e9e89534c9a623b10aff7928f4
 
-Group-Parcellation files were copied here for posterity, but the main contribution of 
-this repo is the contribution of canlabCore atlas objects.
+Group-Parcellation files were copied here for posterity. These may now be obsolete though.
+While the first draft of this atlas was derived from these parcels, subsequently the
+authors shared their individual participant segmentations with me (BP). I used these
+to create probablistic labels which now form the basis of this atlas.
 
 This atlas was generated in a hierarchical fashion with finer and finer parcellations
 at each level until a natural stopping condition in the parcellation algorithm
-was reached (see Tian et al \[2020\] Nat Neuro for details). Different parcellations
-are indicated by the "scale", and there are 4. Furthermore, This atlas is provided 
+was reached (see Tian et al \[2020\] Nat Neuro for details). We store this information
+using labels_2, labels_3, labels_4, fields of the atlas. Furthermore, This atlas is provided 
 registered to two different reference templates for use with FSL/HCP or fMRIprep data
 as the case may be, which is likewise specified by FSL6 or fmriprep20 (the latest LTS)
 in the name.
@@ -30,6 +32,16 @@ for visualization. Please see the "templates" folder of this repo for more detai
 
 Note: fmriprep20 refers to version 20 of fmriprep, which as of this writing is the 
 most recent "long term release" of this software. fsl6 likewise refers to fsl version 6.
+
+## Methods
+
+I combined the individual subject segmentation provided by Tian with with familial information	
+from the HCP restricted	data to	derive probability maps from unrelated individuals. For	
+convenience I reused a list of i.i.d. subjects I'd generated for other purposes. Those other 
+purposes required first excluding any participants that lacked any GLM task contrasts or 
+either resting state sessions. The intersection of this iid list with the participants Tian had
+used resulted in a sample of 377 subject's segmentations. The total number of iid participants
+in the HCP dataset is in the 450 range, but 
 
 ## Comparisons with Pauli 2016
 
