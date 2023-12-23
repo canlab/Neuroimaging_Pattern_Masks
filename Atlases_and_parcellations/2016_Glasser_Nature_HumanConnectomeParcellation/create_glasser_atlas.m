@@ -17,7 +17,7 @@ for study = {'bmrk5', 'paingen', 'spacetop'}
         pmap{end+1} = zeros(size(pdata.dat,1), length(lbls)/2);
         for i = 1:length(lbls)/2
             pmap{end}(:,i) = mean(pdata.dat == i,2);
-        end
+        end 
     end
     % combine left and right hemispheres
     pmap{end-1} = cat(2,pmap{end-1:end});
