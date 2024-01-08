@@ -27,42 +27,42 @@ parcellation_file = which('Schaefer2018_100Parcels_7Networks_order_Tian_Subcorte
 % Get labels
 % -----------------------------------------------------------------------
 fid = fopen(which('Tian_Subcortex_S4_3T_label.txt'));
-labels_4 = textscan(fid,'%s');
-labels_4 = cellfun(@(x1)strrep(x1,'-','_'),labels_4{1},'UniformOutput',false);
-labels_4 = labels_4(:)';
-fclose(fid);
-
-
-fid = fopen(which('Tian_Subcortex_S1_3T_label.txt'));
 labels = textscan(fid,'%s');
 labels = cellfun(@(x1)strrep(x1,'-','_'),labels{1},'UniformOutput',false);
 labels = labels(:)';
 fclose(fid);
+
+
+fid = fopen(which('Tian_Subcortex_S1_3T_label.txt'));
+labels_4 = textscan(fid,'%s');
+labels_4 = cellfun(@(x1)strrep(x1,'-','_'),labels_4{1},'UniformOutput',false);
+labels_4 = labels_4(:)';
+fclose(fid);
 % rearrange to match labels_4
-labels = labels([1,1,4,4,1,1,1,3,3,4,4,4,7,7,7,7,8,8,8,8,2,2,3,5,5,6,6,9,9,...
+labels_4 = labels_4([1,1,4,4,1,1,1,3,3,4,4,4,7,7,7,7,8,8,8,8,2,2,3,5,5,6,6,9,9,...
     12,12,9,9,9,11,11,12,12,12,15,15,15,15,16,16,16,16,10,10,11,13,13,14,14]);
 
 
 
 fid = fopen(which('Tian_Subcortex_S2_3T_label.txt'));
-labels_2 = textscan(fid,'%s');
-labels_2 = cellfun(@(x1)strrep(x1,'-','_'),labels_2{1},'UniformOutput',false);
-labels_2 = labels_2(:)';
+labels_3 = textscan(fid,'%s');
+labels_3 = cellfun(@(x1)strrep(x1,'-','_'),labels_3{1},'UniformOutput',false);
+labels_3 = labels_3(:)';
 fclose(fid);
 % rearrange to match labels_4
-labels_2 = labels_2([1,1,7,7,1,2,2,6,6,7,8,8,13,13,14,14,15,15,16,16,3,4,5,...
+labels_3 = labels_3([1,1,7,7,1,2,2,6,6,7,8,8,13,13,14,14,15,15,16,16,3,4,5,...
     9,10,11,12,17,17,23,23,17,18,18,22,22,23,24,24,29,29,30,30,31,31,32,32,...
     19,20,21,25,26,27,28]);
 
 
 
 fid = fopen(which('Tian_Subcortex_S3_3T_label.txt'));
-labels_3 = textscan(fid,'%s');
-labels_3 = cellfun(@(x1)strrep(x1,'-','_'),labels_3{1},'UniformOutput',false);
-labels_3 = labels_3(:)';
+labels_2 = textscan(fid,'%s');
+labels_2 = cellfun(@(x1)strrep(x1,'-','_'),labels_2{1},'UniformOutput',false);
+labels_2 = labels_2(:)';
 fclose(fid);
 % rearrange to match labels_4
-labels_3 = labels_3([1,1,7,7,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,...
+labels_2 = labels_2([1,1,7,7,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,...
     20,21,22,23,24,25,26,26,32,32,27,28,29,30,31,33,34,35,36,37,38,39,40,...
     41,42,43,44,45,46,47,48,49,50]);
 
@@ -124,7 +124,7 @@ fclose(fid)
 %% import individual subject segmentations
 % truncate cortical areas
 parcellation = fmri_data(parcellation_file);
-parcellation.dat(parcellation.dat > length(labels)) = 0;
+parcellation.dat(parcellation.dat > length(labels_4)) = 0;
 
 fnames = dir('iid_parcellations/*_MNI152NLin2009cAsym.nii.gz');
 pmaps = cell(length(fnames),1);
@@ -250,14 +250,14 @@ clear region_names
 
 for i = 1:length(r)
     
-    eval([labels{i} ' = r(i);']);
+    eval([labels_4{i} ' = r(i);']);
     
     region_names{i} = r(i).shorttitle;
     
 end
 
 savename = sprintf('%s_atlas_regions.mat', atlas_name);
-save(savename, 'r', 'region_names', labels{:});
+save(savename, 'r', 'region_names', labels_4{:});
 
 %%
 if dosave
