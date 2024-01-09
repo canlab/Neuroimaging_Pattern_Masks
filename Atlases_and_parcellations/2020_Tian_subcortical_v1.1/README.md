@@ -12,10 +12,18 @@ to create probablistic labels which now form the basis of this atlas.
 This atlas was generated in a hierarchical fashion with finer and finer parcellations
 at each level until a natural stopping condition in the parcellation algorithm
 was reached (see Tian et al \[2020\] Nat Neuro for details). We store this information
-using labels_2, labels_3, labels_4, fields of the atlas. Furthermore, This atlas is provided 
-registered to two different reference templates for use with FSL/HCP or fMRIprep data
-as the case may be, which is likewise specified by FSL6 or fmriprep20 (the latest LTS)
-in the name.
+using labels_2, labels_3, labels_4, fields of the atlas. By default, the voxel map is 
+indexed at the finest scale available (54 parcels), and each index label corresponds
+to an incrementally more coarse parcellation. To obtain a voxel map of one of these 
+coarser parcellations you can invoke atlas/get_coarser_parcellation. E.g. to reduce 
+the 54 parcels to their coarsest parent parcellation (labeled by labes_4) you can use,
+
+fine_tian = load_atlas('tian_fmriprep20')
+reduced_tian = fine_tian.get_coarser_parcellation('labels_4')
+
+Furthermore, This atlas is provided registered to two different reference templates 
+for use with FSL/HCP or fMRIprep data as the case may be, which is likewise specified 
+by FSL6 or fmriprep20 (the latest LTS) in the name when invoking load_atlas.
 
 ## Atlas space
 
@@ -41,7 +49,19 @@ convenience I reused a list of i.i.d. subjects I'd generated for other purposes.
 purposes required first excluding any participants that lacked any GLM task contrasts or 
 either resting state sessions. The intersection of this iid list with the participants Tian had
 used resulted in a sample of 377 subject's segmentations. The total number of iid participants
-in the HCP dataset is in the 450 range, but 
+in the HCP dataset is in the 450 range, but they don't all have resting state data, which is
+needed to estimate this parcellation in the first place, so the maximum number of i.i.d.
+participants I might have used falls somewhere below 450, but above 377.
+
+The full parcellation that Tian et al release has very clean delineations of large scale
+structures, but the probablistic map I have is not so clean. For instance putamen can
+bleed into accumbens, accumbens can bleed into caudate, thalamus can bleed into the fornix, 
+etc. To achieve a cleaner parcellation I've modified the probability to prevent parcel
+probability maps from overlapping inappropriate structures. Each of the 54 parcels was 
+assigned to a CIFTI structure based on which subcortical CIFTI structure had the largest 
+intersection. Any probability values that overlapped with other CIFTI structures were then
+set to zero.
+
 
 ## Comparisons with Pauli 2016
 
@@ -62,12 +82,10 @@ based approach formally models all of this and is able to both respect the gradi
 while simultaneously providing a map of subdivisions defined by subtle fluctuations in those gradients. This leads 
 naturally to a hierarchy of parcellation with increasingly 'soft' watersheds as the parcellations becomes more detailed.
 
-In my opinion the Tian atlas provides a better parcellation than Pauli for several reasons,
+In my opinion the Tian atlas provides a better parcellation than Pauli for two reasons,
 1) it's directly derived form data based based on a large and high quality sample (1000 HCP participants). This gives it 
 greater precision than is possible with neurosynth meta-analysis maps.
-2) It produces more plausible macroscopic boundaries as demonstrated by the putamen/caudate division. Pauli mixes parts of the caudate into areas that look intuitively like putamen. Given the issues with spatial precision in neurosynth 
-it's hard to trust this.
-3) Tian delineates accumbens core and shell, which is something pauli doesn't do, but which I think is especially relevant 
+2) Tian delineates accumbens core and shell, which is something pauli doesn't do, but which I think is especially relevant 
 for a lab interested in affect and pain like the Wager lab. Additionally, I find this particularly impressive because I've 
 seen people try and fail to do this with BOLD in the past, and only succeed using white matter tractography. Tractography 
 appears to be the gold standard in general (Haber & Knutson [2010] Neuropsychopharmacology), so this achievement lends credence 
