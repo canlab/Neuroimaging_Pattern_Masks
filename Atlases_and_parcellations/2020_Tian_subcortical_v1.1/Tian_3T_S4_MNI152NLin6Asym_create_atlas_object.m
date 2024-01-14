@@ -126,19 +126,24 @@ fclose(fid)
 parcellation = fmri_data(parcellation_file);
 parcellation.dat(parcellation.dat > length(labels_4)) = 0;
 
-fnames = dir('iid_parcellations/*nii.gz');
+fnames = dir('iid_parcellations/*.nii.gz');
+fnames = fnames(~contains({fnames.name},'MNI152NLin2009cAsym'));
 pmaps = cell(length(fnames),1);
-parfor (f = 1:length(fnames),5)
+for f = 1:length(fnames)
     this_pmaps = fmri_data(fullfile(fnames(f).folder, fnames(f).name));
     pmaps{f} = atlas(this_pmaps);
+    pmaps{f}.probability_maps = single(pmaps{f}.probability_maps);
+    pmaps{f}.dat = int8(pmaps{f}.dat);
 end
 
+% are all the pmaps identical???
 fmaps = cellfun(@fmri_data, pmaps, 'UniformOutput', false);
+pmaps = pmaps(1);
 all_maps = cat(fmaps{:});
 
 parcels = zeros(size(all_maps.dat,1),num_regions(pmaps{1}));
 for i = 1:num_regions(pmaps{1})
-    this_region = (all_maps.dat == i);
+    this_region = single(all_maps.dat == i);
     parcels(:,i) = mean(this_region,2);
 end
 new_map = all_maps.get_wh_image(1); 
@@ -183,7 +188,7 @@ atlas_obj.threshold(0,'k',5,'remove_parcel_fragments').orthviews
 % -----------------------------------------------------------------------
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greateratlas_obj = threshold(atlas_obj, 0.2, 'k', 3);
-atlas_obj = threshold(atlas_obj, .2, 'k', 3);
+%atlas_obj = atlas_obj.threshold(0,'k',5,'remove_parcel_fragments');
 
 
 % Check display
@@ -260,7 +265,7 @@ if dosave
     
     figure; han = isosurface(atlas_obj);
     
-    cellfun(@(x1)(set(x1,'FaceAlpha', .5)), han)
+    arrayfun(@(x1)(set(x1,'FaceAlpha', .5)), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle

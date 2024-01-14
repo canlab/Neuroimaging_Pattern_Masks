@@ -128,7 +128,7 @@ parcellation.dat(parcellation.dat > length(labels_4)) = 0;
 
 fnames = dir('iid_parcellations/*_MNI152NLin2009cAsym.nii.gz');
 pmaps = cell(length(fnames),1);
-parfor (f = 1:length(fnames),2)
+for f = 1:length(fnames)
     try
         this_pmaps = fmri_data(fullfile(fnames(f).folder, fnames(f).name));
         pmaps{f} = atlas(this_pmaps);
@@ -138,6 +138,7 @@ parfor (f = 1:length(fnames),2)
 end
 
 fmaps = cellfun(@fmri_data, pmaps, 'UniformOutput', false);
+pmaps = pmaps(1);
 all_maps = cat(fmaps{:});
 
 parcels = zeros(size(all_maps.dat,1),num_regions(pmaps{1}));
@@ -180,14 +181,15 @@ atlas_obj = atlas(new_map, ...
     'space_description', space_description, ...
     'references', references, 'noverbose');
 
-atlas_obj.threshold(0,'k',5,'remove_parcel_fragments').orthviews
+%atlas_obj.threshold(0,'k',5,'remove_parcel_fragments').orthviews
 
 
 % Process object
 % -----------------------------------------------------------------------
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greateratlas_obj = threshold(atlas_obj, 0.2, 'k', 3);
-atlas_obj = threshold(atlas_obj, .2, 'k', 3);
+%atlas_obj = threshold(atlas_obj, .2, 'k', 3);
+%atlas_obj = atlas_obj.threshold(0,'k',5,'remove_parcel_fragments');
 
 
 % Check display
@@ -264,7 +266,7 @@ if dosave
     
     figure; han = isosurface(atlas_obj);
     
-    cellfun(@(x1)(set(x1,'FaceAlpha', .5)), han)
+    arrayfun(@(x1)(set(x1,'FaceAlpha', .5)), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle
