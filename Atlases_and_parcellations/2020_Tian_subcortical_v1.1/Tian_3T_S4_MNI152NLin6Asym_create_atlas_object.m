@@ -149,21 +149,85 @@ end
 new_map = all_maps.get_wh_image(1); 
 new_map.dat = parcels;
 
-% the above sum to 1 within the cifti mask, so let's mask them
-% since they were generated from HCP CIFTI files these are from the 
-% 2023_CANLab_atlas/src folder
-cifti_subctx = fmri_data(which('hcp_cifti_subctx_labels.nii.gz'));
-fid = fopen(which('hcp_cifti_subctx_labels.txt'),'r');
-cifti_lbls = textscan(fid,'%s\n');
+
+%% get CIFTI labels
+% We use macro structures from the cifti atlas to establish strong prior
+% probabilities on label assignments such that labels belonging to one
+% macroscale structure (e.g. accumbens/caudate) don't get assigned to a 
+% neighbor (e.g. putamen). This works in part because Tian analyzed their 
+% data in CIFTI space which ensures that all labeled voxels map uniquely 
+% to a labeld CIFTI region (i.e. there are no voxels outside of CIFTI's 
+% subcortical segmentation.
+%
+% Note, that "macroscale" structures are contiguous regions, so caudate and
+% accumbens are considered jointly, as are amygdala/hippocampus, since
+% their boundaries are not reliably distinguished by cifti labels the way
+% say putamen and caudate are.
+
+switch space_description
+    case 'MNI152NLin2009cAsym'
+        % this file should be in the 2023_CANLab_atlas directory
+        cifti = fmri_data(which('hcp_cifti_subctx_labels_MNI152NLin2009cAsym.nii.gz'));
+    case 'MNI152NLin6Asym'
+        % this file should be in the 2023_CANLab_atlas directory
+        cifti = fmri_data(which('hcp_cifti_subctx_labels.nii.gz'));
+end
+
+fid = fopen(which('hcp_cifti_subctx_labels.txt'));
+labels_txt = textscan(fid,'%s');
 fclose(fid);
-cifti_subctx_atlas = atlas(cifti_subctx, 'labels', cifti_lbls{1}');
+
+cifti_subctx_atlas = atlas(cifti);
+cifti_subctx_atlas.labels = labels_txt{1}';
+
+% mapping from Tian labels to cifti labels
+label_map = struct('AMY_lh',{'hippocampus_left','amygdala_left'}, ...
+    'AMY_rh',{'hippocampus_right','amygdala_right'}, ...
+    'CAU_lh',{'accumbens_left','caudate_left'}, ...
+    'CAU_rh',{'accumbens_right','caudate_right'}, ...
+    'GP_rh',{'pallidum_right'},  ...
+    'GP_lh',{'pallidum_left'}, ...
+    'HIP_rh',{'hippocampus_right','amygdala_right'},...
+    'HIP_lh',{'hippocampus_left','amygdala_left'},  ...
+    'NAc_lh',{'accumbens_left','caudate_left'}, ...
+    'NAc_rh',{'accumbens_right','caudate_right'}, ...
+    'PUT_lh',{'putamen_left'}, ...
+    'PUT_rh',{'putamen_right'}, ...
+    'aTHA_rh',{'thalamus_right'}, ...
+    'pTHA_rh',{'thalamus_right'},...
+    'aTHA_lh',{'thalamus_left'}, ...
+    'pTHA_lh',{'thalamus_left'});
+
 tian_regions = {'accumbens', 'amygdala', 'caudate', 'hippocampus', 'pallidum', 'putamen', 'thalamus'};
+cifti_subctx_atlas = cifti_subctx_atlas.resample_space(new_map,'nearest');
 cifti_mask = fmri_mask_image(cifti_subctx_atlas.select_atlas_subset(tian_regions));
-cifti_mask = cifti_mask.resample_space(new_map,'nearest');
-new_map = new_map.apply_mask(cifti_mask).remove_empty();
+new_map = new_map.apply_mask(cifti_mask).replace_empty();
+new_map_mask = fmri_mask_image(new_map);
 
+% now let's recompute probabilities for each label after incorporating
+% cifti label priors
+for l = 1:length(labels)
+    macro_lbl = labels_4{l};
 
+    cifti_lbl = {label_map.(macro_lbl)};
+    macro_region = cifti_subctx_atlas.select_atlas_subset(cifti_lbl,'flatten');
+    assert(sum(macro_region.dat) > 0)
 
+    % mask probabilities to macro region
+    new_map.dat(~macro_region.dat,l) = 0;
+end
+
+% renormalize probabilities
+total_p = sum(new_map.dat,2);
+total_p(total_p == 0) = 1; % to avoid nans
+new_map.dat = new_map.dat./total_p;
+
+% check that we haven't left any voxels labelless
+voxels_with_label = any(new_map.dat > 0,2);
+vx_without_lbl = sum(~voxels_with_label(new_map_mask.dat==1));
+if vx_without_lbl > 0
+    warning('%d voxels have no label!',vx_without_lbl);
+end
 
 new_map.fullpath = ['Tian_3T_S4_' space_description '_probability_maps.nii'];
 new_map.write();
