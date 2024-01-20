@@ -18,9 +18,9 @@ dosave = true;
 
 % need to make sure we're using the one in MNI space
 % This is the full probabilistic atlas file:
-parcellation_file = which('CIT168_pAmyNuc_1mm_MNI_to_152NLin2009cAsym.nii.gz');
+parcellation_file = which('CIT168_pAmyNuc_1mm_MNI_to_MNI152NLin2009cAsym.nii.gz');
 gunzip(parcellation_file)
-parcellation_file = which('CIT168_pAmyNuc_1mm_MNI_to_152NLin2009cAsym.nii');
+parcellation_file = which('CIT168_pAmyNuc_1mm_MNI_to_MNI152NLin2009cAsym.nii');
 
 cd(fileparts(parcellation_file))
 
