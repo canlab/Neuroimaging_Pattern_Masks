@@ -8,7 +8,7 @@
 %       each region with variable names corresponding to labels. For
 %       canlab_load_ROI
 
-atlas_name = 'CIT168_MNI152NLin2009cAsym_amygdala_v1.1.0';
+atlas_name = 'CIT168_MNI152NLin2009cAsym_amygdala_v1.0.3';
 space_description = 'MNI152NLin2009cAsym';
 references = 'Tyszka, J. M. & Pauli, W. M. In vivo delineation of subdivisions of the human amygdaloid complex in a high-resolution group template. Hum. Brain Mapp. 37, 3979–3998 (2016).';
 
