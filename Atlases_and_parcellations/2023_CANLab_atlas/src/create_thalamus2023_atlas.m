@@ -142,7 +142,7 @@ end
 
 cit168 = load_atlas(sprintf('CIT168_%s', ALIAS));
 
-group_codes = {'Hythal','Haben'};  % 'STN' will be in BG
+group_codes = {'Hythal','Haben'};  % 'STH' will be in BG
 group_descript = {'Hypothalamus', 'Habenula'};
 
 for i = 1:length(group_codes)
