@@ -1,0 +1,7 @@
+CIT168 Amygdala Atlas
+
+Date       Version  Comments
+2016-04-27 1.0.0    Initial release
+2016-08-01 1.0.1    Update to Creative Commons BY-SA 4.0 License
+2016-10-21 1.0.2    Add whole head averages and un-normalized mean brain mask
+2017-02-02 1.0.3    Add CIFTI dlabels and BLA, CEN groups to 1mm MNI-space version of CIT168 atlas
