@@ -22,8 +22,6 @@ parcellation_file = which('CIT168_pAmyNuc_1mm_MNI_to_MNI152NLin2009cAsym.nii.gz'
 gunzip(parcellation_file)
 parcellation_file = which('CIT168_pAmyNuc_1mm_MNI_to_MNI152NLin2009cAsym.nii');
 
-cd(fileparts(parcellation_file))
-
 % Get labels
 % -----------------------------------------------------------------------
 
@@ -64,7 +62,7 @@ atlas_obj = atlas(pmap, ...
 % -----------------------------------------------------------------------
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greater
-atlas_obj = threshold(atlas_obj, .2, 'k', 3);
+atlas_obj = threshold(atlas_obj, .05, 'k', 3);
 
 % Check display
 % -----------------------------------------------------------------------
@@ -112,7 +110,7 @@ end
 
 if dosave
     
-    savename = sprintf('%s_atlas_regions.img', atlas_name);
+    savename = sprintf('%s_atlas_regions.nii', atlas_name);
     atlas_obj.fullpath = fullfile(pwd, savename);
     write(atlas_obj, 'overwrite');
     

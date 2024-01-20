@@ -100,7 +100,7 @@ end
 %% save object
 
 if dosave
-    
+    clk
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save(savename, 'atlas_obj');
     
@@ -110,7 +110,7 @@ end
 
 if dosave
     
-    savename = sprintf('%s_atlas_regions.img', atlas_name);
+    savename = sprintf('%s_atlas_regions.nii', atlas_name);
     atlas_obj.fullpath = fullfile(pwd, savename);
     write(atlas_obj, 'overwrite');
     
