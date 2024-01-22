@@ -26,8 +26,14 @@ function atlas = lateralize(atlas)
     for j = 1:length(fnames)
         if ~all(cellfun(@isempty, atlas.(fnames{j})))
             for i = 1:length(atlas.(fnames{j}))
-                atlas.(fnames{j}){i + n_labels} = [atlas.(fnames{j}){i}, ' (right)'];
-                atlas.(fnames{j}){i} = [atlas.(fnames{j}){i}, ' (left)'];
+                switch fnames{j}
+                    case 'label_descriptions'
+                        atlas.(fnames{j}){i + n_labels} = [atlas.(fnames{j}){i}, ' (right)'];
+                        atlas.(fnames{j}){i} = [atlas.(fnames{j}){i}, ' (left)'];
+                    otherwise
+                        atlas.(fnames{j}){i + n_labels} = [atlas.(fnames{j}){i}, '_R'];
+                        atlas.(fnames{j}){i} = [atlas.(fnames{j}){i}, '_L'];
+                end
             end 
         end
     end

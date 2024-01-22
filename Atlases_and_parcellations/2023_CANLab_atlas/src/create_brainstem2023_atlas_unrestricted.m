@@ -45,8 +45,8 @@ if isempty(which(shen_file))
     % d/v - dorsal/ventral
     % R/L - right/left
     shen = shen.select_atlas_subset(shen.apply_mask(bstem_mask).labels);
-    shenR = lateralize(shen.select_atlas_subset([10,12:16])).select_atlas_subset('_R');
-    shenL = lateralize(shen.select_atlas_subset([26,28:31])).select_atlas_subset('_L');
+    shenR = lateralize(shen.select_atlas_subset([10,12:16])).select_atlas_subset({'_R'});
+    shenL = lateralize(shen.select_atlas_subset([26,28:31])).select_atlas_subset({'_L'});
     shen = shenR.merge_atlases(shenL);
     
     % Ponscd becomes Ponscd_R in canlab2023
@@ -106,49 +106,36 @@ else
     shen_references = bstem_atlas.references;
 end
 
-bstem_atlas.labels_2 = repmat({'Brainstem'},1,num_regions(bstem_atlas));
+bstem_atlas.labels_4 = repmat({'Brainstem'},1,num_regions(bstem_atlas));
 diencephalic_ind = find(contains(bstem_atlas.labels, {'Midb_Lrd','Midb_Rrd'}));
-bstem_atlas.labels_2(diencephalic_ind) = repmat({'Diencephalic'},1,length(diencephalic_ind));
+bstem_atlas.labels_4(diencephalic_ind) = repmat({'Diencephalon'},1,length(diencephalic_ind));
 
 %% add other regions
 
 cit = load_atlas(sprintf('cit168_%s', ALIAS));
 
-cit_regions = {'PBP', 'VTA', 'Mamm'};
+% bianciardi atlas also has SNc, SNr, RN, STH, and even subdivides the RN
+% and STH into subparcels, but it's not open source so we prefer these
+% alternatives. The subdivisions of the RN and especially STh are also 
+% non-contiguous, which makes using them awkward.
+cit_regions = {'PBP', 'VTA', 'Mamm', 'SNc', 'SNr', 'RN', 'STH'};
 
 cit = lateralize(cit.select_atlas_subset(cit_regions));
-cit.labels_5 = repmat({'CIT168'}, 1, num_regions(cit));
-
-% also include regions in other atlases that we want to remove here - so
-% that we remove these voxels
-
-% to-do: 'pbn' 'nts'
-%{
-regionnames = {'rvm', 'spinal_trigeminal'};
-
-% NEW ONES TOO
-
-% we put these into cit, since there's minimal overlap.
-
-for i = 1:length(regionnames)
-    regionname = regionnames{i};
-    
-    [~, roi_atlas] = canlab_load_ROI(regionname);
-
-    % since these ROIs are poorly specified we cede ground to competition
-    % anytime odds are better than not that the competition is right by
-    % setting these ROIs probabilities to 50%.
-    roi_atlas = roi_atlas.replace_empty;
-    pmap = zeros(size(roi_atlas.dat,1),num_regions(roi_atlas));
-    for j = 1:num_regions(roi_atlas)
-        pmap(roi_atlas.dat == j,j) = 0.5;
+cit.labels_2 = {};
+cit.labels_3 = {};
+cit.labels_4 = {};
+% add label description and group regions
+for i = 1:num_regions(cit)
+    if contains(cit.labels{i},'SN')
+        cit.labels_2{end+1} = cit.labels{i};
+        cit.labels_3{end+1} = regexprep(cit.labels{i},'.*_([LR])','SN_$1');
+    else
+        cit.labels_2{end+1} = cit.labels{i};
+        cit.labels_3{end+1} = cit.labels{i};
     end
-    roi_atlas.probability_maps = pmap;
-    roi_atlas.labels_5 = repmat({'Manually drawn coordinate based ROI/Nash'}, 1, num_regions(roi_atlas));
-
-    cit = merge_atlases(cit, roi_atlas);
+    cit.labels_4{end+1} = regexprep(cit.labels{i},'.*_([LR])','Diencephalic_nuclei_$1');
 end
-%}
+cit.labels_5 = repmat({'CIT168 v1.1.0 subcortical'}, 1, num_regions(cit));
 
 % the order here is important. The most sensitive atlases (i.e. those with
 % the smallest regions) go first so that we resample to their spaces.
@@ -186,4 +173,5 @@ bstem_atlas.references = unique(char(references),'rows');
 try
     bstem_atlas = remove_atlas_region(bstem_atlas, {'other'});
 end
- 
+
+clear shen cit

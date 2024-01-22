@@ -1,0 +1,525 @@
+labels,label_descriptions,labels_2,labels_3,labels_4,labels_5
+Ctx_V1_L,Primary visual cortex (Left),Ctx_V1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_MST_L,Medial superior temporal area (Left),Ctx_MST_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V6_L,sixth visual area (Left),Ctx_V6_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V2_L,second visual area (Left),Ctx_V2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3_L,third visual area (Left),Ctx_V3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V4_L,fourth visual area (Left),Ctx_V4_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V8_L,eighth visual area (Left),Ctx_V8_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_4_L,primary motor cortex (Left),Ctx_4_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_3b_L,primary sensory cortex (Left),Ctx_3b_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FEF_L,frontal eye fields (Left),Ctx_FEF_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PEF_L,premotor eye field (Left),Ctx_PEF_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_55b_L,area 55b (Left),Ctx_55b_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3A_L,area V3A (Left),Ctx_V3A_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_RSC_L,RetroSplenial Complex (Left),Ctx_RSC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_POS2_L,Parieto-Occipital Sulcus Area 2 (Left),Ctx_POS2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V7_L,Seventh Visual Area (Left),Ctx_V7_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IPS1_L,IntraParietal Sulcus Area 1 (Left),Ctx_IPS1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FFC_L,Fusiform Face Complex (Left),Ctx_FFC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3B_L,Area V3B (Left),Ctx_V3B_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_LO1_L,Area Lateral Occipital 1 (Left),Ctx_LO1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_LO2_L,Area Lateral Occipital 2 (Left),Ctx_LO2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PIT_L,Posterior InferoTemporal (Left),Ctx_PIT_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_MT_L,Middle Temporal Area (Left),Ctx_MT_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_A1_L,Primary Auditory Cortex (Left),Ctx_A1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PSL_L,PeriSylvian Language Area (Left),Ctx_PSL_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_SFL_L,Superior Frontal Language Area (Left),Ctx_SFL_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PCV_L,PreCuneus Visual Area (Left),Ctx_PCV_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_STV_L,Superior Temporal Visual Area (Left),Ctx_STV_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_7Pm_L,Medial Area 7P (Left),Ctx_7Pm_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_7m_L,Area 7m (Left),Ctx_7m_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_POS1_L,Parieto-Occipital Sulcus Area 1 (Left),Ctx_POS1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_23d_L,Area 23d (Left),Ctx_23d_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_v23ab_L,Area ventral 23 a+b (Left),Ctx_v23ab_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_d23ab_L,Area dorsal 23 a+ (Left),Ctx_d23ab_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_31pv_L,Area 31p ventral (Left),Ctx_31pv_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_5m_L,Area 5m (Left),Ctx_5m_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_5mv_L,Area 5m ventral (Left),Ctx_5mv_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_23c_L,Area 23c (Left),Ctx_23c_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_5L_L,Area 5L (Left),Ctx_5L_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_24dd_L,Dorsal Area 24d (Left),Ctx_24dd_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_24dv_L,Ventral Area 24d (Left),Ctx_24dv_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_7AL_L,Lateral Area 7A (Left),Ctx_7AL_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_SCEF_L,Supplementary and Cingulate Eye Field (Left),Ctx_SCEF_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_6ma_L,Area 6m anterior (Left),Ctx_6ma_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_7Am_L,Medial Area 7A (Left),Ctx_7Am_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_7PL_L,Lateral Area 7P (Left),Ctx_7PL_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_7PC_L,Area 7PC (Left),Ctx_7PC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_LIPv_L,Area Lateral IntraParietal ventral (Left),Ctx_LIPv_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_VIP_L,Ventral IntraParietal Complex (Left),Ctx_VIP_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_MIP_L,Medial IntraParietal Area (Left),Ctx_MIP_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_1_L,Area 1 (Left),Ctx_1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_2_L,Area 2 (Left),Ctx_2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_3a_L,Area 3a (Left),Ctx_3a_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_6d_L,Dorsal area 6 (Left),Ctx_6d_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_6mp_L,Area 6mp (Left),Ctx_6mp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_6v_L,Ventral Area 6 (Left),Ctx_6v_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p24pr_L,Area Posterior 24 prime (Left),Ctx_p24pr_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_33pr_L,Area 33 prime (Left),Ctx_33pr_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_a24pr_L,Anterior 24 prime (Left),Ctx_a24pr_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p32pr_L,Area p32 prime (Left),Ctx_p32pr_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_a24_L,Area a24 (Left),Ctx_a24_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_d32_L,Area dorsal 32 (Left),Ctx_d32_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_8BM_L,Area 8BM (Left),Ctx_8BM_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p32_L,Area p32 (Left),Ctx_p32_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_10r_L,Area 10r (Left),Ctx_10r_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_47m_L,Area 47m (Left),Ctx_47m_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_8Av_L,Area 8Av (Left),Ctx_8Av_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_8Ad_L,Area 8Ad (Left),Ctx_8Ad_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_9m_L,Area 9 Middle (Left),Ctx_9m_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_8BL_L,Area 88 Lateral (Left),Ctx_8BL_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_9p_L,Area 9 Posterior (Left),Ctx_9p_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_10d_L,Area 10d (Left),Ctx_10d_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_8C_L,Area 8C (Left),Ctx_8C_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_44_L,Area 44 (Left),Ctx_44_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_45_L,Area 45 (Left),Ctx_45_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_47l_L,Area 47 lateral (Left),Ctx_47l_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_a47r_L,Area anterior 47r (Left),Ctx_a47r_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_6r_L,Rostral Area 6 (Left),Ctx_6r_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFJa_L,Area IF Ja (Left),Ctx_IFJa_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFJp_L,Area IF Jp (Left),Ctx_IFJp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFSp_L,Area IF Sp (Left),Ctx_IFSp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFSa_L,Area IFSa (Left),Ctx_IFSa_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p9_46v_L,Area posterior 9-46v (Left),Ctx_p9_46v_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_46_L,Area 46 (Left),Ctx_46_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_a9_46v_L,Area anterior 9-46v (Left),Ctx_a9_46v_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_9_46d_L,Area 9-46d (Left),Ctx_9_46d_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_9a_L,Area 9 anterior (Left),Ctx_9a_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_10v_L,Area 10v (Left),Ctx_10v_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_a10p_L,Area anterior 10p (Left),Ctx_a10p_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_10pp_L,Polar 10p (Left),Ctx_10pp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_11l_L,Area 11l (Left),Ctx_11l_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_13l_L,Area 13l (Left),Ctx_13l_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_OFC_L,Orbital Frontal Complex (Left),Ctx_OFC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_47s_L,Area 47s (Left),Ctx_47s_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_LIPd_L,Area Lateral IntraParietal dorsal (Left),Ctx_LIPd_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_6a_L,Area 6 anterior (Left),Ctx_6a_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_i6_8_L,Inferior 6-8 Transitional Area (Left),Ctx_i6_8_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_s6_8_L,Superior 6-8 Transitional Area (Left),Ctx_s6_8_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_43_L,Area 43 (Left),Ctx_43_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_OP4_L,Area OP4/PV (Left),Ctx_OP4_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_OP1_L,Area OP1/SII (Left),Ctx_OP1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_OP2_3_L,Area OP2-3/VS (Left),Ctx_OP2_3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_52_L,Area 52 (Left),Ctx_52_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_RI_L,RetroInsular Cortex (Left),Ctx_RI_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFcm_L,Area Pfcm (Left),Ctx_PFcm_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PoI2_L,Posterior Insular Area 2 (Left),Ctx_PoI2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TA2_L,Area TA2 (Left),Ctx_TA2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP4_L,Frontal Opercular Area 4 (Left),Ctx_FOP4_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_MI_L,Middle Insular Area (Left),Ctx_MI_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_Pir_L,Pirform Cortex (Left),Ctx_Pir_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_AVI_L,Anterior Ventral Insular Area (Left),Ctx_AVI_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_AAIC_L,Anterior Agranular Insular Complex (Left),Ctx_AAIC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP1_L,Frontal Opercular Area 1 (Left),Ctx_FOP1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP3_L,Frontal Opercular Area 3 (Left),Ctx_FOP3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP2_L,Frontal Opercular Area 2 (Left),Ctx_FOP2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFt_L,Area PFt (Left),Ctx_PFt_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_AIP_L,Anterior IntraParietal Area (Left),Ctx_AIP_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_EC_L,Entorhinal Cortex (Left),Ctx_EC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PreS_L,PreSubiculum (Left),Ctx_PreS_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_ProS_L,Prostriate Area (Left),Ctx_ProS_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PeEc_L,Perirhinal Ectorhinal Cortex (Left),Ctx_PeEc_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_STGa_L,Area STGa (Left),Ctx_STGa_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PBelt_L,ParaBelt Complex (Left),Ctx_PBelt_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_A5_L,Auditory 5 Complex (Left),Ctx_A5_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHA1_L,ParaHippocampal Area 1 (Left),Ctx_PHA1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHA3_L,ParaHippocampal Area 3 (Left),Ctx_PHA3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSda_L,Area STSd anterior (Left),Ctx_STSda_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSdp_L,Area STSd posterior (Left),Ctx_STSdp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSvp_L,Area STSv posterior (Left),Ctx_STSvp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TGd_L,Area TG dorsal (Left),Ctx_TGd_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE1a_L,Area TE1 anterior (Left),Ctx_TE1a_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE1p_L,Area TE1 posterior (Left),Ctx_TE1p_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE2a_L,Area TE2 anterior (Left),Ctx_TE2a_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TF_L,Area TF (Left),Ctx_TF_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE2p_L,Area TE2 posterior (Left),Ctx_TE2p_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHT_L,Area PHT (Left),Ctx_PHT_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PH_L,Area PH (Left),Ctx_PH_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TPOJ1_L,Area TemporoParietoOccipital Junction 1 (Left),Ctx_TPOJ1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TPOJ2_L,Area TemporoParietoOccipital Junction 2 (Left),Ctx_TPOJ2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TPOJ3_L,Area TemporoParietoOccipital Junction 3 (Left),Ctx_TPOJ3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_DVT_L,Dorsal Transitional Visual Area (Left),Ctx_DVT_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PGp_L,Area Pgp (Left),Ctx_PGp_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IP2_L,Area IntraParietal 2 (Left),Ctx_IP2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IP1_L,Area IntraParietal 1 (Left),Ctx_IP1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_IP0_L,Area IntraParietal 0 (Left),Ctx_IP0_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFop_L,Area PF Opercular (Left),Ctx_PFop_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PF_L,Area PF Complex (Left),Ctx_PF_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFm_L,Area PFm Complex (Left),Ctx_PFm_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PGi_L,Are Pgi (Left),Ctx_PGi_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PGs_L,Area Pgs (Left),Ctx_PGs_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V6A_L,Area V6A (Left),Ctx_V6A_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_VMV1_L,VentroMedial Visual Area 1 (Left),Ctx_VMV1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_VMV3_L,VentroMedial Visual Area 3 (Left),Ctx_VMV3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHA2_L,ParaHippocampal Area 2 (Left),Ctx_PHA2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V4t_L,Area V4t (Left),Ctx_V4t_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FST_L,Area FST (Left),Ctx_FST_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3CD_L,Area v3CD (Left),Ctx_V3CD_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_LO3_L,Area Lateral Occipital 3 (Left),Ctx_LO3_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_VMV2_L,VentroMedial Visual Area 2 (Left),Ctx_VMV2_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_31pd_L,Area 31pd (Left),Ctx_31pd_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_31a_L,Area 31a (Left),Ctx_31a_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_VVC_L,Ventral Visual Complex (Left),Ctx_VVC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_25_L,Area 25 (Left),Ctx_25_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_s32_L,Area s32 (Left),Ctx_s32_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_pOFC_L,posterior OFC Complex (Left),Ctx_pOFC_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PoI1_L,Area Posterior Insular 1 (Left),Ctx_PoI1_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_Ig_L,Insular Granular Complex (Left),Ctx_Ig_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP5_L,Area Frontal Opercular 5 (Left),Ctx_FOP5_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p10p_L,Area posterior 10p (Left),Ctx_p10p_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p47r_L,Area posterior 47r (Left),Ctx_p47r_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TGv_L,Area TG Ventral (Left),Ctx_TGv_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_MBelt_L,Medial Belt Complex (Left),Ctx_MBelt_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_LBelt_L,Lateral Belt Complex (Left),Ctx_LBelt_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_A4_L,Auditory 4 Complex (Left),Ctx_A4_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSva_L,Area STSv anterior (Left),Ctx_STSva_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE1m_L,Area TE1 Middle (Left),Ctx_TE1m_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_PI_L,Para-Insular Area (Left),Ctx_PI_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_a32pr_L,Area anterior 32 prime (Left),Ctx_a32pr_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_p24_L,Area posterior 24 (Left),Ctx_p24_L,,,Glasser2016+Petre2023_vol_proj
+Ctx_V1_R,Primary visual cortex (Right),Ctx_V1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_MST_R,Medial superior temporal area (Right),Ctx_MST_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V6_R,sixth visual area (Right),Ctx_V6_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V2_R,second visual area (Right),Ctx_V2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3_R,third visual area (Right),Ctx_V3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V4_R,fourth visual area (Right),Ctx_V4_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V8_R,eighth visual area (Right),Ctx_V8_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_4_R,primary motor cortex (Right),Ctx_4_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_3b_R,primary sensory cortex (Right),Ctx_3b_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FEF_R,frontal eye fields (Right),Ctx_FEF_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PEF_R,premotor eye field (Right),Ctx_PEF_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_55b_R,area 55b (Right),Ctx_55b_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3A_R,area V3A (Right),Ctx_V3A_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_RSC_R,RetroSplenial Complex (Right),Ctx_RSC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_POS2_R,Parieto-Occipital Sulcus Area 2 (Right),Ctx_POS2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V7_R,Seventh Visual Area (Right),Ctx_V7_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IPS1_R,IntraParietal Sulcus Area 1 (Right),Ctx_IPS1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FFC_R,Fusiform Face Complex (Right),Ctx_FFC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3B_R,Area V3B (Right),Ctx_V3B_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_LO1_R,Area Lateral Occipital 1 (Right),Ctx_LO1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_LO2_R,Area Lateral Occipital 2 (Right),Ctx_LO2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PIT_R,Posterior InferoTemporal (Right),Ctx_PIT_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_MT_R,Middle Temporal Area (Right),Ctx_MT_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_A1_R,Primary Auditory Cortex (Right),Ctx_A1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PSL_R,PeriSylvian Language Area (Right),Ctx_PSL_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_SFL_R,Superior Frontal Language Area (Right),Ctx_SFL_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PCV_R,PreCuneus Visual Area (Right),Ctx_PCV_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_STV_R,Superior Temporal Visual Area (Right),Ctx_STV_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_7Pm_R,Medial Area 7P (Right),Ctx_7Pm_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_7m_R,Area 7m (Right),Ctx_7m_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_POS1_R,Parieto-Occipital Sulcus Area 1 (Right),Ctx_POS1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_23d_R,Area 23d (Right),Ctx_23d_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_v23ab_R,Area ventral 23 a+b (Right),Ctx_v23ab_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_d23ab_R,Area dorsal 23 a+ (Right),Ctx_d23ab_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_31pv_R,Area 31p ventral (Right),Ctx_31pv_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_5m_R,Area 5m (Right),Ctx_5m_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_5mv_R,Area 5m ventral (Right),Ctx_5mv_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_23c_R,Area 23c (Right),Ctx_23c_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_5L_R,Area 5L (Right),Ctx_5L_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_24dd_R,Dorsal Area 24d (Right),Ctx_24dd_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_24dv_R,Ventral Area 24d (Right),Ctx_24dv_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_7AL_R,Lateral Area 7A (Right),Ctx_7AL_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_SCEF_R,Supplementary and Cingulate Eye Field (Right),Ctx_SCEF_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_6ma_R,Area 6m anterior (Right),Ctx_6ma_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_7Am_R,Medial Area 7A (Right),Ctx_7Am_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_7PL_R,Lateral Area 7P (Right),Ctx_7PL_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_7PC_R,Area 7PC (Right),Ctx_7PC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_LIPv_R,Area Lateral IntraParietal ventral (Right),Ctx_LIPv_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_VIP_R,Ventral IntraParietal Complex (Right),Ctx_VIP_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_MIP_R,Medial IntraParietal Area (Right),Ctx_MIP_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_1_R,Area 1 (Right),Ctx_1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_2_R,Area 2 (Right),Ctx_2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_3a_R,Area 3a (Right),Ctx_3a_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_6d_R,Dorsal area 6 (Right),Ctx_6d_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_6mp_R,Area 6mp (Right),Ctx_6mp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_6v_R,Ventral Area 6 (Right),Ctx_6v_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p24pr_R,Area Posterior 24 prime (Right),Ctx_p24pr_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_33pr_R,Area 33 prime (Right),Ctx_33pr_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_a24pr_R,Anterior 24 prime (Right),Ctx_a24pr_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p32pr_R,Area p32 prime (Right),Ctx_p32pr_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_a24_R,Area a24 (Right),Ctx_a24_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_d32_R,Area dorsal 32 (Right),Ctx_d32_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_8BM_R,Area 8BM (Right),Ctx_8BM_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p32_R,Area p32 (Right),Ctx_p32_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_10r_R,Area 10r (Right),Ctx_10r_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_47m_R,Area 47m (Right),Ctx_47m_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_8Av_R,Area 8Av (Right),Ctx_8Av_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_8Ad_R,Area 8Ad (Right),Ctx_8Ad_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_9m_R,Area 9 Middle (Right),Ctx_9m_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_8BL_R,Area 88 Lateral (Right),Ctx_8BL_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_9p_R,Area 9 Posterior (Right),Ctx_9p_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_10d_R,Area 10d (Right),Ctx_10d_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_8C_R,Area 8C (Right),Ctx_8C_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_44_R,Area 44 (Right),Ctx_44_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_45_R,Area 45 (Right),Ctx_45_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_47l_R,Area 47 lateral (Right),Ctx_47l_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_a47r_R,Area anterior 47r (Right),Ctx_a47r_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_6r_R,Rostral Area 6 (Right),Ctx_6r_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFJa_R,Area IF Ja (Right),Ctx_IFJa_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFJp_R,Area IF Jp (Right),Ctx_IFJp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFSp_R,Area IF Sp (Right),Ctx_IFSp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IFSa_R,Area IFSa (Right),Ctx_IFSa_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p9_46v_R,Area posterior 9-46v (Right),Ctx_p9_46v_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_46_R,Area 46 (Right),Ctx_46_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_a9_46v_R,Area anterior 9-46v (Right),Ctx_a9_46v_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_9_46d_R,Area 9-46d (Right),Ctx_9_46d_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_9a_R,Area 9 anterior (Right),Ctx_9a_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_10v_R,Area 10v (Right),Ctx_10v_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_a10p_R,Area anterior 10p (Right),Ctx_a10p_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_10pp_R,Polar 10p (Right),Ctx_10pp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_11l_R,Area 11l (Right),Ctx_11l_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_13l_R,Area 13l (Right),Ctx_13l_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_OFC_R,Orbital Frontal Complex (Right),Ctx_OFC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_47s_R,Area 47s (Right),Ctx_47s_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_LIPd_R,Area Lateral IntraParietal dorsal (Right),Ctx_LIPd_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_6a_R,Area 6 anterior (Right),Ctx_6a_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_i6_8_R,Inferior 6-8 Transitional Area (Right),Ctx_i6_8_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_s6_8_R,Superior 6-8 Transitional Area (Right),Ctx_s6_8_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_43_R,Area 43 (Right),Ctx_43_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_OP4_R,Area OP4/PV (Right),Ctx_OP4_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_OP1_R,Area OP1/SII (Right),Ctx_OP1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_OP2_3_R,Area OP2-3/VS (Right),Ctx_OP2_3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_52_R,Area 52 (Right),Ctx_52_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_RI_R,RetroInsular Cortex (Right),Ctx_RI_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFcm_R,Area Pfcm (Right),Ctx_PFcm_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PoI2_R,Posterior Insular Area 2 (Right),Ctx_PoI2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TA2_R,Area TA2 (Right),Ctx_TA2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP4_R,Frontal Opercular Area 4 (Right),Ctx_FOP4_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_MI_R,Middle Insular Area (Right),Ctx_MI_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_Pir_R,Pirform Cortex (Right),Ctx_Pir_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_AVI_R,Anterior Ventral Insular Area (Right),Ctx_AVI_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_AAIC_R,Anterior Agranular Insular Complex (Right),Ctx_AAIC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP1_R,Frontal Opercular Area 1 (Right),Ctx_FOP1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP3_R,Frontal Opercular Area 3 (Right),Ctx_FOP3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP2_R,Frontal Opercular Area 2 (Right),Ctx_FOP2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFt_R,Area PFt (Right),Ctx_PFt_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_AIP_R,Anterior IntraParietal Area (Right),Ctx_AIP_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_EC_R,Entorhinal Cortex (Right),Ctx_EC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PreS_R,PreSubiculum (Right),Ctx_PreS_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_ProS_R,Prostriate Area (Right),Ctx_ProS_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PeEc_R,Perirhinal Ectorhinal Cortex (Right),Ctx_PeEc_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_STGa_R,Area STGa (Right),Ctx_STGa_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PBelt_R,ParaBelt Complex (Right),Ctx_PBelt_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_A5_R,Auditory 5 Complex (Right),Ctx_A5_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHA1_R,ParaHippocampal Area 1 (Right),Ctx_PHA1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHA3_R,ParaHippocampal Area 3 (Right),Ctx_PHA3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSda_R,Area STSd anterior (Right),Ctx_STSda_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSdp_R,Area STSd posterior (Right),Ctx_STSdp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSvp_R,Area STSv posterior (Right),Ctx_STSvp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TGd_R,Area TG dorsal (Right),Ctx_TGd_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE1a_R,Area TE1 anterior (Right),Ctx_TE1a_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE1p_R,Area TE1 posterior (Right),Ctx_TE1p_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE2a_R,Area TE2 anterior (Right),Ctx_TE2a_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TF_R,Area TF (Right),Ctx_TF_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE2p_R,Area TE2 posterior (Right),Ctx_TE2p_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHT_R,Area PHT (Right),Ctx_PHT_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PH_R,Area PH (Right),Ctx_PH_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TPOJ1_R,Area TemporoParietoOccipital Junction 1 (Right),Ctx_TPOJ1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TPOJ2_R,Area TemporoParietoOccipital Junction 2 (Right),Ctx_TPOJ2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TPOJ3_R,Area TemporoParietoOccipital Junction 3 (Right),Ctx_TPOJ3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_DVT_R,Dorsal Transitional Visual Area (Right),Ctx_DVT_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PGp_R,Area Pgp (Right),Ctx_PGp_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IP2_R,Area IntraParietal 2 (Right),Ctx_IP2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IP1_R,Area IntraParietal 1 (Right),Ctx_IP1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_IP0_R,Area IntraParietal 0 (Right),Ctx_IP0_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFop_R,Area PF Opercular (Right),Ctx_PFop_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PF_R,Area PF Complex (Right),Ctx_PF_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PFm_R,Area PFm Complex (Right),Ctx_PFm_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PGi_R,Are Pgi (Right),Ctx_PGi_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PGs_R,Area Pgs (Right),Ctx_PGs_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V6A_R,Area V6A (Right),Ctx_V6A_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_VMV1_R,VentroMedial Visual Area 1 (Right),Ctx_VMV1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_VMV3_R,VentroMedial Visual Area 3 (Right),Ctx_VMV3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PHA2_R,ParaHippocampal Area 2 (Right),Ctx_PHA2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V4t_R,Area V4t (Right),Ctx_V4t_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FST_R,Area FST (Right),Ctx_FST_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_V3CD_R,Area v3CD (Right),Ctx_V3CD_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_LO3_R,Area Lateral Occipital 3 (Right),Ctx_LO3_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_VMV2_R,VentroMedial Visual Area 2 (Right),Ctx_VMV2_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_31pd_R,Area 31pd (Right),Ctx_31pd_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_31a_R,Area 31a (Right),Ctx_31a_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_VVC_R,Ventral Visual Complex (Right),Ctx_VVC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_25_R,Area 25 (Right),Ctx_25_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_s32_R,Area s32 (Right),Ctx_s32_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_pOFC_R,posterior OFC Complex (Right),Ctx_pOFC_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PoI1_R,Area Posterior Insular 1 (Right),Ctx_PoI1_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_Ig_R,Insular Granular Complex (Right),Ctx_Ig_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_FOP5_R,Area Frontal Opercular 5 (Right),Ctx_FOP5_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p10p_R,Area posterior 10p (Right),Ctx_p10p_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p47r_R,Area posterior 47r (Right),Ctx_p47r_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TGv_R,Area TG Ventral (Right),Ctx_TGv_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_MBelt_R,Medial Belt Complex (Right),Ctx_MBelt_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_LBelt_R,Lateral Belt Complex (Right),Ctx_LBelt_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_A4_R,Auditory 4 Complex (Right),Ctx_A4_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_STSva_R,Area STSv anterior (Right),Ctx_STSva_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_TE1m_R,Area TE1 Middle (Right),Ctx_TE1m_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_PI_R,Para-Insular Area (Right),Ctx_PI_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_a32pr_R,Area anterior 32 prime (Right),Ctx_a32pr_R,,,Glasser2016+Petre2023_vol_proj
+Ctx_p24_R,Area posterior 24 (Right),Ctx_p24_R,,,Glasser2016+Petre2023_vol_proj
+Bstem_SNc_L,Substantia Nigra pars compacta (left),SNc_L,SN_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Bstem_RN_L,Red nucleus (left),RN_L,RN_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Bstem_SNr_L,Substantia Nigra pars reticulata (left),SNr_L,SN_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Bstem_PBP_L,Parabrachial Pigmented Nucleus (left),PBP_L,PBP_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Bstem_VTA_L,Ventral Tegmental Area (left),VTA_L,VTA_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Mamm_Nuc_L,Mammilary nuclei (left),Mamm_Nuc_L,Mamm_Nuc_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Bstem_STH_L,Subthalamic nucleus (left),STH_L,STH_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Bstem_SNc_R,Substantia Nigra pars compacta (right),SNc_R,SN_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Bstem_RN_R,Red nucleus (right),RN_R,RN_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Bstem_SNr_R,Substantia Nigra pars reticulata (right),SNr_R,SN_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Bstem_PBP_R,Parabrachial Pigmented Nucleus (right),PBP_R,PBP_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Bstem_VTA_R,Ventral Tegmental Area (right),VTA_R,VTA_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Mamm_Nuc_R,Mammilary nuclei (right),Mamm_Nuc_R,Mamm_Nuc_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Bstem_STH_R,Subthalamic nucleus (right),STH_R,STH_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Bstem_Midbrd_L,Region 251 from Shen_MNI152NLin6Asym (left),R_251_Network_4_L,Network_4_L,Diencephalon,Shen 268 parcellation (dilated)
+Bstem_Midbd_L,Region 259 from Shen_MNI152NLin6Asym (left),R_259_Network_4_L,Network_4_L,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Midbrd_R,Region 126 from Shen_MNI152NLin6Asym (right),R_126_Network_4_R,Network_4_R,Diencephalon,Shen 268 parcellation (dilated)
+Bstem_Midbd_R,Region 132 from Shen_MNI152NLin6Asym (right),R_132_Network_4_R,Network_4_R,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Ponscd_L,Region 263 from Shen_MNI152NLin6Asym (left),R_263_Network_4_L,Network_4_L,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Ponscv_L,Region 265 from Shen_MNI152NLin6Asym (left),R_265_Network_4_L,Network_4_L,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Pons_R,Region 130 from Shen_MNI152NLin6Asym (right),R_130_Network_4_R,Network_4_R,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Ponscv_R,Region 131 from Shen_MNI152NLin6Asym (right),R_131_Network_4_R,Network_4_R,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Ponscd_R,Region 133 from Shen_MNI152NLin6Asym (right),R_133_Network_4_R,Network_4_R,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Med_L,Region 262 from Shen_MNI152NLin6Asym (left),R_262_Network_4_L,Network_4_L,Brainstem,Shen 268 parcellation (dilated)
+Bstem_Med_R,Region 129 from Shen_MNI152NLin6Asym (right),R_129_Network_4_R,Network_4_R,Brainstem,Shen 268 parcellation (dilated)
+Thal_PuA_1,Anterior pulvinar (left),Thal_L_PuA,Thal_Pulvinar_L,Thalamus_L,Morel2010
+Thal_PuI_1,Inferior pulvinar (left),Thal_L_PuI,Thal_Pulvinar_L,Thalamus_L,Morel2010
+Thal_PuL_1,Lateral pulvinar (left),Thal_L_PuL,Thal_Pulvinar_L,Thalamus_L,Morel2010
+Thal_PuM_1,Medial pulvinar (left),Thal_L_PuM,Thal_Pulvinar_L,Thalamus_L,Morel2010
+Thal_PuA_1,Anterior pulvinar (right),Thal_R_PuA,Thal_Pulvinar_R,Thalamus_R,Morel2010
+Thal_PuI_1,Inferior pulvinar (right),Thal_R_PuI,Thal_Pulvinar_R,Thalamus_R,Morel2010
+Thal_PuL_1,Lateral pulvinar (right),Thal_R_PuL,Thal_Pulvinar_R,Thalamus_R,Morel2010
+Thal_PuM_1,Medial pulvinar (right),Thal_R_PuM,Thal_Pulvinar_R,Thalamus_R,Morel2010
+Thal_LGNmc_1,Lateral geniculate nucleus (magnocellular) (left),Thal_L_LGNmc,Thal_Lateral_Geniculate_Nucleus_L,Thalamus_L,Morel2010
+Thal_LGNpc_1,Lateral geniculate nucleus (parvocellular) (left),Thal_L_LGNpc,Thal_Lateral_Geniculate_Nucleus_L,Thalamus_L,Morel2010
+Thal_LGNmc_1,Lateral geniculate nucleus (magnocellular) (right),Thal_R_LGNmc,Thal_Lateral_Geniculate_Nucleus_R,Thalamus_R,Morel2010
+Thal_LGNpc_1,Lateral geniculate nucleus (parvocellular) (right),Thal_R_LGNpc,Thal_Lateral_Geniculate_Nucleus_R,Thalamus_R,Morel2010
+Thal_Li_1,Limitans nucleus (left),Thal_L_Li,Thal_Medial_Geniculate_Nucleus_L,Thalamus_L,Morel2010
+Thal_MGN_1,Medial geniculate nucleus (left),Thal_L_MGN,Thal_Medial_Geniculate_Nucleus_L,Thalamus_L,Morel2010
+Thal_Po_1,Posterior nucleus (left),Thal_L_Po,Thal_Medial_Geniculate_Nucleus_L,Thalamus_L,Morel2010
+Thal_SG_1,Suprageniculate nucleus (left),Thal_L_SG,Thal_Medial_Geniculate_Nucleus_L,Thalamus_L,Morel2010
+Thal_Li_1,Limitans nucleus (right),Thal_R_Li,Thal_Medial_Geniculate_Nucleus_R,Thalamus_R,Morel2010
+Thal_MGN_1,Medial geniculate nucleus (right),Thal_R_MGN,Thal_Medial_Geniculate_Nucleus_R,Thalamus_R,Morel2010
+Thal_Po_1,Posterior nucleus (right),Thal_R_Po,Thal_Medial_Geniculate_Nucleus_R,Thalamus_R,Morel2010
+Thal_SG_1,Suprageniculate nucleus (right),Thal_R_SG,Thal_Medial_Geniculate_Nucleus_R,Thalamus_R,Morel2010
+Thal_CeM_1,Central medial nucleus (left),Thal_L_CeM,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_CL_1,Central lateral nucleus (left),Thal_L_CL,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_CM_1,Centre median nucleus (left),Thal_L_CM,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_MV_1,Medioventral nucleus (left),Thal_L_MV,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_Pf_1,Parafascicular nucleus (left),Thal_L_Pf,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_CeM_1,Central medial nucleus (right),Thal_R_CeM,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_CL_1,Central lateral nucleus (right),Thal_R_CL,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_CM_1,Centre median nucleus (right),Thal_R_CM,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_MV_1,Medioventral nucleus (right),Thal_R_MV,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_Pf_1,Parafascicular nucleus (right),Thal_R_Pf,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_AD_1,Anterior dorsal nucleus (left),Thal_L_AD,Thal_Anterior_L,Thalamus_L,Morel2010
+Thal_AM_1,Anterior medial nucleus (left),Thal_L_AM,Thal_Anterior_L,Thalamus_L,Morel2010
+Thal_AV_1,Anterior ventral nucleus (left),Thal_L_AV,Thal_Anterior_L,Thalamus_L,Morel2010
+Thal_AD_1,Anterior dorsal nucleus (right),Thal_R_AD,Thal_Anterior_R,Thalamus_R,Morel2010
+Thal_AM_1,Anterior medial nucleus (right),Thal_R_AM,Thal_Anterior_R,Thalamus_R,Morel2010
+Thal_AV_1,Anterior ventral nucleus (right),Thal_R_AV,Thal_Anterior_R,Thalamus_R,Morel2010
+Thal_LP_1,Lateral posterior nucleus (left),Thal_L_LP,Thal_Lateral_Posterior_L,Thalamus_L,Morel2010
+Thal_LP_1,Lateral posterior nucleus (right),Thal_R_LP,Thal_Lateral_Posterior_R,Thalamus_R,Morel2010
+Thal_LD_1,Lateral dorsl nucleus (left),Thal_L_LD,Thal_Lateral_dorsal_L,Thalamus_L,Morel2010
+Thal_LD_1,Lateral dorsl nucleus (right),Thal_R_LD,Thal_Lateral_dorsal_R,Thalamus_R,Morel2010
+Thal_MDmc_1,Medial dorsal nucleus (magnocellular) (left),Thal_L_MDmc,Thal_Mediodorsal_L,Thalamus_L,Morel2010
+Thal_MDpc_1,Medial dorsal nucleus (parvocellular) (left),Thal_L_MDpc,Thal_Mediodorsal_L,Thalamus_L,Morel2010
+Thal_MDmc_1,Medial dorsal nucleus (magnocellular) (right),Thal_R_MDmc,Thal_Mediodorsal_R,Thalamus_R,Morel2010
+Thal_MDpc_1,Medial dorsal nucleus (parvocellular) (right),Thal_R_MDpc,Thal_Mediodorsal_R,Thalamus_R,Morel2010
+Thal_VPI_1,Ventral posterior inferior nucleus (left),Thal_L_VPI,Thal_Ventral_posterior_L,Thalamus_L,Morel2010
+Thal_VPLa_1,Ventral posterior lateral nucleus (anterior part) (left),Thal_L_VPLa,Thal_Ventral_posterior_L,Thalamus_L,Morel2010
+Thal_VPLp_1,Ventral posterior lateral nucleus (posterior part) (left),Thal_L_VPLp,Thal_Ventral_posterior_L,Thalamus_L,Morel2010
+Thal_VPM_1,Ventral posterior medial nucleus (left),Thal_L_VPM,Thal_Ventral_posterior_L,Thalamus_L,Morel2010
+Thal_VPI_1,Ventral posterior inferior nucleus (right),Thal_R_VPI,Thal_Ventral_posterior_R,Thalamus_R,Morel2010
+Thal_VPLa_1,Ventral posterior lateral nucleus (anterior part) (right),Thal_R_VPLa,Thal_Ventral_posterior_R,Thalamus_R,Morel2010
+Thal_VPLp_1,Ventral posterior lateral nucleus (posterior part) (right),Thal_R_VPLp,Thal_Ventral_posterior_R,Thalamus_R,Morel2010
+Thal_VPM_1,Ventral posterior medial nucleus (right),Thal_R_VPM,Thal_Ventral_posterior_R,Thalamus_R,Morel2010
+Thal_VAmc_1,Ventral anterior nucleus (magnocellular) (left),Thal_L_VAmc,Thal_Ventral_anterior_L,Thalamus_L,Morel2010
+Thal_VApc_1,Ventral anterior nucleus (parvocellular) (left),Thal_L_VApc,Thal_Ventral_anterior_L,Thalamus_L,Morel2010
+Thal_VAmc_1,Ventral anterior nucleus (magnocellular) (right),Thal_R_VAmc,Thal_Ventral_anterior_R,Thalamus_R,Morel2010
+Thal_VApc_1,Ventral anterior nucleus (parvocellular) (right),Thal_R_VApc,Thal_Ventral_anterior_R,Thalamus_R,Morel2010
+Thal_VLa_1,Ventral lateral anterior nucleus (left),Thal_L_VLa,Thal_Ventral_lateral_medial_L,Thalamus_L,Morel2010
+Thal_VLpd_1,Ventral lateral posterior nucleus (drosal part) (left),Thal_L_VLpd,Thal_Ventral_lateral_medial_L,Thalamus_L,Morel2010
+Thal_VLpv_1,Ventral lateral posterior nucleus (ventral part) (left),Thal_L_VLpv,Thal_Ventral_lateral_medial_L,Thalamus_L,Morel2010
+Thal_VM_1,Ventral medial nucleus (left),Thal_L_VM,Thal_Ventral_lateral_medial_L,Thalamus_L,Morel2010
+Thal_VLa_1,Ventral lateral anterior nucleus (right),Thal_R_VLa,Thal_Ventral_lateral_medial_R,Thalamus_R,Morel2010
+Thal_VLpd_1,Ventral lateral posterior nucleus (drosal part) (right),Thal_R_VLpd,Thal_Ventral_lateral_medial_R,Thalamus_R,Morel2010
+Thal_VLpv_1,Ventral lateral posterior nucleus (ventral part) (right),Thal_R_VLpv,Thal_Ventral_lateral_medial_R,Thalamus_R,Morel2010
+Thal_VM_1,Ventral medial nucleus (right),Thal_R_VM,Thal_Ventral_lateral_medial_R,Thalamus_R,Morel2010
+Hythal_L,Hypothalamus (left),Hythal_L,Hythal_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Hythal_R,Hypothalamus (right),Hythal_R,Hythal_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+Haben_L,Habenula (left),Haben_L,Haben_L,Diencephalic_nuclei_L,CIT168 v1.1.0 subcortical
+Haben_R,Habenula (right),Haben_R,Haben_R,Diencephalic_nuclei_R,CIT168 v1.1.0 subcortical
+CA2_1,Left hippocampal cornu ammonis 1,L_CA,L_Hipp,L_Hippocampal_Formation,Julich/Amunts
+CA3_1,Left hippocampal cornu ammonis 1,L_CA,L_Hipp,L_Hippocampal_Formation,Julich/Amunts
+DG_1,Left hippocampal dentate gyrus,L_DG,L1_Hipp,L_Hippocampal_Formation,Julich/Amunts
+CA1_1,Left hippocampal cornu ammonis 1,L_CA,L_Hipp,L_Hippocampal_Formation,Julich/Amunts
+Subiculum_1,Left hippocampal subiculum,L_Subiculum,L_Subiculum,L_Hippocampal_Formation,Julich/Amunts
+CA2_1,Right hippocampal cornu ammonis 1,R_CA,R_Hipp,R_Hippocampal_Formation,Julich/Amunts
+CA3_1,Right hippocampal cornu ammonis 1,R_CA,R_Hipp,R_Hippocampal_Formation,Julich/Amunts
+DG_1,Right hippocampal dentate gyrus,R_DG,R1_Hipp,R_Hippocampal_Formation,Julich/Amunts
+CA1_1,Right hippocampal cornu ammonis 1,R_CA,R_Hipp,R_Hippocampal_Formation,Julich/Amunts
+Subiculum_1,Right hippocampal subiculum,R_Subiculum,R_Subiculum,R_Hippocampal_Formation,Julich/Amunts
+AMY_BLN_La,Amygdalar basolateral complex: lateral nucleus,AMY_BLN_La,BL,Amygdala,CIT168 amydala v1.0.3
+AMY_BLN_BL_BLDI,Amygdalar basolateral complex: basal nucleus,AMY_BLN_BL_BLDI,BL,Amygdala,CIT168 amydala v1.0.3
+AMY_BLN_BM,Amygdalar basolateral complex: accessory basal nucleus,AMY_BLN_BM,BL,Amygdala,CIT168 amydala v1.0.3
+AMY_CEN,Amygdalar central nucleus,AMY_CEN,CE,Amygdala,CIT168 amydala v1.0.3
+AMY_CMN,Amygdalar corticomedial group: medial nucleus,AMY_CMN,CM,Amygdala,CIT168 amydala v1.0.3
+AMY_BL_BLV,Amygdalar basolateral complex: paralaminar nucleus,AMY_BL_BLV,BL,Amygdala,CIT168 amydala v1.0.3
+AMY_ATA,Amygdalar corticomedial group: periamygdaloid cortex,AMY_ATA,CM,Amygdala,CIT168 amydala v1.0.3
+AMY_ATA_ASTA,Amygdalostriatal triansition area,AMY_ATA_ASTA,CE,Amygdala,CIT168 amydala v1.0.3
+AMY_AAA,Anteroir amygdaloid area,AMY_AAA,CE,Amygdala,CIT168 amydala v1.0.3
+AMY,Amygdalar intercalated nuclei,AMY,CE,Amygdala,CIT168 amydala v1.0.3
+BST_SLEA_L,Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (left),BST_SLEA,BST_SLEA,NAc,CIT168 v1.1.0
+BST_SLEA_R,Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (right),BST_SLEA,BST_SLEA,NAc,CIT168 v1.1.0
+NAc_shell_R,Region 24 from tian_3t_fsl6,NAc_shell_R,NAc_shell_R,NAc_R,Tian
+NAc_core_R,Region 25 from tian_3t_fsl6,NAc_core_R,NAc_core_R,NAc_R,Tian
+NAc_shell_L,Region 51 from tian_3t_fsl6,NAc_shell_L,NAc_shell_L,NAc_L,Tian
+NAc_core_L,Region 52 from tian_3t_fsl6,NAc_core_L,NAc_core_L,NAc_L,Tian
+CAU_VA_R,Region 17 from tian_3t_fsl6,CAU_VA_R,aCAU_R,CAU_R,Tian
+CAU_DA_R,Region 18 from tian_3t_fsl6,CAU_DA_R,aCAU_R,CAU_R,Tian
+CAU_body_R,Region 19 from tian_3t_fsl6,CAU_body_R,pCAU_R,CAU_R,Tian
+CAU_tail_R,Region 20 from tian_3t_fsl6,CAU_tail_R,pCAU_R,CAU_R,Tian
+CAU_VA_L,Region 44 from tian_3t_fsl6,CAU_VA_L,aCAU_L,CAU_L,Tian
+CAU_DA_L,Region 45 from tian_3t_fsl6,CAU_DA_L,aCAU_L,CAU_L,Tian
+CAU_body_L,Region 46 from tian_3t_fsl6,CAU_body_L,pCAU_L,CAU_L,Tian
+CAU_tail_L,Region 47 from tian_3t_fsl6,CAU_tail_L,pCAU_L,CAU_L,Tian
+PUT_VA_R,Region 13 from tian_3t_fsl6,PUT_VA_R,aPUT_R,PUT_R,Tian
+PUT_DA_R,Region 14 from tian_3t_fsl6,PUT_DA_R,aPUT_R,PUT_R,Tian
+PUT_VP_R,Region 15 from tian_3t_fsl6,PUT_VP_R,pPUT_R,PUT_R,Tian
+PUT_DP_R,Region 16 from tian_3t_fsl6,PUT_DP_R,pPUT_R,PUT_R,Tian
+PUT_VA_L,Region 40 from tian_3t_fsl6,PUT_VA_L,aPUT_L,PUT_L,Tian
+PUT_DA_L,Region 41 from tian_3t_fsl6,PUT_DA_L,aPUT_L,PUT_L,Tian
+PUT_VP_L,Region 42 from tian_3t_fsl6,PUT_VP_L,pPUT_L,PUT_L,Tian
+PUT_DP_L,Region 43 from tian_3t_fsl6,PUT_DP_L,pPUT_L,PUT_L,Tian
+GPe_L,Globus Pallidus external segment (left),GPe_L,GPe_L,GP_L,CIT168 v1.1.0
+GPi_L,Globus Pallidus internal segment (left),GPi_L,GPi_L,GP_L,CIT168 v1.1.0
+GPe_R,Globus Pallidus external segment (right),GPe_R,GPe_R,GP_R,CIT168 v1.1.0
+GPi_R,Globus Pallidus internal segment (right),GPi_R,GPi_R,GP_R,CIT168 v1.1.0
+Cblm_I_IV_L,Region 1 from SUIT_Cerebellum_MNI,Cblm_I_IV_L,Cblm_I_IV_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_I_IV_R,Region 2 from SUIT_Cerebellum_MNI,Cblm_I_IV_R,Cblm_I_IV_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_V_L,Region 3 from SUIT_Cerebellum_MNI,Cblm_V_L,Cblm_V_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_V_R,Region 4 from SUIT_Cerebellum_MNI,Cblm_V_R,Cblm_V_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_VI_L,Region 5 from SUIT_Cerebellum_MNI,Cblm_VI_L,Cblm_VI_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_VI,Region 6 from SUIT_Cerebellum_MNI,Cblm_Vermis_VI,Cblm_Vermis_VI,vermis,SUIT/Diedrichsen
+Cblm_VI_R,Region 7 from SUIT_Cerebellum_MNI,Cblm_VI_R,Cblm_VI_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_CrusI_L,Region 8 from SUIT_Cerebellum_MNI,Cblm_CrusI_L,Cblm_CrusI_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_CrusI_R,Region 10 from SUIT_Cerebellum_MNI,Cblm_CrusI_R,Cblm_CrusI_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_CrusII_L,Region 11 from SUIT_Cerebellum_MNI,Cblm_CrusII_L,Cblm_CrusII_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_CrusII,Region 12 from SUIT_Cerebellum_MNI,Cblm_Vermis_CrusII,Cblm_Vermis_CrusII,vermis,SUIT/Diedrichsen
+Cblm_CrusII_R,Region 13 from SUIT_Cerebellum_MNI,Cblm_CrusII_R,Cblm_CrusII_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_VIIb_L,Region 14 from SUIT_Cerebellum_MNI,Cblm_VIIb_L,Cblm_VIIb_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_VIIb,Region 15 from SUIT_Cerebellum_MNI,Cblm_Vermis_VIIb,Cblm_Vermis_VIIb,vermis,SUIT/Diedrichsen
+Cblm_VIIb_R,Region 16 from SUIT_Cerebellum_MNI,Cblm_VIIb_R,Cblm_VIIb_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_VIIIa_L,Region 17 from SUIT_Cerebellum_MNI,Cblm_VIIIa_L,Cblm_VIIIa_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_VIIIa,Region 18 from SUIT_Cerebellum_MNI,Cblm_Vermis_VIIIa,Cblm_Vermis_VIIIa,vermis,SUIT/Diedrichsen
+Cblm_VIIIa_R,Region 19 from SUIT_Cerebellum_MNI,Cblm_VIIIa_R,Cblm_VIIIa_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_VIIIb_L,Region 20 from SUIT_Cerebellum_MNI,Cblm_VIIIb_L,Cblm_VIIIb_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_VIIIb,Region 21 from SUIT_Cerebellum_MNI,Cblm_Vermis_VIIIb,Cblm_Vermis_VIIIb,vermis,SUIT/Diedrichsen
+Cblm_VIIIb_R,Region 22 from SUIT_Cerebellum_MNI,Cblm_VIIIb_R,Cblm_VIIIb_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_IX_L,Region 23 from SUIT_Cerebellum_MNI,Cblm_IX_L,Cblm_IX_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_IX,Region 24 from SUIT_Cerebellum_MNI,Cblm_Vermis_IX,Cblm_Vermis_IX,vermis,SUIT/Diedrichsen
+Cblm_IX_R,Region 25 from SUIT_Cerebellum_MNI,Cblm_IX_R,Cblm_IX_R,cerebellar_cortex_R,SUIT/Diedrichsen
+Cblm_X_L,Region 26 from SUIT_Cerebellum_MNI,Cblm_X_L,Cblm_X_L,cerebellar_cortex_L,SUIT/Diedrichsen
+Cblm_Vermis_X,Region 27 from SUIT_Cerebellum_MNI,Cblm_Vermis_X,Cblm_Vermis_X,vermis,SUIT/Diedrichsen
+Cblm_X_R,Region 28 from SUIT_Cerebellum_MNI,Cblm_X_R,Cblm_X_R,cerebellar_cortex_R,SUIT/Diedrichsen

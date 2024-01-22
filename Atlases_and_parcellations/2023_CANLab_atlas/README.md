@@ -1,10 +1,12 @@
 ## Overview
 
 This is a full brain atlas mashup. It draws from the following,
-* Cortex: HCP Multimodal Parcellation (Glasser et al.)
+* Cortex: HCP Multimodal Parcellation (Glasser et al. + Petre 2023 volumetric projection)
 * Thalamus: cytoarchitecture (Morel)
-* Basal Ganglia: Functional gradients (Tian)
+* Basal Ganglia (except GP): Functional gradients (Tian)
+* Basal Ganglia, Globus Palidus: T1/T2 contrast (CIT168 subcortical parcellation)
 * Hippocampal formation: cytoarchitecture (Julitch)
+* Amygdala: T1/T2 contrast (CIT168 Amygdalar parcellation)
 * Cerebellum: Deidrichsen
 * Brainstem: Multimodal gray matter parcellation (Bianciardi, Restricted)
 * Brainstem: resting state gross parcellation (Shen)

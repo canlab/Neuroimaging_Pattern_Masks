@@ -90,6 +90,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     % SubC - subcoeruleus new in CANLab2023
     % Ve - vestibular nucle icomplex
     % STh - Subthalamic nucelus new in CANLab2023
+    error('Deal with the subthalamic atlas. Take bianciardi and merge 1 and 2')
     switch SCALE
         case 'fine'
             biancia_regions = {'PAG', 'SC' 'IC', 'DR', 'MnR', 'SN', 'LC', 'RMg', 'VSM', ...
