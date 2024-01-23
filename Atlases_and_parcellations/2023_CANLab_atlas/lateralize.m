@@ -11,7 +11,7 @@ function atlas = lateralize(atlas)
     atlas.dat(xyz(1,:)' > 0 & atlas.dat ~= 0) = atlas.dat(xyz(1,:)' > 0 & atlas.dat ~= 0) + length(atlas.labels);
     if ~isempty(atlas.probability_maps)
         pmap = atlas.probability_maps;
-        pmap(xyz(1,:)' < 0 & atlas.dat ~= 0,:) = 0;
+        pmap(xyz(1,:)' <= 0 & atlas.dat ~= 0,:) = 0;
         atlas.probability_maps(xyz(1,:)' > 0 & atlas.dat ~= 0,:) = 0;
         atlas.probability_maps = [atlas.probability_maps, pmap];
     end
