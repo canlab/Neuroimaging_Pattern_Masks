@@ -69,6 +69,14 @@ ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
 %}
 ref = fmri_data(TEMPLATE);
 
+% create L/R masks
+brain_mask = atlas(fmri_mask_image(fmri_data().resample_space(TEMPLATE)),...
+    'labels',{'brain'},...
+    'label_descriptions',{'brain'});
+hemi_masks = lateralize(brain_mask);
+hemi_L = fmri_mask_image(hemi_masks.select_atlas_subset({'brain_L'}));
+hemi_R = fmri_mask_image(hemi_masks.select_atlas_subset({'brain_R'}));
+
 %% create basal ganglia
 % produces atlas object bg_dil 
 create_bg2023_atlas
@@ -110,6 +118,11 @@ tic
 cerebellum_dil = dilate(cerebellum, cifti_mask);
 clear cerebellum
 toc
+
+% renormalize the ~52vx p>1
+total_p = sum(cerebellum_dil.probability_maps,2);
+renorm = total_p > 1;
+cerebellum_dil.probability_maps(renorm,:) = cerebellum_dil.probability_maps(renorm,:)./total_p(renorm);
 
 
 %% Hippocampus and Hippocampus
@@ -165,14 +178,27 @@ hipp.references = char([{'Amunts, K., Kedo, O., Kindler, M., Pieperhoff, P., Moh
     {'Amunts, K., Mohlberg, H., Bludau, S., & Zilles, K. (2020). Julich-Brain: A 3D probabilistic atlas of the human brain s cytoarchitecture. Science, 369(6506), 988–992. https://doi.org/10.1126/science.abb4588 DOI: 10.1126/science.abb4588'}; ...
     {'Amunts et al (2023) [Dataset v3.0.3] DOI:10.25493/56EM-75H'}]);
 
+% renormalize the 1 or 2vx p>1
+total_p = sum(hipp.probability_maps,2);
+renorm = total_p > 1;
+hipp.probability_maps(renorm,:) = hipp.probability_maps(renorm,:)./total_p(renorm);
+
+
 
 amyg = load_atlas(sprintf('cit168_amygdala_%s',ALIAS));
+amyg = lateralize(amyg);
 amyg.labels_4 = amyg.labels_3;
 amyg.labels_3 = amyg.labels_2;
 amyg.labels_2 = amyg.labels;
 amyg.labels_5 = repmat({'CIT168 amydala v1.0.3'},1,num_regions(amyg));
 
 hipp = hipp.merge_atlases(amyg);
+
+% renormalize ~186vx voxels shared between hipp and amygdala parcellations
+total_p = sum(hipp.probability_maps,2);
+renorm = total_p > 1;
+hipp.probability_maps(renorm,:) = hipp.probability_maps(renorm,:)./total_p(renorm);
+
 % get cifti hippocampal mask and for each voxel find its nearest
 % hippocampal structure from hipp.
 cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,{'hipp','amygdala'}))));
@@ -189,13 +215,13 @@ create_thalamus2023_atlas
 
 % returns atlas object in variable called bstem_atlas 
 create_brainstem2023_atlas_unrestricted
-
+%}
 % Add labels to make more consistent with other atlases
 for i = 1:length(bstem_atlas.labels)
     bstem_atlas.labels{i} = [ 'Bstem_' bstem_atlas.labels{i}]; 
 end
 
-thal_bstem = bstem_atlas.merge_atlases(thalamus_atlas);
+thal_bstem = thalamus_atlas.merge_atlases(bstem_atlas,'noreplace');
 
 % these have had Thal_ or bstem_ prefixed onto them. Let's get rid of that
 thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_L')} = 'Mamm_Nuc_L';
@@ -207,7 +233,14 @@ thal_bstem = thal_bstem.apply_mask(cifti_mask);
 
 %% combinate atlases
 
-atlas_obj = thal_bstem.merge_atlases(hipp_amyg_dil).merge_atlases(bg_dil).merge_atlases(cerebellum_dil);
+atlas_obj = hipp_amyg_dil.merge_atlases(cerebellum_dil).merge_atlases(bg_dil).merge_atlases(thal_bstem,'noreplace');
+
+% renorm
+total_p = sum(atlas_obj.probability_maps,2);
+renorm = total_p > 1;
+atlas_obj.probability_maps(renorm,:) = atlas_obj.probability_maps(renorm,:)./total_p(renorm);
+
+
 atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 
 clear thal_bstem hipp_amyg_dil bg_dil cerebellum_dil
@@ -243,7 +276,9 @@ glasser.probability_maps = single(glasser.probability_maps);
 %glasser = dilate(glasser, canlab_mask);
 %delete(gcp('nocreate'))
 
-
+glasser.labels_5 = repmat({'Glasser2016+Petre2023VolProj'},1,num_regions(glasser));
+glasser.labels_4 = glasser.labels_3;
+glasser_labels_3 = glasser.labels_2;
 glasser.labels_2 = glasser.labels;
 
 %% add macro structural glasser labels
@@ -302,12 +337,17 @@ canlab.atlas_name = atlas_name;
 canlab.probability_maps = sparse(canlab.probability_maps);
 save(sprintf('%s_scaffold.mat',atlas_name), 'canlab');  
 
+% we need the memory for this
+clear all;
+load(sprintf('%s_scaffold.mat',atlas_name))
+
 nii = fmri_data(canlab);
 nii.dat = single(full(canlab.probability_maps));
-nii.fullpath = sprintf('%s_scaffold.nii', canlab.atlas_name);
-nii.write();
-gzip(sprintf('%s_scaffold.nii', canlab.atlas_name))
-delete(sprintf('%s_scaffold.nii', canlab.atlas_name));
+nii.fullpath = sprintf('/tmp/%s_scaffold.nii', canlab.atlas_name);
+nii.write('overwrite');
+gzip(nii.fullpath )
+delete(nii.fullpath );
+movefile(nii.fullpath ,sprintf('%s_scaffold.nii', canlab.atlas_name));
 
 labels = table(canlab.labels', canlab.label_descriptions, canlab.labels_2', canlab.labels_3', canlab.labels_4', canlab.labels_5', ...
     'VariableNames', {'labels', 'label_descriptions', 'labels_2', 'labels_3', 'labels_4', 'labels_5'});

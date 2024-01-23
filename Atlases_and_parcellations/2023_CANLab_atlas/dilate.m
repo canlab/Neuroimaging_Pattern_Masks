@@ -2,18 +2,27 @@ function dilated_atlas = dilate(img, mask)
     % takes an atlas object img and dilates it by searching for the nearest
     % label for each voxel in mask. Runs much faster if you resample img to
     % mask first, but it will be less accurate
+    %
+    % Note, this script will not dilate areas across the midline, but if
+    % the input is bilateral it may already cross the midline, in which
+    % case a region that is majority say right lateralized may have a voxel
+    % or two on the midline or in the left hemisphere, in which case that
+    % label may end up impact dilations in the contralateral hemisphere
+    % regardless. If you need this script to produce lateralized regions
+    % it's best to manually separate L and R side regions and dilate each
+    % separately before recombining.
 
     mask = mask.resample_space(img,'nearest');
 
     img = img.replace_empty();
 
     % dilation does not cross midline    
-    % split into halves
+    % split into halves, assigning midline to x+ side
     xyz = img.volInfo.mat*[img.volInfo.xyzlist'; ones(1,size(img.dat,1))];
     imgL = img;
-    imgL.dat(xyz(1,:) > 0) = 0;
+    imgL.dat(xyz(1,:) >= 0) = 0;
     imgR = img;
-    imgR.dat(xyz(1,:) <= 0) = 0;
+    imgR.dat(xyz(1,:) < 0) = 0;
 
     imgL = imgL.remove_empty();
     imgR = imgR.remove_empty();

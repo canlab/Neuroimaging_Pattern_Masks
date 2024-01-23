@@ -1,11 +1,9 @@
-% this script is meant to be invoked by create_CANLab2023_unrestricted.m
+% this script is meant to be invoked by create_CANLab202mid3_unrestricted.m
 % it's only saved separately for readability purposes
 
 bg = load_atlas(sprintf('tian_3t_%s',ALIAS));
 bg = bg.resample_space(ref,'nearest');
-bg.labels_2 = bg.labels_3; %32 regions
-bg.labels_3 = bg.labels_4; % maro structures (full putamen, accumbens, etc.)
-bg.labels_5 = repmat({'Tian'},1,num_regions(bg));
+bg.labels_5 = repmat({'Tian2020'},1,num_regions(bg));
 
 % replace rh/lh with R/L
 fnames = {'labels','labels_2','labels_3','labels_4'};
@@ -24,10 +22,10 @@ citfile = which(sprintf('CIT168_%s_subcortical_v1.1.0_atlas_object.mat',SPACE));
 atlas_obj = load(citfile); atlas_obj = atlas_obj.atlas_obj.resample_space(ref);
 
 BST = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,{'BST_SLEA'}))).replace_empty();
-BST = lateralize(BST);
 BST.labels_2 = repmat({'BST_SLEA'}, 1, num_regions(BST));
-[BST.labels_3, BST.labels_4] = deal(repmat({'NAc'}, 1, num_regions(BST)));
-BST.labels_5 = repmat({'CIT168 v1.1.0'},1,num_regions(BST));
+[BST.labels_3, BST.labels_4] = deal(repmat({'VStriatum'}, 1, num_regions(BST)));
+BST = lateralize(BST);
+BST.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(BST));
 
 %% Caudate
 % some of the ventral striatum is in the CIFTI accumbens (13%), but most is 
@@ -47,6 +45,9 @@ tic
 caud_dil = dilate(caud, cifti_mask);
 caud_dil = bg.select_atlas_subset({'NAc'}).apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
 caud_dil = BST.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
+caud_dil.labels_3 = deal(cellfun(@(x1)(strrep(x1,'NAc_core','VStriatum')),caud_dil.labels_3,'UniformOutput',false));
+caud_dil.labels_3 = deal(cellfun(@(x1)(strrep(x1,'NAc_shell','VStriatum')),caud_dil.labels_3,'UniformOutput',false));
+caud_dil.labels_4 = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),caud_dil.labels_4,'UniformOutput',false));
 clear caud
 toc
 
@@ -92,9 +93,9 @@ pal = load_atlas(sprintf('cit168_%s',ALIAS)).select_atlas_subset({'GP'}).remove_
 pal = lateralize(pal);
 
 pal.labels_2 = pal.labels;
-pal.labels_3 = pal.labels;
+pal.labels_3 = pal.labels_2;
 pal.labels_4 = {'GP_L','GP_L','GP_R','GP_R'};
-pal.labels_5 = repmat({'CIT168 v1.1.0'}, length(pal.labels));
+pal.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(pal));
 
 cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'pallidum'))));
 cifti_mask = cifti_mask.replace_empty();
@@ -112,6 +113,7 @@ cifti_mask = cifti_mask.replace_empty();
 
 tic
 accumbens_dil = dilate(accumbens, cifti_mask);
+[accumbens_dil.labels_3, accumbens_dil.labels_4] = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),accumbens_dil.labels_4,'UniformOutput',false));
 clear accumbens;
 accumbens_dil = BST.apply_mask(cifti_mask).merge_atlases(accumbens_dil,'noreplace');
 toc
@@ -142,3 +144,9 @@ for i = 1:length(fnames)
     end
 end
 bg_dil.probability_maps(:,remove) = [];
+
+for fname={'labels','labels_2','labels_3','labels_4'}
+    this_lbl = fname{1};
+    bg_dil.(this_lbl) = cellfun(@(x1)strrep(x1,'NAc_core','NAc_core_like'),bg_dil.(this_lbl),'UniformOutput',false);
+    bg_dil.(this_lbl) = cellfun(@(x1)strrep(x1,'NAc_shell','NAc_shell_like'),bg_dil.(this_lbl),'UniformOutput',false);
+end

@@ -10,7 +10,8 @@ This is a full brain atlas mashup. It draws from the following,
 * Cerebellum: Deidrichsen
 * Brainstem: Multimodal gray matter parcellation (Bianciardi, Restricted)
 * Brainstem: resting state gross parcellation (Shen)
-* Additional subthalamic and brainstem nuclei: CIT168
+* Midbrain PAG: BOLD 7T (Kragel et al. 2019)
+* Midbrain SN, RN, STH: T1/T2 contrast (CIT168 amygdala parcellation, Pauli 2018)
 
 There were two goals which motivated atlas construction. In order of priority
 * Provide a probablistic spatial reference for functional localization in multiple references spaces
@@ -180,9 +181,26 @@ minor but extensive, and all together represent a substantial change. Difference
 authoritative reference), so they were not carried over. Most other brainstem regions have analogs here, although potentially
 under a different name (for instance the dorsal motor nucleus of the vagus, or DMNX, is not the viscero-sensory-motor nuclei,
 or VSM).
+* Perfect hemispheric subdivision (midline is assigned to x+ direction). Canlab2018 had irregular midline boundaries across regions.
 
 ## Methods
 
+### PAG
+Phil Kragel's PAG parcellation was redone to provide probablistic labels. 19/24 participants had good parcellations (1,2,
+4-10,12,14,15,17,19,20-24). These participants were reprojected into their target space using transformations obtained
+from Phil's dropbox into the same target space as the 2019 paper (IXI549) except linear interpolation was used instead of
+cubic splines to avoid gibbs ringing. The results are saved in the source subfolder here as KragelPAG_MNI152NLin6Asym.nii.gz.
+The space designation is justified because the IXI sample was registered to MNI152NLin6Asym before generating the IXI549
+template used by Dartel to produce the warps used. Although there are differents between these templates the location and
+orientation of the cerebral aqueduct is the same, so there's no need for further alignment to MNI152NLin6Asym space. Individual
+subject alignments (partial volume effects and all) were averaged to produce a probablistic PAG map.
+
+This procedure did not reproduce the PAG columns. These were not derived on a per subject level though so no probablistic
+delineation between columns can be made. Instead we simply diluted the existing kragel2019pag atlas from this repository
+to span a mask defined by the probablistic labels derived above and used nearest neighbor interpolation to label the newly
+identified voxels within the dilution mask. These were then used to asign voxel probabilities to each of the individual
+columns. Because we do not have subject specific probabilities the intercolumn probabilities are nonintersecting, but the
+exterior margin of each column adopts the newly derived probablistic values.
 
 ## Parcel Discussion
 

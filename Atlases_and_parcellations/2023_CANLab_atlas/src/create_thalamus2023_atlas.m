@@ -114,7 +114,7 @@ for i = 1:length(group_codes)
     end
     roi_atlas.label_descriptions = group_descript(i);
     [roi_atlas.labels_2, roi_atlas.labels_3, roi_atlas.labels_4] = deal(roi_atlas.labels);
-    roi_atlas.labels_4 = repmat({'Diencephalic_nuclei'},1,num_regions(roi_atlas));
+    roi_atlas.labels_4 = repmat({'Midbrain'},1,num_regions(roi_atlas));
     roi_atlas = lateralize(roi_atlas);
     roi_atlas.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(roi_atlas));
     
