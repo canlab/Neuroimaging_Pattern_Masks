@@ -216,5 +216,13 @@ structures. Additionally, the parcellation provided here, particularly for the b
 not yet included may be involved, which if involved might have a much more probable boundary for a region than any yet
 included here. For instance, we don't have an RVM or a trigeminal nucleus in this parcellation, but they certainly exist. 
 
+Additionally, some of these regions are derived based on criteria that have only been investigated by single studies. In 
+particular, many cortical parcels are based solely on Glasser's parcellation criteria, many basal ganglia parcels are based
+solely on Tian's parcellation criteria, etc. Contrast that with the Julich atlas' cytoarchitectonic areas. Cytoarchitecture
+has been successfully used as a way of demarcating regions for decades, while multimodal imaging metrics (Glasser) lack that
+kind of validation to say nothing of novel criterial like functional connectivity streamline watersheds (Tian). Using these
+kinds of novel criteria are helpful from the perspective of ontology: we can label brain regions in some consistent fashion.
+We can't presuppose physiological significance of the boundaries however, and future updates to this atlas should revisit
+such delineations.
 
 ## References
