@@ -12,24 +12,24 @@
 % labels 5 - source atlas
 
 % uncomment these lines to run as a standalone script
-
+%{
 clear all; close all;
-SPACE = 'MNI152NLin6Asym';
+SPACE = 'MNI152NLin2009cAsym';
 
-%LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
-LIB = '/home/bogdan/.matlab';
+LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
+%LIB = '/home/bogdan/.matlab';
 ROOT = [LIB, '/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANLab_atlas/'];
 
-%addpath([LIB, '/spm12']);
-addpath([LIB, '/spm/spm12']);
+addpath([LIB, '/spm12']);
+%addpath([LIB, '/spm/spm12']);
 
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
 addpath(genpath([LIB, '/canlab/MasksPrivate']))
-%}
+
 
 if isempty(gcp('nocreate'))
-    parpool(10);
+    parpool(32);
 end
 
 switch SPACE
@@ -208,6 +208,11 @@ hipp_amyg_dil = dilate(hipp, cifti_mask);
 hipp_amyg_dil = hipp_amyg_dil.apply_mask(cifti_mask);
 clear julitch hipp amyg
 
+% add area prefix
+for i = 1:length(hipp_amyg_dil.labels)
+    hipp_amyg_dil.labels{i} = [ 'MTL_' hipp_amyg_dil.labels{i}]; 
+end
+
 %% thalamus and brainstem
 % returns atlas object in variable called thalamus_atlas
 create_thalamus2023_atlas
@@ -217,15 +222,19 @@ create_thalamus2023_atlas
 create_brainstem2023_atlas_unrestricted
 %}
 % Add labels to make more consistent with other atlases
+%}
 for i = 1:length(bstem_atlas.labels)
     bstem_atlas.labels{i} = [ 'Bstem_' bstem_atlas.labels{i}]; 
 end
 
 thal_bstem = thalamus_atlas.merge_atlases(bstem_atlas,'noreplace');
 
-% these have had Thal_ or bstem_ prefixed onto them. Let's get rid of that
-thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_L')} = 'Mamm_Nuc_L';
-thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_R')} = 'Mamm_Nuc_R';
+% add prefixes for the more esoteric structures
+thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_L')} = 'Hythal_Mamm_Nuc_L';
+thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_R')} = 'Hythal_Mamm_Nuc_R';
+
+thal_bstem.labels{contains(thal_bstem.labels,'Haben_L')} = 'Epithal_Haben_L';
+thal_bstem.labels{contains(thal_bstem.labels,'Haben_R')} = 'Epithal_Haben_R';
 
 cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,{'thalamus','brain_stem','diencephalon'}))));
 
@@ -278,7 +287,7 @@ glasser.probability_maps = single(glasser.probability_maps);
 
 glasser.labels_5 = repmat({'Glasser2016+Petre2023VolProj'},1,num_regions(glasser));
 glasser.labels_4 = glasser.labels_3;
-glasser_labels_3 = glasser.labels_2;
+glasser.labels_3 = glasser.labels_2;
 glasser.labels_2 = glasser.labels;
 
 %% add macro structural glasser labels
@@ -294,14 +303,14 @@ clear glasser
 % script_2023_wagerlab_combined_atlas_prep.sh
 fid = fopen('lctx_labels.txt');
 lbls_L = textscan(fid,'%s');
-lbls_L = lbls_L{1}(1:2:end);
+lbls_L = lbls_L{1}(1:6:end);
 ctx_regions_less_hipp = ~ismember(1:length(lbls_L),find(contains(lbls_L,'_H')));
 lbls_L = lbls_L(ctx_regions_less_hipp);
 fclose(fid);
 
 fid = fopen('rctx_labels.txt');
 lbls_R = textscan(fid,'%s');
-lbls_R = lbls_R{1}(1:2:end);
+lbls_R = lbls_R{1}(1:6:end);
 ctx_regions_less_hipp = ~ismember(1:length(lbls_R),find(contains(lbls_R,'_H')));
 lbls_R = lbls_R(ctx_regions_less_hipp);
 fclose(fid);
@@ -326,10 +335,13 @@ clear glasser_L glasser_R
 canlab.references = unique(canlab.references,'rows');
 
 % reformat laterality labels
-canlab.labels = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_\1')), canlab.labels, 'UniformOutput', false);
-canlab.labels = cellfun(@(x1)(regexprep(x1,'_rh$','_R')), canlab.labels, 'UniformOutput', false);
-canlab.labels = cellfun(@(x1)(regexprep(x1,'_lh$','_L')), canlab.labels, 'UniformOutput', false);
-canlab.labels = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_\1')), canlab.labels, 'UniformOutput', false);
+for fnames = {'labels','labels_2','labels_3','labels_4'}
+    this_lbl = fnames{1};
+    canlab.(this_lbl) = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_$1')), canlab.(this_lbl), 'UniformOutput', false);
+    canlab.(this_lbl) = cellfun(@(x1)(regexprep(x1,'_rh$','_R')), canlab.(this_lbl), 'UniformOutput', false);
+    canlab.(this_lbl) = cellfun(@(x1)(regexprep(x1,'_lh$','_L')), canlab.(this_lbl), 'UniformOutput', false);
+    canlab.(this_lbl) = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_$1')), canlab.(this_lbl), 'UniformOutput', false);
+end
 
 atlas_name = sprintf('CANLab2023_%s', SPACE);
 canlab.atlas_name = atlas_name;
@@ -338,16 +350,14 @@ canlab.probability_maps = sparse(canlab.probability_maps);
 save(sprintf('%s_scaffold.mat',atlas_name), 'canlab');  
 
 % we need the memory for this
-clear all;
-load(sprintf('%s_scaffold.mat',atlas_name))
+%clear all;
+%load(sprintf('%s_scaffold.mat',atlas_name))
 
 nii = fmri_data(canlab);
 nii.dat = single(full(canlab.probability_maps));
-nii.fullpath = sprintf('/tmp/%s_scaffold.nii', canlab.atlas_name);
+nii.fullpath = sprintf('%s_scaffold.nii', canlab.atlas_name);
 nii.write('overwrite');
-gzip(nii.fullpath )
-delete(nii.fullpath );
-movefile(nii.fullpath ,sprintf('%s_scaffold.nii', canlab.atlas_name));
+gzip(nii.fullpath);
 
 labels = table(canlab.labels', canlab.label_descriptions, canlab.labels_2', canlab.labels_3', canlab.labels_4', canlab.labels_5', ...
     'VariableNames', {'labels', 'label_descriptions', 'labels_2', 'labels_3', 'labels_4', 'labels_5'});

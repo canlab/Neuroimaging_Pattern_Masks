@@ -125,13 +125,13 @@ clear caud_dil put_dil pal_dil accumbens_dil
 % deal with redundant labels
 n_labels = length(bg_dil.labels);
 uniq_labels = unique(bg_dil.labels);
-remove = [];
+remove_lbl = [];
 for i = 1:length(uniq_labels)
     this_lbl = uniq_labels(i);
     this_ind = find(contains(bg_dil.labels, this_lbl));
     for j = 2:length(this_ind)
         bg_dil.dat(bg_dil.dat == this_ind(j)) = this_ind(1);
-        remove(end+1) = this_ind(j);
+        remove_lbl(end+1) = this_ind(j);
         bg_dil.probability_maps(:,this_ind(1)) = max(bg_dil.probability_maps(:,this_ind),[],2);
     end
 end
@@ -140,13 +140,20 @@ bg_dil.dat = dat - 1;
 fnames = {'labels','label_descriptions','labels_2','labels_3','labels_4','labels_5'};
 for i = 1:length(fnames)
     if length(bg_dil.(fnames{i})) == n_labels
-        bg_dil.(fnames{i})(remove) = [];
+        bg_dil.(fnames{i})(remove_lbl) = [];
     end
 end
-bg_dil.probability_maps(:,remove) = [];
+bg_dil.probability_maps(:,remove_lbl) = [];
 
 for fname={'labels','labels_2','labels_3','labels_4'}
     this_lbl = fname{1};
     bg_dil.(this_lbl) = cellfun(@(x1)strrep(x1,'NAc_core','NAc_core_like'),bg_dil.(this_lbl),'UniformOutput',false);
     bg_dil.(this_lbl) = cellfun(@(x1)strrep(x1,'NAc_shell','NAc_shell_like'),bg_dil.(this_lbl),'UniformOutput',false);
+end
+
+
+% add BG prephix
+
+for i = 1:length(bg_dil.labels)
+    bg_dil.labels{i} = [ 'BG_' bg_dil.labels{i}]; 
 end

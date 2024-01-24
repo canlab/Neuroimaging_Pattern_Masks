@@ -133,7 +133,7 @@ if isempty(which(shen_file))
     end
     bstem_atlas.probability_maps = sparse(double(pmap));
     
-    bstem_atlas.labels_5 = repmat({'Shen 268 parcellation (dilated)'}, 1, num_regions(bstem_atlas));
+    bstem_atlas.labels_5 = repmat({'Shen268'}, 1, num_regions(bstem_atlas));
     
     save(shen_file, 'bstem_atlas');
     shen_references = bstem_atlas.references;
@@ -227,9 +227,9 @@ if strcmp(SPACE,'MNI152NLin2009cAsym')
         [],...
         '/tmp/kragelpmaps_MNI152NLin2009cAsym.nii', ...
         1)
-    remove(kragelpmaps.fullpath);
+    delete(kragelpmaps.fullpath);
     kragelpmaps = fmri_data('/tmp/kragelpmaps_MNI152NLin2009cAsym.nii');
-    remove(kragelpmaps.fullpath);
+    delete('/tmp/kragelpmaps_MNI152NLin2009cAsym.nii');
 end
 
 atlas_obj = atlas(kragelpmaps, ...
