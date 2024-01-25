@@ -14,7 +14,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 %LIB = '/home/bogdan/.matlab';
@@ -128,12 +128,6 @@ cerebellum_dil.probability_maps(renorm,:) = cerebellum_dil.probability_maps(reno
 %% Hippocampus and Hippocampus
 julich = load_atlas(sprintf('julich_%s',ALIAS)).resample_space(ref);
 
-% SF - superficial amygdala
-% LB - laterobasal amygdala
-% CM - centromedian amygdala
-% CA - cornu ammonis
-% DG - dentate gyrus
-% HATA - hippocampal-amygdaloid transition area
 group_names = {'Subic', {'CA', 'DG'}};
 group_labels = {'Subic', 'Hippocampus'};
 

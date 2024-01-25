@@ -35,7 +35,7 @@ function apply_spm_warp(mvg_img0, fxd_img0, pre_affine_mat, warp_img, post_affin
 
 
     if ~isempty(pre_affine_mat)
-        M = csvread(pre_affine_mat);
+        M = dlmread(pre_affine_mat);
         for i = 1:length(mvg_img_hdr)
             spm_get_space(sprintf('%s,%d',mvg_img,i), M*mvg_img_hdr(1).mat);
         end
