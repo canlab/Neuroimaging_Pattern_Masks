@@ -14,7 +14,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin6Asym';
+SPACE = 'MNI152NLin2009cAsym';
 
 LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 %LIB = '/home/bogdan/.matlab';
@@ -182,8 +182,6 @@ hipp.probability_maps(renorm,:) = hipp.probability_maps(renorm,:)./total_p(renor
 amyg = load_atlas(sprintf('cit168_amygdala_%s',ALIAS));
 amyg = lateralize(amyg);
 amyg.labels_4 = amyg.labels_3;
-amyg.labels_3 = amyg.labels_2;
-amyg.labels_2 = amyg.labels;
 amyg.labels_5 = repmat({'CIT168 amydala v1.0.3'},1,num_regions(amyg));
 
 hipp = hipp.merge_atlases(amyg);

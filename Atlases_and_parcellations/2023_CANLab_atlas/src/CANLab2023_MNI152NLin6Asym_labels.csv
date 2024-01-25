@@ -367,26 +367,26 @@ MTL_CA3_R,Right hippocampal cornu ammonis 1,CA_R,Hipp_R,Hippocampal_Formation_R,
 MTL_DG_R,Right hippocampal dentate gyrus,DG_R,R1_Hipp,Hippocampal_Formation_R,Julich/Amunts
 MTL_CA1_R,Right hippocampal cornu ammonis 1,CA_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
 MTL_Subiculum_R,Right hippocampal subiculum,Subiculum_R,Subiculum_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_AMY_BLN_La_L,Amygdalar basolateral complex: lateral nucleus (left),AMY_BLN_La_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_L,Amygdalar basolateral complex: basal nucleus (left),AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_L,Amygdalar basolateral complex: accessory basal nucleus (left),AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CEN_L,Amygdalar central nucleus (left),AMY_CEN_L,CE_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CMN_L,Amygdalar corticomedial group: medial nucleus (left),AMY_CMN_L,CM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_L,Amygdalar basolateral complex: paralaminar nucleus (left),AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_L,Amygdalar corticomedial group: periamygdaloid cortex (left),AMY_ATA_L,CM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_L,Amygdalostriatal triansition area (left),AMY_ATA_ASTA_L,CE_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_AAA_L,Anteroir amygdaloid area (left),AMY_AAA_L,CE_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_L,Amygdalar intercalated nuclei (left),AMY_L,CE_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_R,Amygdalar basolateral complex: lateral nucleus (right),AMY_BLN_La_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_R,Amygdalar basolateral complex: basal nucleus (right),AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_R,Amygdalar basolateral complex: accessory basal nucleus (right),AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CEN_R,Amygdalar central nucleus (right),AMY_CEN_R,CE_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CMN_R,Amygdalar corticomedial group: medial nucleus (right),AMY_CMN_R,CM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_R,Amygdalar basolateral complex: paralaminar nucleus (right),AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_R,Amygdalar corticomedial group: periamygdaloid cortex (right),AMY_ATA_R,CM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_R,Amygdalostriatal triansition area (right),AMY_ATA_ASTA_R,CE_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_AAA_R,Anteroir amygdaloid area (right),AMY_AAA_R,CE_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_R,Amygdalar intercalated nuclei (right),AMY_R,CE_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_L,Amygdalar basolateral complex: lateral nucleus (left),BL_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_L,Amygdalar basolateral complex: basal nucleus (left),BL_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_L,Amygdalar basolateral complex: accessory basal nucleus (left),BL_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CEN_L,Amygdalar central nucleus (left),CE_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CMN_L,Amygdalar corticomedial group: medial nucleus (left),CM_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_L,Amygdalar basolateral complex: paralaminar nucleus (left),BL_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_L,Amygdalar corticomedial group: periamygdaloid cortex (left),CM_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_L,Amygdalostriatal triansition area (left),CE_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_AAA_L,Anteroir amygdaloid area (left),CE_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_L,Amygdalar intercalated nuclei (left),CE_L,Amygdala_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_R,Amygdalar basolateral complex: lateral nucleus (right),BL_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_R,Amygdalar basolateral complex: basal nucleus (right),BL_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_R,Amygdalar basolateral complex: accessory basal nucleus (right),BL_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CEN_R,Amygdalar central nucleus (right),CE_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CMN_R,Amygdalar corticomedial group: medial nucleus (right),CM_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_R,Amygdalar basolateral complex: paralaminar nucleus (right),BL_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_R,Amygdalar corticomedial group: periamygdaloid cortex (right),CM_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_R,Amygdalostriatal triansition area (right),CE_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_AAA_R,Anteroir amygdaloid area (right),CE_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_R,Amygdalar intercalated nuclei (right),CE_R,Amygdala_R,Amygdala_R,CIT168 amydala v1.0.3
 Cblm_I_IV_L,Region 1 from SUIT_Cerebellum_MNI,Cblm_I_IV_L,Cblm_I_IV_L,cerebellar_cortex_L,SUIT/Diedrichsen
 Cblm_I_IV_R,Region 2 from SUIT_Cerebellum_MNI,Cblm_I_IV_R,Cblm_I_IV_R,cerebellar_cortex_R,SUIT/Diedrichsen
 Cblm_V_L,Region 3 from SUIT_Cerebellum_MNI,Cblm_V_L,Cblm_V_L,cerebellar_cortex_L,SUIT/Diedrichsen
