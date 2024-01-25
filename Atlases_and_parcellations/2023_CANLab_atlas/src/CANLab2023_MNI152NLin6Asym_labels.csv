@@ -527,15 +527,15 @@ Bstem_PBP_R,Parabrachial Pigmented Nucleus (right),PBP_R,VTA_PBP_R,Midbrain_R,CI
 Bstem_VTA_R,Ventral Tegmental Area (right),VTA_R,VTA_PBP_R,Midbrain_R,CIT168 v1.1.0 subcortical
 Hythal_Mamm_Nuc_R,Mammilary nuclei (right),Mamm_Nuc_R,Mamm_Nuc_R,Midbrain_R,CIT168 v1.1.0 subcortical
 Bstem_STH_R,Subthalamic nucleus (right),STH_R,STH_R,Midbrain_R,CIT168 v1.1.0 subcortical
-Bstem_Midbrd_L,Midbrain left rostral dorsal,Shen_Midb_Lrd,Shen_Midb_Lrd,Midbrain_L,Shen 268 parcellation (dilated)
-Bstem_Midbc_L,Midbrain left caudal,Shen_Midb_Lc,Shen_Midb_Lc,Midbrain_L,Shen 268 parcellation (dilated)
-Bstem_Midbrd_R,Midbrain right rostral dorsal,Shen_Midb_Rrd,Shen_Midb_Rrd,Midbrain_R,Shen 268 parcellation (dilated)
-Bstem_Midbcd_R,Midbrain right caudal dorsal,Shen_Midb_Rcd,Shen_Midb_Rcd,Midbrain_R,Shen 268 parcellation (dilated)
-Bstem_Ponsrd_L,Pons left rostral dorsal,Shen_Pons_Lrd,Shen_Pons_Lrd,Pons_L,Shen 268 parcellation (dilated)
-Bstem_Ponscd_L,Pons left cudal dorsal,Shen_Pons_Lcd,Shen_Pons_Lcd,Pons_L,Shen 268 parcellation (dilated)
-Bstem_Ponsv_L,Pons left ventral,Shen_Pons_Lv,Shen_Pons_Lv,Pons_L,Shen 268 parcellation (dilated)
-Bstem_Ponsrv_R,Pons right rostral ventral,Shen_Pons_Rrv,Shen_Pons_Rrv,Pons_R,Shen 268 parcellation (dilated)
-Bstem_Ponscv_R,Pons right caudal ventral,Shen_Pons_Rcv,Shen_Pons_Rcv,Pons_R,Shen 268 parcellation (dilated)
-Bstem_Ponscd_R,Pons right caudal dorsal,Shen_Pons_Rcd,Shen_Pons_Rcd,Pons_R,Shen 268 parcellation (dilated)
-Bstem_Med_L,Medulla left,Shen_Med_L,Shen_Med_L,Medulla_L,Shen 268 parcellation (dilated)
-Bstem_Med_R,Medulla right,Shen_Med_R,Shen_Med_R,Medulla_R,Shen 268 parcellation (dilated)
+Bstem_Midbrd_L,Midbrain left rostral dorsal,Shen_Midb_Lrd,Shen_Midb_Lrd,Midbrain_L,Shen268
+Bstem_Midbc_L,Midbrain left caudal,Shen_Midb_Lc,Shen_Midb_Lc,Midbrain_L,Shen268
+Bstem_Midbrd_R,Midbrain right rostral dorsal,Shen_Midb_Rrd,Shen_Midb_Rrd,Midbrain_R,Shen268
+Bstem_Midbcd_R,Midbrain right caudal dorsal,Shen_Midb_Rcd,Shen_Midb_Rcd,Midbrain_R,Shen268
+Bstem_Ponsrd_L,Pons left rostral dorsal,Shen_Pons_Lrd,Shen_Pons_Lrd,Pons_L,Shen268
+Bstem_Ponscd_L,Pons left cudal dorsal,Shen_Pons_Lcd,Shen_Pons_Lcd,Pons_L,Shen268
+Bstem_Ponsv_L,Pons left ventral,Shen_Pons_Lv,Shen_Pons_Lv,Pons_L,Shen268
+Bstem_Ponsrv_R,Pons right rostral ventral,Shen_Pons_Rrv,Shen_Pons_Rrv,Pons_R,Shen268
+Bstem_Ponscv_R,Pons right caudal ventral,Shen_Pons_Rcv,Shen_Pons_Rcv,Pons_R,Shen268
+Bstem_Ponscd_R,Pons right caudal dorsal,Shen_Pons_Rcd,Shen_Pons_Rcd,Pons_R,Shen268
+Bstem_Med_L,Medulla left,Shen_Med_L,Shen_Med_L,Medulla_L,Shen268
+Bstem_Med_R,Medulla right,Shen_Med_R,Shen_Med_R,Medulla_R,Shen268
