@@ -17,6 +17,9 @@ group_codes = {{'PuM', 'PuI', 'PuL', 'PuA'}, ...
 group_labels2 = {'Pulvinar' 'Lateral Geniculate Nucleus', 'Medial Geniculate Nucleus', 'Intralaminar', ...
     'Anterior', 'Lateral Posterior', 'Lateral dorsal', 'Mediodorsal', 'Ventral posterior', 'Ventral anterior', 'Ventral lateral-medial'};
 
+group_labels3 = {'Pulvinar' 'Geniculate Nuclei', 'Geniculate Nuclei', 'Intralaminar', ...
+    'Anterior', 'Lateral', 'Lateral', 'Mediodorsal', 'Ventral', 'Anterior', 'Ventral'};
+
 label_descriptions = {'Anterior pulvinar', 'Inferior pulvinar',...
             'Lateral pulvinar', 'Medial pulvinar', 'Lateral geniculate nucleus (magnocellular)', ...
             'Lateral geniculate nucleus (parvocellular)', 'Limitans nucleus', 'Medial geniculate nucleus','Posterior nucleus', ...
@@ -36,6 +39,7 @@ label_descriptions = {'Anterior pulvinar', 'Inferior pulvinar',...
             'Ventral medial nucleus'};
 
 group_labels2 = cellfun(@(x1)regexprep(x1,'[ -]','_'),group_labels2, 'UniformOutput', false);
+group_labels3 = cellfun(@(x1)regexprep(x1,'[ -]','_'),group_labels3, 'UniformOutput', false);
 
 %group_codes = [group_codes {'mtt'}];
 %group_labels2 = [group_labels2 {'Mammillothalamic tract'}];
@@ -63,8 +67,9 @@ for i = 1:length(group_codes)
     new_desc_R = cellfun(@(x1)([x1 ' (right)']),new_desc0,'UniformOutput',false);
     new_desc = [new_desc new_desc_L new_desc_R];
     
-    roi_atlas.labels_2 = roi_atlas.labels;
-    roi_atlas.labels_3 = repelem({[group_labels2{i}, '_L'], [group_labels2{i}, '_R']}, 1, num_regions(roi_atlas)/2);
+    roi_atlas.labels_2 = repelem({[group_labels2{i}, '_L'], [group_labels2{i}, '_R']}, 1, num_regions(roi_atlas)/2);
+    %error('redo label_3 so that it''s a coarser parcellation than label_2');
+    roi_atlas.labels_3 = repelem({[group_labels3{i}, '_L'], [group_labels3{i}, '_R']}, 1, num_regions(roi_atlas)/2);
     roi_atlas.labels_4 = repelem({'Thalamus_L', 'Thalamus_R'}, 1, num_regions(roi_atlas)/2);
     roi_atlas.labels_5 = repmat({'Morel2010'},1,num_regions(roi_atlas));
 

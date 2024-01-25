@@ -20,7 +20,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
             error('No atlas available in %s space', SPACE)
     end
 
-    fprintf('Creating volumetric CANLab2023 %s %0.1fmm atlas\n', SPACE, res);
+    fprintf('Creating %s volumetric CANLab2023 %s %0.1fmm atlas\n', SCALE, SPACE, res);
 
     %{
     pmap = fmri_data(which(sprintf('CANLab2023_%s_%s_scaffold.nii.gz',SCALE, SPACE)));
@@ -61,7 +61,9 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     end
 
     % structs we take from the CIT168 atlas or Kragel2019 (PAG) or LGN/MGN
-    % (Morel)
+    % (Morel) that overlap with bianciardi. We prefer Kragel2019 and CIT168
+    % to bianciardi because they have open licenses, and we prefer Morel
+    % because it has a finer parcellation of the LGN.
     exclude_structs = {'PAG','RN','SN','VTA_PBP','STh', 'LG', 'MG'};
     biancia = biancia.select_atlas_subset(find(~contains(biancia.labels, exclude_structs)));
     
@@ -176,14 +178,18 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     timestamp = posixtime(datetime('Now'));
     atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))});
 
+    if strcmp(SCALE,'coarse')
+        atlas_obj = atlas_obj.downsample_parcellation('labels_2');
+    end
+
     this_dir = dir(which('create_CANLab2023_atlas.m'));
-    savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
+    savename = sprintf('%s_%s_%dmm_atlas_object.mat', atlas_obj.atlas_name, SCALE, res);
     save([this_dir.folder, '/' savename], 'atlas_obj');
 
     % we can't upload the mat file to github due to licensing issues, but
     % we can upload a timestamp that will flag out of date versions and
     % cause other uesrs to recreate the atlas when appropriate.
-    fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name),'w+');
+    fid = fopen(sprintf('%s/%s_%s_%dmm_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name, SCALE, res),'w+');
     fprintf(fid,'%f',timestamp);
     fclose(fid);
 

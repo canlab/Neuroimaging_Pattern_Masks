@@ -12,7 +12,7 @@
 % labels 5 - source atlas
 
 % uncomment these lines to run as a standalone script
-%{
+
 clear all; close all;
 SPACE = 'MNI152NLin2009cAsym';
 
@@ -222,7 +222,7 @@ create_thalamus2023_atlas
 create_brainstem2023_atlas_unrestricted
 %}
 % Add labels to make more consistent with other atlases
-%}
+
 for i = 1:length(bstem_atlas.labels)
     bstem_atlas.labels{i} = [ 'Bstem_' bstem_atlas.labels{i}]; 
 end

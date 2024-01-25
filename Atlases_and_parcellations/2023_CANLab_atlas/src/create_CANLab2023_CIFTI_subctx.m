@@ -11,7 +11,11 @@ function create_CANLab2023_CIFTI_subctx(SPACE,SCALE,res,atlas_obj)
             % HCP data which were spatially aligned into
             % MNI152NLin2009cAsym space. What we need are volumetric
             % templates taken directly from volumetric CIFTI segmentations 
-            % of MNI152NLin2009cAsym aligned data.
+            % of MNI152NLin2009cAsym aligned data. I didn't have anything
+            % of the sort when writing this code, so the line below is
+            % pulling in the MNI152NLin6Asym data. If you're running this
+            % code you presumably have a grayordinate template in a
+            % different space, so update this accordingly.
             cifti_mask = fmri_mask_image(which('hcp_cifti_subctx_labels.nii.gz'));
         otherwise
             error('Unsupported space %s', SPACE)
