@@ -179,7 +179,7 @@ cit.labels_5 = repmat({'CIT168 v1.1.0 subcortical'}, 1, num_regions(cit));
 
 % the order here is important. The most sensitive atlases (i.e. those with
 % the smallest regions) go first so that we resample to their spaces.
-bstem_atlas = cit.merge_atlases(bstem_atlas,'noreplace');
+bstem_atlas = cit.merge_atlases(bstem_atlas);
 
 
 %% Adjust labels
@@ -241,7 +241,7 @@ atlas_obj = atlas(kragelpmaps, ...
     'labels_5',repmat({'Kragel2019'},1,num_regions(kragelPAG_dil)),...
     'space_description',SPACE);
 
-bstem_atlas = atlas_obj.merge_atlases(bstem_atlas,'noreplace');
+bstem_atlas = atlas_obj.merge_atlases(bstem_atlas);
 
 %% Add references
 %{

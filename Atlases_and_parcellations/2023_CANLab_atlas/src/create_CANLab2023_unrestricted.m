@@ -14,7 +14,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 %LIB = '/home/bogdan/.matlab';
@@ -219,7 +219,7 @@ for i = 1:length(bstem_atlas.labels)
     bstem_atlas.labels{i} = [ 'Bstem_' bstem_atlas.labels{i}]; 
 end
 
-thal_bstem = thalamus_atlas.merge_atlases(bstem_atlas,'noreplace');
+thal_bstem = thalamus_atlas.merge_atlases(bstem_atlas);
 
 % add prefixes for the more esoteric structures
 thal_bstem.labels{contains(thal_bstem.labels,'Mamm_Nuc_L')} = 'Hythal_Mamm_Nuc_L';
@@ -234,7 +234,7 @@ thal_bstem = thal_bstem.apply_mask(cifti_mask);
 
 %% combinate atlases
 
-atlas_obj = hipp_amyg_dil.merge_atlases(cerebellum_dil).merge_atlases(bg_dil).merge_atlases(thal_bstem,'noreplace');
+atlas_obj = hipp_amyg_dil.merge_atlases(cerebellum_dil).merge_atlases(bg_dil).merge_atlases(thal_bstem);
 
 % renorm
 total_p = sum(atlas_obj.probability_maps,2);

@@ -53,10 +53,11 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     if res == 2
         template = which(sprintf('%s_T1_2mm.nii.gz',SPACE));
         atlas_obj = atlas_obj.resample_space(template);
-        atlas_obj.atlas_name = [atlas_obj.atlas_name '_2mm'];
+        atlas_obj.atlas_name = sprintf('%s_%s_%dmm',atlas_obj.atlas_name,SCALE,res);
 
         biancia = load_atlas(sprintf('bianciardi_%s_2mm',alias));
     else
+        atlas_obj.atlas_name = sprintf('%s_%s',atlas_obj.atlas_name,SCALE);
         biancia = load_atlas(sprintf('bianciardi_%s',alias));
     end
 
@@ -183,13 +184,13 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     end
 
     this_dir = dir(which('create_CANLab2023_atlas.m'));
-    savename = sprintf('%s_%s_%dmm_atlas_object.mat', atlas_obj.atlas_name, SCALE, res);
+    savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
     save([this_dir.folder, '/' savename], 'atlas_obj');
 
     % we can't upload the mat file to github due to licensing issues, but
     % we can upload a timestamp that will flag out of date versions and
     % cause other uesrs to recreate the atlas when appropriate.
-    fid = fopen(sprintf('%s/%s_%s_%dmm_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name, SCALE, res),'w+');
+    fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name),'w+');
     fprintf(fid,'%f',timestamp);
     fclose(fid);
 
@@ -200,9 +201,9 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     end
 
     if any(ismember(SPACE,{'MNI152NLin2009cAsym'})) && strcmp(SCALE,'coarse') && res == 1
-        fprintf('Creating QSIPrep compatable CANLab2023 %s %s %0.1fmm atlas...\n', SCALE, SPACE, res);
+        fprintf('Creating QSIPrep compatable CANLab2023 %s %s %0.1fmm atlas...\n', SPACE, SCALE, res);
 
-        % throw a warning. We don't want to be resamlling atlases again. We
+        % throw a warning. We don't want to be resampling atlases again. We
         % should only resample once per atlas and this has already been
         % resampled when its source atlases were projected into whatever
         % space we're operating in now. In particular the Bianciardi atlas
@@ -211,8 +212,8 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         % template into the original constituent atlas creation scripts.
         warning('QSIPrep atlas being created needs more work. Resampling non-optimal atlas for now.');
         ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
-        atlas_obj = atlas_obj.resample_space(ref);
-        atlas_obj.fullpath = sprintf('%s/qsiprep/CANLab2023_%s_%s_%dmm_qsiprep.nii', this_dir.folder, SCALE, SPACE, round(res));
+        atlas_obj = atlas_obj.resample_space(ref).threshold(0.2);
+        atlas_obj.fullpath = sprintf('%s/qsiprep/CANLab2023_%s_%s_%dmm_qsiprep.nii', this_dir.folder, SPACE, SCALE, round(res));
         atlas_obj.write('overwrite');
         
         % zero sform for compliance with qsiprep reqs. See here under 
