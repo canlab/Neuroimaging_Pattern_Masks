@@ -60,7 +60,7 @@ function create_CANLab2023_CIFTI_subctx(SPACE,SCALE,res,atlas_obj)
         end
     end
 
-    atlas_obj = atlas_obj.threshold(0.2).apply_mask(cifti_mask);
+    atlas_obj = atlas_obj.apply_mask(cifti_mask);
 
     subctx_ind = find(~contains(atlas_obj.labels, 'Ctx'));
     subctx_lbls = atlas_obj.labels(subctx_ind);
@@ -83,6 +83,7 @@ function create_CANLab2023_CIFTI_subctx(SPACE,SCALE,res,atlas_obj)
     if any(roi_vx_n < 10)
         warning('%s, retained for CIFTI volume, has few voxels (n<10)\n',atlas_obj.labels{roi_vx_n < 10});
     end
+    
     atlas_obj.probability_maps = [];
 
     if round(res) ~= res
