@@ -182,9 +182,33 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     renorm = total_p > 1;
     biancia.probability_maps(renorm,:) = biancia.probability_maps(renorm,:)./total_p(renorm);
 
-    % merge augmented biancia with the rest of the atlas, replacing
-    % anything that overlaps (shen regions primarily)
-    atlas_obj = biancia.merge_atlases(atlas_obj,'noreplace');
+    %% adjust shen regions so they're always less than biancia regions
+    % (since the shen brainstem regions are basically fillers
+    shen_regions = contains(atlas_obj.labels_5,'Shen');
+    % extract shen_regions
+    shen = atlas_obj.select_atlas_subset(find(shen_regions));
+    atlas_obj = atlas_obj.select_atlas_subset(find(~shen_regions));
+    % reconcile biancia regions with nonshen part of atlas
+    atlas_obj = atlas_obj.merge_atlases(biancia);
+    % renorm
+    total_p = sum(atlas_obj.probability_maps,2);
+    renorm = total_p > 1;
+    atlas_obj.probability_maps(renorm,:) = atlas_obj.probability_maps(renorm,:)./total_p(renorm);
+
+    % renormalize shen to sum to whatever probability density is left over
+    % after accounting for other regions
+    resid_p = 1 - sum(atlas_obj.probability_maps,2);
+    total_p = sum(shen.probability_maps,2);
+    new_total_p = min([sum(shen.probability_maps,2), resid_p],[],2);
+    renorm = total_p > new_total_p;
+    s = new_total_p(renorm)./total_p(renorm);
+    s(s<0 & s<1e-7) = 0; % floating point errors
+    shen.probability_maps(renorm,:) = shen.probability_maps(renorm,:).*s;
+    
+    % add shen back
+    atlas_obj = atlas_obj.merge_atlases(shen);
+
+    %% save data
     atlas_obj.fullpath = '';
 
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
