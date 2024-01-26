@@ -68,12 +68,26 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     exclude_structs = {'PAG','RN','SN','VTA_PBP','STh', 'LG', 'MG'};
     biancia = biancia.select_atlas_subset(find(~contains(biancia.labels, exclude_structs)));
     
+    groupings = {{'DR_B7','MnR_B6_B8','PMnR_B6_B8','CLi_RLi'},...
+        {'ROb_B2','RPa_B1','RMg_B3'},...
+        {'CnF','IC','SC','MiTg_PBG'},...
+        {'isRt','mRta','mRtd','mRtl'},...
+        {'PnO_PnC_B5'},...
+        {'iMRtl','iMRtm','PCRtA','sMRtl','sMRtm'},...
+        {'ION','SOC'},...
+        {'LC','SubC'},...
+        {'LPB','MPB'},...
+        {'LDTg_CGPn', 'PTg'},...
+        {'Ve', 'VSM'}};
+
     labels_3 = {};
     labels_4 = {};
     for i = 1:length(biancia.labels)
-        if contains(biancia.labels,'L_')
+        group_ind = cellfun(@(x1)any(contains(biancia.labels{i},x1)),groupings);
+        all_group_lbls = biancia.labels(contains(biancia.labels,groupings{group_ind}));
+        if contains(biancia.labels{i}, 'L_') && all(cellfun(@(x1)contains(x1,{'L_','R_'}),all_group_lbls))
             side = 'L_';
-        elseif contains(biancia.labels,'R_')
+        elseif contains(biancia.labels{i},'R_') &&  all(cellfun(@(x1)contains(x1,{'L_','R_'}),all_group_lbls))
             side = 'R_';
         else
             side = '';
@@ -82,40 +96,40 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         % drop L_ or R_ prefixes to allow switch cases to apply bilaterally
         this_label = regexprep(biancia.labels{i},'^[LR]_','');
         switch this_label
-            case {'DR_B7','MnR_B6_B8','PMnR_B6_B8','CLi_RLi'}
+            case groupings{1}
                 labels_3{end+1} = 'Rostral Raphe (Serotonergic)';
                 labels_4{end+1} = 'Midbrain';
-            case {'ROb_B2','RPa_B1','RMg_B3'}
+            case groupings{2}
                 labels_3{end+1} = 'Medullary Raphe (Serotonergic)';
                 labels_4{end+1} = 'Medulla';
-            case {'CnF','IC','SC','MiTg_PBG'}
+            case groupings{3}
                 labels_3{end+1} = 'Tectum';
                 labels_4{end+1} = 'Midbrain';
-            case {'isRt','mRta','mRtd','mRtl'}
+            case groupings{4}
                 labels_3{end+1} = 'Rostral reticular formation';
                 labels_4{end+1} = 'Midrain';
-            case {'PnO_PnC_B5'}
+            case groupings{5}
                 labels_3{end+1} = biancia.labels_2{i};
                 labels_4{end+1} = 'Pons';
-            case {'iMRtl','iMRtm','PCRtA','sMRtl','sMRtm'}
+            case groupings{6}
                 labels_3{end+1} = 'Medullary reticular formation';
                 labels_4{end+1} = 'Medulla';
-            case {'ION','SOC'}
+            case groupings{7}
                 labels_3{end+1} = 'Olivary complex';
                 labels_4{end+1} = 'Medulla';
-            case {'LC','SubC'}
+            case groupings{8}
                 labels_3{end+1} = 'LC+';
                 labels_4{end+1} = 'Pons';
-            case {'LPB','MPB'}
+            case groupings{9}
                 labels_3{end+1} = 'Parabrachial nuclei';
                 labels_4{end+1} = 'Pons';
-            case {'LDTg_CGPn', 'PTg'}
+            case groupings{10}
                 labels_3{end+1} = 'Cholinergic nuclei';
                 % calling this the pons is a stretch, the PTg is really
                 % midbrain, but this way we have the cholinergic nuclei in
                 % a single group.
                 labels_4{end+1} = 'Pons';
-            case {'Ve', 'VSM'}
+            case groupings{11}
                 labels_3{end+1} = 'Cranial nucleu';
                 labels_4{end+1} = 'Medullar';
             otherwise
