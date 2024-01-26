@@ -86,9 +86,9 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         group_ind = cellfun(@(x1)any(contains(biancia.labels{i},x1)),groupings);
         all_group_lbls = biancia.labels(contains(biancia.labels,groupings{group_ind}));
         if contains(biancia.labels{i}, 'L_') && all(cellfun(@(x1)contains(x1,{'L_','R_'}),all_group_lbls))
-            side = 'L_';
+            side = '_L';
         elseif contains(biancia.labels{i},'R_') &&  all(cellfun(@(x1)contains(x1,{'L_','R_'}),all_group_lbls))
-            side = 'R_';
+            side = '_R';
         else
             side = '';
         end
@@ -136,8 +136,8 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
                 error('Unexpected Bianciardi area %s', biancia.labels{i});
         end
         % add L_ and R_ prefixes back in
-        labels_3{end} = [side, labels_3{end}];
-        labels_4{end} = [side, labels_4{end}];
+        labels_3{end} = [labels_3{end}, side];
+        labels_4{end} = [labels_4{end}, side];
     end
     biancia.labels_3 = labels_3;
     biancia.labels_4 = labels_4;
