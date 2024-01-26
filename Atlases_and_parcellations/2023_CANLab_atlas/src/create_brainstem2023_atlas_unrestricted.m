@@ -243,6 +243,10 @@ atlas_obj = atlas(kragelpmaps, ...
 
 bstem_atlas = atlas_obj.merge_atlases(bstem_atlas);
 
+bstem_atlas.labels = cellfun(@(x1)['BStem_' x1], bstem_atlas.labels, 'UniformOutput', false);
+bstem_atlas.labels{contains(bstem_atlas.labels,'STH_L')} = 'STH_L';
+bstem_atlas.labels{contains(bstem_atlas.labels,'STH_L')} = 'STH_R';
+
 %% Add references
 %{
 references = {cit.references, ...
