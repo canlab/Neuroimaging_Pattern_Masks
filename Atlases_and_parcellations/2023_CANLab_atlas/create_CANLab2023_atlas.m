@@ -52,6 +52,15 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
 
     if res == 2
         template = which(sprintf('%s_T1_2mm.nii.gz',SPACE));
+        % implement a hacky fix for a small region
+        for side = {'_L', '_R'}
+            MV_ind = contains(atlas_obj.labels,['Thal_MV', side{1}]);
+            MV_vx = find(sum(atlas_obj.dat == find(MV_ind),2));
+            atlas_obj = atlas_obj.select_atlas_subset(find(~MV_ind));
+            CeM_ind = contains(atlas_obj.labels,['Thal_CeM', side{1}]);
+            atlas_obj.dat(MV_vx) = find(CeM_ind);
+        end
+
         atlas_obj = atlas_obj.resample_space(template);
         atlas_obj.atlas_name = sprintf('%s_%s_%dmm',atlas_obj.atlas_name,SCALE,res);
 
@@ -202,7 +211,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     new_total_p = min([sum(shen.probability_maps,2), resid_p],[],2);
     renorm = total_p > new_total_p;
     s = new_total_p(renorm)./total_p(renorm);
-    s(s<0 & s<1e-7) = 0; % floating point errors
+    s(s<0 & s<-1e-7) = 0; % floating point errors
     shen.probability_maps(renorm,:) = shen.probability_maps(renorm,:).*s;
     
     % add shen back
