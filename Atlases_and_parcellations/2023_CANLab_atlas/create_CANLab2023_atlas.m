@@ -6,7 +6,8 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
 % this if a bianciardi atlas does not yet exist either.
 %
 % SPACE - MNI152NLin2009cAsym | MNI152NLin6Asym
-% SCALE - fine | coarse, describes scale of the parcellation
+% SCALE - fine | coarse, describes scale of the parcellation. Generally
+%         only affects subcortical structures
 % res - 1 | 2. Resolution of final files in mm. If 2 then data is
 % additionally thresholded in a number of ways.
     
@@ -19,7 +20,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
             error('No atlas available in %s space', SPACE)
     end
 
-    fprintf('Creating volumetric CANLab2023 %s %s %0.1fmm atlas\n', SCALE, SPACE, res);
+    fprintf('Creating %s volumetric CANLab2023 %s %0.1fmm atlas\n', SCALE, SPACE, res);
 
     %{
     pmap = fmri_data(which(sprintf('CANLab2023_%s_%s_scaffold.nii.gz',SCALE, SPACE)));
@@ -46,31 +47,115 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         'references', char(ref.references));
     %}
     fname = dir(which('create_CANLab2023_atlas.m'));
-    atlas_obj = load(sprintf('%s/src/CANLab2023_%s_%s_scaffold.mat',fname.folder,SCALE,SPACE),'canlab');
+    atlas_obj = load(sprintf('%s/src/CANLab2023_%s_scaffold.mat',fname.folder,SPACE),'canlab');
     atlas_obj = atlas_obj.canlab;
 
     if res == 2
         template = which(sprintf('%s_T1_2mm.nii.gz',SPACE));
-        atlas_obj = atlas_obj.resample_space(template);
-        atlas_obj.atlas_name = [atlas_obj.atlas_name '_2mm'];
+        % implement a hacky fix for a small region
+        for side = {'_L', '_R'}
+            MV_ind = contains(atlas_obj.labels,['Thal_MV', side{1}]);
+            MV_vx = find(sum(atlas_obj.dat == find(MV_ind),2));
+            atlas_obj = atlas_obj.select_atlas_subset(find(~MV_ind));
+            CeM_ind = contains(atlas_obj.labels,['Thal_CeM', side{1}]);
+            atlas_obj.dat(MV_vx) = find(CeM_ind);
+        end
 
-        biancia = load_atlas(sprintf('bianciardi_%s_%s_2mm',SCALE,alias));
+        atlas_obj = atlas_obj.resample_space(template);
+        atlas_obj.atlas_name = sprintf('%s_%s_%dmm',atlas_obj.atlas_name,SCALE,res);
+
+        biancia = load_atlas(sprintf('bianciardi_%s_2mm',alias));
     else
-        biancia = load_atlas(sprintf('bianciardi_%s_%s',SCALE,alias));
+        atlas_obj.atlas_name = sprintf('%s_%s',atlas_obj.atlas_name,SCALE);
+        biancia = load_atlas(sprintf('bianciardi_%s',alias));
     end
 
-    % this to handle a bug in the bianciardi files. I'm fixing it in a
-    % different matlab session and this line can likely be removed in the
-    % future. It's meant to keep this script functional until the fix
-    % finishes running
-    biancia.label_descriptions = biancia.label_descriptions(:);
+    % structs we take from the CIT168 atlas or Kragel2019 (PAG) or LGN/MGN
+    % (Morel) that overlap with bianciardi. We prefer Kragel2019 and CIT168
+    % to bianciardi because they have open licenses, and we prefer Morel
+    % because it has a finer parcellation of the LGN.
+    exclude_structs = {'PAG','RN','SN','VTA_PBP','STh', 'LG', 'MG'};
+    biancia = biancia.select_atlas_subset(find(~contains(biancia.labels, exclude_structs)));
     
-    biancia.labels_4 = repmat({'Restricted (see BrainstemNavigator v0.9 license)'}, 1, num_regions(biancia));
+    groupings = {{'DR_B7','MnR_B6_B8','PMnR_B6_B8','CLi_RLi'},...
+        {'ROb_B2','RPa_B1','RMg_B3'},...
+        {'CnF','IC','SC','MiTg_PBG'},...
+        {'isRt','mRta','mRtd','mRtl'},...
+        {'PnO_PnC_B5'},...
+        {'iMRtl','iMRtm','PCRtA','sMRtl','sMRtm'},...
+        {'ION','SOC'},...
+        {'LC','SubC'},...
+        {'LPB','MPB'},...
+        {'LDTg_CGPn', 'PTg'},...
+        {'Ve', 'VSM'}};
+
+    labels_3 = {};
+    labels_4 = {};
+    for i = 1:length(biancia.labels)
+        group_ind = cellfun(@(x1)any(contains(biancia.labels{i},x1)),groupings);
+        all_group_lbls = biancia.labels(contains(biancia.labels,groupings{group_ind}));
+        if contains(biancia.labels{i}, 'L_') && all(cellfun(@(x1)contains(x1,{'L_','R_'}),all_group_lbls))
+            side = '_L';
+        elseif contains(biancia.labels{i},'R_') &&  all(cellfun(@(x1)contains(x1,{'L_','R_'}),all_group_lbls))
+            side = '_R';
+        else
+            side = '';
+        end
+
+        % drop L_ or R_ prefixes to allow switch cases to apply bilaterally
+        this_label = regexprep(biancia.labels{i},'^[LR]_','');
+        switch this_label
+            case groupings{1}
+                labels_3{end+1} = 'Rostral Raphe (Serotonergic)';
+                labels_4{end+1} = 'Midbrain';
+            case groupings{2}
+                labels_3{end+1} = 'Medullary Raphe (Serotonergic)';
+                labels_4{end+1} = 'Medulla';
+            case groupings{3}
+                labels_3{end+1} = 'Tectum';
+                labels_4{end+1} = 'Midbrain';
+            case groupings{4}
+                labels_3{end+1} = 'Rostral reticular formation';
+                labels_4{end+1} = 'Midrain';
+            case groupings{5}
+                labels_3{end+1} = biancia.labels_2{i};
+                labels_4{end+1} = 'Pons';
+            case groupings{6}
+                labels_3{end+1} = 'Medullary reticular formation';
+                labels_4{end+1} = 'Medulla';
+            case groupings{7}
+                labels_3{end+1} = 'Olivary complex';
+                labels_4{end+1} = 'Medulla';
+            case groupings{8}
+                labels_3{end+1} = 'LC+';
+                labels_4{end+1} = 'Pons';
+            case groupings{9}
+                labels_3{end+1} = 'Parabrachial nuclei';
+                labels_4{end+1} = 'Pons';
+            case groupings{10}
+                labels_3{end+1} = 'Cholinergic nuclei';
+                % calling this the pons is a stretch, the PTg is really
+                % midbrain, but this way we have the cholinergic nuclei in
+                % a single group.
+                labels_4{end+1} = 'Pons';
+            case groupings{11}
+                labels_3{end+1} = 'Cranial nucleu';
+                labels_4{end+1} = 'Medullar';
+            otherwise
+                error('Unexpected Bianciardi area %s', biancia.labels{i});
+        end
+        % add L_ and R_ prefixes back in
+        labels_3{end} = [labels_3{end}, side];
+        labels_4{end} = [labels_4{end}, side];
+    end
+    biancia.labels_3 = labels_3;
+    biancia.labels_4 = labels_4;
     biancia.labels_5 = repmat({'Bianciardi brainstem navigator v.0.9'}, 1, num_regions(biancia));
     
     % note that the locus coerulues has more rigorous segmentations based on 
     % T1-TSE sequences, but they produce regions that overlap very well with 
     % the bianciardi atlas' segmentation at this resolution.
+    % Re: updates from CANLab2018,
     % MnR replaces NCS
     % VSM replaces dmnx_nts
     % RMg replaces ncs_B6_B8
@@ -90,66 +175,6 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     % SubC - subcoeruleus new in CANLab2023
     % Ve - vestibular nucle icomplex
     % STh - Subthalamic nucelus new in CANLab2023
-    switch SCALE
-        case 'fine'
-            biancia_regions = {'PAG', 'SC' 'IC', 'DR', 'MnR', 'SN', 'LC', 'RMg', 'VSM', ...
-                'CnF', 'RPa', 'ROb', 'CLi_RLi', 'Rt', 'ION', 'SOC', 'LDTg_CGPn', ...
-                'MiTg_PBG', 'PnO_PnC', 'PTg', 'RN', 'SubC', 'Ve', 'STh', 'LPB', 'MPB'};
-            biancia = biancia.select_atlas_subset(biancia_regions);
-        case 'coarse'
-            % we're going to combine related and neighboring areas
-            biancia_regions = {'PAG', 'SC' 'IC', 'DR', 'SN', 'VSM', ...
-                {'RPa', 'ROb'}, ... % Neighboring medullary raphe nuclei 
-                'CLi_RLi', ...
-                {'iMRt','PCRtA','sMRt'}, ... % medullary reticular fomrations
-                {'isRt','mRt'}, ... mesencephalic regicular formations
-                {'ION', 'SOC'}, ... % Inferior and superior olives
-                'LDTg_CGPn', 'PnO_PnC', 'MiTg_PBG', 'PTg', 'RN', ...
-                {'LC', 'SubC'}, ... % Locus coeruleus and sub coeruleus
-                'Ve', 'STh', {'LPB', 'MPB'}, ... % lateral and medial parabrachial nuceli
-                'Mn'}; % median and paramedian raphe nuclei
-            biancia_names = {'PAG','SC','IC','DR','SN','VSM','RPaOb_B1_B2',...
-                'CLi_RLi','MedRt','MesRt','OC','LDTg_CGPn','PnO_PnC',...
-                'MiTg_PBG', 'PTg', 'RN', 'LCSubC', 'Ve', 'STh', 'PBN', 'Mn'};
-            lateralize_roi = [false,true,true,false,true,true,false,...
-                false,true,true,true,true,true,true,true,true,true,true,true,true,...
-                false];
-            for i = 1:length(biancia_regions)
-                ind = find(contains(biancia.labels,biancia_regions{i}));
-
-                if iscell(biancia_regions{i})
-                    this_atlas_obj = biancia.select_atlas_subset(biancia_regions{i},'flatten');
-                else
-                    this_atlas_obj = biancia.select_atlas_subset(biancia_regions(i),'flatten');
-                end
-                this_atlas_obj.labels = biancia_names(i);
-
-                new_lbls = unique(cellfun(@(x1)regexprep(x1,{'Right ','Left '},''),biancia.label_descriptions(ind),'UniformOutput',false))';
-                new_desc = new_lbls{1};
-                for j = 2:length(new_lbls)
-                    new_desc = [new_desc ', ' new_lbls{j}];
-                end
-                this_atlas_obj.label_descriptions = {new_desc};
-                for lbl = {'labels_2','labels_3','labels_4','labels_5'}
-                    if length(biancia.(lbl{1})) == num_regions(biancia)
-                        this_atlas_obj.(lbl{1}) = unique(biancia.(lbl{1})(ind));
-                    end
-                end
-                if lateralize_roi(i)
-                    this_atlas_obj = lateralize(this_atlas_obj);
-                end
-
-                if i == 1
-                    biancia_new = this_atlas_obj;
-                else
-                    biancia_new = biancia_new.merge_atlases(this_atlas_obj);
-                end
-            end
-            biancia = biancia_new;
-        otherwise
-            error('Did not understand scale %s', SCALE);
-    end
-
     biancia.labels = cellfun(@(x1)(sprintf('Bstem_%s', x1)), biancia.labels, 'UniformOutput', false);
     
     biancia.labels = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_$1')), biancia.labels, 'UniformOutput', false);
@@ -157,25 +182,53 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     biancia.labels = cellfun(@(x1)(regexprep(x1,'_lh$','_L')), biancia.labels, 'UniformOutput', false);
     biancia.labels = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_$1')), biancia.labels, 'UniformOutput', false);
 
-    if strcmp(SCALE,'coarse')
-        % this atlas needs slack, so we care even about low probability
-        % regions, but the brainstem scaffold has p = 0.35, so we increase
-        % the pmap here to always exceed the scaffold. By translating and
-        % rescaling we preserve the internal rank order of probabilities
-        % among bianciardi regions though.
-        pmap = biancia.probability_maps;
-        rescale = @(x1)(0.351 + x1*(1-0.351));
-        biancia.probability_maps(pmap > 0 & pmap <= 0.35) = rescale(pmap(pmap > 0 & pmap <= 0.35));
-    end
+    % merge biancia with other relevant structures
+    biancia = atlas_obj.select_atlas_subset(exclude_structs).merge_atlases(biancia);
+    % save complementary atlas_obj
+    atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.labels, exclude_structs)));
+    % renormalize
+    total_p = sum(biancia.probability_maps,2);
+    renorm = total_p > 1;
+    biancia.probability_maps(renorm,:) = biancia.probability_maps(renorm,:)./total_p(renorm);
 
+    %% adjust shen regions so they're always less than biancia regions
+    % (since the shen brainstem regions are basically fillers
+    shen_regions = contains(atlas_obj.labels_5,'Shen');
+    % extract shen_regions
+    shen = atlas_obj.select_atlas_subset(find(shen_regions));
+    atlas_obj = atlas_obj.select_atlas_subset(find(~shen_regions));
+    % reconcile biancia regions with nonshen part of atlas
     atlas_obj = atlas_obj.merge_atlases(biancia);
+    % renorm
+    total_p = sum(atlas_obj.probability_maps,2);
+    renorm = total_p > 1;
+    atlas_obj.probability_maps(renorm,:) = atlas_obj.probability_maps(renorm,:)./total_p(renorm);
+
+    % renormalize shen to sum to whatever probability density is left over
+    % after accounting for other regions
+    resid_p = 1 - sum(atlas_obj.probability_maps,2);
+    total_p = sum(shen.probability_maps,2);
+    new_total_p = min([sum(shen.probability_maps,2), resid_p],[],2);
+    renorm = total_p > new_total_p;
+    s = new_total_p(renorm)./total_p(renorm);
+    s(s<0 & s<-1e-7) = 0; % floating point errors
+    shen.probability_maps(renorm,:) = shen.probability_maps(renorm,:).*s;
+    
+    % add shen back
+    atlas_obj = atlas_obj.merge_atlases(shen);
+
+    %% save data
     atlas_obj.fullpath = '';
 
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
-    atlas_obj.references = char(unique(atlas_obj.references));
+    atlas_obj.references = char(unique(atlas_obj.references,'rows'));
 
     timestamp = posixtime(datetime('Now'));
     atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))});
+
+    if strcmp(SCALE,'coarse')
+        atlas_obj = atlas_obj.downsample_parcellation('labels_2');
+    end
 
     this_dir = dir(which('create_CANLab2023_atlas.m'));
     savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
@@ -195,9 +248,9 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     end
 
     if any(ismember(SPACE,{'MNI152NLin2009cAsym'})) && strcmp(SCALE,'coarse') && res == 1
-        fprintf('Creating QSIPrep compatable CANLab2023 %s %s %0.1fmm atlas...\n', SCALE, SPACE, res);
+        fprintf('Creating QSIPrep compatable CANLab2023 %s %s %0.1fmm atlas...\n', SPACE, SCALE, res);
 
-        % throw a warning. We don't want to be resamlling atlases again. We
+        % throw a warning. We don't want to be resampling atlases again. We
         % should only resample once per atlas and this has already been
         % resampled when its source atlases were projected into whatever
         % space we're operating in now. In particular the Bianciardi atlas
@@ -206,8 +259,8 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         % template into the original constituent atlas creation scripts.
         warning('QSIPrep atlas being created needs more work. Resampling non-optimal atlas for now.');
         ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
-        atlas_obj = atlas_obj.resample_space(ref);
-        atlas_obj.fullpath = sprintf('%s/qsiprep/CANLab2023_%s_%s_%dmm_qsiprep.nii', this_dir.folder, SCALE, SPACE, round(res));
+        atlas_obj = atlas_obj.resample_space(ref).threshold(0.2);
+        atlas_obj.fullpath = sprintf('%s/qsiprep/CANLab2023_%s_%s_%dmm_qsiprep.nii', this_dir.folder, SPACE, SCALE, round(res));
         atlas_obj.write('overwrite');
         
         % zero sform for compliance with qsiprep reqs. See here under 

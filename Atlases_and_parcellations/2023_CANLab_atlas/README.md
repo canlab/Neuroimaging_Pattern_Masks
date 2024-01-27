@@ -1,14 +1,17 @@
 ## Overview
 
 This is a full brain atlas mashup. It draws from the following,
-* Cortex: HCP Multimodal Parcellation (Glasser et al.)
+* Cortex: HCP Multimodal Parcellation (Glasser et al. + Petre 2023 volumetric projection)
 * Thalamus: cytoarchitecture (Morel)
-* Basal Ganglia: Functional gradients (Tian)
+* Basal Ganglia (except GP): Functional gradients (Tian)
+* Basal Ganglia, Globus Palidus: T1/T2 contrast (CIT168 subcortical parcellation)
 * Hippocampal formation: cytoarchitecture (Julitch)
+* Amygdala: T1/T2 contrast (CIT168 Amygdalar parcellation)
 * Cerebellum: Deidrichsen
 * Brainstem: Multimodal gray matter parcellation (Bianciardi, Restricted)
 * Brainstem: resting state gross parcellation (Shen)
-* Additional subthalamic and brainstem nuclei: CIT168
+* Midbrain PAG: BOLD 7T (Kragel et al. 2019)
+* Midbrain SN, RN, STH: T1/T2 contrast (CIT168 amygdala parcellation, Pauli 2018)
 
 There were two goals which motivated atlas construction. In order of priority
 * Provide a probablistic spatial reference for functional localization in multiple references spaces
@@ -178,9 +181,26 @@ minor but extensive, and all together represent a substantial change. Difference
 authoritative reference), so they were not carried over. Most other brainstem regions have analogs here, although potentially
 under a different name (for instance the dorsal motor nucleus of the vagus, or DMNX, is not the viscero-sensory-motor nuclei,
 or VSM).
+* Perfect hemispheric subdivision (midline is assigned to x+ direction). Canlab2018 had irregular midline boundaries across regions.
 
 ## Methods
 
+### PAG
+Phil Kragel's PAG parcellation was redone to provide probablistic labels. 19/24 participants had good parcellations (1,2,
+4-10,12,14,15,17,19,20-24). These participants were reprojected into their target space using transformations obtained
+from Phil's dropbox into the same target space as the 2019 paper (IXI549) except linear interpolation was used instead of
+cubic splines to avoid gibbs ringing. The results are saved in the source subfolder here as KragelPAG_MNI152NLin6Asym.nii.gz.
+The space designation is justified because the IXI sample was registered to MNI152NLin6Asym before generating the IXI549
+template used by Dartel to produce the warps used. Although there are differents between these templates the location and
+orientation of the cerebral aqueduct is the same, so there's no need for further alignment to MNI152NLin6Asym space. Individual
+subject alignments (partial volume effects and all) were averaged to produce a probablistic PAG map.
+
+This procedure did not reproduce the PAG columns. These were not derived on a per subject level though so no probablistic
+delineation between columns can be made. Instead we simply diluted the existing kragel2019pag atlas from this repository
+to span a mask defined by the probablistic labels derived above and used nearest neighbor interpolation to label the newly
+identified voxels within the dilution mask. These were then used to asign voxel probabilities to each of the individual
+columns. Because we do not have subject specific probabilities the intercolumn probabilities are nonintersecting, but the
+exterior margin of each column adopts the newly derived probablistic values.
 
 ## Parcel Discussion
 
@@ -196,5 +216,13 @@ structures. Additionally, the parcellation provided here, particularly for the b
 not yet included may be involved, which if involved might have a much more probable boundary for a region than any yet
 included here. For instance, we don't have an RVM or a trigeminal nucleus in this parcellation, but they certainly exist. 
 
+Additionally, some of these regions are derived based on criteria that have only been investigated by single studies. In 
+particular, many cortical parcels are based solely on Glasser's parcellation criteria, many basal ganglia parcels are based
+solely on Tian's parcellation criteria, etc. Contrast that with the Julich atlas' cytoarchitectonic areas. Cytoarchitecture
+has been successfully used as a way of demarcating regions for decades, while multimodal imaging metrics (Glasser) lack that
+kind of validation to say nothing of novel criterial like functional connectivity streamline watersheds (Tian). Using these
+kinds of novel criteria are helpful from the perspective of ontology: we can label brain regions in some consistent fashion.
+We can't presuppose physiological significance of the boundaries however, and future updates to this atlas should revisit
+such delineations.
 
 ## References

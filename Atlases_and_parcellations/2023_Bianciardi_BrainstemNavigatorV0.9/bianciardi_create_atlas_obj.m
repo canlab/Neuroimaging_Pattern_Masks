@@ -1,8 +1,7 @@
-function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
+function bianciaAtlas = bianciardi_create_atlas_obj(space)
     % build the bianciardi atlas in the specified space either the coarse
     % parcellation or the fine parcellation
     % space - 'MNI152NLin6Asym', 'MNI152NLin6Asym_2mm', 'MNI152NLin2009cAsym', or 'MNI152NLin2009cAsym_2mm'
-    % fine - boolean
     %
     % Note that this atlas has many tiny regions. It really helps to
     % minimize the number of interpolation steps, hence the 2mm versions of
@@ -28,12 +27,12 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         otherwise
             error('Unrecognized space %s',space);
     end
-    if fine, SCALE='fine'; else, SCALE='coarse'; end
+    SCALE='fine';
     ref_file = which([ref_file_base '.nii.gz']);
     if isempty(dir(ref_file)), ref_file = which([ref_file_base '.nii']); end
     if isempty(dir(ref_file)), error('Could not locate reference file for %s', space); end
 
-    atlas_name = sprintf('bianciardi_%s_%s', SCALE, space);
+    atlas_name = sprintf('bianciardi_%s', space);
     space_description = space;
     references = char({'García-Gomar MG, Videnovic A, Singh K, Stauder M, Lewis LD, Wald LL, Rosen BR, Bianciardi M. Disruption of brainstem structural connectivity in RBD using 7 Tesla MRI. Mov Disord. 2021 Dec 29. doi: 10.1002/mds.28895. Online ahead of print. PMID: 34964520',...
         'Singh K, García-Gomar MG, Bianciardi M. Probabilistic Atlas of the Mesencephalic Reticular Formation, Isthmic Reticular Formation, Microcellular Tegmental Nucleus, Ventral Tegmental Area Nucleus Complex, and Caudal-Rostral Linear Raphe Nucleus Complex in Living Humans from 7 Tesla Magnetic Resonance Imaging. Brain Connect. 2021 Oct;11(8):613-623. doi: 10.1089/brain.2020.0975. Epub 2021 biancian 17. PMID: 33926237.',...
@@ -45,30 +44,32 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
     % imort atlas file in MNI152NLin2009cAsym space
     % we bianciast use this as a stand in template that we'll modify later, since
     % this is the wrong space
-    if fine
-        labels_file = 'bianciardi_fine_labels.csv';
-    else 
-        labels_file = 'bianciardi_labels.csv';
-    end
-    bianciaTbl = readtable(which(labels_file));
+    bianciaTbl = readtable(which('bianciardi_fine_labels.csv'));
+    bianciaTbl_coarse = readtable(which('bianciardi_coarse_labels.csv'));
     labels = {};
     labels_2 = {};
+    labels_3 = {};
+    labels_4 = {};
     label_descriptions = {};
     for i = 1:height(bianciaTbl)
         labels{end+1} = bianciaTbl.left{i};
         label_descriptions{end+1} = bianciaTbl.full_label{i};
-        labels_2{end+1} = bianciaTbl.Structure{i};
+        labels_2{end+1} = bianciaTbl_coarse.left{i};
+        labels_3{end+1} = bianciaTbl.Structure{i};
+        labels_4{end+1} = num2str(bianciaTbl.Ref(i));
         if ~isempty(bianciaTbl.right{i})
             label_descriptions{end} = ['Left ',label_descriptions{end}];
             labels{end+1} = bianciaTbl.right{i};
             label_descriptions{end+1} = ['Right ' bianciaTbl.full_label{i}];    
-            labels_2{end+1} = bianciaTbl.Structure{i};
+            labels_2{end+1} = bianciaTbl_coarse.right{i};
+            labels_3{end+1} = bianciaTbl.Structure{i};
+            labels_4{end+1} = num2str(bianciaTbl.Ref(i));
         end
     end
     % fix capitalization
     for i = 1:length(label_descriptions), label_descriptions{i}(2:end) = lower(label_descriptions{i}(2:end)); end
     
-    areaFile = get_area_file(labels, labels_2, this_dir);
+    areaFile = get_area_file(labels, labels_3, this_dir);
 
     %% download files
     if any(cellfun(@isempty,areaFile))
@@ -166,16 +167,37 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
             delete(original_parcel.fullpath);
             pdata = fmri_data(aligned);
             delete(aligned)
-        case {'MNI152NLin6Asym','MNI152NLin6Asym_2mm'}
-            % does nothing for MNI152NLin6Asym, but resamples otherwise
+        case 'MNI152NLin6Asym'
+            % do nothing
+            pdata = original_parcel;
+        case 'MNI152NLin6Asym_2mm'
             pdata = original_parcel.resample_space(ref_file);
         otherwise
             error('Unrecognized space %s',space);        
     end
+
     % super low value errors are likely resampling issues. Not a problem
     % for FSL6 space, but a problem for any other spaces we might resample
-    % to in other versions of this script.
+    % to in other versions of this script. The issue with renormalization
+    % is that there are boundary regions and we want to allow for a voxel
+    % to be either one region or no region. i.e. if we have a p(A) = 0.3
+    % and p(~A) = 0 we don't want to convert that into p(A) = 1 after
+    % renormalization. We want to recognize that p(null) = 0.7. 
     pdata.dat(pdata.dat < 1e-4) = 0;
+
+    %% renormalize probabilities
+    % the probabilities don't add to one. There are two causes. First
+    % different studies produced different sets of these probability maps.
+    % Most studies have probabilities that sum to 1, but across studies
+    % there are boundary overlaps. The second cause is specific to certain
+    % regions in certain studies that overlap for some inexplicable reasons
+    % despite the fact that they shouldn't. These are as follows, indexing
+    % studies by publication year,
+    % 2015 - 61 DR and PAG voxels overlap
+    % 2021 - 1 voxels of L_VTA_PBP overlaps with L_mRta
+    % In both cases we can just renormalize to fix the problem. 
+    total_p = sum(pdata.dat,2);
+    pdata.dat(total_p~=0,:) = pdata.dat(total_p~=0,:)./total_p(total_p~=0);
     
     %% build atlas
     
@@ -185,6 +207,8 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space, fine)
         'labels',labels, ...
         'label_descriptions', label_descriptions(:), ... 
         'labels_2', labels_2, ...
+        'labels_3', labels_3, ...
+        'labels_4', labels_4, ...
         'space_description', space_description, ...
         'references',references, 'noverbose');
     bianciaAtlas = bianciaAtlas.replace_empty();
