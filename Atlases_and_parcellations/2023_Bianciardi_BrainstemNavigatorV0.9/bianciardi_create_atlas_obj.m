@@ -243,9 +243,33 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
     bianciaAtlas.additional_info = struct('creation_date', {posixtime(datetime('Now'))},...
         'hash',{hash});
 
+    if strcmp(space,'MNI152NLin2009cAsym_2mm')
+        % hacky fix for washed out MnR (median raphe). We find it's maximal
+        % likelihood value and manipulate it so that it's the most probable
+        % region in that voxel. This results in one voxel being assigned to
+        % MnR in the *.dat field with minimal compromising of the pmaps. We
+        % rescale other pmaps to retain their proportions, so in that sense 
+        % we steal probability density equally from all other regions.
+        MnR_ind = strcmp(bianciaAtlas.labels,{'MnR_B6_B8'});
+        assert(sum(MnR_ind) == 1)
+
+        pmap = bianciaAtlas.probability_maps(:,MnR_ind);
+        MnR_max_vx_coord = find(pmap == max(pmap));
+        pdensity = bianciaAtlas.probability_maps(MnR_max_vx_coord,:);
+        
+        % set MnR to 0.1 > the next most probable region in this voxel
+        new_pdensity = pdensity;
+        new_pdensity(MnR_ind) = max(pdensity) + 0.1;
+        new_pdensity = new_pdensity/sum(new_pdensity); % renormalize to 1
+
+        warning('Adjusting probability maps to avoid erasing MnR. Changing max(p(MnR)) from %0.2f to %0.2f',full(max(pmap)),max(pdensity)+0.1)
+        bianciaAtlas.probability_maps(MnR_max_vx_coord,:) = new_pdensity;
+        bianciaAtlas = bianciaAtlas.probability_maps_to_region_index();
+    end
+
     [~,~,~,missing_regions] = bianciaAtlas.check_properties();
     if ~isempty(missing_regions)
-        
+        error('Some regions are missing from the atlas file');
     end
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
