@@ -9,6 +9,9 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
 % SCALE - fine | coarse, describes scale of the parcellation. Generally
 %         only affects subcortical structures
 % res - 1 | 2. Resolution of final files in mm. If 2 then data is
+% versionUpdate - true/false. Set to true if you've just modified the atlas
+%   somehow. If this script is invoked simply to build a copy of the atlas
+%   that you don't have locally (e.g. from load_atlas()), or to pull an 
 % additionally thresholded in a number of ways.
     
     switch SPACE
@@ -223,8 +226,9 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
     atlas_obj.references = char(unique(atlas_obj.references,'rows'));
 
-    timestamp = posixtime(datetime('Now'));
-    atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))});
+    hash = DataHash(atlas_obj);
+    atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))},...
+        'hash',{hash});
 
     if strcmp(SCALE,'coarse')
         atlas_obj = atlas_obj.downsample_parcellation('labels_2');
@@ -238,7 +242,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     % we can upload a timestamp that will flag out of date versions and
     % cause other uesrs to recreate the atlas when appropriate.
     fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name),'w+');
-    fprintf(fid,'%f',timestamp);
+    fprintf(fid,'%s',hash);
     fclose(fid);
 
     if any(ismember(SPACE,{'MNI152NLin6Asym'})) && strcmp(SCALE,'coarse') && res == 2

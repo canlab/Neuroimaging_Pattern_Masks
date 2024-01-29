@@ -239,8 +239,14 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
 
     bianciaAtlas = threshold(bianciaAtlas, .01);
     bianciaAtlas.probability_maps = sparse(double(bianciaAtlas.probability_maps));
-    timestamp = posixtime(datetime('Now'));
-    bianciaAtlas.additional_info = struct('creation_date', {posixtime(datetime('Now'))});
+    hash = DataHash(bianciaAtlas);
+    bianciaAtlas.additional_info = struct('creation_date', {posixtime(datetime('Now'))},...
+        'hash',{hash});
+
+    [~,~,~,missing_regions] = bianciaAtlas.check_properties();
+    if ~isempty(missing_regions)
+        
+    end
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save([this_dir.folder, '/' savename], 'bianciaAtlas');
@@ -249,7 +255,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
     % we can upload a timestamp that will flag out of date versions and
     % cause other uesrs to recreate the atlas when appropriate.
     fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, bianciaAtlas.atlas_name), 'w+');
-    fprintf(fid,'%f',timestamp);
+    fprintf(fid,'%s',hash);
     fclose(fid);
 end
 
