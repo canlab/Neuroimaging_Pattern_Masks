@@ -89,12 +89,12 @@ clear put
 %% Pallidum
 % tian atlas doesn't distinguish interior/exterior GP, but CIT168 does, so 
 % we use that instead.
-pal = load_atlas(sprintf('cit168_%s',ALIAS)).select_atlas_subset({'GP'}).remove_empty();
+pal = load_atlas(sprintf('cit168_%s',ALIAS)).select_atlas_subset({'GP','VeP'}).remove_empty();
 pal = lateralize(pal);
 
 pal.labels_2 = pal.labels;
 pal.labels_3 = pal.labels_2;
-pal.labels_4 = {'GP_L','GP_L','GP_R','GP_R'};
+pal.labels_4 = {'GP_L','GP_L','GP_L','GP_R','GP_R','GP_R'};
 pal.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(pal));
 
 cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'pallidum'))));
