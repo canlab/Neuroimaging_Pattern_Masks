@@ -109,7 +109,7 @@ TA2,Area TA2,auditory transition area,auditory_association_cortex
 FOP4,Frontal Opercular Area 4,posterior operculum,insula_operculum
 MI,Middle Insular Area,anterior agranular insula,insula_anterior
 PIR,Piriform olfactory cortex,PIR,insula_anterior
-AVI,Anterior Ventral Insular Area,AVI,insula_anterior
+AVI,Anterior Ventral Insular Area,anterior agranular insula,insula_anterior
 AAIC,Anterior Agranular Insular Complex,anterior agranular insula,insula_anterior
 FOP1,Frontal Opercular Area 1,FOP1-BA43,somatomotor_operculum
 FOP3,Frontal Opercular Area 3,anterior operculum,insula_operculum
