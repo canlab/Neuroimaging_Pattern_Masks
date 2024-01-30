@@ -106,14 +106,14 @@ RI,RetroInsular Cortex,auditory+,auditory_early
 PFcm,Area Pfcm,SII+,somatomotor_operculum
 PoI2,insula_posteriorr Area 2,inferior dysgranular insula,insula_posterior
 TA2,Area TA2,auditory transition area,auditory_association_cortex
-FOP4,Frontal Opercular Area 4,posterior operculum,insula_operculum
+FOP4,Frontal Opercular Area 4,anterior operculum,insula_operculum
 MI,Middle Insular Area,anterior agranular insula,insula_anterior
 PIR,Piriform olfactory cortex,PIR,insula_anterior
 AVI,Anterior Ventral Insular Area,anterior agranular insula,insula_anterior
 AAIC,Anterior Agranular Insular Complex,anterior agranular insula,insula_anterior
 FOP1,Frontal Opercular Area 1,FOP1-BA43,somatomotor_operculum
-FOP3,Frontal Opercular Area 3,anterior operculum,insula_operculum
-FOP2,Frontal Opercular Area 2,anterior operculum,insula_operculum
+FOP3,Frontal Opercular Area 3,posterior operculum,insula_operculum
+FOP2,Frontal Opercular Area 2,posterior operculum,insula_operculum
 PFt,Parietal area F part t,anterior IPL,parietal_inferior_lobule
 AIP,Anterior IntraParietal Area,ventral intraparietal,parietal_superior_lobule
 EC,Entorhinal Cortex,hippocampal formation,temporal_medial
@@ -167,7 +167,7 @@ s32,Area s32,vmPFC,cingulate_ACC_mPFC
 pOFC,posterior OFC Complex,dmPFC,cingulate_ventral_frontal
 PoI1,Area insula_posteriorr 1,inferior dysgranular insula,insula_posterior
 Ig,Insular Granular Complex,posterior granular insula,insula_posterior
-FOP5,Area Frontal Opercular 5,posterior operculum,insula_operculum
+FOP5,Area Frontal Opercular 5,anterior operculum,insula_operculum
 p10p,Area posterior 10p,BA10,cingulate_ventral_frontal
 p47r,Area posterior 47r,BA47,cingulate_ventral_frontal
 TGv,Area TG Ventral,temporal pole,temporal_lateral
