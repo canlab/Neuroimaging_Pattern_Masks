@@ -234,6 +234,48 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         atlas_obj = atlas_obj.downsample_parcellation('labels_2');
     end
 
+    if strcmp('MNI152NLin6Asym',SPACE) && res == 2
+        % hacky fix fo rshen overwriting the only LC_L region that survives
+        % neighboring prob maps
+        ind = biancia.dat == find(contains(biancia.labels,'LC_L'));
+        assert(sum(ind) == 1); % unless bianciardi has changed only one voxel should survive
+
+        canlab_LC_ind = contains(atlas_obj.labels,{'LC_L','LC_l'});
+        % make sure we haven't resampled in some weird way and this area 
+        % still has probability assigned to LC after merging the bianciardi 
+        % atlas into our atlas_obj
+        assert(atlas_obj.probability_maps(ind,canlab_LC_ind) ~= 0);
+        
+        LC_pval = full(atlas_obj.probability_maps(ind,canlab_LC_ind));
+        canlab_not_LC = find(~canlab_LC_ind);
+        other_pmaps = full(atlas_obj.probability_maps(ind,canlab_not_LC));
+        assert(sum(other_pmaps > LC_pval) == 1) % make sure only one region exceeds LC value
+        % the above region should be a shen region
+        bad_region = canlab_not_LC(find(other_pmaps > LC_pval));
+        % make sure it's a shen region with synthetic probability values that we're modifying
+        switch SCALE
+            case 'fine'
+                assert(contains(atlas_obj.labels_5(bad_region),'Shen'));
+            case 'coarse'
+                assert(contains(atlas_obj.labels_4(bad_region),'Shen'));
+            otherwise
+                error('Unsupported SCALE %s',SCALE);
+        end
+        % modify synthetic shen probability to something that won't
+        % overrule LC
+        atlas_obj.probability_maps(ind,bad_region) = max([LC_pval - 0.1,0]);
+
+        % regenerate pmaps
+        atlas_obj = atlas_obj.probability_maps_to_region_index();
+    end
+
+
+
+    [~,~,~,missing_regions] = atlas_obj.check_properties();
+    if ~isempty(missing_regions)
+        error('Some regions are missing from the atlas file');
+    end
+
     this_dir = dir(which('create_CANLab2023_atlas.m'));
     savename = sprintf('%s_atlas_object.mat', atlas_obj.atlas_name);
     save([this_dir.folder, '/' savename], 'atlas_obj');

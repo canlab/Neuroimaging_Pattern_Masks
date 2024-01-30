@@ -225,4 +225,15 @@ kinds of novel criteria are helpful from the perspective of ontology: we can lab
 We can't presuppose physiological significance of the boundaries however, and future updates to this atlas should revisit
 such delineations.
 
+## Developer Notes
+Version tracking is handled by the *latest files which contain hashes of the 
+associated objects. Running the create_CANlab2023_atlas.m script updates these
+hashes automatically. If you modify the script or any other upstream atlases
+that you want incorporated into a new version of the canlab2023 atlas you will
+need to rerun create_CANLab2023_atlas.m for each of the 8 variations of the
+canlab2023 atlas (two spaces x 2 resolutions x 2 granularities of parcellations)
+so that the associated hashes are updated. If you do not do this then users
+who pull updated git repos won't know that those atlas spaces/resolutions/parcellations
+have been updated and load_atlas() won't know to update their atlas *.mat files.
+
 ## References
