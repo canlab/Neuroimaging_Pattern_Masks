@@ -235,5 +235,7 @@ canlab2023 atlas (two spaces x 2 resolutions x 2 granularities of parcellations)
 so that the associated hashes are updated. If you do not do this then users
 who pull updated git repos won't know that those atlas spaces/resolutions/parcellations
 have been updated and load_atlas() won't know to update their atlas *.mat files.
+For convenience I've included a create_CANLab2023_atlas_macro.m script that runs
+the creation script for all atlas versions, so you can just run that.
 
 ## References

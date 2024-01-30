@@ -224,11 +224,6 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     atlas_obj.fullpath = '';
 
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
-    atlas_obj.references = char(unique(atlas_obj.references,'rows'));
-
-    hash = DataHash(atlas_obj);
-    atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))},...
-        'hash',{hash});
 
     if strcmp(SCALE,'coarse')
         atlas_obj = atlas_obj.downsample_parcellation('labels_2');
@@ -269,7 +264,11 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         atlas_obj = atlas_obj.probability_maps_to_region_index();
     end
 
+    atlas_obj.references = char(unique(atlas_obj.references,'rows'));
 
+    hash = DataHash(atlas_obj);
+    atlas_obj.additional_info = struct('creation_date', {posixtime(datetime('Now'))},...
+        'hash',{hash});
 
     [~,~,~,missing_regions] = atlas_obj.check_properties();
     if ~isempty(missing_regions)
