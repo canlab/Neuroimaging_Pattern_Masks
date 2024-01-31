@@ -74,7 +74,7 @@ juAtlas.probability_maps = sparse(pmap);
 juAtlas.labels = regexprep(regexprep(regexprep(juAtlas.labels,' \(.*',''),'[,.*]',''),'[- ]','_');
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greater
-juAtlas = threshold(juAtlas, .2, 'k', 3);
+%juAtlas = threshold(juAtlas, .2, 'k', 3);
 
 pureJuAtlas = juAtlas.select_atlas_subset(find(~contains(juAtlas.labels_2,'GapMap')));
 
