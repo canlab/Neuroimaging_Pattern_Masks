@@ -105,19 +105,21 @@ figure;
 % -----------------------------------------------------------------------
 
 r = atlas2region(juAtlas);
-pureR = atlas2region(pureJuAtlas)
+pureR = atlas2region(pureJuAtlas);
 
 % Display on montage (colors may not be the same!):
 % montage(r);
  
  %% save figure
+cmap_cells = scn_standard_colors(1+num_regions(juAtlas));
+cmap = cat(1,cmap_cells{:});
 
 if dosave
    
     o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('fsl6_hcp_template.nii'));
     brighten(.6)
     
-    o2 = montage(pureR, o2);
+    o2 = montage(pureJuAtlas, o2, 'indexmap', cmap, 'interp', 'nearest');
     
     savedir = fullfile(pwd, 'png_images');
     if ~exist(savedir, 'dir'), mkdir(savedir); end
@@ -169,7 +171,7 @@ if dosave
     
     figure; han = isosurface(pureJuAtlas);
     
-    cellfun(@(x1)set(x1,'FaceAlpha', .5), han)
+    arrayfun(@(x1)set(x1,'FaceAlpha', .5), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle

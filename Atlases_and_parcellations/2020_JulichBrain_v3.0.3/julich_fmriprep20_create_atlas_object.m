@@ -159,7 +159,7 @@ if dosave
     
     figure; han = isosurface(pureJuAtlas);
     
-    cellfun(@(x1)set(x1,'FaceAlpha', .5), han)
+    arrayfun(@(x1)set(x1,'FaceAlpha', .5), han)
     view(135, 20)
     lightFollowView;
     lightRestoreSingle
