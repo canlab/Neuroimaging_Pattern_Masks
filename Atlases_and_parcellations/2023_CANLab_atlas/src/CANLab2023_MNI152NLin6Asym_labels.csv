@@ -106,14 +106,14 @@ Ctx_RI_L,RetroInsular Cortex (Left),Ctx_RI_L,auditory+_L,auditory_early_L,Glasse
 Ctx_PFcm_L,Area Pfcm (Left),Ctx_PFcm_L,SII+_L,somatomotor_operculum_L,Glasser2016+Petre2023VolProj
 Ctx_PoI2_L,insula_posteriorr Area 2 (Left),Ctx_PoI2_L,inferior_dysgranular_insula_L,insula_posterior_L,Glasser2016+Petre2023VolProj
 Ctx_TA2_L,Area TA2 (Left),Ctx_TA2_L,auditory_transition_area_L,auditory_association_cortex_L,Glasser2016+Petre2023VolProj
-Ctx_FOP4_L,Frontal Opercular Area 4 (Left),Ctx_FOP4_L,posterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
+Ctx_FOP4_L,Frontal Opercular Area 4 (Left),Ctx_FOP4_L,anterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
 Ctx_MI_L,Middle Insular Area (Left),Ctx_MI_L,anterior_agranular_insula_L,insula_anterior_L,Glasser2016+Petre2023VolProj
 Ctx_Pir_L,Piriform olfactory cortex (Left),Ctx_Pir_L,PIR_L,insula_anterior_L,Glasser2016+Petre2023VolProj
-Ctx_AVI_L,Anterior Ventral Insular Area (Left),Ctx_AVI_L,AVI_L,insula_anterior_L,Glasser2016+Petre2023VolProj
+Ctx_AVI_L,Anterior Ventral Insular Area (Left),Ctx_AVI_L,anterior_agranular_insula_L,insula_anterior_L,Glasser2016+Petre2023VolProj
 Ctx_AAIC_L,Anterior Agranular Insular Complex (Left),Ctx_AAIC_L,anterior_agranular_insula_L,insula_anterior_L,Glasser2016+Petre2023VolProj
 Ctx_FOP1_L,Frontal Opercular Area 1 (Left),Ctx_FOP1_L,FOP1-BA43_L,somatomotor_operculum_L,Glasser2016+Petre2023VolProj
-Ctx_FOP3_L,Frontal Opercular Area 3 (Left),Ctx_FOP3_L,anterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
-Ctx_FOP2_L,Frontal Opercular Area 2 (Left),Ctx_FOP2_L,anterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
+Ctx_FOP3_L,Frontal Opercular Area 3 (Left),Ctx_FOP3_L,posterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
+Ctx_FOP2_L,Frontal Opercular Area 2 (Left),Ctx_FOP2_L,posterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
 Ctx_PFt_L,Parietal area F part t (Left),Ctx_PFt_L,anterior_IPL_L,parietal_inferior_lobule_L,Glasser2016+Petre2023VolProj
 Ctx_AIP_L,Anterior IntraParietal Area (Left),Ctx_AIP_L,ventral_intraparietal_L,parietal_superior_lobule_L,Glasser2016+Petre2023VolProj
 Ctx_EC_L,Entorhinal Cortex (Left),Ctx_EC_L,hippocampal_formation_L,temporal_medial_L,Glasser2016+Petre2023VolProj
@@ -166,7 +166,7 @@ Ctx_s32_L,Area s32 (Left),Ctx_s32_L,vmPFC_L,cingulate_ACC_mPFC_L,Glasser2016+Pet
 Ctx_pOFC_L,posterior OFC Complex (Left),Ctx_pOFC_L,dmPFC_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_PoI1_L,Area insula_posteriorr 1 (Left),Ctx_PoI1_L,inferior_dysgranular_insula_L,insula_posterior_L,Glasser2016+Petre2023VolProj
 Ctx_Ig_L,Insular Granular Complex (Left),Ctx_Ig_L,posterior_granular_insula_L,insula_posterior_L,Glasser2016+Petre2023VolProj
-Ctx_FOP5_L,Area Frontal Opercular 5 (Left),Ctx_FOP5_L,posterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
+Ctx_FOP5_L,Area Frontal Opercular 5 (Left),Ctx_FOP5_L,anterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
 Ctx_p10p_L,Area posterior 10p (Left),Ctx_p10p_L,BA10_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_p47r_L,Area posterior 47r (Left),Ctx_p47r_L,BA47_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_TGv_L,Area TG Ventral (Left),Ctx_TGv_L,temporal_pole_L,temporal_lateral_L,Glasser2016+Petre2023VolProj
@@ -285,14 +285,14 @@ Ctx_RI_R,RetroInsular Cortex (Right),Ctx_RI_R,auditory+_R,auditory_early_R,Glass
 Ctx_PFcm_R,Area Pfcm (Right),Ctx_PFcm_R,SII+_R,somatomotor_operculum_R,Glasser2016+Petre2023VolProj
 Ctx_PoI2_R,insula_posteriorr Area 2 (Right),Ctx_PoI2_R,inferior_dysgranular_insula_R,insula_posterior_R,Glasser2016+Petre2023VolProj
 Ctx_TA2_R,Area TA2 (Right),Ctx_TA2_R,auditory_transition_area_R,auditory_association_cortex_R,Glasser2016+Petre2023VolProj
-Ctx_FOP4_R,Frontal Opercular Area 4 (Right),Ctx_FOP4_R,posterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
+Ctx_FOP4_R,Frontal Opercular Area 4 (Right),Ctx_FOP4_R,anterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
 Ctx_MI_R,Middle Insular Area (Right),Ctx_MI_R,anterior_agranular_insula_R,insula_anterior_R,Glasser2016+Petre2023VolProj
 Ctx_Pir_R,Piriform olfactory cortex (Right),Ctx_Pir_R,PIR_R,insula_anterior_R,Glasser2016+Petre2023VolProj
-Ctx_AVI_R,Anterior Ventral Insular Area (Right),Ctx_AVI_R,AVI_R,insula_anterior_R,Glasser2016+Petre2023VolProj
+Ctx_AVI_R,Anterior Ventral Insular Area (Right),Ctx_AVI_R,anterior_agranular_insula_R,insula_anterior_R,Glasser2016+Petre2023VolProj
 Ctx_AAIC_R,Anterior Agranular Insular Complex (Right),Ctx_AAIC_R,anterior_agranular_insula_R,insula_anterior_R,Glasser2016+Petre2023VolProj
 Ctx_FOP1_R,Frontal Opercular Area 1 (Right),Ctx_FOP1_R,FOP1-BA43_R,somatomotor_operculum_R,Glasser2016+Petre2023VolProj
-Ctx_FOP3_R,Frontal Opercular Area 3 (Right),Ctx_FOP3_R,anterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
-Ctx_FOP2_R,Frontal Opercular Area 2 (Right),Ctx_FOP2_R,anterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
+Ctx_FOP3_R,Frontal Opercular Area 3 (Right),Ctx_FOP3_R,posterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
+Ctx_FOP2_R,Frontal Opercular Area 2 (Right),Ctx_FOP2_R,posterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
 Ctx_PFt_R,Parietal area F part t (Right),Ctx_PFt_R,anterior_IPL_R,parietal_inferior_lobule_R,Glasser2016+Petre2023VolProj
 Ctx_AIP_R,Anterior IntraParietal Area (Right),Ctx_AIP_R,ventral_intraparietal_R,parietal_superior_lobule_R,Glasser2016+Petre2023VolProj
 Ctx_EC_R,Entorhinal Cortex (Right),Ctx_EC_R,hippocampal_formation_R,temporal_medial_R,Glasser2016+Petre2023VolProj
@@ -345,7 +345,7 @@ Ctx_s32_R,Area s32 (Right),Ctx_s32_R,vmPFC_R,cingulate_ACC_mPFC_R,Glasser2016+Pe
 Ctx_pOFC_R,posterior OFC Complex (Right),Ctx_pOFC_R,dmPFC_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_PoI1_R,Area insula_posteriorr 1 (Right),Ctx_PoI1_R,inferior_dysgranular_insula_R,insula_posterior_R,Glasser2016+Petre2023VolProj
 Ctx_Ig_R,Insular Granular Complex (Right),Ctx_Ig_R,posterior_granular_insula_R,insula_posterior_R,Glasser2016+Petre2023VolProj
-Ctx_FOP5_R,Area Frontal Opercular 5 (Right),Ctx_FOP5_R,posterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
+Ctx_FOP5_R,Area Frontal Opercular 5 (Right),Ctx_FOP5_R,anterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj
 Ctx_p10p_R,Area posterior 10p (Right),Ctx_p10p_R,BA10_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_p47r_R,Area posterior 47r (Right),Ctx_p47r_R,BA47_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_TGv_R,Area TG Ventral (Right),Ctx_TGv_R,temporal_pole_R,temporal_lateral_R,Glasser2016+Petre2023VolProj
