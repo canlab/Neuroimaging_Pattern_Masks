@@ -74,7 +74,7 @@ juAtlas.probability_maps = sparse(pmap);
 juAtlas.labels = regexprep(regexprep(regexprep(juAtlas.labels,' \(.*',''),'[,.*]',''),'[- ]','_');
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greater
-juAtlas = threshold(juAtlas, .2, 'k', 3);
+%juAtlas = threshold(juAtlas, .2, 'k', 3);
 
 pureJuAtlas = juAtlas.select_atlas_subset(find(~contains(juAtlas.labels_2,'GapMap')));
 
@@ -93,19 +93,21 @@ figure;
 % -----------------------------------------------------------------------
 
 r = atlas2region(juAtlas);
-pureR = atlas2region(pureJuAtlas)
+pureR = atlas2region(pureJuAtlas);
 
 % Display on montage (colors may not be the same!):
 % montage(r);
  
  %% save figure
+cmap_cells = scn_standard_colors(1+num_regions(juAtlas));
+cmap = cat(1,cmap_cells{:});
 
 if dosave
    
     o2 = canlab_results_fmridisplay([], 'full2', 'overlay', which('fmriprep20_template.nii.gz'));
     brighten(.6)
     
-    o2 = montage(pureR, o2);
+    o2 = montage(pureJuAtlas, o2, 'indexmap', cmap, 'interp', 'nearest');
     
     savedir = fullfile(pwd, 'png_images');
     if ~exist(savedir, 'dir'), mkdir(savedir); end
