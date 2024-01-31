@@ -1,0 +1,1 @@
+These archives contain files with names too long for windows, so don't upload the extracted archive contents to github or it will cause problems for windows users. They should be in the .gitignore
