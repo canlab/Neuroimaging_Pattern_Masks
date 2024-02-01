@@ -307,7 +307,7 @@ if verbose || dotables
                 myname = strrep(myname, ')', '_');
                 myname = strrep(myname, '/', '_');
                 myname = strrep(myname, '\', '_');
-                mytable.(myname) = siipspos_exp_by_region{i}(:, j);
+                mytable.(myname) = siipspos_exp_by_region{i}(1:height(mytable), j);
                 
             end
             
@@ -320,7 +320,7 @@ if verbose || dotables
                 myname = strrep(myname, ')', '_');
                 myname = strrep(myname, '/', '_');
                 myname = strrep(myname, '\', '_');
-                mytable.(myname) = siipsneg_exp_by_region{i}(:, j);
+                mytable.(myname) = siipsneg_exp_by_region{i}(1:height(mytable), j);
                 
             end
             
@@ -357,5 +357,3 @@ if isempty(image_names)
 end
 
 end % function
-
-
