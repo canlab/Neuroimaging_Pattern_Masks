@@ -14,7 +14,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 %LIB = '/home/bogdan/.matlab';

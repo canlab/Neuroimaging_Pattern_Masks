@@ -462,14 +462,14 @@ Thal_Li_R,Limitans nucleus (right),Thal_Medial_Geniculate_Nucleus_R,Thal_Genicul
 Thal_MGN_R,Medial geniculate nucleus (right),Thal_Medial_Geniculate_Nucleus_R,Thal_Geniculate_Nuclei_R,Thalamus_R,Morel2010
 Thal_Po_R,Posterior nucleus (right),Thal_Medial_Geniculate_Nucleus_R,Thal_Geniculate_Nuclei_R,Thalamus_R,Morel2010
 Thal_SG_R,Suprageniculate nucleus (right),Thal_Medial_Geniculate_Nucleus_R,Thal_Geniculate_Nuclei_R,Thalamus_R,Morel2010
-Thal_CL_L,Central medial nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
-Thal_CM_L,Central lateral nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
-Thal_CeM_L,Centre median nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_CL_L,Central lateral nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_CM_L,Centre median nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
+Thal_CeM_L,Central medial nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
 Thal_MV_L,Medioventral nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
 Thal_Pf_L,Parafascicular nucleus (left),Thal_Intralaminar_L,Thal_Intralaminar_L,Thalamus_L,Morel2010
-Thal_CL_R,Central medial nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
-Thal_CM_R,Central lateral nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
-Thal_CeM_R,Centre median nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_CL_R,Central lateral nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_CM_R,Centre median nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
+Thal_CeM_R,Central medial nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
 Thal_MV_R,Medioventral nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
 Thal_Pf_R,Parafascicular nucleus (right),Thal_Intralaminar_R,Thal_Intralaminar_R,Thalamus_R,Morel2010
 Thal_AD_L,Anterior dorsal nucleus (left),Thal_Anterior_L,Thal_Anterior_L,Thalamus_L,Morel2010
@@ -480,8 +480,8 @@ Thal_AM_R,Anterior medial nucleus (right),Thal_Anterior_R,Thal_Anterior_R,Thalam
 Thal_AV_R,Anterior ventral nucleus (right),Thal_Anterior_R,Thal_Anterior_R,Thalamus_R,Morel2010
 Thal_LP_L,Lateral posterior nucleus (left),Thal_Lateral_Posterior_L,Thal_Lateral_L,Thalamus_L,Morel2010
 Thal_LP_R,Lateral posterior nucleus (right),Thal_Lateral_Posterior_R,Thal_Lateral_R,Thalamus_R,Morel2010
-Thal_LD_L,Lateral dorsl nucleus (left),Thal_Lateral_dorsal_L,Thal_Lateral_L,Thalamus_L,Morel2010
-Thal_LD_R,Lateral dorsl nucleus (right),Thal_Lateral_dorsal_R,Thal_Lateral_R,Thalamus_R,Morel2010
+Thal_LD_L,Lateral dorsal nucleus (left),Thal_Lateral_dorsal_L,Thal_Lateral_L,Thalamus_L,Morel2010
+Thal_LD_R,Lateral dorsal nucleus (right),Thal_Lateral_dorsal_R,Thal_Lateral_R,Thalamus_R,Morel2010
 Thal_MDmc_L,Medial dorsal nucleus (magnocellular) (left),Thal_Mediodorsal_L,Thal_Mediodorsal_L,Thalamus_L,Morel2010
 Thal_MDpc_L,Medial dorsal nucleus (parvocellular) (left),Thal_Mediodorsal_L,Thal_Mediodorsal_L,Thalamus_L,Morel2010
 Thal_MDmc_R,Medial dorsal nucleus (magnocellular) (right),Thal_Mediodorsal_R,Thal_Mediodorsal_R,Thalamus_R,Morel2010
