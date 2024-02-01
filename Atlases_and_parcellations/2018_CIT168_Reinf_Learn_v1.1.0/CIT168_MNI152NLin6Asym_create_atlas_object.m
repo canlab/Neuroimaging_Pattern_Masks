@@ -58,7 +58,7 @@ atlas_obj = atlas(which(parcellation_file), ...
 % -----------------------------------------------------------------------
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greater
-atlas_obj = threshold(atlas_obj, .2, 'k', 3);
+%atlas_obj = threshold(atlas_obj, .2, 'k', 3);
 
 % Check display
 % -----------------------------------------------------------------------
@@ -75,13 +75,15 @@ r = atlas2region(atlas_obj);
 % montage(r);
  
  %% save figure
+cmap_cells = scn_standard_colors(1+num_regions(atlas_obj));
+cmap = cat(1,cmap_cells{:});
 
 if dosave
    
     o2 = canlab_results_fmridisplay([], 'full2','overlay',which('fsl6_hcp_template.nii.gz'));
     brighten(.6)
     
-    o2 = montage(r, o2, 'wh_montages', 1:2);
+    o2 = montage(atlas_obj, o2, 'wh_montages', 1:2, 'indexmap', cmap, 'interp', 'nearest');
     
     savedir = fullfile(pwd, 'png_images');
     if ~exist(savedir, 'dir'), mkdir(savedir); end
