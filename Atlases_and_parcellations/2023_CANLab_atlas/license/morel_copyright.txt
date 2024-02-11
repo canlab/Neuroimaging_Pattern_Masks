@@ -1,0 +1,14 @@
+Copyright notice for the Voxelized Version of the Morel Atlas
+*************************************************************
+Please note that the original copyright applies to this version as well (Anne More, Gabor Szekely @ ETH Zurich)
+Further processing was done to non-linearly warp the Morel atlas to the MNI152 Standard Space, credits: András Jakab, Remi Blanc @ ETH Zurich.
+Please also keep in mind the sponsoring and grant notices in the License Agreement.
+The attached MRI brain templates (MNI152_T1) are provided by the Montreal Neurological Institute.
+*************************************************************
+
+We kindly ask to cite the following papers if you use the sample:
+(1) For the original atlas data
+Krauth A, Blanc R, Poveda A, Jeanmonod D, Morel A, Székely G. (2010) A mean three-dimensional atlas of the human thalamus: generation from multiple histological data. Neuroimage. 2010 Feb 1;49(3):2053-62.
+
+(2) For the non-linear matching of atlas data to MNI152 space (described partially in the paper)
+Jakab A, Blanc R, Berényi EL, Székely G. (2012) Generation of Individualized Thalamus Target Maps by Using Statistical Shape Models and Thalamocortical Tractography. AJNR Am J Neuroradiol. 33: 2110-2116, doi: 10.3174/ajnr.A3140.
