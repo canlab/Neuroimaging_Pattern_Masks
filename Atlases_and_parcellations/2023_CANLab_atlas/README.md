@@ -237,7 +237,7 @@ or VSM).
 Coming soon? You could piece something together by referring to the README.md files in the constituent atlases' directories
 and to the source scripts in the src subfolder here. Here's a bit re PAG though,
 
-### PAG
+#### PAG
 
 Phil Kragel's PAG parcellation was redone to provide probablistic labels. 19/24 participants had good parcellations (1,2,
 4-10,12,14,15,17,19,20-24). These participants were reprojected into their target space using transformations obtained
@@ -303,11 +303,11 @@ atlas versions, so you can just run that.
 
 ## References
 
-### README references
+#### README references
 
-Dalton M, D'souza A, LV J, Calamante F. New insights into anatomical connectivity along the anterior-posterior axis of the human hippocampus using in vivo quantitative fibre tracking. eLife (2022) 11.
+* Dalton M, D'souza A, LV J, Calamante F. New insights into anatomical connectivity along the anterior-posterior axis of the human hippocampus using in vivo quantitative fibre tracking. eLife (2022) 11.
 
-### atlas source references 
+#### atlas source references 
 
 * Amunts et al (2023) [Dataset v3.0.3] DOI:10.25493/56EM-75H
 * Amunts, K., Kedo, O., Kindler, M., Pieperhoff, P., Mohlberg, H., Shah, N. J., Habel, U., Schneider, F., & Zilles, K. (2005). Cytoarchitectonic mapping of the human amygdala, hippocampal region and entorhinal cortex: intersubject variability and probability maps. Anatomy and Embryology, 210(5–6), 343–352. https://doi.org/10.1007/s00429-005-0025-5 DOI: 10.1007/s00429-005-0025-5                                                      "
