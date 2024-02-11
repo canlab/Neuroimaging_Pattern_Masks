@@ -100,16 +100,16 @@ have specific data you intend to use this atlas with it may also make sense to r
 thresholding. Presumably your data is already in alignment with the desired MNI template, but may be resampled to a 
 different resolution, origin or orientation. You can potentially resample this atlas to a new space like so,
 
-canlab = fmri_data(<path totemplate>) \\
-canlab = load_atlas('canlab2023_coarse_fmriprep20'); % replace with desired parcellation and fsl6 version if appropriate \\ 
-canlab = canlab.resample_space(template_2mm); \\
-canlab = canlab.threshold(0.2); % adjust parameters as desired \\
+canlab = fmri_data(<path totemplate>) <br />
+canlab = load_atlas('canlab2023_coarse_fmriprep20'); % replace with desired parcellation and fsl6 version if appropriate <br />
+canlab = canlab.resample_space(template_2mm); <br />
+canlab = canlab.threshold(0.2); % adjust parameters as desired <br />
 
 Parcel defragmentation in particular may take some time. You may want to save the result for reuse. Saving and
 reloading can be done like so,
 
-save(<path>, 'canlab');
-load(<path>, 'canlab');
+save(<path>, 'canlab'); <br />
+load(<path>, 'canlab'); <br />
 
 Small regions will be severely affected by partial volume effects during resampling. In particular the brainstem. Your
 best bet is to regenerate brainstem nuclei from source using the scripts in the 2023_Bianciardi* sister folder to this
