@@ -50,7 +50,7 @@ is provided and invoked automatically when you load the atlas.
 Additionally, note that	the morel atlas	is also	restricted, and this usage restriction seems more severe than Bianciardi's.
 Not only can we not distribute it, we also can't provide you with a legitimate resource for obtaining it short of contacting
 the original host institution (see Atlases_and_parcellations/2023_CANLab_atlas/licenses/morel_copyright). Consequently, this
-is the only atlas not directly available in Neuroimaging_Pattern_Masks (it's available to CANLab members in MasksPrivate, a
+is the only atlas not individually available through Neuroimaging_Pattern_Masks (it's available to CANLab members in MasksPrivate, a
 private repo). However, due to an oversight it was incorporated into canlab2018, which was distributed publically years ago, 
 so that cat's out of the bag. Consequently, I (BP) didn't bother to separate the morel parcels out the way I did with 
 Bianciardi's parcels. It's integrated into the 'abridged' version of this atlas directly distributed by this repo. Take
