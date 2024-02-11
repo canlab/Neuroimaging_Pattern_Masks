@@ -21,3 +21,7 @@ for space = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
         end
     end
 end
+
+canlab2023 = load_atlas('canlab2023_coarse_fsl6_2mm');
+create_CANLab2023_CIFTI_subctx('MNI152NLin6Asym','coarse',2, canlab2023)
+system(which('create_CANLab2023_atlas_cifti.sh'))

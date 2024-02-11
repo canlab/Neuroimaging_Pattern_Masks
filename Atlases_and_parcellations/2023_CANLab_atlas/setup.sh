@@ -99,8 +99,8 @@ fi
 mv -v $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii $WD/../CANLab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii
 
 # garbage collection
-#rm -f $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_abr.txt \
-#    $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.txt \
-#    $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_atlasObj_to_cifti_mapping.txt
-#    canlab2023_${SPACE}_${SCALE}_${res}mm_label_table.txt
+rm -f $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_abr.txt \
+    $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.txt \
+    $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_atlasObj_to_cifti_mapping.txt \
+    canlab2023_${SPACE}_${SCALE}_${res}mm_label_table.txt
 
