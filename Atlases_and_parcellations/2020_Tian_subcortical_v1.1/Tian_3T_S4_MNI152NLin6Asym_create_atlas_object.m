@@ -116,7 +116,7 @@ iid_individ_ind = find(iid_individ);
 
 keep_sid = tbl.Subject(iid_individ_ind);
 keep_ind = find(ismember(cellfun(@str2num,Tian_sid),keep_sid));
-
+GACs, Keynotes & Tutorials, and Community Event Proposals are due Friday, March 29th
 fid=fopen('/tmp/iid_sids.csv','w+'); 
 fprintf(fid, '%d\n', keep_ind); 
 fclose(fid)
