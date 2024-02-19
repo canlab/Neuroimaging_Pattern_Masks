@@ -71,18 +71,18 @@ segmentations. That said, the number of thalamic regions that Iglesias et al
 The following equivalence mapping may be helpful for comparing and contrasting 
 the resultant parcellations from each.
 
-Morel -> Iglesias:
-AD AM, AV -> AV
-Hb -> Missing
-LGNmc, LGNpc -> LGN
-LP (more lateral) -> LP (more medial)
-Li, SG -> L-SG
-MDmc -> MDm (renamed to MDmc)
-MDpc -> MDl (renamed to MDpc)
-PuI + Po -> PuI
-PuM -> PuMm PuMl
-RN -> Missing
-STh -> Missing
-VLpd, VPLpv, VM -> VLp
-VPLa, VPLp, VPI, VPM -> VPL
-mtt -> Missing (this is a white matter tract though, not a nucleus)
+Morel -> Iglesias: <br />
+AD AM, AV -> AV <br />
+Hb -> Missing <br />
+LGNmc, LGNpc -> LGN <br />
+LP (more lateral) -> LP (more medial) <br />
+Li, SG -> L-SG <br />
+MDmc -> MDm (renamed to MDmc) <br />
+MDpc -> MDl (renamed to MDpc) <br />
+PuI + Po -> PuI <br />
+PuM -> PuMm PuMl <br />
+RN -> Missing <br />
+STh -> Missing <br />
+VLpd, VPLpv, VM -> VLp <br />
+VPLa, VPLp, VPI, VPM -> VPL <br />
+mtt -> Missing (this is a white matter tract though, not a nucleus) <br />

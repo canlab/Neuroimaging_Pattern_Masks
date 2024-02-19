@@ -108,7 +108,7 @@ r = atlas2region(atlas_obj);
 %% save figure
 cmap = scn_standard_colors(n_regions/2);
 cmap = cell2mat(cat(2,cmap'));
-cmap = [cmap; cmap]
+cmap = [cmap; cmap];
 
 if dosave
    

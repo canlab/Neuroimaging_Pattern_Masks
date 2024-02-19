@@ -1,0 +1,11 @@
+id,labels,label_descriptions,labels_2,labels_3
+801,L_hypothalamus_anterior_inferior,"suprachiasmatic nucleus, supraoptic nucleus (left)",L_hypothalamus_anterior_inferior,L_hypothalamus
+802,L_hypothalamus_anterior_superior,"preoptic area, paraventricular nucleus (left)",L_hypothalamus_anterior_superior,L_hypothalamus
+803,L_hypothalamus_posterior,"mamillary body (medial and lateral nuclei), lateral hypothalamus, tuberomamillary nucleus (left)",L_hypothalamus_posterior,L_hypothalamus
+804,L_hypothalamus_tubular_inferior,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (left)",L_hypothalamus_tubular_inferior,L_hypothalamus
+805,L_hypothalamus_tubular_superior,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (left)",L_hypothalamus_tubular_superior,L_hypothalamus
+806,R_hypothalamus_anterior_inferior,"suprachiasmatic nucleus, supraoptic nucleus (right)",R_hypothalamus_anterior_inferior,R_hypothalamus
+807,R_hypothalamus_anterior_superior,"preoptic area, paraventricular nucleus (right)",R_hypothalamus_anterior_superior,R_hypothalamus
+808,R_hypothalamus_posterior,"mamillary body (medial and lateral nuclei), lateral hypothalamus, tuberomamillary nucleus (right)",R_hypothalamus_posterior,R_hypothalamus
+809,R_hypothalamus_tubular_inferior,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (right)",R_hypothalamus_tubular_inferior,R_hypothalamus
+810,R_hypothalamus_tubular_superior,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (right)",R_hypothalamus_tubular_superior,R_hypothalamus

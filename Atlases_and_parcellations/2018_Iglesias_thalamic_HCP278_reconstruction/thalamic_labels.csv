@@ -15,8 +15,8 @@ Pf,parafascicular,cIL,Intralaminar,Intralaminar
 Pt,paratenial,Midline,Intralaminar,Intralaminar
 MV_Re,Reuniens (medial ventral),Midline,Intralaminar,Intralaminar
 CL,central lateral,CL,Medial,Medial
-MDm,Mediodorsal medial magnocellular,MD,Medial,Medial
-MDl,Mediodorsal medial parvocellular,MD,Medial,Medial
+MDmc,Mediodorsal medial magnocellular,MD,Medial,Medial
+MDpc,Mediodorsal medial parvocellular,MD,Medial,Medial
 LGN,lateral geniculate,LGN,LGN,Posterior
 MGN,medial geniculate,MGN,MGN,Posterior
 L_SG,Limitans (suprageniculate),PuI,Pulvinar,Posterior
