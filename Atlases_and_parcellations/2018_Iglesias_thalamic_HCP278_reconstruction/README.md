@@ -91,7 +91,9 @@ mtt -> Missing (this is a white matter tract though, not a nucleus) <br />
 
 A direct comparison of regions, grouped by the above equivalence relationships
 reveals rough colocalization of ROIs across this HCP278 atlas and Morel's,
-but also substantial differences in many cases.
+but also substantial differences in many cases, particularly in the case of 
+subdivisions of the pulvinar, the location of the lateral posterior nucleus, 
+and the extent of the central lateral nucleus.
 
 ![Left Thalamus (sagital)](html/compare_with_morel_01.png)
 ![Left Thalamus (coronal)](html/compare_with_morel_03.png)
