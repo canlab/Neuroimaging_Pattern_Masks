@@ -95,14 +95,23 @@ but also substantial differences in many cases, particularly in the case of
 subdivisions of the pulvinar, the location of the lateral posterior nucleus, 
 and the extent of the central lateral nucleus.
 
-![Left Thalamus (sagital)](html/compare_with_morel_01.png)
-Left Thalamus (sagital)
+![Left Thalamus (sagittal)](html/compare_with_morel_01.png)
+Left Thalamus (sagittal)
 
 ![Left Thalamus (coronal)](html/compare_with_morel_03.png)
+Left Thalamus (coronal)
+
 ![Left Thalamus (axial)](html/compare_with_morel_02.png)
-![Right Thalamus (sagital)](html/compare_with_morel_04.png)
+Left Thalamus (axial)
+
+![Right Thalamus (sagittal)](html/compare_with_morel_04.png)
+Right Thalamus (sagittal)
+
 ![Right Thalamus (coronal)](html/compare_with_morel_06.png)
+Right Thalamus (coronal)
+
 ![Right Thalamus (axial)](html/compare_with_morel_05.png)
+Right Thalamus (axial)
 
 ![Moderate overlap @ p>0.2](html/compare_with_morel_07.png)
 
@@ -128,12 +137,23 @@ Legend: <br />
 Black outlines - LeadsDBS (p > 0.2) <br />
 Colored Blobs - HCP278 parcellation (p > 0.2) <br />
 
-![Left Thalamus (sagital)](html/compare_with_leadDBS_version_02.png)
+![Left Thalamus (sagittal)](html/compare_with_leadDBS_version_02.png)
+Left Thalamus (sagittal)
+
 ![Left Thalamus (coronal)](html/compare_with_leadDBS_version_04.png)
+Left Thalamus (coronal)
+
 ![Left Thalamus (axial)](html/compare_with_leadDBS_version_03.png)
-![Right Thalamus (sagital)](html/compare_with_leadDBS_version_05.png)
+Left Thalamus (axial)
+
+![Right Thalamus (sagittal)](html/compare_with_leadDBS_version_05.png)
+Right Thalamus (sagittal)
+
 ![Right Thalamus (coronal)](html/compare_with_leadDBS_version_07.png)
+Right Thalamus (coronal)
+
 ![Right Thalamus (axial)](html/compare_with_leadDBS_version_06.png)
+Right Thalamus (axial)
 
 ![Moderate overlap @ p>0.2](html/compare_with_leadDBS_version_08.png)
 ![Moderate correlations of probability maps](html/compare_with_leadDBS_version_09.png)
