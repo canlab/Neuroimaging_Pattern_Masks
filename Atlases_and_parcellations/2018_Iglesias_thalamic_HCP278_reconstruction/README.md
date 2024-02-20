@@ -96,6 +96,8 @@ subdivisions of the pulvinar, the location of the lateral posterior nucleus,
 and the extent of the central lateral nucleus.
 
 ![Left Thalamus (sagital)](html/compare_with_morel_01.png)
+Left Thalamus (sagital)
+
 ![Left Thalamus (coronal)](html/compare_with_morel_03.png)
 ![Left Thalamus (axial)](html/compare_with_morel_02.png)
 ![Right Thalamus (sagital)](html/compare_with_morel_04.png)
