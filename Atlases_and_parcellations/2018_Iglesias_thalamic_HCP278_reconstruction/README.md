@@ -93,14 +93,14 @@ A direct comparison of regions, grouped by the above equivalence relationships
 reveals rough colocalization of ROIs across this HCP278 atlas and Morel's,
 but also substantial differences in many cases.
 
-![Left Thalamus (sagital)](html/compare_with_morel_version_01.png)
-![Left Thalamus (coronal)](html/compare_with_morel_version_03.png)
-![Left Thalamus (axial)](html/compare_with_morel_version_02.png)
-![Right Thalamus (sagital)](html/compare_with_morel_version_04.png)
-![Right Thalamus (coronal)](html/compare_with_morel_version_06.png)
-![Right Thalamus (axial)](html/compare_with_morel_version_05.png)
+![Left Thalamus (sagital)](html/compare_with_morel_01.png)
+![Left Thalamus (coronal)](html/compare_with_morel_03.png)
+![Left Thalamus (axial)](html/compare_with_morel_02.png)
+![Right Thalamus (sagital)](html/compare_with_morel_04.png)
+![Right Thalamus (coronal)](html/compare_with_morel_06.png)
+![Right Thalamus (axial)](html/compare_with_morel_05.png)
 
-![Moderate overlap @ p>0.2](html/compare_with_morel_version_07.png)
+![Moderate overlap @ p>0.2](html/compare_with_morel_07.png)
 
 ## Comparison with LeadsDBS version
 
