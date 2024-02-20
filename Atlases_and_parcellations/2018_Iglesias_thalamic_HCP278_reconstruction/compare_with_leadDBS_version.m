@@ -7,6 +7,12 @@
 % Thalamus Atlas (Iglesias 2018)') and this script compares those
 % segmentations with my own HCP derived ones.
 
+addpath('/home/bogdan/.matlab/spm/spm12');
+addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore'))
+addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
+
+% path to where I placed the 'Probabilistic Thalamus Atlas (Iglesias 2018)'
+% directory
 leaddbsRoot='/home/bogdan/MyDocuments/canlab/atlases/_resources/LeadsDBS/';
 
 myAtlas = load_atlas('iglesias_thal_fmriprep20');

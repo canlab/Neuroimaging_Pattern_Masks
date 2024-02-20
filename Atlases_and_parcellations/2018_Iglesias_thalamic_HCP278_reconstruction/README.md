@@ -11,9 +11,11 @@ et al. (2018) Neuroimage parcellation that is used internally by freesurfer.
 Those probablistic labels aren't readily available. They're stored in an
 esoteric format interally by freesurfer, and based on personal correspondence 
 with Iglesias there is no readily available nifti version of the 
-probablistic labels available for distribution. Instead, what I (BP) have done
+probablistic labels available for distribution. There is a version available
+that's packaged with LeadDBS, but the relationship between this version and
+the original probablistic labels isn't clear. Instead, what I (BP) have done
 is to fit the freesurfer segmentation to 278 HCP participants and use those
-labels to determine probablistic labels.
+subject specific labels to determine probablistic labels for the population.
 
 It's fairly easy to run these segmentations on new data though and it seems to
 produce good segmentations if you have DWI and T1 data and use the joint T1/DTI
@@ -24,8 +26,8 @@ yourself. But for labeling group analysis results or for situations where you
 can't perform this segmentation, these labels may still be helpful. Note that 
 the segmentations are not performed that well without DWI data. The 
 corticothalamic tract has poor contrast in T1 data, and even T2w structural 
-scans don't seem to be good enough. DWI data is needed if you want a low
-overhead segmentation of your own.
+scans don't seem to be good enough. DWI data is needed if you want an automated
+segmentation of your own that doesn't require much supervision.
 
 ## Methods
 
@@ -83,9 +85,22 @@ PuI + Po -> PuI <br />
 PuM -> PuMm PuMl <br />
 RN -> Missing <br />
 STh -> Missing <br />
-VLpd, VPLpv, VM -> VLp <br />
+VLpd, VLpv, VM -> VLp <br />
 VPLa, VPLp, VPI, VPM -> VPL <br />
 mtt -> Missing (this is a white matter tract though, not a nucleus) <br />
+
+A direct comparison of regions, grouped by the above equivalence relationships
+reveals rough colocalization of ROIs across this HCP278 atlas and Morel's,
+but also substantial differences in many cases.
+
+![Left Thalamus (sagital)](html/compare_with_morel_version_01.png)
+![Left Thalamus (coronal)](html/compare_with_morel_version_03.png)
+![Left Thalamus (axial)](html/compare_with_morel_version_02.png)
+![Right Thalamus (sagital)](html/compare_with_morel_version_04.png)
+![Right Thalamus (coronal)](html/compare_with_morel_version_06.png)
+![Right Thalamus (axial)](html/compare_with_morel_version_05.png)
+
+![Moderate overlap @ p>0.2](html/compare_with_morel_version_07.png)
 
 ## Comparison with LeadsDBS version
 
@@ -97,14 +112,17 @@ any of the data and just compare leads parcels with the HCP278 parcels.
 
 Judging by dice coefficients of thresholded (p>0.2) and binarized parcel masks
 and correlations of parcel probability maps, the two segmentations are only
-approximately similar. Visual inspection though paints a much more generous
+approximately similar. Visual inspection paints a much more generous
 picture though. Because I used the DTI informed posteriors I don't have the
 exact same set of parcels, but 23 of the parcels are in common, so in the figures
-below we consider these.
+below we consider these. The HCP278 parcellation seems sufficiently similar to
+confirm that there were no serious methadological errors in the HCP278 
+parcellation approach, and unlike the LeadsDBS data, the methods used to generate
+the data are transparent, so for my part (BP) I'm satisfied with the result.
 
-Legend:
-Black outlines - LeadsDBS (p > 0.2)
-Colored Blobs - HCP278 parcellation (p > 0.2)
+Legend: <br />
+Black outlines - LeadsDBS (p > 0.2) <br />
+Colored Blobs - HCP278 parcellation (p > 0.2) <br />
 
 ![Left Thalamus (sagital)](html/compare_with_leadDBS_version_02.png)
 ![Left Thalamus (coronal)](html/compare_with_leadDBS_version_04.png)
