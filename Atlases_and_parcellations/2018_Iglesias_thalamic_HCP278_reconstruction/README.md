@@ -117,11 +117,12 @@ Right Thalamus (axial)
 
 ## Comparison with LeadsDBS version
 
-JE Iglesias 'hacked together' a set of probability maps for use in LeadsDBS. I 
-(BP) downloaded the software and obtained the probability maps for comparison 
-with what I generated from HCP. LeadsDBS atlas is in MNI152NLin2009bAsym space,
-which is sufficiently similar to MNI152NLin2009cAsym that I did not realign
-any of the data and just compare leads parcels with the HCP278 parcels.
+JE Iglesias made a first pass effort to assemble a set of probability maps for 
+use in LeadsDBS. I (BP)  downloaded the software and obtained the probability maps 
+for comparison with what I generated from HCP. LeadsDBS atlas is in 
+MNI152NLin2009bAsym space, which is sufficiently similar to MNI152NLin2009cAsym 
+that I did not realign any of the data and just compare leads parcels with the 
+HCP278 parcels.
 
 Judging by dice coefficients of thresholded (p>0.2) and binarized parcel masks
 and correlations of parcel probability maps, the two segmentations are only
