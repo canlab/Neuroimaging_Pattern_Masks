@@ -29,6 +29,63 @@ are also available there, albeit under a more restrictive distribution license.
 This dataset is licensed under creative commons (CC0) 1.0 Universal and is in
 the public domain.
 
+## Comparison with Bianciardi
+
+The Bianciardi Brainstem atlas is a partially completed comprehensive atlas of
+brainstem nuclei. It's based on multimodal imaging data without ex vivo 
+validation, but is probablistic, based on more participants, and because it
+tries to account for all brainstem nuclei it's less likely to mislabel regions
+belonging to one nucleis that in fact belong to another. Unfortunately it has
+a restrictive distribution license and is not suitable for all applications as
+a result. The Harvard Ascending Activation Network atlas may be more suitable
+in these circumstances or for use as a histological reference, however limited
+its precision may be (due to small sample size and poor specificaiton of 
+MNI space template used).
+
+All AAN atlas regions have one more or more corresponding regions in 
+Bianciardi's atlas.
+
+AAN -> Bianciardi
+L_LC -> L_LC
+R_LC -> L_RC
+L_LDTg ->  L_LDTg_CGPn'}},...
+R_LDTg -> R_LDTg_CGPn
+L_PBC -> L_MPB, L_LPB
+R_PBC -> R_MPB, R_LPB
+L_PTg -> L_PTg.
+R_PTg -> R_PTg
+L_PnO -> L_PnO_PnC_B5
+R_PnO -> R_PnO_PnC_B5
+L_mRt -> L_mRta, L_mRtd, L_MRtl
+R_mRt -> R_mRta, R_mRtd, R_MRtl
+DR -> DR_B7
+MnR -> MnR_B6_B8,PMnR_B6_B8
+PAG -> PAG
+VTA -> L_VTA_PBP, R_VTA_PBP
+
+In some cases bianciardi provides a finer grained parcellation. In other cases
+the nuclei from the AAN Atlas are more limited in scope than their counterparts
+from bianciardi. For instance LDTg in AAN is LDTg_CGPn in bianciard, presumably
+because the LDTg and CGPn could not be distinguished based on the contrasts
+available to Bianciardi. With this miscorrespondence of boundaries in mind, the
+following comparison of atlas boundaries may be useful. Titles indicate AAN 
+regions, also shown in color, with outlines of Bianciardi's equivalent regions
+(possibly merged if there are multiple) overlain.
+
+(html/compare_with_bianciardi_01.png)[html/compare_with_bianciardi_01.png]
+Saggital Brainstem Nuclei
+
+(html/compare_with_bianciardi_02.png)[html/compare_with_bianciardi_02.png]
+Coronal Brainstem Nuclei
+
+(html/compare_with_bianciardi_03.png)[html/compare_with_bianciardi_03.png]
+Axial Brainstem Nuclei
+
+If attempting to adjudicate between these atlases it may be helpful to compare
+individual nuclei with their corresponding PET tracer maps from Hansen et al. 
+2022 as was done for Bianciardi's serotonergic nuclei (see Bianciardi atlas
+README.md file)
+
 ## External Links
 
 * https://datadryad.org/stash/dataset/doi:10.5061/dryad.zw3r228d2
