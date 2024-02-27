@@ -45,23 +45,23 @@ MNI space template used).
 All AAN atlas regions have one more or more corresponding regions in 
 Bianciardi's atlas.
 
-AAN -> Bianciardi
-L_LC -> L_LC
-R_LC -> L_RC
-L_LDTg ->  L_LDTg_CGPn'}},...
-R_LDTg -> R_LDTg_CGPn
-L_PBC -> L_MPB, L_LPB
-R_PBC -> R_MPB, R_LPB
-L_PTg -> L_PTg.
-R_PTg -> R_PTg
-L_PnO -> L_PnO_PnC_B5
-R_PnO -> R_PnO_PnC_B5
-L_mRt -> L_mRta, L_mRtd, L_MRtl
-R_mRt -> R_mRta, R_mRtd, R_MRtl
-DR -> DR_B7
-MnR -> MnR_B6_B8,PMnR_B6_B8
-PAG -> PAG
-VTA -> L_VTA_PBP, R_VTA_PBP
+AAN -> Bianciardi<br />
+L_LC -> L_LC<br />
+R_LC -> L_RC<br />
+L_LDTg ->  L_LDTg_CGPn<br />
+R_LDTg -> R_LDTg_CGPn<br />
+L_PBC -> L_MPB, L_LPB<br />
+R_PBC -> R_MPB, R_LPB<br />
+L_PTg -> L_PTg<br />
+R_PTg -> R_PTg<br />
+L_PnO -> L_PnO_PnC_B5<br />
+R_PnO -> R_PnO_PnC_B5<br />
+L_mRt -> L_mRta, L_mRtd, L_MRtl<br />
+R_mRt -> R_mRta, R_mRtd, R_MRtl<br />
+DR -> DR_B7<br />
+MnR -> MnR_B6_B8,PMnR_B6_B8<br />
+PAG -> PAG<br />
+VTA -> L_VTA_PBP, R_VTA_PBP<br />
 
 In some cases bianciardi provides a finer grained parcellation. In other cases
 the nuclei from the AAN Atlas are more limited in scope than their counterparts
@@ -72,13 +72,13 @@ following comparison of atlas boundaries may be useful. Titles indicate AAN
 regions, also shown in color, with outlines of Bianciardi's equivalent regions
 (possibly merged if there are multiple) overlain.
 
-(html/compare_with_bianciardi_01.png)[html/compare_with_bianciardi_01.png]
+![html/compare_with_bianciardi_01.png](html/compare_with_bianciardi_01.png)
 Saggital Brainstem Nuclei
 
-(html/compare_with_bianciardi_02.png)[html/compare_with_bianciardi_02.png]
+![html/compare_with_bianciardi_02.png](html/compare_with_bianciardi_02.png)
 Coronal Brainstem Nuclei
 
-(html/compare_with_bianciardi_03.png)[html/compare_with_bianciardi_03.png]
+![html/compare_with_bianciardi_03.png](html/compare_with_bianciardi_03.png)
 Axial Brainstem Nuclei
 
 If attempting to adjudicate between these atlases it may be helpful to compare
