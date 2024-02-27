@@ -188,9 +188,9 @@ between study variability is small relative to between subject variability, and 
 of degrees of freedom we need for stable estimates of parcel boundaries (Using a single study, so no study related 
 error, Wu et al. claim you need 300 participants for boundaries to fully stabalize).
 
-<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_mean_bt_study_glassers_MNI152NLin2009cAsym.png" width="500" />
+<img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_interstudy_glassers_MNI152NLin2009cAsym.png" width="500" />
 
-<img alt="paingen vs. bmrk5 map" src="diagnostics/dice_map_interstudy_glassers_glassers_MNI152NLin2009cAsym.png" />
+<img alt="paingen vs. bmrk5 map" src="diagnostics/dice_map_mean_bt_study_glassers_MNI152NLin2009cAsym.png" />
 
 Dice coefficients in the range of 0.8 are what the original authors who came up with registration fusion (wu et al 2018)
 found when comparing their best methods with a gold standard comparator. This demonstrates that the alignments we have
