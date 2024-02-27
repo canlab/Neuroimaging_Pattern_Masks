@@ -7,22 +7,19 @@ structural connectivity, and functional connectivity with resting state
 functional connectivity, specifically the DMN (Edlow, 2023).
 
 Although the measurement techniques are extensively documented (Edlow 2012, 
-2023), technical details of the projection to MNI space are obscure. The atlas
-is probablistic but it's not clear what the probabilities represent given that
-3 participants is insufficient to meaningfully calibrate label assignment 
-probabilities. The atlas is in MNI 1mm space but it's not clear what template
-was used to achieve this projection. Based on the publication date of the 
-original atlas (v1.0), the use of FSL tools for tractography, and under the
-assumption that the same templates were used for the current atlas version 
-(v2.0, a safe assumption: differences with version 1.0 are detailed here:
+2023), technical details of the projection to MNI space are obscure.  The 
+atlas is in MNI 1mm space but it's not clear what template was used to achieve 
+this projection. Based on the publication date of the original atlas (v1.0), 
+the use of FSL tools for tractography, and under the assumption that the same 
+templates were used for the current atlas version (v2.0, a safe assumption: 
+differences with version 1.0 are detailed here: 
 https://datadryad.org/stash/dataset/doi:10.5061/dryad.zw3r228d2 and they are
 minor as far as spatial characteristics are concerned), I've assumed they 
 used the FSL standard 1mm template, which is MNI152NLin6Asym, and used the
 subcortically weighted alignment from MNI152NLin6Asym to MNI152NLin2009cAsym
 space in the templates/transforms folder to project it to MNI152NLin2009cAsym
-space. That said, given the obscurities associated with the probability values 
-and template selection the boundaries of these regions should be considered 
-approximate.
+space. That said, given the obscurities associated with the template selection 
+the boundaries of these regions should be considered approximate.
 
 Consider comparing regions with the Bianciardi brainstem nuclei. All of these
 are also available there, albeit under a more restrictive distribution license.
