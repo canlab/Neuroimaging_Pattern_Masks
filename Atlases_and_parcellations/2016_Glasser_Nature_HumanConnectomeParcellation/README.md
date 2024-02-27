@@ -5,7 +5,7 @@ This is the HCP multimodal parcellation v. 1 published by Glasser, Coalson, Robi
 This folder mainly provides a version of this atlas projected into volumetric space using registration fusion, which 
 Thomas Yeo's group has shown to be the best approach (Wu et al 2018 HBM).
 
-![Volumetric Glasser Atlas](images/old_vs_new_display_edited.png)
+![Volumetric Glasser Atlas](images/old_vs_new_display_edited_2.png)
 
 Two versions are available, MNI152NLin2009cAsym space (fmriprep 20.2.3 default) and MNI152NLin6Asym space (fsl 5/6
 default).
