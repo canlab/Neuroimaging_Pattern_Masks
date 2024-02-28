@@ -4,7 +4,7 @@ addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
 
 space_description = 'MNI152NLin6Asym';
 atlas_name = sprintf('levinson_bari_limbic_brainstem_atlas_%s', space_description);
-references = char({'levinson S, Miller M, Iftekhar A, Justo M, Arriola D, Wei W, Hazany S, Avecillas-Chasin J, Kuhn T, Horn A, Bari A. (2023). A structural connectivity atlas of limbic brainstem nuclei. Frontiers in Neuroimaging.'});
+references = char({'Levinson S, Miller M, Iftekhar A, Justo M, Arriola D, Wei W, Hazany S, Avecillas-Chasin J, Kuhn T, Horn A, Bari A. (2023). A structural connectivity atlas of limbic brainstem nuclei. Frontiers in Neuroimaging.'});
 
 dosave = true;
 

@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>compare_with_bianciardi</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-02-27">
+<meta name="DC.source" content="compare_with_bianciardi.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#2">plot overlaps</a>
+</li>
+</ul>
+</div>
+<pre class="codeinput">clear <span class="string">all</span>;
+close <span class="string">all</span>;
+
+addpath(<span class="string">'/home/bogdan/.matlab/spm/spm12'</span>);
+addpath(genpath(<span class="string">'/home/bogdan/.matlab/canlab/CanlabCore'</span>))
+addpath(genpath(<span class="string">'/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'</span>))
+addpath(genpath(<span class="string">'/home/bogdan/.matlab/canlab/MasksPrivate'</span>))
+
+limbicAtlas = load_atlas(<span class="string">'limbic_brainstem_atlas_fmriprep20'</span>).threshold(0.2);
+
+<span class="comment">% note, this requires MasksPrivate</span>
+biancia = load_atlas(<span class="string">'bianciardi_fmriprep20'</span>).threshold(0.2);
+</pre>
+<pre class="codeoutput">Loading atlas: levinson_bari_limbic_brainstem_atlas_MNI152NLin2009cAsym_atlas_object.mat
+Keeping probability_map values above 0.20
+Loading atlas: bianciardi_MNI152NLin2009cAsym_atlas_object.mat
+Keeping probability_map values above 0.20
+</pre>
+<h2 id="2">plot overlaps</h2>
+<pre class="codeinput">
+<span class="comment">% equivalence mapping {{iglesias}, {morel}}</span>
+emap = {{{<span class="string">'LC_L'</span>},{<span class="string">'L_LC'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'LC_R'</span>},{<span class="string">'R_LC'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'DR'</span>},{<span class="string">'DR_B7'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'PAG'</span>},{<span class="string">'PAG'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'VTA_L'</span>},{<span class="string">'L_VTA_PBP'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'VTA_R'</span>},{<span class="string">'R_VTA_PBP'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'NTS_L'</span>},{<span class="string">'L_VSM'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'NTS_R'</span>},{<span class="string">'R_VSM'</span>}}};
+
+[newAtlas1, newAtlas2] = deal({});
+<span class="keyword">for</span> i = 1:length(emap)
+    newAtlas1{end+1} = limbicAtlas.select_atlas_subset(emap{i}{1},<span class="string">'flatten'</span>);
+    newAtlas2{end+1} = biancia.select_atlas_subset(emap{i}{2},<span class="string">'flatten'</span>);
+<span class="keyword">end</span>
+limbicBSAtlas = [newAtlas1{:}];
+bianciaAtlas = [newAtlas2{:}];
+
+<span class="keyword">for</span> orientation = {<span class="string">'saggital'</span>,<span class="string">'coronal'</span>,<span class="string">'axial'</span>}
+</pre>
+<pre class="codeinput">    o2 = limbicBSAtlas.montage(<span class="string">'transvalue'</span>,0.5,<span class="string">'regioncenters'</span>,orientation{1});
+    <span class="keyword">for</span> i = 1:num_regions(limbicBSAtlas)
+        <span class="keyword">try</span>
+            biancia_roi = bianciaAtlas.select_atlas_subset(i).threshold(0.2);
+
+            <span class="keyword">if</span> num_regions(biancia_roi) == 1
+                o3 = o2;
+                o3.activation_maps = o2.activation_maps(i);
+                o3.montage = o2.montage(i);
+                biancia_roi.montage(o3,<span class="string">'existing_figure'</span>,<span class="string">'existing_axes'</span>, o2.montage{i}.axis_handles,<span class="string">'outline'</span>,<span class="string">'color'</span>,[0,0,0]);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    drawnow()
+</pre>
+<pre class="codeoutput">Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage:  19 voxels displayed,  47 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage:  14 voxels displayed,  60 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage: 134 voxels displayed, 230 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage: 120 voxels displayed, 872 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage:  77 voxels displayed, 656 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage:  72 voxels displayed, 609 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage:  57 voxels displayed, 208 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+sagittal montage:  48 voxels displayed, 197 not displayed on these slices
+</pre>
+<img vspace="5" hspace="5" src="compare_with_bianciardi_01.png" alt=""> <pre class="codeoutput">Compressed NIfTI files are not supported.
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  17 voxels displayed,  49 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  22 voxels displayed,  52 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  27 voxels displayed, 337 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  90 voxels displayed, 902 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  61 voxels displayed, 672 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  61 voxels displayed, 620 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  40 voxels displayed, 225 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+coronal montage:  34 voxels displayed, 211 not displayed on these slices
+</pre>
+<img vspace="5" hspace="5" src="compare_with_bianciardi_02.png" alt=""> <pre class="codeoutput">Compressed NIfTI files are not supported.
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:   5 voxels displayed,  61 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:   5 voxels displayed,  69 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:   7 voxels displayed, 357 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:  79 voxels displayed, 913 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:  51 voxels displayed, 682 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:  44 voxels displayed, 637 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:  21 voxels displayed, 244 not displayed on these slices
+Keeping probability_map values above 0.20
+Warning: Unknown input string option:existing_figure 
+Warning: Unknown input string option:existing_axes 
+axial montage:  18 voxels displayed, 227 not displayed on these slices
+</pre>
+<img vspace="5" hspace="5" src="compare_with_bianciardi_03.png" alt=""> <pre class="codeinput">
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Warning: Probabilities don't sum to 1, so cannot assume condition independence.
+New map will use maximum probability instead of sum of probabilities. 
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+Resampling space of atlas to add
+Adding regions
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+clear all;
+close all;
+
+addpath('/home/bogdan/.matlab/spm/spm12');
+addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore'))
+addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
+addpath(genpath('/home/bogdan/.matlab/canlab/MasksPrivate'))
+
+limbicAtlas = load_atlas('limbic_brainstem_atlas_fmriprep20').threshold(0.2);
+
+% note, this requires MasksPrivate
+biancia = load_atlas('bianciardi_fmriprep20').threshold(0.2);
+
+%% plot overlaps
+
+% equivalence mapping {{iglesias}, {morel}}
+emap = {{{'LC_L'},{'L_LC'}},...
+    {{'LC_R'},{'R_LC'}},...
+    {{'DR'},{'DR_B7'}},...
+    {{'PAG'},{'PAG'}},...
+    {{'VTA_L'},{'L_VTA_PBP'}},...
+    {{'VTA_R'},{'R_VTA_PBP'}},...
+    {{'NTS_L'},{'L_VSM'}},...
+    {{'NTS_R'},{'R_VSM'}}};
+
+[newAtlas1, newAtlas2] = deal({});
+for i = 1:length(emap)
+    newAtlas1{end+1} = limbicAtlas.select_atlas_subset(emap{i}{1},'flatten');
+    newAtlas2{end+1} = biancia.select_atlas_subset(emap{i}{2},'flatten');
+end
+limbicBSAtlas = [newAtlas1{:}];
+bianciaAtlas = [newAtlas2{:}];
+
+for orientation = {'saggital','coronal','axial'}
+    %%
+    o2 = limbicBSAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
+    for i = 1:num_regions(limbicBSAtlas)
+        try
+            biancia_roi = bianciaAtlas.select_atlas_subset(i).threshold(0.2);
+        
+            if num_regions(biancia_roi) == 1
+                o3 = o2;
+                o3.activation_maps = o2.activation_maps(i);
+                o3.montage = o2.montage(i);
+                biancia_roi.montage(o3,'existing_figure','existing_axes', o2.montage{i}.axis_handles,'outline','color',[0,0,0]);
+            end
+        end
+    end
+    
+    drawnow()
+end
+
+##### SOURCE END #####
+-->
+</body>
+</html>
