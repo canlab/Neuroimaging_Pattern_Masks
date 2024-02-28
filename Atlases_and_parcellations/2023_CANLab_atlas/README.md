@@ -285,7 +285,7 @@ healthy and don't suffer from any pathological conditions that might affect brai
 histlogical sections (morel and julich) which are obviously conducted on cadavers. Although the donors did not have brain
 pathologies, they were nevertheless old enough to have anticipated their deaths and consented to the donation in the first 
 place, so use your best judgement here. Finally, these are all studies conducted in western developed nations and are likely
-biased towards associated demographics. The more your sample deviates from these characteristics the more you should take
+biased towards associated demographics. The more your sample deviates from these characteristics the more care you should take
 in interpreting probability maps and label assignments.
 
 ## Developer Notes
