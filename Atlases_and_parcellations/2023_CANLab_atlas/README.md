@@ -228,7 +228,7 @@ minor but extensive, and all together represent a substantial change. Difference
 authoritative reference), so they were not carried over. Most other brainstem regions have analogs here, although potentially
 under a different name (for instance the dorsal motor nucleus of the vagus, or DMNX, is now the viscero-sensory-motor nuclei,
 or VSM).
-* new PAG label, based on Phil's 7T columnar subdivisions
+* new PAG label, based on Phil Kragel's 7T columnar subdivisions
 * New 10 region Amygdala labels instead of Julich 3 label subdivision.
 * Perfect hemispheric subdivision (midline is assigned to x+ direction). Canlab2018 had irregular midline boundaries across regions.
 
