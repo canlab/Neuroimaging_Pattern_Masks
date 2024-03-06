@@ -18,7 +18,7 @@ mRt_l,mRt_r,Mesencephalic reticular formation,Brainstem,2021
 mRt_l,mRt_r,Mesencephalic reticular formation,Brainstem,2021
 PAG,,Periaqueductal gray,Brainstem,2015
 PCRtA_l,PCRtA_r,Parvicellular reticular nucleus Alpha part,Brainstem,2022
-PMnR,,Paramedian nucleus,Brainstem,2018
+MnR,Median raphe,Brainstem,2018
 PnO_PnC_l,PnO_PnC_r,"Pontine reticular nucleus, oral and caudal parts (pontis oralis and caudalis)",Brainstem,2022
 PTg_l,PTg_r,Pedunculotegmental nucleus (also called Pedunculopontine nucleus),Brainstem,2018
 RMg,,Raphe magnus,Brainstem,2015
