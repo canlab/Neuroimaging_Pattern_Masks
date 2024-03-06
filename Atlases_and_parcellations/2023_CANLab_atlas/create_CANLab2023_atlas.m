@@ -119,7 +119,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
                 labels_4{end+1} = 'Midbrain';
             case groupings{4}
                 labels_3{end+1} = 'Rostral reticular formation';
-                labels_4{end+1} = 'Midrain';
+                labels_4{end+1} = 'Midbrain';
             case groupings{5}
                 labels_3{end+1} = biancia.labels_2{i};
                 labels_4{end+1} = 'Pons';
