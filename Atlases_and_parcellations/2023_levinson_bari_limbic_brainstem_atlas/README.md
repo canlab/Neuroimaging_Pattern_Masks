@@ -46,13 +46,13 @@ NTS -> VSM (partial, VSM is sensory and motor, while NTS should just be sensory)
 Colored Patches - Levinson Bari Limbic Brainstem Atlas<br />
 Outlines - Bianciardi equivalents
 
-![compare_with_bianciardi_01.png](compare_with_bianciardi_01.png)
+![html/compare_with_bianciardi_01.png](html/compare_with_bianciardi_01.png)
 Saggital
 
-![compare_with_bianciardi_02.png](compare_with_bianciardi_02.png)
+![html/compare_with_bianciardi_02.png](html/compare_with_bianciardi_02.png)
 Coronal
 
-![compare_with_bianciardi_03.png](compare_with_bianciardi_03.png)
+![html/compare_with_bianciardi_03.png](html/compare_with_bianciardi_03.png)
 Axial
 
 ## External Links

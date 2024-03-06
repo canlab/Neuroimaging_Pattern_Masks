@@ -228,7 +228,7 @@ minor but extensive, and all together represent a substantial change. Difference
 authoritative reference), so they were not carried over. Most other brainstem regions have analogs here, although potentially
 under a different name (for instance the dorsal motor nucleus of the vagus, or DMNX, is now the viscero-sensory-motor nuclei,
 or VSM).
-* new PAG label, based on Phil's 7T columnar subdivisions
+* new PAG label, based on Phil Kragel's 7T columnar subdivisions
 * New 10 region Amygdala labels instead of Julich 3 label subdivision.
 * Perfect hemispheric subdivision (midline is assigned to x+ direction). Canlab2018 had irregular midline boundaries across regions.
 
@@ -282,10 +282,10 @@ such delineations.
 Finally, note that this parcellation and associated probabilities are derived from a particular population of subjects that
 may not be representative of yours. Most studies are disproportionately conducted on individuals between 25-35, who are
 healthy and don't suffer from any pathological conditions that might affect brain morphology. The exception to this are
-histlogical sections (morel and julich) which are obviously conducted on cadavers. Although the doners did not have brain
+histlogical sections (morel and julich) which are obviously conducted on cadavers. Although the donors did not have brain
 pathologies, they were nevertheless old enough to have anticipated their deaths and consented to the donation in the first 
 place, so use your best judgement here. Finally, these are all studies conducted in western developed nations and are likely
-biased towards associated demographics. The more your sample deviates from these characteristics the more you should take
+biased towards associated demographics. The more your sample deviates from these characteristics the more care you should take
 in interpreting probability maps and label assignments.
 
 ## Developer Notes
