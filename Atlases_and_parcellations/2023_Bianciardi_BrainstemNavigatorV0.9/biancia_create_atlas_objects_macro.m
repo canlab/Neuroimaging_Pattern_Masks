@@ -58,12 +58,20 @@ for space = {'MNI152NLin6Asym', 'MNI152NLin6Asym_2mm', 'MNI152NLin2009cAsym', 'M
     % Display on montage (colors may not be the same!):
     % montage(r);
      
+    left_regions = find(~cellfun(@isempty,regexp(bianciaAtlas.labels,'^L_')));
+    right_regions = find(~cellfun(@isempty,regexp(bianciaAtlas.labels,'^R_')));
+    bilat_regions = find(cellfun(@isempty,regexp(bianciaAtlas.labels,'^R_')) & cellfun(@isempty,regexp(bianciaAtlas.labels,'^L_')));
+    cmap0 = scn_standard_colors(length(left_regions)+length(bilat_regions));
+    cmap0 = cell2mat(cat(2,cmap0'));
+    [cmap(right_regions,:), cmap(left_regions,:)] = deal(cmap0(1:length(left_regions),:));
+    cmap(bilat_regions,:) = cmap0(1+length(left_regions):end,:);
+
     %% save figure
     if dosave
         o2 = canlab_results_fmridisplay([], 'full2', overlayargs{:});
         brighten(.6)
         
-        o2 = montage(r, o2);
+        o2 = montage(r, o2,'indexmap', cmap);
         
         savedir = fullfile(pwd, 'png_images');
         if ~exist(savedir, 'dir'), mkdir(savedir); end
