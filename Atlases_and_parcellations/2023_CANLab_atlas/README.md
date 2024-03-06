@@ -74,9 +74,10 @@ If you're not using windows modify the first couple of lines of the setup.sh scr
 (provided by connectome workbench, available here: https://www.humanconnectome.org/software/get-connectome-workbench; I'm
 currently using v1.5.0).
 
-Run setup.m from matlab to construct all the necessary files. You will need an internet connection. Your PC should also 
-ideally have at least 32G of memory and disk space, since the uncompressed probability maps are quite large. Once assembled,
-the atlas files only take up a couple hundred MB. CIFTI file assembly is handled at the end by a system call to create_CANLab2023_atlas_cifti.sh.
+Run setup_canlab2023.m from matlab to construct all the necessary files. You will need an internet connection. Your PC should 
+also ideally have at least 32G of memory and disk space, since the uncompressed probability maps are quite large. Once 
+assembled, the atlas files only take up a couple hundred MB. CIFTI file assembly is handled at the end by a system call to 
+create_CANLab2023_atlas_cifti.sh.
 
 
 
