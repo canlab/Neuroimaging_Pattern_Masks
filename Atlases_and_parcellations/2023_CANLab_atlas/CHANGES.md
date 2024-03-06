@@ -1,5 +1,9 @@
 ### Change Log
 
+#### v1.0.3:
+2024/03/06
+* merged MnR and PMnR in labels_2/coarse labels
+
 #### v1.0.2:
 2024/03/05
 * corrected OFC and pOFC labels_2 fields (dmPFC -> OFC)

@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>compare_with_bianciardi</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-02-27">
+<meta name="DC.date" content="2024-03-06">
 <meta name="DC.source" content="compare_with_bianciardi.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -113,8 +113,8 @@ emap = {{{<span class="string">'L_LC'</span>},{<span class="string">'L_LC'</span
     {{<span class="string">'R_PTg'</span>},{<span class="string">'R_PTg'</span>}},<span class="keyword">...</span>
     {{<span class="string">'L_PnO'</span>},{<span class="string">'L_PnO_PnC_B5'</span>}},<span class="keyword">...</span>
     {{<span class="string">'R_PnO'</span>},{<span class="string">'R_PnO_PnC_B5'</span>}},<span class="keyword">...</span>
-    {{<span class="string">'L_mRt'</span>},{<span class="string">'L_mRta'</span>, <span class="string">'L_mRtd'</span>,<span class="string">'L_MRtl'</span>}},<span class="keyword">...</span>
-    {{<span class="string">'R_mRt'</span>},{<span class="string">'R_mRta'</span>, <span class="string">'R_mRtd'</span>,<span class="string">'R_MRtl'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'L_mRt'</span>},{<span class="string">'L_isRt'</span>}},<span class="keyword">...</span>
+    {{<span class="string">'R_mRt'</span>},{<span class="string">'R_isRt'</span>}},<span class="keyword">...</span>
     {{<span class="string">'DR'</span>},{<span class="string">'DR_B7'</span>}},<span class="keyword">...</span>
     {{<span class="string">'MnR'</span>},{<span class="string">'MnR_B6_B8'</span>,<span class="string">'PMnR_B6_B8'</span>}},<span class="keyword">...</span>
     {{<span class="string">'PAG'</span>},{<span class="string">'PAG'</span>}},<span class="keyword">...</span>
@@ -143,6 +143,7 @@ bianciaAtlas = [newAtlas2{:}];
             <span class="keyword">end</span>
         <span class="keyword">end</span>
     <span class="keyword">end</span>
+    set(gcf,<span class="string">'Tag'</span>,orientation{1});
 
     drawnow()
 </pre>
@@ -206,11 +207,11 @@ sagittal montage: 155 voxels displayed, 644 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  64 voxels displayed, 611 not displayed on these slices
+sagittal montage:  33 voxels displayed,  97 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  63 voxels displayed, 610 not displayed on these slices
+sagittal montage:  30 voxels displayed,  91 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
@@ -272,11 +273,11 @@ coronal montage:  97 voxels displayed, 702 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  21 voxels displayed, 654 not displayed on these slices
+coronal montage:  23 voxels displayed, 107 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  20 voxels displayed, 653 not displayed on these slices
+coronal montage:  23 voxels displayed,  98 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
@@ -338,11 +339,11 @@ axial montage:  29 voxels displayed, 770 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:   0 voxels displayed, 675 not displayed on these slices
+axial montage:   0 voxels displayed, 130 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:   0 voxels displayed, 673 not displayed on these slices
+axial montage:   0 voxels displayed, 121 not displayed on these slices
 Keeping probability_map values above 0.20
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
@@ -522,8 +523,8 @@ emap = {{{'L_LC'},{'L_LC'}},...
     {{'R_PTg'},{'R_PTg'}},...
     {{'L_PnO'},{'L_PnO_PnC_B5'}},...
     {{'R_PnO'},{'R_PnO_PnC_B5'}},...
-    {{'L_mRt'},{'L_mRta', 'L_mRtd','L_MRtl'}},...
-    {{'R_mRt'},{'R_mRta', 'R_mRtd','R_MRtl'}},...
+    {{'L_mRt'},{'L_isRt'}},...
+    {{'R_mRt'},{'R_isRt'}},...
     {{'DR'},{'DR_B7'}},...
     {{'MnR'},{'MnR_B6_B8','PMnR_B6_B8'}},...
     {{'PAG'},{'PAG'}},...
@@ -552,6 +553,7 @@ for orientation = {'saggital','coronal','axial'}
             end
         end
     end
+    set(gcf,'Tag',orientation{1});
     
     drawnow()
 end

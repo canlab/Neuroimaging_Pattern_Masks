@@ -56,8 +56,8 @@ L_PTg -> L_PTg<br />
 R_PTg -> R_PTg<br />
 L_PnO -> L_PnO_PnC_B5<br />
 R_PnO -> R_PnO_PnC_B5<br />
-L_mRt -> L_mRta, L_mRtd, L_MRtl<br />
-R_mRt -> R_mRta, R_mRtd, R_MRtl<br />
+L_mRt -> L_isRt (Also overlps Bianciardi's PTg; Note, Bianciardi also has R/L_mRta, R/L_mRtd and R/L_MRtl, but they're more rostral and don't overlap)<br />
+R_mRt -> R_isRt (See note for L_mRt)<br />
 DR -> DR_B7<br />
 MnR -> MnR_B6_B8,PMnR_B6_B8<br />
 PAG -> PAG<br />

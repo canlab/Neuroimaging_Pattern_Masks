@@ -142,8 +142,8 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
                 % a single group.
                 labels_4{end+1} = 'Pons';
             case groupings{11}
-                labels_3{end+1} = 'Cranial nucleu';
-                labels_4{end+1} = 'Medullar';
+                labels_3{end+1} = 'Cranial_nuclei';
+                labels_4{end+1} = 'Medulla';
             otherwise
                 error('Unexpected Bianciardi area %s', biancia.labels{i});
         end
