@@ -50,15 +50,18 @@ preprocessed data as our starting point rather than going back to raw data,
 attempting to perform all their esoteric preprocessing steps and then 
 performing the segmentation in the native DWI space.
 
-Labels were grouped at successive levels of granularity. labels 1 is the 
-maximal level provided by the histological segmentations that determine the
-priors freesurfer used. Labels 2 is a slight adjustment to group subdivisions 
-of nuclei (e.g. lateral/median, parvocellular, magnocellular), etc. Labels 3 
-is based on the manual segmentation of Tregidgo (2023) Neuoimage, which 
+## Labels
+
+Labels were grouped at successive levels of granularity. 
+* labels 1: maximal level provided by the histological segmentations that determine the
+priors freesurfer used. 
+* labels 2: a slight adjustment to group subdivisions 
+of nuclei (e.g. lateral/median, parvocellular, magnocellular), etc. 
+* labels 3: based on the manual segmentation of Tregidgo (2023) Neuoimage, which 
 represents nuclei that can be distinguished based on MR contrast alone (in
 T1, T2 or FA data) and was used as the gold standard comparator for evaluating
 the histological segmentations during development of the freesurfer algorithm.
-labels 4 is the subdivision from iglesias 2018 Table 2.
+* labels 4: the subdivision from iglesias 2018 Table 2.
 
 ## Comparison with Morel
 
@@ -79,8 +82,8 @@ Hb -> Missing <br />
 LGNmc, LGNpc -> LGN <br />
 LP (more lateral) -> LP (more medial) <br />
 Li, SG -> L-SG <br />
-MDmc -> MDm (renamed to MDmc) <br />
-MDpc -> MDl (renamed to MDpc) <br />
+MDmc -> MDm <br />
+MDpc -> MDl <br />
 PuI + Po -> PuI <br />
 PuM -> PuMm PuMl <br />
 RN -> Missing <br />

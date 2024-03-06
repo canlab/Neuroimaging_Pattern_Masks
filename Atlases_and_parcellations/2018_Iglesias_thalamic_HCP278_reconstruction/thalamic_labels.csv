@@ -15,15 +15,15 @@ Pf,parafascicular,cIL,Intralaminar,Intralaminar
 Pt,paratenial,Midline,Intralaminar,Intralaminar
 MV_Re,Reuniens (medial ventral),Midline,Intralaminar,Intralaminar
 CL,central lateral,CL,Medial,Medial
-MDmc,Mediodorsal medial magnocellular,MD,Medial,Medial
-MDpc,Mediodorsal medial parvocellular,MD,Medial,Medial
+MDm,Mediodorsal medial magnocellular-like,MD,Medial,Medial
+MDl,Mediodorsal medial parvocellular-like,MD,Medial,Medial
 LGN,lateral geniculate,LGN,LGN,Posterior
 MGN,medial geniculate,MGN,MGN,Posterior
 L_SG,Limitans (suprageniculate),PuI,Pulvinar,Posterior
 PuA,Pulvinar anterior,PuA,Pulvinar,Posterior
 PuM,Pulvinar medial,PuM,Pulvinar,Posterior
-PuMm,Pulvinar medial (medial subdivision),PuM,,
-PuMl,Pulvinar medial (lateral subdivision),PuM,,
+PuMm,Pulvinar medial (medial subdivision),PuM,Pulvinar,Posterior
+PuMl,Pulvinar medial (lateral subdivision),PuM,Pulvinar,Posterior
 PuL,Pulvinar lateral,PuL,Pulvinar,Posterior
 PuI,Pulvinar inferior,PuL,Pulvinar,Posterior
 R,Reticular,R,R,R
