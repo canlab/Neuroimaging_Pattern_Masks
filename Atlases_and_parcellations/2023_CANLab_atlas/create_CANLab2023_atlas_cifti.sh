@@ -16,14 +16,14 @@ WBCMD=/home/bogdan/Downloads/workbench/bin_rh_linux64/wb_command
 
 WD=$(cd $(dirname $(readlink -f $0)) && pwd)
 
-$WBCMD -volume-label-import $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.nii.gz \
-    $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.txt \
-    $WD/subctx_atlas.label.nii
+$WBCMD -volume-label-import $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.nii.gz \
+    $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.txt \
+    $WD/src/subctx_atlas.label.nii
 
 if [ $SPACE == "MNI152NLin6Asym" ]; then
-    hcp_labels=$WD/hcp_cifti_subctx_labels.nii.gz
+    hcp_labels=$WD/src/hcp_cifti_subctx_labels.nii.gz
 else
-    hcp_labels=$WD/hcp_cifti_subctx_labels_${SPACE}.nii.gz
+    hcp_labels=$WD/src/hcp_cifti_subctx_labels_${SPACE}.nii.gz
     if [ ! -e $hcp_labels ]; then
         echo "Could not find ${hcp_labels}"
         exit
@@ -32,9 +32,9 @@ fi
 # Note to self: the label files below were copied from
 # /dartfs-hpc/rc/home/m/f0042vm/software/diedrichsen_fs_LR_32/Glasser_2016.32k.L.label.gii
 $WBCMD -cifti-create-label $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii \
-    -volume $WD/subctx_atlas.label.nii ${hcp_labels} \
-    -left-label $WD/../../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.L.label.gii \
-    -right-label $WD/../../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.R.label.gii
+    -volume $WD/src/subctx_atlas.label.nii ${hcp_labels} \
+    -left-label $WD/../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.L.label.gii \
+    -right-label $WD/../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.R.label.gii
 
 # Remove Glasser Hippocampus
 $WBCMD -cifti-label-export-table $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii 1 \
@@ -58,14 +58,14 @@ $WBCMD -cifti-label-import $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii 
     -discard-others -drop-unused-labels
 
 # Remap indices to match volumetric atlas
-if [ -e $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt ]; then
+if [ -e $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt ]; then
     src_ind=($(cat $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.txt | awk '{if (NR%2==0) {print $1}}'))
     src_lbl=($(cat $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.txt | awk '{if (NR%2==1) {print $0}}'))
 
     rm -f $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_atlasObj_to_cifti_mapping.txt
     for i in $(seq 0 $[${#src_ind[@]}-1]); do
         this_lbl=$(echo ${src_lbl[$i]} | sed 's/\([LR]\)_\(.*\)_ROI/Ctx_\2_\1/' | sed 's/-/_/g')
-        target_ind=$(cat $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_canlab_labels.txt | grep \ $this_lbl\$ | awk '{print $1}')
+        target_ind=$(cat $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_canlab_labels.txt | grep \ $this_lbl\$ | awk '{print $1}')
         echo "${src_ind[$i]} ${target_ind}" >> $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_atlasObj_to_cifti_mapping.txt
     done
 
@@ -78,18 +78,18 @@ if [ -e $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt ]; th
     $WBCMD -cifti-label-export-table $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii 1 \
         $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table.txt
 
-    glasser_ind=($(cat $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt | awk '{print $1}'))
-    glasser_lbl=($(cat $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt | awk '{print $2}'))
+    glasser_ind=($(cat $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt | awk '{print $1}'))
+    glasser_lbl=($(cat $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_glasser_labels.txt | awk '{print $2}'))
     rm -f $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table_new.txt 
     for i in $(seq 0 $[${#glasser_lbl[@]}-1]); do
-        canlab_lbl=$(cat $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_canlab_labels.txt | \
+        canlab_lbl=$(cat $WD/src/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_canlab_labels.txt | \
                      grep "^${glasser_ind[i]} " | awk '{print $2}')
-        cat $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table.txt | grep -A1 ${glasser_lbl[$i]}\$ | \
+        cat $WD/src/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table.txt | grep -A1 ${glasser_lbl[$i]}\$ | \
             sed "s/${glasser_lbl[$i]}/$canlab_lbl/" >> $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table_new.txt 
     done
     $WBCMD -cifti-label-import $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii \
-        $WD/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table_new.txt \
-        $WD/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii
+        $WD/src/canlab2023_${SPACE}_${SCALE}_${res}mm_label_table_new.txt \
+        $WD/src/canlab2023_${SPACE}_${SCALE}_${res}mm.dlabel.nii
 
 else
     echo "Warning: Could not find key mapping file CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_canlab_labels.txt. CIFTI keys won't match canlab atlas."
