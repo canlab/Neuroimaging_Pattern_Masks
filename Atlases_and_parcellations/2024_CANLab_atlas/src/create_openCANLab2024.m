@@ -1,9 +1,10 @@
-% this script rereates the canlab2018 atlas except it constrains certain
-% structures to more accurately abide by CIFTI volumetric boundaries. For
-% example, CA1-3, DG and Subiculum are restricted to the hippocampal
-% volume, and other structures are excluded from it, even though the fornix 
-% approaches the thalamus, and the=% entorhinal cortex potentially bleeds 
-% into this volume in MNI space.
+% this script assembles the bulk of the CANLab2024 atlas. All that remains
+% are the Bianciardi regions, which have a restricted distribution license
+% and cannot be distributed. Consequently I refer to this as openCANLab2024
+% and have a separate script which adds the bianciardi regions (and removes
+% some of the Harvard AAN regions used here). While openCANLab2024 is meant
+% primarily as a scaffod that allows for faster generation of the
+% Bianciardi regions, it is also suitable for use as a standalone atlas.
 
 % labels 1 - fine scale
 % labels 2 - coarse scale
@@ -14,14 +15,14 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
-%LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
-LIB = '/home/bogdan/.matlab';
+LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
+%LIB = '/home/bogdan/.matlab';
 ROOT = [LIB, '/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2024_CANLab_atlas/'];
 
-%addpath([LIB, '/spm12']);
-addpath([LIB, '/spm/spm12']);
+addpath([LIB, '/spm12']);
+%addpath([LIB, '/spm/spm12']);
 
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
