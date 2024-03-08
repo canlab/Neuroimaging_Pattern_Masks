@@ -25,7 +25,79 @@ BST = atlas_obj.select_atlas_subset(find(contains(atlas_obj.labels,{'BST_SLEA'})
 BST.labels_2 = repmat({'BST_SLEA'}, 1, num_regions(BST));
 [BST.labels_3, BST.labels_4] = deal(repmat({'VStriatum'}, 1, num_regions(BST)));
 BST = lateralize(BST);
-BST.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(BST));
+BST.labels_5 = repmat({'CIT168 subcortical v1.1.0'},1,num_regions(BST));
+
+%% Pallidum
+% tian atlas doesn't distinguish interior/exterior GP, but CIT168 does, so 
+% we use that instead.
+pal = load_atlas(sprintf('cit168_%s',ALIAS)).select_atlas_subset({'GP','VeP'}).remove_empty();
+pal = lateralize(pal);
+
+pal.labels_2 = pal.labels;
+pal.labels_3 = pal.labels_2;
+pal.labels_4 = {'GP_L','GP_L','GP_L','GP_R','GP_R','GP_R'};
+pal.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(pal));
+
+%% expand CIFTI mask for VeP and BST
+% These structures extend somewhat outside the CIFTI mask. Let's expand it
+% to include most of these
+
+cifti_atlas = cifti_atlas.replace_empty();
+BST_VeP = BST.merge_atlases(pal.select_atlas_subset('VeP')).resample_space(cifti_atlas);
+BST_VeP_mask = fmri_mask_image(BST_VeP.threshold(0.05,'spin_off_parcel_fragments'));
+vx_ind = find(BST_VeP_mask.dat);
+target_mm = cifti_atlas.volInfo.mat*[cifti_atlas.volInfo.xyzlist(vx_ind,:)';ones(1,length(vx_ind))];
+target_mm = target_mm(1:3,:);
+region = zeros(length(vx_ind),1);
+cifti_atlas = cifti_atlas.remove_empty();
+for i = 1:length(vx_ind)
+    region(i) = cifti_atlas.find_closest_region(target_mm(:,i)).region_number;
+end
+cifti_atlas = cifti_atlas.replace_empty();
+cifti_atlas.dat(vx_ind) = region;
+
+
+%% finish up the pallidal region
+cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'pallidum'))));
+cifti_mask = cifti_mask.replace_empty();
+
+tic
+pal_dil = dilate(pal, cifti_mask);
+clear pal;
+toc
+
+
+%% Accumbens
+accumbens = load_atlas(sprintf('cartmell_NAc_%s',ALIAS));
+% the right core is split with a couple of voxels ventral to shell, which
+% isn't right. Let's touch it up.
+accumbens = accumbens.threshold(0,'spin_off_parcel_fragments');
+L_nac = accumbens.select_atlas_subset({'_L'});
+R_nac_core = accumbens.select_atlas_subset({'NAc_core_R_frag1'});
+R_nac_core.labels = {'NAc_core_R'};
+R_nac_shell = accumbens.select_atlas_subset({'NAc_shell_R','NAc_core_R_frag2'}, 'flatten');
+R_nac_shell.labels = {'NAc_shell_R'};
+R_nac_shell.label_descriptions = {'NucleusAccumbens, putative shell (right)'};
+R_nac_shell.labels_2 = {'NAc_R'};
+accumbens = [L_nac, R_nac_core, R_nac_shell];
+[accumbens.labels_3, accumbens.labels_4] = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),accumbens.labels_2,'UniformOutput',false));
+accumbens.labels_5 = repmat({'Cartmell2019'},1,num_regions(accumbens));
+
+accumbens = accumbens.remove_empty();
+
+cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'accumbens'))));
+cifti_mask = cifti_mask.replace_empty();
+
+% dilate to fill the accumbens CIFTI mask without masking areas in CIFTI
+% caudate mask
+tic
+accumbens_dil = dilate(accumbens, cifti_mask).replace_empty;
+accumbens_dil.probability_maps = max(cat(3,accumbens_dil.probability_maps, accumbens.replace_empty.probability_maps),[],3);
+accumbens_dil = accumbens_dil.probability_maps_to_region_index;
+%[accumbens_dil.labels_3, accumbens_dil.labels_4] = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),accumbens_dil.labels_2,'UniformOutput',false));
+%accumbens_dil.labels_5 = repmat({'Cartmell2019'},1,num_regions(accumbens_dil));
+accumbens_dil = BST.apply_mask(cifti_mask).merge_atlases(accumbens_dil,'noreplace');
+toc
 
 %% Caudate
 % some of the ventral striatum is in the CIFTI accumbens (13%), but most is 
@@ -43,7 +115,8 @@ cifti_mask = cifti_mask.replace_empty();
 
 tic
 caud_dil = dilate(caud, cifti_mask);
-caud_dil = bg.select_atlas_subset({'NAc'}).apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
+caud_dil = accumbens.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
+clear accumbens
 caud_dil = BST.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
 caud_dil.labels_3 = deal(cellfun(@(x1)(strrep(x1,'NAc_core','VStriatum')),caud_dil.labels_3,'UniformOutput',false));
 caud_dil.labels_3 = deal(cellfun(@(x1)(strrep(x1,'NAc_shell','VStriatum')),caud_dil.labels_3,'UniformOutput',false));
@@ -86,41 +159,10 @@ put_dil.probability_maps(put.dat > 0,:) = put.probability_maps(put.dat > 0,:);
 clear put
 
 %put_dil = bg.select_atlas_subset('NAc').apply_mask(cifti_mask).merge_atlases(put_dil,'noreplace');
-%% Pallidum
-% tian atlas doesn't distinguish interior/exterior GP, but CIT168 does, so 
-% we use that instead.
-pal = load_atlas(sprintf('cit168_%s',ALIAS)).select_atlas_subset({'GP','VeP'}).remove_empty();
-pal = lateralize(pal);
-
-pal.labels_2 = pal.labels;
-pal.labels_3 = pal.labels_2;
-pal.labels_4 = {'GP_L','GP_L','GP_L','GP_R','GP_R','GP_R'};
-pal.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(pal));
-
-cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'pallidum'))));
-cifti_mask = cifti_mask.replace_empty();
-
-tic
-pal_dil = dilate(pal, cifti_mask);
-clear pal;
-toc
-
-%% Accumbens
-accumbens = bg.select_atlas_subset(find(contains(bg.labels,{'NAc'}))).remove_empty();
-
-cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'accumbens'))));
-cifti_mask = cifti_mask.replace_empty();
-
-tic
-accumbens_dil = dilate(accumbens, cifti_mask);
-[accumbens_dil.labels_3, accumbens_dil.labels_4] = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),accumbens_dil.labels_4,'UniformOutput',false));
-clear accumbens;
-accumbens_dil = BST.apply_mask(cifti_mask).merge_atlases(accumbens_dil,'noreplace');
-toc
 
 %% bg atlas
 bg_dil = caud_dil.merge_atlases(put_dil).merge_atlases(pal_dil).merge_atlases(accumbens_dil);
-clear caud_dil put_dil pal_dil accumbens_dil
+%clear caud_dil put_dil pal_dil accumbens_dil
 
 % deal with redundant labels
 n_labels = length(bg_dil.labels);
@@ -145,15 +187,38 @@ for i = 1:length(fnames)
 end
 bg_dil.probability_maps(:,remove_lbl) = [];
 
-for fname={'labels','labels_2','labels_3','labels_4'}
-    this_lbl = fname{1};
-    bg_dil.(this_lbl) = cellfun(@(x1)strrep(x1,'NAc_core','NAc_core_like'),bg_dil.(this_lbl),'UniformOutput',false);
-    bg_dil.(this_lbl) = cellfun(@(x1)strrep(x1,'NAc_shell','NAc_shell_like'),bg_dil.(this_lbl),'UniformOutput',false);
-end
-
 
 % add BG prephix
 
 for i = 1:length(bg_dil.labels)
     bg_dil.labels{i} = [ 'BG_' bg_dil.labels{i}]; 
 end
+
+%% eval NAc overlap with original
+%{
+thisAtlas = bg_dil; 
+thisAtlas.probability_maps = [];
+thisAtlas = thisAtlas.select_atlas_subset('NAc');
+thisAtlas.labels = cellfun(@(x1)(strrep(x1,'BG_','')), thisAtlas.labels, 'UniformOutput', false);
+thisAtlas.probability_maps = [];
+thisLeadsAtlas = load_atlas(sprintf('cartmell_nac_%s',ALIAS));
+thisLeadsAtlas.probability_maps = [];
+for orientation = {'saggital','coronal','axial'}
+    %%
+    o2 = thisAtlas.montage('nofigure','transvalue',0.5,'regioncenters',orientation{1});
+    for i = 1:num_regions(thisAtlas)
+        try
+            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),'exact');
+        
+            if num_regions(leads_roi) == 1
+                o3 = o2;
+                o3.activation_maps = o2.activation_maps(i);
+                o3.montage = o2.montage(i);
+                leads_roi.montage(o3,'existing_figure','existing_axes', o2.montage{i}.axis_handles,'outline','color',[0,0,0]);
+            end
+        end
+    end
+    set(gcf,'Tag',orientation{1})
+    drawnow()
+end
+%}

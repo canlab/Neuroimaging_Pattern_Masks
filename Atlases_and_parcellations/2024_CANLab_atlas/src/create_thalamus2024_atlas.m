@@ -20,8 +20,8 @@ thalamus_atlas.references = unique(thalamus_atlas.references,'rows');
 
 cit168 = load_atlas(sprintf('CIT168_%s', ALIAS));
 
-group_codes = {'Hythal','Haben'}; % we'll add some more with the brainstem
-group_descript = {'Hypothalamus', 'Habenula'};
+group_codes = {'Haben'};
+group_descript = {'Habenula'};
 
 for i = 1:length(group_codes)
     
@@ -40,9 +40,43 @@ for i = 1:length(group_codes)
     
 end
 
+%% Load Hypothalamic atlas and add regions
+
+hypothal_atlas = load_atlas(sprintf('iglesias_hypothal_%s', ALIAS));
+
+group_codes = {'hypothalamus'};
+
+for i = 1:length(group_codes)
+    
+    if iscell(group_codes{i})
+        roi_atlas = select_atlas_subset(hypothal_atlas, group_codes{i}, 'labels_3');
+    else
+        roi_atlas = select_atlas_subset(hypothal_atlas, group_codes(i), 'labels_3');
+    end
+    roi_atlas.labels_4 = roi_atlas.labels_3;
+    roi_atlas.labels_5 = repmat({'Billot/Iglesias2020'},1,num_regions(roi_atlas));
+    
+    thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
+end
+
+%% dilate the cifti atlas to include the entire hypothalamus
+% otherwise this trunctates the chiasmatic nuclei
+
+cifti_atlas = cifti_atlas.replace_empty();
+hypothal_atlas = hypothal_atlas.resample_space(cifti_atlas);
+hypothal_atlas = fmri_mask_image(hypothal_atlas.threshold(0.05,'spin_off_parcel_fragments'));
+vx_ind = find(hypothal_atlas.dat);
+target_mm = cifti_atlas.volInfo.mat*[cifti_atlas.volInfo.xyzlist(vx_ind,:)';ones(1,length(vx_ind))];
+target_mm = target_mm(1:3,:);
+region = zeros(length(vx_ind),1);
+cifti_atlas = cifti_atlas.remove_empty();
+for i = 1:length(vx_ind)
+    region(i) = cifti_atlas.find_closest_region(target_mm(:,i)).region_number;
+end
+cifti_atlas = cifti_atlas.replace_empty();
+cifti_atlas.dat(vx_ind) = region;
+
 %% renormalize probabilities
 total_p = sum(thalamus_atlas.probability_maps,2);
 renorm = total_p > 1;
 thalamus_atlas.probability_maps(renorm,:) = thalamus_atlas.probability_maps(renorm,:)./total_p(renorm);
-
-clear morel

@@ -44,4 +44,5 @@ function atlas = lateralize(atlas)
             end 
         end
     end
+    atlas.label_descriptions = atlas.label_descriptions(:);
 end

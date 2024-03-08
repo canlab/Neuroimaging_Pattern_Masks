@@ -147,7 +147,7 @@ bstem_atlas.labels_4(diencephalic_ind_L) = repmat({'Midbrain_L'},1,length(dience
 diencephalic_ind_R = find(contains(bstem_atlas.labels, {'Midb_Rrd'}));
 bstem_atlas.labels_4(diencephalic_ind_R) = repmat({'Midbrain_R'},1,length(diencephalic_ind_R));
 
-%% add other regions
+%% add CIT regions
 
 cit = load_atlas(sprintf('cit168_%s', ALIAS));
 
@@ -155,7 +155,7 @@ cit = load_atlas(sprintf('cit168_%s', ALIAS));
 % and STH into subparcels, but it's not open source so we prefer these
 % alternatives. The subdivisions of the RN and especially STh are also 
 % non-contiguous, which makes using them awkward.
-cit_regions = {'PBP', 'VTA', 'Mamm', 'SNc', 'SNr', 'RN', 'STH'};
+cit_regions = {'PBP', 'VTA', 'SNc', 'SNr', 'RN', 'STH'};
 
 cit = lateralize(cit.select_atlas_subset(cit_regions));
 cit.labels_2 = {};
@@ -175,12 +175,183 @@ for i = 1:num_regions(cit)
     end
     cit.labels_4{end+1} = regexprep(cit.labels{i},'.*_([LR])','Midbrain_$1');
 end
-cit.labels_5 = repmat({'CIT168 v1.1.0 subcortical'}, 1, num_regions(cit));
+cit.labels_5 = repmat({'CIT168 subcortical v1.1.0'}, 1, num_regions(cit));
 
 % the order here is important. The most sensitive atlases (i.e. those with
 % the smallest regions) go first so that we resample to their spaces.
 bstem_atlas = cit.merge_atlases(bstem_atlas);
 
+%% Add Levinson-Bari regions
+
+lb_atlas = load_atlas(sprintf('limbic_brainstem_atlas_%s', ALIAS));
+
+% bianciardi atlas also has SNc, SNr, RN, STH, and even subdivides the RN
+% and STH into subparcels, but it's not open source so we prefer these
+% alternatives. The subdivisions of the RN and especially STh are also 
+% non-contiguous, which makes using them awkward.
+lb_regions = {'DRN','LC','NTS'};
+
+lb_atlas = lb_atlas.select_atlas_subset(lb_regions);
+lb_atlas.labels_2 = {};
+lb_atlas.labels_3 = {};
+lb_atlas.labels_4 = {};
+% add label description and group regions
+for i = 1:num_regions(lb_atlas)
+    if contains(lb_atlas.labels{i},'DR')
+        lb_atlas.labels{i} = 'DR_B7'; % rename for consistency with Bianciardi and CANlab2023
+        lb_atlas.labels_2{end+1} = 'DR_B7';
+        lb_atlas.labels_3{end+1} = 'Rostral Raphe (Serotonergic)';
+        lb_atlas.labels_4{end+1} = 'Midbrain';
+    elseif contains(lb_atlas.labels{i}, 'LC')
+        lb_atlas.labels_2{end+1} = lb_atlas.labels{i};
+        lb_atlas.labels_3{end+1} = regexprep(lb_atlas.labels{i},'.*_([LR])','LC+_$1');
+        lb_atlas.labels_4{end+1} = regexprep(lb_atlas.labels{i},'.*_([LR])','Pons_$1');
+    elseif contains(lb_atlas.labels{i}, 'NTS')
+        lb_atlas.labels_2{end+1} = lb_atlas.labels{i};
+        lb_atlas.labels_3{end+1} = regexprep(lb_atlas.labels{i},'.*_([LR])','Cranial_nuclei_$1');
+        lb_atlas.labels_4{end+1} = regexprep(lb_atlas.labels{i},'.*_([LR])','Medulla_$1');
+    else
+        error('Unrecognized Levinson-Bari atlas region');
+    end
+end
+lb_atlas.labels_5 = repmat({'Levinson-Bari Limbic Brainstem Atlas'}, 1, num_regions(lb_atlas));
+lb_atlas = lb_atlas.threshold(0.01);
+
+% the order here is important. The most sensitive atlases (i.e. those with
+% the smallest regions) go first so that we resample to their spaces.
+bstem_atlas = lb_atlas.merge_atlases(bstem_atlas);
+
+
+%% Add Harvard AAN regions
+% these are non-probablistic and will be replaced in the non-open atlas by
+% Bianciardi regions
+
+aan_atlas = load_atlas(sprintf('harvard_aan_%s', ALIAS));
+
+% bianciardi atlas also has SNc, SNr, RN, STH, and even subdivides the RN
+% and STH into subparcels, but it's not open source so we prefer these
+% alternatives. The subdivisions of the RN and especially STh are also 
+% non-contiguous, which makes using them awkward.
+aan_regions = {'LDTg','PBC','PTg','PnO','mRt','MnR'};
+aan_regions_to_dilate = {'LDTg','MPB_LPB','PnO'}; % dilate these a bit because they're very small and unlikely to generalize well otherwise
+
+aan_atlas = aan_atlas.select_atlas_subset(aan_regions);
+aan_atlas.labels_2 = {};
+aan_atlas.labels_3 = {};
+aan_atlas.labels_4 = {};
+% add label description and group regions
+for i = 1:num_regions(aan_atlas)
+    if contains(aan_atlas.labels{i},'mRt')
+        aan_atlas.labels{i} = regexprep(aan_atlas.labels{i},'^([LR])_mRt','isRt_$1'); % rename for consistency with Bianciardi labels
+        aan_atlas.labels_2{end+1} = aan_atlas.labels{i};
+        aan_atlas.labels_3{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Rostral reticular formation_$1');
+        aan_atlas.labels_4{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Midbrain_$1');
+    elseif contains(aan_atlas.labels{i},'MnR')
+        aan_atlas.labels{i} = regexprep(aan_atlas.labels{i},'MnR','MnR_B6_B8'); % rename for consistency with Bianciardi labels
+        aan_atlas.labels_2{end+1} = aan_atlas.labels{i};
+        aan_atlas.labels_3{end+1} = 'Rostral Raphe (Serotonergic)';
+        aan_atlas.labels_4{end+1} = 'Midbrain';
+    elseif contains(aan_atlas.labels{i}, 'LDTg')
+        aan_atlas.labels{i} = regexprep(aan_atlas.labels{i},'^([LR])_(.*)','$2_$1');
+        aan_atlas.labels_2{end+1} = aan_atlas.labels{i};
+        aan_atlas.labels_3{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Cholinergic nuclei_$1');
+        aan_atlas.labels_4{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Pons_$1');
+    elseif contains(aan_atlas.labels{i}, 'PBC')0.
+        aan_atlas.labels{i} = regexprep(aan_atlas.labels{i},'^([LR    ])_(.*)','MPB_LPB_$1'); % rename for consistency with Bianciardi labels
+        aan_atlas.labels_2{end+1} = aan_atlas.labels{i};
+        aan_atlas.labels_3{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Parabrachial nuclei_$1');
+        aan_atlas.labels_4{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Pons_$1');
+    elseif contains(aan_atlas.labels{i}, 'PTg')
+        aan_atlas.labels{i} = regexprep(aan_atlas.labels{i},'^([LR])_(.*)','$2_$1');
+        aan_atlas.labels_2{end+1} = aan_atlas.labels{i};
+        aan_atlas.labels_3{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Cholinergic nuclei_nuclei_$1');
+        aan_atlas.labels_4{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Pons_$1');
+    elseif contains(aan_atlas.labels{i}, 'PnO')
+        aan_atlas.labels{i} = regexprep(aan_atlas.labels{i},'^([LR])_(.*)','$2_$1');
+        [aan_atlas.labels_2{end+1}, aan_atlas.labels_3{end+1}] = deal(aan_atlas.labels{i});
+        aan_atlas.labels_4{end+1} = regexprep(aan_atlas.labels{i},'.*_([LR])','Pons_$1');
+    else
+        error('Unrecognized Harvard AAN region');
+    end
+end
+aan_atlas.labels_5 = repmat({'Harvard Ascending Arousal Network'}, 1, num_regions(aan_atlas));
+
+% add dummy probabilities
+max_p = 0.8;
+pmap = zeros(size(aan_atlas.dat));
+for i = 1:num_regions(aan_atlas)
+    pmap(aan_atlas.dat == i,i) = max_p;
+end
+aan_atlas.probability_maps = pmap;
+aan_atlas = aan_atlas.probability_maps_to_region_index;
+
+% dilate the smallest ROIs to make them usable
+aan_dilated = aan_atlas.select_atlas_subset(aan_regions_to_dilate);
+for i = 1:num_regions(aan_dilated)
+    this_region = aan_dilated.select_atlas_subset(i).probability_maps;
+    this_region(this_region > 0) = max_p;
+    aan_atlas_ind = find(strcmp(aan_atlas.labels, aan_dilated.labels{i}));
+    these_p = iimg_smooth_3d(this_region, aan_dilated.volInfo, 3);
+
+    % renormalize so that max = 0.8
+    these_p = these_p*max_p/max(these_p);
+
+    aan_atlas.probability_maps(:,aan_atlas_ind) = these_p;
+end
+aan_atlas = aan_atlas.probability_maps_to_region_index;
+
+aan_atlas = aan_atlas.threshold(0.01);
+
+% diagnostics code to compare with bianciardi after dilation
+%{
+emap = {{{'LDTg_L'},{'L_LDTg_CGPn'}},...
+    {{'LDTg_R'},{'R_LDTg_CGPn'}},...
+    {{'MPB_LPB_L'},{'L_MPB','L_LPB'}},...
+    {{'MPB_LPB_R'},{'R_MPB','R_LPB'}},...
+    {{'PTg_L'},{'L_PTg'}},...
+    {{'PTg_R'},{'R_PTg'}},...
+    {{'PnO_L'},{'L_PnO_PnC_B5'}},...
+    {{'PnO_R'},{'R_PnO_PnC_B5'}},...
+    {{'isRt_L'},{'L_isRt'}},...
+    {{'isRt_R'},{'R_isRt'}},...
+    {{'MnR_B6_B8'},{'MnR_B6_B8','PMnR_B6_B8'}}};
+biancia = load_atlas(sprintf('bianciardi_%s',ALIAS));
+[newAtlas1, newAtlas2] = deal({});
+for i = 1:length(emap)
+    newAtlas1{end+1} = aan_atlas.select_atlas_subset(emap{i}{1},'flatten');
+    newAtlas2{end+1} = biancia.select_atlas_subset(emap{i}{2},'flatten');
+end
+aanAtlas = [newAtlas1{:}];
+bianciaAtlas = [newAtlas2{:}];
+
+
+thisAtlas = aanAtlas.threshold(0.2); 
+thisAtlas.probability_maps = [];
+thisLeadsAtlas = bianciaAtlas.threshold(0.2);
+thisLeadsAtlas.probability_maps = [];
+for orientation = {'saggital','coronal','axial'}
+    %%
+    o2 = thisAtlas.montage('nofigure','transvalue',0.5,'regioncenters',orientation{1});
+    for i = 1:num_regions(thisAtlas)
+        try
+            leads_roi = thisLeadsAtlas.select_atlas_subset(i);
+        
+            if num_regions(leads_roi) == 1
+                o3 = o2;
+                o3.activation_maps = o2.activation_maps(i);
+                o3.montage = o2.montage(i);
+                leads_roi.montage(o3,'existing_figure','existing_axes', o2.montage{i}.axis_handles,'outline','color',[0,0,0]);
+            end
+        end
+    end
+    set(gcf,'Tag',orientation{1})
+    drawnow()
+end
+%}
+
+% the order here is important. The most sensitive atlases (i.e. those with
+% the smallest regions) go first so that we resample to their spaces.
+bstem_atlas = aan_atlas.merge_atlases(bstem_atlas);
 
 %% Adjust labels
 % make more consistent with other atlases
@@ -197,9 +368,21 @@ bstem_atlas = atlas_add_L_R_to_labels(bstem_atlas);
 %% Add PAG
 % we'll start with the MNI152NLin6Asym (original) space data regardless of
 % our target data and project to the target space as needed in matlab.
-kragelmasks = fmri_data(sprintf('kragelpag_MNI152NLin6Asym.nii.gz'));
 
+% note the gunzipping/gzipping here shouldn't be necessary but there's a
+% strange bug happening for me right now where
+% exist('kragelpag_MNI152NLin6Asym.nii') returns true even when no such
+% file is present, which breaks automated gunzipping. We do it manually as
+% a temp workaround.
+gunzip('kragelpag_MNI152NLin6Asym.nii.gz');
+kragelmasks = fmri_data('kragelpag_MNI152NLin6Asym.nii');
+gzip('kragelpag_MNI152NLin6Asym.nii')
+delete('kragelpag_MNI152NLin6Asym.nii')
 kragelpmaps = kragelmasks.mean();
+
+% the aqueduct masks will be used to edit the Shen filler regions
+kragelmasks_aqueduct = fmri_data('kragelaqueduct_MNI152NLin6Asym.nii.gz');
+kragelpmaps_aqueduct = kragelmasks_aqueduct.mean();
 
 % we get this to label columns
 kragelPAG = load_atlas('Kragel2019PAG_atlas_object.mat');
@@ -209,7 +392,7 @@ kragelPAG = kragelPAG.resample_space(kragelpmaps);
 % neighbor labeling
 kragelPAG_dil = dilate(kragelPAG, fmri_mask_image(kragelpmaps));
 
-% split probability map into subregionsand asign labels from column map
+% split probability map into subregions and asign labels from column map
 % above
 pmap = zeros(size(kragelmasks.dat,1),num_regions(kragelPAG_dil));
 for i = 1:num_regions(kragelPAG_dil)
@@ -221,7 +404,7 @@ kragelpmaps.dat = pmap;
 if strcmp(SPACE,'MNI152NLin2009cAsym')
     kragelpmaps.fullpath = '/tmp/kragelpmaps.nii';
     kragelpmaps.write('overwrite');
-    apply_spm_warp(kragelpmaps.fullpath, which(sprintf('%s_T1_1mm.nii',SPACE)), ...
+    apply_spm_warp(kragelpmaps.fullpath, which(sprintf('%s_T1_1mm.nii.gz',SPACE)), ...
         which('00_fsl_to_fmriprep_subctx_AffineTransform.csv'), ...
         which('y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii'),...
         [],...
@@ -229,6 +412,19 @@ if strcmp(SPACE,'MNI152NLin2009cAsym')
         1)
     delete(kragelpmaps.fullpath);
     kragelpmaps = fmri_data('/tmp/kragelpmaps_MNI152NLin2009cAsym.nii');
+    delete('/tmp/kragelpmaps_MNI152NLin2009cAsym.nii');
+
+
+    kragelpmaps_aqueduct.fullpath = '/tmp/kragelpmaps_aqueduct.nii';
+    kragelpmaps_aqueduct.write('overwrite');
+    apply_spm_warp(kragelpmaps_aqueduct.fullpath, which(sprintf('%s_T1_1mm.nii.gz',SPACE)), ...
+        which('00_fsl_to_fmriprep_subctx_AffineTransform.csv'), ...
+        which('y_01_fsl_to_fmriprep_subctx_DisplacementFieldTransform.nii'),...
+        [],...
+        '/tmp/kragelpmaps_aqueduct_MNI152NLin2009cAsym.nii', ...
+        1)
+    delete(kragelpmaps_aqueduct.fullpath);
+    kragelpmaps_aqueduct = fmri_data('/tmp/kragelpmaps_aqueduct_MNI152NLin2009cAsym.nii');
     delete('/tmp/kragelpmaps_MNI152NLin2009cAsym.nii');
 end
 
@@ -240,6 +436,18 @@ atlas_obj = atlas(kragelpmaps, ...
     'labels_4',repmat({'Midbrain'},1,num_regions(kragelPAG_dil)),...
     'labels_5',repmat({'Kragel2019'},1,num_regions(kragelPAG_dil)),...
     'space_description',SPACE);
+
+
+% edit shen to erode PAG and aqueductal regions
+shen_ind = find(contains(bstem_atlas.labels_5, 'Shen'));
+kragelpmaps_aqueduct = kragelpmaps_aqueduct.resample_space(bstem_atlas);
+prob_pag = min(1,kragelpmaps_aqueduct.dat + sum(atlas_obj.probability_maps,2));
+pag_mask = prob_pag > 0;
+prob_pag(pag_mask) = prob_pag(pag_mask)+0.1;
+for i=1:length(shen_ind)
+    ind = shen_ind(i);
+    bstem_atlas.probability_maps(pag_mask,ind) = min(bstem_atlas.probability_maps(pag_mask,ind), 1-prob_pag(pag_mask));
+end
 
 bstem_atlas = atlas_obj.merge_atlases(bstem_atlas);
 
