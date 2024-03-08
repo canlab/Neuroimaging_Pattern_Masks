@@ -485,16 +485,16 @@ Bstem_BStem_vlPAG_R,"Region 4 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
 Bstem_BStem_lPAG_R,"Region 5 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
 Bstem_BStem_LDTg_L,"laterodorsal tegmental nucleus (left)",LDTg_L,Cholinergic nuclei_L,Pons_L,Harvard Ascending Arousal Network
 Bstem_BStem_LDTg_R,"laterodorsal tegmental nucleus (right)",LDTg_R,Cholinergic nuclei_R,Pons_R,Harvard Ascending Arousal Network
-Bstem_BStem_MPBPB_L,"parabrachial complex (left)",MPB_LPB_L,Parabrachial nuclei_L,Pons_L,Harvard Ascending Arousal Network
-Bstem_BStem_MPBPB_R,"parabrachial complex (right)",MPB_LPB_R,Parabrachial nuclei_R,Pons_R,Harvard Ascending Arousal Network
+Bstem_BStem_MPB_LPB_L,"parabrachial complex (left)",MPB_LPB_L,Parabrachial nuclei_L,Pons_L,Harvard Ascending Arousal Network
+Bstem_BStem_MPB_LPB_R,"parabrachial complex (right)",MPB_LPB_R,Parabrachial nuclei_R,Pons_R,Harvard Ascending Arousal Network
 Bstem_BStem_PTg_L,"pedunculotegmental nucleus (left)",PTg_L,Cholinergic nuclei_nuclei_L,Pons_L,Harvard Ascending Arousal Network
 Bstem_BStem_PTg_R,"pedunculotegmental nucleus (right)",PTg_R,Cholinergic nuclei_nuclei_R,Pons_R,Harvard Ascending Arousal Network
 Bstem_BStem_PnO_L,"pontis oralis (i.e. pontine reticular formation) (left)",PnO_L,PnO_L,Pons_L,Harvard Ascending Arousal Network
 Bstem_BStem_PnO_R,"pontis oralis (i.e. pontine reticular formation) (right)",PnO_R,PnO_R,Pons_R,Harvard Ascending Arousal Network
 Bstem_BStem_isRt_L,"mesencephalic reticular formation (left)",isRt_L,Rostral reticular formation_L,Midbrain_L,Harvard Ascending Arousal Network
 Bstem_BStem_isRt_R,"mesencephalic reticular formation (right)",isRt_R,Rostral reticular formation_R,Midbrain_R,Harvard Ascending Arousal Network
-Bstem_BStem_MnB6_B8_L,"median raphe (right)",MnR_B6_B8,Rostral Raphe (Serotonergic),Midbrain,Harvard Ascending Arousal Network
-Bstem_BStem_DB7,"Dorsal Raphe Nucleus",DR_B7,Rostral Raphe (Serotonergic),Midbrain,Levinson-Bari Limbic Brainstem Atlas
+Bstem_BStem_MnR_B6_B8,"median raphe (right)",MnR_B6_B8,Rostral Raphe (Serotonergic),Midbrain,Harvard Ascending Arousal Network
+Bstem_BStem_DR_B7,"Dorsal Raphe Nucleus",DR_B7,Rostral Raphe (Serotonergic),Midbrain,Levinson-Bari Limbic Brainstem Atlas
 Bstem_BStem_LC_L,"Locus Coreleus (left)",LC_L,LC+_L,Pons_L,Levinson-Bari Limbic Brainstem Atlas
 Bstem_BStem_NTS_L,"Nucleus Tractus Solitaris (left)",NTS_L,Cranial_nuclei_L,Medulla_L,Levinson-Bari Limbic Brainstem Atlas
 Bstem_BStem_LC_R,"Locus Coreleus (right)",LC_R,LC+_R,Pons_R,Levinson-Bari Limbic Brainstem Atlas
