@@ -46,7 +46,7 @@ switch SPACE
     case 'MNI152NLin6Asym'
         ALIAS = 'fsl6';
         OVERLAY = which('fsl6_hcp_template.nii.gz');
-        TEMPLATE = which('MNI152NLin6Asym_T1_1mm.nii');
+        TEMPLATE = which('MNI152NLin6Asym_T1_1mm.nii.gz');
         TEMPLATE_lowres = which('MNI152NLin6Asym_T1_2mm.nii.gz');
         
         labels = fmri_data([ROOT, 'src/hcp_cifti_subctx_labels.nii']);
