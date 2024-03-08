@@ -17,12 +17,12 @@
 clear all; close all;
 SPACE = 'MNI152NLin6Asym';
 
-LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
-%LIB = '/home/bogdan/.matlab';
+%LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
+LIB = '/home/bogdan/.matlab';
 ROOT = [LIB, '/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2024_CANLab_atlas/'];
 
-addpath([LIB, '/spm12']);
-%addpath([LIB, '/spm/spm12']);
+%addpath([LIB, '/spm12']);
+addpath([LIB, '/spm/spm12']);
 
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
@@ -30,7 +30,7 @@ addpath(genpath([LIB, '/canlab/MasksPrivate']))
 
 
 if isempty(gcp('nocreate'))
-    parpool(16);
+    parpool(8);
 end
 
 switch SPACE

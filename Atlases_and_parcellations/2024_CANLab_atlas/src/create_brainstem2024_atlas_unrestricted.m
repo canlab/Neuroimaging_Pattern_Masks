@@ -83,7 +83,7 @@ if isempty(which(shen_file))
         'Pons left cudal dorsal',...
         'Pons left ventral'};
     labels_4 = {'Midbrain_R','Medulla_R','Pons_R','Pons_R','Midbrain_R','Pons_R','Pons_L',...
-        'Midbrain_L','Midbrain_L','Medulla_L','Pons_L','Pons_L'};
+        'Midbrain_L','Midbrain_L','Medulla_L','Pons_L','Pons_L'};bstem_atlas = atlas_add_L_R_to_labels(bstem_atlas);
     shenL = dilate(shenL, bstem_mask.apply_mask(hemi_L));
     shenR = dilate(shenR, bstem_mask.apply_mask(hemi_R));
     shen = shenR.merge_atlases(shenL).apply_mask(bstem_mask);
@@ -146,6 +146,8 @@ diencephalic_ind_L = find(contains(bstem_atlas.labels, {'Midb_Lrd'}));
 bstem_atlas.labels_4(diencephalic_ind_L) = repmat({'Midbrain_L'},1,length(diencephalic_ind_L));
 diencephalic_ind_R = find(contains(bstem_atlas.labels, {'Midb_Rrd'}));
 bstem_atlas.labels_4(diencephalic_ind_R) = repmat({'Midbrain_R'},1,length(diencephalic_ind_R));
+
+bstem_atlas = atlas_add_L_R_to_labels(bstem_atlas);
 
 %% add CIT regions
 
@@ -362,8 +364,6 @@ bstem_atlas.labels = regexprep(bstem_atlas.labels, pat, 'other');
 
 pat = 'Shen_';
 bstem_atlas.labels = regexprep(bstem_atlas.labels, pat, '');
-
-bstem_atlas = atlas_add_L_R_to_labels(bstem_atlas);
 
 %% Add PAG
 % we'll start with the MNI152NLin6Asym (original) space data regardless of
