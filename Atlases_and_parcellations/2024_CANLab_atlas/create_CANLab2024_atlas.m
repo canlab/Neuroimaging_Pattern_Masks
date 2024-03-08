@@ -223,6 +223,10 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     renorm = total_p > 1;
     biancia.probability_maps(renorm,:) = biancia.probability_maps(renorm,:)./total_p(renorm);
 
+    if strcmp(SCALE,'coarse')
+        biancia = biancia.downsample_parcellation('labels_2');
+    end
+
     %% adjust shen regions so they're always less than biancia regions
     % (since the shen brainstem regions are basically fillers
     shen_regions = contains(atlas_obj.(source_lbls),'Shen');
@@ -253,10 +257,6 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     atlas_obj.fullpath = '';
 
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
-
-    if strcmp(SCALE,'coarse')
-        atlas_obj = atlas_obj.downsample_parcellation('labels_2');
-    end
 
     %{
     % may not be needed in canlab2024 due to substitution of new LC from
