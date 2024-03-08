@@ -14,6 +14,10 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
 %   that you don't have locally (e.g. from load_atlas()), or to pull an 
 % additionally thresholded in a number of ways.
     
+
+% ToDo MnR esems to be lost in the fine 2mm MNI152NLin6Asym atlas. Might
+% make sense to subsume this into PMnR for all 2mm atlases
+
     switch SPACE
         case 'MNI152NLin2009cAsym'
             alias = 'fmriprep20';
@@ -53,7 +57,13 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     atlas_obj.atlas_name = strrep(atlas_obj.atlas_name, 'open', '');
 
     % drop harvard AAN regions
-    atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.labels_5,'Harvard')));
+    switch SCALE
+        case 'fine'
+            source_lbls = 'labels_5';
+        case 'coarse'
+            source_lbls = 'labels_4';
+    end
+    atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.(source_lbls),'Harvard')));
 
     if res == 2
         biancia = load_atlas(sprintf('bianciardi_%s_2mm',alias));
@@ -205,7 +215,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     biancia.labels = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_$1')), biancia.labels, 'UniformOutput', false);
 
     % merge biancia with other relevant structures
-    biancia = atlas_obj.select_atlas_subset(exclude_structs).merge_atlases(biancia);
+    biancia = biancia.merge_atlases(atlas_obj.select_atlas_subset(exclude_structs));
     % save complementary atlas_obj
     atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.labels, exclude_structs)));
     % renormalize
@@ -215,7 +225,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
 
     %% adjust shen regions so they're always less than biancia regions
     % (since the shen brainstem regions are basically fillers
-    shen_regions = contains(atlas_obj.labels_5,'Shen');
+    shen_regions = contains(atlas_obj.(source_lbls),'Shen');
     % extract shen_regions
     shen = atlas_obj.select_atlas_subset(find(shen_regions));
     atlas_obj = atlas_obj.select_atlas_subset(find(~shen_regions));
@@ -248,8 +258,11 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         atlas_obj = atlas_obj.downsample_parcellation('labels_2');
     end
 
+    %{
+    % may not be needed in canlab2024 due to substitution of new LC from
+    % Levinson-Bari
     if strcmp('MNI152NLin6Asym',SPACE) && res == 2
-        % hacky fix fo rshen overwriting the only LC_L region that survives
+        % hacky fix for shen overwriting the only LC_L region that survives
         % neighboring prob maps
         ind = biancia.dat == find(contains(biancia.labels,'LC_L'));
         assert(sum(ind) == 1); % unless bianciardi has changed only one voxel should survive
@@ -282,6 +295,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         % regenerate pmaps
         atlas_obj = atlas_obj.probability_maps_to_region_index();
     end
+    %}
 
     atlas_obj.references = char(unique(atlas_obj.references,'rows'));
 
