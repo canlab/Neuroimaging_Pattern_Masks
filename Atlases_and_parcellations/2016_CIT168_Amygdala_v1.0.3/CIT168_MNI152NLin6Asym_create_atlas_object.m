@@ -27,7 +27,7 @@ parcellation_file = which('CIT168_pAmyNuc_1mm_MNI.nii');
 
 labels = {'AMY_BLN_La','AMY_BLN_BL_BLDI','AMY_BLN_BM','AMY_CEN','AMY_CMN',...
     'AMY_BL_BLV','AMY_ATA','AMY_ATA_ASTA','AMY_AAA','AMY'};
-labels_2 = {'BL','BL','BL','CE','CM','BL','CM','CE','CE','CE'};
+labels_2 = {'La','BL','BL','CeM','CeM','BL','CeM','CeM','CeM','ICN'};
 labels_3 = repmat({'Amygdala'},1,length(labels));
 label_descriptions = {'Amygdalar basolateral complex: lateral nucleus',...
     'Amygdalar basolateral complex: basal nucleus' ...
@@ -100,7 +100,7 @@ end
 %% save object
 
 if dosave
-    clk
+    
     savename = sprintf('%s_atlas_object.mat', atlas_name);
     save(savename, 'atlas_obj');
     
