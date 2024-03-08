@@ -1,4 +1,4 @@
-% this script assembles the bulk of the CANLab2024 atlas. All that remains
+`% this script assembles the bulk of the CANLab2024 atlas. All that remains
 % are the Bianciardi regions, which have a restricted distribution license
 % and cannot be distributed. Consequently I refer to this as openCANLab2024
 % and have a separate script which adds the bianciardi regions (and removes
@@ -49,7 +49,7 @@ switch SPACE
         TEMPLATE = which('MNI152NLin6Asym_T1_1mm.nii.gz');
         TEMPLATE_lowres = which('MNI152NLin6Asym_T1_2mm.nii.gz');
         
-        labels = fmri_data([ROOT, 'src/hcp_cifti_subctx_labels.nii']);
+        labels = fmri_data([ROOT, 'src/hcp_cifti_subctx_labels.nii.gz']);
         labels_txt = textscan(fopen([ROOT, 'src/hcp_cifti_subctx_labels.txt']),'%s');
 end
 
