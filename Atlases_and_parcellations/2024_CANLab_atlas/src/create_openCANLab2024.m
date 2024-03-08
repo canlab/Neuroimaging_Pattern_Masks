@@ -30,7 +30,7 @@ addpath(genpath([LIB, '/canlab/MasksPrivate']))
 
 
 if isempty(gcp('nocreate'))
-    parpool(8);
+    parpool(16);
 end
 
 switch SPACE

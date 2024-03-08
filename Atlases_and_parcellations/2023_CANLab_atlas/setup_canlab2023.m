@@ -13,7 +13,8 @@ close all; clear all;
 LIB = '/dartfs-hpc/rc/home/m/f0042vm/software/';
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
-addpath([LIB, '/spm/spm12']);
+%addpath([LIB, '/spm/spm12']);
+addpath([LIB, '/spm12']);
 
 for space = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     for res = [1,2]
