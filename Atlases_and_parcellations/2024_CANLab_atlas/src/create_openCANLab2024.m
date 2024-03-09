@@ -1,4 +1,4 @@
-`% this script assembles the bulk of the CANLab2024 atlas. All that remains
+% this script assembles the bulk of the CANLab2024 atlas. All that remains
 % are the Bianciardi regions, which have a restricted distribution license
 % and cannot be distributed. Consequently I refer to this as openCANLab2024
 % and have a separate script which adds the bianciardi regions (and removes
