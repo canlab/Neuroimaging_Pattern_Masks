@@ -416,12 +416,12 @@ BG_PUT_VA_L,"Region 40 from tian_3t_fmriprep20",PUT_VA_L,aPUT_L,PUT_L,Tian2020
 BG_PUT_DA_L,"Region 41 from tian_3t_fmriprep20",PUT_DA_L,aPUT_L,PUT_L,Tian2020
 BG_PUT_VP_L,"Region 42 from tian_3t_fmriprep20",PUT_VP_L,pPUT_L,PUT_L,Tian2020
 BG_PUT_DP_L,"Region 43 from tian_3t_fmriprep20",PUT_DP_L,pPUT_L,PUT_L,Tian2020
-BG_GPe_L,"Globus Pallidus external segment (left)",GPe_L,GPe_L,GP_L,CIT168 v1.1.0 subcortical
-BG_GPi_L,"Globus Pallidus internal segment (left)",GPi_L,GPi_L,GP_L,CIT168 v1.1.0 subcortical
-BG_VeP_L,"Ventral pallidum (left)",VeP_L,VeP_L,GP_L,CIT168 v1.1.0 subcortical
-BG_GPe_R,"Globus Pallidus external segment (right)",GPe_R,GPe_R,GP_R,CIT168 v1.1.0 subcortical
-BG_GPi_R,"Globus Pallidus internal segment (right)",GPi_R,GPi_R,GP_R,CIT168 v1.1.0 subcortical
-BG_VeP_R,"Ventral pallidum (right)",VeP_R,VeP_R,GP_R,CIT168 v1.1.0 subcortical
+BG_GPe_L,"Globus Pallidus external segment (left)",GPe_L,GPe_L,GP_L,CIT168 subcortical v1.1.0
+BG_GPi_L,"Globus Pallidus internal segment (left)",GPi_L,GPi_L,GP_L,CIT168 subcortical v1.1.0
+BG_VeP_L,"Ventral pallidum (left)",VeP_L,VeP_L,GP_L,CIT168 subcortical v1.1.0
+BG_GPe_R,"Globus Pallidus external segment (right)",GPe_R,GPe_R,GP_R,CIT168 subcortical v1.1.0
+BG_GPi_R,"Globus Pallidus internal segment (right)",GPi_R,GPi_R,GP_R,CIT168 subcortical v1.1.0
+BG_VeP_R,"Ventral pallidum (right)",VeP_R,VeP_R,GP_R,CIT168 subcortical v1.1.0
 Thal_AV_L,"Anteroventral_(left)",Thal_AV_L,Thal_anterior_L,Thal_Anterior_L,Iglesias2018
 Thal_CeM_L,"central_medial_(left)",Thal_rIL_L,Thal_Intralaminar_L,Thal_Intralaminar_L,Iglesias2018
 Thal_CL_L,"central_lateral_(left)",Thal_CL_L,Thal_Medial_L,Thal_Medial_L,Iglesias2018

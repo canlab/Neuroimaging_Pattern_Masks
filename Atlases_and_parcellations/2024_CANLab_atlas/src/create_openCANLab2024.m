@@ -15,7 +15,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 %LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 LIB = '/home/bogdan/.matlab';
@@ -406,6 +406,7 @@ amyg_nuc_R = amyg_nuc_R.select_atlas_subset(find(~ismember(amyg_nuc_R.labels, IC
 other_regions = canlab.select_atlas_subset(find(~ismember(canlab.labels, [ICN_small_nuc.labels, amyg_nuc.labels])));
 canlab = [other_regions, amyg_nuc_L, amyg_nuc_R, ICN_small_nuc];
 
+canlab.references = unique(canlab.references,'rows');
 canlab.probability_maps = sparse(canlab.probability_maps);
 save(sprintf('%s.mat',atlas_name), 'canlab');  
 
