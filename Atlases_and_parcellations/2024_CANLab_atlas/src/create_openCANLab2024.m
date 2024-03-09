@@ -413,7 +413,7 @@ canlab_coarse = canlab.downsample_parcellation('labels_2');
 canlab_coarse.atlas_name = [canlab_coarse.atlas_name, '_coarse'];
 save(sprintf('%s.mat',canlab_coarse.atlas_name), 'canlab_coarse');  
 
-% we need the memory for this
+% if we need the memory for this, clear all and reload what's needed
 %clear all;
 %load(sprintf('%s.mat',atlas_name))
 
@@ -430,9 +430,6 @@ writetable(table(canlab.references,'VariableNames',{'references'}),[canlab.atlas
 
 % this isn't quite complete. I need to pregenerate different resolutions
 % and granularities. This will require among other things
-% - add Shen subthresholding (don't do this, it will make it difficult to
-% replace parcels with Bianciardi's)
-% - deal with CeM and MV thalamic issues
 % - generate qsiprep versoin
 % - generate CIFTI file
 
