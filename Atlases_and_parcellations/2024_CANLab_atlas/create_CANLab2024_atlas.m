@@ -60,8 +60,14 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     switch SCALE
         case 'fine'
             source_lbls = 'labels_5';
+            % this should correspond to labels_2 of the subcoreulus
+            atlas_obj.labels_2(contains(atlas_obj.labels,'LC_L')) = {'LC+_L'};
+            atlas_obj.labels_2(contains(atlas_obj.labels,'LC_R')) = {'LC+_R'};
         case 'coarse'
             source_lbls = 'labels_4';
+            % this should correspond to labels of the subcoreulus
+            atlas_obj.labels(contains(atlas_obj.labels,'LC_L')) = {'LC+_L'};
+            atlas_obj.labels(contains(atlas_obj.labels,'LC_R')) = {'LC+_R'};
     end
     atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.(source_lbls),'Harvard')));
 
@@ -71,7 +77,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         biancia = load_atlas(sprintf('bianciardi_%s',alias));
     end
 
-    
+    biancia = biancia.resample_space(atlas_obj);
 
     % structs we take from the CIT168 atlas, Kragel2019 (PAG), Iglesias2018 
     % (LGN/MGN) or Levinson-Bari (DR, LC and VTS analog NTS)  that overlap 
@@ -158,6 +164,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
             case groupings{8}
                 % this should match LC labels added to Levinson-Bari
                 % regions in create_brainstem2024_atlas_unrestricted.m
+                biancia.labels_2{i} = strrep(biancia.labels_2{i},'SubC','LC+');
                 labels_3{end+1} = 'LC+';
                 labels_4{end+1} = 'Pons';
             case groupings{9}
@@ -208,24 +215,42 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     % Ve - vestibular nucle icomplex
     % STh - Subthalamic nucelus new in CANLab2023
     biancia.labels = cellfun(@(x1)(sprintf('Bstem_%s', x1)), biancia.labels, 'UniformOutput', false);
-    
-    biancia.labels = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_$1')), biancia.labels, 'UniformOutput', false);
-    biancia.labels = cellfun(@(x1)(regexprep(x1,'_rh$','_R')), biancia.labels, 'UniformOutput', false);
-    biancia.labels = cellfun(@(x1)(regexprep(x1,'_lh$','_L')), biancia.labels, 'UniformOutput', false);
-    biancia.labels = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_$1')), biancia.labels, 'UniformOutput', false);
+    for lbl = {'labels','labels_2'}        
+        biancia.(lbl{1}) = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_$1')), biancia.(lbl{1}), 'UniformOutput', false);
+        biancia.(lbl{1}) = cellfun(@(x1)(regexprep(x1,'_rh$','_R')), biancia.(lbl{1}), 'UniformOutput', false);
+        biancia.(lbl{1}) = cellfun(@(x1)(regexprep(x1,'_lh$','_L')), biancia.(lbl{1}), 'UniformOutput', false);
+        biancia.(lbl{1}) = cellfun(@(x1)(regexprep(x1,'^([LR])_(.*)','$2_$1')), biancia.(lbl{1}), 'UniformOutput', false);
+    end
 
     % merge biancia with other relevant structures
-    biancia = biancia.merge_atlases(atlas_obj.select_atlas_subset(exclude_structs));
+    other_bstem = atlas_obj.select_atlas_subset(exclude_structs);
     % save complementary atlas_obj
     atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.labels, exclude_structs)));
     % renormalize
-    total_p = sum(biancia.probability_maps,2);
+    total_p = sum(biancia.probability_maps,2) + sum(other_bstem.probability_maps,2);
     renorm = total_p > 1;
     biancia.probability_maps(renorm,:) = biancia.probability_maps(renorm,:)./total_p(renorm);
+    other_bstem.probability_maps(renorm,:) = other_bstem.probability_maps(renorm,:)./total_p(renorm);
 
     if strcmp(SCALE,'coarse')
         biancia = biancia.downsample_parcellation('labels_2');
+        
+        % merge subcoreulus into coreulus, while keeping indexing unchanged
+        LC_ind = find(contains(other_bstem.labels,{'LC+_R'}));
+        other_bstem.probability_maps(:,LC_ind) = other_bstem.probability_maps(:,LC_ind) + biancia.select_atlas_subset({'LC+_R'}).probability_maps;
+        other_bstem.label_descriptions(LC_ind) = {'Locus coeruleus and subcoeruleus (right)'};
+
+        LC_ind = find(contains(other_bstem.labels,{'LC+_L'}));
+        other_bstem.probability_maps(:,LC_ind) = other_bstem.probability_maps(:,LC_ind) + biancia.select_atlas_subset({'LC+_L'}).probability_maps;
+        other_bstem.label_descriptions(LC_ind) = {'Locus coeruleus and subcoeruleus (left)'};
+
+        other_bstem = other_bstem.probability_maps_to_region_index;
+
+        biancia = biancia.select_atlas_subset(find(~contains(biancia.labels,'LC+')));
     end
+
+    
+    biancia = [other_bstem, biancia];
 
     %% adjust shen regions so they're always less than biancia regions
     % (since the shen brainstem regions are basically fillers
@@ -258,44 +283,39 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
 
     atlas_obj.probability_maps = sparse(double(atlas_obj.probability_maps));
 
-    %{
-    % may not be needed in canlab2024 due to substitution of new LC from
-    % Levinson-Bari
-    if strcmp('MNI152NLin6Asym',SPACE) && res == 2
-        % hacky fix for shen overwriting the only LC_L region that survives
-        % neighboring prob maps
-        ind = biancia.dat == find(contains(biancia.labels,'LC_L'));
-        assert(sum(ind) == 1); % unless bianciardi has changed only one voxel should survive
+    if strcmp('MNI152NLin6Asym',SPACE) && res == 2 && strcmp(SCALE,'fine')
+        % hacky fix for LC_L region that does not survive at this
+        % resolution in this atlas. At coarse scale we don't have LC
+        % anymore, and instead combine LC and SubC into LC+, so we don't
+        % encounter this issue.
 
-        canlab_LC_ind = contains(atlas_obj.labels,{'LC_L','LC_l'});
+        canlab_LC_ind = contains(atlas_obj.labels,{'LC_L'});
+    
+        max_ind = find(max(atlas_obj.probability_maps(:,canlab_LC_ind)) == atlas_obj.probability_maps(:,canlab_LC_ind));
         % make sure we haven't resampled in some weird way and this area 
         % still has probability assigned to LC after merging the bianciardi 
         % atlas into our atlas_obj
-        assert(atlas_obj.probability_maps(ind,canlab_LC_ind) ~= 0);
+        assert(atlas_obj.probability_maps(max_ind,canlab_LC_ind) ~= 0);
         
-        LC_pval = full(atlas_obj.probability_maps(ind,canlab_LC_ind));
+        LC_pval = full(atlas_obj.probability_maps(max_ind,canlab_LC_ind));
         canlab_not_LC = find(~canlab_LC_ind);
-        other_pmaps = full(atlas_obj.probability_maps(ind,canlab_not_LC));
+        other_pmaps = full(atlas_obj.probability_maps(max_ind,canlab_not_LC));
         assert(sum(other_pmaps > LC_pval) == 1) % make sure only one region exceeds LC value
         % the above region should be a shen region
-        bad_region = canlab_not_LC(find(other_pmaps > LC_pval));
-        % make sure it's a shen region with synthetic probability values that we're modifying
-        switch SCALE
-            case 'fine'
-                assert(contains(atlas_obj.labels_5(bad_region),'Shen'));
-            case 'coarse'
-                assert(contains(atlas_obj.labels_4(bad_region),'Shen'));
-            otherwise
-                error('Unsupported SCALE %s',SCALE);
-        end
-        % modify synthetic shen probability to something that won't
-        % overrule LC
-        atlas_obj.probability_maps(ind,bad_region) = max([LC_pval - 0.1,0]);
+        bad_region = canlab_not_LC(other_pmaps > LC_pval);
+        
+        % find the cumulative probability of the LC and "bad" region
+        total_p = sum(atlas_obj.probability_maps(max_ind,[bad_region, find(canlab_LC_ind)]));        
+        
+        % modify probability to something that won't overrule LC, splitting
+        % the difference just marginally.
+        new_p = total_p/2;
+        atlas_obj.probability_maps(max_ind,bad_region) = new_p-0.01;
+        atlas_obj.probability_maps(max_ind,find(canlab_LC_ind)) = new_p+0.01;
 
         % regenerate pmaps
         atlas_obj = atlas_obj.probability_maps_to_region_index();
     end
-    %}
 
     atlas_obj.references = char(unique(atlas_obj.references,'rows'));
 

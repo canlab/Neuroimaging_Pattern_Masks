@@ -219,6 +219,11 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
 
     bianciaAtlas.labels = labels;
 
+    for i = 1:length(labels_2), labels_2{i} = regexprep(labels_2{i},'(.*)_l$','L_$1'); end
+    for i = 1:length(labels_2), labels_2{i} = regexprep(labels_2{i},'(.*)_r$','R_$1'); end
+
+    bianciaAtlas.labels_2 = labels_2;
+
     % add b labels to raphe
     raphe_ind = contains(bianciaAtlas.label_descriptions,'pallidus');
     bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B1';

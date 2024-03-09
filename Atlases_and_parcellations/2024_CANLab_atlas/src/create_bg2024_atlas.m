@@ -36,7 +36,7 @@ pal = lateralize(pal);
 pal.labels_2 = pal.labels;
 pal.labels_3 = pal.labels_2;
 pal.labels_4 = {'GP_L','GP_L','GP_L','GP_R','GP_R','GP_R'};
-pal.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(pal));
+pal.labels_5 = repmat({'CIT168 subcortical v1.1.0'},1,num_regions(pal));
 
 %% expand CIFTI mask for VeP and BST
 % These structures extend somewhat outside the CIFTI mask. Let's expand it
