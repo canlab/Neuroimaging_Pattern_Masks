@@ -278,12 +278,12 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
     end
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
-    save(fullpath(this_dir.folder, savename), 'bianciaAtlas');
+    save(fullfile(this_dir.folder, savename), 'bianciaAtlas');
     
     % we can't upload the mat file to github due to licensing issues, but
     % we can upload a timestamp that will flag out of date versions and
     % cause other uesrs to recreate the atlas when appropriate.
-    fid = fopen(fullpath(this_dir.folder, sprintf('%s_atlas_object.latest',bianciaAtlas.atlas_name)), 'w+');
+    fid = fopen(fullfile(this_dir.folder, sprintf('%s_atlas_object.latest',bianciaAtlas.atlas_name)), 'w+');
     fprintf(fid,'%s',hash);
     fclose(fid);
 end
@@ -301,10 +301,10 @@ function areaFile = get_area_file(labels, labels_2, parentDir)
         end
         switch labels_2{i}
             case 'Brainstem'
-                areaFile{i} = dir(fullpath(parentDir.folder, 'BrainstemNavigator','0.9','2a.BrainstemNucleiAtlas_MNI','labels_probabilistic', ...
+                areaFile{i} = dir(fullfile(parentDir.folder, 'BrainstemNavigator','0.9','2a.BrainstemNucleiAtlas_MNI','labels_probabilistic', ...
                     [areaName{i}, '.nii.gz']));
             case 'Diencephalic'
-                areaFile{i} = dir(fullpath(parentDir.folder, 'BrainstemNavigator','0.9','2b.DiencephalicNucleiAtlas_MNI','labels_probabilistic', ...
+                areaFile{i} = dir(fullfile(parentDir.folder, 'BrainstemNavigator','0.9','2b.DiencephalicNucleiAtlas_MNI','labels_probabilistic', ...
                     [areaName{i}, '.nii.gz']));
         end
     end
