@@ -12,11 +12,16 @@
 
 clear all; close all;
 
-addpath('~/.matlab/spm/spm12');
+% requires
+% - spm12
+% - canlabCore
+% - Neuroimaging_Pattern_Masks
 
-addpath(genpath('~/.matlab/canlab/CanlabCore'))
-addpath(genpath('~/.matlab/canlab/Neuroimaging_Pattern_Masks'))
-addpath(genpath('~/.matlab/canlab/MasksPrivate'))
+%addpath('~/.matlab/spm/spm12');
+%
+%addpath(genpath('~/.matlab/canlab/CanlabCore'))
+%addpath(genpath('~/.matlab/canlab/Neuroimaging_Pattern_Masks'))
+%addpath(genpath('~/.matlab/canlab/MasksPrivate'))
 
 for space = {'MNI152NLin6Asym', 'MNI152NLin6Asym_2mm', 'MNI152NLin2009cAsym', 'MNI152NLin2009cAsym_2mm'}
     space = space{1};
