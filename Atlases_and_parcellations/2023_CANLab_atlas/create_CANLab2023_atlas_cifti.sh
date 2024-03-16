@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # this should run after you've evaluated this in matlab
-# create_CANLab2023_CIFTI_subctx('MNI512NLin6Asym','coarse',2,load_atlas('canlab2023_coarse_fsl6_2mm'))
+# create_CANLab2023_CIFTI_subctx('MNI152NLin6Asym','coarse',2,load_atlas('canlab2023_coarse_fsl6_2mm'))
 # which will create a nifti file in this folder with all necessary subcortical volumes
 #
 # It assumes it's located in Atlases_and_parcellations/2023_CANLab_atlas/src/ and will not work if placed
