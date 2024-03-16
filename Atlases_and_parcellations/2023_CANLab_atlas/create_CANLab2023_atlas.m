@@ -236,7 +236,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         ind = biancia.dat == find(contains(biancia.labels,'LC_L'));
         assert(sum(ind) == 1); % unless bianciardi has changed only one voxel should survive
 
-        canlab_LC_ind = contains(atlas_obj.labels,{'LC_L','LC_l'});
+        canlab_LC_ind = contains(atlas_obj.labels,{'L_LC'});
         % make sure we haven't resampled in some weird way and this area 
         % still has probability assigned to LC after merging the bianciardi 
         % atlas into our atlas_obj
