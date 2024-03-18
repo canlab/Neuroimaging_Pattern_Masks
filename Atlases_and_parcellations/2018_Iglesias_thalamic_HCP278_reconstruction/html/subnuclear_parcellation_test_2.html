@@ -97,6 +97,12 @@ addpath(<span class="string">'~/.matlab/spm/spm12'</span>);
 <span class="comment">% load data</span>
 indAtlPath = <span class="string">'/home/bogdan/MyDocuments/canlab/atlases/results/thalamus/spacetop'</span>;
 
+<span class="comment">% the following are "simple" contrasts from heejungs first level designs</span>
+<span class="comment">% for spacetop. The files were obtained from discovery by concatenating</span>
+<span class="comment">% contrasts from</span>
+<span class="comment">% /dartfs-hpc/rc/lab/C/CANlab/labdata/projects/bogdan_atlas/stats/spacetop</span>
+<span class="comment">% for subjects listed in</span>
+<span class="comment">% Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/src/spacetop_participants.csv</span>
 pain = fmri_data(<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0013.nii.gz'</span>);
 vic = fmri_data(<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0014.nii.gz'</span>);
 cog = fmri_data(<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0015.nii.gz'</span>);
@@ -180,7 +186,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 29152404 bytes
 Loading image number:    73
-Elapsed time is 0.146441 seconds.
+Elapsed time is 0.133697 seconds.
 fmri_data.create: Converting   2 NaNs to 0s.Image names entered, but fullpath attribute is empty. Getting path info.
 .fullpath should have image name for each image column in .dat
 Attempting to expand image filenames in case image list is unexpanded 4-D images
@@ -190,7 +196,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 29152404 bytes
 Loading image number:    73
-Elapsed time is 0.124521 seconds.
+Elapsed time is 0.123668 seconds.
 fmri_data.create: Converting   2 NaNs to 0s.Image names entered, but fullpath attribute is empty. Getting path info.
 .fullpath should have image name for each image column in .dat
 Attempting to expand image filenames in case image list is unexpanded 4-D images
@@ -200,7 +206,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 29152404 bytes
 Loading image number:    73
-Elapsed time is 0.119660 seconds.
+Elapsed time is 0.108782 seconds.
 fmri_data.create: Converting   2 NaNs to 0s.Image names entered, but fullpath attribute is empty. Getting path info.
 .fullpath should have image name for each image column in .dat
 Attempting to expand image filenames in case image list is unexpanded 4-D images
@@ -212,7 +218,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 590997584 bytes
 Loading image number:    76
-Elapsed time is 2.448362 seconds.
+Elapsed time is 2.359426 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 .fullpath should have image name for each image column in .dat
 Attempting to expand image filenames in case image list is unexpanded 4-D images
@@ -1338,8 +1344,151 @@ I = [I(1:2); I(end-1:end)];
         p = stats{this_roi_ind}.pValue(6);
         con = <span class="string">'pain &amp; vic vs cog'</span>;
     <span class="keyword">end</span>
-    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_ind}, 0.9);
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_roi_ind}, 0.9);
     sgtitle(sprintf(<span class="string">'%s (%s: t=%0.2f, p = %0.3e)'</span>, strrep(thal_atlas.label_descriptions{this_roi_ind},<span class="string">'_'</span>,<span class="string">' '</span>),con,t,p));
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> fig = plot_post_hoc_contrast(tbl, atlas_obj, roi_label, border_prop)
+
+tbl_roi = tbl(tbl.(roi_label) == 1,:);
+ind_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 &amp; tbl_roi.parcellation &gt; 0);
+ind_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 &amp; tbl_roi.parcellation &gt; 0);
+ind_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog &gt; 0 &amp; tbl_roi.parcellation &gt; 0);
+
+grp_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 &amp; tbl_roi.parcellation &lt; 0);
+grp_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 &amp; tbl_roi.parcellation &lt; 0);
+grp_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog &gt; 0 &amp; tbl_roi.parcellation &lt; 0);
+
+roi = atlas2region(atlas_obj.threshold(0.2).select_atlas_subset({roi_label},<span class="string">'exact'</span>));
+[f,ax] = deal(cell(3,1));
+orientations = {<span class="string">'saggital'</span>,<span class="string">'axial'</span>,<span class="string">'coronal'</span>};
+<span class="keyword">for</span> i = 1:length(orientations)
+    ax{i} = roi.montage(<span class="string">'regioncenters'</span>,<span class="string">'nofigure'</span>,orientations{i});
+    f{i} = gcf;
+    set(f{i},<span class="string">'Tag'</span>,orientations{i})
+<span class="keyword">end</span>
+
+fig = figure;
+t0 = tiledlayout(1,3);
+t1 = tiledlayout(t0,2,2,<span class="string">'Padding'</span>,<span class="string">'compact'</span>,<span class="string">'TileSpacing'</span>,<span class="string">'compact'</span>);
+ax1 = nexttile(t1);
+copyobj(ax{1}.montage{1}.axis_handles.Children, ax1);
+colormap(<span class="string">'gray'</span>);
+axis <span class="string">square</span>
+axis <span class="string">off</span>;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  <span class="comment">% 3 x 2, 3 min  3 max mm coords</span>
+xl = xyzminmax(2, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     <span class="comment">% multiple of range from min to max coordinate</span>
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{1})
+
+ax2 = nexttile(t1);
+copyobj(ax{2}.montage{1}.axis_handles.Children, ax2);
+colormap(<span class="string">'gray'</span>);
+axis <span class="string">square</span>
+axis <span class="string">off</span>;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  <span class="comment">% 3 x 2, 3 min  3 max mm coords</span>
+xl = xyzminmax(1, :);
+yl = xyzminmax(2, :);
+myborder = border_prop * range(xl);     <span class="comment">% multiple of range from min to max coordinate</span>
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+
+close(f{2});
+
+ax3 = nexttile(t1); axis <span class="string">off</span>
+ax4 = nexttile(t1)
+copyobj(ax{3}.montage{1}.axis_handles.Children, ax4);
+colormap(<span class="string">'gray'</span>);
+axis <span class="string">square</span>
+axis <span class="string">off</span>;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  <span class="comment">% 3 x 2, 3 min  3 max mm coords</span>
+xl = xyzminmax(1, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     <span class="comment">% multiple of range from min to max coordinate</span>
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{3})
+
+axM = nexttile(t0)
+barplot_columns([ind_roi_pain, ind_roi_vic, ind_roi_cog],<span class="string">'nofig'</span>);
+title(<span class="string">'Individualized Atlas'</span>,<span class="string">'FontSize'</span>,14);
+ylabel(<span class="string">'ROI mean \beta'</span>);
+xlabel(<span class="string">'task'</span>);
+set(gca,<span class="string">'XTickLabels'</span>,{<span class="string">'Pain'</span>,<span class="string">'Vic'</span>,<span class="string">'Cog'</span>})
+grid <span class="string">on</span>;
+
+axR = nexttile(t0)
+barplot_columns([grp_roi_pain, grp_roi_vic, grp_roi_cog],<span class="string">'nofig'</span>);
+title(<span class="string">'Group Mean (N=73) Atlas'</span>,<span class="string">'FontSize'</span>,14)
+ylabel(<span class="string">'ROI mean \beta'</span>);
+xlabel(<span class="string">'task'</span>);
+set(gca,<span class="string">'XTickLabels'</span>,{<span class="string">'Pain'</span>,<span class="string">'Vic'</span>,<span class="string">'Cog'</span>})
+grid <span class="string">on</span>;
+
+yl1 = get(axM,<span class="string">'YLim'</span>);
+yl2 = get(axR,<span class="string">'YLim'</span>);
+yl = [min(yl1(1),yl2(1)), max(yl1(2),yl2(2))];
+set(axM,<span class="string">'YLim'</span>,yl);
+set(axR,<span class="string">'YLim'</span>,yl);
+
+pos = get(gcf,<span class="string">'Position'</span>);
+set(gcf,<span class="string">'Position'</span>,[pos(1:2),1000,480])
+sgtitle(strrep(roi_label,<span class="string">'_'</span>,<span class="string">' '</span>));
+
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> [stats, mdl] = fit_single_region_model(tbl,region_labels)
+    [mdl_str1, mdl_str2, mdl_str3] = deal([]);
+    <span class="keyword">for</span> i = 1:length(region_labels)
+        mdl_str1 = [mdl_str1, sprintf(<span class="string">' + %s'</span>,region_labels{i})];
+        mdl_str2 = [mdl_str2, sprintf(<span class="string">' + pain_v_vic:%s'</span>,region_labels{i})];
+        mdl_str3 = [mdl_str3, sprintf(<span class="string">' + pain_vic_v_cog:%s'</span>,region_labels{i})];
+    <span class="keyword">end</span>
+
+    [mdl_str4, mdl_str5, mdl_str6] = deal([]);
+    <span class="keyword">for</span> i = 1:length(region_labels)
+        mdl_str4 = [mdl_str4, sprintf(<span class="string">' + parcellation:%s'</span>,region_labels{i})];
+        mdl_str5 = [mdl_str5, sprintf(<span class="string">' + parcellation:pain_v_vic:%s'</span>,region_labels{i})];
+        mdl_str6 = [mdl_str6, sprintf(<span class="string">' + parcellation:pain_vic_v_cog:%s'</span>,region_labels{i})];
+    <span class="keyword">end</span>
+    mdl_str = [mdl_str1, mdl_str2, mdl_str3, mdl_str4, mdl_str5, mdl_str6];
+    mdl_str = mdl_str(3:end);
+
+    new_tbl = cell(1,length(region_labels));
+    <span class="keyword">for</span> i = 1:length(region_labels)
+        new_tbl{i} = tbl(tbl.(region_labels{i}) == 1,:);
+    <span class="keyword">end</span>
+    tbl = cat(1,new_tbl{:});
+
+    mdl = fitlme(tbl,sprintf(<span class="string">'BOLD ~ %s -1 + (%s -1 | subject)'</span>,mdl_str,mdl_str),<span class="string">'CovariancePattern'</span>,<span class="string">'full'</span>,<span class="string">'FitMethod'</span>,<span class="string">'REML'</span>);
+    [~,~,stats] = fixedEffects(mdl,<span class="string">'dfmethod'</span>,<span class="string">'satterthwaite'</span>);
 <span class="keyword">end</span>
 </pre>
 <pre class="codeoutput">Keeping probability_map values above 0.20
@@ -1384,9 +1533,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}      1.0756       0.17141     6.2752    2.3259e-08    0.73445 
-    {'Col   2'}     0.52069      0.099789     5.2179    1.6736e-06    0.61071 
-    {'Col   3'}      2.5123       0.13064     19.231    2.2204e-15     2.2508 
+    {'Col   1'}      0.3472       0.13226     2.6251      0.010573    0.30724 
+    {'Col   2'}     0.76626      0.086505      8.858    3.8394e-13     1.0368 
+    {'Col   3'}      1.0707      0.084685     12.644    2.2204e-15     1.4798 
 
 
 axR = 
@@ -1398,7 +1547,7 @@ axR =
            XScale: 'linear'
            YScale: 'linear'
     GridLineStyle: '-'
-         Position: [0.7164 0.1378 0.1886 0.7733]
+         Position: [0.7140 0.1378 0.1910 0.7733]
             Units: 'normalized'
 
   Use GET to show all properties
@@ -1410,9 +1559,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}     0.98011       0.16719     5.8623    1.2721e-07    0.68613 
-    {'Col   2'}     0.33782      0.097642     3.4598    0.00091227    0.40494 
-    {'Col   3'}      2.2959       0.12695     18.085    2.2204e-15     2.1167 
+    {'Col   1'}     0.60242       0.14975     4.0227     0.0001403    0.47083 
+    {'Col   2'}      1.1669      0.098692     11.824    2.2204e-15     1.3839 
+    {'Col   3'}       1.732       0.10509     16.481    2.2204e-15      1.929 
 
 Keeping probability_map values above 0.20
 Compressed NIfTI files are not supported.
@@ -1456,9 +1605,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}      1.0756       0.17141     6.2752    2.3259e-08    0.73445 
-    {'Col   2'}     0.52069      0.099789     5.2179    1.6736e-06    0.61071 
-    {'Col   3'}      2.5123       0.13064     19.231    2.2204e-15     2.2508 
+    {'Col   1'}      1.2006       0.17489      6.865    1.9589e-09    0.80349 
+    {'Col   2'}      0.5689      0.093585      6.079    5.2357e-08    0.71149 
+    {'Col   3'}       1.686       0.13942     12.093    2.2204e-15     1.4153 
 
 
 axR = 
@@ -1470,7 +1619,7 @@ axR =
            XScale: 'linear'
            YScale: 'linear'
     GridLineStyle: '-'
-         Position: [0.7164 0.1378 0.1886 0.7733]
+         Position: [0.7140 0.1378 0.1910 0.7733]
             Units: 'normalized'
 
   Use GET to show all properties
@@ -1482,9 +1631,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}     0.98011       0.16719     5.8623    1.2721e-07    0.68613 
-    {'Col   2'}     0.33782      0.097642     3.4598    0.00091227    0.40494 
-    {'Col   3'}      2.2959       0.12695     18.085    2.2204e-15     2.1167 
+    {'Col   1'}      1.4731       0.18384     8.0129    1.4507e-11    0.93784 
+    {'Col   2'}     0.49821      0.088178       5.65    3.0072e-07    0.66128 
+    {'Col   3'}       1.874       0.14464     12.956    2.2204e-15     1.5164 
 
 Keeping probability_map values above 0.20
 Compressed NIfTI files are not supported.
@@ -1528,9 +1677,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}      1.0756       0.17141     6.2752    2.3259e-08    0.73445 
-    {'Col   2'}     0.52069      0.099789     5.2179    1.6736e-06    0.61071 
-    {'Col   3'}      2.5123       0.13064     19.231    2.2204e-15     2.2508 
+    {'Col   1'}     0.44117       0.14454     3.0523       0.00318    0.35725 
+    {'Col   2'}     0.53088      0.072149     7.3581     2.404e-10     0.8612 
+    {'Col   3'}      1.8695       0.11099     16.843    2.2204e-15     1.9714 
 
 
 axR = 
@@ -1542,7 +1691,7 @@ axR =
            XScale: 'linear'
            YScale: 'linear'
     GridLineStyle: '-'
-         Position: [0.7164 0.1378 0.1886 0.7733]
+         Position: [0.7140 0.1378 0.1910 0.7733]
             Units: 'normalized'
 
   Use GET to show all properties
@@ -1554,9 +1703,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}     0.98011       0.16719     5.8623    1.2721e-07    0.68613 
-    {'Col   2'}     0.33782      0.097642     3.4598    0.00091227    0.40494 
-    {'Col   3'}      2.2959       0.12695     18.085    2.2204e-15     2.1167 
+    {'Col   1'}     0.53854       0.13779     3.9083    0.00020788    0.45744 
+    {'Col   2'}     0.46798      0.068834     6.7987    2.5928e-09    0.79573 
+    {'Col   3'}      1.7412       0.10221     17.035    2.2204e-15     1.9938 
 
 Keeping probability_map values above 0.20
 Compressed NIfTI files are not supported.
@@ -1573,7 +1722,7 @@ ax4 =
            XScale: 'linear'
            YScale: 'linear'
     GridLineStyle: '-'
-         Position: [0.6361 0.0606 0.3051 0.4105]
+         Position: [0.6324 0.0606 0.3034 0.4105]
             Units: 'normalized'
 
   Use GET to show all properties
@@ -1600,9 +1749,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}      1.0756       0.17141     6.2752    2.3259e-08    0.73445 
-    {'Col   2'}     0.52069      0.099789     5.2179    1.6736e-06    0.61071 
-    {'Col   3'}      2.5123       0.13064     19.231    2.2204e-15     2.2508 
+    {'Col   1'}      1.9926       0.21015     9.4818    2.6639e-14     1.1098 
+    {'Col   2'}      1.0721       0.11222     9.5537    1.9618e-14     1.1182 
+    {'Col   3'}      1.9464       0.12955     15.024    2.2204e-15     1.7584 
 
 
 axR = 
@@ -1614,7 +1763,7 @@ axR =
            XScale: 'linear'
            YScale: 'linear'
     GridLineStyle: '-'
-         Position: [0.7164 0.1378 0.1886 0.7733]
+         Position: [0.7192 0.1378 0.1858 0.7733]
             Units: 'normalized'
 
   Use GET to show all properties
@@ -1626,9 +1775,9 @@ Tests of column means against zero
        Name        Mean_Value    Std_Error      T           P         Cohens_d
     ___________    __________    _________    ______    __________    ________
 
-    {'Col   1'}     0.98011       0.16719     5.8623    1.2721e-07    0.68613 
-    {'Col   2'}     0.33782      0.097642     3.4598    0.00091227    0.40494 
-    {'Col   3'}      2.2959       0.12695     18.085    2.2204e-15     2.1167 
+    {'Col   1'}      2.0114       0.20389      9.865    5.2286e-15     1.1546 
+    {'Col   2'}      1.1173       0.10976      10.18    2.2204e-15     1.1914 
+    {'Col   3'}      1.8264       0.12215     14.951    2.2204e-15     1.7499 
 
 </pre>
 <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_07.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_08.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_09.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_10.png" alt=""> <p class="footer">
@@ -1646,6 +1795,12 @@ addpath('~/.matlab/spm/spm12');
 % load data
 indAtlPath = '/home/bogdan/MyDocuments/canlab/atlases/results/thalamus/spacetop';
 
+% the following are "simple" contrasts from heejungs first level designs
+% for spacetop. The files were obtained from discovery by concatenating
+% contrasts from 
+% /dartfs-hpc/rc/lab/C/CANlab/labdata/projects/bogdan_atlas/stats/spacetop
+% for subjects listed in
+% Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/src/spacetop_participants.csv
 pain = fmri_data('/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0013.nii.gz');
 vic = fmri_data('/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0014.nii.gz');
 cog = fmri_data('/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0015.nii.gz');
@@ -1816,8 +1971,151 @@ for i = 1:length(I)
         p = stats{this_roi_ind}.pValue(6);
         con = 'pain & vic vs cog';
     end
-    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_ind}, 0.9);
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_roi_ind}, 0.9);
     sgtitle(sprintf('%s (%s: t=%0.2f, p = %0.3e)', strrep(thal_atlas.label_descriptions{this_roi_ind},'_',' '),con,t,p));
+end
+
+function fig = plot_post_hoc_contrast(tbl, atlas_obj, roi_label, border_prop)
+
+tbl_roi = tbl(tbl.(roi_label) == 1,:);
+ind_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 & tbl_roi.parcellation > 0);
+ind_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 & tbl_roi.parcellation > 0);
+ind_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog > 0 & tbl_roi.parcellation > 0);
+
+grp_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 & tbl_roi.parcellation < 0);
+grp_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 & tbl_roi.parcellation < 0);
+grp_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog > 0 & tbl_roi.parcellation < 0);
+
+roi = atlas2region(atlas_obj.threshold(0.2).select_atlas_subset({roi_label},'exact'));
+[f,ax] = deal(cell(3,1));
+orientations = {'saggital','axial','coronal'};
+for i = 1:length(orientations)
+    ax{i} = roi.montage('regioncenters','nofigure',orientations{i});
+    f{i} = gcf;
+    set(f{i},'Tag',orientations{i})
+end
+
+fig = figure;
+t0 = tiledlayout(1,3);
+t1 = tiledlayout(t0,2,2,'Padding','compact','TileSpacing','compact');
+ax1 = nexttile(t1);
+copyobj(ax{1}.montage{1}.axis_handles.Children, ax1);
+colormap('gray');
+axis square
+axis off;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  % 3 x 2, 3 min  3 max mm coords
+xl = xyzminmax(2, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     % multiple of range from min to max coordinate
+myborder = max([myborder 20]);          % border at least 10 mm
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          % border at least 10 mm
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{1})
+
+ax2 = nexttile(t1);
+copyobj(ax{2}.montage{1}.axis_handles.Children, ax2);
+colormap('gray');
+axis square
+axis off;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  % 3 x 2, 3 min  3 max mm coords
+xl = xyzminmax(1, :);
+yl = xyzminmax(2, :);
+myborder = border_prop * range(xl);     % multiple of range from min to max coordinate
+myborder = max([myborder 20]);          % border at least 10 mm
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          % border at least 10 mm
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+
+close(f{2});
+
+ax3 = nexttile(t1); axis off
+ax4 = nexttile(t1)
+copyobj(ax{3}.montage{1}.axis_handles.Children, ax4);
+colormap('gray');
+axis square
+axis off;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  % 3 x 2, 3 min  3 max mm coords
+xl = xyzminmax(1, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     % multiple of range from min to max coordinate
+myborder = max([myborder 20]);          % border at least 10 mm
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          % border at least 10 mm
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{3})
+
+axM = nexttile(t0)
+barplot_columns([ind_roi_pain, ind_roi_vic, ind_roi_cog],'nofig');
+title('Individualized Atlas','FontSize',14);
+ylabel('ROI mean \beta');
+xlabel('task');
+set(gca,'XTickLabels',{'Pain','Vic','Cog'})
+grid on;
+
+axR = nexttile(t0)
+barplot_columns([grp_roi_pain, grp_roi_vic, grp_roi_cog],'nofig');
+title('Group Mean (N=73) Atlas','FontSize',14)
+ylabel('ROI mean \beta');
+xlabel('task');
+set(gca,'XTickLabels',{'Pain','Vic','Cog'})
+grid on;
+
+yl1 = get(axM,'YLim');
+yl2 = get(axR,'YLim');
+yl = [min(yl1(1),yl2(1)), max(yl1(2),yl2(2))];
+set(axM,'YLim',yl);
+set(axR,'YLim',yl);
+
+pos = get(gcf,'Position');
+set(gcf,'Position',[pos(1:2),1000,480])
+sgtitle(strrep(roi_label,'_',' '));
+
+end
+
+function [stats, mdl] = fit_single_region_model(tbl,region_labels)
+    [mdl_str1, mdl_str2, mdl_str3] = deal([]);
+    for i = 1:length(region_labels)
+        mdl_str1 = [mdl_str1, sprintf(' + %s',region_labels{i})];
+        mdl_str2 = [mdl_str2, sprintf(' + pain_v_vic:%s',region_labels{i})];
+        mdl_str3 = [mdl_str3, sprintf(' + pain_vic_v_cog:%s',region_labels{i})];
+    end
+
+    [mdl_str4, mdl_str5, mdl_str6] = deal([]);
+    for i = 1:length(region_labels)
+        mdl_str4 = [mdl_str4, sprintf(' + parcellation:%s',region_labels{i})];
+        mdl_str5 = [mdl_str5, sprintf(' + parcellation:pain_v_vic:%s',region_labels{i})];
+        mdl_str6 = [mdl_str6, sprintf(' + parcellation:pain_vic_v_cog:%s',region_labels{i})];
+    end
+    mdl_str = [mdl_str1, mdl_str2, mdl_str3, mdl_str4, mdl_str5, mdl_str6];
+    mdl_str = mdl_str(3:end);
+
+    new_tbl = cell(1,length(region_labels));
+    for i = 1:length(region_labels)
+        new_tbl{i} = tbl(tbl.(region_labels{i}) == 1,:);
+    end
+    tbl = cat(1,new_tbl{:});
+
+    mdl = fitlme(tbl,sprintf('BOLD ~ %s -1 + (%s -1 | subject)',mdl_str,mdl_str),'CovariancePattern','full','FitMethod','REML');
+    [~,~,stats] = fixedEffects(mdl,'dfmethod','satterthwaite');
 end
 ##### SOURCE END #####
 -->

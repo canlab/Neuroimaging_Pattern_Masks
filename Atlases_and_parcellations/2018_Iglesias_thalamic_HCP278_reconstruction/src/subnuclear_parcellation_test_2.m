@@ -181,7 +181,7 @@ for i = 1:length(I)
         p = stats{this_roi_ind}.pValue(6);
         con = 'pain & vic vs cog';
     end
-    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_ind}, 0.9);
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_roi_ind}, 0.9);
     sgtitle(sprintf('%s (%s: t=%0.2f, p = %0.3e)', strrep(thal_atlas.label_descriptions{this_roi_ind},'_',' '),con,t,p));
 end
 
