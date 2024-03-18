@@ -1,0 +1,7 @@
+275 unrelated twin pairs were considered. Among twin pairs, individuals were
+selected based on the availability of DWI and T1 data and then based on 
+whomever had better snr_csf snr_total, rpve_csf and rpve_wm MRIQC IQMs.
+
+From the 275, 11 participants were excluded from this dataset
+- 10 were excluded due to bad QSIPrep intermodal alignment
+- 1 was excluded due to a bad acquisition FOV for the DWI data
