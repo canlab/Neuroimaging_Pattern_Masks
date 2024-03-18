@@ -4,7 +4,10 @@ This is a probablistic atlas meant to correspond to freesurfer's thalamic
 subnuclear parcellations, a joint histologic and in vivo parcellation of the
 thalamus into 23 unique regions per hemisphere. It is less granular than 
 Morel, but has an open usage license, is probablistic and is likely to be 
-more accurately segmented.
+more accurately segmented. The biological accuracy of the labeling hasn't
+been sufficiently validated in my opinion (nor has any other thalamic atlas),
+so treat it primarily as an ontology rather than something with any kind of
+granular biological meaning.
 
 The probablistic labels are derived from labels produced by application of an
 automated bayesian segmentation algorithm to 618 participants from 3 studies.
@@ -172,7 +175,8 @@ The difference between cog and the other two tasks is reduced in the medial geni
 
 I also tried testing a multivariate version of this by comparing the individual regions to the
 group region parcel means for performance in 10-fold cross validated prediction of task. I
-Got indistinguishable loss (~0.15, chance = 0.667).
+got indistinguishable loss (~0.15 +/- 0.01 depending on kfold slicing, chance 
+= 0.667) in both cases.
 
 It's possible this would matter more in large datasets, or that the difference would be greater 
 with better quality data, where the posterior parcel labels can be driven more by the data
