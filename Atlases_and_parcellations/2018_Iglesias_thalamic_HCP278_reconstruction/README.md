@@ -71,8 +71,10 @@ MNI152NLin2009cAsym from QSIPrep.
 
 ## Veracity of the parcellation
 
-TL;DR: Treat the subnuclear boundaries with a certain degree of skepticism and try to
-validate any subnuclear localization claims you make by appeal to additional criteria.
+TL;DR: You should treat this primarily as an ontology as opposed to biologically
+accurate labeling. Treat the subnuclear boundaries with a certain degree of 
+skepticism and try to validate any neurobiological claims you main pertaining
+to this localization by appeal to additional criteria.
 
 Although visual inspection confirms that the thalamic boundaries are all sensible
 I don't have a good enough eye for intrathalamic nuclear boundaries to determine
