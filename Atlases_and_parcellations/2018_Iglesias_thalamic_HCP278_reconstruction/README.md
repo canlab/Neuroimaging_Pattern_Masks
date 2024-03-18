@@ -168,6 +168,10 @@ Average contrast in ventral lateral posterior (VLp) is increased by using indivi
 ![medial geniculate (right) task contrast](html/subnuclear_parcellation_test_2_07.png)
 The difference between cog and the other two tasks is reduced in the medial geniculate nucleus by using individualized parcellations. 
 
+I also tried testing a multivariate version of this by comparing the individual regions to the
+group region parcel means for performance in 10-fold cross validated prediction of task. I
+Got indistinguishable loss (~0.15, chance = 0.667).
+
 It's possible this would matter more in large datasets, or that the difference would be greater 
 with better quality data, where the posterior parcel labels can be driven more by the data
 than the priors than they are here, I don't know.
