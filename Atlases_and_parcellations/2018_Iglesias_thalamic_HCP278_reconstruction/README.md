@@ -4,10 +4,10 @@ This is a probablistic atlas meant to correspond to freesurfer's thalamic
 subnuclear parcellations, a joint histologic and in vivo parcellation of the
 thalamus into 23 unique regions per hemisphere. It is less granular than 
 Morel, but has an open usage license, is probablistic and is likely to be 
-more accurately segmented. The biological accuracy of the labeling hasn't
-been sufficiently validated in my opinion (nor has any other thalamic atlas),
-so treat it primarily as an ontology rather than something with any kind of
-granular biological meaning.
+more accurately segmented. That notwithstanding, the biological accuracy of 
+the labeling hasn't been sufficiently validated in my opinion (nor has any 
+other thalamic atlas), so treat it primarily as an ontology rather than 
+something with any kind of granular biological meaning.
 
 The probablistic labels are derived from labels produced by application of an
 automated bayesian segmentation algorithm to 618 participants from 3 studies.
