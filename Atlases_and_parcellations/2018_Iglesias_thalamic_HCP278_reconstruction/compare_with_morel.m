@@ -11,7 +11,7 @@ leaddbsRoot='/home/bogdan/MyDocuments/canlab/atlases/_resources/LeadsDBS/';
 myAtlas = load_atlas('iglesias_thal_fmriprep20');
 
 % note, this requires MasksPrivate
-morel = load_atlas('morel_fmriprep20')
+morel = load_atlas('morel_fmriprep20');
 
 %% plot overlaps
 
@@ -36,7 +36,7 @@ emap = {{{'AV'},{'AD','AM','AV'}},...
     {{'VAmc'},{'VAmc'}},...
     {{'VLa'},{'VLa'}},...
     {{'VLp'},{'VLpd','VLpv','VM'}},...
-    {{'VPL'},{'VPLa','VPLp','VPI','VPM'}},...
+    {{'VPL_VPM'},{'VPLa','VPLp','VPI','VPM'}},...
     {{'PuMm','PuMl'},{'PuM'}}};
 
 thisAtlas = myAtlas.select_atlas_subset({'L_'}).threshold(0.2);
@@ -68,7 +68,7 @@ for orientation = {'saggital','coronal','axial'}
         end
     end
     
-    drawnow()
+    set(gcf,'Tag',orientation{1});
 end
 
 
@@ -100,7 +100,7 @@ for orientation = {'saggital','coronal','axial'}
         end
     end
     
-    drawnow()
+    set(gcf,'Tag',[orientation{1},'b']);
 end
 
 %% compute overlap statistic

@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>compare_with_leadDBS_version</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-02-19">
+<meta name="DC.date" content="2024-03-18">
 <meta name="DC.source" content="compare_with_leadDBS_version.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -100,7 +100,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% Thalamus Atlas (Iglesias 2018)') and this script compares those</span>
 <span class="comment">% segmentations with my own HCP derived ones.</span>
 
+addpath(<span class="string">'/home/bogdan/.matlab/spm/spm12'</span>);
+addpath(genpath(<span class="string">'/home/bogdan/.matlab/canlab/CanlabCore'</span>))
+addpath(genpath(<span class="string">'/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'</span>))
+
+<span class="comment">% path to where I placed the 'Probabilistic Thalamus Atlas (Iglesias 2018)'</span>
+<span class="comment">% directory</span>
 leaddbsRoot=<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/_resources/LeadsDBS/'</span>;
+
+space_description = <span class="string">'MNI152NLin2009cAsym'</span>;
 
 myAtlas = load_atlas(<span class="string">'iglesias_thal_fmriprep20'</span>);
 
@@ -131,13 +139,15 @@ p_total = sum(leadsAtlas.dat,2);
 leadsAtlas.dat(p_total&gt;1,:) = leadsAtlas.dat(p_total&gt;1,:)./p_total(p_total&gt;1);
 leadsAtlas = atlas(leadsAtlas,<span class="string">'labels'</span>,leadsLabel);
 </pre>
-<pre class="codeoutput">Loading atlas: /home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/iglesias_hcp278_MNI152NLin2009cAsym_atlas_object.mat
+<pre class="codeoutput">Loading atlas: /home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/iglesias_HCP278_ST76_PG264_MNI152NLin2009cAsym_atlas_object.mat
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
 loading mask. mapping volumes. 
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 7776284 bytes
 Loading image number:     1
-Elapsed time is 0.018847 seconds.
+Elapsed time is 0.035166 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 8861  Bit rate: 13.11 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -145,7 +155,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1395456 bytes
 Loading image number:     1
-Elapsed time is 0.004990 seconds.
+Elapsed time is 0.007942 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 12669  Bit rate: 13.63 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -153,7 +163,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1323920 bytes
 Loading image number:     1
-Elapsed time is 0.004380 seconds.
+Elapsed time is 0.006402 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 20019  Bit rate: 14.29 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -161,7 +171,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1076160 bytes
 Loading image number:     1
-Elapsed time is 0.003418 seconds.
+Elapsed time is 0.005179 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 22294  Bit rate: 14.44 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -169,7 +179,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1179200 bytes
 Loading image number:     1
-Elapsed time is 0.003779 seconds.
+Elapsed time is 0.008998 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 14370  Bit rate: 13.81 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -177,7 +187,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1259040 bytes
 Loading image number:     1
-Elapsed time is 0.003982 seconds.
+Elapsed time is 0.004805 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 8816  Bit rate: 13.11 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -185,7 +195,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1244880 bytes
 Loading image number:     1
-Elapsed time is 0.003739 seconds.
+Elapsed time is 0.005327 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 6348  Bit rate: 12.63 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -193,7 +203,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 487600 bytes
 Loading image number:     1
-Elapsed time is 0.002163 seconds.
+Elapsed time is 0.002973 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 16073  Bit rate: 13.97 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -201,7 +211,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1264640 bytes
 Loading image number:     1
-Elapsed time is 0.003866 seconds.
+Elapsed time is 0.004676 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 14913  Bit rate: 13.86 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -209,7 +219,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1126320 bytes
 Loading image number:     1
-Elapsed time is 0.003533 seconds.
+Elapsed time is 0.004404 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 22592  Bit rate: 14.46 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -217,7 +227,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1343680 bytes
 Loading image number:     1
-Elapsed time is 0.003971 seconds.
+Elapsed time is 0.004815 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 35781  Bit rate: 15.13 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -225,7 +235,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 594432 bytes
 Loading image number:     1
-Elapsed time is 0.002470 seconds.
+Elapsed time is 0.003287 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 17164  Bit rate: 14.07 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -233,7 +243,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1332256 bytes
 Loading image number:     1
-Elapsed time is 0.003821 seconds.
+Elapsed time is 0.004864 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 6995  Bit rate: 12.77 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -241,7 +251,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 948480 bytes
 Loading image number:     1
-Elapsed time is 0.003033 seconds.
+Elapsed time is 0.004138 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 3965  Bit rate: 11.95 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -249,7 +259,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1302336 bytes
 Loading image number:     1
-Elapsed time is 0.003796 seconds.
+Elapsed time is 0.005059 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 13643  Bit rate: 13.74 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -257,7 +267,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1200640 bytes
 Loading image number:     1
-Elapsed time is 0.003658 seconds.
+Elapsed time is 0.004274 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 9264  Bit rate: 13.18 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -265,7 +275,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1222144 bytes
 Loading image number:     1
-Elapsed time is 0.003726 seconds.
+Elapsed time is 0.004844 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 19913  Bit rate: 14.28 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -273,7 +283,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1263240 bytes
 Loading image number:     1
-Elapsed time is 0.003779 seconds.
+Elapsed time is 0.004707 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 23524  Bit rate: 14.52 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -281,7 +291,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1279200 bytes
 Loading image number:     1
-Elapsed time is 0.003808 seconds.
+Elapsed time is 0.004573 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 19697  Bit rate: 14.27 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -289,7 +299,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1492224 bytes
 Loading image number:     1
-Elapsed time is 0.004320 seconds.
+Elapsed time is 0.005326 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 33284  Bit rate: 15.02 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -297,7 +307,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1577664 bytes
 Loading image number:     1
-Elapsed time is 0.004595 seconds.
+Elapsed time is 0.005504 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 27562  Bit rate: 14.75 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -305,7 +315,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 875520 bytes
 Loading image number:     1
-Elapsed time is 0.002942 seconds.
+Elapsed time is 0.003607 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 12323  Bit rate: 13.59 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -313,7 +323,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1357824 bytes
 Loading image number:     1
-Elapsed time is 0.004042 seconds.
+Elapsed time is 0.005444 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 38903  Bit rate: 15.25 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -321,7 +331,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1447040 bytes
 Loading image number:     1
-Elapsed time is 0.004170 seconds.
+Elapsed time is 0.005546 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 49079  Bit rate: 15.58 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -329,7 +339,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 875520 bytes
 Loading image number:     1
-Elapsed time is 0.002922 seconds.
+Elapsed time is 0.003854 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 11606  Bit rate: 13.50 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -337,7 +347,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1425760 bytes
 Loading image number:     1
-Elapsed time is 0.004187 seconds.
+Elapsed time is 0.004920 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 38189  Bit rate: 15.22 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -345,7 +355,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1479360 bytes
 Loading image number:     1
-Elapsed time is 0.004325 seconds.
+Elapsed time is 0.005006 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 13146  Bit rate: 13.68 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -353,7 +363,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1275948 bytes
 Loading image number:     1
-Elapsed time is 0.003862 seconds.
+Elapsed time is 0.005850 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 21087  Bit rate: 14.36 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -361,7 +371,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 997920 bytes
 Loading image number:     1
-Elapsed time is 0.003249 seconds.
+Elapsed time is 0.003830 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 22114  Bit rate: 14.43 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -369,7 +379,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1436160 bytes
 Loading image number:     1
-Elapsed time is 0.004340 seconds.
+Elapsed time is 0.005030 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 16011  Bit rate: 13.97 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -377,7 +387,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 794376 bytes
 Loading image number:     1
-Elapsed time is 0.002741 seconds.
+Elapsed time is 0.004079 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 10201  Bit rate: 13.32 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -385,7 +395,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1219680 bytes
 Loading image number:     1
-Elapsed time is 0.003659 seconds.
+Elapsed time is 0.004507 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 6780  Bit rate: 12.73 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -393,7 +403,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 406080 bytes
 Loading image number:     1
-Elapsed time is 0.002050 seconds.
+Elapsed time is 0.002731 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 14710  Bit rate: 13.84 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -401,7 +411,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1132300 bytes
 Loading image number:     1
-Elapsed time is 0.003557 seconds.
+Elapsed time is 0.004152 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 15316  Bit rate: 13.90 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -409,7 +419,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1220472 bytes
 Loading image number:     1
-Elapsed time is 0.003690 seconds.
+Elapsed time is 0.005123 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 23206  Bit rate: 14.50 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -417,7 +427,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1445136 bytes
 Loading image number:     1
-Elapsed time is 0.004201 seconds.
+Elapsed time is 0.005356 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 37183  Bit rate: 15.18 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -425,7 +435,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 551200 bytes
 Loading image number:     1
-Elapsed time is 0.002339 seconds.
+Elapsed time is 0.002996 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 15533  Bit rate: 13.92 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -433,7 +443,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1538976 bytes
 Loading image number:     1
-Elapsed time is 0.004327 seconds.
+Elapsed time is 0.005029 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 7962  Bit rate: 12.96 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -441,7 +451,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1096656 bytes
 Loading image number:     1
-Elapsed time is 0.003341 seconds.
+Elapsed time is 0.004027 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 4892  Bit rate: 12.26 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -449,7 +459,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1201200 bytes
 Loading image number:     1
-Elapsed time is 0.003579 seconds.
+Elapsed time is 0.004222 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 13645  Bit rate: 13.74 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -457,7 +467,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1475496 bytes
 Loading image number:     1
-Elapsed time is 0.004242 seconds.
+Elapsed time is 0.005520 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 10051  Bit rate: 13.30 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -465,7 +475,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 785664 bytes
 Loading image number:     1
-Elapsed time is 0.002777 seconds.
+Elapsed time is 0.003799 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 20352  Bit rate: 14.31 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -473,7 +483,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 750288 bytes
 Loading image number:     1
-Elapsed time is 0.002683 seconds.
+Elapsed time is 0.003781 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 24244  Bit rate: 14.57 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -481,7 +491,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 821712 bytes
 Loading image number:     1
-Elapsed time is 0.002790 seconds.
+Elapsed time is 0.003438 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 20371  Bit rate: 14.31 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -489,7 +499,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1041448 bytes
 Loading image number:     1
-Elapsed time is 0.003468 seconds.
+Elapsed time is 0.004152 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 36303  Bit rate: 15.15 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -497,7 +507,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1630728 bytes
 Loading image number:     1
-Elapsed time is 0.004667 seconds.
+Elapsed time is 0.005306 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 30824  Bit rate: 14.91 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -505,7 +515,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1244400 bytes
 Loading image number:     1
-Elapsed time is 0.003663 seconds.
+Elapsed time is 0.004412 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 13587  Bit rate: 13.73 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -513,7 +523,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1401400 bytes
 Loading image number:     1
-Elapsed time is 0.004174 seconds.
+Elapsed time is 0.006062 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 40245  Bit rate: 15.30 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -521,7 +531,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1408960 bytes
 Loading image number:     1
-Elapsed time is 0.004154 seconds.
+Elapsed time is 0.005078 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 50335  Bit rate: 15.62 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -529,7 +539,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 978120 bytes
 Loading image number:     1
-Elapsed time is 0.003267 seconds.
+Elapsed time is 0.004168 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 12325  Bit rate: 13.59 bits
 Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
@@ -537,7 +547,7 @@ loading mask. mapping volumes.
 checking that dimensions and voxel sizes of volumes are the same. 
 Pre-allocating data array. Needed: 1489296 bytes
 Loading image number:     1
-Elapsed time is 0.004304 seconds.
+Elapsed time is 0.005193 seconds.
 Image names entered, but fullpath attribute is empty. Getting path info.
 Number of unique values in dataset: 37136  Bit rate: 15.18 bits
 </pre>
@@ -574,7 +584,11 @@ thisLeadsAtlas.probability_maps = [];
 <pre class="codeinput">    o2 = thisAtlas.montage(<span class="string">'transvalue'</span>,0.5,<span class="string">'regioncenters'</span>,orientation{1});
     <span class="keyword">for</span> i = 1:num_regions(thisAtlas)
         <span class="keyword">try</span>
-            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),<span class="string">'exact'</span>);
+            label = thisAtlas.labels{i};
+            <span class="keyword">if</span> contains(label,<span class="string">'VPM_VPL'</span>)
+                label = label(1:end-4);
+            <span class="keyword">end</span>
+            leads_roi = thisLeadsAtlas.select_atlas_subset(label,<span class="string">'exact'</span>);
 
             <span class="keyword">if</span> num_regions(leads_roi) == 1
                 o3 = o2;
@@ -585,7 +599,7 @@ thisLeadsAtlas.probability_maps = [];
         <span class="keyword">end</span>
     <span class="keyword">end</span>
 
-    drawnow()
+    set(gcf,<span class="string">'Tag'</span>,orientation{1})
 </pre>
 <pre class="codeoutput">Compressed NIfTI files are not supported.
 Warning: Unknown input string option:saggital 
@@ -609,199 +623,323 @@ Warning: Unknown input string option:saggital
 Warning: Unknown input string option:saggital 
 Warning: Unknown input string option:saggital 
 Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:L_AV. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  88 voxels displayed, 196 not displayed on these slices
+Warning: Unknown input string option:L_CeM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  44 voxels displayed, 139 not displayed on these slices
+Warning: Unknown input string option:L_CL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  11 voxels displayed,  43 not displayed on these slices
+Warning: Unknown input string option:L_CM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  83 voxels displayed, 316 not displayed on these slices
+sagittal montage:  62 voxels displayed, 367 not displayed on these slices
+Warning: Unknown input string option:L_LD. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  23 voxels displayed,  53 not displayed on these slices
+sagittal montage:  12 voxels displayed,  64 not displayed on these slices
+Warning: Unknown input string option:L_LGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  75 voxels displayed, 499 not displayed on these slices
+sagittal montage:  81 voxels displayed, 495 not displayed on these slices
+Warning: Unknown input string option:L_LP. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  31 voxels displayed, 147 not displayed on these slices
+sagittal montage:  32 voxels displayed, 154 not displayed on these slices
+Warning: Unknown input string option:L_L_SG. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  16 voxels displayed,  72 not displayed on these slices
+Warning: Unknown input string option:L_MDl. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  68 voxels displayed, 289 not displayed on these slices
+sagittal montage:  68 voxels displayed, 290 not displayed on these slices
+Warning: Unknown input string option:L_MDm. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage: 195 voxels displayed, 774 not displayed on these slices
+Warning: Unknown input string option:L_MGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  38 voxels displayed, 240 not displayed on these slices
+sagittal montage:  39 voxels displayed, 249 not displayed on these slices
+Warning: Unknown input string option:L_MV_Re. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  22 voxels displayed,  23 not displayed on these slices
+Warning: Unknown input string option:L_Pf. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  23 voxels displayed,  57 not displayed on these slices
+Warning: Unknown input string option:L_PuA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  39 voxels displayed, 240 not displayed on these slices
+sagittal montage:  42 voxels displayed, 261 not displayed on these slices
+Warning: Unknown input string option:L_PuI. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  48 voxels displayed, 524 not displayed on these slices
+sagittal montage:  51 voxels displayed, 533 not displayed on these slices
+Warning: Unknown input string option:L_PuL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  46 voxels displayed, 318 not displayed on these slices
+sagittal montage:  50 voxels displayed, 349 not displayed on these slices
+Warning: Unknown input string option:L_VA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage: 117 voxels displayed, 717 not displayed on these slices
+Warning: Unknown input string option:L_VAmc. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:   4 voxels displayed,  12 not displayed on these slices
+Warning: Unknown input string option:L_VLa. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  99 voxels displayed, 852 not displayed on these slices
+sagittal montage:  99 voxels displayed, 862 not displayed on these slices
+Warning: Unknown input string option:L_VLp. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage: 144 voxels displayed, 1091 not displayed on these slices
-Warning: Unknown input string option:existing_figure 
-Warning: Unknown input string option:existing_axes 
-sagittal montage: 137 voxels displayed, 1086 not displayed on these slices
+sagittal montage: 163 voxels displayed, 1216 not displayed on these slices
+Warning: Unknown input string option:L_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
+Warning: Unknown input string option:R_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 </pre>
 <img vspace="5" hspace="5" src="compare_with_leadDBS_version_02.png" alt=""> <pre class="codeoutput">Compressed NIfTI files are not supported.
+Warning: Unknown input string option:L_AV. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  41 voxels displayed, 243 not displayed on these slices
+coronal montage:  48 voxels displayed, 236 not displayed on these slices
+Warning: Unknown input string option:L_CeM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:  14 voxels displayed, 169 not displayed on these slices
+Warning: Unknown input string option:L_CL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:   4 voxels displayed,  50 not displayed on these slices
+coronal montage:   5 voxels displayed,  49 not displayed on these slices
+Warning: Unknown input string option:L_CM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  51 voxels displayed, 348 not displayed on these slices
+coronal montage:  56 voxels displayed, 373 not displayed on these slices
+Warning: Unknown input string option:L_LD. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   9 voxels displayed,  67 not displayed on these slices
+Warning: Unknown input string option:L_LGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  74 voxels displayed, 500 not displayed on these slices
+coronal montage:  75 voxels displayed, 501 not displayed on these slices
+Warning: Unknown input string option:L_LP. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  18 voxels displayed, 160 not displayed on these slices
+coronal montage:  18 voxels displayed, 168 not displayed on these slices
+Warning: Unknown input string option:L_L_SG. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:  15 voxels displayed,  73 not displayed on these slices
+Warning: Unknown input string option:L_MDl. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  47 voxels displayed, 310 not displayed on these slices
+coronal montage:  41 voxels displayed, 317 not displayed on these slices
+Warning: Unknown input string option:L_MDm. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:  76 voxels displayed, 893 not displayed on these slices
+Warning: Unknown input string option:L_MGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  60 voxels displayed, 218 not displayed on these slices
+coronal montage:  62 voxels displayed, 226 not displayed on these slices
+Warning: Unknown input string option:L_MV_Re. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   7 voxels displayed,  38 not displayed on these slices
+Warning: Unknown input string option:L_Pf. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   6 voxels displayed,  74 not displayed on these slices
+Warning: Unknown input string option:L_PuA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  36 voxels displayed, 243 not displayed on these slices
+coronal montage:  38 voxels displayed, 265 not displayed on these slices
+Warning: Unknown input string option:L_PuI. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  95 voxels displayed, 477 not displayed on these slices
+coronal montage:  95 voxels displayed, 489 not displayed on these slices
+Warning: Unknown input string option:L_PuL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  53 voxels displayed, 311 not displayed on these slices
+coronal montage:  57 voxels displayed, 342 not displayed on these slices
+Warning: Unknown input string option:L_VA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage: 117 voxels displayed, 717 not displayed on these slices
+coronal montage: 128 voxels displayed, 706 not displayed on these slices
+Warning: Unknown input string option:L_VAmc. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:   6 voxels displayed,  10 not displayed on these slices
+coronal montage:   0 voxels displayed,  16 not displayed on these slices
+Warning: Unknown input string option:L_VLa. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage: 124 voxels displayed, 827 not displayed on these slices
+coronal montage: 124 voxels displayed, 837 not displayed on these slices
+Warning: Unknown input string option:L_VLp. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage: 162 voxels displayed, 1073 not displayed on these slices
-Warning: Unknown input string option:existing_figure 
-Warning: Unknown input string option:existing_axes 
-coronal montage: 153 voxels displayed, 1070 not displayed on these slices
+coronal montage: 148 voxels displayed, 1231 not displayed on these slices
+Warning: Unknown input string option:L_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
+Warning: Unknown input string option:R_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 </pre>
 <img vspace="5" hspace="5" src="compare_with_leadDBS_version_03.png" alt=""> <pre class="codeoutput">Compressed NIfTI files are not supported.
+Warning: Unknown input string option:L_AV. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  25 voxels displayed, 259 not displayed on these slices
+Warning: Unknown input string option:L_CeM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  25 voxels displayed, 158 not displayed on these slices
+axial montage:  30 voxels displayed, 153 not displayed on these slices
+Warning: Unknown input string option:L_CL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:   9 voxels displayed,  45 not displayed on these slices
+axial montage:   5 voxels displayed,  49 not displayed on these slices
+Warning: Unknown input string option:L_CM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  44 voxels displayed, 355 not displayed on these slices
+axial montage:  45 voxels displayed, 384 not displayed on these slices
+Warning: Unknown input string option:L_LD. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  30 voxels displayed,  46 not displayed on these slices
+Warning: Unknown input string option:L_LGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  89 voxels displayed, 485 not displayed on these slices
+axial montage:  75 voxels displayed, 501 not displayed on these slices
+Warning: Unknown input string option:L_LP. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  45 voxels displayed, 133 not displayed on these slices
+axial montage:  46 voxels displayed, 140 not displayed on these slices
+Warning: Unknown input string option:L_L_SG. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  17 voxels displayed,  71 not displayed on these slices
+Warning: Unknown input string option:L_MDl. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  29 voxels displayed, 328 not displayed on these slices
+axial montage:  27 voxels displayed, 331 not displayed on these slices
+Warning: Unknown input string option:L_MDm. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  82 voxels displayed, 887 not displayed on these slices
+Warning: Unknown input string option:L_MGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  42 voxels displayed, 236 not displayed on these slices
+axial montage:  42 voxels displayed, 246 not displayed on these slices
+Warning: Unknown input string option:L_MV_Re. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:   9 voxels displayed,  36 not displayed on these slices
+axial montage:  15 voxels displayed,  30 not displayed on these slices
+Warning: Unknown input string option:L_Pf. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:   3 voxels displayed,  77 not displayed on these slices
+Warning: Unknown input string option:L_PuA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  27 voxels displayed, 252 not displayed on these slices
+axial montage:  30 voxels displayed, 273 not displayed on these slices
+Warning: Unknown input string option:L_PuI. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  73 voxels displayed, 499 not displayed on these slices
+axial montage:  75 voxels displayed, 509 not displayed on these slices
+Warning: Unknown input string option:L_PuL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  28 voxels displayed, 336 not displayed on these slices
+axial montage:  31 voxels displayed, 368 not displayed on these slices
+Warning: Unknown input string option:L_VA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  57 voxels displayed, 777 not displayed on these slices
+Warning: Unknown input string option:L_VAmc. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:   4 voxels displayed,  12 not displayed on these slices
+Warning: Unknown input string option:L_VLa. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  46 voxels displayed, 905 not displayed on these slices
+axial montage:  46 voxels displayed, 915 not displayed on these slices
+Warning: Unknown input string option:L_VLp. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  63 voxels displayed, 1172 not displayed on these slices
-Warning: Unknown input string option:existing_figure 
-Warning: Unknown input string option:existing_axes 
-axial montage:  74 voxels displayed, 1149 not displayed on these slices
+axial montage:  71 voxels displayed, 1308 not displayed on these slices
+Warning: Unknown input string option:L_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
+Warning: Unknown input string option:R_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 </pre>
 <img vspace="5" hspace="5" src="compare_with_leadDBS_version_04.png" alt=""> <pre class="codeinput">
 <span class="keyword">end</span>
@@ -816,7 +954,11 @@ thisLeadsAtlas.probability_maps = [];
 <pre class="codeinput">    o2 = thisAtlas.montage(<span class="string">'transvalue'</span>,0.5,<span class="string">'regioncenters'</span>,orientation{1});
     <span class="keyword">for</span> i = 1:num_regions(thisAtlas)
         <span class="keyword">try</span>
-            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),<span class="string">'exact'</span>);
+            label = thisAtlas.labels{i};
+            <span class="keyword">if</span> contains(label,<span class="string">'VPM_VPL'</span>)
+                label = label(1:end-4);
+            <span class="keyword">end</span>
+            leads_roi = thisLeadsAtlas.select_atlas_subset(label,<span class="string">'exact'</span>);
 
             <span class="keyword">if</span> num_regions(leads_roi) == 1
                 o3 = o2;
@@ -826,7 +968,7 @@ thisLeadsAtlas.probability_maps = [];
             <span class="keyword">end</span>
         <span class="keyword">end</span>
     <span class="keyword">end</span>
-    drawnow()
+    set(gcf,<span class="string">'Tag'</span>,orientation{1})
 </pre>
 <pre class="codeoutput">Compressed NIfTI files are not supported.
 Warning: Unknown input string option:saggital 
@@ -850,199 +992,316 @@ Warning: Unknown input string option:saggital
 Warning: Unknown input string option:saggital 
 Warning: Unknown input string option:saggital 
 Warning: Unknown input string option:saggital 
+Warning: Unknown input string option:R_AV. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  72 voxels displayed, 262 not displayed on these slices
+sagittal montage:  89 voxels displayed, 245 not displayed on these slices
+Warning: Unknown input string option:R_CeM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  40 voxels displayed, 155 not displayed on these slices
+Warning: Unknown input string option:R_CL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  10 voxels displayed,  45 not displayed on these slices
+sagittal montage:   7 voxels displayed,  48 not displayed on these slices
+Warning: Unknown input string option:R_CM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  88 voxels displayed, 325 not displayed on these slices
+sagittal montage:  88 voxels displayed, 363 not displayed on these slices
+Warning: Unknown input string option:R_LD. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:  26 voxels displayed,  57 not displayed on these slices
+Warning: Unknown input string option:R_LGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  77 voxels displayed, 433 not displayed on these slices
+sagittal montage:  77 voxels displayed, 434 not displayed on these slices
+Warning: Unknown input string option:R_LP. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  39 voxels displayed, 161 not displayed on these slices
+sagittal montage:  39 voxels displayed, 169 not displayed on these slices
+Warning: Unknown input string option:R_L_SG. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  15 voxels displayed,  68 not displayed on these slices
+sagittal montage:  19 voxels displayed,  64 not displayed on these slices
+Warning: Unknown input string option:R_MDl. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  85 voxels displayed, 322 not displayed on these slices
+sagittal montage:  85 voxels displayed, 323 not displayed on these slices
+Warning: Unknown input string option:R_MDm. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage: 182 voxels displayed, 785 not displayed on these slices
+sagittal montage: 190 voxels displayed, 777 not displayed on these slices
+Warning: Unknown input string option:R_MGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  47 voxels displayed, 251 not displayed on these slices
+sagittal montage:  48 voxels displayed, 260 not displayed on these slices
+Warning: Unknown input string option:R_MV_Re. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage:   3 voxels displayed,  49 not displayed on these slices
+Warning: Unknown input string option:R_Pf. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  29 voxels displayed,  76 not displayed on these slices
+sagittal montage:  31 voxels displayed,  74 not displayed on these slices
+Warning: Unknown input string option:R_PuA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  37 voxels displayed, 246 not displayed on these slices
+sagittal montage:  39 voxels displayed, 275 not displayed on these slices
+Warning: Unknown input string option:R_PuI. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  45 voxels displayed, 509 not displayed on these slices
+sagittal montage:  48 voxels displayed, 523 not displayed on these slices
+Warning: Unknown input string option:R_PuL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  45 voxels displayed, 302 not displayed on these slices
+sagittal montage:  53 voxels displayed, 328 not displayed on these slices
+Warning: Unknown input string option:R_VA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 sagittal montage: 118 voxels displayed, 760 not displayed on these slices
+Warning: Unknown input string option:R_VAmc. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage:  11 voxels displayed,   9 not displayed on these slices
+sagittal montage:   7 voxels displayed,  13 not displayed on these slices
+Warning: Unknown input string option:R_VLa. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage: 103 voxels displayed, 920 not displayed on these slices
+sagittal montage: 110 voxels displayed, 927 not displayed on these slices
+Warning: Unknown input string option:R_VLp. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-sagittal montage: 150 voxels displayed, 1088 not displayed on these slices
-Warning: Unknown input string option:existing_figure 
-Warning: Unknown input string option:existing_axes 
-sagittal montage: 141 voxels displayed, 1028 not displayed on these slices
+sagittal montage: 166 voxels displayed, 1219 not displayed on these slices
+Warning: Unknown input string option:R_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 </pre>
 <img vspace="5" hspace="5" src="compare_with_leadDBS_version_05.png" alt=""> <pre class="codeoutput">Compressed NIfTI files are not supported.
+Warning: Unknown input string option:R_AV. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:  50 voxels displayed, 284 not displayed on these slices
+Warning: Unknown input string option:R_CeM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:  16 voxels displayed, 179 not displayed on these slices
+Warning: Unknown input string option:R_CL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   6 voxels displayed,  49 not displayed on these slices
+Warning: Unknown input string option:R_CM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  57 voxels displayed, 356 not displayed on these slices
+coronal montage:  63 voxels displayed, 388 not displayed on these slices
+Warning: Unknown input string option:R_LD. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   9 voxels displayed,  74 not displayed on these slices
+Warning: Unknown input string option:R_LGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  65 voxels displayed, 445 not displayed on these slices
+coronal montage:  65 voxels displayed, 446 not displayed on these slices
+Warning: Unknown input string option:R_LP. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  21 voxels displayed, 179 not displayed on these slices
+coronal montage:  22 voxels displayed, 186 not displayed on these slices
+Warning: Unknown input string option:R_L_SG. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  15 voxels displayed,  68 not displayed on these slices
+coronal montage:  18 voxels displayed,  65 not displayed on these slices
+Warning: Unknown input string option:R_MDl. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  48 voxels displayed, 359 not displayed on these slices
+coronal montage:  48 voxels displayed, 360 not displayed on these slices
+Warning: Unknown input string option:R_MDm. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:  78 voxels displayed, 889 not displayed on these slices
+Warning: Unknown input string option:R_MGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  57 voxels displayed, 241 not displayed on these slices
+coronal montage:  57 voxels displayed, 251 not displayed on these slices
+Warning: Unknown input string option:R_MV_Re. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:   8 voxels displayed,  44 not displayed on these slices
+coronal montage:   7 voxels displayed,  45 not displayed on these slices
+Warning: Unknown input string option:R_Pf. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   7 voxels displayed,  98 not displayed on these slices
+Warning: Unknown input string option:R_PuA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  41 voxels displayed, 242 not displayed on these slices
+coronal montage:  45 voxels displayed, 269 not displayed on these slices
+Warning: Unknown input string option:R_PuI. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  92 voxels displayed, 462 not displayed on these slices
+coronal montage:  72 voxels displayed, 499 not displayed on these slices
+Warning: Unknown input string option:R_PuL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage:  50 voxels displayed, 297 not displayed on these slices
+coronal montage:  49 voxels displayed, 332 not displayed on these slices
+Warning: Unknown input string option:R_VA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage: 111 voxels displayed, 767 not displayed on these slices
+coronal montage: 124 voxels displayed, 754 not displayed on these slices
+Warning: Unknown input string option:R_VAmc. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 coronal montage:   6 voxels displayed,  14 not displayed on these slices
+Warning: Unknown input string option:R_VLa. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage: 126 voxels displayed, 897 not displayed on these slices
+coronal montage: 126 voxels displayed, 911 not displayed on these slices
+Warning: Unknown input string option:R_VLp. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-coronal montage: 162 voxels displayed, 1076 not displayed on these slices
-Warning: Unknown input string option:existing_figure 
-Warning: Unknown input string option:existing_axes 
-coronal montage: 146 voxels displayed, 1023 not displayed on these slices
+coronal montage: 151 voxels displayed, 1234 not displayed on these slices
+Warning: Unknown input string option:R_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 </pre>
 <img vspace="5" hspace="5" src="compare_with_leadDBS_version_06.png" alt=""> <pre class="codeoutput">Compressed NIfTI files are not supported.
+Warning: Unknown input string option:R_AV. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  32 voxels displayed, 302 not displayed on these slices
+axial montage:  29 voxels displayed, 305 not displayed on these slices
+Warning: Unknown input string option:R_CeM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  17 voxels displayed, 178 not displayed on these slices
+axial montage:  31 voxels displayed, 164 not displayed on these slices
+Warning: Unknown input string option:R_CL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:   7 voxels displayed,  48 not displayed on these slices
+Warning: Unknown input string option:R_CM. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  48 voxels displayed, 365 not displayed on these slices
+axial montage:  47 voxels displayed, 404 not displayed on these slices
+Warning: Unknown input string option:R_LD. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  29 voxels displayed,  54 not displayed on these slices
+Warning: Unknown input string option:R_LGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  68 voxels displayed, 442 not displayed on these slices
+axial montage:  68 voxels displayed, 443 not displayed on these slices
+Warning: Unknown input string option:R_LP. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  48 voxels displayed, 152 not displayed on these slices
+axial montage:  51 voxels displayed, 157 not displayed on these slices
+Warning: Unknown input string option:R_L_SG. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  18 voxels displayed,  65 not displayed on these slices
+Warning: Unknown input string option:R_MDl. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  39 voxels displayed, 368 not displayed on these slices
+axial montage:  39 voxels displayed, 369 not displayed on these slices
+Warning: Unknown input string option:R_MDm. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  81 voxels displayed, 886 not displayed on these slices
+Warning: Unknown input string option:R_MGN. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  42 voxels displayed, 256 not displayed on these slices
+axial montage:  41 voxels displayed, 267 not displayed on these slices
+Warning: Unknown input string option:R_MV_Re. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:   8 voxels displayed,  44 not displayed on these slices
+axial montage:  20 voxels displayed,  32 not displayed on these slices
+Warning: Unknown input string option:R_Pf. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:   9 voxels displayed,  96 not displayed on these slices
+Warning: Unknown input string option:R_PuA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  30 voxels displayed, 253 not displayed on these slices
+axial montage:  32 voxels displayed, 282 not displayed on these slices
+Warning: Unknown input string option:R_PuI. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  63 voxels displayed, 491 not displayed on these slices
+axial montage:  78 voxels displayed, 493 not displayed on these slices
+Warning: Unknown input string option:R_PuL. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  29 voxels displayed, 318 not displayed on these slices
+axial montage:  30 voxels displayed, 351 not displayed on these slices
+Warning: Unknown input string option:R_VA. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
 axial montage:  62 voxels displayed, 816 not displayed on these slices
+Warning: Unknown input string option:R_VAmc. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:   6 voxels displayed,  14 not displayed on these slices
+axial montage:   4 voxels displayed,  16 not displayed on these slices
+Warning: Unknown input string option:R_VLa. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  50 voxels displayed, 973 not displayed on these slices
+axial montage:  53 voxels displayed, 984 not displayed on these slices
+Warning: Unknown input string option:R_VLp. Assuming it might be an atlas label.
+Place atlas labels in a cell array 
 Warning: Unknown input string option:existing_figure 
 Warning: Unknown input string option:existing_axes 
-axial montage:  62 voxels displayed, 1176 not displayed on these slices
-Warning: Unknown input string option:existing_figure 
-Warning: Unknown input string option:existing_axes 
-axial montage:  76 voxels displayed, 1093 not displayed on these slices
+axial montage:  70 voxels displayed, 1315 not displayed on these slices
+Warning: Unknown input string option:R_VPL_VPM. Assuming it might be an atlas
+label. Place atlas labels in a cell array 
 </pre>
 <img vspace="5" hspace="5" src="compare_with_leadDBS_version_07.png" alt=""> <pre class="codeinput">
 <span class="keyword">end</span>
@@ -1127,7 +1386,15 @@ Keeping probability_map values above 0.20
 % Thalamus Atlas (Iglesias 2018)') and this script compares those
 % segmentations with my own HCP derived ones.
 
+addpath('/home/bogdan/.matlab/spm/spm12');
+addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore'))
+addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
+
+% path to where I placed the 'Probabilistic Thalamus Atlas (Iglesias 2018)'
+% directory
 leaddbsRoot='/home/bogdan/MyDocuments/canlab/atlases/_resources/LeadsDBS/';
+
+space_description = 'MNI152NLin2009cAsym';
 
 myAtlas = load_atlas('iglesias_thal_fmriprep20');
 
@@ -1181,7 +1448,11 @@ for orientation = {'saggital','coronal','axial'}
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)
         try
-            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),'exact');
+            label = thisAtlas.labels{i};
+            if contains(label,'VPM_VPL')
+                label = label(1:end-4);
+            end
+            leads_roi = thisLeadsAtlas.select_atlas_subset(label,'exact');
         
             if num_regions(leads_roi) == 1
                 o3 = o2;
@@ -1192,7 +1463,7 @@ for orientation = {'saggital','coronal','axial'}
         end
     end
     
-    drawnow()
+    set(gcf,'Tag',orientation{1})
 end
 
 thisAtlas = myAtlas.select_atlas_subset('R_').threshold(0.2);
@@ -1205,7 +1476,11 @@ for orientation = {'saggital','coronal','axial'}
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)
         try
-            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),'exact');
+            label = thisAtlas.labels{i};
+            if contains(label,'VPM_VPL')
+                label = label(1:end-4);
+            end
+            leads_roi = thisLeadsAtlas.select_atlas_subset(label,'exact');
         
             if num_regions(leads_roi) == 1
                 o3 = o2;
@@ -1215,7 +1490,7 @@ for orientation = {'saggital','coronal','axial'}
             end
         end
     end
-    drawnow()
+    set(gcf,'Tag',orientation{1})
 end
 
 

@@ -1,0 +1,7 @@
+Of 109 spacetop participants with DWI and T1 data, participants were excluded if 
+- FA or T1 showed gross distortions (usually frontopolar regions), n=3
+- poor DWI to T1 intermodal alignment by QSIPrep (often a consequence of frontopolar succeptibility artifacts), n=14
+- bad DWI fields of view, n=7
+- extreme RF noise, n=7 (sub-0097 to sub-0103)
+- or a very poor thalamic segmentation, n=2 (sub-0013, sub-0052)
+Total excluded: 33/109

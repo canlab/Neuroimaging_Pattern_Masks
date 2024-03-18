@@ -3,25 +3,25 @@ addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore'))
 addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
 
 space_description = 'MNI152NLin2009cAsym';
-atlas_name = sprintf('iglesias_hcp278_%s', space_description);
+atlas_name = sprintf('iglesias_HCP278_ST76_PG264_%s', space_description);
 references = char({'Iglesias JE, Insausti R, Lerma-Usabiaga G, Bocchetta M, Van Leemput K, Greve DN, van der Kouwe A, Fischl B, Caballero-Gaudes C, Paz-Alonso PM. (2018). A probablistic atlas of the human thalamuc nuclei combining ex vivo MRI and histology. Neuroimage, 314-326, 183.'; ...
              'Tregidgo HFJ, Soskic S, Althonayan J, Maffei C, Van Leemput K, Golland P, Insausti R, Lerma-Usabiaga G, Caballero-Gaudes C, Paz-Alonso PM, Yendiki A, Alexander DC, Bocchetta M, Rohrer JD, Iglesias JE. (2023). Accurate Bayesian segmentation of thalamic nuclei using diffusion MRI and an improved histological atlas. Neuroimage,  274, 120129.'});
 
 dosave = true;
 
-% Note this file was obtained by first running the MNI152NLin6Asym script
-% and then saving the probability maps, transforming them to
-% MNI152NLin2009cAsym space and saving the results for use in this script.
-parcellation_file = 'iglesias_MNI152NLin2009cAsym_probability_maps.nii.gz';
+parcellation_file = cell(1,3);
+parcellation_file{1} = sprintf('hcp278.ThalamicNuclei.v13.T1DWI.%s.nii.gz',space_description);
+parcellation_file{2} = sprintf('spacetop76b.ThalamicNuclei.v13.T1DWI.%s.nii.gz',space_description);
+parcellation_file{3} = sprintf('paingen264.ThalamicNuclei.v13.T1DWI.%s.nii.gz',space_description);
 
 
-tbl = readtable(which('subnuclei_labels.csv'));
+tbl = readtable(which('iglesias_thal_subnuclei_labels.csv'));
 labels = cellfun(@(x1)strrep(x1,'-','_'),tbl.Var2,'UniformOutput',false);
 labels = labels(:)';
 ind = tbl.Var1;
 
-extra_lbls = readtable('thalamic_labels.csv');
-
+extra_lbls = readtable('iglesias_thalamic_labels.csv');
+ 
 labels_2 = {};
 labels_3 = {};
 labels_4 = {};
@@ -56,28 +56,31 @@ for i = 1:length(labels)
 end
 
 
-
-parcellation = fmri_data(parcellation_file);
-
-fid= fopen(which('iglesias_MNI152NLin6Asym_probability_maps.labels'));
-labels2 = textscan(fid,'%s');
-labels2 = labels2{1};
-fclose(fid)
-
-n_regions = size(parcellation.dat,2);
-assert(length(labels2) == n_regions)
-
-label_ind = [];
-for i = 1:n_regions
-    label_ind(end+1) = find(strcmp(labels2(i), labels));
+% compute probability maps for each study and average them across studies
+pmap = cell(1,length(parcellation_file));
+for i = 1:length(parcellation_file)
+    parcellation = fmri_data(which(parcellation_file{i}));
+    
+    n_regions = length(unique(parcellation.dat)) - 1;
+    uniq_rois = unique(parcellation.dat);
+    uniq_rois(uniq_rois == 0) = [];
+    
+    pmap{i} = zeros(size(parcellation.dat,1), n_regions);
+    for j = 1:n_regions
+        this_roi = uniq_rois(j);
+        this_mask = (parcellation.dat == this_roi);
+        pmap{i}(:,j) = mean(this_mask,2);
+    end
 end
+parcellation.dat = mean(cat(3,pmap{:}),3);
+has_lbl = ismember(tbl.Var1,uniq_rois);
 
 atlas_obj = atlas(parcellation, ...
-    'labels',labels(label_ind), ...
-    'label_descriptions', label_descriptions(label_ind), ...
-    'labels_2', labels_2(label_ind), ...
-    'labels_3', labels_3(label_ind), ...
-    'labels_4', labels_4(label_ind), ...
+    'labels',labels(has_lbl), ...
+    'label_descriptions', label_descriptions(has_lbl), ...
+    'labels_2', labels_2(has_lbl), ...
+    'labels_3', labels_3(has_lbl), ...
+    'labels_4', labels_4(has_lbl), ...
     'atlas_name', atlas_name ,...
     'space_description', space_description, ...
     'references', references);
@@ -87,7 +90,7 @@ atlas_obj = atlas(parcellation, ...
 % -----------------------------------------------------------------------
 
 % Threshold at probability 0.2 or greater and k = 3 voxels or greateratlas_obj = threshold(atlas_obj, 0.2, 'k', 3);
-atlas_obj = atlas_obj.threshold(0.01);
+atlas_obj = atlas_obj.threshold(0.005);
 
 
 % Check display
@@ -106,8 +109,8 @@ r = atlas2region(atlas_obj);
 % montage(r);
  
 %% save figure
-cmap = scn_standard_colors(n_regions/2);
-cmap = cell2mat(cat(2,cmap'));
+cmap = scn_standard_colors(num_regions(atlas_obj)/2);
+cmap = cell2mat(cmap');
 cmap = [cmap; cmap];
 
 if dosave
@@ -152,7 +155,7 @@ end
 
 clear region_names
 
-labels = labels(label_ind);
+labels = labels(has_lbl);
 for i = 1:length(r)
     
     eval([labels{i} ' = r(i);']);

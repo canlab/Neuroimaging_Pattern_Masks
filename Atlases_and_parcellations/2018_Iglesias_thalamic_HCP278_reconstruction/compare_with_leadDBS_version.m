@@ -15,6 +15,8 @@ addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'))
 % directory
 leaddbsRoot='/home/bogdan/MyDocuments/canlab/atlases/_resources/LeadsDBS/';
 
+space_description = 'MNI152NLin2009cAsym';
+
 myAtlas = load_atlas('iglesias_thal_fmriprep20');
 
 ref = fmri_data(which('MNI152NLin2009cAsym_T1_1mm.nii.gz'));
@@ -67,7 +69,11 @@ for orientation = {'saggital','coronal','axial'}
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)
         try
-            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),'exact');
+            label = thisAtlas.labels{i};
+            if contains(label,'VPM_VPL')
+                label = label(1:end-4);
+            end
+            leads_roi = thisLeadsAtlas.select_atlas_subset(label,'exact');
         
             if num_regions(leads_roi) == 1
                 o3 = o2;
@@ -78,7 +84,7 @@ for orientation = {'saggital','coronal','axial'}
         end
     end
     
-    drawnow()
+    set(gcf,'Tag',orientation{1})
 end
 
 thisAtlas = myAtlas.select_atlas_subset('R_').threshold(0.2);
@@ -91,7 +97,11 @@ for orientation = {'saggital','coronal','axial'}
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)
         try
-            leads_roi = thisLeadsAtlas.select_atlas_subset(thisAtlas.labels(i),'exact');
+            label = thisAtlas.labels{i};
+            if contains(label,'VPM_VPL')
+                label = label(1:end-4);
+            end
+            leads_roi = thisLeadsAtlas.select_atlas_subset(label,'exact');
         
             if num_regions(leads_roi) == 1
                 o3 = o2;
@@ -101,7 +111,7 @@ for orientation = {'saggital','coronal','axial'}
             end
         end
     end
-    drawnow()
+    set(gcf,'Tag',orientation{1})
 end
 
 
