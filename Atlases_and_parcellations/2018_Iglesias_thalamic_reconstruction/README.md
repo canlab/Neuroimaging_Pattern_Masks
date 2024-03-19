@@ -73,50 +73,82 @@ in the DWI space, but performed it in FMRIPrep's space arbitrarily since we had
 both template transforms available there while we only had transformations to
 MNI152NLin2009cAsym from QSIPrep.
 
-## Veracity of the parcellation
+## Veracity of the atlas
 
 TL;DR: You should treat this primarily as an ontology as opposed to biologically
 accurate labeling. Treat the subnuclear boundaries with a certain degree of 
 skepticism and try to validate any neurobiological claims you main pertaining
-to this localization by appeal to additional criteria.
+to this localization by appeal to additional criteria. Despite the large sample
+used here, the atlas boundaries are likely to be primarily driven by the source
+histlogical sections and contrast images used during the original atlas 
+construction by Iglesias et al. (2018) (the priors) rather than by our data.
 
-Although visual inspection confirms that the thalamic boundaries are all sensible
-I don't have a good enough eye for intrathalamic nuclear boundaries to determine
-whether or not they're correctly or simply arbitrarily placed by the algorithm.
-Even an expert anatomist might struggle though because the contrast images available
-aren't quite good enough to discern many of the anatomical boundaries, hence the
-use of histology derived Bayesian priors in the segmentation model. The original
-methods paper also did not rigorously test this, merely showing that a multivariate
+How well calibrated should you take the atlas probabilities to be? How much
+confidence should you have in the parcel boundaries here? The use of a large
+training sample (N=618) and multiple studies (3x) should give you a high
+degree of confidence in both of these factors, but only if the individualized
+parcellations are trustworthy to begin with. Are they?
+
+Although visual inspection of individuals' parcellations confirms that the thalamic 
+boundaries are all sensible I don't have a good enough eye for intrathalamic nuclear 
+boundaries to determine whether or not they're correctly or simply arbitrarily placed 
+by the algorithm on a per-subject basis. Even the proverbial "expert anatomist" would 
+struggle because the contrast images available aren't quite good enough to discern 
+many of the anatomical boundaries, hence the use of histology derived Bayesian priors 
+in the segmentation model. The original methods paper also did not rigorously test 
+the veracity of individualized parcel boundaries. They merely showed that a multivariate
 region based volumetric pattern produced better descrimination of alzheimers patients
 from controls than thalamic volume alone, which isn't a particularly convincing
-argument for these boundaries. It's likely any multivariate measure would have done
-better than a univariate measure.
+argument for the posterior boundary accuracy. It's likely any multivariate measure 
+would have done better than a univariate measure at discriminating alzheimers from
+controls.
 
 We can evaluate functional homogeneity across participants as a potential measure
 of boundary quality. Individual parcels are not fully aligned between participants 
 by standard spatial normalization techniques, hence the probabilities associated
-with the parcel labels in this atlas. Signals obtained from individualized 
-parcellations should therefore be more homogeneous across participants than signals
-obtained from the group parcels. We therefore take task evoked responses from SpaceTop
-(Pain, Vicarious and Cognitive) and estimate the mean parcel task evoked response
-for each in each thalamic region in each of the 76 particpants segmented using both
-individual parcellations and a group parcellation. We then evaluate the interaction
-effect between region x parcellation method and the triple interaction between 
-region x task x parcellation. We expect to see larger regional effects with the 
-individualized parcellation due to constructive amplification while we expect lower
-regional effects in the group parcellation due to destructive interference of signals
-from heterogenous sources. We also expect task differences between regions to be
-greater in the individualized parcellation (significant triple interactions) for the 
-same reason.
+with the parcel labels in this atlas (if alignment were perfect all probabilities for
+all labels would be 1). Signals obtained from individualized parcellations should 
+therefore be more homogeneous across participants than signals obtained from the 
+group parcels. We therefore take task evoked responses from SpaceTop (Pain, Vicarious 
+and Cognitive) and estimate the mean parcel task evoked response for each in each 
+thalamic region in each of the 76 particpants segmented using both individual parcellations 
+and a group parcellation. We then evaluate the interaction effect between region x 
+parcellation method and the triple interaction between region x task x parcellation. 
+We would expect to see larger regional effects with the individualized parcellation due 
+to constructive amplification while we expect lower regional effects in the group 
+parcellation due to destructive interference of signals from heterogenous sources 
+("blurring"). We also expect task differences between regions to be greater in the 
+individualized parcellation (significant triple interactions) for the same reason.
 
-A mixed effects model was fit. Subjects were treated as random. Task contrasts were 
-coded pain = [1/2, -1/3] vic = [-1/2, -1/3], cog = [0, 2/3] which yeilded two planned 
-contrasts: pain_v_vic and pain_vic_v_cog. A parcellation variable was also coded as 
-[1/2, -1/2] for the individual vs. group parcellation (resp). Models were fit using 
-restricted expectation maximum likelihood (ReML) and full covariance estimation. 
-Satterthwaites correction was used to estimate degrees of freedom, and in most cases
-yeilded n-1 degrees of freedom, but due to some regions missing in some individual
-parcellations the df are also somewhat variable.
+First level GLM contrasts were estimated using task evoked responses taken
+with respect to baseline, controling for 24 motion parameters and CSF, and using a 
+canonical HRF for convolution. Data was unsmoothed. Of the 76 participants with individual 
+parcellations, 73 of them had task contrasts available (the other three were presumably 
+missing BOLD data, I ran all that I could).
+
+A mixed effects model was fit to predict mean regional BOLD at the "second level" for each 
+parcel using either an individualized parcellation or a group parcellation. Subjects were 
+treated as random effectively turning this into a within subjects repeated measures 
+analysis, although this isn't clearly illustrated in the figures below, so take note now.
+Task contrasts were coded pain = [1/2, -1/3] vic = [-1/2, -1/3], cog = [0, 2/3] which 
+yeilded two planned contrasts: pain_v_vic and pain_vic_v_cog. A parcellation variable was 
+also coded as [1/2, -1/2] for the individual vs. group parcellation (resp). In Wilkinson 
+notation the model took the form,
+
+BOLD ~ parcellation + pain_v_vic + pain_vic_v_cog + parcellation:pain_v_vic + parcellation:pain_vic_v_cog
+
+For clarity of results, the model was modified by removing the intercept (mean region
+BOLD) and introducing a unit region variable, which results in model output that lists
+the region name instead of "(intercept)", but is otherwise identical so long as a
+"region_var_name:" term is prefixed to each of the above variables. This doesn't really
+matter here, but if you look at the [published html](html/subnuclear_parcellation_test_2.html) 
+it's important to note.
+
+Models were fit separately for each region using restricted expectation maximum 
+likelihood (ReML) and full covariance estimation. Satterthwaites correction was used to 
+estimate degrees of freedom, and in most cases yeilded n-1 degrees of freedom, but due 
+to some regions missing in some individual parcellations the df are also somewhat variable.
+This is precisely what we would expect for a repeated measures analysis.
 
 Contrasts were estimated using a canonical GLM model of task evoked responses taken
 with respect to baseline. Of the 76 participants with individual parcellations,
@@ -169,7 +201,7 @@ showing the largest three effect sizes I see.
 Average contrast across tasks is reduced in medial geniculate nucleus by using individualized parcellations.
 
 ![ventral lateral posterior (left)](html/subnuclear_parcellation_test_2_06.png)
-Average contrast in ventral lateral posterior (VLp) is increased by using individualized parcellations.
+Average contrast in ventral lateral posterior (VLp) thalamus is increased by using individualized parcellations.
 
 ![medial geniculate (right) task contrast](html/subnuclear_parcellation_test_2_07.png)
 The difference between cog and the other two tasks is reduced in the medial geniculate nucleus by using individualized parcellations. 
@@ -181,7 +213,13 @@ got indistinguishable loss (~0.15 +/- 0.01 depending on kfold slicing, chance
 
 It's possible this would matter more in large datasets, or that the difference would be greater 
 with better quality data, where the posterior parcel labels can be driven more by the data
-than the priors than they are here, I don't know.
+than the priors than they are here, I don't know. Bottom line, don't get hung up on the parcel
+boundaries or probabilities in this atlas. Just use them instrumentally, e.g. for a principled
+ontology or erosion/dilation of regions, or coarsely, e.g. for delineation of boundaries 
+between the thalamus and surrounding white matter tracks, or perhaps large subdivisions like
+those of the coarser labels (stored in the labels_3 property). The latter you can easily 
+verify for yourself since they line up nicely with structures visible in the MNI152NLin2009cAsym
+tempalate (below).
 
 ## Labels
 
@@ -195,6 +233,13 @@ represents nuclei that can be distinguished based on MR contrast alone (in
 T1, T2 or FA data) and was used as the gold standard comparator for evaluating
 the histological segmentations during development of the freesurfer algorithm.
 * labels 4: the subdivision from iglesias 2018 Table 2.
+
+![coarsest parcellation](html/labels_3.png)
+Note how with the labels_3 parcellation you can see structures circumstribed by atlas
+boundaires in the MNI152NLin2009cAsym atlas. These plots were produced by the following
+command,
+
+atlas_obj.downsample_parcellation('labels_3').threshold(0.2).montage('regioncenters','outline',[0,0,0],'coronal')
 
 ## Comparison with Morel
 
