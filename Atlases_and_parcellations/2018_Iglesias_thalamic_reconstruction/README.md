@@ -14,9 +14,10 @@ automated bayesian segmentation algorithm to 618 participants from 3 studies.
 The most recent versions of the algorithm is robust when given DWI and T1 
 data, so if individual parcellations are needed you can obtain them easily.
 [Further instructions](https://www.notion.so/Thalamic-Subnuclear-Segmentation-Freesurfer-Iglesias-d44e92d56f124108a2f54018adba42fa?pvs=4) 
-are available on the lab Notion page. But for labeling group analysis results or 
-for situations where you can't perform this segmentation, these labels may still 
-be helpful.
+are available on the lab Notion page. Personally, I (BP) don't think it's going
+to make much of a difference unless you have very high quality T1 images to
+work with though, and for most uses this group mean atlas is likely to do just
+as well.
 
 ## Methods
 
