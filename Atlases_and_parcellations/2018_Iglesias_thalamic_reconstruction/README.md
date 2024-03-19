@@ -117,9 +117,9 @@ therefore be more homogeneous across participants than signals obtained from the
 group parcels. We therefore take task evoked responses from SpaceTop (Pain, Vicarious 
 and Cognitive) and estimate the mean parcel task evoked response for each in each 
 thalamic region in each of the 76 particpants segmented using both individual parcellations 
-and a group parcellation. We then evaluate the interaction effect between region x 
-parcellation method and the triple interaction between region x task x parcellation. 
-We would expect to see larger regional effects with the individualized parcellation due 
+and a group parcellation. We then evaluate the effect of parcellation type and the
+interaction between task x parcellation type for each region. We would expect to see 
+larger regional effects with the individualized parcellation due 
 to constructive amplification while we expect lower regional effects in the group 
 parcellation due to destructive interference of signals from heterogenous sources 
 ("blurring"). We also expect task differences between regions to be greater in the 
