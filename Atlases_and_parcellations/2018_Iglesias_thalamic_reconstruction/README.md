@@ -211,8 +211,8 @@ Average contrast in ventral lateral posterior (VLp) thalamus is increased by usi
 ![medial geniculate (right) task contrast](html/subnuclear_parcellation_test_2_07.png)
 The difference between cog and the other two tasks is reduced in the medial geniculate nucleus by using individualized parcellations. 
 
-I also tried testing a multivariate version of this by comparing the individual regions to the
-group region parcel means for performance in 10-fold cross validated prediction of task. I
+I also tried testing a multivariate version of this by comparing the individualized regions to the
+group regions' means for performance in 10-fold cross validated prediction of task. I
 got indistinguishable loss (~0.15 +/- 0.01 depending on kfold slicing, chance 
 = 0.667) in both cases.
 
