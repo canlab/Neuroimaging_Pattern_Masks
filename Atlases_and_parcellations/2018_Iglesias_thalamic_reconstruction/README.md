@@ -123,7 +123,7 @@ larger regional effects with the individualized parcellation due
 to constructive amplification while we expect lower regional effects in the group 
 parcellation due to destructive interference of signals from heterogenous sources 
 ("blurring"). We also expect task differences between regions to be greater in the 
-individualized parcellation (significant triple interactions) for the same reason.
+individualized parcellation (significant interactions) for the same reason.
 
 First level GLM contrasts were estimated using task evoked responses taken
 with respect to baseline, controling for 24 motion parameters and CSF, and using a 
