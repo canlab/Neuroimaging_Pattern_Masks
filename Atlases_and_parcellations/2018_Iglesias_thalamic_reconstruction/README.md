@@ -6,8 +6,8 @@ thalamus into 23 unique regions per hemisphere. It is less granular than
 Morel, but has an open usage license, is probablistic and is likely to be 
 more accurately segmented. That notwithstanding, the biological accuracy of 
 the labeling hasn't been sufficiently validated in my opinion (nor has any 
-other thalamic atlas), so treat it primarily as an ontology rather than 
-something with any kind of granular biological meaning.
+other MNI space thalamic atlas), so treat it primarily as an ontology rather 
+than something with any kind of granular biological validity.
 
 The probablistic labels are derived from labels produced by application of an
 automated bayesian segmentation algorithm to 618 participants from 3 studies.
@@ -90,7 +90,9 @@ How well calibrated should you take the atlas probabilities to be? How much
 confidence should you have in the parcel boundaries here? The use of a large
 training sample (N=618) and multiple studies (3x) should give you a high
 degree of confidence in both of these factors, but only if the individualized
-parcellations are trustworthy to begin with. Are they?
+parcellations are accurate to begin with. They could all just be slight updates to
+the model priors, or they could contribute substantial new information and produce
+highly accurate individualized segmetations. So which is it?
 
 Although visual inspection of individuals' parcellations confirms that the thalamic 
 boundaries are all sensible I don't have a good enough eye for intrathalamic nuclear 
@@ -115,13 +117,13 @@ therefore be more homogeneous across participants than signals obtained from the
 group parcels. We therefore take task evoked responses from SpaceTop (Pain, Vicarious 
 and Cognitive) and estimate the mean parcel task evoked response for each in each 
 thalamic region in each of the 76 particpants segmented using both individual parcellations 
-and a group parcellation. We then evaluate the interaction effect between region x 
-parcellation method and the triple interaction between region x task x parcellation. 
-We would expect to see larger regional effects with the individualized parcellation due 
+and a group parcellation. We then evaluate the effect of parcellation type and the
+interaction between task x parcellation type for each region. We would expect to see 
+larger regional effects with the individualized parcellation due 
 to constructive amplification while we expect lower regional effects in the group 
 parcellation due to destructive interference of signals from heterogenous sources 
 ("blurring"). We also expect task differences between regions to be greater in the 
-individualized parcellation (significant triple interactions) for the same reason.
+individualized parcellation (significant interactions) for the same reason.
 
 First level GLM contrasts were estimated using task evoked responses taken
 with respect to baseline, controling for 24 motion parameters and CSF, and using a 
@@ -209,8 +211,8 @@ Average contrast in ventral lateral posterior (VLp) thalamus is increased by usi
 ![medial geniculate (right) task contrast](html/subnuclear_parcellation_test_2_07.png)
 The difference between cog and the other two tasks is reduced in the medial geniculate nucleus by using individualized parcellations. 
 
-I also tried testing a multivariate version of this by comparing the individual regions to the
-group region parcel means for performance in 10-fold cross validated prediction of task. I
+I also tried testing a multivariate version of this by comparing the individualized regions to the
+group regions' means for performance in 10-fold cross validated prediction of task. I
 got indistinguishable loss (~0.15 +/- 0.01 depending on kfold slicing, chance 
 = 0.667) in both cases.
 
@@ -278,7 +280,7 @@ VPLa, VPLp, VPI, VPM -> VPL <br />
 mtt -> Missing (this is a white matter tract though, not a nucleus) <br />
 
 A direct comparison of regions, grouped by the above equivalence relationships
-reveals rough colocalization of ROIs across this HCP278 atlas and Morel's,
+reveals rough colocalization of ROIs across this atlas and Morel's,
 but also substantial differences in many cases, particularly in the case of 
 subdivisions of the pulvinar, the location of the lateral posterior nucleus, 
 and the extent of the central lateral nucleus.
@@ -310,21 +312,21 @@ use in LeadsDBS. I (BP)  downloaded the software and obtained the probability ma
 for comparison with what I generated from HCP. LeadsDBS atlas is in 
 MNI152NLin2009bAsym space, which is sufficiently similar to MNI152NLin2009cAsym 
 that I did not realign any of the data and just compare leads parcels with the 
-HCP278 parcels.
+parcels in my version.
 
 Judging by dice coefficients of thresholded (p>0.2) and binarized parcel masks
 and correlations of parcel probability maps, the two segmentations are only
 approximately similar. Visual inspection paints a much more generous
 picture though. Because I used the DTI informed posteriors I don't have the
 exact same set of parcels, but 23 of the parcels are in common, so in the figures
-below we consider these. The HCP278 parcellation seems sufficiently similar to
-confirm that there were no serious methadological errors in the HCP278 
+below we consider these. The present parcellation seems sufficiently similar to
+confirm that there were no serious methadological errors in the current 
 parcellation approach, and unlike the LeadsDBS data, the methods used to generate
 the data are transparent, so for my part (BP) I'm satisfied with the result.
 
 Legend: <br />
 Black outlines - LeadsDBS (p > 0.2) <br />
-Colored Blobs - HCP278 parcellation (p > 0.2) <br />
+Colored Blobs - The current parcellation (p > 0.2) <br />
 
 ![Left Thalamus (sagittal)](html/compare_with_leadDBS_version_02.png)
 Left Thalamus (sagittal)
