@@ -277,7 +277,7 @@ VPLa, VPLp, VPI, VPM -> VPL <br />
 mtt -> Missing (this is a white matter tract though, not a nucleus) <br />
 
 A direct comparison of regions, grouped by the above equivalence relationships
-reveals rough colocalization of ROIs across this HCP278 atlas and Morel's,
+reveals rough colocalization of ROIs across this atlas and Morel's,
 but also substantial differences in many cases, particularly in the case of 
 subdivisions of the pulvinar, the location of the lateral posterior nucleus, 
 and the extent of the central lateral nucleus.
@@ -309,21 +309,21 @@ use in LeadsDBS. I (BP)  downloaded the software and obtained the probability ma
 for comparison with what I generated from HCP. LeadsDBS atlas is in 
 MNI152NLin2009bAsym space, which is sufficiently similar to MNI152NLin2009cAsym 
 that I did not realign any of the data and just compare leads parcels with the 
-HCP278 parcels.
+parcels in my version.
 
 Judging by dice coefficients of thresholded (p>0.2) and binarized parcel masks
 and correlations of parcel probability maps, the two segmentations are only
 approximately similar. Visual inspection paints a much more generous
 picture though. Because I used the DTI informed posteriors I don't have the
 exact same set of parcels, but 23 of the parcels are in common, so in the figures
-below we consider these. The HCP278 parcellation seems sufficiently similar to
-confirm that there were no serious methadological errors in the HCP278 
+below we consider these. The present parcellation seems sufficiently similar to
+confirm that there were no serious methadological errors in the current 
 parcellation approach, and unlike the LeadsDBS data, the methods used to generate
 the data are transparent, so for my part (BP) I'm satisfied with the result.
 
 Legend: <br />
 Black outlines - LeadsDBS (p > 0.2) <br />
-Colored Blobs - HCP278 parcellation (p > 0.2) <br />
+Colored Blobs - The current parcellation (p > 0.2) <br />
 
 ![Left Thalamus (sagittal)](html/compare_with_leadDBS_version_02.png)
 Left Thalamus (sagittal)
