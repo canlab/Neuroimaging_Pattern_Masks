@@ -245,6 +245,9 @@ by the following command if you want to inspect these further,
 
 atlas_obj.downsample_parcellation('labels_3').threshold(0.2).montage('regioncenters','outline',[0,0,0],'coronal')
 
+![coarsest parcellation (FSL](html/labels_3b.png)
+The same as the above only shown in FSL with a T2 image juxtaposed along side it.
+
 ## Comparison with Morel
 
 The morel atlas is the most detailed histological atlas available in MNI space.
