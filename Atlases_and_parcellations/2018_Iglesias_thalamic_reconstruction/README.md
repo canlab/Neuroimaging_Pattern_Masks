@@ -90,7 +90,9 @@ How well calibrated should you take the atlas probabilities to be? How much
 confidence should you have in the parcel boundaries here? The use of a large
 training sample (N=618) and multiple studies (3x) should give you a high
 degree of confidence in both of these factors, but only if the individualized
-parcellations are trustworthy to begin with. Are they?
+parcellations are accurate to begin with. They could all just be slight updates to
+the model priors, or they could contribute substantial new information and produce
+highly accurate individualized segmetations. So which is it?
 
 Although visual inspection of individuals' parcellations confirms that the thalamic 
 boundaries are all sensible I don't have a good enough eye for intrathalamic nuclear 
