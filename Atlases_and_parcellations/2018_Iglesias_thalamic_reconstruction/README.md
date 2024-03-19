@@ -81,7 +81,10 @@ skepticism and try to validate any neurobiological claims you main pertaining
 to this localization by appeal to additional criteria. Despite the large sample
 used here, the atlas boundaries are likely to be primarily driven by the source
 histlogical sections and contrast images used during the original atlas 
-construction by Iglesias et al. (2018) (the priors) rather than by our data.
+construction by Iglesias et al. (2018) (the priors) rather than by our data. If
+neurobiological claims are necessary, try to restrict yourself to the labels_3
+level of granularity where at least the parcel boundaries can be corroborated
+by features visible in group mean contrast maps.
 
 How well calibrated should you take the atlas probabilities to be? How much
 confidence should you have in the parcel boundaries here? The use of a large
