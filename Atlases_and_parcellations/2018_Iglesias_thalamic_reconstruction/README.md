@@ -236,8 +236,9 @@ the histological segmentations during development of the freesurfer algorithm.
 
 ![coarsest parcellation](html/labels_3.png)
 Note how with the labels_3 parcellation you can see structures circumstribed by atlas
-boundaires in the MNI152NLin2009cAsym atlas. These plots were produced by the following
-command,
+boundaires in the MNI152NLin2009cAsym atlas (it's most obvious if you compare with the 
+contralateral thalamus, e.g. anterior, medial and MGN nuclei). These plots were produced 
+by the following command if you want to inspect these further,
 
 atlas_obj.downsample_parcellation('labels_3').threshold(0.2).montage('regioncenters','outline',[0,0,0],'coronal')
 
