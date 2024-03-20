@@ -8,7 +8,8 @@ participants. Subjects from the same families, or subjects with image quality me
 than 3SD away form the mean were excluded. MRIQC 0.16.1 was was used to compute image quality
 metrics. Participants were excluded from participation in the study if they did not pass MRI 
 screening (e.g., had metals in their body) or had a history of liver disease/damage, allergies 
-to local analgesics, or were breastfeeding.
+to local analgesics, or were breastfeeding. Of those 248 that remained, 241 had T1w images
+and cortical reconstructions available for this analysis.
 
 In the full dataset (including siblings and participants with bad image quality metrics) 
 Participants’ age ranged from approximately 30 to 43 years (M = 35, SD = 2.6), and the sample 
@@ -42,7 +43,8 @@ SpaceTop Participants:
 Participants were recruited from the Dartmouth College and surrounding community. 
 
 All participants provided their informed consent at the beginning of the study. The study was
-approved by the institutional review board of Dartmouth College.
+approved by the institutional review board of Dartmouth College. 113 subjects were scanned, 
+of which 112 had T1w images available with cortical reconstructions for use in this analysis.
 
 
 PainGen and SpaceTop Imaging data acquisition:
