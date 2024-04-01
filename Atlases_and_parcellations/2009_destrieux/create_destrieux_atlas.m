@@ -4,11 +4,11 @@ addpath('/home/bogdan/.matlab/spm/spm12')
 addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore/'))
 addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/'))
 
-space_description = 'MNI152NLin2009cAsym';
-alias = 'fmriprep20';
+space_description = 'MNI152NLin6Asym';
+alias = 'fsl6';
 atlas_name = sprintf('destrieux_%s',alias);
-references = {'Fischl B, var der Kouwe A, Destrieux C, Halgren E, Segonne F, Salat DH, Busa E, Seidman LJ, Goldstein J, Kennedy D, Caviness V, Markis N, Rosen B, Dale AM. ''Automatically Parcellating the Human Cerebral Cortex.'' Cerebral Cortex (2004)} 14: 11-22. DOI: 10.1093/cercor/bbg087',...
-    'Destrieux C, Fischl B, Dale A, Halgren E. ''Automatic parcellation of human cortical gyri and sulci using standard anatomical nomenclature.'' Neuroimage (2010) 53(1):1-15.'};
+references = char({'Fischl B, var der Kouwe A, Destrieux C, Halgren E, Segonne F, Salat DH, Busa E, Seidman LJ, Goldstein J, Kennedy D, Caviness V, Markis N, Rosen B, Dale AM. ''Automatically Parcellating the Human Cerebral Cortex.'' Cerebral Cortex (2004)} 14: 11-22. DOI: 10.1093/cercor/bbg087',...
+    'Destrieux C, Fischl B, Dale A, Halgren E. ''Automatic parcellation of human cortical gyri and sulci using standard anatomical nomenclature.'' Neuroimage (2010) 53(1):1-15.'});
 
 lbls = readtable('src/destrieux_labels.csv');
 labels = [cellfun(@(x1)(sprintf('L_%s', x1)), lbls.Var2(2:end), 'UniformOutput', false);...
