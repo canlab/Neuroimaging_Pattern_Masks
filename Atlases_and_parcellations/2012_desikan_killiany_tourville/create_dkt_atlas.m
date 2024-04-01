@@ -4,10 +4,10 @@ addpath('/home/bogdan/.matlab/spm/spm12')
 addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore/'))
 addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/'))
 
-space_description = 'MNI152NLin6Asym';
-alias = 'fsl6';
+space_description = 'MNI152NLin2009cAsym';
+alias = 'fmriprep20';
 atlas_name = sprintf('dkt_%s',alias);
-references = {'Klein A, Tourville J. ''101 Labeled Brain Images and a Consistent Human Cortical Labeling Protocol.'' Fronteirs in Neuroscience 6 (2012). doi: 10.3389/fnins.2012.00171'};
+references = char({'Klein A, Tourville J. ''101 Labeled Brain Images and a Consistent Human Cortical Labeling Protocol.'' Fronteirs in Neuroscience 6 (2012). doi: 10.3389/fnins.2012.00171'});
 
 lbls = readtable('src/dkt_labels.csv');
 labels = [cellfun(@(x1)(sprintf('L_%s', x1)), lbls.Var2(2:end), 'UniformOutput', false);...
