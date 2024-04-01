@@ -4,10 +4,10 @@ addpath('/home/bogdan/.matlab/spm/spm12')
 addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore/'))
 addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/'))
 
-space_description = 'MNI152NLin6Asym';
-alias = 'fsl6';
+space_description = 'MNI152NLin2009cAsym';
+alias = 'fmriprep20';
 atlas_name = sprintf('desikan_killiany_%s',alias);
-references = {'Desikan RS, Segonne F, Fischl B, Quinn BT, Dickerson BC, Blacker D, Buckner RL, Dale AM, Maguire RP, Hymann BT, Albert MS, Killiany RJ. ''An Automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest.'' Neuroimage 31 (2006) 968-980.'};
+references = char({'Desikan RS, Segonne F, Fischl B, Quinn BT, Dickerson BC, Blacker D, Buckner RL, Dale AM, Maguire RP, Hymann BT, Albert MS, Killiany RJ. ''An Automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest.'' Neuroimage 31 (2006) 968-980.'});
 
 lbls = readtable('src/desikan_killany_labels.txt');
 labels = [cellfun(@(x1)(sprintf('L_%s', x1)), lbls.Var2(2:end), 'UniformOutput', false);...

@@ -14,6 +14,9 @@ be used to infer the location of the named structure in new participants and
 new studies. Unlike in the Glasser projection, where the cortical folding is
 individualized by interregional boundaries are not, here the interregional boundaries
 are also individualized based on participants' cortical folding based features.
+That said, the training sample here is probably not representative of the
+general population due to selection biases that result in overrepresentation
+of healthy 20-40 year olds, so take it with a grain of salt.
 
 ## Methods
 
