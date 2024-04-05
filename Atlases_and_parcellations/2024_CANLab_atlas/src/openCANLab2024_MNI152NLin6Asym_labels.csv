@@ -357,16 +357,16 @@ Ctx_TE1m_R,"Area TE1 Middle (Right)",Ctx_TE1m_R,middle_temporal_gyrus_R,temporal
 Ctx_PI_R,"Para-Insular Area (Right)",Ctx_PI_R,inferior_dysgranular_insula_R,insula_posterior_R,Glasser2016 (Volumetric version Petre2023)
 Ctx_a32pr_R,"Area anterior 32 prime (Right)",Ctx_a32pr_R,midcingulate_R,cingulate_ACC_mPFC_R,Glasser2016 (Volumetric version Petre2023)
 Ctx_p24_R,"Area posterior 24 (Right)",Ctx_p24_R,midcingulate_R,cingulate_ACC_mPFC_R,Glasser2016 (Volumetric version Petre2023)
-MTL_CA2_L,"Left hippocampal cornu ammonis 1",CA_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_CA3_L,"Left hippocampal cornu ammonis 1",CA_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_DG_L,"Left hippocampal dentate gyrus",DG_L,L1_Hipp,Hippocampal_Formation_L,Julich/Amunts
-MTL_CA1_L,"Left hippocampal cornu ammonis 1",CA_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_Subiculum_L,"Left hippocampal subiculum",Subiculum_L,Subiculum_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_CA2_R,"Right hippocampal cornu ammonis 1",CA_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_CA3_R,"Right hippocampal cornu ammonis 1",CA_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_DG_R,"Right hippocampal dentate gyrus",DG_R,R1_Hipp,Hippocampal_Formation_R,Julich/Amunts
-MTL_CA1_R,"Right hippocampal cornu ammonis 1",CA_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_Subiculum_R,"Right hippocampal subiculum",Subiculum_R,Subiculum_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_CA2_L,"Left hippocampal cornu ammonis 2",MTL_CA23_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_CA3_L,"Left hippocampal cornu ammonis 3",MTL_CA23_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_DG_L,"Left hippocampal dentate gyrus",MTL_DG_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_CA1_L,"Left hippocampal cornu ammonis 1",MTL_CA1_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_Subiculum_L,"Left hippocampal subiculum",MTL_Subiculum_L,Subiculum_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_CA2_R,"Right hippocampal cornu ammonis 2",MTL_CA23_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_CA3_R,"Right hippocampal cornu ammonis 3",MTL_CA23_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_DG_R,"Right hippocampal dentate gyrus",MTL_DG_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_CA1_R,"Right hippocampal cornu ammonis 1",MTL_CA1_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_Subiculum_R,"Right hippocampal subiculum",MTL_Subiculum_R,Subiculum_R,Hippocampal_Formation_R,Julich/Amunts
 Cblm_I_IV_L,"Region 1 from SUIT_Cerebellum_MNI",Cblm_I_IV_L,Cblm_I_IV_L,cerebellar_cortex_L,SUIT/Diedrichsen
 Cblm_I_IV_R,"Region 2 from SUIT_Cerebellum_MNI",Cblm_I_IV_R,Cblm_I_IV_R,cerebellar_cortex_R,SUIT/Diedrichsen
 Cblm_V_L,"Region 3 from SUIT_Cerebellum_MNI",Cblm_V_L,Cblm_V_L,cerebellar_cortex_L,SUIT/Diedrichsen
@@ -394,34 +394,34 @@ Cblm_IX_R,"Region 25 from SUIT_Cerebellum_MNI",Cblm_IX_R,Cblm_IX_R,cerebellar_co
 Cblm_X_L,"Region 26 from SUIT_Cerebellum_MNI",Cblm_X_L,Cblm_X_L,cerebellar_cortex_L,SUIT/Diedrichsen
 Cblm_Vermis_X,"Region 27 from SUIT_Cerebellum_MNI",Cblm_Vermis_X,Cblm_Vermis_X,vermis,SUIT/Diedrichsen
 Cblm_X_R,"Region 28 from SUIT_Cerebellum_MNI",Cblm_X_R,Cblm_X_R,cerebellar_cortex_R,SUIT/Diedrichsen
-BG_BST_SLEA_L,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (left)",BST_SLEA_L,VStriatum_L,VStriatum_L,CIT168 subcortical v1.1.0
-BG_BST_SLEA_R,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (right)",BST_SLEA_R,VStriatum_R,VStriatum_R,CIT168 subcortical v1.1.0
-BG_NAc_core_L,"Nucleus Accumbens, putative core (left)",NAc_L,VStriatum_L,VStriatum_L,Cartmell2019
-BG_NAc_shell_L,"Nucleus Accumbens, putative shell (left)",NAc_L,VStriatum_L,VStriatum_L,Cartmell2019
-BG_NAc_core_R,"Nucleus Accumbens, putative core (right)",NAc_R,VStriatum_R,VStriatum_R,Cartmell2019
-BG_NAc_shell_R,"NucleusAccumbens, putative shell (right)",NAc_R,VStriatum_R,VStriatum_R,Cartmell2019
-BG_CAU_VA_R,"Region 17 from tian_3t_fsl6",CAU_VA_R,aCAU_R,CAU_R,Tian2020
-BG_CAU_DA_R,"Region 18 from tian_3t_fsl6",CAU_DA_R,aCAU_R,CAU_R,Tian2020
-BG_CAU_body_R,"Region 19 from tian_3t_fsl6",CAU_body_R,pCAU_R,CAU_R,Tian2020
-BG_CAU_tail_R,"Region 20 from tian_3t_fsl6",CAU_tail_R,pCAU_R,CAU_R,Tian2020
-BG_CAU_VA_L,"Region 44 from tian_3t_fsl6",CAU_VA_L,aCAU_L,CAU_L,Tian2020
-BG_CAU_DA_L,"Region 45 from tian_3t_fsl6",CAU_DA_L,aCAU_L,CAU_L,Tian2020
-BG_CAU_body_L,"Region 46 from tian_3t_fsl6",CAU_body_L,pCAU_L,CAU_L,Tian2020
-BG_CAU_tail_L,"Region 47 from tian_3t_fsl6",CAU_tail_L,pCAU_L,CAU_L,Tian2020
-BG_PUT_VA_R,"Region 13 from tian_3t_fsl6",PUT_VA_R,aPUT_R,PUT_R,Tian2020
-BG_PUT_DA_R,"Region 14 from tian_3t_fsl6",PUT_DA_R,aPUT_R,PUT_R,Tian2020
-BG_PUT_VP_R,"Region 15 from tian_3t_fsl6",PUT_VP_R,pPUT_R,PUT_R,Tian2020
-BG_PUT_DP_R,"Region 16 from tian_3t_fsl6",PUT_DP_R,pPUT_R,PUT_R,Tian2020
-BG_PUT_VA_L,"Region 40 from tian_3t_fsl6",PUT_VA_L,aPUT_L,PUT_L,Tian2020
-BG_PUT_DA_L,"Region 41 from tian_3t_fsl6",PUT_DA_L,aPUT_L,PUT_L,Tian2020
-BG_PUT_VP_L,"Region 42 from tian_3t_fsl6",PUT_VP_L,pPUT_L,PUT_L,Tian2020
-BG_PUT_DP_L,"Region 43 from tian_3t_fsl6",PUT_DP_L,pPUT_L,PUT_L,Tian2020
-BG_GPe_L,"Globus Pallidus external segment (left)",GPe_L,GPe_L,GP_L,CIT168 subcortical v1.1.0
-BG_GPi_L,"Globus Pallidus internal segment (left)",GPi_L,GPi_L,GP_L,CIT168 subcortical v1.1.0
-BG_VeP_L,"Ventral pallidum (left)",VeP_L,VeP_L,GP_L,CIT168 subcortical v1.1.0
-BG_GPe_R,"Globus Pallidus external segment (right)",GPe_R,GPe_R,GP_R,CIT168 subcortical v1.1.0
-BG_GPi_R,"Globus Pallidus internal segment (right)",GPi_R,GPi_R,GP_R,CIT168 subcortical v1.1.0
-BG_VeP_R,"Ventral pallidum (right)",VeP_R,VeP_R,GP_R,CIT168 subcortical v1.1.0
+BG_BST_SLEA_L,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (left)",BG_,,,
+BG_BST_SLEA_R,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (right)",BG_,,,
+BG_CAU_DA_L,"Region 45 from tian_3t_fsl6",BG_CAU_DA_L,aCAU_L,CAU_L,Tian2020
+BG_CAU_DA_R,"Region 18 from tian_3t_fsl6",BG_CAU_DA_R,aCAU_R,CAU_R,Tian2020
+BG_CAU_VA_L,"Region 44 from tian_3t_fsl6",BG_CAU_VA_L,aCAU_L,CAU_L,Tian2020
+BG_CAU_VA_R,"Region 17 from tian_3t_fsl6",BG_CAU_VA_R,aCAU_R,CAU_R,Tian2020
+BG_CAU_body_L,"Region 46 from tian_3t_fsl6",BG_CAU_body_L,pCAU_L,CAU_L,Tian2020
+BG_CAU_body_R,"Region 19 from tian_3t_fsl6",BG_CAU_body_R,pCAU_R,CAU_R,Tian2020
+BG_CAU_tail_L,"Region 47 from tian_3t_fsl6",BG_CAU_tail_L,pCAU_L,CAU_L,Tian2020
+BG_CAU_tail_R,"Region 20 from tian_3t_fsl6",BG_CAU_tail_R,pCAU_R,CAU_R,Tian2020
+BG_GPe_L,"Globus Pallidus external segment (left)",BG_GPe_L,GPe_L,GP_L,CIT168 subcortical v1.1.0
+BG_GPe_R,"Globus Pallidus external segment (right)",BG_GPe_R,GPe_R,GP_R,CIT168 subcortical v1.1.0
+BG_GPi_L,"Globus Pallidus internal segment (left)",BG_GPi_L,GPi_L,GP_L,CIT168 subcortical v1.1.0
+BG_GPi_R,"Globus Pallidus internal segment (right)",BG_GPi_R,GPi_R,GP_R,CIT168 subcortical v1.1.0
+BG_NAc_core_L,"Nucleus Accumbens, putative core (left)",BG_,,,
+BG_NAc_core_R,"Nucleus Accumbens, putative core (right)",BG_,,,
+BG_NAc_shell_L,"Nucleus Accumbens, putative shell (left)",BG_,,,
+BG_NAc_shell_R,"NucleusAccumbens, putative shell (right)",BG_,,,
+BG_PUT_DA_L,"Region 41 from tian_3t_fsl6",BG_PUT_DA_L,aPUT_L,PUT_L,Tian2020
+BG_PUT_DA_R,"Region 14 from tian_3t_fsl6",BG_PUT_DA_R,aPUT_R,PUT_R,Tian2020
+BG_PUT_DP_L,"Region 43 from tian_3t_fsl6",BG_PUT_DP_L,pPUT_L,PUT_L,Tian2020
+BG_PUT_DP_R,"Region 16 from tian_3t_fsl6",BG_PUT_DP_R,pPUT_R,PUT_R,Tian2020
+BG_PUT_VA_L,"Region 40 from tian_3t_fsl6",BG_PUT_VA_L,aPUT_L,PUT_L,Tian2020
+BG_PUT_VA_R,"Region 13 from tian_3t_fsl6",BG_PUT_VA_R,aPUT_R,PUT_R,Tian2020
+BG_PUT_VP_L,"Region 42 from tian_3t_fsl6",BG_PUT_VP_L,pPUT_L,PUT_L,Tian2020
+BG_PUT_VP_R,"Region 15 from tian_3t_fsl6",BG_PUT_VP_R,pPUT_R,PUT_R,Tian2020
+BG_VeP_L,"Ventral pallidum (left)",BG_VeP_L,VeP_L,GP_L,CIT168 subcortical v1.1.0
+BG_VeP_R,"Ventral pallidum (right)",BG_VeP_R,VeP_R,GP_R,CIT168 subcortical v1.1.0
 Thal_AV_L,"Anteroventral_(left)",Thal_AV_L,Thal_anterior_L,Thal_Anterior_L,Iglesias2018
 Thal_CeM_L,"central_medial_(left)",Thal_rIL_L,Thal_Intralaminar_L,Thal_Intralaminar_L,Iglesias2018
 Thal_CL_L,"central_lateral_(left)",Thal_CL_L,Thal_Medial_L,Thal_Medial_L,Iglesias2018
@@ -441,7 +441,7 @@ Thal_VA_L,"Ventral_anterior_(left)",Thal_VA_L,Thal_Lateral-rostral_L,Thal_Ventra
 Thal_VAmc_L,"Ventral_anterior_magnocellular_(left)",Thal_VA_L,Thal_Lateral-rostral_L,Thal_Ventral_L,Iglesias2018
 Thal_VLa_L,"ventral_lateral_anterior_(left)",Thal_VL_L,Thal_Lateral-rostral_L,Thal_Ventral_L,Iglesias2018
 Thal_VLp_L,"ventral_lateral_posterior_(left)",Thal_VL_L,Thal_Lateral-rostral_L,Thal_Ventral_L,Iglesias2018
-Thal_VPL_L,"ventral_posterolateral_(left)",Thal_VPL_L,Thal_Lateral-caudal_L,Thal_Ventral_L,Iglesias2018
+Thal_VPL_VPM_L,"ventral_posterolateral_and_ventral_posteromedial_(left)",Thal_VPL_VPM_L,Thal_Lateral-caudal_L,Thal_Ventral_L,Iglesias2018
 Thal_PuMm_L,"Pulvinar_medial_(medial_subdivision)_(left)",Thal_PuM_L,Thal_Pulvinar_L,Thal_Posterior_L,Iglesias2018
 Thal_PuMl_L,"Pulvinar_medial_(lateral_subdivision)_(left)",Thal_PuM_L,Thal_Pulvinar_L,Thal_Posterior_L,Iglesias2018
 Thal_AV_R,"Anteroventral_(right)",Thal_AV_R,Thal_anterior_R,Thal_Anterior_R,Iglesias2018
@@ -463,7 +463,7 @@ Thal_VA_R,"Ventral_anterior_(right)",Thal_VA_R,Thal_Lateral-rostral_R,Thal_Ventr
 Thal_VAmc_R,"Ventral_anterior_magnocellular_(right)",Thal_VA_R,Thal_Lateral-rostral_R,Thal_Ventral_R,Iglesias2018
 Thal_VLa_R,"ventral_lateral_anterior_(right)",Thal_VL_R,Thal_Lateral-rostral_R,Thal_Ventral_R,Iglesias2018
 Thal_VLp_R,"ventral_lateral_posterior_(right)",Thal_VL_R,Thal_Lateral-rostral_R,Thal_Ventral_R,Iglesias2018
-Thal_VPL_R,"ventral_posterolateral_(right)",Thal_VPL_R,Thal_Lateral-caudal_R,Thal_Ventral_R,Iglesias2018
+Thal_VPL_VPM_R,"ventral_posterolateral_and_ventral_posteromedial_(right)",Thal_VPL_VPM_R,Thal_Lateral-caudal_R,Thal_Ventral_R,Iglesias2018
 Thal_PuMm_R,"Pulvinar_medial_(medial_subdivision)_(right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
 Thal_PuMl_R,"Pulvinar_medial_(lateral_subdivision)_(right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
 Epithal_Haben_L,"Habenula (left)",Haben_L,Haben_L,Midbrain_L,CIT168 v1.1.0 subcortical
@@ -478,86 +478,86 @@ hypothalamus_anterior_superior_R,"preoptic area, paraventricular nucleus (right)
 hypothalamus_posterior_R,"mamillary body (medial and lateral nuclei), lateral hypothalamus, tuberomamillary nucleus (right)",hypothalamus_posterior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
 hypothalamus_tubular_inferior_R,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (right)",hypothalamus_tubular_inferior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
 hypothalamus_tubular_superior_R,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (right)",hypothalamus_tubular_superior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
-Bstem_BStem_dmPAG,"Region 1 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
-Bstem_BStem_vlPAG_L,"Region 2 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
-Bstem_BStem_lPAG_L,"Region 3 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
-Bstem_BStem_vlPAG_R,"Region 4 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
-Bstem_BStem_lPAG_R,"Region 5 from Kragel2019PAG",PAG,PAG,Midbrain,Kragel2019
-Bstem_BStem_LDTg_L,"laterodorsal tegmental nucleus (left)",LDTg_L,Cholinergic nuclei_L,Pons_L,Harvard Ascending Arousal Network
-Bstem_BStem_LDTg_R,"laterodorsal tegmental nucleus (right)",LDTg_R,Cholinergic nuclei_R,Pons_R,Harvard Ascending Arousal Network
-Bstem_BStem_MPB_LPB_L,"parabrachial complex (left)",MPB_LPB_L,Parabrachial nuclei_L,Pons_L,Harvard Ascending Arousal Network
-Bstem_BStem_MPB_LPB_R,"parabrachial complex (right)",MPB_LPB_R,Parabrachial nuclei_R,Pons_R,Harvard Ascending Arousal Network
-Bstem_BStem_PTg_L,"pedunculotegmental nucleus (left)",PTg_L,Cholinergic nuclei_nuclei_L,Pons_L,Harvard Ascending Arousal Network
-Bstem_BStem_PTg_R,"pedunculotegmental nucleus (right)",PTg_R,Cholinergic nuclei_nuclei_R,Pons_R,Harvard Ascending Arousal Network
-Bstem_BStem_PnO_L,"pontis oralis (i.e. pontine reticular formation) (left)",PnO_L,PnO_L,Pons_L,Harvard Ascending Arousal Network
-Bstem_BStem_PnO_R,"pontis oralis (i.e. pontine reticular formation) (right)",PnO_R,PnO_R,Pons_R,Harvard Ascending Arousal Network
-Bstem_BStem_isRt_L,"mesencephalic reticular formation (left)",isRt_L,Rostral reticular formation_L,Midbrain_L,Harvard Ascending Arousal Network
-Bstem_BStem_isRt_R,"mesencephalic reticular formation (right)",isRt_R,Rostral reticular formation_R,Midbrain_R,Harvard Ascending Arousal Network
-Bstem_BStem_MnR_B6_B8,"median raphe (right)",MnR_B6_B8,Rostral Raphe (Serotonergic),Midbrain,Harvard Ascending Arousal Network
-Bstem_BStem_DR_B7,"Dorsal Raphe Nucleus",DR_B7,Rostral Raphe (Serotonergic),Midbrain,Levinson-Bari Limbic Brainstem Atlas
-Bstem_BStem_LC_L,"Locus Coreleus (left)",LC_L,LC+_L,Pons_L,Levinson-Bari Limbic Brainstem Atlas
-Bstem_BStem_NTS_L,"Nucleus Tractus Solitaris (left)",NTS_L,Cranial_nuclei_L,Medulla_L,Levinson-Bari Limbic Brainstem Atlas
-Bstem_BStem_LC_R,"Locus Coreleus (right)",LC_R,LC+_R,Pons_R,Levinson-Bari Limbic Brainstem Atlas
-Bstem_BStem_NTS_R,"Nucleus Tractus Solitaris (right)",NTS_R,Cranial_nuclei_R,Medulla_R,Levinson-Bari Limbic Brainstem Atlas
-Bstem_BStem_SNc_L,"Substantia Nigra pars compacta (left)",SNc_L,SN_L,Midbrain_L,CIT168 subcortical v1.1.0
-Bstem_BStem_RN_L,"Red nucleus (left)",RN_L,RN_L,Midbrain_L,CIT168 subcortical v1.1.0
-Bstem_BStem_SNr_L,"Substantia Nigra pars reticulata (left)",SNr_L,SN_L,Midbrain_L,CIT168 subcortical v1.1.0
-Bstem_BStem_PBP_L,"Parabrachial Pigmented Nucleus (left)",PBP_L,VTA_PBP_L,Midbrain_L,CIT168 subcortical v1.1.0
-Bstem_BStem_VTA_L,"Ventral Tegmental Area (left)",VTA_L,VTA_PBP_L,Midbrain_L,CIT168 subcortical v1.1.0
-Bstem_STH_R,"Subthalamic nucleus (left)",STH_L,STH_L,Midbrain_L,CIT168 subcortical v1.1.0
-Bstem_BStem_SNc_R,"Substantia Nigra pars compacta (right)",SNc_R,SN_R,Midbrain_R,CIT168 subcortical v1.1.0
-Bstem_BStem_RN_R,"Red nucleus (right)",RN_R,RN_R,Midbrain_R,CIT168 subcortical v1.1.0
-Bstem_BStem_SNr_R,"Substantia Nigra pars reticulata (right)",SNr_R,SN_R,Midbrain_R,CIT168 subcortical v1.1.0
-Bstem_BStem_PBP_R,"Parabrachial Pigmented Nucleus (right)",PBP_R,VTA_PBP_R,Midbrain_R,CIT168 subcortical v1.1.0
-Bstem_BStem_VTA_R,"Ventral Tegmental Area (right)",VTA_R,VTA_PBP_R,Midbrain_R,CIT168 subcortical v1.1.0
-Bstem_BStem_STH_R,"Subthalamic nucleus (right)",STH_R,STH_R,Midbrain_R,CIT168 subcortical v1.1.0
-Bstem_BStem_Midbrd_L,"Midbrain left rostral dorsal",Shen_Midb_Lrd,Shen_Midb_Lrd,Midbrain_L,Shen268
-Bstem_BStem_Midbc_L,"Midbrain left caudal",Shen_Midb_Lc,Shen_Midb_Lc,Midbrain_L,Shen268
-Bstem_BStem_Midbrd_R,"Midbrain right rostral dorsal",Shen_Midb_Rrd,Shen_Midb_Rrd,Midbrain_R,Shen268
-Bstem_BStem_Midbcd_R,"Midbrain right caudal dorsal",Shen_Midb_Rcd,Shen_Midb_Rcd,Midbrain_R,Shen268
-Bstem_BStem_Ponsrd_L,"Pons left rostral dorsal",Shen_Pons_Lrd,Shen_Pons_Lrd,Pons_L,Shen268
-Bstem_BStem_Ponscd_L,"Pons left cudal dorsal",Shen_Pons_Lcd,Shen_Pons_Lcd,Pons_L,Shen268
-Bstem_BStem_Ponsv_L,"Pons left ventral",Shen_Pons_Lv,Shen_Pons_Lv,Pons_L,Shen268
-Bstem_BStem_Ponsrv_R,"Pons right rostral ventral",Shen_Pons_Rrv,Shen_Pons_Rrv,Pons_R,Shen268
-Bstem_BStem_Ponscv_R,"Pons right caudal ventral",Shen_Pons_Rcv,Shen_Pons_Rcv,Pons_R,Shen268
-Bstem_BStem_Ponscd_R,"Pons right caudal dorsal",Shen_Pons_Rcd,Shen_Pons_Rcd,Pons_R,Shen268
-Bstem_BStem_Med_L,"Medulla left",Shen_Med_L,Shen_Med_L,Medulla_L,Shen268
-Bstem_BStem_Med_R,"Medulla right",Shen_Med_R,Shen_Med_R,Medulla_R,Shen268
-MTL_AMY_BLN_La_L,"Amygdalar basolateral complex: lateral nucleus (left)",AMY_BLN_La_L,La_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_L,"Amygdalar basolateral complex: basal nucleus (left)",AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_L,"Amygdalar basolateral complex: accessory basal nucleus (left)",AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CEN_L,"Amygdalar central nucleus (left)",AMY_CEN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CMN_L,"Amygdalar corticomedial group: medial nucleus (left)",AMY_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_L,"Amygdalar basolateral complex: paralaminar nucleus (left)",AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_L,"Amygdalar corticomedial group: periamygdaloid cortex (left)",AMY_ATA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_L,"Amygdalostriatal triansition area (left)",AMY_ATA_ASTA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_AAA_L,"Anteroir amygdaloid area (left)",AMY_AAA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_R,"Amygdalar basolateral complex: lateral nucleus (right)",AMY_BLN_La_R,La_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_R,"Amygdalar basolateral complex: basal nucleus (right)",AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_R,"Amygdalar basolateral complex: accessory basal nucleus (right)",AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CEN_R,"Amygdalar central nucleus (right)",AMY_CEN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CMN_R,"Amygdalar corticomedial group: medial nucleus (right)",AMY_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_R,"Amygdalar basolateral complex: paralaminar nucleus (right)",AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_R,"Amygdalar corticomedial group: periamygdaloid cortex (right)",AMY_ATA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_R,"Amygdalostriatal triansition area (right)",AMY_ATA_ASTA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_AAA_R,"Anteroir amygdaloid area (right)",AMY_AAA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_ICN_L,"Intercalated nuclei adjacent to Amygdalar basolateral complex: lateral nucleus (left)",AMY_BLN_La_L,La_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_ICN_L,"Intercalated nuclei adjacent to Amygdalar basolateral complex: basal nucleus (left)",AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_ICN_L,"Intercalated nuclei adjacent to Amygdalar basolateral complex: accessory basal nucleus (left)",AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CEN_ICN_L,"Intercalated nuclei adjacent to Amygdalar central nucleus (left)",AMY_CEN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CMN_ICN_L,"Intercalated nuclei adjacent to Amygdalar corticomedial group: medial nucleus (left)",AMY_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_ICN_L,"Intercalated nuclei adjacent to Amygdalar basolateral complex: paralaminar nucleus (left)",AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ICN_L,"Intercalated nuclei adjacent to Amygdalar corticomedial group: periamygdaloid cortex (left)",AMY_ATA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_ICN_L,"Intercalated nuclei adjacent to Amygdalostriatal triansition area (left)",AMY_ATA_ASTA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_AAA_ICN_L,"Intercalated nuclei adjacent to Anteroir amygdaloid area (left)",AMY_AAA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_ICN_R,"Intercalated nuclei adjacent to Amygdalar basolateral complex: lateral nucleus (right)",AMY_BLN_La_R,La_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_ICN_R,"Intercalated nuclei adjacent to Amygdalar basolateral complex: basal nucleus (right)",AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_ICN_R,"Intercalated nuclei adjacent to Amygdalar basolateral complex: accessory basal nucleus (right)",AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CEN_ICN_R,"Intercalated nuclei adjacent to Amygdalar central nucleus (right)",AMY_CEN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CMN_ICN_R,"Intercalated nuclei adjacent to Amygdalar corticomedial group: medial nucleus (right)",AMY_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_ICN_R,"Intercalated nuclei adjacent to Amygdalar basolateral complex: paralaminar nucleus (right)",AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ICN_R,"Intercalated nuclei adjacent to Amygdalar corticomedial group: periamygdaloid cortex (right)",AMY_ATA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_ICN_R,"Intercalated nuclei adjacent to Amygdalostriatal triansition area (right)",AMY_ATA_ASTA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_AAA_ICN_R,"Intercalated nuclei adjacent to Anteroir amygdaloid area (right)",AMY_AAA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+BStem_dmPAG,"Region 1 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
+BStem_vlPAG_L,"Region 2 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
+BStem_lPAG_L,"Region 3 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
+BStem_vlPAG_R,"Region 4 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
+BStem_lPAG_R,"Region 5 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
+BStem_LDTg_L,"laterodorsal tegmental nucleus (left)",BStem_LDTg_L,Cholinergic nuclei_L,Pons_L,Harvard Ascending Arousal Network
+BStem_LDTg_R,"laterodorsal tegmental nucleus (right)",BStem_LDTg_R,Cholinergic nuclei_R,Pons_R,Harvard Ascending Arousal Network
+BStem_MPB_LPB_L,"parabrachial complex (left)",BStem_MPB_LPB_L,Parabrachial nuclei_L,Pons_L,Harvard Ascending Arousal Network
+BStem_MPB_LPB_R,"parabrachial complex (right)",BStem_MPB_LPB_R,Parabrachial nuclei_R,Pons_R,Harvard Ascending Arousal Network
+BStem_PTg_L,"pedunculotegmental nucleus (left)",BStem_PTg_L,Cholinergic nuclei_nuclei_L,Pons_L,Harvard Ascending Arousal Network
+BStem_PTg_R,"pedunculotegmental nucleus (right)",BStem_PTg_R,Cholinergic nuclei_nuclei_R,Pons_R,Harvard Ascending Arousal Network
+BStem_PnO_L,"pontis oralis (i.e. pontine reticular formation) (left)",BStem_PnO_L,PnO_L,Pons_L,Harvard Ascending Arousal Network
+BStem_PnO_R,"pontis oralis (i.e. pontine reticular formation) (right)",BStem_PnO_R,PnO_R,Pons_R,Harvard Ascending Arousal Network
+BStem_isRt_L,"mesencephalic reticular formation (left)",BStem_isRt_L,Rostral reticular formation_L,Midbrain_L,Harvard Ascending Arousal Network
+BStem_isRt_R,"mesencephalic reticular formation (right)",BStem_isRt_R,Rostral reticular formation_R,Midbrain_R,Harvard Ascending Arousal Network
+BStem_MnR_B6_B8,"median raphe (right)",BStem_MnR_B6_B8,Rostral Raphe (Serotonergic),Midbrain,Harvard Ascending Arousal Network
+BStem_DR_B7,"Dorsal Raphe Nucleus",BStem_DR_B7,Rostral Raphe (Serotonergic),Midbrain,Levinson-Bari Limbic Brainstem Atlas
+BStem_LC_L,"Locus Coreleus (left)",BStem_LC_L,LC+_L,Pons_L,Levinson-Bari Limbic Brainstem Atlas
+BStem_NTS_L,"Nucleus Tractus Solitaris (left)",BStem_NTS_L,Cranial_nuclei_L,Medulla_L,Levinson-Bari Limbic Brainstem Atlas
+BStem_LC_R,"Locus Coreleus (right)",BStem_LC_R,LC+_R,Pons_R,Levinson-Bari Limbic Brainstem Atlas
+BStem_NTS_R,"Nucleus Tractus Solitaris (right)",BStem_NTS_R,Cranial_nuclei_R,Medulla_R,Levinson-Bari Limbic Brainstem Atlas
+BStem_SNc_L,"Substantia Nigra pars compacta (left)",BStem_SN_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_RN_L,"Red nucleus (left)",BStem_RN_L,RN_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_SNr_L,"Substantia Nigra pars reticulata (left)",BStem_SN_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_PBP_L,"Parabrachial Pigmented Nucleus (left)",BStem_VTA_PBP_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_VTA_L,"Ventral Tegmental Area (left)",BStem_VTA_PBP_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_STH_R,"Subthalamic nucleus (left)",BStem_STH_R,STH_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_SNc_R,"Substantia Nigra pars compacta (right)",BStem_SN_R,VTA_PBP_SN_R,Midbrain_R,CIT168 subcortical v1.1.0
+BStem_RN_R,"Red nucleus (right)",BStem_RN_R,RN_R,Midbrain_R,CIT168 subcortical v1.1.0
+BStem_SNr_R,"Substantia Nigra pars reticulata (right)",BStem_SN_R,VTA_PBP_SN_R,Midbrain_R,CIT168 subcortical v1.1.0
+BStem_PBP_R,"Parabrachial Pigmented Nucleus (right)",BStem_VTA_PBP_R,VTA_PBP_SN_R,Midbrain_R,CIT168 subcortical v1.1.0
+BStem_VTA_R,"Ventral Tegmental Area (right)",BStem_VTA_PBP_R,VTA_PBP_SN_R,Midbrain_R,CIT168 subcortical v1.1.0
+BStem_STH_R,"Subthalamic nucleus (right)",BStem_STH_R,STH_R,Midbrain_R,CIT168 subcortical v1.1.0
+BStem_Midbrd_L,"Midbrain left rostral dorsal",BStem_Shen_Midb_Lrd,Shen_Midb_Lrd,Midbrain_L,Shen268
+BStem_Midbc_L,"Midbrain left caudal",BStem_Shen_Midb_Lc,Shen_Midb_Lc,Midbrain_L,Shen268
+BStem_Midbrd_R,"Midbrain right rostral dorsal",BStem_Shen_Midb_Rrd,Shen_Midb_Rrd,Midbrain_R,Shen268
+BStem_Midbcd_R,"Midbrain right caudal dorsal",BStem_Shen_Midb_Rcd,Shen_Midb_Rcd,Midbrain_R,Shen268
+BStem_Ponsrd_L,"Pons left rostral dorsal",BStem_Shen_Pons_Lrd,Shen_Pons_Lrd,Pons_L,Shen268
+BStem_Ponscd_L,"Pons left cudal dorsal",BStem_Shen_Pons_Lcd,Shen_Pons_Lcd,Pons_L,Shen268
+BStem_Ponsv_L,"Pons left ventral",BStem_Shen_Pons_Lv,Shen_Pons_Lv,Pons_L,Shen268
+BStem_Ponsrv_R,"Pons right rostral ventral",BStem_Shen_Pons_Rrv,Shen_Pons_Rrv,Pons_R,Shen268
+BStem_Ponscv_R,"Pons right caudal ventral",BStem_Shen_Pons_Rcv,Shen_Pons_Rcv,Pons_R,Shen268
+BStem_Ponscd_R,"Pons right caudal dorsal",BStem_Shen_Pons_Rcd,Shen_Pons_Rcd,Pons_R,Shen268
+BStem_Med_L,"Medulla left",BStem_Shen_Med_L,Shen_Med_L,Medulla_L,Shen268
+BStem_Med_R,"Medulla right",BStem_Shen_Med_R,Shen_Med_R,Medulla_R,Shen268
+MTL_AMY_BLN_La_L,"Amygdalar basolateral complex: lateral nucleus (left)",MTL_AMY_BLN_La_L,La_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_L,"Amygdalar basolateral complex: basal nucleus (left)",MTL_AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_L,"Amygdalar basolateral complex: accessory basal nucleus (left)",MTL_AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CEN_L,"Amygdalar central nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CMN_L,"Amygdalar corticomedial group: medial nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_L,"Amygdalar basolateral complex: paralaminar nucleus (left)",MTL_AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_L,"Amygdalar corticomedial group: periamygdaloid cortex (left)",MTL_AMY_ATA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_L,"Amygdalostriatal triansition area (left)",MTL_AMY_ATA_ASTA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_AAA_L,"Anteroir amygdaloid area (left)",MTL_AMY_AAA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_R,"Amygdalar basolateral complex: lateral nucleus (right)",MTL_AMY_BLN_La_R,La_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_R,"Amygdalar basolateral complex: basal nucleus (right)",MTL_AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_R,"Amygdalar basolateral complex: accessory basal nucleus (right)",MTL_AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CEN_R,"Amygdalar central nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CMN_R,"Amygdalar corticomedial group: medial nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_R,"Amygdalar basolateral complex: paralaminar nucleus (right)",MTL_AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_R,"Amygdalar corticomedial group: periamygdaloid cortex (right)",MTL_AMY_ATA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_R,"Amygdalostriatal triansition area (right)",MTL_AMY_ATA_ASTA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_AAA_R,"Anteroir amygdaloid area (right)",MTL_AMY_AAA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: lateral nucleus (left)",MTL_AMY_BLN_La_L,La_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: basal nucleus (left)",MTL_AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: accessory basal nucleus (left)",MTL_AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CEN_ICN_L,"Intercalated nuclei most proximal to Amygdalar central nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CMN_ICN_L,"Intercalated nuclei most proximal to Amygdalar corticomedial group: medial nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: paralaminar nucleus (left)",MTL_AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ICN_L,"Intercalated nuclei most proximal to Amygdalar corticomedial group: periamygdaloid cortex (left)",MTL_AMY_ATA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_ICN_L,"Intercalated nuclei most proximal to Amygdalostriatal triansition area (left)",MTL_AMY_ATA_ASTA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_AAA_ICN_L,"Intercalated nuclei most proximal to Anteroir amygdaloid area (left)",MTL_AMY_AAA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: lateral nucleus (right)",MTL_AMY_BLN_La_R,La_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: basal nucleus (right)",MTL_AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: accessory basal nucleus (right)",MTL_AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CEN_ICN_R,"Intercalated nuclei most proximal to Amygdalar central nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CMN_ICN_R,"Intercalated nuclei most proximal to Amygdalar corticomedial group: medial nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: paralaminar nucleus (right)",MTL_AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ICN_R,"Intercalated nuclei most proximal to Amygdalar corticomedial group: periamygdaloid cortex (right)",MTL_AMY_ATA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_ICN_R,"Intercalated nuclei most proximal to Amygdalostriatal triansition area (right)",MTL_AMY_ATA_ASTA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_AAA_ICN_R,"Intercalated nuclei most proximal to Anteroir amygdaloid area (right)",MTL_AMY_AAA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
 Thal_MV_Re_L,"Reuniens_(medial_ventral)_(left)",Thal_Midline_L,Thal_Intralaminar_L,Thal_Intralaminar_L,Iglesias2018
 Thal_MV_Re_R,"Reuniens_(medial_ventral)_(right)",Thal_Midline_R,Thal_Intralaminar_R,Thal_Intralaminar_R,Iglesias2018

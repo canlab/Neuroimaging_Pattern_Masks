@@ -42,6 +42,12 @@ pal.labels_5 = repmat({'CIT168 subcortical v1.1.0'},1,num_regions(pal));
 % These structures extend somewhat outside the CIFTI mask. Let's expand it
 % to include most of these
 
+% we save this for correcting some probabilities down the line. Within this
+% mask our p(gray matter) = 1 in all cases, so we need probabiilities to
+% sum to 1. They would if we only used the Tian atlas, but may not around
+% the interfaces of the Tian atlas with CIT (Pallidum) or Cartmell (NAc)
+cifti_atlas_orig = cifti_atlas;
+
 cifti_atlas = cifti_atlas.replace_empty();
 BST_VeP = BST.merge_atlases(pal.select_atlas_subset('VeP')).resample_space(cifti_atlas);
 BST_VeP_mask = fmri_mask_image(BST_VeP.threshold(0.05,'spin_off_parcel_fragments'));
@@ -67,8 +73,9 @@ clear pal;
 toc
 
 
-%% Accumbens
+%% Accumbens and caudate
 accumbens = load_atlas(sprintf('cartmell_NAc_%s',ALIAS));
+
 % the right core is split with a couple of voxels ventral to shell, which
 % isn't right. Let's touch it up.
 accumbens = accumbens.threshold(0,'spin_off_parcel_fragments');
@@ -85,21 +92,9 @@ accumbens.labels_5 = repmat({'Cartmell2019'},1,num_regions(accumbens));
 
 accumbens = accumbens.remove_empty();
 
-cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'accumbens'))));
-cifti_mask = cifti_mask.replace_empty();
+% now that we have a cleaned up version of the cartmell NAc, let's build
+% the caudate, which overlaps slightly with this
 
-% dilate to fill the accumbens CIFTI mask without masking areas in CIFTI
-% caudate mask
-tic
-accumbens_dil = dilate(accumbens, cifti_mask).replace_empty;
-accumbens_dil.probability_maps = max(cat(3,accumbens_dil.probability_maps, accumbens.replace_empty.probability_maps),[],3);
-accumbens_dil = accumbens_dil.probability_maps_to_region_index;
-%[accumbens_dil.labels_3, accumbens_dil.labels_4] = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),accumbens_dil.labels_2,'UniformOutput',false));
-%accumbens_dil.labels_5 = repmat({'Cartmell2019'},1,num_regions(accumbens_dil));
-accumbens_dil = BST.apply_mask(cifti_mask).merge_atlases(accumbens_dil,'noreplace');
-toc
-
-%% Caudate
 % some of the ventral striatum is in the CIFTI accumbens (13%), but most is 
 % in the CIFTI caudate mask (45.9%). This is a 70-30 split, and it's hard to
 % assign it to one over the other like with entorhinal cortex below. We'll
@@ -114,15 +109,36 @@ cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti
 cifti_mask = cifti_mask.replace_empty();
 
 tic
+%caud_dil = dilate(caud, cifti_mask);
+%caud_dil = accumbens.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
+%clear accumbens
+%caud_dil = BST.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
+caud = accumbens.apply_mask(cifti_mask).merge_atlases(caud,'noreplace');
+caud = BST.apply_mask(cifti_mask).merge_atlases(caud,'noreplace');
 caud_dil = dilate(caud, cifti_mask);
-caud_dil = accumbens.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
-clear accumbens
-caud_dil = BST.apply_mask(cifti_mask).merge_atlases(caud_dil,'noreplace');
 caud_dil.labels_3 = deal(cellfun(@(x1)(strrep(x1,'NAc_core','VStriatum')),caud_dil.labels_3,'UniformOutput',false));
 caud_dil.labels_3 = deal(cellfun(@(x1)(strrep(x1,'NAc_shell','VStriatum')),caud_dil.labels_3,'UniformOutput',false));
 caud_dil.labels_4 = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),caud_dil.labels_4,'UniformOutput',false));
 clear caud
 toc
+
+% We can now deal with the accumbens.
+cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti_atlas.labels,'accumbens'))));
+cifti_mask = cifti_mask.replace_empty();
+
+% dilate to fill the accumbens CIFTI mask without masking areas in CIFTI
+% caudate mask
+tic
+accumbens = BST.apply_mask(cifti_mask).merge_atlases(accumbens,'noreplace');
+accumbens_dil = dilate(accumbens, cifti_mask).replace_empty;
+accumbens_dil.probability_maps = max(cat(3,accumbens_dil.probability_maps, accumbens.replace_empty.probability_maps),[],3);
+accumbens_dil = accumbens_dil.probability_maps_to_region_index;
+%[accumbens_dil.labels_3, accumbens_dil.labels_4] = deal(cellfun(@(x1)(strrep(x1,'NAc','VStriatum')),accumbens_dil.labels_2,'UniformOutput',false));
+%accumbens_dil.labels_5 = repmat({'Cartmell2019'},1,num_regions(accumbens_dil));
+toc
+
+striatum = caud_dil.merge_atlases(accumbens_dil);
+clear accumbens
 
 %% Putamen
 put = bg.select_atlas_subset(find(contains(bg.labels,{'PUT'}))).remove_empty();
@@ -161,37 +177,40 @@ clear put
 %put_dil = bg.select_atlas_subset('NAc').apply_mask(cifti_mask).merge_atlases(put_dil,'noreplace');
 
 %% bg atlas
-bg_dil = caud_dil.merge_atlases(put_dil).merge_atlases(pal_dil).merge_atlases(accumbens_dil);
-%clear caud_dil put_dil pal_dil accumbens_dil
+bg_dil = striatum.merge_atlases(put_dil).merge_atlases(pal_dil);
 
-% deal with redundant labels
-n_labels = length(bg_dil.labels);
-uniq_labels = unique(bg_dil.labels);
-remove_lbl = [];
-for i = 1:length(uniq_labels)
-    this_lbl = uniq_labels(i);
-    this_ind = find(contains(bg_dil.labels, this_lbl));
-    for j = 2:length(this_ind)
-        bg_dil.dat(bg_dil.dat == this_ind(j)) = this_ind(1);
-        remove_lbl(end+1) = this_ind(j);
-        bg_dil.probability_maps(:,this_ind(1)) = max(bg_dil.probability_maps(:,this_ind),[],2);
-    end
-end
-[~,~,dat] = unique(bg_dil.dat);
-bg_dil.dat = dat - 1;
-fnames = {'labels','label_descriptions','labels_2','labels_3','labels_4','labels_5'};
-for i = 1:length(fnames)
-    if length(bg_dil.(fnames{i})) == n_labels
-        bg_dil.(fnames{i})(remove_lbl) = [];
-    end
-end
-bg_dil.probability_maps(:,remove_lbl) = [];
+% let's make sure any areas within the original CIFTI mask have
+% probabilities that sum to 1
+bg_dil = bg_dil.replace_empty();
 
+cifti_mask_orig = fmri_mask_image(cifti_atlas_orig.select_atlas_subset(find(contains(cifti_atlas_orig.labels,{'accumbens','caudate','putamen','pallidum'}))));
+cifti_mask_orig = cifti_mask_orig.resample_space(bg_dil).replace_empty();
+
+gray_ind = find(cifti_mask_orig.replace_empty.dat > 0);
+total_p = sum(bg_dil.probability_maps,2);
+total_p(total_p == 0) = 1; % all voxels should have non-zero probability at this point but there are many along boundaries that dont. This is likely due to interpolation error.
+bg_dil.probability_maps(gray_ind,:) = bg_dil.probability_maps(gray_ind,:)./total_p(gray_ind,:);
+
+% renorm a few voxels (2 around BST as of now) that have too high
+% probabilities. These shouldn't exist but interp error may have allowed
+% for them to be missed.
+bg_dil.probability_maps(total_p > 1,:) = bg_dil.probability_maps(total_p>1,:)./total_p(total_p>1);
+
+regions = {}; 
+[unique_labels, exp_lbl] = unique(bg_dil.labels); 
+regions = bg_dil.select_atlas_subset(unique_labels(1),'flatten','conditionally_ind'); 
+regions.label_descriptions = bg_dil.label_descriptions(exp_lbl(1));
+for i = 2:length(unique_labels)
+    regions = regions.merge_atlases(bg_dil.select_atlas_subset(unique_labels(i),'flatten','conditionally_ind')); 
+    regions.label_descriptions(end) = bg_dil.label_descriptions(exp_lbl(i));
+end
+bg_dil = regions;
 
 % add BG prephix
 
 for i = 1:length(bg_dil.labels)
     bg_dil.labels{i} = [ 'BG_' bg_dil.labels{i}]; 
+    bg_dil.labels_2{i} = [ 'BG_' bg_dil.labels_2{i}]; 
 end
 
 %% eval NAc overlap with original

@@ -166,11 +166,11 @@ cit.labels_4 = {};
 % add label description and group regions
 for i = 1:num_regions(cit)
     if contains(cit.labels{i},'SN')
-        cit.labels_2{end+1} = cit.labels{i};
-        cit.labels_3{end+1} = regexprep(cit.labels{i},'.*_([LR])','SN_$1');
+        cit.labels_2{end+1} = regexprep(cit.labels{i},'.*_([LR])','SN_$1');
+        cit.labels_3{end+1} = regexprep(cit.labels{i},'.*_([LR])','VTA_PBP_SN_$1');
     elseif contains(cit.labels{i}, {'VTA','PBP'})
-        cit.labels_2{end+1} = cit.labels{i};
-        cit.labels_3{end+1} = regexprep(cit.labels{i},'.*_([LR])','VTA_PBP_$1');
+        cit.labels_2{end+1} = regexprep(cit.labels{i},'.*_([LR])','VTA_PBP_$1');
+        cit.labels_3{end+1} = regexprep(cit.labels{i},'.*_([LR])','VTA_PBP_SN_$1');
     else
         cit.labels_2{end+1} = cit.labels{i};
         cit.labels_3{end+1} = cit.labels{i};
@@ -454,6 +454,10 @@ bstem_atlas = atlas_obj.merge_atlases(bstem_atlas);
 bstem_atlas.labels = cellfun(@(x1)['BStem_' x1], bstem_atlas.labels, 'UniformOutput', false);
 bstem_atlas.labels{contains(bstem_atlas.labels,'STH_L')} = 'STH_L';
 bstem_atlas.labels{contains(bstem_atlas.labels,'STH_L')} = 'STH_R';
+
+bstem_atlas.labels_2 = cellfun(@(x1)['BStem_' x1], bstem_atlas.labels_2, 'UniformOutput', false);
+bstem_atlas.labels_2{contains(bstem_atlas.labels_2,'STH_L')} = 'STH_L';
+bstem_atlas.labels_2{contains(bstem_atlas.labels_2,'STH_L')} = 'STH_R';
 
 %% Add references
 %{

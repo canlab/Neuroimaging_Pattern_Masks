@@ -128,7 +128,7 @@ renorm = total_p > 1;
 cerebellum_dil.probability_maps(renorm,:) = cerebellum_dil.probability_maps(renorm,:)./total_p(renorm);
 
 
-%% Hippocampus and Hippocampus
+%% Hippocampus and Amygdala
 julich = load_atlas(sprintf('julich_%s',ALIAS)).resample_space(ref);
 
 group_names = {'Subic', {'CA', 'DG'}};
@@ -152,15 +152,20 @@ for i = 1:num_regions(hipp)
         hipp.label_descriptions{end+1} = 'Right';
     end
 
-    if contains(hipp.labels{i},'CA')
+    if contains(hipp.labels{i},{'CA2','CA3'})
         hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ...
-            regexprep(hipp.labels{i},'[LR]_CA([0-9])',' hippocampal cornu ammonis \1')];
-        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_CA');
+            regexprep(hipp.labels{i},'[LR]_CA([0-9])',' hippocampal cornu ammonis $1')];
+        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_CA23');
+        hipp.labels_3{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp');
+    elseif contains(hipp.labels{i},{'CA1'})
+        hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ...
+            regexprep(hipp.labels{i},'[LR]_CA([0-9])',' hippocampal cornu ammonis $1')];
+        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_CA1');
         hipp.labels_3{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp');
     elseif contains(hipp.labels{i},'DG')
         hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ' hippocampal dentate gyrus'];
         hipp.labels_2{end+1} = hipp.labels{i};
-        hipp.labels_3{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$11_Hipp');
+        hipp.labels_3{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp');
     elseif contains(hipp.labels{i},'Subiculum')
         hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ' hippocampal subiculum'];
         hipp.labels_2{end+1} = hipp.labels{i};
@@ -174,12 +179,6 @@ hipp.references = char([{'Amunts, K., Kedo, O., Kindler, M., Pieperhoff, P., Moh
     {'Kedo, O., Zilles, K., Palomero-Gallagher, N., Schleicher, A., Mohlberg, H., Bludau, S., & Amunts, K. (2017). Receptor-driven, multimodal mapping of the human amygdala. Brain Structure and Function. https://doi.org/10.1007/s00429-017-1577-x DOI: 10.1007/s00429-017-1577-x'}; ...
     {'Amunts, K., Mohlberg, H., Bludau, S., & Zilles, K. (2020). Julich-Brain: A 3D probabilistic atlas of the human brain s cytoarchitecture. Science, 369(6506), 988–992. https://doi.org/10.1126/science.abb4588 DOI: 10.1126/science.abb4588'}; ...
     {'Amunts et al (2024) [Dataset v3.0.3] DOI:10.25493/56EM-75H'}]);
-
-% renormalize the 1 or 2vx p>1
-total_p = sum(hipp.probability_maps,2);
-renorm = total_p > 1;
-hipp.probability_maps(renorm,:) = hipp.probability_maps(renorm,:)./total_p(renorm);
-
 
 
 amyg = load_atlas(sprintf('cit168_amygdala_%s',ALIAS));
@@ -228,7 +227,7 @@ for h = {'L', 'R'}
     label_descriptions = cell(num_regions(this_amyg),1);
     for i = 1:num_regions(this_amyg)
         labels{i} = regexprep(this_amyg.labels{i}, '(.*)_([LR])$','$1_ICN_$2');
-        label_descriptions{i} = ['Intercalated nuclei adjacent to ', this_amyg.label_descriptions{i}];
+        label_descriptions{i} = ['Intercalated nuclei most proximal to ', this_amyg.label_descriptions{i}];
     end
     these_IC = fmri_data(these_IC);
     these_IC.dat = intercalated_pmaps;
@@ -243,12 +242,13 @@ for h = {'L', 'R'}
     amyg = amyg.merge_atlases(IC_atlas);
 end
 
+% CEN ends up being too small (a 1vx column) on the coarse 2mm scale, so 
+% let's combine it with te corticomedian nuclei
+amyg.labels_2 = cellfun(@(x1)strrep(x1,'AMY_CEN','AMY_CEN_CMN'),amyg.labels_2,'UniformOutput',false);
+amyg.labels_2 = cellfun(@(x1)strrep(x1,'AMY_CMN','AMY_CEN_CMN'),amyg.labels_2,'UniformOutput',false);
+
 hipp = hipp.merge_atlases(amyg);
 
-% renormalize ~186vx voxels shared between hipp and amygdala parcellations
-total_p = sum(hipp.probability_maps,2);
-renorm = total_p > 1;
-hipp.probability_maps(renorm,:) = hipp.probability_maps(renorm,:)./total_p(renorm);
 
 % get cifti hippocampal mask and for each voxel find its nearest
 % hippocampal structure from hipp.
@@ -262,7 +262,13 @@ clear julitch hipp amyg
 % add area prefix
 for i = 1:length(hipp_amyg_dil.labels)
     hipp_amyg_dil.labels{i} = [ 'MTL_' hipp_amyg_dil.labels{i}]; 
+    hipp_amyg_dil.labels_2{i} = [ 'MTL_' hipp_amyg_dil.labels_2{i}]; 
 end
+
+% renormalize ~186vx voxels shared between hipp and amygdala parcellations
+total_p = sum(hipp_amyg_dil.probability_maps,2);
+renorm = total_p > 1;
+hipp_amyg_dil.probability_maps(renorm,:) = hipp_amyg_dil.probability_maps(renorm,:)./total_p(renorm);
 
 %% thalamus and brainstem
 % returns atlas object in variable called thalamus_atlas
@@ -275,7 +281,8 @@ create_brainstem2024_atlas_unrestricted
 % Add labels to make more consistent with other atlases
 
 for i = 1:length(bstem_atlas.labels)
-    bstem_atlas.labels{i} = [ 'Bstem_' bstem_atlas.labels{i}]; 
+    bstem_atlas.labels{i} = regexprep([ 'BStem_' bstem_atlas.labels{i}],'(B[Ss]tem_)*','BStem_'); 
+    bstem_atlas.labels_2{i} = regexprep([ 'BStem_' bstem_atlas.labels_2{i}],'(B[Ss]tem_)*','BStem_'); 
 end
 
 thal_bstem = thalamus_atlas.merge_atlases(bstem_atlas);
@@ -410,20 +417,20 @@ canlab.references = unique(canlab.references,'rows');
 canlab.probability_maps = sparse(canlab.probability_maps);
 save(sprintf('%s.mat',atlas_name), 'canlab');  
 
-canlab_coarse = canlab.downsample_parcellation('labels_2');
+canlab_coarse = canlab.downsample_parcellation('labels_2','concat_label_descriptions');
 canlab_coarse.atlas_name = [canlab_coarse.atlas_name, '_coarse'];
 save(sprintf('%s.mat',canlab_coarse.atlas_name), 'canlab_coarse');  
 
 % if we need the memory for this, clear all and reload what's needed
 %clear all;
 %load(sprintf('%s.mat',atlas_name))
-
+%{
 nii = fmri_data(canlab);
 nii.dat = single(full(canlab.probability_maps));
 nii.fullpath = sprintf('%s.nii', canlab.atlas_name);
 nii.write('overwrite');
 gzip(nii.fullpath);
-
+%}
 labels = table(canlab.labels', canlab.label_descriptions, canlab.labels_2', canlab.labels_3', canlab.labels_4', canlab.labels_5', ...
     'VariableNames', {'labels', 'label_descriptions', 'labels_2', 'labels_3', 'labels_4', 'labels_5'});
 writetable(labels,[canlab.atlas_name, '_labels.csv']);
@@ -459,11 +466,18 @@ amyg_nuc.labels_5 = amyg_nuc.labels_4;
 amyg_nuc.labels_4 = amyg_nuc.labels_3;
 amyg_nuc.labels_3 = amyg_nuc.labels_2;
 amyg_nuc.labels_2 = amyg_nuc.labels;
-amyg_nuc.labels = cellfun(@(x1)(['MTL_', x1]),amyg_nuc.labels,'UniformOutput',false);
 for i = 1:num_regions(amyg_nuc)
     this_region = amyg_nuc.labels{i};
-    old_ind = strcmp(this_region,labels);
-    amyg_nuc.label_descriptions{i} = label_descriptions{old_ind};
+    if contains(this_region,{'MTL_AMY_CEN_CMN_R'})
+        amyg_nuc.label_descriptions{i} = strcat(label_descriptions{(contains(labels,{'MTL_AMY_CEN_R'}))},';',label_descriptions{(contains(labels,{'MTL_AMY_CMN_R'}))});
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},'(right)',''), ' (right)'];
+    elseif contains(this_region,{'MTL_AMY_CEN_CMN_L'})
+        amyg_nuc.label_descriptions{i} = strcat(label_descriptions{(contains(labels,{'MTL_AMY_CEN_L'}))},';',label_descriptions{(contains(labels,{'MTL_AMY_CMN_L'}))});
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},'(left)',''), ' (left)'];
+    else
+        old_ind = strcmp(this_region,labels);
+        amyg_nuc.label_descriptions{i} = label_descriptions{old_ind};
+    end
 end
 amyg_nuc_L = amyg_nuc.select_atlas_subset({'_L'},'labels_4');
 amyg_nuc_R = amyg_nuc.select_atlas_subset({'_R'},'labels_4');
@@ -475,6 +489,6 @@ canlab_2mm = canlab.resample_space(ref);
 canlab_2mm.atlas_name = sprintf('%s_2mm',canlab_2mm.atlas_name);
 save(sprintf('%s.mat',canlab_2mm.atlas_name), 'canlab_2mm');  
 
-canlab_coarse_2mm = canlab_2mm.downsample_parcellation('labels_2');
+canlab_coarse_2mm = canlab_2mm.downsample_parcellation('labels_2','concat_label_descriptions');
 canlab_coarse_2mm.atlas_name = strrep(canlab_coarse_2mm.atlas_name, '_2mm', '_coarse_2mm');
 save(sprintf('%s.mat',canlab_coarse_2mm.atlas_name), 'canlab_coarse_2mm');  
