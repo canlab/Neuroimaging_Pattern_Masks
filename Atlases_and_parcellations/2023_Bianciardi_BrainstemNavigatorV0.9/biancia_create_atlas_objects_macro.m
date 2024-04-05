@@ -17,7 +17,7 @@ clear all; close all;
 % - canlabCore
 % - Neuroimaging_Pattern_Masks
 
-%addpath('~/.matlab/spm/spm12');
+addpath('~/.matlab/spm/spm12');f
 %
 %addpath(genpath('~/.matlab/canlab/CanlabCore'))
 %addpath(genpath('~/.matlab/canlab/Neuroimaging_Pattern_Masks'))
