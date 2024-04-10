@@ -67,9 +67,9 @@ if isempty(which(shen_file))
         'R_266_Network_4'....
         'R_267_Network_4',...
         'R_268_Network_4'})).select_atlas_subset({'_L'}).apply_mask(hemi_L);
-    labels = {'Shen_Midb_Rrd','Shen_Med_R','Shen_Pons_Rrv','Shen_Pons_Rcv',...
-        'Shen_Midb_Rcd','Shen_Pons_Rcd','Shen_Pons_Lrd','Shen_Midb_Lrd',...
-        'Shen_Midb_Lc','Shen_Med_L','Shen_Pons_Lcd','Shen_Pons_Lv'};
+    labels = {'Shen_Midb_rd_R','Shen_Med_R','Shen_Pons_rv_R','Shen_Pons_cv_R',...
+        'Shen_Midb_cd_R','Shen_Pons_cd_R','Shen_Pons_rd_L','Shen_Midb_rd_L',...
+        'Shen_Midb_c_L','Shen_Med_L','Shen_Pons_cd_L','Shen_Pons_v_L'};
     label_descript = {'Midbrain right rostral dorsal',...
         'Medulla right',...
         'Pons right rostral ventral',...
@@ -142,9 +142,9 @@ else
     shen_references = bstem_atlas.references;
 end
 
-diencephalic_ind_L = find(contains(bstem_atlas.labels, {'Midb_Lrd'}));
+diencephalic_ind_L = find(contains(bstem_atlas.labels, {'Midb_rd_L'}));
 bstem_atlas.labels_4(diencephalic_ind_L) = repmat({'Midbrain_L'},1,length(diencephalic_ind_L));
-diencephalic_ind_R = find(contains(bstem_atlas.labels, {'Midb_Rrd'}));
+diencephalic_ind_R = find(contains(bstem_atlas.labels, {'Midb_rd_R'}));
 bstem_atlas.labels_4(diencephalic_ind_R) = repmat({'Midbrain_R'},1,length(diencephalic_ind_R));
 
 bstem_atlas = atlas_add_L_R_to_labels(bstem_atlas);
@@ -376,7 +376,7 @@ bstem_atlas.labels = regexprep(bstem_atlas.labels, pat, '');
 % a temp workaround.
 gunzip('kragelpag_MNI152NLin6Asym.nii.gz');
 kragelmasks = fmri_data('kragelpag_MNI152NLin6Asym.nii');
-gzip('kragelpag_MNI152NLin6Asym.nii')
+gzip(which('kragelpag_MNI152NLin6Asym.nii'))
 delete('kragelpag_MNI152NLin6Asym.nii')
 kragelpmaps = kragelmasks.mean();
 

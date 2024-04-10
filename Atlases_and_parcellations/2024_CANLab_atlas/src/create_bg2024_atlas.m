@@ -200,9 +200,17 @@ regions = {};
 [unique_labels, exp_lbl] = unique(bg_dil.labels); 
 regions = bg_dil.select_atlas_subset(unique_labels(1),'flatten','conditionally_ind'); 
 regions.label_descriptions = bg_dil.label_descriptions(exp_lbl(1));
+regions.labels_2 = bg_dil.labels_2(exp_lbl(1));
+regions.labels_3 = bg_dil.labels_3(exp_lbl(1));
+regions.labels_4 = bg_dil.labels_4(exp_lbl(1));
+regions.labels_5 = bg_dil.labels_5(exp_lbl(1));
 for i = 2:length(unique_labels)
     regions = regions.merge_atlases(bg_dil.select_atlas_subset(unique_labels(i),'flatten','conditionally_ind')); 
     regions.label_descriptions(end) = bg_dil.label_descriptions(exp_lbl(i));
+    regions.labels_2(end) = bg_dil.labels_2(exp_lbl(i));
+    regions.labels_3(end) = bg_dil.labels_3(exp_lbl(i));
+    regions.labels_4(end) = bg_dil.labels_4(exp_lbl(i));
+    regions.labels_5(end) = bg_dil.labels_5(exp_lbl(i));
 end
 bg_dil = regions;
 

@@ -394,8 +394,8 @@ Cblm_IX_R,"Region 25 from SUIT_Cerebellum_MNI",Cblm_IX_R,Cblm_IX_R,cerebellar_co
 Cblm_X_L,"Region 26 from SUIT_Cerebellum_MNI",Cblm_X_L,Cblm_X_L,cerebellar_cortex_L,SUIT/Diedrichsen
 Cblm_Vermis_X,"Region 27 from SUIT_Cerebellum_MNI",Cblm_Vermis_X,Cblm_Vermis_X,vermis,SUIT/Diedrichsen
 Cblm_X_R,"Region 28 from SUIT_Cerebellum_MNI",Cblm_X_R,Cblm_X_R,cerebellar_cortex_R,SUIT/Diedrichsen
-BG_BST_SLEA_L,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (left)",BG_,,,
-BG_BST_SLEA_R,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (right)",BG_,,,
+BG_BST_SLEA_L,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (left)",BG_BST_SLEA_L,VStriatum_L,VStriatum_L,CIT168 subcortical v1.1.0
+BG_BST_SLEA_R,"Extended Amygdala: Bed Nuclei of the Stria Terminalis (BNST) and Sublenticular Extended Amygdala (SLEA) (right)",BG_BST_SLEA_R,VStriatum_R,VStriatum_R,CIT168 subcortical v1.1.0
 BG_CAU_DA_L,"Region 45 from tian_3t_fsl6",BG_CAU_DA_L,aCAU_L,CAU_L,Tian2020
 BG_CAU_DA_R,"Region 18 from tian_3t_fsl6",BG_CAU_DA_R,aCAU_R,CAU_R,Tian2020
 BG_CAU_VA_L,"Region 44 from tian_3t_fsl6",BG_CAU_VA_L,aCAU_L,CAU_L,Tian2020
@@ -408,10 +408,10 @@ BG_GPe_L,"Globus Pallidus external segment (left)",BG_GPe_L,GPe_L,GP_L,CIT168 su
 BG_GPe_R,"Globus Pallidus external segment (right)",BG_GPe_R,GPe_R,GP_R,CIT168 subcortical v1.1.0
 BG_GPi_L,"Globus Pallidus internal segment (left)",BG_GPi_L,GPi_L,GP_L,CIT168 subcortical v1.1.0
 BG_GPi_R,"Globus Pallidus internal segment (right)",BG_GPi_R,GPi_R,GP_R,CIT168 subcortical v1.1.0
-BG_NAc_core_L,"Nucleus Accumbens, putative core (left)",BG_,,,
-BG_NAc_core_R,"Nucleus Accumbens, putative core (right)",BG_,,,
-BG_NAc_shell_L,"Nucleus Accumbens, putative shell (left)",BG_,,,
-BG_NAc_shell_R,"NucleusAccumbens, putative shell (right)",BG_,,,
+BG_NAc_core_L,"Nucleus Accumbens, putative core (left)",BG_NAc_L,VStriatum_L,VStriatum_L,Cartmell2019
+BG_NAc_core_R,"Nucleus Accumbens, putative core (right)",BG_NAc_R,VStriatum_R,VStriatum_R,Cartmell2019
+BG_NAc_shell_L,"Nucleus Accumbens, putative shell (left)",BG_NAc_L,VStriatum_L,VStriatum_L,Cartmell2019
+BG_NAc_shell_R,"NucleusAccumbens, putative shell (right)",BG_NAc_R,VStriatum_R,VStriatum_R,Cartmell2019
 BG_PUT_DA_L,"Region 41 from tian_3t_fsl6",BG_PUT_DA_L,aPUT_L,PUT_L,Tian2020
 BG_PUT_DA_R,"Region 14 from tian_3t_fsl6",BG_PUT_DA_R,aPUT_R,PUT_R,Tian2020
 BG_PUT_DP_L,"Region 43 from tian_3t_fsl6",BG_PUT_DP_L,pPUT_L,PUT_L,Tian2020
