@@ -16,6 +16,7 @@ addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
 %addpath([LIB, '/spm/spm12']);
 addpath([LIB, '/spm12']);
 
+system(which('create_CANLab2024_atlas_prep.sh'));
 for space = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     for res = [1,2]
         for scale = {'fine','coarse'}
@@ -24,6 +25,6 @@ for space = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     end
 end
 
-canlab2023 = load_atlas('canlab2024_coarse_fsl6_2mm');
-create_CANLab2023_CIFTI_subctx('MNI152NLin6Asym','coarse',2, canlab2023)
+canlab2024 = load_atlas('canlab2024_coarse_fsl6_2mm');
+create_CANLab2024_CIFTI_subctx('MNI152NLin6Asym','coarse',2, canlab2024)
 system(which('create_CANLab2024_atlas_cifti.sh'))
