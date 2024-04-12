@@ -37,7 +37,7 @@ Operating System: Linux
       </MD>
       <MD>
          <Name><![CDATA[WorkingDirectory]]></Name>
-         <Value><![CDATA[/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2024_CANLab_atlas]]></Value>
+         <Value><![CDATA[/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2024_CANLab_atlas/src]]></Value>
       </MD>
    </MetaData>
    <LabelTable>
@@ -530,45 +530,45 @@ Operating System: Linux
       <Label Key="486" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_SN_R]]></Label>
       <Label Key="487" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_RN_R]]></Label>
       <Label Key="488" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_VTA_PBP_R]]></Label>
-      <Label Key="489" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[Bstem_CLi_RLi]]></Label>
-      <Label Key="490" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[Bstem_CnF_L]]></Label>
-      <Label Key="491" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[Bstem_CnF_R]]></Label>
-      <Label Key="492" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[Bstem_IC_L]]></Label>
-      <Label Key="493" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[Bstem_IC_R]]></Label>
-      <Label Key="494" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[Bstem_iMRt_L]]></Label>
-      <Label Key="495" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[Bstem_iMRt_R]]></Label>
-      <Label Key="496" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[Bstem_ION_L]]></Label>
-      <Label Key="497" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[Bstem_ION_R]]></Label>
-      <Label Key="498" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[Bstem_isRt_L]]></Label>
-      <Label Key="499" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[Bstem_isRt_R]]></Label>
-      <Label Key="500" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[Bstem_LDTg_CGPn_L]]></Label>
-      <Label Key="501" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[Bstem_LDTg_CGPn_R]]></Label>
-      <Label Key="502" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[Bstem_LPB_L]]></Label>
-      <Label Key="503" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[Bstem_LPB_R]]></Label>
-      <Label Key="504" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[Bstem_MiTg_PBG_L]]></Label>
-      <Label Key="505" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[Bstem_MiTg_PBG_R]]></Label>
-      <Label Key="506" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[Bstem_MPB_L]]></Label>
-      <Label Key="507" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[Bstem_MPB_R]]></Label>
-      <Label Key="508" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[Bstem_mRt_L]]></Label>
-      <Label Key="509" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[Bstem_mRt_R]]></Label>
-      <Label Key="510" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[Bstem_PCRtA_L]]></Label>
-      <Label Key="511" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[Bstem_PCRtA_R]]></Label>
-      <Label Key="512" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[Bstem_MnR]]></Label>
-      <Label Key="513" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[Bstem_PnO_PnC_L]]></Label>
-      <Label Key="514" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[Bstem_PnO_PnC_R]]></Label>
-      <Label Key="515" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[Bstem_PTg_L]]></Label>
-      <Label Key="516" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[Bstem_PTg_R]]></Label>
-      <Label Key="517" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[Bstem_RMg]]></Label>
-      <Label Key="518" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[Bstem_ROb]]></Label>
-      <Label Key="519" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[Bstem_RPa]]></Label>
-      <Label Key="520" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[Bstem_SC_L]]></Label>
-      <Label Key="521" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[Bstem_SC_R]]></Label>
-      <Label Key="522" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[Bstem_sMRt_L]]></Label>
-      <Label Key="523" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[Bstem_sMRt_R]]></Label>
-      <Label Key="524" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[Bstem_SOC_L]]></Label>
-      <Label Key="525" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[Bstem_SOC_R]]></Label>
-      <Label Key="526" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[Bstem_Ve_L]]></Label>
-      <Label Key="527" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[Bstem_Ve_R]]></Label>
+      <Label Key="489" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[BStem_CLi_RLi]]></Label>
+      <Label Key="490" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[BStem_CnF_L]]></Label>
+      <Label Key="491" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[BStem_CnF_R]]></Label>
+      <Label Key="492" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[BStem_IC_L]]></Label>
+      <Label Key="493" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_IC_R]]></Label>
+      <Label Key="494" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_iMRt_L]]></Label>
+      <Label Key="495" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_iMRt_R]]></Label>
+      <Label Key="496" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[BStem_ION_L]]></Label>
+      <Label Key="497" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[BStem_ION_R]]></Label>
+      <Label Key="498" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[BStem_isRt_L]]></Label>
+      <Label Key="499" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[BStem_isRt_R]]></Label>
+      <Label Key="500" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_LDTg_CGPn_L]]></Label>
+      <Label Key="501" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_LDTg_CGPn_R]]></Label>
+      <Label Key="502" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_LPB_L]]></Label>
+      <Label Key="503" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[BStem_LPB_R]]></Label>
+      <Label Key="504" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[BStem_MiTg_PBG_L]]></Label>
+      <Label Key="505" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[BStem_MiTg_PBG_R]]></Label>
+      <Label Key="506" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[BStem_MPB_L]]></Label>
+      <Label Key="507" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_MPB_R]]></Label>
+      <Label Key="508" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_mRt_L]]></Label>
+      <Label Key="509" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_mRt_R]]></Label>
+      <Label Key="510" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[BStem_PCRtA_L]]></Label>
+      <Label Key="511" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[BStem_PCRtA_R]]></Label>
+      <Label Key="512" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[BStem_MnR]]></Label>
+      <Label Key="513" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[BStem_PnO_PnC_L]]></Label>
+      <Label Key="514" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_PnO_PnC_R]]></Label>
+      <Label Key="515" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_PTg_L]]></Label>
+      <Label Key="516" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_PTg_R]]></Label>
+      <Label Key="517" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[BStem_RMg]]></Label>
+      <Label Key="518" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[BStem_ROb]]></Label>
+      <Label Key="519" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[BStem_RPa]]></Label>
+      <Label Key="520" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[BStem_SC_L]]></Label>
+      <Label Key="521" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_SC_R]]></Label>
+      <Label Key="522" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_sMRt_L]]></Label>
+      <Label Key="523" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_sMRt_R]]></Label>
+      <Label Key="524" Red="0.466667" Green="0.67451" Blue="0.188235" Alpha="1"><![CDATA[BStem_SOC_L]]></Label>
+      <Label Key="525" Red="0.301961" Green="0.745098" Blue="0.933333" Alpha="1"><![CDATA[BStem_SOC_R]]></Label>
+      <Label Key="526" Red="0.635294" Green="0.0784314" Blue="0.184314" Alpha="1"><![CDATA[BStem_Ve_L]]></Label>
+      <Label Key="527" Red="0" Green="0.447059" Blue="0.741176" Alpha="1"><![CDATA[BStem_Ve_R]]></Label>
       <Label Key="528" Red="0.85098" Green="0.32549" Blue="0.0980392" Alpha="1"><![CDATA[BStem_Shen_Midb_Lrd]]></Label>
       <Label Key="529" Red="0.929412" Green="0.694118" Blue="0.12549" Alpha="1"><![CDATA[BStem_Shen_Midb_Lc]]></Label>
       <Label Key="530" Red="0.494118" Green="0.184314" Blue="0.556863" Alpha="1"><![CDATA[BStem_Shen_Midb_Rrd]]></Label>

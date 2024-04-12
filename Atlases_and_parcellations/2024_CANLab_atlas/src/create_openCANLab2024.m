@@ -15,7 +15,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin2009cAsym';
+SPACE = 'MNI152NLin6Asym';
 
 %LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 LIB = '/home/bogdan/.matlab';
@@ -94,23 +94,42 @@ end
 cerebellum = load(suitfile); cerebellum = cerebellum.atlas_obj.resample_space(ref);
 cerebellum.labels_2 = cerebellum.labels;
 cerebellum.labels_3 = cerebellum.labels;
+groups = {{'I_IV','V','VI'},...
+    {'CrusI','CrusII','VIIb',},...
+    {'IX','X','VIIIa','VIIIb'},...
+    {'Dentate','Interposed','Fastigial'}};
+label_3_opts = {'I_IV_V_VI','CrusI_CrusII_VIIIb','VIIIa_VIIb_IX_X','Cblm_deep_nuclei'};
+labels_3 = {};
 labels_4 = {};
 for i = 1:num_regions(cerebellum)
     if contains(cerebellum.labels{i},'_L')
-        labels_4{end+1} = 'cerebellar_cortex_L';
+        labels_4{end+1} = 'Cblm_cortex_L';
+        for j = 1:length(groups)
+            these_groups = cellfun(@(x1)(['Cblm_',x1,'_L']),groups{j},'UniformOutput',false);
+            if contains(cerebellum.labels{i},these_groups)
+                labels_3{end+1} = ['Cblm_', label_3_opts{j}, '_L'];
+            end
+        end
     elseif contains(cerebellum.labels{i},'_R')
-        labels_4{end+1} = 'cerebellar_cortex_R';
+        labels_4{end+1} = 'Cblm_cortex_R';
+        for j = 1:length(groups)
+            these_groups = cellfun(@(x1)(['Cblm_',x1,'_R']),groups{j},'UniformOutput',false);
+            if contains(cerebellum.labels{i}, these_groups)
+                labels_3{end+1} = ['Cblm_', label_3_opts{j}, '_R'];
+            end
+        end
     elseif contains(cerebellum.labels{i},'Vermis')
-        labels_4{end+1} = 'vermis';
+        labels_3{end+1} = 'Cblm_vermis';
+        labels_4{end+1} = 'Cblm_vermis';
     else
         error('Unexpected cerebellar lobule');
     end
 end
+cerebellum.labels_3 = labels_3;
 cerebellum.labels_4 = labels_4;
 cerebellum.labels_5 = repmat({'SUIT/Diedrichsen'},1,num_regions(cerebellum));
 
-% remove white matter structures that aren't well represented in
-% grayordinate space
+% remove deep nuclei that aren't well represented in grayordinate space
 cerebellum = cerebellum.select_atlas_subset(find(~ismember(cerebellum.labels,...
     {'Cblm_Dentate_L', 'Cblm_Dentate_R', 'Cblm_Interposed_L', 'Cblm_Interposed_R', ...
     'Cblm_Fastigial_L', 'Cblm_Fastigial_R', 'Cblm_Vermis_CrusI'})));

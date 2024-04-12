@@ -214,8 +214,8 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     % SubC - subcoeruleus new in CANLab2023
     % Ve - vestibular nucle icomplex
     % STh - Subthalamic nucelus new in CANLab2023
-    biancia.labels = cellfun(@(x1)(sprintf('Bstem_%s', x1)), biancia.labels, 'UniformOutput', false);
-    biancia.labels_2 = cellfun(@(x1)(sprintf('Bstem_%s', x1)), biancia.labels_2, 'UniformOutput', false);
+    biancia.labels = cellfun(@(x1)(sprintf('BStem_%s', x1)), biancia.labels, 'UniformOutput', false);
+    biancia.labels_2 = cellfun(@(x1)(sprintf('BStem_%s', x1)), biancia.labels_2, 'UniformOutput', false);
     for lbl = {'labels','labels_2'}        
         biancia.(lbl{1}) = cellfun(@(x1)(regexprep(x1,'_([LR])_(.*)','_$2_$1')), biancia.(lbl{1}), 'UniformOutput', false);
         biancia.(lbl{1}) = cellfun(@(x1)(regexprep(x1,'_rh$','_R')), biancia.(lbl{1}), 'UniformOutput', false);
