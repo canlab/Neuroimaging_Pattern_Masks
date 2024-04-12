@@ -95,12 +95,12 @@ else
     echo "Warning: Could not find key mapping file CANLab2024_${SPACE}_${SCALE}_${res}mm_cifti_canlab_labels.txt. CIFTI keys won't match canlab atlas."
 fi
 
-# copy file to main folder
+# move file to main folder
 mv -v $WD/canlab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii $WD/../CANLab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii
 
 # create fsaverage GIFTIs (for completion, despite being mostly redundant with glasser)
-$WBCMD -cifti-separate $WD/../CANLab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii COLUMN -label CORTEX_LEFT $WD/canlab2024_fs-LR-32k_hemi-L_${SCALE}.label.gii
-$WBCMD -cifti-separate $WD/../CANLab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii COLUMN -label CORTEX_RIGHT $WD/canlab2024_fs-LR-32k_hemi-R_${SCALE}.label.gii
+$WBCMD -cifti-separate $WD/../CANLab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii COLUMN -label CORTEX_LEFT $WD/CANLab2024_fs-LR-32k_hemi-L_${SCALE}.label.gii
+$WBCMD -cifti-separate $WD/../CANLab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii COLUMN -label CORTEX_RIGHT $WD/CANLab2024_fs-LR-32k_hemi-R_${SCALE}.label.gii
 
 # resample to surface using files derived from the fsaverage folder and a hcp 32k surface
 # registered to the fsaverage surface (by default it's rotated for som ereason). The registered
@@ -111,11 +111,11 @@ $WBCMD -cifti-separate $WD/../CANLab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii C
 # Seems the HCP people are in the same boat:
 # https://www.mail-archive.com/hcp-users%40humanconnectome.org/msg02890.html
 for H in L R; do
-    $WBCMD -label-resample $WD/canlab2024_fs-LR-32k_hemi-${H}_${SCALE}.label.gii \
+    $WBCMD -label-resample $WD/CANLab2024_fs-LR-32k_hemi-${H}_${SCALE}.label.gii \
         $WD/S1200.${H}.sphere.32k_fs_LR.surf.gii \
         $WD/fs_${H}-to-fs_LR_fsaverage.${H}_LR.spherical_std.164k_fs_${H}.surf.gii \
         BARYCENTRIC \
-        $WD/../canlab2024_fsaverage-164k_hemi-${H}_${SCALE}.label.gii
+        $WD/../CANLab2024_fsaverage-164k_hemi-${H}_${SCALE}.label.gii
 done
 
 # garbage collection

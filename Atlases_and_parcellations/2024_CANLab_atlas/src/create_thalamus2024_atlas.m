@@ -59,6 +59,13 @@ for i = 1:length(group_codes)
     thalamus_atlas = merge_atlases(thalamus_atlas, roi_atlas);
 end
 
+% consolidate optic nuclei for coarser parcellations
+thalamus_atlas.labels_2(ismember(thalamus_atlas.labels_2,{'L_hypothalamus_anterior_inferior','L_hypothalamus_tubular_inferior'})) = {'L_hypothalamus_anterior_and_tubular_inferior'};
+thalamus_atlas.labels_2(ismember(thalamus_atlas.labels_2,{'R_hypothalamus_anterior_inferior','R_hypothalamus_tubular_inferior'})) = {'R_hypothalamus_anterior_and_tubular_inferior'};
+
+thalamus_atlas.labels_2(ismember(thalamus_atlas.labels_2,{'L_hypothalamus_anterior_superior','L_hypothalamus_tubular_superior'})) = {'L_hypothalamus_anterior_and_tubular_superior'};
+thalamus_atlas.labels_2(ismember(thalamus_atlas.labels_2,{'R_hypothalamus_anterior_superior','R_hypothalamus_tubular_superior'})) = {'R_hypothalamus_anterior_and_tubular_superior'};
+
 %% dilate the cifti atlas to include the entire hypothalamus
 % otherwise this trunctates the chiasmatic nuclei
 

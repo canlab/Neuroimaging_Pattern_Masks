@@ -468,16 +468,16 @@ Thal_PuMm_R,"Pulvinar_medial_(medial_subdivision)_(right)",Thal_PuM_R,Thal_Pulvi
 Thal_PuMl_R,"Pulvinar_medial_(lateral_subdivision)_(right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
 Epithal_Haben_L,"Habenula (left)",Haben_L,Haben_L,Midbrain_L,CIT168 v1.1.0 subcortical
 Epithal_Haben_R,"Habenula (right)",Haben_R,Haben_R,Midbrain_R,CIT168 v1.1.0 subcortical
-hypothalamus_anterior_inferior_L,"suprachiasmatic nucleus, supraoptic nucleus (left)",hypothalamus_anterior_inferior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
-hypothalamus_anterior_superior_L,"preoptic area, paraventricular nucleus (left)",hypothalamus_anterior_superior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
+hypothalamus_anterior_inferior_L,"suprachiasmatic nucleus, supraoptic nucleus (left)",hypothalamus_anterior_and_tubular_inferior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
+hypothalamus_anterior_superior_L,"preoptic area, paraventricular nucleus (left)",hypothalamus_anterior_and_tubular_superior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
 hypothalamus_posterior_L,"mamillary body (medial and lateral nuclei), lateral hypothalamus, tuberomamillary nucleus (left)",hypothalamus_posterior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
-hypothalamus_tubular_inferior_L,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (left)",hypothalamus_tubular_inferior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
-hypothalamus_tubular_superior_L,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (left)",hypothalamus_tubular_superior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
-hypothalamus_anterior_inferior_R,"suprachiasmatic nucleus, supraoptic nucleus (right)",hypothalamus_anterior_inferior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
-hypothalamus_anterior_superior_R,"preoptic area, paraventricular nucleus (right)",hypothalamus_anterior_superior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
+hypothalamus_tubular_inferior_L,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (left)",hypothalamus_anterior_and_tubular_inferior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
+hypothalamus_tubular_superior_L,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (left)",hypothalamus_anterior_and_tubular_superior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
+hypothalamus_anterior_inferior_R,"suprachiasmatic nucleus, supraoptic nucleus (right)",hypothalamus_anterior_and_tubular_inferior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
+hypothalamus_anterior_superior_R,"preoptic area, paraventricular nucleus (right)",hypothalamus_anterior_and_tubular_superior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
 hypothalamus_posterior_R,"mamillary body (medial and lateral nuclei), lateral hypothalamus, tuberomamillary nucleus (right)",hypothalamus_posterior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
-hypothalamus_tubular_inferior_R,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (right)",hypothalamus_tubular_inferior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
-hypothalamus_tubular_superior_R,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (right)",hypothalamus_tubular_superior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
+hypothalamus_tubular_inferior_R,"infundibular nucleus, ventromedial nucleus, supraoptic nucleus, lateral tubular nucleus, tuberomamillary nucleus (right)",hypothalamus_anterior_and_tubular_inferior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
+hypothalamus_tubular_superior_R,"dorsomedial nucleus, paraventricular nucleus, lateral hypothalamus (right)",hypothalamus_anterior_and_tubular_superior_R,hypothalamus_R,hypothalamus_R,Billot/Iglesias2020
 BStem_dmPAG,"Region 1 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
 BStem_vlPAG_L,"Region 2 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
 BStem_lPAG_L,"Region 3 from Kragel2019PAG",BStem_PAG,PAG,Midbrain,Kragel2019
