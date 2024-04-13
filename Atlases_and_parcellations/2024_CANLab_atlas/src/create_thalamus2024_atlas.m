@@ -32,7 +32,12 @@ for i = 1:length(group_codes)
     end
     roi_atlas.label_descriptions = group_descript(i);
     [roi_atlas.labels_2, roi_atlas.labels_3, roi_atlas.labels_4] = deal(roi_atlas.labels);
-    roi_atlas.labels_4 = repmat({'Midbrain'},1,num_regions(roi_atlas));
+    % this right here introduces potential whacky behavior when
+    % downsampling because the rest of the posterior thalamus comes from
+    % iglesias, not CIT like the habenula. It should be ok conceptually,
+    % because higher order labels are just for identifying sources, not
+    % actually meant to be used as an atlas.
+    roi_atlas.labels_4 = repmat({'Thal_Posterior'},1,num_regions(roi_atlas));
     roi_atlas = lateralize(roi_atlas);
     roi_atlas.labels_5 = repmat({'CIT168 v1.1.0 subcortical'},1,num_regions(roi_atlas));
     

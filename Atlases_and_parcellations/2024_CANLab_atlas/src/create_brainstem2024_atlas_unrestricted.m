@@ -457,7 +457,7 @@ bstem_atlas.labels{contains(bstem_atlas.labels,'STH_L')} = 'STH_R';
 
 bstem_atlas.labels_2 = cellfun(@(x1)['BStem_' x1], bstem_atlas.labels_2, 'UniformOutput', false);
 bstem_atlas.labels_2{contains(bstem_atlas.labels_2,'STH_L')} = 'STH_L';
-bstem_atlas.labels_2{contains(bstem_atlas.labels_2,'STH_L')} = 'STH_R';
+bstem_atlas.labels_2{contains(bstem_atlas.labels_2,'STH_R')} = 'STH_R';
 
 %% Add references
 %{

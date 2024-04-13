@@ -33,7 +33,7 @@ BST.labels_5 = repmat({'CIT168 subcortical v1.1.0'},1,num_regions(BST));
 pal = load_atlas(sprintf('cit168_%s',ALIAS)).select_atlas_subset({'GP','VeP'}).remove_empty();
 pal = lateralize(pal);
 
-pal.labels_2 = pal.labels;
+pal.labels_2 = cellfun(@(x1)strrep(x1,'VeP','GPe'), pal.labels, 'UniformOutput', false);
 pal.labels_3 = pal.labels_2;
 pal.labels_4 = {'GP_L','GP_L','GP_L','GP_R','GP_R','GP_R'};
 pal.labels_5 = repmat({'CIT168 subcortical v1.1.0'},1,num_regions(pal));

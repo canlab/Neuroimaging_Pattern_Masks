@@ -262,7 +262,7 @@ for h = {'L', 'R'}
 end
 
 % CEN ends up being too small (a 1vx column) on the coarse 2mm scale, so 
-% let's combine it with te corticomedian nuclei
+% let's combine it with the corticomedian nuclei
 amyg.labels_2 = cellfun(@(x1)strrep(x1,'AMY_CEN','AMY_CEN_CMN'),amyg.labels_2,'UniformOutput',false);
 amyg.labels_2 = cellfun(@(x1)strrep(x1,'AMY_CMN','AMY_CEN_CMN'),amyg.labels_2,'UniformOutput',false);
 
