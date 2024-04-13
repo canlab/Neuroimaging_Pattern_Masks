@@ -31,7 +31,8 @@ for i = 1:length(group_codes)
         roi_atlas = select_atlas_subset(cit168, group_codes(i));
     end
     roi_atlas.label_descriptions = group_descript(i);
-    [roi_atlas.labels_2, roi_atlas.labels_3, roi_atlas.labels_4] = deal(roi_atlas.labels);
+    roi_atlas.labels_2 = strrep(roi_atlas.labels,'Haben','Thal_PuM');
+    roi_atlas.labels_3 = strrep(roi_atlas.labels,'Haben','Thal_Pulvinar');
     % this right here introduces potential whacky behavior when
     % downsampling because the rest of the posterior thalamus comes from
     % iglesias, not CIT like the habenula. It should be ok conceptually,

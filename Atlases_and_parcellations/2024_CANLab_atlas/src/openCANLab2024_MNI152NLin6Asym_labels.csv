@@ -420,8 +420,8 @@ BG_PUT_VA_L,"Region 40 from tian_3t_fsl6",BG_PUT_VA_L,aPUT_L,PUT_L,Tian2020
 BG_PUT_VA_R,"Region 13 from tian_3t_fsl6",BG_PUT_VA_R,aPUT_R,PUT_R,Tian2020
 BG_PUT_VP_L,"Region 42 from tian_3t_fsl6",BG_PUT_VP_L,pPUT_L,PUT_L,Tian2020
 BG_PUT_VP_R,"Region 15 from tian_3t_fsl6",BG_PUT_VP_R,pPUT_R,PUT_R,Tian2020
-BG_VeP_L,"Ventral pallidum (left)",BG_VeP_L,VeP_L,GP_L,CIT168 subcortical v1.1.0
-BG_VeP_R,"Ventral pallidum (right)",BG_VeP_R,VeP_R,GP_R,CIT168 subcortical v1.1.0
+BG_VeP_L,"Ventral pallidum (left)",BG_GPe_L,GPe_L,GP_L,CIT168 subcortical v1.1.0
+BG_VeP_R,"Ventral pallidum (right)",BG_GPe_R,GPe_R,GP_R,CIT168 subcortical v1.1.0
 Thal_AV_L,"Anteroventral_(left)",Thal_AV_L,Thal_anterior_L,Thal_Anterior_L,Iglesias2018
 Thal_CeM_L,"central_medial_(left)",Thal_rIL_L,Thal_Intralaminar_L,Thal_Intralaminar_L,Iglesias2018
 Thal_CL_L,"central_lateral_(left)",Thal_CL_L,Thal_Medial_L,Thal_Medial_L,Iglesias2018
@@ -429,7 +429,7 @@ Thal_CM_L,"centromedian_(left)",Thal_cIL_L,Thal_Intralaminar-posterior_L,Thal_In
 Thal_LD_L,"Laterodorsal_(left)",Thal_LD_L,Thal_dorsal_L,Thal_Lateral_L,Iglesias2018
 Thal_LGN_L,"lateral_geniculate_(left)",Thal_LGN_L,Thal_LGN_L,Thal_Posterior_L,Iglesias2018
 Thal_LP_L,"Lateral_posterior_(left)",Thal_LP_L,Thal_dorsal_L,Thal_Lateral_L,Iglesias2018
-Thal_SG_L_L,"Limitans_(suprageniculate)_(left)",Thal_PuI_L,Thal_Pulvinar_L,Thal_Posterior_L,Iglesias2018
+Thal_SG_L_L,"Limitans_(suprageniculate)_(left)",Thal_PuM_L,Thal_Pulvinar_L,Thal_Posterior_L,Iglesias2018
 Thal_MDl_L,"Mediodorsal_medial_parvocellular-like_(left)",Thal_MD_L,Thal_Medial_L,Thal_Medial_L,Iglesias2018
 Thal_MDm_L,"Mediodorsal_medial_magnocellular-like_(left)",Thal_MD_L,Thal_Medial_L,Thal_Medial_L,Iglesias2018
 Thal_MGN_L,"medial_geniculate_(left)",Thal_MGN_L,Thal_MGN_L,Thal_Posterior_L,Iglesias2018
@@ -451,7 +451,7 @@ Thal_CM_R,"centromedian_(right)",Thal_cIL_R,Thal_Intralaminar-posterior_R,Thal_I
 Thal_LD_R,"Laterodorsal_(right)",Thal_LD_R,Thal_dorsal_R,Thal_Lateral_R,Iglesias2018
 Thal_LGN_R,"lateral_geniculate_(right)",Thal_LGN_R,Thal_LGN_R,Thal_Posterior_R,Iglesias2018
 Thal_LP_R,"Lateral_posterior_(right)",Thal_LP_R,Thal_dorsal_R,Thal_Lateral_R,Iglesias2018
-Thal_SG_R_L,"Limitans_(suprageniculate)_(right)",Thal_PuI_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
+Thal_SG_R_L,"Limitans_(suprageniculate)_(right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
 Thal_MDl_R,"Mediodorsal_medial_parvocellular-like_(right)",Thal_MD_R,Thal_Medial_R,Thal_Medial_R,Iglesias2018
 Thal_MDm_R,"Mediodorsal_medial_magnocellular-like_(right)",Thal_MD_R,Thal_Medial_R,Thal_Medial_R,Iglesias2018
 Thal_MGN_R,"medial_geniculate_(right)",Thal_MGN_R,Thal_MGN_R,Thal_Posterior_R,Iglesias2018
@@ -466,8 +466,8 @@ Thal_VLp_R,"ventral_lateral_posterior_(right)",Thal_VL_R,Thal_Lateral-rostral_R,
 Thal_VPL_VPM_R,"ventral_posterolateral_and_ventral_posteromedial_(right)",Thal_VPL_VPM_R,Thal_Lateral-caudal_R,Thal_Ventral_R,Iglesias2018
 Thal_PuMm_R,"Pulvinar_medial_(medial_subdivision)_(right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
 Thal_PuMl_R,"Pulvinar_medial_(lateral_subdivision)_(right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,Iglesias2018
-Epithal_Haben_L,"Habenula (left)",Haben_L,Haben_L,Midbrain_L,CIT168 v1.1.0 subcortical
-Epithal_Haben_R,"Habenula (right)",Haben_R,Haben_R,Midbrain_R,CIT168 v1.1.0 subcortical
+Epithal_Haben_L,"Habenula (left)",Thal_PuM_L,Thal_Pulvinar_L,Thal_Posterior_L,CIT168 v1.1.0 subcortical
+Epithal_Haben_R,"Habenula (right)",Thal_PuM_R,Thal_Pulvinar_R,Thal_Posterior_R,CIT168 v1.1.0 subcortical
 hypothalamus_anterior_inferior_L,"suprachiasmatic nucleus, supraoptic nucleus (left)",hypothalamus_anterior_and_tubular_inferior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
 hypothalamus_anterior_superior_L,"preoptic area, paraventricular nucleus (left)",hypothalamus_anterior_and_tubular_superior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
 hypothalamus_posterior_L,"mamillary body (medial and lateral nuclei), lateral hypothalamus, tuberomamillary nucleus (left)",hypothalamus_posterior_L,hypothalamus_L,hypothalamus_L,Billot/Iglesias2020
@@ -504,7 +504,7 @@ BStem_RN_L,"Red nucleus (left)",BStem_RN_L,RN_L,Midbrain_L,CIT168 subcortical v1
 BStem_SNr_L,"Substantia Nigra pars reticulata (left)",BStem_SN_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
 BStem_PBP_L,"Parabrachial Pigmented Nucleus (left)",BStem_VTA_PBP_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
 BStem_VTA_L,"Ventral Tegmental Area (left)",BStem_VTA_PBP_L,VTA_PBP_SN_L,Midbrain_L,CIT168 subcortical v1.1.0
-BStem_STH_R,"Subthalamic nucleus (left)",BStem_STH_R,STH_L,Midbrain_L,CIT168 subcortical v1.1.0
+BStem_STH_R,"Subthalamic nucleus (left)",BStem_STH_L,STH_L,Midbrain_L,CIT168 subcortical v1.1.0
 BStem_SNc_R,"Substantia Nigra pars compacta (right)",BStem_SN_R,VTA_PBP_SN_R,Midbrain_R,CIT168 subcortical v1.1.0
 BStem_RN_R,"Red nucleus (right)",BStem_RN_R,RN_R,Midbrain_R,CIT168 subcortical v1.1.0
 BStem_SNr_R,"Substantia Nigra pars reticulata (right)",BStem_SN_R,VTA_PBP_SN_R,Midbrain_R,CIT168 subcortical v1.1.0
@@ -523,41 +523,41 @@ BStem_Ponscv_R,"Pons right caudal ventral",BStem_Shen_Pons_Rcv,Shen_Pons_Rcv,Pon
 BStem_Ponscd_R,"Pons right caudal dorsal",BStem_Shen_Pons_Rcd,Shen_Pons_Rcd,Pons_R,Shen268
 BStem_Med_L,"Medulla left",BStem_Shen_Med_L,Shen_Med_L,Medulla_L,Shen268
 BStem_Med_R,"Medulla right",BStem_Shen_Med_R,Shen_Med_R,Medulla_R,Shen268
-MTL_AMY_BLN_La_L,"Amygdalar basolateral complex: lateral nucleus (left)",MTL_AMY_BLN_La_L,La_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_L,"Amygdalar basolateral complex: basal nucleus (left)",MTL_AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_L,"Amygdalar basolateral complex: accessory basal nucleus (left)",MTL_AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CEN_L,"Amygdalar central nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CMN_L,"Amygdalar corticomedial group: medial nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_L,"Amygdalar basolateral complex: paralaminar nucleus (left)",MTL_AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_L,"Amygdalar corticomedial group: periamygdaloid cortex (left)",MTL_AMY_ATA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_L,"Amygdalostriatal triansition area (left)",MTL_AMY_ATA_ASTA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_AAA_L,"Anteroir amygdaloid area (left)",MTL_AMY_AAA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_R,"Amygdalar basolateral complex: lateral nucleus (right)",MTL_AMY_BLN_La_R,La_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_R,"Amygdalar basolateral complex: basal nucleus (right)",MTL_AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_R,"Amygdalar basolateral complex: accessory basal nucleus (right)",MTL_AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CEN_R,"Amygdalar central nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CMN_R,"Amygdalar corticomedial group: medial nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_R,"Amygdalar basolateral complex: paralaminar nucleus (right)",MTL_AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_R,"Amygdalar corticomedial group: periamygdaloid cortex (right)",MTL_AMY_ATA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_R,"Amygdalostriatal triansition area (right)",MTL_AMY_ATA_ASTA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_AAA_R,"Anteroir amygdaloid area (right)",MTL_AMY_AAA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: lateral nucleus (left)",MTL_AMY_BLN_La_L,La_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: basal nucleus (left)",MTL_AMY_BLN_BL_BLDI_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: accessory basal nucleus (left)",MTL_AMY_BLN_BM_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CEN_ICN_L,"Intercalated nuclei most proximal to Amygdalar central nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_CMN_ICN_L,"Intercalated nuclei most proximal to Amygdalar corticomedial group: medial nucleus (left)",MTL_AMY_CEN_CMN_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: paralaminar nucleus (left)",MTL_AMY_BL_BLV_L,BL_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ICN_L,"Intercalated nuclei most proximal to Amygdalar corticomedial group: periamygdaloid cortex (left)",MTL_AMY_ATA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_ICN_L,"Intercalated nuclei most proximal to Amygdalostriatal triansition area (left)",MTL_AMY_ATA_ASTA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_AAA_ICN_L,"Intercalated nuclei most proximal to Anteroir amygdaloid area (left)",MTL_AMY_AAA_L,CeM_L,Amygdala_L,CIT168 amydala v1.0.3
-MTL_AMY_BLN_La_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: lateral nucleus (right)",MTL_AMY_BLN_La_R,La_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BL_BLDI_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: basal nucleus (right)",MTL_AMY_BLN_BL_BLDI_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BLN_BM_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: accessory basal nucleus (right)",MTL_AMY_BLN_BM_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CEN_ICN_R,"Intercalated nuclei most proximal to Amygdalar central nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_CMN_ICN_R,"Intercalated nuclei most proximal to Amygdalar corticomedial group: medial nucleus (right)",MTL_AMY_CEN_CMN_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_BL_BLV_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: paralaminar nucleus (right)",MTL_AMY_BL_BLV_R,BL_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ICN_R,"Intercalated nuclei most proximal to Amygdalar corticomedial group: periamygdaloid cortex (right)",MTL_AMY_ATA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_ATA_ASTA_ICN_R,"Intercalated nuclei most proximal to Amygdalostriatal triansition area (right)",MTL_AMY_ATA_ASTA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
-MTL_AMY_AAA_ICN_R,"Intercalated nuclei most proximal to Anteroir amygdaloid area (right)",MTL_AMY_AAA_R,CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_L,"Amygdalar basolateral complex: lateral nucleus (left)",MTL_AMY_La_L,AMY_La_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_L,"Amygdalar basolateral complex: basal nucleus (left)",MTL_AMY_BL_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_L,"Amygdalar basolateral complex: accessory basal nucleus (left)",MTL_AMY_BL_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CEN_L,"Amygdalar central nucleus (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CMN_L,"Amygdalar corticomedial group: medial nucleus (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_L,"Amygdalar basolateral complex: paralaminar nucleus (left)",MTL_AMY_BL_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_L,"Amygdalar corticomedial group: periamygdaloid cortex (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_L,"Amygdalostriatal triansition area (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_AAA_L,"Anteroir amygdaloid area (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_R,"Amygdalar basolateral complex: lateral nucleus (right)",MTL_AMY_La_R,AMY_La_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_R,"Amygdalar basolateral complex: basal nucleus (right)",MTL_AMY_BL_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_R,"Amygdalar basolateral complex: accessory basal nucleus (right)",MTL_AMY_BL_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CEN_R,"Amygdalar central nucleus (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CMN_R,"Amygdalar corticomedial group: medial nucleus (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_R,"Amygdalar basolateral complex: paralaminar nucleus (right)",MTL_AMY_BL_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_R,"Amygdalar corticomedial group: periamygdaloid cortex (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_R,"Amygdalostriatal triansition area (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_AAA_R,"Anteroir amygdaloid area (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: lateral nucleus (left)",MTL_AMY_La_L,AMY_La_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: basal nucleus (left)",MTL_AMY_BL_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: accessory basal nucleus (left)",MTL_AMY_BL_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CEN_ICN_L,"Intercalated nuclei most proximal to Amygdalar central nucleus (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_CMN_ICN_L,"Intercalated nuclei most proximal to Amygdalar corticomedial group: medial nucleus (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_ICN_L,"Intercalated nuclei most proximal to Amygdalar basolateral complex: paralaminar nucleus (left)",MTL_AMY_BL_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ICN_L,"Intercalated nuclei most proximal to Amygdalar corticomedial group: periamygdaloid cortex (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_ICN_L,"Intercalated nuclei most proximal to Amygdalostriatal triansition area (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_AAA_ICN_L,"Intercalated nuclei most proximal to Anteroir amygdaloid area (left)",MTL_AMY_CeM_L,AMY_BL_CeM_L,Amygdala_L,CIT168 amydala v1.0.3
+MTL_AMY_BLN_La_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: lateral nucleus (right)",MTL_AMY_La_R,AMY_La_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BL_BLDI_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: basal nucleus (right)",MTL_AMY_BL_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BLN_BM_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: accessory basal nucleus (right)",MTL_AMY_BL_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CEN_ICN_R,"Intercalated nuclei most proximal to Amygdalar central nucleus (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_CMN_ICN_R,"Intercalated nuclei most proximal to Amygdalar corticomedial group: medial nucleus (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_BL_BLV_ICN_R,"Intercalated nuclei most proximal to Amygdalar basolateral complex: paralaminar nucleus (right)",MTL_AMY_BL_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ICN_R,"Intercalated nuclei most proximal to Amygdalar corticomedial group: periamygdaloid cortex (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_ATA_ASTA_ICN_R,"Intercalated nuclei most proximal to Amygdalostriatal triansition area (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
+MTL_AMY_AAA_ICN_R,"Intercalated nuclei most proximal to Anteroir amygdaloid area (right)",MTL_AMY_CeM_R,AMY_BL_CeM_R,Amygdala_R,CIT168 amydala v1.0.3
 Thal_MV_Re_L,"Reuniens_(medial_ventral)_(left)",Thal_Midline_L,Thal_Intralaminar_L,Thal_Intralaminar_L,Iglesias2018
 Thal_MV_Re_R,"Reuniens_(medial_ventral)_(right)",Thal_Midline_R,Thal_Intralaminar_R,Thal_Intralaminar_R,Iglesias2018

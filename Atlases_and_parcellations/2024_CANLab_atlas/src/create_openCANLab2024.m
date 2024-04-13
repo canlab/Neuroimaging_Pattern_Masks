@@ -15,7 +15,7 @@
 % uncomment these lines to run as a standalone script
 
 clear all; close all;
-SPACE = 'MNI152NLin6Asym';
+SPACE = 'MNI152NLin2009cAsym';
 
 %LIB = '/dartfs-hpc/rc/home/m/f0042vm/software';
 LIB = '/home/bogdan/.matlab';
@@ -266,6 +266,13 @@ end
 amyg.labels_2 = cellfun(@(x1)strrep(x1,'AMY_CEN','AMY_CEN_CMN'),amyg.labels_2,'UniformOutput',false);
 amyg.labels_2 = cellfun(@(x1)strrep(x1,'AMY_CMN','AMY_CEN_CMN'),amyg.labels_2,'UniformOutput',false);
 
+% on second thought, labels_2 is still too small. Let's get rid of it and
+% copy labels_3
+amyg.labels_2 = cellfun(@(x1)(['AMY_',x1]),amyg.labels_3,'UniformOutput',false);
+% and let's merge BL and CeM into one cluster for labels_3
+amyg.labels_3 = strrep(amyg.labels_2,'CeM','BL_CeM');
+amyg.labels_3 = regexprep(amyg.labels_3,'BL_([LR])','BL_CeM_$1');
+
 hipp = hipp.merge_atlases(amyg);
 
 
@@ -478,9 +485,11 @@ end
 amyg_nuc = canlab.select_atlas_subset({'Amygdala'},'labels_4');
 label_descriptions = amyg_nuc.label_descriptions;
 labels = amyg_nuc.labels;
+labels_2 = amyg_nuc.labels_2;
 other_regions = canlab.select_atlas_subset(find(~contains(canlab.labels, amyg_nuc.labels)));
 
 amyg_nuc = amyg_nuc.downsample_parcellation();
+
 amyg_nuc.labels_5 = amyg_nuc.labels_4;
 amyg_nuc.labels_4 = amyg_nuc.labels_3;
 amyg_nuc.labels_3 = amyg_nuc.labels_2;
@@ -493,11 +502,42 @@ for i = 1:num_regions(amyg_nuc)
     elseif contains(this_region,{'MTL_AMY_CEN_CMN_L'})
         amyg_nuc.label_descriptions{i} = strcat(label_descriptions{(contains(labels,{'MTL_AMY_CEN_L'}))},';',label_descriptions{(contains(labels,{'MTL_AMY_CMN_L'}))});
         amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},'(left)',''), ' (left)'];
+    elseif contains(this_region,{'MTL_AMY_BL_R'})
+        str = label_descriptions((contains(labels_2,{'MTL_AMY_BL_R'})));
+        str = strcat(str',repmat({';'},1,length(str)));
+        amyg_nuc.label_descriptions{i} = ['Amygdala', strrep(strrep(cat(2,str{:}), 'Amygdalar',''),'Amygdala','')];
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},' (right)',''), ' (right)'];
+    elseif contains(this_region,{'MTL_AMY_BL_L'})
+        str = label_descriptions((contains(labels_2,{'MTL_AMY_BL_L'})));
+        str = strcat(str',repmat({';'},1,length(str)));
+        amyg_nuc.label_descriptions{i} = ['Amygdala', strrep(strrep(cat(2,str{:}), 'Amygdalar',''),'Amygdala','')];
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},' (left)',''), ' (left)'];
+    elseif contains(this_region,{'MTL_AMY_CeM_R'})
+        str = label_descriptions((contains(labels_2,{'MTL_AMY_CeM_R'})));
+        str = strcat(str',repmat({';'},1,length(str)));
+        amyg_nuc.label_descriptions{i} = ['Amygdala', strrep(strrep(cat(2,str{:}), 'Amygdalar',''),'Amygdala','')];
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},' (right)',''), ' (right)'];
+    elseif contains(this_region,{'MTL_AMY_CeM_L'})
+        str = label_descriptions((contains(labels_2,{'MTL_AMY_CeM_L'})));
+        str = strcat(str',repmat({';'},1,length(str)));
+        amyg_nuc.label_descriptions{i} = ['Amygdala', strrep(strrep(cat(2,str{:}), 'Amygdalar',''),'Amygdala','')];
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},' (left)',''), ' (left)'];
+    elseif contains(this_region,{'MTL_AMY_La_R'})
+        str = label_descriptions((contains(labels_2,{'MTL_AMY_La_R'})));
+        str = strcat(str',repmat({';'},1,length(str)));
+        amyg_nuc.label_descriptions{i} = ['Amygdala', strrep(strrep(cat(2,str{:}), 'Amygdalar',''),'Amygdala','')];
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},' (right)',''), ' (right)'];
+    elseif contains(this_region,{'MTL_AMY_La_L'})
+        str = label_descriptions((contains(labels_2,{'MTL_AMY_La_L'})));
+        str = strcat(str',repmat({';'},1,length(str)));
+        amyg_nuc.label_descriptions{i} = ['Amygdala', strrep(strrep(cat(2,str{:}), 'Amygdalar',''),'Amygdala','')];
+        amyg_nuc.label_descriptions{i} = [strrep(amyg_nuc.label_descriptions{i},' (left)',''), ' (left)'];
     else
         old_ind = strcmp(this_region,labels);
         amyg_nuc.label_descriptions{i} = label_descriptions{old_ind};
     end
 end
+
 amyg_nuc_L = amyg_nuc.select_atlas_subset({'_L'},'labels_4');
 amyg_nuc_R = amyg_nuc.select_atlas_subset({'_R'},'labels_4');
 

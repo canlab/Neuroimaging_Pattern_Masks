@@ -17,7 +17,7 @@ addpath([LIB, '/spm/spm12']);
 %addpath([LIB, '/spm12']);
 
 system(which('create_CANLab2024_atlas_prep.sh'));
-for space = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
+for space = {'MNI152NLin2009cAsym', 'MNI152NLin6Asym'}
     for res = [1,2]
         for scale = {'fine','coarse'}
             create_CANLab2024_atlas(space{1},scale{1},res);
