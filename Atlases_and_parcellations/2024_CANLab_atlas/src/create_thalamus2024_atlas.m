@@ -2,17 +2,16 @@
 thalamus_atlas = load_atlas(sprintf('iglesias_thal_%s', ALIAS));
 thalamus_atlas.labels_5 = repmat({'Iglesias2018'},1,num_regions(thalamus_atlas));
 
+% merge intralaminar nuclei
+
 % Add labels to make more consistent with other atlases
-% create probability maps too and default to 50% so that any conflicts with
-% non-thalamic regions that are better than not to be correct are ceded to 
-% said regions
 for i = 1:num_regions(thalamus_atlas)
     for fname = {'labels','labels_2','labels_3','labels_4'}
         thalamus_atlas.(fname{1}){i} = regexprep(thalamus_atlas.(fname{1}){i},'([LR])_(.*)','Thal_$2_$1');
     end
 end
 
-%% add dummy probabilities
+%% handle probabilities
 thalamus_atlas.probability_maps = sparse(double(thalamus_atlas.probability_maps));
 thalamus_atlas.references = unique(thalamus_atlas.references,'rows');
 

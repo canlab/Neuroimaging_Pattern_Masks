@@ -71,6 +71,9 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     end
     atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.(source_lbls),'Harvard')));
 
+    % drop Levinson-Bari NTS
+    atlas_obj = atlas_obj.select_atlas_subset(find(~contains(atlas_obj.labels,'NTS')));
+
     if res == 2
         biancia = load_atlas(sprintf('bianciardi_%s_2mm',alias));
     else
@@ -89,7 +92,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     % subdivisions from the other), but for now we exclude this.
     % note, keep NTS here because we can use this both ways, both with
     % biancia and with atlas_obj
-    exclude_structs = {'PAG', 'RN', 'SN', 'VTA_PBP', 'STh', 'LG', 'MG', 'VSM', 'DR_B7', 'LC', 'VSM', 'NTS'};
+    exclude_structs = {'PAG', 'RN', 'SN', 'VTA_PBP', 'STh', 'LG', 'MG', 'DR_B7', 'LC', 'NTS'};
     biancia = biancia.select_atlas_subset(find(~contains(biancia.labels, exclude_structs)));
     biancia_refs = biancia.labels_4;
     
@@ -121,7 +124,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         {'LC','SubC'},...
         {'LPB','MPB'},...
         {'LDTg_CGPn', 'PTg'},...
-        {'Ve', 'NTS'},...
+        {'Ve', 'VSM','NTS'},... % we may or may not include NTS, but it doesn't hurt to account for it here even if it's missing
         {'CnF'}};
 
     [labels_3, labels_4, labels_5] = deal({});
@@ -145,6 +148,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
                 labels_3{end+1} = 'Rostral Raphe (Serotonergic)';
                 labels_4{end+1} = 'Midbrain';
             case groupings{2}
+                biancia.labels_2{i} = 'RObPaMg';
                 labels_3{end+1} = 'Medullary Raphe (Serotonergic)';
                 labels_4{end+1} = 'Medulla';
             case groupings{3}
@@ -160,6 +164,9 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
                 labels_3{end+1} = 'Medullary reticular formation';
                 labels_4{end+1} = 'Medulla';
             case groupings{7}
+                % SOC is too small at level 2, so let's merge it
+                biancia.labels_2{i} = strrep(biancia.labels_2{i},'ION','OC');
+                biancia.labels_2{i} = strrep(biancia.labels_2{i},'SOC','OC');
                 labels_3{end+1} = 'Olivary complex';
                 labels_4{end+1} = 'Medulla';
             case groupings{8}

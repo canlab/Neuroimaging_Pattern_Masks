@@ -336,14 +336,9 @@ atlas_obj.probability_maps = sparse(atlas_obj.probability_maps);
 clear thal_bstem hipp_amyg_dil bg_dil cerebellum_dil
 
 %% create a full brain NIFTI atlas
-% combine subctx and canlab20187 cortical parcels, but resort the cortical
+% combine subctx and canlab2024 cortical parcels, but resort the cortical
 % parcels to match the surface based Glasser parcels we intend to combine
 % with the subctx volumes in our CIFTI volume.
-% this is somewhat redundant with canlab2018 but there are a couple of
-% differences:
-% - subcortical structures are bilateral.
-% - canlab2018 structures missing from canlab2024: Cau_L, Cau_R, BST_SLEA,
-%   Cblm_Interposed_R, Cblm_Fastigial_L, Cblm_Fastigial_R
 
 glasser = load_atlas(sprintf('glasser_%s',ALIAS)).apply_mask(fmri_mask_image(atlas_obj), 'invert');
 % get rid of regions dismembered by cifti_atlas masking
@@ -366,7 +361,7 @@ glasser.probability_maps = single(glasser.probability_maps);
 %glasser = dilate(glasser, canlab_mask);
 %delete(gcp('nocreate'))
 
-glasser.labels_5 = repmat({'Glasser2016 (Volumetric version Petre2023)'},1,num_regions(glasser));
+glasser.labels_5 = repmat({'Glasser2016 (Petre2023 volumetric projection)'},1,num_regions(glasser));
 glasser.labels_4 = glasser.labels_3;
 glasser.labels_3 = glasser.labels_2;
 glasser.labels_2 = glasser.labels;
@@ -427,17 +422,18 @@ end
 atlas_name = sprintf('openCANLab2024_%s', SPACE);
 canlab.atlas_name = atlas_name;
 
-% place intercalated nuclei and thalamic CeM nucleis at the end of the
+% place intercalated nuclei, VSM and thalamic CeM nucleis at the end of the
 % index list, since these will be dropped in the 2mm version of the atlas
 % and we want to maintain consistent indexing.
 amyg_nuc = canlab.select_atlas_subset({'AMY'});
 amyg_nuc_L = amyg_nuc.select_atlas_subset({'_L'},'labels_4');
 amyg_nuc_R = amyg_nuc.select_atlas_subset({'_R'},'labels_4');
 ICN_small_nuc = canlab.select_atlas_subset({'ICN','Thal_MV'});
+NTS = canlab.select_atlas_subset({'NTS'});
 amyg_nuc_L = amyg_nuc_L.select_atlas_subset(find(~ismember(amyg_nuc_L.labels, ICN_small_nuc.labels)));
 amyg_nuc_R = amyg_nuc_R.select_atlas_subset(find(~ismember(amyg_nuc_R.labels, ICN_small_nuc.labels)));
-other_regions = canlab.select_atlas_subset(find(~ismember(canlab.labels, [ICN_small_nuc.labels, amyg_nuc.labels])));
-canlab = [other_regions, amyg_nuc_L, amyg_nuc_R, ICN_small_nuc];
+other_regions = canlab.select_atlas_subset(find(~ismember(canlab.labels, [ICN_small_nuc.labels, amyg_nuc.labels, NTS.labels])));
+canlab = [other_regions, amyg_nuc_L, amyg_nuc_R, ICN_small_nuc, NTS];
 
 canlab.references = unique(canlab.references,'rows');
 canlab.probability_maps = sparse(canlab.probability_maps);
@@ -470,16 +466,16 @@ writetable(table(canlab.references,'VariableNames',{'references'}),[canlab.atlas
 %% produce low res version of this file
 
 ref = fmri_data(TEMPLATE_lowres);
-
+%{
 % implement a hacky fix for a small region in the thalamus
 for side = {'_L', '_R'}
     MV_ind = contains(canlab.labels,['Thal_MV', side{1}]);
-    MV_vx = find(sum(canlab.dat == find(MV_ind),2));
+    MV_vx = find(any(canlab.dat == find(MV_ind),2));
     canlab = canlab.select_atlas_subset(find(~MV_ind));
     CeM_ind = contains(canlab.labels,['Thal_CeM', side{1}]);
     canlab.dat(MV_vx) = find(CeM_ind);
 end
-
+%}
 % merge small intercalated nuclei of the amyagdala with their larger
 % neighbors
 amyg_nuc = canlab.select_atlas_subset({'Amygdala'},'labels_4');
