@@ -1,3 +1,6 @@
+% this file should be updated to save probability maps in CIFTI format.
+% Redundant for the cortex, but for the subcortex at least.
+
 % run this script to update *.latest files after modifying the atlas and 
 % commit/push your git changes to propogate changes across git clones for 
 % all CANLab2023 versions.
