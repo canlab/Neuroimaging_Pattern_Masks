@@ -261,6 +261,16 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         other_bstem = other_bstem.probability_maps_to_region_index;
 
         biancia = biancia.select_atlas_subset(find(~contains(biancia.labels,'LC+')));
+
+        % Now let's repeat for CnF and PAG
+        PAG_ind = find(contains(other_bstem.labels,{'BStem_PAG'}));
+        other_bstem.probability_maps(:,PAG_ind) = other_bstem.probability_maps(:,PAG_ind) + biancia.select_atlas_subset({'BStem_PAG'}).probability_maps;
+        other_bstem.label_descriptions(PAG_ind) = {'Kragel2019PAG & cuneiform nuclei'};
+        other_bstem.labels_4 = {['Kragel2019 & ', biancia.select_atlas_subset({'BStem_PAG'}).labels_4{1}]}; % there will be 2 regions, but they will have the same labels_4 entry
+
+        other_bstem = other_bstem.probability_maps_to_region_index;
+
+        biancia = biancia.select_atlas_subset(find(~contains(biancia.labels,'BStem_PAG')));
     end
 
     
