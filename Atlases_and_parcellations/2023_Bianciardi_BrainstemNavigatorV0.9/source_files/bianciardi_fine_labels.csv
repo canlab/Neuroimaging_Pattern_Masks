@@ -2,7 +2,7 @@ left,right,full_label,Structure,Ref
 CLi_RLi,,Caudal-rostral linear raphe,Brainstem,2021
 CnF_l,CnF_r,Cuneiform nucleus,Brainstem,2018
 DR,,Dorsal raphe,Brainstem,2015
-IC_l ,IC_r,Inferior colliculus,Brainstem,2019
+IC_l,IC_r,Inferior colliculus,Brainstem,2019
 iMRtl_l,iMRtl_r,Inferior medullary reticular formation (lateral part),Brainstem,2022
 iMRtm_l,iMRtm_r,Inferior medullary reticular formation (medial part),Brainstem,2022
 ION_l,ION_r,Inferior olivary nucleus,Brainstem,2015
