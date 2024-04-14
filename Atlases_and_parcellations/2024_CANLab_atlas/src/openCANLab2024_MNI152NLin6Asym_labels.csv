@@ -357,16 +357,16 @@ Ctx_TE1m_R,"Area TE1 Middle (Right)",Ctx_TE1m_R,middle_temporal_gyrus_R,temporal
 Ctx_PI_R,"Para-Insular Area (Right)",Ctx_PI_R,inferior_dysgranular_insula_R,insula_posterior_R,Glasser2016 (Petre2023 volumetric projection)
 Ctx_a32pr_R,"Area anterior 32 prime (Right)",Ctx_a32pr_R,midcingulate_R,cingulate_ACC_mPFC_R,Glasser2016 (Petre2023 volumetric projection)
 Ctx_p24_R,"Area posterior 24 (Right)",Ctx_p24_R,midcingulate_R,cingulate_ACC_mPFC_R,Glasser2016 (Petre2023 volumetric projection)
-MTL_CA2_L,"Left hippocampal cornu ammonis 2",MTL_CA23_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_CA3_L,"Left hippocampal cornu ammonis 3",MTL_CA23_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_DG_L,"Left hippocampal dentate gyrus",MTL_DG_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_CA1_L,"Left hippocampal cornu ammonis 1",MTL_CA1_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_Subiculum_L,"Left hippocampal subiculum",MTL_Subiculum_L,Subiculum_L,Hippocampal_Formation_L,Julich/Amunts
-MTL_CA2_R,"Right hippocampal cornu ammonis 2",MTL_CA23_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_CA3_R,"Right hippocampal cornu ammonis 3",MTL_CA23_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_DG_R,"Right hippocampal dentate gyrus",MTL_DG_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_CA1_R,"Right hippocampal cornu ammonis 1",MTL_CA1_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
-MTL_Subiculum_R,"Right hippocampal subiculum",MTL_Subiculum_R,Subiculum_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_Hipp_CA2_L,"Left hippocampal cornu ammonis 2",MTL_Hipp_CA23_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_Hipp_CA3_L,"Left hippocampal cornu ammonis 3",MTL_Hipp_CA23_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_Hipp_DG_L,"Left hippocampal dentate gyrus",MTL_Hipp_DG_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_Hipp_CA1_L,"Left hippocampal cornu ammonis 1",MTL_Hipp_CA1_L,Hipp_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_Hipp_Subiculum_L,"Left hippocampal subiculum",MTL_Hipp_Subiculum_L,Subiculum_L,Hippocampal_Formation_L,Julich/Amunts
+MTL_Hipp_CA2_R,"Right hippocampal cornu ammonis 2",MTL_Hipp_CA23_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_Hipp_CA3_R,"Right hippocampal cornu ammonis 3",MTL_Hipp_CA23_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_Hipp_DG_R,"Right hippocampal dentate gyrus",MTL_Hipp_DG_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_Hipp_CA1_R,"Right hippocampal cornu ammonis 1",MTL_Hipp_CA1_R,Hipp_R,Hippocampal_Formation_R,Julich/Amunts
+MTL_Hipp_Subiculum_R,"Right hippocampal subiculum",MTL_Hipp_Subiculum_R,Subiculum_R,Hippocampal_Formation_R,Julich/Amunts
 Cblm_I_IV_L,"Region 1 from SUIT_Cerebellum_MNI",Cblm_I_IV_L,Cblm_I_IV_V_VI_L,Cblm_cortex_L,SUIT/Diedrichsen
 Cblm_I_IV_R,"Region 2 from SUIT_Cerebellum_MNI",Cblm_I_IV_R,Cblm_I_IV_V_VI_R,Cblm_cortex_R,SUIT/Diedrichsen
 Cblm_V_L,"Region 3 from SUIT_Cerebellum_MNI",Cblm_V_L,Cblm_I_IV_V_VI_L,Cblm_cortex_L,SUIT/Diedrichsen

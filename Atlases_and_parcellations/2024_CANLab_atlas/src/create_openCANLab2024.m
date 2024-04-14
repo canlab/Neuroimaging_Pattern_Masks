@@ -171,15 +171,16 @@ for i = 1:num_regions(hipp)
         hipp.label_descriptions{end+1} = 'Right';
     end
 
+    hipp.labels{i} = regexprep(hipp.labels{i},'([LR])_(.*)','$1_Hipp_$2');
     if contains(hipp.labels{i},{'CA2','CA3'})
         hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ...
-            regexprep(hipp.labels{i},'[LR]_CA([0-9])',' hippocampal cornu ammonis $1')];
-        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_CA23');
+            regexprep(hipp.labels{i},'[LR]_Hipp_CA([0-9])',' hippocampal cornu ammonis $1')];
+        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp_CA23');
         hipp.labels_3{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp');
     elseif contains(hipp.labels{i},{'CA1'})
         hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ...
-            regexprep(hipp.labels{i},'[LR]_CA([0-9])',' hippocampal cornu ammonis $1')];
-        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_CA1');
+            regexprep(hipp.labels{i},'[LR]_Hipp_CA([0-9])',' hippocampal cornu ammonis $1')];
+        hipp.labels_2{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp_CA1'); % this regexp seems redundant, but if it aint broke, don't fix it.
         hipp.labels_3{end+1} = regexprep(hipp.labels{i},'([LR])_.*','$1_Hipp');
     elseif contains(hipp.labels{i},'DG')
         hipp.label_descriptions{end} = [hipp.label_descriptions{end}, ' hippocampal dentate gyrus'];
