@@ -8,13 +8,13 @@ VLa,ventral lateral anterior,VL,Lateral-rostral,Ventral
 VLp,ventral lateral posterior,VL,Lateral-rostral,Ventral
 VPL_VPM,ventral posterolateral and ventral posteromedial,VPL_VPM,Lateral-caudal,Ventral
 VM,ventromedial,VM,Lateral-rostral,Ventral
-CeM,central medial,rIL,Intralaminar-anterior,Intralaminar
-Pc,paracentral,rIL,Intralaminar-anterior,Intralaminar
+CeM,central medial,rIL,Intralaminar-antoventral,Intralaminar
+Pc,paracentral,rIL,Intralaminar-antoventral,Intralaminar
 CM,centromedian,cIL,Intralaminar-posterior,Intralaminar
 Pf,parafascicular,cIL,Intralaminar-posterior,Intralaminar
-Pt,paratenial,Midline,Intralaminar-anterior,Intralaminar
-MV_Re,Reuniens (medial ventral),Midline,Intralaminar-anterior,Intralaminar
-CL,central lateral,CL,Medial,Medial
+Pt,paratenial,Pt,Intralaminar-antoventral,Intralaminar
+MV_Re,Reuniens (medial ventral),rIL,Intralaminar-antoventral,Intralaminar
+CL,central lateral,CL,Intralaminar-anterodorsal,Intralaminar
 MDm,Mediodorsal medial magnocellular-like,MD,Medial,Medial
 MDl,Mediodorsal medial parvocellular-like,MD,Medial,Medial
 LGN,lateral geniculate,LGN,LGN,Posterior
