@@ -307,5 +307,9 @@ function areaFile = get_area_file(labels, labels_2, parentDir)
                 areaFile{i} = dir(fullfile(parentDir.folder, 'BrainstemNavigator','0.9','2b.DiencephalicNucleiAtlas_MNI','labels_probabilistic', ...
                     [areaName{i}, '.nii.gz']));
         end
+        if isempty(areaFile{i}) && ~isempty(which([areaName{i}, '.nii.gz']))
+            areaFile{i} = dir(which([areaName{i}, '.nii.gz']));
+            warning('Could not find %s in expected location. Instead, will use %s.', areaName{i}, fullfile(areaFile{i}.folder, areaFile{i}.name));
+        end
     end
 end
