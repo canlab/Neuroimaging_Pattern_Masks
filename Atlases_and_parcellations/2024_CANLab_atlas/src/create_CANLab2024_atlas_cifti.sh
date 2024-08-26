@@ -12,7 +12,8 @@ SCALE=coarse
 SPACE=MNI152NLin6Asym
 res=2
 
-WBCMD=/home/bogdan/Downloads/workbench/bin_rh_linux64/wb_command
+#WBCMD=/home/bogdan/Downloads/workbench/bin_rh_linux64/wb_command
+WBCMD=wb_command
 
 WD=$(cd $(dirname $(readlink -f $0)) && pwd)
 

@@ -12,12 +12,12 @@
 
 close all; clear all;
 
-LIB = '/home/bogdan/.matlab';
-%LIB = '/dartfs-hpc/rc/home/m/f0042vm/software/';
+%LIB = '/home/bogdan/.matlab';
+LIB = '/dartfs-hpc/rc/home/m/f0042vm/software/';
 addpath(genpath([LIB, '/canlab/CanlabCore']))
 addpath(genpath([LIB, '/canlab/Neuroimaging_Pattern_Masks']))
-addpath([LIB, '/spm/spm12']);
-%addpath([LIB, '/spm12']);
+%addpath([LIB, '/spm/spm12']);
+addpath([LIB, '/spm12']);
 
 system(which('create_CANLab2024_atlas_prep.sh'));
 for space = {'MNI152NLin2009cAsym', 'MNI152NLin6Asym'}
