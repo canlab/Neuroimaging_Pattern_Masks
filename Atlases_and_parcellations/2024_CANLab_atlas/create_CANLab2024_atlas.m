@@ -383,6 +383,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         ref = fmri_data(which('MNI152NLin2009cAsym_1mm_t1s_lps.nii.gz'));
         atlas_obj = atlas_obj.resample_space(ref).threshold(0.2);
         atlas_obj.fullpath = sprintf('%s/qsiprep/CANLab2024_%s_%s_%dmm_qsiprep.nii', this_dir.folder, SPACE, SCALE, round(res));
+        mkdir(fullfile(this_dir.folder,'qsiprep'));
         atlas_obj.write('overwrite');
         
         % zero sform for compliance with qsiprep reqs. See here under 
@@ -420,7 +421,17 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
                 jsonstruct.(fname{1}) = jsonOld.(fname{1});
             end
         end
-        jsontxt = jsonencode(jsonstruct, 'PrettyPrint', true);
+        try
+            % prettyprint seems to have been introduced in matlab r2019b,
+            % so let's not assume we have it
+            jsontxt = jsonencode(jsonstruct, 'PrettyPrint', true);
+        catch ME
+            if strcmp(ME.identifier, 'MATLAB:json:UnmatchedParameter')
+                jsontxt = jsonencode(jsonstruct);
+            else
+                retrhow(ME)
+            end
+        end
 
         fid = fopen(json_file,'w+');
         fprintf(fid, '%s', jsontxt);
