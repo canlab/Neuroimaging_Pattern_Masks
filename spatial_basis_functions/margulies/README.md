@@ -9,7 +9,7 @@ is supposed to correspond to Marcel Mesulem's unimodal to transmodal division.
 This gradient was published in surface format. I (BP) projected it back to
 volumetric space using registration fusion (Wu et al. 2018 Human Brain 
 Mapping). To achieve this I combined subject specific transformations from
-88 BMRK5 participants, 209 unrelated PainGen participants and 112 SpaceTop 
+88 BMRK5 participants, 208 unrelated PainGen participants and 112 SpaceTop 
 participants. I then averaged the resulting maps balancing across studies (so 
 that each study contributes 1/3 even though they have different sample sizes). 
 Surface models and native space to template volumetric alignments were 
