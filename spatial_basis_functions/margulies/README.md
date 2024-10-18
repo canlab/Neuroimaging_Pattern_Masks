@@ -51,10 +51,10 @@ bleedover of the maps into whitematter and extra-cerebral space, but I
 recommend some kind of tissue class probability based thresholding in all
 cases. Something like this,
 
-grad1 = fmri_data(which('MNI152NLin6Asym_margulies_grad1.nii.gz'))
-canlab2024 = load_atlas('canlab2024_fsl6_1mm'); % note fsl6 matches MNI152NLin6Asym template. Make sure to adjust appropriately.
-gray = canlab2024.threshold(0.2);
-gray.dat(gray.dat ~= 0) = 1;
-gray = fmri_mask_image(gray);
-grad1 = grad1.apply_mask(gray);
+grad1 = fmri_data(which('MNI152NLin6Asym_margulies_grad1.nii.gz'))<br />
+canlab2024 = load_atlas('canlab2024_fsl6_1mm'); % note fsl6 matches MNI152NLin6Asym template. Make sure to adjust appropriately.<br />
+gray = canlab2024.threshold(0.2);<br />
+gray.dat(gray.dat ~= 0) = 1;<br />
+gray = fmri_mask_image(gray);<br />
+grad1 = grad1.apply_mask(gray);<br />
 
