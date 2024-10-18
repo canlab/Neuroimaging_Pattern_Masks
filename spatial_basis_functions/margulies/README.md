@@ -4,6 +4,11 @@ The gradient included here is from the Margulies et al. 2016 PNAS paper. This
 paper provided several gradients of cortical organization, the first of which
 is supposed to correspond to Marcel Mesulem's unimodal to transmodal division.
 
+Margulies et al also discuss additional functional gradients of significance,
+but I have not been able to find public versions of them. Their existence
+though makes this a spatial basis function though, because they're all
+orthogonal.
+
 ### Methods
 
 This gradient was published in surface format. I (BP) projected it back to
