@@ -46,5 +46,15 @@ a standard group-analysis smoothing kernel (e.g. 6mm).
 If you want corresponding tissue probabilities you can get them by a 
 conjunction of canlab2024 or glasser volumetric parcels, which used the same 
 source data for their registration fusion based projections to volumetric 
-space. This could be useful after a smoothing operation to erode bleedover 
-of the maps into whitematter and extra-cerebral space.
+space. This could be especially useful after a smoothing operation to erode 
+bleedover of the maps into whitematter and extra-cerebral space, but I 
+recommend some kind of tissue class probability based thresholding in all
+cases. Something like this,
+
+grad1 = fmri_data(which('MNI152NLin6Asym_margulies_grad1.nii.gz'))
+canlab2024 = load_atlas('canlab2024_fsl6_1mm'); % note fsl6 matches MNI152NLin6Asym template. Make sure to adjust appropriately.
+gray = canlab2024.threshold(0.2);
+gray.dat(gray.dat ~= 0) = 1;
+gray = fmri_mask_image(gray);
+grad1 = grad1.apply_mask(gray);
+
