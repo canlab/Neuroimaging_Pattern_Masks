@@ -5,14 +5,14 @@ is supposed to correspond to Marcel Mesulem's unimodal to transmodal division.
 This gradient was published in surface format. I (BP) projected it back to
 volumetric space using registration fusion (Wu et al. 2018 Human Brain 
 Mapping). To achieve this I combined subject specific transformations from
-88 BMRK5 participants, 505 PainGen participants and 112 SpaceTop participants.
-I then averaged the resulting maps balancing across studies (so that each study
-contributes 1/3 even though they have different sample sizes). Surface 
-models and native space to template volumetric alignments were estimated by
-running fmriprep 20.2.3 (BMRK5, PainGen) or 21.0.2 (SpaceTop) on subject
-data. Linear interpolation was used for native to template space volumetric
-transforms and nnfr (forward and reverse nearest neighbor) was used for 
-fsaverage6 to subject specific surface transformations.
+88 BMRK5 participants, 209 unrelated PainGen participants and 112 SpaceTop 
+participants. I then averaged the resulting maps balancing across studies (so 
+that each study contributes 1/3 even though they have different sample sizes). 
+Surface models and native space to template volumetric alignments were 
+estimated by running fmriprep 20.2.3 (BMRK5, PainGen) or 21.0.2 (SpaceTop) on 
+subject data. Linear interpolation was used for native to template space 
+volumetric transforms and nnfr (forward and reverse nearest neighbor) was 
+used for fsaverage6 to subject specific surface transformations.
 
 When averaging data within voxel each voxel was divided by the number of 
 participants with non-zero data at that voxel, not the total number of 
