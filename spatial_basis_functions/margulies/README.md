@@ -41,4 +41,5 @@ a standard group-analysis smoothing kernel (e.g. 6mm).
 If you want corresponding tissue probabilities you can get them by a 
 conjunction of canlab2024 or glasser volumetric parcels, which used the same 
 source data for their registration fusion based projections to volumetric 
-space. This could be useful after a smoothing operation.
+space. This could be useful after a smoothing operation to erode bleedover 
+of the maps into whitematter and extra-cerebral space.
