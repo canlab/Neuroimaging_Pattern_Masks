@@ -1,6 +1,10 @@
+### Principal Gradient of Cortical organization
+
 The gradient included here is from the Margulies et al. 2016 PNAS paper. This
 paper provided several gradients of cortical organization, the first of which
 is supposed to correspond to Marcel Mesulem's unimodal to transmodal division.
+
+### Methods
 
 This gradient was published in surface format. I (BP) projected it back to
 volumetric space using registration fusion (Wu et al. 2018 Human Brain 
@@ -19,8 +23,18 @@ participants with non-zero data at that voxel, not the total number of
 participants. This is to avoid confounding gradient loading values with tissue 
 class probabilities. It's not a perfect solution. If you look at the gradient
 maps you'll see that you can still make out the cortical folding patterns with
-the naked eye. This may be due to partial voluming effects around tissue 
-boundaries, but at any rate the effect is less pronounced than were I to have
+the naked eye. 
+
+![example_surface_projection](extras/MNI152NLin6Asym_slice.png)
+
+This may be due to partial voluming effects around tissue boundaries. For
+instance, consider the figure below where you can see that the cortical width
+of is homogeneous intensity but is wrapped at the tissue boundaries by a 
+lower intensity voxel that may be a partial volume. 
+
+![example_surface_projection](extras/example_segmentation.png)
+
+At any rate the tissue boundary effect is less pronounced than were I to have
 simply taken the naive average. It may make sense to smooth these maps with
 a standard group-analysis smoothing kernel (e.g. 6mm).
 
