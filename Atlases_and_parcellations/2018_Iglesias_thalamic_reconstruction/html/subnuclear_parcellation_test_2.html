@@ -1,0 +1,2123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>subnuclear_parcellation_test_2</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-03-18">
+<meta name="DC.source" content="subnuclear_parcellation_test_2.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#2">stats</a>
+</li>
+<li>
+<a href="#3">post-hoc tests of main effects</a>
+</li>
+<li>
+<a href="#4">post-hoc tests of task contrasts</a>
+</li>
+</ul>
+</div>
+<pre class="codeinput">addpath(genpath(<span class="string">'~/.matlab/canlab/Neuroimaging_Pattern_Masks'</span>));
+addpath(genpath(<span class="string">'~/.matlab/canlab/CanlabCore'</span>));
+addpath(<span class="string">'~/.matlab/spm/spm12'</span>);
+
+<span class="comment">% load data</span>
+indAtlPath = <span class="string">'/home/bogdan/MyDocuments/canlab/atlases/results/thalamus/spacetop'</span>;
+
+<span class="comment">% the following are "simple" contrasts from heejungs first level designs</span>
+<span class="comment">% for spacetop. The files were obtained from discovery by concatenating</span>
+<span class="comment">% contrasts from</span>
+<span class="comment">% /dartfs-hpc/rc/lab/C/CANlab/labdata/projects/bogdan_atlas/stats/spacetop</span>
+<span class="comment">% for subjects listed in</span>
+<span class="comment">% Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/src/spacetop_participants.csv</span>
+pain = fmri_data(<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0013.nii.gz'</span>);
+vic = fmri_data(<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0014.nii.gz'</span>);
+cog = fmri_data(<span class="string">'/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0015.nii.gz'</span>);
+sid = readtable(which(<span class="string">'spacetop_participants.csv'</span>),<span class="string">'ReadVariableNames'</span>,false);
+
+thal_atlas = load_atlas(<span class="string">'iglesias_thal_fmriprep20'</span>).threshold(0.2);
+
+<span class="comment">% replace thalamic atlas probabilities with spacetop specific ones</span>
+spacetop76 = fmri_data(which(<span class="string">'spacetop76b.ThalamicNuclei.v13.T1DWI.MNI152NLin2009cAsym.nii.gz'</span>));
+has_contrast = ~ismember(sid.Var1,{<span class="string">'sub-0017'</span>,<span class="string">'sub-0063'</span>,<span class="string">'sub-0075'</span>});
+spacetop73 = spacetop76.get_wh_image(find(has_contrast));
+sid = sid(has_contrast,:);
+
+n_regions = length(unique(spacetop73.dat)) - 1;
+uniq_rois = unique(spacetop73.dat);
+uniq_rois(uniq_rois == 0) = [];
+
+pmap = zeros(size(spacetop73.dat,1), n_regions);
+<span class="keyword">for</span> i = 1:n_regions
+    this_roi = uniq_rois(i);
+    this_mask = (spacetop73.dat == this_roi);
+    pmap(:,i) = mean(this_mask,2);
+<span class="keyword">end</span>
+
+thal_atlas.probability_maps = pmap;
+thal_atlas = thal_atlas.probability_maps_to_region_index;
+
+<span class="comment">% clean up the new atlas to get rid of some stray labels in brainstem</span>
+mask = fmri_mask_image(thal_atlas.threshold(3/76)).replace_empty();
+mask.dat = iimg_smooth_3d(mask.dat,mask.volInfo,3);
+thal_atlas = thal_atlas.apply_mask(mask);
+
+<span class="comment">% threshold for a more representative atlas</span>
+thal_atlas = thal_atlas.threshold(0.2);
+
+<span class="comment">% extract mean ROI contrast based on group atlas</span>
+thal_atlas = thal_atlas.resample_space(pain);
+pain_mean_grpAtl = thal_atlas.extract_data(pain);
+vic_mean_grpAtl = thal_atlas.extract_data(vic);
+cog_mean_grpAtl = thal_atlas.extract_data(cog);
+
+<span class="comment">% extract mean ROI contrast based on individual atlases</span>
+indAtl = spacetop73;
+
+fsind = [8103:8106,8108:8113,8115,8116,8118,8120:8122,8126:8129,8133,8135,8136,8203:8206,8208:8213,8215,8216,8218,8220:8222,8226:8229,8233,8235,8236];
+[pain_mean_indAtl, vic_mean_indAtl, cog_mean_indAtl] = deal(nan(height(sid),length(thal_atlas.labels)));
+
+<span class="keyword">parfor</span> i = 1:size(spacetop73.dat,2)
+    this_atlas = indAtl.get_wh_image(i);
+    this_atlas = this_atlas.resample_space(pain.get_wh_image(i),<span class="string">'nearest'</span>);
+
+    <span class="comment">% identify which regions are present (some may be missing)</span>
+    this_atlas_regions = 1:46;
+    <span class="keyword">for</span> ind = 1:length(fsind)
+        <span class="keyword">if</span> length(this_atlas.dat(this_atlas.dat == fsind(ind))) == 0
+            this_atlas_regions(ind) = [];
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+    this_atlas = atlas(this_atlas,<span class="keyword">...</span>
+        <span class="string">'labels'</span>, thal_atlas.labels(this_atlas_regions));
+    this_atlas = this_atlas.apply_mask(mask);
+    this_atlas = this_atlas.check_properties(<span class="string">'compress_index'</span>);
+
+    <span class="comment">% extract data and assign to indices corresponding to regions we have</span>
+    [this_pain_mean_indAtl, this_vic_mean_indAtl, this_cog_mean_indAtl] = deal(nan(1,length(thal_atlas.labels)));
+    this_pain_mean_indAtl(this_atlas_regions) = this_atlas.extract_data(pain.get_wh_image(i));
+    this_vic_mean_indAtl(this_atlas_regions) = this_atlas.extract_data(vic.get_wh_image(i));
+    this_cog_mean_indAtl(this_atlas_regions) = this_atlas.extract_data(cog.get_wh_image(i));
+
+    <span class="comment">% the above operation can't be performed directly on output vars in a</span>
+    <span class="comment">% parfor loop, so now we assign results to our put vars.</span>
+    pain_mean_indAtl(i,:) = this_pain_mean_indAtl;
+    vic_mean_indAtl(i,:) = this_vic_mean_indAtl;
+    cog_mean_indAtl(i,:) = this_cog_mean_indAtl;
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+Direct calls to spm_defauts are deprecated.
+Please use spm('Defaults',modality) or spm_get_defaults instead.
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 29152404 bytes
+Loading image number:    73
+Elapsed time is 0.133697 seconds.
+fmri_data.create: Converting   2 NaNs to 0s.Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+Number of unique values in dataset: 7019866  Bit rate: 22.74 bits
+Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 29152404 bytes
+Loading image number:    73
+Elapsed time is 0.123668 seconds.
+fmri_data.create: Converting   2 NaNs to 0s.Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+Number of unique values in dataset: 7017718  Bit rate: 22.74 bits
+Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 29152404 bytes
+Loading image number:    73
+Elapsed time is 0.108782 seconds.
+fmri_data.create: Converting   2 NaNs to 0s.Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+Number of unique values in dataset: 7027015  Bit rate: 22.74 bits
+Loading atlas: /home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/iglesias_HCP278_ST76_PG264_MNI152NLin2009cAsym_atlas_object.mat
+Keeping probability_map values above 0.20
+Using default mask: /home/bogdan/.matlab/canlab/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 590997584 bytes
+Loading image number:    76
+Elapsed time is 2.359426 seconds.
+Image names entered, but fullpath attribute is empty. Getting path info.
+.fullpath should have image name for each image column in .dat
+Attempting to expand image filenames in case image list is unexpanded 4-D images
+Number of unique values in dataset: 47  Bit rate: 5.55 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Keeping probability_map values above 00001Keeping probability_map values above 0.20
+</pre>
+<h2 id="2">stats</h2>
+<pre class="codeinput">
+<span class="comment">% make long form table</span>
+<span class="comment">% stack regions</span>
+<span class="comment">% subjects nested within regions</span>
+subjects = repmat((1:size(pain_mean_grpAtl,1))',1,size(pain_mean_grpAtl,2));
+<span class="comment">% dummy code regions</span>
+regions = {};
+<span class="keyword">for</span> i = 1:size(pain_mean_grpAtl,2)
+    regions{i} = zeros(size(pain_mean_grpAtl,1), size(pain_mean_grpAtl,2));
+    regions{i}(:,i) = 1;
+<span class="keyword">end</span>
+
+pain_grpAtl_vert = reshape(pain_mean_grpAtl,prod(size(pain_mean_grpAtl)),1);
+vic_grpAtl_vert = reshape(vic_mean_grpAtl,prod(size(vic_mean_grpAtl)),1);
+cog_grpAtl_vert = reshape(cog_mean_grpAtl,prod(size(cog_mean_grpAtl)),1);
+
+pain_indAtl_vert = reshape(pain_mean_indAtl,prod(size(pain_mean_indAtl)),1);
+vic_indAtl_vert = reshape(vic_mean_indAtl,prod(size(vic_mean_indAtl)),1);
+cog_indAtl_vert = reshape(cog_mean_indAtl,prod(size(cog_mean_indAtl)),1);
+
+regions_vert = cellfun(@(r)reshape(r,prod(size(r)),1), regions, <span class="string">'UniformOutput'</span>,false);
+subjects_vert = reshape(subjects,prod(size(subjects)),1);
+
+<span class="comment">% stack tasks</span>
+<span class="comment">% subjects nested within regions nested within tasks</span>
+indAtl_vert = [pain_indAtl_vert; vic_indAtl_vert; cog_indAtl_vert];
+grpAtl_vert = [pain_grpAtl_vert; vic_grpAtl_vert; cog_grpAtl_vert];
+pain_v_vic = reshape(repmat([0.5,-0.5,0],size(pain_indAtl_vert,1),1),3*size(pain_indAtl_vert,1),1);
+pain_vic_v_cog = reshape(repmat([-1/3,-1/3,2/3],size(pain_indAtl_vert,1),1),3*size(pain_indAtl_vert,1),1);
+regions_vert3 = cellfun(@(r)repmat(r,3,1), regions_vert, <span class="string">'UniformOutput'</span>,false);
+subjects_vert3 = repmat(subjects_vert,3,1);
+
+<span class="comment">% stack individ and group parcellations</span>
+<span class="comment">% subjects nested within regions nested within tasks</span>
+individ_parcellation = 0.5*ones(size(indAtl_vert));
+group_parcellation = -0.5*ones(size(grpAtl_vert));
+
+dataArr = [double([indAtl_vert; grpAtl_vert]),<span class="keyword">...</span>
+    double([pain_v_vic; pain_v_vic]),<span class="keyword">...</span>
+    double([pain_vic_v_cog; pain_vic_v_cog]),<span class="keyword">...</span>
+    [cat(2,regions_vert3{:}); cat(2,regions_vert3{:})],<span class="keyword">...</span>
+    double([subjects_vert3; subjects_vert3]),<span class="keyword">...</span>
+    double([individ_parcellation; group_parcellation])];
+tbl = array2table(dataArr, <span class="keyword">...</span>
+    <span class="string">'VariableNames'</span>, <span class="keyword">...</span>
+    [<span class="string">'BOLD'</span>,<span class="string">'pain_v_vic'</span>,<span class="string">'pain_vic_v_cog'</span>,thal_atlas.labels,<span class="string">'subject'</span>,<span class="string">'parcellation'</span>]);
+
+[stats, mdl] = deal(cell(num_regions(thal_atlas),1));
+<span class="keyword">parfor</span> i = 1:num_regions(thal_atlas)
+    [stats{i}, mdl{i}] = fit_single_region_model(tbl,thal_atlas.labels(i));
+<span class="keyword">end</span>
+
+<span class="keyword">for</span> i = 1:length(stats)
+    disp(thal_atlas.label_descriptions{i});
+    disp(stats{i});
+    disp(<span class="string">'-----------------------------'</span>);
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Anteroventral_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat       DF        pValue        Lower        Upper   
+    {'L_AV'                            }          0.52643     0.14336      3.6721    72.002    0.00045886      0.24065     0.81222
+    {'pain_v_vic:L_AV'                 }           2.4815     0.33807      7.3401    72.008    2.5955e-10       1.8075      3.1554
+    {'pain_vic_v_cog:L_AV'             }           1.4889     0.29416      5.0614    72.005    3.0758e-06      0.90247      2.0753
+    {'L_AV:parcellation'               }        -0.034766      0.0361    -0.96305        72       0.33875     -0.10673    0.037198
+    {'pain_v_vic:L_AV:parcellation'    }        -0.044032    0.079841    -0.55149        72       0.58301     -0.20319     0.11513
+    {'pain_vic_v_cog:L_AV:parcellation'}          0.11974    0.058297      2.0539    72.001      0.043616    0.0035241     0.23595
+
+-----------------------------
+central_medial_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF    pValue        Lower       Upper    
+    {'L_CeM'                            }          0.81698    0.094551      8.6405    72    9.7668e-13     0.62849       1.0055
+    {'pain_v_vic:L_CeM'                 }           0.2322     0.22018      1.0546    72       0.29514    -0.20672      0.67111
+    {'pain_vic_v_cog:L_CeM'             }          0.42389     0.12874      3.2926    72     0.0015405     0.16725      0.68052
+    {'L_CeM:parcellation'               }         -0.31429    0.065965     -4.7645    72    9.5568e-06    -0.44578     -0.18279
+    {'pain_v_vic:L_CeM:parcellation'    }         -0.28297     0.14674     -1.9283    72      0.057756     -0.5755    0.0095567
+    {'pain_vic_v_cog:L_CeM:parcellation'}        -0.085175    0.099619    -0.85501    72       0.39538    -0.28376      0.11341
+
+-----------------------------
+central_lateral_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE         tStat       DF        pValue        Lower       Upper   
+    {'L_CL'                            }          0.92603    0.26214      3.5325    72.064    0.00072251     0.40346      1.4486
+    {'pain_v_vic:L_CL'                 }           3.6315    0.60025      6.0501    71.918    5.9163e-08      2.4349      4.8281
+    {'pain_vic_v_cog:L_CL'             }           2.3599    0.49821      4.7367    71.998    1.0608e-05      1.3667      3.3531
+    {'L_CL:parcellation'               }        -0.015493    0.10486    -0.14776    71.307       0.88295    -0.22456     0.19357
+    {'pain_v_vic:L_CL:parcellation'    }        -0.030123    0.20124    -0.14969    71.128       0.88144    -0.43137     0.37112
+    {'pain_vic_v_cog:L_CL:parcellation'}         -0.33833    0.17779     -1.9029    71.595      0.061069    -0.69279    0.016128
+
+-----------------------------
+centromedian_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat      DF        pValue        Lower       Upper    
+    {'L_CM'                            }           1.0327    0.077122      13.39        72    3.1619e-21     0.87894       1.1864
+    {'pain_v_vic:L_CM'                 }          0.52854      0.1859     2.8432        72     0.0058087     0.15796      0.89912
+    {'pain_vic_v_cog:L_CM'             }          0.72852     0.11014     6.6144    71.999    5.6379e-09     0.50895      0.94808
+    {'L_CM:parcellation'               }         -0.12813    0.020739     -6.178        72    3.4801e-08    -0.16947    -0.086784
+    {'pain_v_vic:L_CM:parcellation'    }         -0.07406    0.042544    -1.7408        72      0.085997    -0.15887     0.010751
+    {'pain_vic_v_cog:L_CM:parcellation'}        -0.095609    0.040221    -2.3771    71.999      0.020108    -0.17579     -0.01543
+
+-----------------------------
+Laterodorsal_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate    SE         tStat      DF        pValue        Lower        Upper  
+    {'L_LD'                            }         0.6694     0.14185      4.719    72.134    1.1311e-05      0.38663    0.95217
+    {'pain_v_vic:L_LD'                 }         1.0981     0.26747     4.1057    72.177    0.00010488      0.56498     1.6313
+    {'pain_vic_v_cog:L_LD'             }         1.0798     0.21052     5.1291    72.085    2.3609e-06      0.66014     1.4995
+    {'L_LD:parcellation'               }        0.16899     0.08416      2.008     71.09      0.048447    0.0011843     0.3368
+    {'pain_v_vic:L_LD:parcellation'    }        0.20284     0.19626     1.0335     71.55       0.30484     -0.18844    0.59413
+    {'pain_vic_v_cog:L_LD:parcellation'}        -0.1687     0.11301    -1.4929     71.06        0.1399     -0.39403    0.05662
+
+-----------------------------
+lateral_geniculate_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower        Upper     
+    {'L_LGN'                            }          0.80876    0.062867     12.865        72    2.4438e-20      0.68343       0.93408
+    {'pain_v_vic:L_LGN'                 }         -0.50945       0.138    -3.6917    72.001    0.00043012     -0.78454      -0.23436
+    {'pain_vic_v_cog:L_LGN'             }            1.506     0.10763     13.992        72    3.1736e-22       1.2914        1.7206
+    {'L_LGN:parcellation'               }        -0.040544    0.024973    -1.6235        72       0.10885    -0.090328      0.009239
+    {'pain_v_vic:L_LGN:parcellation'    }        -0.094954    0.053351    -1.7798        72      0.079327     -0.20131      0.011399
+    {'pain_vic_v_cog:L_LGN:parcellation'}        -0.089518    0.040218    -2.2258        72      0.029156     -0.16969    -0.0093457
+
+-----------------------------
+Lateral_posterior_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate      SE          tStat       DF    pValue        Lower        Upper   
+    {'L_LP'                            }           0.54904     0.10079      5.4476    72    6.7612e-07      0.34813     0.74996
+    {'pain_v_vic:L_LP'                 }           0.84743     0.19959      4.2458    72    6.4074e-05      0.44954      1.2453
+    {'pain_vic_v_cog:L_LP'             }            1.1186     0.14797        7.56    72    1.0135e-10      0.82367      1.4136
+    {'L_LP:parcellation'               }           0.04849    0.033837      1.4331    72       0.15617    -0.018963     0.11594
+    {'pain_v_vic:L_LP:parcellation'    }         -0.048802     0.06584    -0.74121    72       0.46098     -0.18005    0.082449
+    {'pain_vic_v_cog:L_LP:parcellation'}        -0.0094005     0.04058    -0.23165    72       0.81746    -0.090295    0.071494
+
+-----------------------------
+Limitans_(suprageniculate)_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate    SE          tStat      DF        pValue        Lower        Upper    
+    {'L_L_SG'                            }          1.1626     0.12167     9.5548    71.577    2.0663e-14      0.91999       1.4051
+    {'pain_v_vic:L_L_SG'                 }         0.54191     0.23555     2.3006    72.134      0.024309     0.072358       1.0115
+    {'pain_vic_v_cog:L_L_SG'             }         0.30543     0.19983     1.5285    72.139       0.13077    -0.092906      0.70377
+    {'L_L_SG:parcellation'               }        -0.16903    0.088028    -1.9201    71.496      0.058829     -0.34453    0.0064753
+    {'pain_v_vic:L_L_SG:parcellation'    }        -0.22056     0.16404    -1.3445    71.418       0.18304     -0.54761       0.1065
+    {'pain_vic_v_cog:L_L_SG:parcellation'}        -0.51107     0.12068    -4.2349    71.008    6.7477e-05     -0.75171     -0.27044
+
+-----------------------------
+Mediodorsal_medial_parvocellular-like_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF        pValue        Lower        Upper   
+    {'L_MDl'                            }           1.4633      0.0952      15.371        72     1.954e-24       1.2735      1.6531
+    {'pain_v_vic:L_MDl'                 }          0.33799     0.22389      1.5097    71.999       0.13551     -0.10832      0.7843
+    {'pain_vic_v_cog:L_MDl'             }           1.2625     0.14852      8.5004    72.002    1.7831e-12       0.9664      1.5585
+    {'L_MDl:parcellation'               }          0.03083    0.041938     0.73514        72       0.46464    -0.052772     0.11443
+    {'pain_v_vic:L_MDl:parcellation'    }        -0.011962    0.066593    -0.17962        72       0.85795     -0.14471     0.12079
+    {'pain_vic_v_cog:L_MDl:parcellation'}        -0.029321    0.054995    -0.53316        72       0.59556     -0.13895    0.080309
+
+-----------------------------
+Mediodorsal_medial_magnocellular-like_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower        Upper   
+    {'L_MDm'                            }          0.81463     0.10496     7.7615    71.999    4.2725e-11       0.6054      1.0239
+    {'pain_v_vic:L_MDm'                 }           1.1949     0.22975     5.2011     71.99    1.7875e-06      0.73694      1.6529
+    {'pain_vic_v_cog:L_MDm'             }          0.21705     0.15493      1.401    71.996       0.16552    -0.091795      0.5259
+    {'L_MDm:parcellation'               }        -0.060501    0.016429    -3.6826        72    0.00044329    -0.093251    -0.02775
+    {'pain_v_vic:L_MDm:parcellation'    }        -0.015287    0.037792    -0.4045        72       0.68705    -0.090625    0.060051
+    {'pain_vic_v_cog:L_MDm:parcellation'}        0.0067545    0.033721    0.20031        72       0.84181    -0.060467    0.073976
+
+-----------------------------
+medial_geniculate_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower       Upper    
+    {'L_MGN'                            }          0.75841    0.077021     9.8468        72    5.6472e-15     0.60487      0.91195
+    {'pain_v_vic:L_MGN'                 }         -0.64855     0.17141    -3.7837    72.001     0.0003168    -0.99024     -0.30686
+    {'pain_vic_v_cog:L_MGN'             }          0.79669     0.12369      6.441    71.999    1.1658e-08     0.55011       1.0433
+    {'L_MGN:parcellation'               }         -0.19226     0.03293    -5.8384        72    1.4021e-07     -0.2579     -0.12661
+    {'pain_v_vic:L_MGN:parcellation'    }        -0.079478    0.055349    -1.4359        72       0.15535    -0.18981     0.030858
+    {'pain_vic_v_cog:L_MGN:parcellation'}         -0.15304    0.045914    -3.3332        72     0.0013582    -0.24457    -0.061514
+
+-----------------------------
+Reuniens_(medial_ventral)_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                           Estimate    SE         tStat      DF        pValue        Lower       Upper  
+    {'L_MV_Re'                            }         0.79455    0.14073      5.646    71.438    3.1116e-07     0.51397     1.0751
+    {'pain_v_vic:L_MV_Re'                 }         0.15657    0.30475    0.51378    72.144       0.60898    -0.45091    0.76406
+    {'pain_vic_v_cog:L_MV_Re'             }         0.14873    0.20802    0.71499    71.711       0.47694    -0.26598    0.56344
+    {'L_MV_Re:parcellation'               }         0.04382    0.12701    0.34501    69.421       0.73113    -0.20953    0.29717
+    {'pain_v_vic:L_MV_Re:parcellation'    }        0.074799    0.25274    0.29595     69.58       0.76815    -0.42934    0.57893
+    {'pain_vic_v_cog:L_MV_Re:parcellation'}        0.027707    0.16388    0.16907    69.096       0.86624    -0.29922    0.35464
+
+-----------------------------
+parafascicular_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate    SE          tStat      DF        pValue        Lower       Upper   
+    {'L_Pf'                            }          1.6272     0.12882     12.631        72    6.1258e-20      1.3704       1.884
+    {'pain_v_vic:L_Pf'                 }          1.3595     0.25216     5.3916    71.999    8.4444e-07     0.85687      1.8622
+    {'pain_vic_v_cog:L_Pf'             }          1.2769     0.18655     6.8448    71.999    2.1334e-09     0.90501      1.6488
+    {'L_Pf:parcellation'               }        -0.31899    0.078347    -4.0716        72    0.00011841    -0.47518    -0.16281
+    {'pain_v_vic:L_Pf:parcellation'    }         0.15935     0.15129     1.0533        72       0.29573    -0.14224     0.46094
+    {'pain_vic_v_cog:L_Pf:parcellation'}        -0.33932     0.11817    -2.8714        72     0.0053643     -0.5749    -0.10374
+
+-----------------------------
+Pulvinar_anterior_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF        pValue        Lower        Upper    
+    {'L_PuA'                            }           1.6228     0.12129      13.379        72    3.3038e-21        1.381       1.8646
+    {'pain_v_vic:L_PuA'                 }          0.23469     0.20216      1.1609    71.999        0.2495      -0.1683      0.63769
+    {'pain_vic_v_cog:L_PuA'             }           1.9502     0.18236      10.694        72    1.6022e-16       1.5867       2.3137
+    {'L_PuA:parcellation'               }        -0.095228    0.033477     -2.8446        72     0.0057859     -0.16196    -0.028493
+    {'pain_v_vic:L_PuA:parcellation'    }        -0.054499    0.050076     -1.0883        72       0.28009     -0.15432     0.045326
+    {'pain_vic_v_cog:L_PuA:parcellation'}        0.0036425    0.048825    0.074603        72       0.94074    -0.093688      0.10097
+
+-----------------------------
+Pulvinar_inferior_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF        pValue        Lower        Upper    
+    {'L_PuI'                            }          0.70115    0.065041       10.78        72    1.1215e-16      0.57149       0.8308
+    {'pain_v_vic:L_PuI'                 }         -0.59657     0.15023      -3.971    72.001    0.00016773     -0.89605     -0.29709
+    {'pain_vic_v_cog:L_PuI'             }          0.97799     0.10574      9.2489    72.002    7.1978e-14       0.7672       1.1888
+    {'L_PuI:parcellation'               }        -0.028239    0.019172      -1.473        72       0.14512    -0.066457    0.0099786
+    {'pain_v_vic:L_PuI:parcellation'    }        -0.031464     0.04185    -0.75184        72        0.4546     -0.11489     0.051962
+    {'pain_vic_v_cog:L_PuI:parcellation'}        -0.028284    0.031122    -0.90881        72       0.36648    -0.090324     0.033756
+
+-----------------------------
+Pulvinar_lateral_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF        pValue        Lower        Upper   
+    {'L_PuL'                            }           1.2491    0.089155      14.011        72    2.9589e-22       1.0714      1.4268
+    {'pain_v_vic:L_PuL'                 }        -0.035882     0.17487    -0.20519    72.001       0.83801     -0.38449     0.31272
+    {'pain_vic_v_cog:L_PuL'             }           1.9567     0.12397      15.785        72    4.4407e-25       1.7096      2.2039
+    {'L_PuL:parcellation'               }         0.051692    0.022837      2.2635        72      0.026622    0.0061663    0.097217
+    {'pain_v_vic:L_PuL:parcellation'    }        -0.027168    0.036397    -0.74644    72.001       0.45783    -0.099725    0.045388
+    {'pain_vic_v_cog:L_PuL:parcellation'}          0.11051    0.040099       2.756        72     0.0074075     0.030577     0.19045
+
+-----------------------------
+Ventral_anterior_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate    SE          tStat      DF        pValue        Lower        Upper    
+    {'L_VA'                            }         0.75722    0.090992     8.3218        72    3.8432e-12      0.57583      0.93861
+    {'pain_v_vic:L_VA'                 }          1.3258     0.21197     6.2545    72.005    2.5344e-08      0.90321       1.7483
+    {'pain_vic_v_cog:L_VA'             }         0.93539     0.15648     5.9776    72.001    7.9412e-08      0.62344       1.2473
+    {'L_VA:parcellation'               }        -0.10129    0.031686    -3.1965        72     0.0020666     -0.16445    -0.038121
+    {'pain_v_vic:L_VA:parcellation'    }         0.03765    0.064088    0.58747        72       0.55872    -0.090107      0.16541
+    {'pain_vic_v_cog:L_VA:parcellation'}        0.028207    0.047603    0.59253        72       0.55535    -0.066689       0.1231
+
+-----------------------------
+Ventral_anterior_magnocellular_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate    SE         tStat       DF        pValue        Lower       Upper  
+    {'L_VAmc'                            }         0.47046    0.11156       4.217    70.967    7.1923e-05     0.24801    0.69291
+    {'pain_v_vic:L_VAmc'                 }         0.18329     0.2885     0.63534    74.442       0.52716     -0.3915    0.75809
+    {'pain_vic_v_cog:L_VAmc'             }         0.22686    0.22759     0.99677    72.103       0.32221    -0.22683    0.68055
+    {'L_VAmc:parcellation'               }        0.021677        0.1     0.21677     49.58       0.82928    -0.17922    0.22258
+    {'pain_v_vic:L_VAmc:parcellation'    }        0.022018    0.25731    0.085573    49.124       0.93215    -0.49503    0.53906
+    {'pain_vic_v_cog:L_VAmc:parcellation'}         0.07242    0.13143       0.551    49.118       0.58413    -0.19169    0.33653
+
+-----------------------------
+ventral_lateral_anterior_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate    SE          tStat     DF        pValue        Lower        Upper  
+    {'L_VLa'                            }         0.97268    0.073037    13.318        72    4.1835e-21      0.82709     1.1183
+    {'pain_v_vic:L_VLa'                 }         0.76039     0.17419    4.3652    72.002    4.1736e-05      0.41314     1.1076
+    {'pain_vic_v_cog:L_VLa'             }          1.0864     0.11844    9.1731        72    9.9556e-14      0.85033     1.3225
+    {'L_VLa:parcellation'               }        0.088942    0.021589    4.1198        72    0.00010002     0.045906    0.13198
+    {'pain_v_vic:L_VLa:parcellation'    }         0.05715    0.039498    1.4469    71.999       0.15226    -0.021588    0.13589
+    {'pain_vic_v_cog:L_VLa:parcellation'}        0.045312    0.030748    1.4737    72.001       0.14493    -0.015983    0.10661
+
+-----------------------------
+ventral_lateral_posterior_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat     DF        pValue        Lower       Upper    
+    {'L_VLp'                            }           1.2871    0.086836    14.822    72.001    1.4394e-23       1.114       1.4602
+    {'pain_v_vic:L_VLp'                 }           0.5986     0.20102    2.9778    72.006      0.003953     0.19788      0.99932
+    {'pain_vic_v_cog:L_VLp'             }           1.6756      0.1311    12.781    72.001     3.392e-20      1.4142       1.9369
+    {'L_VLp:parcellation'               }           0.1649    0.022976    7.1771        72     5.205e-10      0.1191      0.21071
+    {'pain_v_vic:L_VLp:parcellation'    }        -0.087378    0.038024    -2.298        72      0.024471    -0.16318    -0.011578
+    {'pain_vic_v_cog:L_VLp:parcellation'}         0.077185    0.029273    2.6367    72.001      0.010248     0.01883      0.13554
+
+-----------------------------
+ventral_posterolateral_and_ventral_posteromedial_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                             Estimate      SE          tStat        DF        pValue        Lower         Upper    
+    {'L_VPL_VPM'                            }           0.93155    0.075049       12.413    71.997    1.4577e-19       0.78195       1.0812
+    {'pain_v_vic:L_VPL_VPM'                 }        -0.0095806      0.1534    -0.062457    71.988       0.95037      -0.31537      0.29621
+    {'pain_vic_v_cog:L_VPL_VPM'             }            1.3107     0.10373       12.636    71.997    6.0228e-20        1.1039       1.5175
+    {'L_VPL_VPM:parcellation'               }          0.031262    0.016988       1.8403        72      0.069849    -0.0026024     0.065127
+    {'pain_v_vic:L_VPL_VPM:parcellation'    }          -0.16028    0.030853      -5.1949        72    1.8311e-06      -0.22178    -0.098773
+    {'pain_vic_v_cog:L_VPL_VPM:parcellation'}           0.14549    0.027116       5.3656    71.999    9.3574e-07      0.091439      0.19955
+
+-----------------------------
+Pulvinar_medial_(medial_subdivision)_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate     SE          tStat       DF        pValue        Lower        Upper  
+    {'L_PuMm'                            }          0.36468     0.10778      3.3836    71.999     0.0011606      0.14982    0.57953
+    {'pain_v_vic:L_PuMm'                 }           1.0159     0.20926      4.8549    71.999    6.7889e-06      0.59879     1.4331
+    {'pain_vic_v_cog:L_PuMm'             }          0.27356     0.15543        1.76    71.999      0.082658    -0.036291    0.58341
+    {'L_PuMm:parcellation'               }          0.17529    0.044572      3.9326        72    0.00019133     0.086433    0.26414
+    {'pain_v_vic:L_PuMm:parcellation'    }         0.085091      0.1029     0.82691        72       0.41102     -0.12004    0.29022
+    {'pain_vic_v_cog:L_PuMm:parcellation'}        -0.011943    0.060057    -0.19885        72       0.84294     -0.13166    0.10778
+
+-----------------------------
+Pulvinar_medial_(lateral_subdivision)_(left)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate     SE          tStat      DF        pValue        Lower        Upper     
+    {'L_PuMl'                            }          0.54951    0.061401     8.9496        72    2.5925e-13      0.42711       0.67191
+    {'pain_v_vic:L_PuMl'                 }           0.1097     0.12371    0.88674        72       0.37817     -0.13691       0.35631
+    {'pain_vic_v_cog:L_PuMl'             }          0.84964    0.089706     9.4713    71.998    2.7865e-14      0.67081        1.0285
+    {'L_PuMl:parcellation'               }          0.11547    0.019898     5.8032        72    1.6183e-07     0.075806       0.15514
+    {'pain_v_vic:L_PuMl:parcellation'    }        -0.084683    0.039757      -2.13        72      0.036589     -0.16394    -0.0054288
+    {'pain_vic_v_cog:L_PuMl:parcellation'}         0.021648    0.029978    0.72212        72       0.47256    -0.038112      0.081407
+
+-----------------------------
+Anteroventral_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat       DF        pValue        Lower       Upper    
+    {'R_AV'                            }           1.4688     0.15832       9.277        72    6.3844e-14      1.1532       1.7844
+    {'pain_v_vic:R_AV'                 }           1.8053     0.30629      5.8942    72.002     1.117e-07      1.1947       2.4159
+    {'pain_vic_v_cog:R_AV'             }            1.444     0.23262      6.2076    71.999    3.0786e-08      0.9803       1.9078
+    {'R_AV:parcellation'               }        -0.030642    0.048992    -0.62544        72       0.53366    -0.12831     0.067023
+    {'pain_v_vic:R_AV:parcellation'    }         -0.18431    0.094941     -1.9413    71.999      0.056137    -0.37357    0.0049531
+    {'pain_vic_v_cog:R_AV:parcellation'}         -0.16531     0.07318      -2.259        72      0.026914    -0.31119     -0.01943
+
+-----------------------------
+central_medial_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF        pValue        Lower       Upper     
+    {'R_CeM'                            }           1.1654    0.087751      13.281        72    4.8255e-21     0.99047        1.3403
+    {'pain_v_vic:R_CeM'                 }          0.71596      0.1958      3.6566    72.001    0.00048291     0.32564        1.1063
+    {'pain_vic_v_cog:R_CeM'             }          0.50695      0.1248      4.0622        72    0.00012235     0.25817       0.75573
+    {'R_CeM:parcellation'               }        -0.058659     0.02879     -2.0375        72       0.04528    -0.11605    -0.0012665
+    {'pain_v_vic:R_CeM:parcellation'    }        -0.078008     0.07781     -1.0025        72       0.31944    -0.23312      0.077104
+    {'pain_vic_v_cog:R_CeM:parcellation'}        -0.036603    0.064211    -0.57004        72       0.57043     -0.1646      0.091399
+
+-----------------------------
+central_lateral_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate      SE         tStat        DF    pValue        Lower       Upper    
+    {'R_CL'                            }            1.9353    0.20857       9.2788    72    6.3357e-14      1.5195       2.3511
+    {'pain_v_vic:R_CL'                 }            2.0594    0.43572       4.7263    72     1.103e-05      1.1908       2.9279
+    {'pain_vic_v_cog:R_CL'             }            1.8243    0.33263       5.4843    72    5.8414e-07      1.1612       2.4874
+    {'R_CL:parcellation'               }          -0.10085    0.13639     -0.73946    72       0.46203    -0.37274      0.17103
+    {'pain_v_vic:R_CL:parcellation'    }          -0.65323    0.28187      -2.3175    72      0.023323     -1.2151    -0.091334
+    {'pain_vic_v_cog:R_CL:parcellation'}        -0.0052627    0.23138    -0.022744    72       0.98192    -0.46652      0.45599
+
+-----------------------------
+centromedian_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat      DF        pValue        Lower        Upper    
+    {'R_CM'                            }          0.71277    0.075089     9.4923        72    2.5474e-14      0.56308      0.86246
+    {'pain_v_vic:R_CM'                 }           1.2235     0.18998     6.4403    71.998    1.1692e-08      0.84481       1.6022
+    {'pain_vic_v_cog:R_CM'             }         -0.19537     0.11787    -1.6575    71.998       0.10177     -0.43035     0.039602
+    {'R_CM:parcellation'               }        -0.067705    0.018524     -3.655        72    0.00048549     -0.10463    -0.030778
+    {'pain_v_vic:R_CM:parcellation'    }        0.0057174     0.03905    0.14641    72.001       0.88401    -0.072127     0.083562
+    {'pain_vic_v_cog:R_CM:parcellation'}        -0.096561    0.031125    -3.1024        72     0.0027421     -0.15861    -0.034514
+
+-----------------------------
+Laterodorsal_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate    SE          tStat     DF        pValue        Lower        Upper  
+    {'R_LD'                            }         1.0966       0.1107    9.9059        72    4.3976e-15      0.87589     1.3172
+    {'pain_v_vic:R_LD'                 }        0.95502      0.22541    4.2368        72     6.616e-05      0.50567     1.4044
+    {'pain_vic_v_cog:R_LD'             }        0.80036       0.1649    4.8536        72    6.8207e-06      0.47164     1.1291
+    {'R_LD:parcellation'               }        0.17346     0.074277    2.3353        72      0.022316     0.025393    0.32153
+    {'pain_v_vic:R_LD:parcellation'    }        0.39932      0.16475    2.4238    71.999      0.017871     0.070904    0.72774
+    {'pain_vic_v_cog:R_LD:parcellation'}        0.13013      0.10715    1.2145    72.001       0.22852    -0.083464    0.34373
+
+-----------------------------
+lateral_geniculate_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate    SE          tStat      DF        pValue        Lower        Upper   
+    {'R_LGN'                            }         0.95883     0.06695     14.322        72    9.1988e-23      0.82536      1.0923
+    {'pain_v_vic:R_LGN'                 }        -0.47205      0.1321    -3.5735        72    0.00063321     -0.73537    -0.20872
+    {'pain_vic_v_cog:R_LGN'             }           1.491     0.10338     14.423        72    6.2919e-23       1.2849      1.6971
+    {'R_LGN:parcellation'               }        0.002897    0.020775    0.13944        72       0.88949    -0.038518    0.044312
+    {'pain_v_vic:R_LGN:parcellation'    }        -0.05721    0.053111    -1.0772    71.999       0.28499     -0.16308    0.048664
+    {'pain_vic_v_cog:R_LGN:parcellation'}        0.068449    0.039915     1.7148        72      0.090674    -0.011121     0.14802
+
+-----------------------------
+Lateral_posterior_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat       DF        pValue        Lower        Upper   
+    {'R_LP'                            }          0.65465     0.10571      6.1931        72    3.2688e-08      0.44393     0.86538
+    {'pain_v_vic:R_LP'                 }          0.79963     0.16785      4.7638        72    9.5789e-06      0.46502      1.1342
+    {'pain_vic_v_cog:R_LP'             }           1.1706     0.16051      7.2932    71.999    3.1731e-10      0.85063      1.4906
+    {'R_LP:parcellation'               }         0.029047    0.043169     0.67288        72       0.50318    -0.057008      0.1151
+    {'pain_v_vic:R_LP:parcellation'    }        -0.097004    0.073792     -1.3146        72       0.19283     -0.24411    0.050098
+    {'pain_vic_v_cog:R_LP:parcellation'}        0.0040062    0.056369    0.071071        72       0.94354     -0.10836     0.11638
+
+-----------------------------
+Limitans_(suprageniculate)_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate    SE         tStat      DF        pValue        Lower        Upper    
+    {'R_L_SG'                            }          1.0927    0.10521     10.386    71.461    6.3528e-16      0.88291       1.3024
+    {'pain_v_vic:R_L_SG'                 }         -0.4249    0.25309    -1.6788    72.159       0.09751      -0.9294      0.07961
+    {'pain_vic_v_cog:R_L_SG'             }        -0.79868    0.16308    -4.8974    72.158    5.7552e-06      -1.1238     -0.47359
+    {'R_L_SG:parcellation'               }        -0.27331    0.10036    -2.7233    70.874     0.0081306     -0.47342    -0.073194
+    {'pain_v_vic:R_L_SG:parcellation'    }         0.28746    0.16827     1.7083    71.387       0.09192    -0.048027      0.62294
+    {'pain_vic_v_cog:R_L_SG:parcellation'}        -0.27671    0.10694    -2.5876        71      0.011713     -0.48994    -0.063483
+
+-----------------------------
+Mediodorsal_medial_parvocellular-like_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower        Upper     
+    {'R_MDl'                            }           2.3134     0.11959     19.343    72.001     3.095e-30        2.075        2.5518
+    {'pain_v_vic:R_MDl'                 }          0.17607     0.25082    0.70199     72.01       0.48495     -0.32392       0.67607
+    {'pain_vic_v_cog:R_MDl'             }           1.5066     0.15397      9.785    72.012    7.3277e-15       1.1997        1.8136
+    {'R_MDl:parcellation'               }        -0.089015    0.043176    -2.0617    72.001      0.042849     -0.17509    -0.0029453
+    {'pain_v_vic:R_MDl:parcellation'    }         0.025773    0.053152    0.48489        72       0.62923    -0.080184       0.13173
+    {'pain_vic_v_cog:R_MDl:parcellation'}        -0.098659    0.041131    -2.3986        72      0.019048     -0.18065     -0.016666
+
+-----------------------------
+Mediodorsal_medial_magnocellular-like_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate    SE          tStat      DF        pValue        Lower        Upper   
+    {'R_MDm'                            }           1.661     0.10182     16.314    72.003    6.8835e-26       1.4581       1.864
+    {'pain_v_vic:R_MDm'                 }         0.90729     0.23654     3.8356    72.021      0.000266      0.43575      1.3788
+    {'pain_vic_v_cog:R_MDm'             }         0.33803      0.1318     2.5647    72.008      0.012412     0.075287     0.60077
+    {'R_MDm:parcellation'               }        0.018697    0.015069     1.2407        72       0.21874    -0.011343    0.048736
+    {'pain_v_vic:R_MDm:parcellation'    }        0.026346    0.026723    0.98589        72       0.32749    -0.026925    0.079617
+    {'pain_vic_v_cog:R_MDm:parcellation'}         0.15198    0.027207      5.586        72    3.8886e-07     0.097743     0.20621
+
+-----------------------------
+medial_geniculate_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate    SE          tStat      DF    pValue        Lower       Upper   
+    {'R_MGN'                            }         0.94759    0.072644     13.044    72    1.2097e-20     0.80277      1.0924
+    {'pain_v_vic:R_MGN'                 }        -0.49179     0.16257    -3.0251    72     0.0034445    -0.81586    -0.16771
+    {'pain_vic_v_cog:R_MGN'             }         0.68064    0.099019     6.8738    72    1.8871e-09     0.48325     0.87803
+    {'R_MGN:parcellation'               }        -0.43905    0.037596    -11.678    72    2.7912e-18      -0.514    -0.36411
+    {'pain_v_vic:R_MGN:parcellation'    }         0.14546    0.066987     2.1715    72      0.033193    0.011923       0.279
+    {'pain_vic_v_cog:R_MGN:parcellation'}        -0.33331     0.05342    -6.2395    72    2.6971e-08    -0.43981    -0.22682
+
+-----------------------------
+Reuniens_(medial_ventral)_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                           Estimate    SE         tStat      DF        pValue        Lower        Upper  
+    {'R_MV_Re'                            }         0.82287     0.1185     6.9442    71.407    1.4502e-09      0.58661     1.0591
+    {'pain_v_vic:R_MV_Re'                 }         0.30499    0.26882     1.1346    73.256       0.26025     -0.23073    0.84072
+    {'pain_vic_v_cog:R_MV_Re'             }         0.28002    0.17321     1.6167    73.332       0.11024    -0.065156    0.62519
+    {'R_MV_Re:parcellation'               }         0.15076    0.10867     1.3873    66.052       0.17001    -0.066202    0.36771
+    {'pain_v_vic:R_MV_Re:parcellation'    }        0.032306    0.25281    0.12779    65.066       0.89871     -0.47258    0.53719
+    {'pain_vic_v_cog:R_MV_Re:parcellation'}          0.2895     0.1632     1.7739    65.407      0.080735    -0.036395     0.6154
+
+-----------------------------
+parafascicular_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat      DF        pValue        Lower       Upper    
+    {'R_Pf'                            }           1.6817     0.12352     13.615    72.134    1.2827e-21      1.4355        1.928
+    {'pain_v_vic:R_Pf'                 }           1.5274     0.25128     6.0785    71.595    5.3309e-08      1.0265       2.0284
+    {'pain_vic_v_cog:R_Pf'             }          0.72367     0.16707     4.3314    71.911    4.7203e-05     0.39061       1.0567
+    {'R_Pf:parcellation'               }        -0.086127    0.050568    -1.7032    66.384      0.093208    -0.18708     0.014824
+    {'pain_v_vic:R_Pf:parcellation'    }         -0.17916     0.11552    -1.5509    66.818       0.12566    -0.40976     0.051437
+    {'pain_vic_v_cog:R_Pf:parcellation'}         -0.16061    0.066193    -2.4264    66.172      0.017984    -0.29276    -0.028456
+
+-----------------------------
+Pulvinar_anterior_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate      SE          tStat       DF        pValue        Lower        Upper    
+    {'R_PuA'                            }             1.487    0.091362      16.276        72    7.8628e-26       1.3049       1.6692
+    {'pain_v_vic:R_PuA'                 }           0.24772     0.18104      1.3683    72.002       0.17547     -0.11318      0.60862
+    {'pain_vic_v_cog:R_PuA'             }            1.3489     0.13225        10.2        72    1.2728e-15       1.0852       1.6125
+    {'R_PuA:parcellation'               }         -0.087413    0.026713     -3.2722        72     0.0016401     -0.14067    -0.034161
+    {'pain_v_vic:R_PuA:parcellation'    }          0.012713    0.038076     0.33389        72       0.73943    -0.063189     0.088615
+    {'pain_vic_v_cog:R_PuA:parcellation'}        -0.0071083    0.039009    -0.18222        72       0.85592    -0.084871     0.070655
+
+-----------------------------
+Pulvinar_inferior_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat       DF        pValue        Lower       Upper    
+    {'R_PuI'                            }          0.74181    0.067795      10.942        72    5.7278e-17     0.60667      0.87696
+    {'pain_v_vic:R_PuI'                 }         -0.32138     0.17448     -1.8419    71.996      0.069612    -0.66921     0.026451
+    {'pain_vic_v_cog:R_PuI'             }          0.89195     0.10881      8.1974    71.998    6.5641e-12     0.67504       1.1089
+    {'R_PuI:parcellation'               }          0.11628    0.022656      5.1324        72    2.3362e-06    0.071114      0.16144
+    {'pain_v_vic:R_PuI:parcellation'    }         -0.16552    0.048783      -3.393        72     0.0011268    -0.26277    -0.068272
+    {'pain_vic_v_cog:R_PuI:parcellation'}        -0.025683    0.037283    -0.68887    71.999       0.49312    -0.10001     0.048639
+
+-----------------------------
+Pulvinar_lateral_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower        Upper  
+    {'R_PuL'                            }          0.78643    0.073996     10.628        72    2.1129e-16      0.63892    0.93394
+    {'pain_v_vic:R_PuL'                 }          0.47886     0.15142     3.1624    71.999     0.0022911        0.177    0.78072
+    {'pain_vic_v_cog:R_PuL'             }          0.90225     0.10513     8.5825    71.999    1.2532e-12      0.69268     1.1118
+    {'R_PuL:parcellation'               }          0.11029    0.027491     4.0117        72    0.00014577     0.055483    0.16509
+    {'pain_v_vic:R_PuL:parcellation'    }        0.0086152    0.053083     0.1623        72       0.87153    -0.097204    0.11443
+    {'pain_vic_v_cog:R_PuL:parcellation'}         0.021134    0.045574    0.46373        72       0.64424    -0.069717    0.11199
+
+-----------------------------
+Ventral_anterior_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                        Estimate     SE          tStat      DF        pValue        Lower       Upper     
+    {'R_VA'                            }           1.2168    0.089851     13.542        72    1.7609e-21      1.0377        1.3959
+    {'pain_v_vic:R_VA'                 }          0.80327      0.1962     4.0941    71.999    0.00010944     0.41215        1.1944
+    {'pain_vic_v_cog:R_VA'             }          0.84482     0.15104     5.5932        72    3.7789e-07     0.54372        1.1459
+    {'R_VA:parcellation'               }         -0.12992     0.03901    -3.3305        72     0.0013698    -0.20769     -0.052157
+    {'pain_v_vic:R_VA:parcellation'    }         -0.34316    0.065531    -5.2367        72    1.5549e-06     -0.4738      -0.21253
+    {'pain_vic_v_cog:R_VA:parcellation'}        -0.087114     0.04117     -2.116        72      0.037807    -0.16918    -0.0050433
+
+-----------------------------
+Ventral_anterior_magnocellular_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate     SE          tStat         DF        pValue        Lower       Upper  
+    {'R_VAmc'                            }           1.1903     0.10851         10.97    71.992    5.1011e-17     0.97404     1.4067
+    {'pain_v_vic:R_VAmc'                 }          0.14769     0.27523        0.5366    72.393       0.59319    -0.40092    0.69629
+    {'pain_vic_v_cog:R_VAmc'             }            1.051     0.19142        5.4908    72.638    5.5864e-07     0.66952     1.4326
+    {'R_VAmc:parcellation'               }         0.025273    0.083745       0.30178    65.153       0.76378    -0.14197    0.19251
+    {'pain_v_vic:R_VAmc:parcellation'    }        -0.001793     0.20728    -0.0086501     66.16       0.99312    -0.41563    0.41204
+    {'pain_vic_v_cog:R_VAmc:parcellation'}          0.30431     0.13139        2.3161    66.087      0.023662    0.041993    0.56663
+
+-----------------------------
+ventral_lateral_anterior_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower       Upper   
+    {'R_VLa'                            }            1.212    0.079002     15.341     72.14    2.0676e-24      1.0545      1.3695
+    {'pain_v_vic:R_VLa'                 }          0.60546      0.1558     3.8862     72.03    0.00022409     0.29489     0.91604
+    {'pain_vic_v_cog:R_VLa'             }            1.006     0.11272      8.925    72.134    2.8374e-13     0.78134      1.2307
+    {'R_VLa:parcellation'               }          0.12343    0.030634     4.0291    64.098      0.000151     0.06223     0.18462
+    {'pain_v_vic:R_VLa:parcellation'    }        -0.046779    0.050599    -0.9245    65.673       0.35861    -0.14781    0.054255
+    {'pain_vic_v_cog:R_VLa:parcellation'}          0.16867    0.041238     4.0902    64.859    0.00012137     0.08631     0.25103
+
+-----------------------------
+ventral_lateral_posterior_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                         Estimate     SE          tStat      DF        pValue        Lower       Upper    
+    {'R_VLp'                            }           1.3767    0.088734     15.515    72.006    1.1622e-24      1.1998       1.5536
+    {'pain_v_vic:R_VLp'                 }          0.49095     0.16775     2.9267    72.002     0.0045817     0.15655      0.82535
+    {'pain_vic_v_cog:R_VLp'             }           1.2374     0.13117     9.4336    71.985     3.278e-14      0.9759       1.4989
+    {'R_VLp:parcellation'               }          0.13625    0.022859     5.9603    69.385    9.4317e-08     0.09065      0.18185
+    {'pain_v_vic:R_VLp:parcellation'    }        -0.069843    0.040418     -1.728    68.928      0.088464    -0.15048      0.01079
+    {'pain_vic_v_cog:R_VLp:parcellation'}        -0.060801    0.031441    -1.9338    68.958      0.057239    -0.12352    0.0019221
+
+-----------------------------
+ventral_posterolateral_and_ventral_posteromedial_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                             Estimate     SE          tStat      DF        pValue        Lower        Upper    
+    {'R_VPL_VPM'                            }          0.49008    0.057517     8.5206    71.997    1.6356e-12      0.37542      0.60474
+    {'pain_v_vic:R_VPL_VPM'                 }          0.44012     0.13508     3.2583    71.991     0.0017117      0.17085      0.70939
+    {'pain_vic_v_cog:R_VPL_VPM'             }          0.19159    0.087242     2.1961    71.998       0.03131     0.017674       0.3655
+    {'R_VPL_VPM:parcellation'               }        -0.014595    0.012585    -1.1597        72       0.24998    -0.039683     0.010492
+    {'pain_v_vic:R_VPL_VPM:parcellation'    }        0.0092802    0.025946    0.35767        72       0.72164    -0.042442     0.061003
+    {'pain_vic_v_cog:R_VPL_VPM:parcellation'}         -0.06214    0.019593    -3.1715        72     0.0022292      -0.1012    -0.023081
+
+-----------------------------
+Pulvinar_medial_(medial_subdivision)_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate      SE          tStat       DF        pValue        Lower        Upper     
+    {'R_PuMm'                            }            1.1611     0.10326      11.245        72    1.6383e-17       0.9553         1.367
+    {'pain_v_vic:R_PuMm'                 }           0.44786     0.21198      2.1128        72       0.03809     0.025287       0.87044
+    {'pain_vic_v_cog:R_PuMm'             }         -0.087449     0.12442    -0.70284    71.999       0.48442     -0.33548       0.16058
+    {'R_PuMm:parcellation'               }        0.00043986     0.04252    0.010345        72       0.99177    -0.084321      0.085201
+    {'pain_v_vic:R_PuMm:parcellation'    }           -0.1095    0.055382     -1.9772        72      0.051846      -0.2199    0.00089974
+    {'pain_vic_v_cog:R_PuMm:parcellation'}          0.031158    0.047587     0.65476        72       0.51471    -0.063705       0.12602
+
+-----------------------------
+Pulvinar_medial_(lateral_subdivision)_(right)
+
+    FIXED EFFECT COEFFICIENTS: DFMETHOD = 'SATTERTHWAITE', ALPHA = 0.05
+
+    Name                                          Estimate     SE          tStat       DF        pValue        Lower        Upper   
+    {'R_PuMl'                            }          0.89458    0.064376      13.896    72.001    4.5654e-22      0.76625      1.0229
+    {'pain_v_vic:R_PuMl'                 }         -0.10556     0.13487    -0.78266    72.005       0.43639     -0.37441      0.1633
+    {'pain_vic_v_cog:R_PuMl'             }           1.0873    0.095745      11.356    72.002    1.0401e-17      0.89641      1.2781
+    {'R_PuMl:parcellation'               }         0.079411     0.01577      5.0357        72    3.3972e-06     0.047975     0.11085
+    {'pain_v_vic:R_PuMl:parcellation'    }        -0.044141     0.02786     -1.5844    72.001        0.1175    -0.099679    0.011398
+    {'pain_vic_v_cog:R_PuMl:parcellation'}        0.0074931    0.026001     0.28819        72       0.77403    -0.044338    0.059324
+
+-----------------------------
+</pre>
+<h2 id="3">post-hoc tests of main effects</h2>
+<p>The following plots show regions where the main effect of region was significantly different between individual and group parcellation. The three regions where contrast was most enhanced and most decreased are shown.</p>
+<pre class="codeinput">[~,I] = sort(cellfun(@(x1)(x1.tStat(4)), stats));
+I = [I(1:3); I(end-2:end)];
+<span class="keyword">for</span> i = 1:length(I)
+    this_ind = I(i);
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_ind}, 0.9);
+    sgtitle(sprintf(<span class="string">'%s (t=%0.2f, p = %0.3e)'</span>, strrep(thal_atlas.label_descriptions{this_ind},<span class="string">'_'</span>,<span class="string">' '</span>),<span class="keyword">...</span>
+        stats{this_ind}.tStat(4), stats{this_ind}.pValue(4)));
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      0.3472       0.13226     2.6251      0.010573    0.30724 
+    {'Col   2'}     0.76626      0.086505      8.858    3.8394e-13     1.0368 
+    {'Col   3'}      1.0707      0.084685     12.644    2.2204e-15     1.4798 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.60242       0.14975     4.0227     0.0001403    0.47083 
+    {'Col   2'}      1.1669      0.098692     11.824    2.2204e-15     1.3839 
+    {'Col   3'}       1.732       0.10509     16.481    2.2204e-15      1.929 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.98747       0.16067     6.1459    3.9733e-08    0.71932 
+    {'Col   2'}     0.49596      0.078462      6.321    1.9228e-08    0.73981 
+    {'Col   3'}      1.4224       0.10133     14.038    2.2204e-15      1.643 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7161 0.1378 0.1889 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.1208       0.17172     6.5266    8.1469e-09    0.76388 
+    {'Col   2'}     0.55518      0.075652     7.3386    2.6128e-10    0.85892 
+    {'Col   3'}      1.6143       0.10299     15.675    2.2204e-15     1.8346 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error       T           P         Cohens_d
+    ___________    __________    _________    _______    __________    ________
+
+    {'Col   1'}     0.078087      0.15848     0.49272       0.62371    0.057668
+    {'Col   2'}      0.76637     0.090068      8.5088    1.7201e-12     0.99588
+    {'Col   3'}       1.1424      0.11455      9.9727    3.3154e-15      1.1672
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.25907       0.15641     1.6563       0.10201    0.19386 
+    {'Col   2'}     0.86788        0.0858     10.115    2.2204e-15     1.1839 
+    {'Col   3'}      1.4367       0.10144     14.163    2.2204e-15     1.6576 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      0.3541       0.10742     3.2965     0.0015218    0.38583 
+    {'Col   2'}     0.28675      0.068788     4.1686    8.4254e-05    0.48789 
+    {'Col   3'}      1.1809      0.092054     12.828    2.2204e-15     1.5014 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.28819       0.10925     2.6379      0.010215    0.30875 
+    {'Col   2'}     0.13615      0.066222      2.056      0.043411    0.24063 
+    {'Col   3'}       1.051      0.094221     11.154    2.2204e-15     1.3055 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.2603       0.16201     7.7793    5.5155e-11    0.93651 
+    {'Col   2'}     0.82377      0.083066      9.917    7.6698e-15     1.1939 
+    {'Col   3'}       2.244       0.13137     17.081    2.2204e-15     2.0563 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.1489       0.16594     6.9237    1.5278e-09    0.81036 
+    {'Col   2'}     0.62302       0.08144     7.6501    6.8889e-11    0.89537 
+    {'Col   3'}      2.1537        0.1342     16.049    2.2204e-15     1.8784 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.0756       0.17141     6.2752    2.3259e-08    0.73445 
+    {'Col   2'}     0.52069      0.099789     5.2179    1.6736e-06    0.61071 
+    {'Col   3'}      2.5123       0.13064     19.231    2.2204e-15     2.2508 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7164 0.1378 0.1886 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.98011       0.16719     5.8623    1.2721e-07    0.68613 
+    {'Col   2'}     0.33782      0.097642     3.4598    0.00091227    0.40494 
+    {'Col   3'}      2.2959       0.12695     18.085    2.2204e-15     2.1167 
+
+</pre>
+<img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_01.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_02.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_03.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_04.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_05.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_06.png" alt=""> <h2 id="4">post-hoc tests of task contrasts</h2>
+<p>the following plots show regions where between task contrasts significantly differ between group and individual parcellations the two regions regions where between task contrasts are most improved and most degraded are plotted.</p>
+<pre class="codeinput">[~,I] = sort([cellfun(@(x1)(x1.tStat(5)), stats); cellfun(@(x1)(x1.tStat(6)), stats)]);
+I = [I(1:2); I(end-1:end)];
+<span class="keyword">for</span> i = 1:length(I)
+    this_roi_ind = I(i);
+    <span class="keyword">if</span> this_roi_ind &lt;= length(stats)
+        t = stats{this_roi_ind}.tStat(5);
+        p = stats{this_roi_ind}.pValue(5);
+        con = <span class="string">'pain vs. vic'</span>;
+    <span class="keyword">else</span>
+        this_roi_ind = this_roi_ind - length(stats);
+        t = stats{this_roi_ind}.tStat(6);
+        p = stats{this_roi_ind}.pValue(6);
+        con = <span class="string">'pain &amp; vic vs cog'</span>;
+    <span class="keyword">end</span>
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_roi_ind}, 0.9);
+    sgtitle(sprintf(<span class="string">'%s (%s: t=%0.2f, p = %0.3e)'</span>, strrep(thal_atlas.label_descriptions{this_roi_ind},<span class="string">'_'</span>,<span class="string">' '</span>),con,t,p));
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> fig = plot_post_hoc_contrast(tbl, atlas_obj, roi_label, border_prop)
+
+tbl_roi = tbl(tbl.(roi_label) == 1,:);
+ind_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 &amp; tbl_roi.parcellation &gt; 0);
+ind_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 &amp; tbl_roi.parcellation &gt; 0);
+ind_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog &gt; 0 &amp; tbl_roi.parcellation &gt; 0);
+
+grp_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 &amp; tbl_roi.parcellation &lt; 0);
+grp_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 &amp; tbl_roi.parcellation &lt; 0);
+grp_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog &gt; 0 &amp; tbl_roi.parcellation &lt; 0);
+
+roi = atlas2region(atlas_obj.threshold(0.2).select_atlas_subset({roi_label},<span class="string">'exact'</span>));
+[f,ax] = deal(cell(3,1));
+orientations = {<span class="string">'saggital'</span>,<span class="string">'axial'</span>,<span class="string">'coronal'</span>};
+<span class="keyword">for</span> i = 1:length(orientations)
+    ax{i} = roi.montage(<span class="string">'regioncenters'</span>,<span class="string">'nofigure'</span>,orientations{i});
+    f{i} = gcf;
+    set(f{i},<span class="string">'Tag'</span>,orientations{i})
+<span class="keyword">end</span>
+
+fig = figure;
+t0 = tiledlayout(1,3);
+t1 = tiledlayout(t0,2,2,<span class="string">'Padding'</span>,<span class="string">'compact'</span>,<span class="string">'TileSpacing'</span>,<span class="string">'compact'</span>);
+ax1 = nexttile(t1);
+copyobj(ax{1}.montage{1}.axis_handles.Children, ax1);
+colormap(<span class="string">'gray'</span>);
+axis <span class="string">square</span>
+axis <span class="string">off</span>;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  <span class="comment">% 3 x 2, 3 min  3 max mm coords</span>
+xl = xyzminmax(2, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     <span class="comment">% multiple of range from min to max coordinate</span>
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{1})
+
+ax2 = nexttile(t1);
+copyobj(ax{2}.montage{1}.axis_handles.Children, ax2);
+colormap(<span class="string">'gray'</span>);
+axis <span class="string">square</span>
+axis <span class="string">off</span>;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  <span class="comment">% 3 x 2, 3 min  3 max mm coords</span>
+xl = xyzminmax(1, :);
+yl = xyzminmax(2, :);
+myborder = border_prop * range(xl);     <span class="comment">% multiple of range from min to max coordinate</span>
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+
+close(f{2});
+
+ax3 = nexttile(t1); axis <span class="string">off</span>
+ax4 = nexttile(t1)
+copyobj(ax{3}.montage{1}.axis_handles.Children, ax4);
+colormap(<span class="string">'gray'</span>);
+axis <span class="string">square</span>
+axis <span class="string">off</span>;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  <span class="comment">% 3 x 2, 3 min  3 max mm coords</span>
+xl = xyzminmax(1, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     <span class="comment">% multiple of range from min to max coordinate</span>
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          <span class="comment">% border at least 10 mm</span>
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{3})
+
+axM = nexttile(t0)
+barplot_columns([ind_roi_pain, ind_roi_vic, ind_roi_cog],<span class="string">'nofig'</span>);
+title(<span class="string">'Individualized Atlas'</span>,<span class="string">'FontSize'</span>,14);
+ylabel(<span class="string">'ROI mean \beta'</span>);
+xlabel(<span class="string">'task'</span>);
+set(gca,<span class="string">'XTickLabels'</span>,{<span class="string">'Pain'</span>,<span class="string">'Vic'</span>,<span class="string">'Cog'</span>})
+grid <span class="string">on</span>;
+
+axR = nexttile(t0)
+barplot_columns([grp_roi_pain, grp_roi_vic, grp_roi_cog],<span class="string">'nofig'</span>);
+title(<span class="string">'Group Mean (N=73) Atlas'</span>,<span class="string">'FontSize'</span>,14)
+ylabel(<span class="string">'ROI mean \beta'</span>);
+xlabel(<span class="string">'task'</span>);
+set(gca,<span class="string">'XTickLabels'</span>,{<span class="string">'Pain'</span>,<span class="string">'Vic'</span>,<span class="string">'Cog'</span>})
+grid <span class="string">on</span>;
+
+yl1 = get(axM,<span class="string">'YLim'</span>);
+yl2 = get(axR,<span class="string">'YLim'</span>);
+yl = [min(yl1(1),yl2(1)), max(yl1(2),yl2(2))];
+set(axM,<span class="string">'YLim'</span>,yl);
+set(axR,<span class="string">'YLim'</span>,yl);
+
+pos = get(gcf,<span class="string">'Position'</span>);
+set(gcf,<span class="string">'Position'</span>,[pos(1:2),1000,480])
+sgtitle(strrep(roi_label,<span class="string">'_'</span>,<span class="string">' '</span>));
+
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> [stats, mdl] = fit_single_region_model(tbl,region_labels)
+    [mdl_str1, mdl_str2, mdl_str3] = deal([]);
+    <span class="keyword">for</span> i = 1:length(region_labels)
+        mdl_str1 = [mdl_str1, sprintf(<span class="string">' + %s'</span>,region_labels{i})];
+        mdl_str2 = [mdl_str2, sprintf(<span class="string">' + pain_v_vic:%s'</span>,region_labels{i})];
+        mdl_str3 = [mdl_str3, sprintf(<span class="string">' + pain_vic_v_cog:%s'</span>,region_labels{i})];
+    <span class="keyword">end</span>
+
+    [mdl_str4, mdl_str5, mdl_str6] = deal([]);
+    <span class="keyword">for</span> i = 1:length(region_labels)
+        mdl_str4 = [mdl_str4, sprintf(<span class="string">' + parcellation:%s'</span>,region_labels{i})];
+        mdl_str5 = [mdl_str5, sprintf(<span class="string">' + parcellation:pain_v_vic:%s'</span>,region_labels{i})];
+        mdl_str6 = [mdl_str6, sprintf(<span class="string">' + parcellation:pain_vic_v_cog:%s'</span>,region_labels{i})];
+    <span class="keyword">end</span>
+    mdl_str = [mdl_str1, mdl_str2, mdl_str3, mdl_str4, mdl_str5, mdl_str6];
+    mdl_str = mdl_str(3:end);
+
+    new_tbl = cell(1,length(region_labels));
+    <span class="keyword">for</span> i = 1:length(region_labels)
+        new_tbl{i} = tbl(tbl.(region_labels{i}) == 1,:);
+    <span class="keyword">end</span>
+    tbl = cat(1,new_tbl{:});
+
+    mdl = fitlme(tbl,sprintf(<span class="string">'BOLD ~ %s -1 + (%s -1 | subject)'</span>,mdl_str,mdl_str),<span class="string">'CovariancePattern'</span>,<span class="string">'full'</span>,<span class="string">'FitMethod'</span>,<span class="string">'REML'</span>);
+    [~,~,stats] = fixedEffects(mdl,<span class="string">'dfmethod'</span>,<span class="string">'satterthwaite'</span>);
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      0.3472       0.13226     2.6251      0.010573    0.30724 
+    {'Col   2'}     0.76626      0.086505      8.858    3.8394e-13     1.0368 
+    {'Col   3'}      1.0707      0.084685     12.644    2.2204e-15     1.4798 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.60242       0.14975     4.0227     0.0001403    0.47083 
+    {'Col   2'}      1.1669      0.098692     11.824    2.2204e-15     1.3839 
+    {'Col   3'}       1.732       0.10509     16.481    2.2204e-15      1.929 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.2006       0.17489      6.865    1.9589e-09    0.80349 
+    {'Col   2'}      0.5689      0.093585      6.079    5.2357e-08    0.71149 
+    {'Col   3'}       1.686       0.13942     12.093    2.2204e-15     1.4153 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.4731       0.18384     8.0129    1.4507e-11    0.93784 
+    {'Col   2'}     0.49821      0.088178       5.65    3.0072e-07    0.66128 
+    {'Col   3'}       1.874       0.14464     12.956    2.2204e-15     1.5164 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6361 0.0606 0.3051 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.44117       0.14454     3.0523       0.00318    0.35725 
+    {'Col   2'}     0.53088      0.072149     7.3581     2.404e-10     0.8612 
+    {'Col   3'}      1.8695       0.11099     16.843    2.2204e-15     1.9714 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7140 0.1378 0.1910 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}     0.53854       0.13779     3.9083    0.00020788    0.45744 
+    {'Col   2'}     0.46798      0.068834     6.7987    2.5928e-09    0.79573 
+    {'Col   3'}      1.7412       0.10221     17.035    2.2204e-15     1.9938 
+
+Keeping probability_map values above 0.20
+Compressed NIfTI files are not supported.
+Warning: Unknown input string option:saggital 
+Compressed NIfTI files are not supported.
+Compressed NIfTI files are not supported.
+
+ax4 = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.6324 0.0606 0.3034 0.4105]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+
+axM = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.4117 0.1100 0.2117 0.8150]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      1.9926       0.21015     9.4818    2.6639e-14     1.1098 
+    {'Col   2'}      1.0721       0.11222     9.5537    1.9618e-14     1.1182 
+    {'Col   3'}      1.9464       0.12955     15.024    2.2204e-15     1.7584 
+
+
+axR = 
+
+  Axes with properties:
+
+             XLim: [0 1]
+             YLim: [0 1]
+           XScale: 'linear'
+           YScale: 'linear'
+    GridLineStyle: '-'
+         Position: [0.7192 0.1378 0.1858 0.7733]
+            Units: 'normalized'
+
+  Use GET to show all properties
+
+Column   1:	Column   2:	Column   3:	
+---------------------------------------------
+Tests of column means against zero
+---------------------------------------------
+       Name        Mean_Value    Std_Error      T           P         Cohens_d
+    ___________    __________    _________    ______    __________    ________
+
+    {'Col   1'}      2.0114       0.20389      9.865    5.2286e-15     1.1546 
+    {'Col   2'}      1.1173       0.10976      10.18    2.2204e-15     1.1914 
+    {'Col   3'}      1.8264       0.12215     14.951    2.2204e-15     1.7499 
+
+</pre>
+<img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_07.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_08.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_09.png" alt=""> <img vspace="5" hspace="5" src="subnuclear_parcellation_test_2_10.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+addpath(genpath('~/.matlab/canlab/Neuroimaging_Pattern_Masks'));
+addpath(genpath('~/.matlab/canlab/CanlabCore'));
+addpath('~/.matlab/spm/spm12');
+
+% load data
+indAtlPath = '/home/bogdan/MyDocuments/canlab/atlases/results/thalamus/spacetop';
+
+% the following are "simple" contrasts from heejungs first level designs
+% for spacetop. The files were obtained from discovery by concatenating
+% contrasts from 
+% /dartfs-hpc/rc/lab/C/CANlab/labdata/projects/bogdan_atlas/stats/spacetop
+% for subjects listed in
+% Atlases_and_parcellations/2018_Iglesias_thalamic_HCP278_reconstruction/src/spacetop_participants.csv
+pain = fmri_data('/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0013.nii.gz');
+vic = fmri_data('/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0014.nii.gz');
+cog = fmri_data('/home/bogdan/MyDocuments/canlab/atlases/sandbox/thalamic_seg_demo/con_0015.nii.gz');
+sid = readtable(which('spacetop_participants.csv'),'ReadVariableNames',false);
+
+thal_atlas = load_atlas('iglesias_thal_fmriprep20').threshold(0.2);
+
+% replace thalamic atlas probabilities with spacetop specific ones
+spacetop76 = fmri_data(which('spacetop76b.ThalamicNuclei.v13.T1DWI.MNI152NLin2009cAsym.nii.gz'));
+has_contrast = ~ismember(sid.Var1,{'sub-0017','sub-0063','sub-0075'});
+spacetop73 = spacetop76.get_wh_image(find(has_contrast));
+sid = sid(has_contrast,:);
+    
+n_regions = length(unique(spacetop73.dat)) - 1;
+uniq_rois = unique(spacetop73.dat);
+uniq_rois(uniq_rois == 0) = [];
+
+pmap = zeros(size(spacetop73.dat,1), n_regions);
+for i = 1:n_regions
+    this_roi = uniq_rois(i);
+    this_mask = (spacetop73.dat == this_roi);
+    pmap(:,i) = mean(this_mask,2);
+end
+
+thal_atlas.probability_maps = pmap;
+thal_atlas = thal_atlas.probability_maps_to_region_index;
+
+% clean up the new atlas to get rid of some stray labels in brainstem
+mask = fmri_mask_image(thal_atlas.threshold(3/76)).replace_empty();
+mask.dat = iimg_smooth_3d(mask.dat,mask.volInfo,3);
+thal_atlas = thal_atlas.apply_mask(mask);
+
+% threshold for a more representative atlas
+thal_atlas = thal_atlas.threshold(0.2);
+
+% extract mean ROI contrast based on group atlas
+thal_atlas = thal_atlas.resample_space(pain);
+pain_mean_grpAtl = thal_atlas.extract_data(pain);
+vic_mean_grpAtl = thal_atlas.extract_data(vic);
+cog_mean_grpAtl = thal_atlas.extract_data(cog);
+
+% extract mean ROI contrast based on individual atlases
+indAtl = spacetop73;
+
+fsind = [8103:8106,8108:8113,8115,8116,8118,8120:8122,8126:8129,8133,8135,8136,8203:8206,8208:8213,8215,8216,8218,8220:8222,8226:8229,8233,8235,8236];
+[pain_mean_indAtl, vic_mean_indAtl, cog_mean_indAtl] = deal(nan(height(sid),length(thal_atlas.labels)));
+
+parfor i = 1:size(spacetop73.dat,2)
+    this_atlas = indAtl.get_wh_image(i);
+    this_atlas = this_atlas.resample_space(pain.get_wh_image(i),'nearest');
+    
+    % identify which regions are present (some may be missing)
+    this_atlas_regions = 1:46;
+    for ind = 1:length(fsind)
+        if length(this_atlas.dat(this_atlas.dat == fsind(ind))) == 0
+            this_atlas_regions(ind) = [];
+        end
+    end
+    this_atlas = atlas(this_atlas,...
+        'labels', thal_atlas.labels(this_atlas_regions));
+    this_atlas = this_atlas.apply_mask(mask);
+    this_atlas = this_atlas.check_properties('compress_index');
+
+    % extract data and assign to indices corresponding to regions we have
+    [this_pain_mean_indAtl, this_vic_mean_indAtl, this_cog_mean_indAtl] = deal(nan(1,length(thal_atlas.labels)));
+    this_pain_mean_indAtl(this_atlas_regions) = this_atlas.extract_data(pain.get_wh_image(i));
+    this_vic_mean_indAtl(this_atlas_regions) = this_atlas.extract_data(vic.get_wh_image(i));
+    this_cog_mean_indAtl(this_atlas_regions) = this_atlas.extract_data(cog.get_wh_image(i));
+
+    % the above operation can't be performed directly on output vars in a
+    % parfor loop, so now we assign results to our put vars.
+    pain_mean_indAtl(i,:) = this_pain_mean_indAtl;
+    vic_mean_indAtl(i,:) = this_vic_mean_indAtl;
+    cog_mean_indAtl(i,:) = this_cog_mean_indAtl;
+end
+
+%% stats
+
+% make long form table
+% stack regions
+% subjects nested within regions
+subjects = repmat((1:size(pain_mean_grpAtl,1))',1,size(pain_mean_grpAtl,2));
+% dummy code regions
+regions = {};
+for i = 1:size(pain_mean_grpAtl,2)
+    regions{i} = zeros(size(pain_mean_grpAtl,1), size(pain_mean_grpAtl,2));
+    regions{i}(:,i) = 1;
+end
+
+pain_grpAtl_vert = reshape(pain_mean_grpAtl,prod(size(pain_mean_grpAtl)),1);
+vic_grpAtl_vert = reshape(vic_mean_grpAtl,prod(size(vic_mean_grpAtl)),1);
+cog_grpAtl_vert = reshape(cog_mean_grpAtl,prod(size(cog_mean_grpAtl)),1);
+
+pain_indAtl_vert = reshape(pain_mean_indAtl,prod(size(pain_mean_indAtl)),1);
+vic_indAtl_vert = reshape(vic_mean_indAtl,prod(size(vic_mean_indAtl)),1);
+cog_indAtl_vert = reshape(cog_mean_indAtl,prod(size(cog_mean_indAtl)),1);
+
+regions_vert = cellfun(@(r)reshape(r,prod(size(r)),1), regions, 'UniformOutput',false);
+subjects_vert = reshape(subjects,prod(size(subjects)),1);
+
+% stack tasks
+% subjects nested within regions nested within tasks
+indAtl_vert = [pain_indAtl_vert; vic_indAtl_vert; cog_indAtl_vert];
+grpAtl_vert = [pain_grpAtl_vert; vic_grpAtl_vert; cog_grpAtl_vert];
+pain_v_vic = reshape(repmat([0.5,-0.5,0],size(pain_indAtl_vert,1),1),3*size(pain_indAtl_vert,1),1);
+pain_vic_v_cog = reshape(repmat([-1/3,-1/3,2/3],size(pain_indAtl_vert,1),1),3*size(pain_indAtl_vert,1),1);
+regions_vert3 = cellfun(@(r)repmat(r,3,1), regions_vert, 'UniformOutput',false);
+subjects_vert3 = repmat(subjects_vert,3,1);
+
+% stack individ and group parcellations
+% subjects nested within regions nested within tasks
+individ_parcellation = 0.5*ones(size(indAtl_vert));
+group_parcellation = -0.5*ones(size(grpAtl_vert));
+
+dataArr = [double([indAtl_vert; grpAtl_vert]),...
+    double([pain_v_vic; pain_v_vic]),...
+    double([pain_vic_v_cog; pain_vic_v_cog]),...
+    [cat(2,regions_vert3{:}); cat(2,regions_vert3{:})],...
+    double([subjects_vert3; subjects_vert3]),...
+    double([individ_parcellation; group_parcellation])];
+tbl = array2table(dataArr, ...
+    'VariableNames', ...
+    ['BOLD','pain_v_vic','pain_vic_v_cog',thal_atlas.labels,'subject','parcellation']);
+
+[stats, mdl] = deal(cell(num_regions(thal_atlas),1));
+parfor i = 1:num_regions(thal_atlas)
+    [stats{i}, mdl{i}] = fit_single_region_model(tbl,thal_atlas.labels(i));
+end
+
+for i = 1:length(stats)
+    disp(thal_atlas.label_descriptions{i});
+    disp(stats{i});
+    disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-');
+end
+
+%% post-hoc tests of main effects
+% The following plots show regions where the main effect of region was
+% significantly different between individual and group parcellation. The
+% three regions where contrast was most enhanced and most decreased are
+% shown.
+
+[~,I] = sort(cellfun(@(x1)(x1.tStat(4)), stats));
+I = [I(1:3); I(end-2:end)];
+for i = 1:length(I)
+    this_ind = I(i);
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_ind}, 0.9);
+    sgtitle(sprintf('%s (t=%0.2f, p = %0.3e)', strrep(thal_atlas.label_descriptions{this_ind},'_',' '),...
+        stats{this_ind}.tStat(4), stats{this_ind}.pValue(4)));
+end
+
+%% post-hoc tests of task contrasts
+% the following plots show regions where between task contrasts
+% significantly differ between group and individual parcellations
+% the two regions regions where between task contrasts are most improved
+% and most degraded are plotted.
+
+[~,I] = sort([cellfun(@(x1)(x1.tStat(5)), stats); cellfun(@(x1)(x1.tStat(6)), stats)]);
+I = [I(1:2); I(end-1:end)];
+for i = 1:length(I)
+    this_roi_ind = I(i);
+    if this_roi_ind <= length(stats)
+        t = stats{this_roi_ind}.tStat(5);
+        p = stats{this_roi_ind}.pValue(5);
+        con = 'pain vs. vic';
+    else
+        this_roi_ind = this_roi_ind - length(stats);
+        t = stats{this_roi_ind}.tStat(6);
+        p = stats{this_roi_ind}.pValue(6);
+        con = 'pain & vic vs cog';
+    end
+    plot_post_hoc_contrast(tbl,thal_atlas,thal_atlas.labels{this_roi_ind}, 0.9);
+    sgtitle(sprintf('%s (%s: t=%0.2f, p = %0.3e)', strrep(thal_atlas.label_descriptions{this_roi_ind},'_',' '),con,t,p));
+end
+
+function fig = plot_post_hoc_contrast(tbl, atlas_obj, roi_label, border_prop)
+
+tbl_roi = tbl(tbl.(roi_label) == 1,:);
+ind_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 & tbl_roi.parcellation > 0);
+ind_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 & tbl_roi.parcellation > 0);
+ind_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog > 0 & tbl_roi.parcellation > 0);
+
+grp_roi_pain = tbl_roi.BOLD(tbl_roi.pain_v_vic == 0.5 & tbl_roi.parcellation < 0);
+grp_roi_vic = tbl_roi.BOLD(tbl_roi.pain_v_vic == -0.5 & tbl_roi.parcellation < 0);
+grp_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog > 0 & tbl_roi.parcellation < 0);
+
+roi = atlas2region(atlas_obj.threshold(0.2).select_atlas_subset({roi_label},'exact'));
+[f,ax] = deal(cell(3,1));
+orientations = {'saggital','axial','coronal'};
+for i = 1:length(orientations)
+    ax{i} = roi.montage('regioncenters','nofigure',orientations{i});
+    f{i} = gcf;
+    set(f{i},'Tag',orientations{i})
+end
+
+fig = figure;
+t0 = tiledlayout(1,3);
+t1 = tiledlayout(t0,2,2,'Padding','compact','TileSpacing','compact');
+ax1 = nexttile(t1);
+copyobj(ax{1}.montage{1}.axis_handles.Children, ax1);
+colormap('gray');
+axis square
+axis off;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  % 3 x 2, 3 min  3 max mm coords
+xl = xyzminmax(2, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     % multiple of range from min to max coordinate
+myborder = max([myborder 20]);          % border at least 10 mm
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          % border at least 10 mm
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{1})
+
+ax2 = nexttile(t1);
+copyobj(ax{2}.montage{1}.axis_handles.Children, ax2);
+colormap('gray');
+axis square
+axis off;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  % 3 x 2, 3 min  3 max mm coords
+xl = xyzminmax(1, :);
+yl = xyzminmax(2, :);
+myborder = border_prop * range(xl);     % multiple of range from min to max coordinate
+myborder = max([myborder 20]);          % border at least 10 mm
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          % border at least 10 mm
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+
+close(f{2});
+
+ax3 = nexttile(t1); axis off
+ax4 = nexttile(t1)
+copyobj(ax{3}.montage{1}.axis_handles.Children, ax4);
+colormap('gray');
+axis square
+axis off;
+
+xyzminmax = [min(roi.XYZmm, [], 2) max(roi.XYZmm, [], 2)];  % 3 x 2, 3 min  3 max mm coords
+xl = xyzminmax(1, :);
+yl = xyzminmax(3, :);
+myborder = border_prop * range(xl);     % multiple of range from min to max coordinate
+myborder = max([myborder 20]);          % border at least 10 mm
+xl(1) = xl(1) - myborder;
+xl(2) = xl(2) + myborder;
+myborder = border_prop * range(yl);
+myborder = max([myborder 20]);          % border at least 10 mm
+yl(1) = yl(1) - myborder;
+yl(2) = yl(2) + myborder;
+xlim(xl);
+ylim(yl);
+close(f{3})
+
+axM = nexttile(t0)
+barplot_columns([ind_roi_pain, ind_roi_vic, ind_roi_cog],'nofig');
+title('Individualized Atlas','FontSize',14);
+ylabel('ROI mean \beta');
+xlabel('task');
+set(gca,'XTickLabels',{'Pain','Vic','Cog'})
+grid on;
+
+axR = nexttile(t0)
+barplot_columns([grp_roi_pain, grp_roi_vic, grp_roi_cog],'nofig');
+title('Group Mean (N=73) Atlas','FontSize',14)
+ylabel('ROI mean \beta');
+xlabel('task');
+set(gca,'XTickLabels',{'Pain','Vic','Cog'})
+grid on;
+
+yl1 = get(axM,'YLim');
+yl2 = get(axR,'YLim');
+yl = [min(yl1(1),yl2(1)), max(yl1(2),yl2(2))];
+set(axM,'YLim',yl);
+set(axR,'YLim',yl);
+
+pos = get(gcf,'Position');
+set(gcf,'Position',[pos(1:2),1000,480])
+sgtitle(strrep(roi_label,'_',' '));
+
+end
+
+function [stats, mdl] = fit_single_region_model(tbl,region_labels)
+    [mdl_str1, mdl_str2, mdl_str3] = deal([]);
+    for i = 1:length(region_labels)
+        mdl_str1 = [mdl_str1, sprintf(' + %s',region_labels{i})];
+        mdl_str2 = [mdl_str2, sprintf(' + pain_v_vic:%s',region_labels{i})];
+        mdl_str3 = [mdl_str3, sprintf(' + pain_vic_v_cog:%s',region_labels{i})];
+    end
+
+    [mdl_str4, mdl_str5, mdl_str6] = deal([]);
+    for i = 1:length(region_labels)
+        mdl_str4 = [mdl_str4, sprintf(' + parcellation:%s',region_labels{i})];
+        mdl_str5 = [mdl_str5, sprintf(' + parcellation:pain_v_vic:%s',region_labels{i})];
+        mdl_str6 = [mdl_str6, sprintf(' + parcellation:pain_vic_v_cog:%s',region_labels{i})];
+    end
+    mdl_str = [mdl_str1, mdl_str2, mdl_str3, mdl_str4, mdl_str5, mdl_str6];
+    mdl_str = mdl_str(3:end);
+
+    new_tbl = cell(1,length(region_labels));
+    for i = 1:length(region_labels)
+        new_tbl{i} = tbl(tbl.(region_labels{i}) == 1,:);
+    end
+    tbl = cat(1,new_tbl{:});
+
+    mdl = fitlme(tbl,sprintf('BOLD ~ %s -1 + (%s -1 | subject)',mdl_str,mdl_str),'CovariancePattern','full','FitMethod','REML');
+    [~,~,stats] = fixedEffects(mdl,'dfmethod','satterthwaite');
+end
+##### SOURCE END #####
+-->
+</body>
+</html>

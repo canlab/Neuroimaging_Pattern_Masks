@@ -84,7 +84,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
         end
 
         %% License prompt
-        fid = fopen([this_dir.folder, '/Copyright.txt'],'r');
+        fid = fopen(fullfile(this_dir.folder, 'Copyright.txt'),'r');
         disp(fscanf(fid,'%c'));
         fclose(fid);
         
@@ -101,9 +101,9 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
         fprintf('Extracting file to %s\n',this_dir.folder)
         unzip(outfile,this_dir.folder);
         delete(outfile);
-        rmdir([this_dir.folder, '/BrainstemNavigator/0.9/1a.BrainstemNucleiAtlas_IIT'],'s')
-        rmdir([this_dir.folder, '/BrainstemNavigator/0.9/1b.DiencephalicNucleiAtlas_IIT'],'s')
-        rmdir([this_dir.folder, '/BrainstemNavigator/0.9/1c.Templates_IIT'],'s')
+        rmdir(fullfile(this_dir.folder, 'BrainstemNavigator','0.9','1a.BrainstemNucleiAtlas_IIT'),'s');
+        rmdir(fullfile(this_dir.folder, 'BrainstemNavigator','0.9','1b.DiencephalicNucleiAtlas_IIT'),'s');
+        rmdir(fullfile(this_dir.folder, 'BrainstemNavigator','0.9','1c.Templates_IIT'),'s');
 
         areaFile = get_area_file(labels, labels_2, this_dir);
     end
@@ -121,7 +121,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
     area_path = cell(length(areaFile),1);
     for i=1:length(areaFile)
         this_file = areaFile{i};
-        area_data{i} = fmri_data(sprintf('%s/%s',this_file.folder, this_file.name), 'noverbose');
+        area_data{i} = fmri_data(fullfile(this_file.folder, this_file.name), 'noverbose');
     end
     original_parcel = cat(area_data{:});
 
@@ -219,6 +219,11 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
 
     bianciaAtlas.labels = labels;
 
+    for i = 1:length(labels_2), labels_2{i} = regexprep(labels_2{i},'(.*)_l$','L_$1'); end
+    for i = 1:length(labels_2), labels_2{i} = regexprep(labels_2{i},'(.*)_r$','R_$1'); end
+
+    bianciaAtlas.labels_2 = labels_2;
+
     % add b labels to raphe
     raphe_ind = contains(bianciaAtlas.label_descriptions,'pallidus');
     bianciaAtlas.labels{raphe_ind}(end+1:end+3) = '_B1';
@@ -273,12 +278,12 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
     end
 
     savename = sprintf('%s_atlas_object.mat', atlas_name);
-    save([this_dir.folder, '/' savename], 'bianciaAtlas');
+    save(fullfile(this_dir.folder, savename), 'bianciaAtlas');
     
     % we can't upload the mat file to github due to licensing issues, but
     % we can upload a timestamp that will flag out of date versions and
     % cause other uesrs to recreate the atlas when appropriate.
-    fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, bianciaAtlas.atlas_name), 'w+');
+    fid = fopen(fullfile(this_dir.folder, sprintf('%s_atlas_object.latest',bianciaAtlas.atlas_name)), 'w+');
     fprintf(fid,'%s',hash);
     fclose(fid);
 end
@@ -296,11 +301,15 @@ function areaFile = get_area_file(labels, labels_2, parentDir)
         end
         switch labels_2{i}
             case 'Brainstem'
-                areaFile{i} = dir([parentDir.folder, '/BrainstemNavigator/0.9/2a.BrainstemNucleiAtlas_MNI/labels_probabilistic/', ...
-                    areaName{i}, '.nii.gz']);
+                areaFile{i} = dir(fullfile(parentDir.folder, 'BrainstemNavigator','0.9','2a.BrainstemNucleiAtlas_MNI','labels_probabilistic', ...
+                    [areaName{i}, '.nii.gz']));
             case 'Diencephalic'
-                areaFile{i} = dir([parentDir.folder, '/BrainstemNavigator/0.9/2b.DiencephalicNucleiAtlas_MNI/labels_probabilistic/', ...
-                    areaName{i}, '.nii.gz']);
+                areaFile{i} = dir(fullfile(parentDir.folder, 'BrainstemNavigator','0.9','2b.DiencephalicNucleiAtlas_MNI','labels_probabilistic', ...
+                    [areaName{i}, '.nii.gz']));
+        end
+        if isempty(areaFile{i}) && ~isempty(which([areaName{i}, '.nii.gz']))
+            areaFile{i} = dir(which([areaName{i}, '.nii.gz']));
+            warning('Could not find %s in expected location. Instead, will use %s.', areaName{i}, fullfile(areaFile{i}.folder, areaFile{i}.name));
         end
     end
 end

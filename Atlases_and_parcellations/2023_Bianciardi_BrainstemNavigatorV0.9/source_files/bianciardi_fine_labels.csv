@@ -1,42 +1,42 @@
-left,right,full_label,Structure,Ref,
-CLi_RLi,,Caudal-rostral linear raphe,Brainstem,2021,2018
-CnF_l,CnF_r,Cuneiform nucleus,Brainstem,2018,
-DR,,Dorsal raphe,Brainstem,2015,
-IC_l ,IC_r,Inferior colliculus,Brainstem,2019,
-iMRtl_l,iMRtl_r,Inferior medullary reticular formation (lateral part),Brainstem,2022,
-iMRtm_l,iMRtm_r,Inferior medullary reticular formation (medial part),Brainstem,2022,
-ION_l,ION_r,Inferior olivary nucleus,Brainstem,2015,
-isRt_l,isRt_r,Isthmic reticular formation,Brainstem,2021,
-LC_l,LC_r,Locus coeruleus,Brainstem,2022,
-LDTg_CGPn_l,LDTg_CGPn_r,Laterodorsal tegmental nucleus - central gray of the rhomboencephalon,Brainstem,2022,
-LPB_l,LPB_r,Lateral parabrachial nucleus,Brainstem,2020,
-MiTg_PBG_l,MiTg_PBG_r,Microcellular tegmental nucleus – prabigeminal nucleus,Brainstem,2021,
-MnR,,Median raphe,Brainstem,2015,
-MPB_l,MPB_r,Medial parabrachial nucleus,Brainstem,2020,
-mRta_l,mRta_r,Mesencephalic reticular formation (anterior part),Brainstem,2021,
-mRtd_l,mRtd_r,Mesencephalic reticular formation (dorsal part),Brainstem,2021,
-mRtl_l,mRtl_r,Mesencephalic reticular formation (lateral part),Brainstem,2021,
-PAG,,Periaqueductal gray,Brainstem,2015,
-PCRtA_l,PCRtA_r,Parvicellular reticular nucleus Alpha part,Brainstem,2022,
-PMnR,,Paramedian nucleus,Brainstem,2018,
-PnO_PnC_l,PnO_PnC_r,"Pontine reticular nucleus, oral and caudal parts (pontis oralis and caudalis)",Brainstem,2022,2018
-PTg_l,PTg_r,Pedunculotegmental nucleus (also called Pedunculopontine nucleus),Brainstem,2018,
-RMg,,Raphe magnus,Brainstem,2015,
-RN1_l,RN1_r,Red nucleus (subregion 1),Brainstem,2015,
-RN2_l,RN2_r,Red nucleus (subregion 2),Brainstem,2015,
-ROb,,Raphe obscurus,Brainstem,2022,
-RPa,,Raphe pallidus,Brainstem,2022,
-SC_l,SC_r,Superior colliculus,Brainstem,2019,
-sMRtl_l,sMRtl_r,Superior medullary reticular formation (lateral part),Brainstem,2022,
-sMRtm_l,sMRtm_r,Superior medullary reticular formation (medial part),Brainstem,2022,
-SN1_l,SN1_r,"Substantia nigra (subregion 1, compatible with reticulata)",Brainstem,2015,
-SN2_l,SN2_r,"Substantia nigra (subregion 2, compatible with compacta)",Brainstem,2015,
-SOC_l,SOC_r,Superior olivary complex,Brainstem,2019,
-SubC_l,SubC_r,Subcoeruleus,Brainstem,2022,
-Ve_l,Ve_r,Vestibular nuclei complex,Brainstem,2020,
-VSM_l,VSM_r,Viscero-sensory-motor nuclei complex,Brainstem,2020,
-VTA_PBP_l,VTA_PBP_r,Ventral tegmental area – parabrachial pigmented nucleus complex,Brainstem,2021,
-LG_l,LG_r,Lateral geniculate nucleus,Diencephalic,2019,
-MG_l,MG_r,Medial geniculate nucleus,Diencephalic,2019,
-STh1_l,STh1_r,Subthalamic nucleus (subregion 1),Diencephalic,2015,
-STh2_l,STh2_r,Subthalamic nucleus (subregion 2),Diencephalic,2015,
+left,right,full_label,Structure,Ref
+CLi_RLi,,Caudal-rostral linear raphe,Brainstem,2021
+CnF_l,CnF_r,Cuneiform nucleus,Brainstem,2018
+DR,,Dorsal raphe,Brainstem,2015
+IC_l,IC_r,Inferior colliculus,Brainstem,2019
+iMRtl_l,iMRtl_r,Inferior medullary reticular formation (lateral part),Brainstem,2022
+iMRtm_l,iMRtm_r,Inferior medullary reticular formation (medial part),Brainstem,2022
+ION_l,ION_r,Inferior olivary nucleus,Brainstem,2015
+isRt_l,isRt_r,Isthmic reticular formation,Brainstem,2021
+LC_l,LC_r,Locus coeruleus,Brainstem,2022
+LDTg_CGPn_l,LDTg_CGPn_r,Laterodorsal tegmental nucleus - central gray of the rhomboencephalon,Brainstem,2022
+LPB_l,LPB_r,Lateral parabrachial nucleus,Brainstem,2020
+MiTg_PBG_l,MiTg_PBG_r,Microcellular tegmental nucleus – prabigeminal nucleus,Brainstem,2021
+MnR,,Median raphe,Brainstem,2015
+MPB_l,MPB_r,Medial parabrachial nucleus,Brainstem,2020
+mRta_l,mRta_r,Mesencephalic reticular formation (anterior part),Brainstem,2021
+mRtd_l,mRtd_r,Mesencephalic reticular formation (dorsal part),Brainstem,2021
+mRtl_l,mRtl_r,Mesencephalic reticular formation (lateral part),Brainstem,2021
+PAG,,Periaqueductal gray,Brainstem,2015
+PCRtA_l,PCRtA_r,Parvicellular reticular nucleus Alpha part,Brainstem,2022
+PMnR,,Paramedian nucleus,Brainstem,2018
+PnO_PnC_l,PnO_PnC_r,"Pontine reticular nucleus, oral and caudal parts (pontis oralis and caudalis)",Brainstem,2022
+PTg_l,PTg_r,Pedunculotegmental nucleus (also called Pedunculopontine nucleus),Brainstem,2018
+RMg,,Raphe magnus,Brainstem,2015
+RN1_l,RN1_r,Red nucleus (subregion 1),Brainstem,2015
+RN2_l,RN2_r,Red nucleus (subregion 2),Brainstem,2015
+ROb,,Raphe obscurus,Brainstem,2022
+RPa,,Raphe pallidus,Brainstem,2022
+SC_l,SC_r,Superior colliculus,Brainstem,2019
+sMRtl_l,sMRtl_r,Superior medullary reticular formation (lateral part),Brainstem,2022
+sMRtm_l,sMRtm_r,Superior medullary reticular formation (medial part),Brainstem,2022
+SN1_l,SN1_r,"Substantia nigra (subregion 1, compatible with reticulata)",Brainstem,2015
+SN2_l,SN2_r,"Substantia nigra (subregion 2, compatible with compacta)",Brainstem,2015
+SOC_l,SOC_r,Superior olivary complex,Brainstem,2019
+SubC_l,SubC_r,Subcoeruleus,Brainstem,2022
+Ve_l,Ve_r,Vestibular nuclei complex,Brainstem,2020
+VSM_l,VSM_r,Viscero-sensory-motor nuclei complex,Brainstem,2020
+VTA_PBP_l,VTA_PBP_r,Ventral tegmental area – parabrachial pigmented nucleus complex,Brainstem,2021
+LG_l,LG_r,Lateral geniculate nucleus,Diencephalic,2019
+MG_l,MG_r,Medial geniculate nucleus,Diencephalic,2019
+STh1_l,STh1_r,Subthalamic nucleus (subregion 1),Diencephalic,2015
+STh2_l,STh2_r,Subthalamic nucleus (subregion 2),Diencephalic,2015

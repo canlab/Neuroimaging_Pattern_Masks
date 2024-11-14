@@ -1,6 +1,6 @@
 {
   "canlab2023_coarse": {
-    "file": "/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANLab_atlas/qsiprep/CANLab2023_coarse_MNI152NLin2009cAsym_1mm_qsiprep.nii.gz",
+    "file": "/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks/Atlases_and_parcellations/2023_CANLab_atlas/qsiprep/CANLab2023_MNI152NLin2009cAsym_coarse_1mm_qsiprep.nii.gz",
     "node_names": [
       "Thal_Lateral_Geniculate_Nucleus_L",
       "Thal_Lateral_Geniculate_Nucleus_R",

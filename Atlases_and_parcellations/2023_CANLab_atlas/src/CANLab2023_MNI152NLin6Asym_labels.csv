@@ -91,7 +91,7 @@ Ctx_a10p_L,Area anterior 10p (Left),Ctx_a10p_L,BA10_L,cingulate_ventral_frontal_
 Ctx_10pp_L,Polar 10p (Left),Ctx_10pp_L,BA10_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_11l_L,Area 11l (Left),Ctx_11l_L,BA11_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_13l_L,Area 13l (Left),Ctx_13l_L,BA13_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
-Ctx_OFC_L,Orbital Frontal Complex (Left),Ctx_OFC_L,dmPFC_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
+Ctx_OFC_L,Orbital Frontal Complex (Left),Ctx_OFC_L,OFC_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_47s_L,Area 47s (Left),Ctx_47s_L,BA47_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_LIPd_L,Area Lateral IntraParietal dorsal (Left),Ctx_LIPd_L,ventral_intraparietal_L,parietal_superior_lobule_L,Glasser2016+Petre2023VolProj
 Ctx_6a_L,Area 6 anterior (Left),Ctx_6a_L,superior_premotor_L,somatomotor_premotor_L,Glasser2016+Petre2023VolProj
@@ -163,7 +163,7 @@ Ctx_31a_L,Area 31a (Left),Ctx_31a_L,anterior_precuneus_L,cingulate_posterior_L,G
 Ctx_VVC_L,Ventral Visual Complex (Left),Ctx_VVC_L,VVC_L,visual_ventral_L,Glasser2016+Petre2023VolProj
 Ctx_25_L,Area 25 (Left),Ctx_25_L,infralimbic_L,cingulate_ACC_mPFC_L,Glasser2016+Petre2023VolProj
 Ctx_s32_L,Area s32 (Left),Ctx_s32_L,vmPFC_L,cingulate_ACC_mPFC_L,Glasser2016+Petre2023VolProj
-Ctx_pOFC_L,posterior OFC Complex (Left),Ctx_pOFC_L,dmPFC_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
+Ctx_pOFC_L,posterior OFC Complex (Left),Ctx_pOFC_L,OFC_L,cingulate_ventral_frontal_L,Glasser2016+Petre2023VolProj
 Ctx_PoI1_L,Area insula_posteriorr 1 (Left),Ctx_PoI1_L,inferior_dysgranular_insula_L,insula_posterior_L,Glasser2016+Petre2023VolProj
 Ctx_Ig_L,Insular Granular Complex (Left),Ctx_Ig_L,posterior_granular_insula_L,insula_posterior_L,Glasser2016+Petre2023VolProj
 Ctx_FOP5_L,Area Frontal Opercular 5 (Left),Ctx_FOP5_L,anterior_operculum_L,insula_operculum_L,Glasser2016+Petre2023VolProj
@@ -270,7 +270,7 @@ Ctx_a10p_R,Area anterior 10p (Right),Ctx_a10p_R,BA10_R,cingulate_ventral_frontal
 Ctx_10pp_R,Polar 10p (Right),Ctx_10pp_R,BA10_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_11l_R,Area 11l (Right),Ctx_11l_R,BA11_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_13l_R,Area 13l (Right),Ctx_13l_R,BA13_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
-Ctx_OFC_R,Orbital Frontal Complex (Right),Ctx_OFC_R,dmPFC_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
+Ctx_OFC_R,Orbital Frontal Complex (Right),Ctx_OFC_R,OFC_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_47s_R,Area 47s (Right),Ctx_47s_R,BA47_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_LIPd_R,Area Lateral IntraParietal dorsal (Right),Ctx_LIPd_R,ventral_intraparietal_R,parietal_superior_lobule_R,Glasser2016+Petre2023VolProj
 Ctx_6a_R,Area 6 anterior (Right),Ctx_6a_R,superior_premotor_R,somatomotor_premotor_R,Glasser2016+Petre2023VolProj
@@ -342,7 +342,7 @@ Ctx_31a_R,Area 31a (Right),Ctx_31a_R,anterior_precuneus_R,cingulate_posterior_R,
 Ctx_VVC_R,Ventral Visual Complex (Right),Ctx_VVC_R,VVC_R,visual_ventral_R,Glasser2016+Petre2023VolProj
 Ctx_25_R,Area 25 (Right),Ctx_25_R,infralimbic_R,cingulate_ACC_mPFC_R,Glasser2016+Petre2023VolProj
 Ctx_s32_R,Area s32 (Right),Ctx_s32_R,vmPFC_R,cingulate_ACC_mPFC_R,Glasser2016+Petre2023VolProj
-Ctx_pOFC_R,posterior OFC Complex (Right),Ctx_pOFC_R,dmPFC_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
+Ctx_pOFC_R,posterior OFC Complex (Right),Ctx_pOFC_R,OFC_R,cingulate_ventral_frontal_R,Glasser2016+Petre2023VolProj
 Ctx_PoI1_R,Area insula_posteriorr 1 (Right),Ctx_PoI1_R,inferior_dysgranular_insula_R,insula_posterior_R,Glasser2016+Petre2023VolProj
 Ctx_Ig_R,Insular Granular Complex (Right),Ctx_Ig_R,posterior_granular_insula_R,insula_posterior_R,Glasser2016+Petre2023VolProj
 Ctx_FOP5_R,Area Frontal Opercular 5 (Right),Ctx_FOP5_R,anterior_operculum_R,insula_operculum_R,Glasser2016+Petre2023VolProj

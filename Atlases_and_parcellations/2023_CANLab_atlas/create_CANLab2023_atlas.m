@@ -79,6 +79,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     % because it has a finer parcellation of the LGN.
     exclude_structs = {'PAG','RN','SN','VTA_PBP','STh', 'LG', 'MG'};
     biancia = biancia.select_atlas_subset(find(~contains(biancia.labels, exclude_structs)));
+    biancia_refs = biancia.labels_4;
     
     groupings = {{'DR_B7','MnR_B6_B8','PMnR_B6_B8','CLi_RLi'},...
         {'ROb_B2','RPa_B1','RMg_B3'},...
@@ -92,8 +93,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         {'LDTg_CGPn', 'PTg'},...
         {'Ve', 'VSM'}};
 
-    labels_3 = {};
-    labels_4 = {};
+    [labels_3, labels_4, labels_5] = deal({});
     for i = 1:length(biancia.labels)
         group_ind = cellfun(@(x1)any(contains(biancia.labels{i},x1)),groupings);
         all_group_lbls = biancia.labels(contains(biancia.labels,groupings{group_ind}));
@@ -119,7 +119,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
                 labels_4{end+1} = 'Midbrain';
             case groupings{4}
                 labels_3{end+1} = 'Rostral reticular formation';
-                labels_4{end+1} = 'Midrain';
+                labels_4{end+1} = 'Midbrain';
             case groupings{5}
                 labels_3{end+1} = biancia.labels_2{i};
                 labels_4{end+1} = 'Pons';
@@ -142,18 +142,19 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
                 % a single group.
                 labels_4{end+1} = 'Pons';
             case groupings{11}
-                labels_3{end+1} = 'Cranial nucleu';
-                labels_4{end+1} = 'Medullar';
+                labels_3{end+1} = 'Cranial_nuclei';
+                labels_4{end+1} = 'Medulla';
             otherwise
                 error('Unexpected Bianciardi area %s', biancia.labels{i});
         end
         % add L_ and R_ prefixes back in
         labels_3{end} = [labels_3{end}, side];
         labels_4{end} = [labels_4{end}, side];
+        labels_5{end+1} = ['Bianciardi brainstem navigator v.0.9 (ref: ', biancia_refs{i}, ')'];
     end
     biancia.labels_3 = labels_3;
     biancia.labels_4 = labels_4;
-    biancia.labels_5 = repmat({'Bianciardi brainstem navigator v.0.9'}, 1, num_regions(biancia));
+    biancia.labels_5 = labels_5;
     
     % note that the locus coerulues has more rigorous segmentations based on 
     % T1-TSE sequences, but they produce regions that overlap very well with 
@@ -235,7 +236,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
         ind = biancia.dat == find(contains(biancia.labels,'LC_L'));
         assert(sum(ind) == 1); % unless bianciardi has changed only one voxel should survive
 
-        canlab_LC_ind = contains(atlas_obj.labels,{'LC_L','LC_l'});
+        canlab_LC_ind = contains(atlas_obj.labels,{'L_LC'});
         % make sure we haven't resampled in some weird way and this area 
         % still has probability assigned to LC after merging the bianciardi 
         % atlas into our atlas_obj

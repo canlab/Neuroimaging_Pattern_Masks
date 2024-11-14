@@ -105,6 +105,6 @@ function create_CANLab2023_CIFTI_subctx(SPACE,SCALE,res,atlas_obj)
         fprintf(fid, [int2str(i), ' ' num2str(cmap(i,1)), ' ', num2str(cmap(i,2)), ' ', num2str(cmap(i,3)), ' 255\n']);
     end
     fclose(fid);
-
-    fprintf('To complete creation of CIFTI atlas please configure and run Atlases_and_parcellations/2023_CANLab_atlas/src/create_CANLab2023_atlas_cifti.sh\n');
+    
+    fprintf('To complete creation of CIFTI atlas please configure and run %s\n',which('create_CANLab2023_atlas_cifti.sh'));
 end

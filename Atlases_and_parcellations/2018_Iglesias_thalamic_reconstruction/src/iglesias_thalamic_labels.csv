@@ -1,0 +1,30 @@
+labels,label_descriptions,labels_2,labels_3,labels_4
+AV,Anteroventral,AV,anterior,Anterior
+LD,Laterodorsal,LD,dorsal,Lateral
+LP,Lateral posterior,LP,dorsal,Lateral
+VA,Ventral anterior,VA,Lateral-rostral,Ventral
+VAmc,Ventral anterior magnocellular,VA,Lateral-rostral,Ventral
+VLa,ventral lateral anterior,VL,Lateral-rostral,Ventral
+VLp,ventral lateral posterior,VL,Lateral-rostral,Ventral
+VPL_VPM,ventral posterolateral and ventral posteromedial,VPL_VPM,Lateral-caudal,Ventral
+VM,ventromedial,VM,Lateral-rostral,Ventral
+CeM,central medial,rIL,Intralaminar-antoventral,Intralaminar
+Pc,paracentral,rIL,Intralaminar-antoventral,Intralaminar
+CM,centromedian,cIL,Intralaminar-posterior,Intralaminar
+Pf,parafascicular,cIL,Intralaminar-posterior,Intralaminar
+Pt,paratenial,Pt,Intralaminar-antoventral,Intralaminar
+MV_Re,Reuniens (medial ventral),rIL,Intralaminar-antoventral,Intralaminar
+CL,central lateral,CL,Intralaminar-anterodorsal,Intralaminar
+MDm,Mediodorsal medial magnocellular-like,MD,Medial,Medial
+MDl,Mediodorsal medial parvocellular-like,MD,Medial,Medial
+LGN,lateral geniculate,LGN,LGN,Posterior
+MGN,medial geniculate,MGN,MGN,Posterior
+L_SG,Limitans (suprageniculate),PuM,Pulvinar,Posterior
+PuA,Pulvinar anterior,PuA,Pulvinar,Posterior
+PuM,Pulvinar medial,PuM,Pulvinar,Posterior
+PuMm,Pulvinar medial (medial subdivision),PuM,Pulvinar,Posterior
+PuMl,Pulvinar medial (lateral subdivision),PuM,Pulvinar,Posterior
+PuL,Pulvinar lateral,PuL,Pulvinar,Posterior
+PuI,Pulvinar inferior,PuL,Pulvinar,Posterior
+R,Reticular,R,R,R
+PaV,PaV,,,

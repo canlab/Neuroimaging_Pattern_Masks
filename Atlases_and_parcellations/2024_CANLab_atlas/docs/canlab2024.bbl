@@ -1,0 +1,226 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Billot%
+\ \protect \BOthers {.}}{%
+Billot%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+Billot2020}
+\APACinsertmetastar {%
+Billot2020}%
+\begin{APACrefauthors}%
+Billot, B.%
+, Bocchetta, M.%
+, Todd, E.%
+, Dalca, A\BPBI V.%
+, Rohrer, J\BPBI D.%
+\BCBL {}\ \BBA {} Iglesias, J\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{12}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Automated segmentation of the hypothalamus and
+  associated subunits in brain MRI} {Automated segmentation of the hypothalamus
+  and associated subunits in brain mri}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{NeuroImage}{223}{}{}.
+\newblock
+\APACrefnote{the freesurfer hypothalamic subparcellations}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.neuroimage.2020.117287} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Botvinik-Nezer%
+\ \protect \BOthers {.}}{%
+Botvinik-Nezer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2023}}%
+}]{%
+Botvinik-Nezer2023.09.21.558825}
+\APACinsertmetastar {%
+Botvinik-Nezer2023.09.21.558825}%
+\begin{APACrefauthors}%
+Botvinik-Nezer, R.%
+, Petre, B.%
+, Ceko, M.%
+, Lindquist, M\BPBI A.%
+, Friedman, N\BPBI P.%
+\BCBL {}\ \BBA {} Wager, T\BPBI D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Placebo treatment affects brain systems related to
+  affective and cognitive processes, but not nociceptive pain} {Placebo
+  treatment affects brain systems related to affective and cognitive processes,
+  but not nociceptive pain}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{bioRxiv}{}{}{}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.biorxiv.org/content/early/2023/09/30/2023.09.21.558825}
+  \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1101/2023.09.21.558825} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Essen%
+\ \protect \BOthers {.}}{%
+Essen%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+Vanessen2013}
+\APACinsertmetastar {%
+Vanessen2013}%
+\begin{APACrefauthors}%
+Essen, D\BPBI C\BPBI V.%
+, Smith, S\BPBI M.%
+, Barch, D\BPBI M.%
+, Behrens, T\BPBI E.%
+, Yacoub, E.%
+\BCBL {}\ \BBA {} Ugurbil, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{10}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The WU-Minn Human Connectome Project: An overview} {The
+  wu-minn human connectome project: An overview}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{NeuroImage}{80}{}{62-79}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.neuroimage.2013.05.041} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Glasser%
+\ \protect \BOthers {.}}{%
+Glasser%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+Glasser2016}
+\APACinsertmetastar {%
+Glasser2016}%
+\begin{APACrefauthors}%
+Glasser, M\BPBI F.%
+, Coalson, T\BPBI S.%
+, Robinson, E\BPBI C.%
+, Hacker, C\BPBI D.%
+, Harwell, J.%
+, Yacoub, E.%
+\BDBL {}Essen, D\BPBI C\BPBI V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A multi-modal parcellation of human cerebral cortex.} {A
+  multi-modal parcellation of human cerebral cortex.}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature}{536}{}{171-8}.
+\newblock
+\begin{APACrefURL}
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/27437579%5Cnhttp://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=PMC4990127}
+  \end{APACrefURL}
+\newblock
+\APACrefnote{Lots here. <br/><br/>MSMAll is derived using myelin and RSN
+  ICA/dual regression based alignment. See section 2.4 of supplemental
+  methods.<br/><br/>Includes discussion of group mean template genreation that
+  can be useful if developing your own template. See section 2.5 of
+  supplemental methods}
+\newblock
+\begin{APACrefDOI} \doi{10.1038/nature18933} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Iglesias%
+\ \protect \BOthers {.}}{%
+Iglesias%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+Iglesias2018}
+\APACinsertmetastar {%
+Iglesias2018}%
+\begin{APACrefauthors}%
+Iglesias, J\BPBI E.%
+, Insausti, R.%
+, Lerma-Usabiaga, G.%
+, Bocchetta, M.%
+, Leemput, K\BPBI V.%
+, Greve, D\BPBI N.%
+\BDBL {}Paz-Alonso, P\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{12}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A probabilistic atlas of the human thalamic nuclei
+  combining ex vivo MRI and histology} {A probabilistic atlas of the human
+  thalamic nuclei combining ex vivo mri and histology}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{NeuroImage}{183}{}{314-326}.
+\newblock
+\APACrefnote{Freesurfer thalamic subnuclear segmentation<br/><br/>This appears
+  to offer a probabalistic histological thalamic atlas that could supercede
+  Morel. It has somewhat fewer regions, but in most cases the regions
+  correspond to what you might use for a "coarse" morel atlas anyway. I.e.
+  morel is nested within these areas and only Morel's finest distinctions are
+  omitted here.<br/><br/>There's considerable variability in subnuclear
+  boundary locations between Krauth (Morel2010) and this atlas (Fig 9
+  illustrates it well), and there isn't a great quantitative comparison of the
+  performance of the two anywhere. That doesn't leave us much of a way to
+  decide which to use. <br/><br/>This atlas is probablistic and Krauth is more
+  granular, but neither really seems trustworthy if they can produce such
+  disparate results. Perhaps there's some way to take an average? Use Krauth as
+  the prior (assign arbitrary but low probability to each region) and update it
+  using this atlas?}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.neuroimage.2018.08.012} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Losin%
+\ \protect \BOthers {.}}{%
+Losin%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+Losin2020}
+\APACinsertmetastar {%
+Losin2020}%
+\begin{APACrefauthors}%
+Losin, E\BPBI A\BPBI R.%
+, Woo, C\BHBI W.%
+, Medina, N\BPBI A.%
+, Andrews-Hanna, J\BPBI R.%
+, Eisenbarth, H.%
+\BCBL {}\ \BBA {} Wager, T\BPBI D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{5}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Neural and sociocultural mediators of ethnic differences
+  in pain} {Neural and sociocultural mediators of ethnic differences in
+  pain}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Human Behaviour}{4}{}{517-530}.
+\newblock
+\begin{APACrefURL} \url{http://dx.doi.org/10.1038/s41562-020-0819-8
+  http://www.nature.com/articles/s41562-020-0819-8} \end{APACrefURL}
+\newblock
+\APACrefnote{[bmrk5]}
+\newblock
+\begin{APACrefDOI} \doi{10.1038/s41562-020-0819-8} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

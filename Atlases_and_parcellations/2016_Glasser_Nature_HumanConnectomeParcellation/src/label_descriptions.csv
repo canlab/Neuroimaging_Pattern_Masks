@@ -91,7 +91,7 @@ a10p,Area anterior 10p,BA10,cingulate_ventral_frontal
 10pp,Polar 10p,BA10,cingulate_ventral_frontal
 11l,Area 11l,BA11,cingulate_ventral_frontal
 13l,Area 13l,BA13,cingulate_ventral_frontal
-OFC,Orbital Frontal Complex,dmPFC,cingulate_ventral_frontal
+OFC,Orbital Frontal Complex,OFC,cingulate_ventral_frontal
 47s,Area 47s,BA47,cingulate_ventral_frontal
 LIPd,Area Lateral IntraParietal dorsal,ventral intraparietal,parietal_superior_lobule
 6a,Area 6 anterior,superior premotor,somatomotor_premotor
@@ -164,7 +164,7 @@ VMV2,VentroMedial Visual Area 2,VMV,visual_ventral
 VVC,Ventral Visual Complex,VVC,visual_ventral
 25,Area 25,infralimbic,cingulate_ACC_mPFC
 s32,Area s32,vmPFC,cingulate_ACC_mPFC
-pOFC,posterior OFC Complex,dmPFC,cingulate_ventral_frontal
+pOFC,posterior OFC Complex,OFC,cingulate_ventral_frontal
 PoI1,Area insula_posteriorr 1,inferior dysgranular insula,insula_posterior
 Ig,Insular Granular Complex,posterior granular insula,insula_posterior
 FOP5,Area Frontal Opercular 5,anterior operculum,insula_operculum
