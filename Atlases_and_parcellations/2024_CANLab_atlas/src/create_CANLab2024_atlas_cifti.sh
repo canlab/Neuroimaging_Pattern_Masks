@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# this should run after you've evaluated this in matlab
+# this should run after you've invoked this in matlab
 # create_CANLab2024_CIFTI_subctx('MNI152NLin6Asym','coarse',2,load_atlas('canlab2024_coarse_fsl6_2mm'))
 # which will create a nifti file in this folder with all necessary subcortical volumes
 #
@@ -32,10 +32,14 @@ else
 fi
 # Note to self: the label files below were copied from
 # /dartfs-hpc/rc/home/m/f0042vm/software/diedrichsen_fs_LR_32/Glasser_2016.32k.L.label.gii
+# the atlasROI files were obtained from
+# https://github.com/Washington-University/HCPpipelines/tree/master/global/templates/standard_mesh_atlases
 $WBCMD -cifti-create-label $WD/canlab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii \
     -volume $WD/subctx_atlas.label.nii ${hcp_labels} \
     -left-label $WD/../../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.L.label.gii \
-    -right-label $WD/../../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.R.label.gii
+    -roi-left $WD/L.atlasroi.32k_fs_LR.shape.gii \
+    -right-label $WD/../../2016_Glasser_Nature_HumanConnectomeParcellation/Glasser_2016.32k.R.label.gii \
+    -roi-right $WD/R.atlasroi.32k_fs_LR.shape.gii
 
 # Remove Glasser Hippocampus
 $WBCMD -cifti-label-export-table $WD/canlab2024_${SPACE}_${SCALE}_${res}mm.dlabel.nii 1 \
