@@ -16,12 +16,12 @@ After generating transcriptomic_gradients.nii.gz the results were smoothed using
 
 fslmaths transcriptomic_gradients.nii.gz -dilall -s 2.548 -mas ~/.matlab/canlab/Neuroimaging_Pattern_Masks/templates/MNI152NLin6Asym_T1_1mm.nii.gz transcriptomic_gradients.nii.gz
 
-It isn't entirely clear what template the coordinates from Hawrylycz et al. are registered to, but whichever they are
-they were realigned using nonlinear transformations to a MNI152Nlin2009cSym template (note, sym, not asym) by 
+It isn't entirely clear what template the coordinates from Hawrylycz et al. are registered to in Vogel et al. It's
+not the original space but rather a nonlinear one but there are actually two available. One is available here 
 
 https://github.com/gdevenyi/AllenHumanGeneMNI/
 
-And to an unknown template in the poster and gitrepo from 
+And another is in the poster and gitrepo from 
 
 Gorgolewski KJ, Fox AS, Chang L, Schäfer A, Arélin K, Burmann I, Sacher J, Margulies DS. "Tight fitting genes: finding relations between statistical maps and gene expression patterns" (2014) OHBM
 
