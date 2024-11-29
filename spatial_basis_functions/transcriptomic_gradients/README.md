@@ -44,4 +44,5 @@ hairs though. With the level of uncertainty there is in the source spaces and th
 from slices in 6 participants, it doesn't really matter. I've smoothed the data by a 6mm kernel regardless to account
 for this variation.
 
-
+Bogdan
+11/28/2024
