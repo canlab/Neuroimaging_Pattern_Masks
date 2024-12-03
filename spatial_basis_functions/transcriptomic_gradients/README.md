@@ -54,10 +54,13 @@ it doesn't really matter. I've smoothed the data by a 6mm kernel regardless to a
 If trying to figure this out for yourself, note that subject IDs in these datasets come in two formats, one is the API
 format, the other is the web format. The abagen code has the mapping, which you can also see here:
 https://abagen.readthedocs.io/en/stable/_modules/abagen/datasets/fetchers.html
+<<<<<<< Updated upstream
 
 
 The CIFTI version of the gradients was created using registration fusion. The AHBA subject freesurfer surfaces from 
 the abagen repo and https://github.com/gdevenyi/AllenHumanGeneMNI/ MNI to native T1 transformations were used.
+=======
+>>>>>>> Stashed changes
 
 Bogdan
 11/28/2024
