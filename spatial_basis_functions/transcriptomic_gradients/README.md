@@ -44,5 +44,8 @@ hairs though. With the level of uncertainty there is in the source spaces and th
 from slices in 6 participants, it doesn't really matter. I've smoothed the data by a 6mm kernel regardless to account
 for this variation.
 
+The CIFTI version of the gradients was created using registration fusion. The AHBA subject freesurfer surfaces from 
+the abagen repo and https://github.com/gdevenyi/AllenHumanGeneMNI/ MNI to native T1 transformations were used.
+
 Bogdan
 11/28/2024
