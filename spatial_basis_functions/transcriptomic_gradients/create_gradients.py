@@ -15,6 +15,8 @@ bigdf, coords = abagen.get_samples_in_mask(mask=None)
 
 # load expression data
 # big file -- can take quite awhile to load!
+# Note: this file is provided by this git repo:
+# https://github.com/PennLINC/Vogel_PLS_Tx-Space
 gdf = pandas.read_csv('data/gxp_correlation_wholebrain_results_NEW.csv',index_col=0)
 
 # harmonize indices of gene expression dataframe and meta dataframe
@@ -62,7 +64,7 @@ Y = np.vstack([Y1, Y2])
 X = np.vstack([pls_mod.x_scores_, pls_mod.x_scores_])
 
 # Interpolate the irregular data (Y, X) onto the regular grid (Y')
-X_prime = griddata(Y, X, Y_prime, method='linear')  # Use 'linear', 'nearest', or 'cubic'
+X_prime = griddata(Y, X, Y_prime, method='linear')  # Use 'linear' or 'nearest'
 
 # Reshape the interpolated values back to the NIfTI grid shape
 X_prime_grid = X_prime.reshape(data.shape + (3,))

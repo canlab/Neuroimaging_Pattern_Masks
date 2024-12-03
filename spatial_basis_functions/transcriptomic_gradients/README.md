@@ -38,11 +38,21 @@ https://github.com/vsoch/pybraincompare/blob/master/pybraincompare/mr/datasets.p
 
 And they use FSL's MNINlin6Asym
 
-All of this is to say that I have no idea what template to use, but the results of the gradients seem to align better
-with the boundaries of MNI152NLin6Asym than the slightly larger MNI152Nlin2009cAsym. At the end of the day it's splitting
-hairs though. With the level of uncertainty there is in the source spaces and the level of precision you might expect
-from slices in 6 participants, it doesn't really matter. I've smoothed the data by a 6mm kernel regardless to account
-for this variation.
+A comparison of the mni_nlin_x/y/z coordinates from 
+https://github.com/gdevenyi/AllenHumanGeneMNI/blob/master/transformed-points/H0351.2001_SampleAnnot_RAS_mni_nonlin.csv
+with those obtained from data/gxp_correlation_wholebrain_results_NEW.csv from https://github.com/PennLINC/Vogel_PLS_Tx-Space
+suggests that these are the same though, and the AllenHumanGeneMNI repo uses MNI152NLin2009cSym, so I think that's the
+original template here.
+
+Based on visual inspection the results of the gradients seem to align better with the boundaries of MNI152NLin6Asym 
+than the slightly larger MNI152Nlin2009cSym. At the end of the day it's splitting hairs though. With the level of 
+uncertainty there is in the source spaces and the level of precision you might expect from slices in 6 participants, 
+it doesn't really matter. I've smoothed the data by a 6mm kernel regardless to account for this variation.
+
+If trying to figure this out for yourself, note that subject IDs in these datasets come in two formats, one is the API
+format, the other is the web format. The abagen code has the mapping, which you can also see here:
+https://abagen.readthedocs.io/en/stable/_modules/abagen/datasets/fetchers.html
+
 
 The CIFTI version of the gradients was created using registration fusion. The AHBA subject freesurfer surfaces from 
 the abagen repo and https://github.com/gdevenyi/AllenHumanGeneMNI/ MNI to native T1 transformations were used.
