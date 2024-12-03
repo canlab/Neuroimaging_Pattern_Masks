@@ -1,6 +1,8 @@
-The spatial maps here are the principal gradients of transcriptomic variation computed 
-from 6 postmortem brains registered to MNI152NLin6Asym space. The gradients were
-generated as part of the following paper:
+The spatial maps here are the principal gradients of transcriptomic variation in euclidean spcae computed 
+from 6 postmortem brains registered to MNI152NLin6Asym space. These gradients define 
+three spatial axes along which genes vary most, candidate axes of morphogen 
+diffusion during development, and in some sense an objective basis by which to
+orient the brain. The gradients were generated as part of the following paper:
 
 Vogel et al. "Deciphering the functional specialization of whole-brain spatiomolecular gradients in the adult brain" (2024) PNAS
 
