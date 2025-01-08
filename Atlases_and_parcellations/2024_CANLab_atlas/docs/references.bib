@@ -1218,3 +1218,58 @@ eprint = {
  title = {Vergleichende Lokalisationslehre der Grosshirnrinde in ihren Prinzipien dargestellt auf Grund des Zellenbaues / [K. Brodmann]},
  urldate = {2024-04-18}
 }
+@article {Jung2024,
+	author = {Jung, Heejung and Amini, Maryam and Hunt, Bethany J. and Murphy, Eilis I. and Sadil, Patrick and Halchenko, Yaroslav O. and Petre, Bogdan and Miao, Zizhuang and Kragel, Philip A. and Han, Xiaochun and Heilicher, Mickela O. and Sun, Michael and Collins, Owen G. and Lindquist, Martin A. and Wager, Tor D.},
+	title = {A multimodal fMRI dataset unifying naturalistic processes with a rich array of experimental tasks},
+	elocation-id = {2024.06.21.599974},
+	year = {2024},
+	doi = {10.1101/2024.06.21.599974},
+	publisher = {Cold Spring Harbor Laboratory},
+	abstract = {Cognitive neuroscience has advanced significantly due to the availability of openly shared datasets. Large sample sizes, large amounts of data per person, and diversity in tasks and data types are all desirable, but are difficult to achieve in a single dataset. Here, we present an open dataset with N = 101 participants and 6 hours of scanning per participant, with 6 multifaceted cognitive tasks including 2 hours of naturalistic movie viewing. This dataset{\textquoteright}s combination of ample sample size, extensive data per participant, more than 600 iso hours worth of data, and a wide range of experimental conditions {\textemdash} including cognitive, affective, social, and somatic/interoceptive tasks {\textemdash} positions it uniquely for probing important questions in cognitive neuroscience.Competing Interest StatementThe authors have declared no competing interest.},
+	URL = {https://www.biorxiv.org/content/early/2024/06/26/2024.06.21.599974},
+	eprint = {https://www.biorxiv.org/content/early/2024/06/26/2024.06.21.599974.full.pdf},
+	journal = {bioRxiv}
+}
+@InProceedings{10.1007/978-3-031-43993-3_24,
+author="Tregidgo, Henry F. J.
+and Soskic, Sonja
+and Olchanyi, Mark D.
+and Althonayan, Juri
+and Billot, Benjamin
+and Maffei, Chiara
+and Golland, Polina
+and Yendiki, Anastasia
+and Alexander, Daniel C.
+and Bocchetta, Martina
+and Rohrer, Jonathan D.
+and Iglesias, Juan Eugenio",
+editor="Greenspan, Hayit
+and Madabhushi, Anant
+and Mousavi, Parvin
+and Salcudean, Septimiu
+and Duncan, James
+and Syeda-Mahmood, Tanveer
+and Taylor, Russell",
+title="Domain-Agnostic Segmentation of Thalamic Nuclei from Joint Structural and Diffusion MRI",
+booktitle="Medical Image Computing and Computer Assisted Intervention -- MICCAI 2023",
+year="2023",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="247--257",
+abstract="The human thalamus is a subcortical brain structure that comprises dozens of nuclei with different function and connectivity, which are affected differently by disease. For this reason, there is growing interest in studying the thalamic nuclei in vivo with MRI. Tools are available to segment the thalamus from 1 mm T1 scans, but the image contrast is too faint to produce reliable segmentations. Some tools have attempted to refine these boundaries using diffusion MRI information, but do not generalise well across diffusion MRI acquisitions. Here we present the first CNN that can segment thalamic nuclei from T1 and diffusion data of any resolution without retraining or fine tuning. Our method builds on our histological atlas of the thalamic nuclei and silver standard segmentations on high-quality diffusion data obtained with our recent Bayesian adaptive segmentation tool. We combine these with an approximate degradation model for fast domain randomisation during training. Our CNN produces a segmentation at 0.7 mm isotropic resolution, irrespective of the resolution of the input. Moreover, it uses a parsimonious model of the diffusion signal (fractional anisotropy and principal eigenvector) that is compatible with virtually any set of directions and b-values, including huge amounts of legacy data. We show results of our proposed method on three heterogeneous datasets acquired on dozens of different scanners. The method is publicly available at freesurfer.net/fswiki/ThalamicNucleiDTI.",
+isbn="978-3-031-43993-3"
+}
+@article{Tregidgo2023,
+   abstract = {The human thalamus is a highly connected brain structure, which is key for the control of numerous functions and is involved in several neurological disorders. Recently, neuroimaging studies have increasingly focused on the volume and connectivity of the specific nuclei comprising this structure, rather than looking at the thalamus as a whole. However, accurate identification of cytoarchitectonically designed histological nuclei on standard in vivo structural MRI is hampered by the lack of image contrast that can be used to distinguish nuclei from each other and from surrounding white matter tracts. While diffusion MRI may offer such contrast, it has lower resolution and lacks some boundaries visible in structural imaging. In this work, we present a Bayesian segmentation algorithm for the thalamus. This algorithm combines prior information from a probabilistic atlas with likelihood models for both structural and diffusion MRI, allowing segmentation of 25 thalamic labels per hemisphere informed by both modalities. We present an improved probabilistic atlas, incorporating thalamic nuclei identified from histology and 45 white matter tracts surrounding the thalamus identified in ultra-high gradient strength diffusion imaging. We present a family of likelihood models for diffusion tensor imaging, ensuring compatibility with the vast majority of neuroimaging datasets that include diffusion MRI data. The use of these diffusion likelihood models greatly improves identification of nuclear groups versus segmentation based solely on structural MRI. Dice comparison of 5 manually identifiable groups of nuclei to ground truth segmentations show improvements of up to 10 percentage points. Additionally, our chosen model shows a high degree of reliability, with median test-retest Dice scores above 0.85 for four out of five nuclei groups, whilst also offering improved detection of differential thalamic involvement in Alzheimer's disease (AUROC 81.98%). The probabilistic atlas and segmentation tool will be made publicly available as part of the neuroimaging package FreeSurfer (https://freesurfer.net/fswiki/ThalamicNucleiDTI).},
+   author = {Henry F.J. Tregidgo and Sonja Soskic and Juri Althonayan and Chiara Maffei and Koen Van Leemput and Polina Golland and Ricardo Insausti and Garikoitz Lerma-Usabiaga and César Caballero-Gaudes and Pedro M. Paz-Alonso and Anastasia Yendiki and Daniel C. Alexander and Martina Bocchetta and Jonathan D. Rohrer and Juan Eugenio Iglesias},
+   doi = {10.1016/j.neuroimage.2023.120129},
+   issn = {10959572},
+   journal = {NeuroImage},
+   keywords = {Atlasing,Bayesian inference,Diffusion MRI,Segmentation,Thalamus},
+   month = {7},
+   pmid = {37088323},
+   publisher = {Academic Press Inc.},
+   title = {Accurate Bayesian segmentation of thalamic nuclei using diffusion MRI and an improved histological atlas},
+   volume = {274},
+   year = {2023},
+}
