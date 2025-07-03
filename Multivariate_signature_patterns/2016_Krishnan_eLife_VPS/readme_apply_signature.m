@@ -14,3 +14,23 @@ pines_sig = fmri_data(which('bmrk4_VPS_unthresholded.nii'));  % Load the VPS map
 pines_response = apply_mask(test_images, pines_sig, 'pattern_expression'); % Apply the weight map
 
 figure; plot(pines_response, 'o'); title('VPS response scores for each participant');
+
+%% Show VPS
+
+vps = fmri_data(which('bmrk4_VPS_fdr05.img.gz'));
+create_figure; surface(vps, 'foursurfaces', 'nolegend');
+
+create_figure; surface(vps, 'coronal_slabs_4', 'nolegend');
+
+%%
+create_figure; surface(vps, 'foursurfaces_hcp', 'nolegend');
+%%
+
+[region_obj, results_table] = table(vps);
+
+%% Zhou vps
+
+vps = fmri_data(which('General_vicarious_pain_pattern_FDR05_Boot10000.nii'));
+create_figure; surface(vps, 'foursurfaces', 'nolegend');
+
+create_figure; surface(vps, 'foursurfaces_hcp', 'nolegend');
