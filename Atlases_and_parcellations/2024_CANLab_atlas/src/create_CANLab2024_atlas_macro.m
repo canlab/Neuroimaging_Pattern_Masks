@@ -14,29 +14,7 @@ addpath(genpath([LIB, '/canlab/MasksPrivate']))
 t0 = tic()
 for SPACE = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
     SPACE = SPACE{1};
-    for SCALE = {'fine','coarse'}SCALE=coaSCALE=coarse
-SPACE=MNI152NLin6Asym
-res=2
-
-WBCMD=/home/bogdan/Downloads/workbench/bin_rh_linux64/wb_command
-
-WD=$(cd $(dirname $(readlink -f $0)) && pwd)
-
-$WBCMD -volume-label-import $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.nii.gz \
-    $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.txt \
-    subctx_atlas.label.nii
-rse
-SPACE=MNI152NLin6Asym
-res=2
-
-WBCMD=/home/bogdan/Downloads/workbench/bin_rh_linux64/wb_command
-
-WD=$(cd $(dirname $(readlink -f $0)) && pwd)
-
-$WBCMD -volume-label-import $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.nii.gz \
-    $WD/CANLab2023_${SPACE}_${SCALE}_${res}mm_cifti_vols.txt \
-    subctx_atlas.label.nii
-
+    for SCALE = {'fine','coarse'}
         SCALE = SCALE{1};
         %create_CANLab2023_unrestricted
         switch SCALE
