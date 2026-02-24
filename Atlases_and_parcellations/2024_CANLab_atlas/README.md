@@ -1,5 +1,7 @@
 ## Usage
 
+Run setup_canlab2024.m under a *nix environment. It has shell script dependencies that likely won't work under windows.
+
 ### Parcellation granularity
 labels - "Fine" granularity. Designed for use in BOLD signal attribution, 
 under assumptions that all probable regions can be considered simultaneously.
@@ -15,9 +17,13 @@ labels_3 - Even coarser granularity deisnged for prototyping.
 ### Amygdala
 
 CIT168 amygdala atlas. 
+
 labels - Intercalated nuclei are also subdivided into subregions for grouping at coarser scales
+
 labels_2 - intercalated nuclei are assigned to their nearest other nucleus. Central nucleus (CEN) and Crotical median nuclei (CMN) are also combined.
+
 labels_3 - Nuclei are subdivided into lateral, basolateral and centromedian (superficial) nuclear subdivisions.
+
 labels_4 - amygdala
 
 
