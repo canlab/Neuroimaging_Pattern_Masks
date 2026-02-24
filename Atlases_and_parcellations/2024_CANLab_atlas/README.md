@@ -3,13 +3,15 @@
 Run setup_canlab2024.m under a *nix environment. It has shell script dependencies that likely won't work under windows.
 
 ### Parcellation granularity
-labels - "Fine" granularity. Designed for use in BOLD signal attribution, 
-under assumptions that all probable regions can be considered simultaneously.
-labels_2 - "Coarse" granularity. Designed for BOLD signal extraction under 
-assumption that a winner-takes-all parcellation will be used. Neighboring regions 
-that are unlikely to be distinguishable a-priori based on atlas labels are merged 
-relative to labels_1
+labels - "Fine" granularity. Designed for use in BOLD signal attribution, under assumptions that all probable regions can be considered simultaneously.
+
+labels_2 - "Coarse" granularity. Designed for BOLD signal extraction under assumption that a winner-takes-all parcellation will be used. Neighboring regions that are unlikely to be distinguishable a-priori based on atlas labels are merged relative to labels_1
+
 labels_3 - Even coarser granularity deisnged for prototyping.
+
+labels_4 - Large structures (e.g. entire cortical lobes, subcortical structures, etc)
+
+labels_5 - used to indicate the source atlas from which each region was taken so you know who to cite.
 
 
 ## Subregion composition
