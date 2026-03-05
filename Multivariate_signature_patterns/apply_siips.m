@@ -294,7 +294,7 @@ if verbose || dotables
         
         Image = image_names{i};
         SIIPS1 = siips_values{i};
-        mytable = table(Image, SIIPS1);
+        mytable = table(cellstr(Image), SIIPS1);
         
         if nargout > 3
             
@@ -329,7 +329,7 @@ if verbose || dotables
         else
             
             print_matrix(siips_values{i}, {['siips values for series ' num2str(i)]}, cellstr(image_names{i}));
-            %mytable = table(Image, SIIPS1)
+            mytable = table(cellstr(Image), SIIPS1)
             
         end
         
