@@ -1,0 +1,21 @@
+Your goal is to generate text embeddings for a series of documents using the text-embedding-3-large model from OpenAI, and use those to calculate a pairwise similarity matrix of all documents.
+
+The subfolder topic_terms_csv contains the documents.
+Each is named with a document number (integer) followed by a topic name.
+
+Read each file in order of document number.
+
+For each document, use text-embedding-3-large to generate an embedding vector.
+First, generate and save code in the scripts/ folder to feed a text document into the model and retrieve the embeddings.
+Then, run the code to get the embeddings for each document.
+
+Write a csv file containing a matrix of embedding vectors for all documents, with documents as columns and elements of the embedding vector as rows.
+Include a header row with document names, and name each column with the document name.
+Call the file topic_embeddings_text-embedding-3-large.csv.
+
+Next, write a Matlab script to:
+(1) Read the embedding matrix document topic_embeddings_text-embedding-3-large.csv into a table object
+(2) Save the table object as topic_embeddings_text-embedding-3-large.mat
+(3) Normalize each vector (column) by the vector Norm
+(4) Calculate a matrix of pairwise cosine similarity values across all vectors
+(5) Visualize the embedding matrix and the cosine similarity matrix
