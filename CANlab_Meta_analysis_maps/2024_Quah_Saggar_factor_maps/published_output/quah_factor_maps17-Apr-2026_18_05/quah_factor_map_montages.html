@@ -1,0 +1,753 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>quah_factor_map_montages</title>
+<meta name="generator" content="MATLAB 26.1">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2026-04-17">
+<meta name="DC.source" content="quah_factor_map_montages.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#2">Combine them</a>
+</li>
+<li>
+<a href="#3">Plot correlations</a>
+</li>
+<li>
+<a href="#4">Report neurosynth associations</a>
+</li>
+<li>
+<a href="#5">save</a>
+</li>
+</ul>
+</div>
+<pre class="codeoutput">
+ff =
+
+  8&times;1 cell array
+
+    {'PA1.nii.gz'}
+    {'PA2.nii.gz'}
+    {'PA3.nii.gz'}
+    {'PA4.nii.gz'}
+    {'PA5.nii.gz'}
+    {'PA6.nii.gz'}
+    {'PA7.nii.gz'}
+    {'PA8.nii.gz'}
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.014387 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.006840 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.004473 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.011418 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.010106 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.005598 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.004478 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+Using default mask: /Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/brainmask_canlab.nii
+iimg_get_data: loading mask. mapping volumes. 
+checking that dimensions and voxel sizes of volumes are the same. 
+Pre-allocating data array. Needed: 971812 bytes
+Loading image number:     1
+Elapsed time is 0.004393 seconds.
+Re-zipping image files.
+Number of unique values in dataset: 348  Bit rate: 8.44 bits
+Warning: Number of unique values in dataset is low, indicating possible restriction of bit rate. For comparison, Int16 has 65,536 unique values
+Setting up fmridisplay objects
+Compressed NIfTI files are not supported.
+sagittal montage: 1468 voxels displayed, 62959 not displayed on these slices
+sagittal montage: 1218 voxels displayed, 63209 not displayed on these slices
+sagittal montage: 171 voxels displayed, 64256 not displayed on these slices
+axial montage: 9843 voxels displayed, 54584 not displayed on these slices
+axial montage: 9811 voxels displayed, 54616 not displayed on these slices
+
+ans = 
+
+  fmridisplay with properties:
+
+            overlay: '/Users/f003vz1/Documents/GitHub/CanlabCore/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/fmriprep20_template.nii.gz'
+              SPACE: [1&times;1 struct]
+    activation_maps: {[1&times;1 struct]}
+            montage: {1&times;5 cell}
+            surface: {}
+          orthviews: {}
+            history: {}
+    history_descrip: []
+    additional_info: ''
+
+</pre>
+<img vspace="5" hspace="5" src="quah_factor_map_montages_01.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_02.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_03.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_04.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_05.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_06.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_07.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_08.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_09.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_10.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_11.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_12.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_13.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_14.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_15.png" alt=""> <img vspace="5" hspace="5" src="quah_factor_map_montages_16.png" alt=""> <h2 id="2">Combine them</h2>
+<h2 id="3">Plot correlations</h2>
+<img vspace="5" hspace="5" src="quah_factor_map_montages_17.png" alt=""> <h2 id="4">Report neurosynth associations</h2>
+<pre class="codeoutput">PA1
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA1.nii
+_____________________________________________________________________
+    r_lowest      Term_or_Topic_lowest      r_highest      Term_or_Topic_highest   
+    _________    _______________________    _________    __________________________
+
+     -0.19079    {'Pain Perception'    }     0.13081     {'Emotion Processing'    }
+     -0.18608    {'Spatial cognition'  }     0.12353     {'Emotion face'          }
+     -0.13173    {'Motor movements'    }     0.11323     {'Empathy &amp; Interaction' }
+     -0.13029    {'Spatial Attention'  }    0.082971     {'Fear conditioning'     }
+     -0.12977    {'Action Observation' }      0.0619     {'Language comprehension'}
+     -0.12781    {'Sensory Stimulation'}    0.060685     {'Reasoning &amp; evaluation'}
+     -0.12134    {'Mental Imagery'     }    0.056805     {'Language Processing'   }
+     -0.10316    {'Sleep &amp; Math'       }    0.050396     {'Encoding &amp; Retrieval'  }
+    -0.080577    {'Eye movements'      }    0.038755     {'Substance Abuse'       }
+    -0.076138    {'Working Memory'     }    0.037271     {'Cognitive Conflict'    }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA1.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+     -0.2399     {'somatosensory'}       0.25232        {'face'       }   
+    -0.22904     {'stimulation'  }       0.24271        {'faces'      }   
+    -0.22845     {'tactile'      }       0.22028        {'picture'    }   
+    -0.20745     {'heat'         }       0.21793        {'pictures'   }   
+    -0.20476     {'noxious'      }       0.20259        {'recognition'}   
+     -0.1975     {'hand'         }       0.19236        {'emotion'    }   
+    -0.19741     {'motor'        }       0.18982        {'expression' }   
+    -0.19339     {'pain'         }        0.1895        {'word'       }   
+    -0.18647     {'sensory'      }       0.18287        {'facial'     }   
+    -0.18409     {'sensorimotor' }       0.17978        {'fearful'    }   
+
+PA2
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA2.nii
+_____________________________________________________________________
+    r_lowest        Term_or_Topic_lowest       r_highest      Term_or_Topic_highest   
+    _________    __________________________    _________    __________________________
+
+     -0.30758    {'Memory &amp; Events'       }     0.42774     {'Auditory processing'   }
+     -0.28166    {'Encoding &amp; Retrieval'  }     0.41053     {'Motor movements'       }
+     -0.16824    {'Emotion Processing'    }      0.2956     {'Pain Perception'       }
+     -0.16199    {'Empathy &amp; Interaction' }     0.26168     {'Motor control'         }
+     -0.16192    {'Object Recognition'    }     0.25763     {'Sensory Stimulation'   }
+      -0.1259    {'Emotion face'          }      0.2138     {'Motor Coordination'    }
+     -0.11804    {'Cognitive Impairment'  }     0.17405     {'Action Observation'    }
+    -0.086023    {'Motion perception'     }     0.15032     {'Language comprehension'}
+    -0.075574    {'Spatial cognition'     }     0.11755     {'Mental Imagery'        }
+    -0.073884    {'Reasoning &amp; evaluation'}     0.11345     {'Reading &amp; Writing'     }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA2.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.44127      {'recognition'}        0.54669       {'motor'        }  
+    -0.43546      {'memory'     }        0.49201       {'auditory'     }  
+    -0.40151      {'picture'    }        0.48479       {'sensory'      }  
+    -0.39456      {'episodic'   }        0.47847       {'somatosensory'}  
+    -0.39356      {'faces'      }        0.44248       {'sound'        }  
+    -0.38764      {'retrieval'  }         0.4385       {'finger'       }  
+    -0.37985      {'face'       }        0.43581       {'movements'    }  
+    -0.36745      {'pictures'   }        0.43286       {'pitch'        }  
+    -0.36636      {'remember'   }        0.43283       {'speech'       }  
+    -0.35749      {'person'     }        0.42003       {'sensorimotor' }  
+
+PA3
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA3.nii
+_____________________________________________________________________
+     r_lowest         Term_or_Topic_lowest         r_highest      Term_or_Topic_highest   
+    __________    _____________________________    _________    __________________________
+
+      -0.14781    {'Memory &amp; Events'          }     0.28353     {'Reading &amp; Writing'     }
+      -0.13769    {'Spatial cognition'        }     0.22578     {'Language comprehension'}
+     -0.048106    {'Eye movements'            }     0.17182     {'Word Processing'       }
+     -0.028863    {'Spatial Attention'        }     0.16648     {'Working Memory'        }
+      -0.02056    {'Reasoning &amp; evaluation'   }     0.15771     {'Auditory processing'   }
+     -0.018454    {'Empathy &amp; Interaction'    }     0.14464     {'Language Processing'   }
+     -0.014641    {'Creativity &amp; Acupuncture '}     0.13295     {'Emotion face'          }
+     -0.014095    {'Object Recognition'       }     0.13279     {'Motor movements'       }
+     -0.006584    {'Developmental Disorders'  }     0.11992     {'Action Observation'    }
+    0.00084777    {'Alcohol dependence'       }    0.094544     {'Motor control'         }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA3.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.29846      {'default'     }       0.29513       {'pseudoword'  }   
+     -0.2977      {'time'        }       0.29035       {'language'    }   
+    -0.28585      {'spatial'     }       0.25127       {'speech'      }   
+    -0.25847      {'cards'       }       0.24659       {'phonological'}   
+    -0.25847      {'errorrelated'}       0.23895       {'syntactic'   }   
+    -0.25847      {'uncertainty' }       0.23176       {'reading'     }   
+    -0.25847      {'win'         }        0.2314       {'pseudowords' }   
+    -0.24851      {'avoidance'   }       0.22524       {'verb'        }   
+    -0.24851      {'causality'   }       0.22297       {'production'  }   
+    -0.24851      {'intentions'  }       0.22249       {'read'        }   
+
+PA4
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA4.nii
+_____________________________________________________________________
+    r_lowest      Term_or_Topic_lowest      r_highest      Term_or_Topic_highest   
+    _________    _______________________    _________    __________________________
+
+     -0.41609    {'Motor movements'    }     0.38224     {'Language comprehension'}
+     -0.27998    {'Sensory Stimulation'}     0.30122     {'Auditory processing'   }
+     -0.27428    {'Motor control'      }     0.26775     {'Reading &amp; Writing'     }
+      -0.2277    {'Pain Perception'    }     0.19548     {'Word Processing'       }
+     -0.20579    {'Action Observation' }     0.18526     {'Language Processing'   }
+     -0.13326    {'Mental Imagery'     }     0.13786     {'Memory &amp; Events'       }
+     -0.12451    {'Motor Coordination' }     0.12311     {'Encoding &amp; Retrieval'  }
+     -0.10596    {'Reward processing'  }     0.11685     {'Emotion face'          }
+    -0.070517    {'Spatial cognition'  }     0.08592     {'Empathy &amp; Interaction' }
+    -0.069665    {'Feedback &amp; learning'}    0.083367     {'Object Recognition'    }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA4.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.45121     {'motor'        }       0.47316       {'word'         }  
+    -0.44463     {'hand'         }       0.46324       {'semantic'     }  
+    -0.43884     {'somatosensory'}        0.4601       {'words'        }  
+    -0.43015     {'finger'       }       0.43452       {'language'     }  
+    -0.38982     {'movements'    }       0.43031       {'comprehension'}  
+    -0.38803     {'sensorimotor' }       0.41123       {'sentences'    }  
+    -0.37627     {'muscle'       }       0.40945       {'sentence'     }  
+    -0.37341     {'pain'         }        0.3791       {'read'         }  
+    -0.36129     {'execution'    }       0.36003       {'reading'      }  
+    -0.33641     {'stimulation'  }       0.34523       {'lexical'      }  
+
+PA5
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA5.nii
+_____________________________________________________________________
+    r_lowest      Term_or_Topic_lowest      r_highest     Term_or_Topic_highest 
+    _________    _______________________    _________    _______________________
+
+     -0.16238    {'Working Memory'     }     0.29427     {'Action Observation' }
+     -0.14995    {'Task-switching'     }     0.28683     {'Eye movements'      }
+     -0.14229    {'Cognitive Conflict' }     0.23587     {'Spatial cognition'  }
+    -0.096593    {'Word Processing'    }     0.21544     {'Motor movements'    }
+    -0.091848    {'Reading &amp; Writing'  }     0.20743     {'Motion perception'  }
+     -0.08807    {'Decision-making'    }     0.17861     {'Spatial Attention'  }
+    -0.087217    {'Feedback &amp; learning'}     0.16497     {'Mental Imagery'     }
+    -0.078933    {'Pain Perception'    }     0.12198     {'Object Recognition' }
+    -0.074464    {'Language Processing'}     0.11642     {'Sensory Stimulation'}
+    -0.069574    {'Executive Function' }    0.095437     {'Motor Coordination' }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA5.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.28283      {'conflict'   }        0.36248         {'motion'   }    
+    -0.25665      {'executive'  }        0.35265         {'eye'      }    
+    -0.24998      {'monitoring' }        0.34454         {'movements'}    
+    -0.23396      {'decision'   }        0.33628         {'actions'  }    
+    -0.22868      {'word'       }        0.32372         {'action'   }    
+    -0.22812      {'incongruent'}        0.29629         {'position' }    
+    -0.22095      {'correct'    }        0.27827         {'hand'     }    
+    -0.21664      {'working'    }        0.26938         {'spatial'  }    
+    -0.21445      {'stroop'     }        0.26846         {'grasping' }    
+    -0.21249      {'selection'  }        0.25595         {'body'     }    
+
+PA6
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA6.nii
+_____________________________________________________________________
+    r_lowest      Term_or_Topic_lowest     r_highest      Term_or_Topic_highest   
+    _________    ______________________    _________    __________________________
+
+     -0.15566    {'Emotion Processing'}     0.41905     {'Language comprehension'}
+     -0.12084    {'Motor movements'   }     0.24471     {'Reading &amp; Writing'     }
+     -0.11875    {'Fear conditioning' }     0.21319     {'Language Processing'   }
+     -0.11453    {'Pain Perception'   }     0.19878     {'Word Processing'       }
+     -0.11404    {'Motor control'     }     0.14154     {'Auditory processing'   }
+     -0.10641    {'Reward processing' }     0.10709     {'Memory &amp; Events'       }
+     -0.10446    {'Motion perception' }    0.054945     {'Empathy &amp; Interaction' }
+    -0.098841    {'Emotion face'      }    0.054069     {'Working Memory'        }
+    -0.093087    {'Body perception'   }    0.036545     {'Sleep &amp; Math'          }
+    -0.087964    {'Food &amp; weight'     }     0.03093     {'Encoding &amp; Retrieval'  }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA6.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.21877      {'pain'       }         0.4469       {'sentences'    }  
+    -0.21597      {'stimulation'}        0.43559       {'sentence'     }  
+     -0.2091      {'reward'     }        0.42098       {'comprehension'}  
+    -0.20065      {'anxiety'    }        0.39538       {'semantic'     }  
+    -0.19824      {'negative'   }        0.38117       {'word'         }  
+     -0.1969      {'dopamine'   }        0.37507       {'language'     }  
+    -0.19065      {'food'       }        0.36133       {'syntactic'    }  
+    -0.18997      {'drug'       }        0.35205       {'words'        }  
+     -0.1809      {'images'     }        0.33159       {'noun'         }  
+    -0.17698      {'positive'   }        0.31233       {'verb'         }  
+
+PA7
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA7.nii
+_____________________________________________________________________
+    r_lowest        Term_or_Topic_lowest       r_highest     Term_or_Topic_highest 
+    _________    __________________________    _________    _______________________
+
+     -0.19649    {'Language comprehension'}     0.26764     {'Pain Perception'    }
+     -0.12192    {'Reading &amp; Writing'     }      0.1346     {'Response Inhibition'}
+     -0.11803    {'Word Processing'       }    0.097576     {'Reward processing'  }
+      -0.1106    {'Memory &amp; Events'       }    0.093055     {'Feedback &amp; learning'}
+     -0.10694    {'Language Processing'   }    0.076649     {'Action Observation' }
+     -0.10476    {'Auditory processing'   }    0.072843     {'Motion perception'  }
+    -0.095258    {'Eye movements'         }    0.061034     {'Body perception'    }
+    -0.083044    {'Motor Coordination'    }    0.059874     {'Sleep &amp; Math'       }
+    -0.055398    {'Empathy &amp; Interaction' }    0.059579     {'Object Recognition' }
+    -0.052602    {'Motor movements'       }    0.058506     {'Emotion face'       }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA7.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.20778     {'sentence'     }       0.30225      {'painful'       }  
+    -0.20464     {'comprehension'}       0.28783      {'noxious'       }  
+     -0.2034     {'sentences'    }       0.28347      {'pain'          }  
+    -0.19832     {'semantic'     }       0.25407      {'heat'          }  
+     -0.1978     {'language'     }       0.20803      {'somatosensory' }  
+    -0.17461     {'words'        }       0.20257      {'body'          }  
+     -0.1743     {'word'         }       0.19938      {'sensation'     }  
+    -0.16521     {'spoken'       }       0.18871      {'painrelated'   }  
+    -0.16019     {'conceptual'   }       0.18181      {'unpleasantness'}  
+    -0.14681     {'read'         }       0.18038      {'stimulation'   }  
+
+PA8
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA8.nii
+_____________________________________________________________________
+    r_lowest        Term_or_Topic_lowest       r_highest      Term_or_Topic_highest   
+    _________    __________________________    _________    __________________________
+
+      -0.1476    {'Action Observation'    }     0.26562     {'Encoding &amp; Retrieval'  }
+     -0.13338    {'Motor movements'       }     0.10882     {'Emotion Processing'    }
+       -0.118    {'Eye movements'         }    0.097338     {'Memory &amp; Events'       }
+    -0.097898    {'Spatial Attention'     }    0.078379     {'Fear conditioning'     }
+    -0.094116    {'Mental Imagery'        }    0.072272     {'Emotion face'          }
+    -0.075726    {'Motor control'         }    0.054362     {'Auditory processing'   }
+    -0.062615    {'Motion perception'     }     0.03513     {'Reasoning &amp; evaluation'}
+     -0.05869    {'Motor Coordination'    }    0.025382     {'Trauma &amp; Stress'       }
+    -0.054574    {'Task performance'      }    0.015919     {'Depression &amp; Disorders'}
+    -0.050554    {'Language comprehension'}    0.013907     {'Object Recognition'    }
+
+Test image 1
+/Users/f003vz1/Downloads/Quah_Saggar_RDoC_factor_maps/PA8.nii
+_____________________________________________________________________
+    r_lowest    Term_or_Topic_lowest    r_highest    Term_or_Topic_highest
+    ________    ____________________    _________    _____________________
+
+    -0.22272       {'action'   }         0.27055        {'encoding'  }    
+     -0.2032       {'movements'}         0.25719        {'episodic'  }    
+    -0.19313       {'actions'  }         0.21146        {'recall'    }    
+    -0.19034       {'hand'     }         0.19147        {'picture'   }    
+    -0.17103       {'body'     }         0.18672        {'retrieval' }    
+     -0.1678       {'motion'   }         0.18654        {'subsequent'}    
+    -0.15541       {'attention'}         0.18232        {'pictures'  }    
+    -0.15446       {'target'   }         0.17889        {'novelty'   }    
+     -0.1502       {'eye'      }         0.17728        {'olfactory' }    
+    -0.14826       {'mirror'   }         0.17591        {'category'  }    
+
+
+ans =
+
+  8&times;3 table
+
+    imageName          orig_topic_label               NS_RI_topic_label     
+    _________    _____________________________    __________________________
+
+     {'PA1'}     {'Social Perception'        }    {'Emotion Processing'    }
+     {'PA2'}     {'Motor Response'           }    {'Auditory processing'   }
+     {'PA3'}     {'Working Memory'           }    {'Reading &amp; Writing'     }
+     {'PA4'}     {'Language'                 }    {'Language comprehension'}
+     {'PA5'}     {'Attention'                }    {'Action Observation'    }
+     {'PA6'}     {'Negative Valence Response'}    {'Language comprehension'}
+     {'PA7'}     {'Theory of Mind'           }    {'Pain Perception'       }
+     {'PA8'}     {'Reward Valuation'         }    {'Encoding &amp; Retrieval'  }
+
+</pre>
+<h2 id="5">save</h2>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2026a</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+% Get a list of all factor maps (PA*.nii.gz)
+ff = filenames('PA*gz')
+
+factor_obj = {};
+
+% For each, load and plot a montage of the map
+
+% Load the image
+for i = 1:size(ff, 1)
+
+factor_obj{i} = fmri_data(ff{i});
+
+% Strip out the name
+name = regexp(ff{i}, 'PA\d{1,2}', 'match', 'once');
+
+create_figure([name 'surf']); axis off; surface(factor_obj{i}, 'foursurfaces_hcp', 'nolegend', 'nofigure');
+subplot(2, 2, 1);
+title(name, 'FontSize', 24)
+saveas(gcf, fullfile('figures', [name '_surface.png']))
+
+% Create montage
+create_figure(name); axis off; o2 = montage(factor_obj{i}, 'nolegend');
+title_montage(o2, 5, name)
+
+% Save
+% mkdir('figures')
+saveas(gcf, fullfile('figures', [name '_montage.png']))
+
+drawnow
+
+end % i
+
+
+%% Combine them
+
+factor_obj_combined = factor_obj{1};
+for i = 2:8
+    factor_obj_combined = cat(factor_obj_combined, factor_obj{i}); 
+end
+
+%% Plot correlations
+
+names = cellstr(factor_obj_combined.image_names)';
+names = cellfun(@(x) strrep(x, '.nii', ''), names, 'UniformOutput', false);
+
+plot_correlation_matrix(factor_obj_combined.dat, 'names', names);
+
+title('Spatial correlations among factor maps')
+
+
+%% Report neurosynth associations
+
+top_terms = {};
+
+for i = 1:size(ff, 1)
+
+    disp(names{i})
+
+    % Topics
+    [~, t] = neurosynth_feature_labels(factor_obj{i}, 'noverbose', 'topics_ri');
+
+    NS_RI_topic_label{i, 1} = t{1}.Term_or_Topic_highest{1};
+
+    [~, terms] = neurosynth_feature_labels(factor_obj{i}, 'noverbose');
+    top_terms{i} = terms{1}.Term_or_Topic_highest;
+
+end
+
+imageName = names';
+
+% read original names
+orig_names = readtable('factor_names.txt', 'NumHeaderLines', 0);
+orig_topic_label = orig_names.FactorName(1:8);
+
+factor_obj_combined.metadata_table = table(imageName, orig_topic_label, NS_RI_topic_label);
+factor_obj_combined.metadata_table
+
+%% save
+
+save quah_factor_obj_combined factor_obj_combined
+
+##### SOURCE END #####
+-->
+</body>
+</html>

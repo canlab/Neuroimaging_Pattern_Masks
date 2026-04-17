@@ -1,0 +1,10 @@
+Factor:	FactorName
+F1: Social Perception
+F2: Motor Response
+F3: Working Memory
+F4: Language
+F5: Attention
+F6: Negative Valence Response
+F7: Theory of Mind
+F8: Reward Valuation
+G: Task-general activation
