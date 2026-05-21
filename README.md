@@ -1,6 +1,6 @@
 # Neuroimaging_Pattern_Masks
 
-This repository contains pre-defined brain "signatures" (multivariate predictive patterns), atlases of local regions and networks, and masks and regions derived from published meta-analyses of neuroimaging data. It includes a fairly comprehensive set of such resources developed by the Cognitive and Affective Neuorscience Lab (Tor Wager, PI) and our collaborators, and also includes some products from other groups shared publically or by permission from the creators. [Documentation is here](docs/Readme.md).  
+This repository contains pre-defined brain "signatures" (multivariate predictive patterns), atlases of local regions and networks, and masks and regions derived from published meta-analyses of neuroimaging data. It includes a fairly comprehensive set of such resources developed by the Cognitive and Affective Neuorscience Lab (Tor Wager, PI) and our collaborators, and also includes some products from other groups shared publically or by permission from the creators. [Documentation is here](docs/README.md).  
 
 Some of these resources are used in other toolboxes, particularly <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a> and the CANlab’s <a href = "https://github.com/canlab/CANlab_help_examples">Help Examples and Batch Scripts</a> repository. They are also very useful when doing interactive analysis with the CAN lab's object-oriented neuroimaging toolbox, <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a>. 
 
@@ -14,7 +14,7 @@ The three types of brain maps included are:
 Getting help and additional information:
 ------------------------------------------------------------
 We have several sources of documentation for this repository. 
-See [the online documentation for each map set](docs/Readme.md).
+See [the online documentation for each map set](docs/README.md).
 
 [This website](https://sites.google.com/dartmouth.edu/canlab-brainpatterns/home) is older but may also be useful.
 
