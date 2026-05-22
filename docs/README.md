@@ -130,7 +130,8 @@ Shared rendering helpers used by every per-folder script live in
 | 2022 | [Koban — NCS Craving (Nat Neurosci 2023)](../Multivariate_signature_patterns/2022_Koban_NCS_Craving/contents_description.md) | Drug & food craving |
 | 2023 | [Speer — Brain Reward Signature (BRS)](../Multivariate_signature_patterns/2023_Speer_Brain_Reward_Signature_BRS/contents_description.md) | Reward signature |
 | 2024 | [FEPS — Facial Expressions of Pain (eLife)](../Multivariate_signature_patterns/2024_FEPS_Facial_Expressions_of_Pain_Signature/contents_description.md) | Facial-expression-based pain |
-| 2026 | [Murillo — PiFoneM (J Pain)](../Multivariate_signature_patterns/2026_Murillo_PiFoneM/contents_description.md) | Pain-induced fear / negative-affect |
+| 2026 | [Açıl — Mentalizing: Self / Other (Nat Comms)](../Multivariate_signature_patterns/2026_Acil_Mentalizing_Self_Other/contents_description.md) | Mentalizing — overall, self, other, self-vs-other |
+| 2026 | [Murillo — PiFoneM (J Pain)](../Multivariate_signature_patterns/2026_Murillo_PiFoneM/contents_description.md) | Pain-induced fear of neck movement |
 
 ### Atlases and parcellations — all entries documented
 
