@@ -86,7 +86,8 @@ files themselves.
 | 2022 | [Koban — NCS Craving (Nat Neurosci 2023)](./2022_Koban_NCS_Craving/contents_description.md) | Drug & food craving | `ncs` |
 | 2023 | [Speer — Brain Reward Signature (BRS)](./2023_Speer_Brain_Reward_Signature_BRS/contents_description.md) | Reward signature | (load `.nii` directly) |
 | 2024 | [FEPS — Facial Expressions of Pain (eLife)](./2024_FEPS_Facial_Expressions_of_Pain_Signature/contents_description.md) | Facial-expression-based pain | (load `.nii` directly) |
-| 2026 | [Murillo — PiFoneM (J Pain)](./2026_Murillo_PiFoneM/contents_description.md) | Pain-induced fear / negative-affect marker | `pifonem` |
+| 2026 | [Açıl — Mentalizing: Self / Other (Nat Comms)](./2026_Acil_Mentalizing_Self_Other/contents_description.md) | Mentalizing about self vs. other (MS, MS-Self, MS-Other, MS-SvO) | `selfother` |
+| 2026 | [Murillo — PiFoneM (J Pain)](./2026_Murillo_PiFoneM/contents_description.md) | Pain-induced fear of neck movement | `pifonem`, `fearofneckpain` |
 
 ## Conventions
 
