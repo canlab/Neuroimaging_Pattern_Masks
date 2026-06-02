@@ -67,6 +67,7 @@ files themselves.
 | 2016 | [Eisenbarth — Autonomic GSR/HR (J Neurosci)](./2016_Eisenbarth_JNeuro_autonomic_patterns/contents_description.md) | Skin conductance, heart rate | `gsr`, `hr` |
 | 2016 | [Krishnan — VPS (eLife)](./2016_Krishnan_eLife_VPS/contents_description.md) | Vicarious pain | `vps` |
 | 2017 | [Ashar — Care / Distress (Neuron)](./2017_Ashar_care_distress/contents_description.md) | Empathic care vs distress | (load `.nii` directly) |
+| 2017 | [López-Solà — Fibromyalgia signatures (PAIN)](./2017_Lopez_Sola_Fibromyalgia/contents_description.md) | FM-pain & FM-multisensory patterns; NPS region masks | (load `.nii` / `.img` directly) |
 | 2017 | [Rosenberg — saCPM (Nat Neurosci)](./2017_Rosenberg_sustained_attention/contents_description.md) | Sustained attention (connectome) | (load `.mat` directly) |
 | 2017 | [Woo — SIIPS1 (Nat Comms)](./2017_Woo_SIIPS1/contents_description.md) | Cerebral pain (beyond nociception) | `siips` |
 | 2018 | [Kragel — MFC generalizability (Nat Neurosci)](./2018_Kragel_MFC_Generalizability/contents_description.md) | Pain × emotion × cognitive control in MFC | `kragel18`, `pain_cog_emo` |

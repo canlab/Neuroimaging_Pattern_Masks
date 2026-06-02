@@ -111,6 +111,7 @@ Shared rendering helpers used by every per-folder script live in
 | 2016 | [Eisenbarth — Autonomic GSR/HR (J Neurosci)](../Multivariate_signature_patterns/2016_Eisenbarth_JNeuro_autonomic_patterns/contents_description.md) | Skin conductance, heart rate |
 | 2016 | [Krishnan — VPS (eLife)](../Multivariate_signature_patterns/2016_Krishnan_eLife_VPS/contents_description.md) | Vicarious pain |
 | 2017 | [Ashar — Care / Distress (Neuron)](../Multivariate_signature_patterns/2017_Ashar_care_distress/contents_description.md) | Empathic care vs distress |
+| 2017 | [López-Solà — Fibromyalgia signatures (PAIN)](../Multivariate_signature_patterns/2017_Lopez_Sola_Fibromyalgia/contents_description.md) | FM-pain & FM-multisensory; NPS region masks |
 | 2017 | [Rosenberg — saCPM (Nat Neurosci)](../Multivariate_signature_patterns/2017_Rosenberg_sustained_attention/contents_description.md) | Sustained attention (connectome) |
 | 2017 | [Woo — SIIPS1 (Nat Comms)](../Multivariate_signature_patterns/2017_Woo_SIIPS1/contents_description.md) | Cerebral pain (beyond nociception) |
 | 2018 | [Kragel — MFC generalizability (Nat Neurosci)](../Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/contents_description.md) | Pain × emotion × cognitive control |
