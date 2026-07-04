@@ -1,8 +1,8 @@
 # Neuroimaging_Pattern_Masks
 
-This repository contains pre-defined brain "signatures" (multivariate predictive patterns), atlases of local regions and networks, and masks and regions derived from published meta-analyses of neuroimaging data. It includes a fairly comprehensive set of such resources developed by the Cognitive and Affective Neuorscience Lab (Tor Wager, PI) and our collaborators, and also includes some products from other groups shared publically or by permission from the creators.  
+This repository contains pre-defined brain "signatures" (multivariate predictive patterns), atlases of local regions and networks, and masks and regions derived from published meta-analyses of neuroimaging data. It includes a fairly comprehensive set of such resources developed by the Cognitive and Affective Neuorscience Lab (Tor Wager, PI) and our collaborators, and also includes some products from other groups shared publically or by permission from the creators. [Documentation is here](docs/README.md).  
 
-Some of these resources are used in other toolboxes, particularly the CAN Lab’s <a href = "https://github.com/canlab/CANlab_help_examples">Help Examples and Batch Scripts</a> repository. They are also very useful when doing interactive analysis with the CAN lab's object-oriented neuroimaging toolbox, <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a>. 
+Some of these resources are used in other toolboxes, particularly <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a> and the CANlab’s <a href = "https://github.com/canlab/CANlab_help_examples">Help Examples and Batch Scripts</a> repository. They are also very useful when doing interactive analysis with the CAN lab's object-oriented neuroimaging toolbox, <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a>. 
 
 The three types of brain maps included are:
 - Pre-defined brain "signatures" (aka multivariate predictive patterns, brain biomarkers, or "neuromarkers") that can be applied to new individual participants to generate predictions and validate predictive models. Most CANlab signatures are publically available and can be downloaded here. A few, the Neurologic Pain Signature (NPS) and fibromyalgia-predictive patterns, are available for research use upon request (contact Prof. Tor Wager). 
@@ -13,7 +13,10 @@ The three types of brain maps included are:
 
 Getting help and additional information:
 ------------------------------------------------------------
-We have several sources of documentation for this repository. A website with references and pictures is here: https://sites.google.com/dartmouth.edu/canlab-brainpatterns/home
+We have several sources of documentation for this repository. 
+See [the online documentation for each map set](docs/README.md).
+
+[This website](https://sites.google.com/dartmouth.edu/canlab-brainpatterns/home) is older but may also be useful.
 
 1.  You can use any software to load, view, and apply the models. We have an object-oriented Matlab toolbox that makes it easy to load and apply the models. For the philosophy behind the  object-oriented toolbox and code walkthroughs in Matlab, see canlab.github.io. For function-by-function help documents on the Core Tools objects and functions, see the <a href = http://canlabcore.readthedocs.org/en/latest/>help pages on Readthedocs</a>. The code to create the walkthroughs, and a batch script system that uses the CanlabCore object-oriented tools for second-level neuroimaging analysis, is here: <a href='https://github.com/canlab/CANlab_help_examples'>CANlab_help_examples github repository</a>
 
