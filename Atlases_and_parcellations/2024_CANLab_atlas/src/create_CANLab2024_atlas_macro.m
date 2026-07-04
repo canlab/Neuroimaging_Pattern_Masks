@@ -31,7 +31,7 @@ for SPACE = {'MNI152NLin6Asym', 'MNI152NLin2009cAsym'}
                 bianciardi_create_atlas_obj([SPACE,'_2mm'],fine);
             end
             %}
-            create_CANLab2023_atlas(SPACE,SCALE,res);
+            create_CANLab2024_atlas(SPACE,SCALE,res);
         end
     end
 end
