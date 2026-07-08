@@ -110,3 +110,5 @@ region plots below illustrate the degree of overlap.
 * Correct level_4 cingulate* labels. In particular cingulate_dlpfc_[L|R] seems like 
 nonsense. Maybe prefix "prefrontal" to cingulate labels instead and only retain
 cingulate part where it actually includes cingulate cortex.
+* update assembly script for modern image_vector/resample_space() method. Currently
+using d70bee3 version I believe
