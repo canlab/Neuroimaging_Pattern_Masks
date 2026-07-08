@@ -104,3 +104,9 @@ all cases these regions remain more conservatively sized than in Bianciardi.
 
 The substitute regions do not all perfectly overlap with Bianciardi regions. The
 region plots below illustrate the degree of overlap.
+
+## ToDo
+
+* Correct level_4 cingulate* labels. In particular cingulate_dlpfc_[L|R] seems like 
+nonsense. Maybe prefix "prefrontal" to cingulate labels instead and only retain
+cingulate part where it actually includes cingulate cortex.
