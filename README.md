@@ -2,6 +2,12 @@
 
 This repository contains pre-defined brain "signatures" (multivariate predictive patterns), atlases of local regions and networks, and masks and regions derived from published meta-analyses of neuroimaging data. It includes a fairly comprehensive set of such resources developed by the Cognitive and Affective Neuorscience Lab (Tor Wager, PI) and our collaborators, and also includes some products from other groups shared publically or by permission from the creators. [Documentation is here](docs/README.md).  
 
+<p align="center">
+  <img src="docs/npm_repository_overview.svg" alt="Overview of the Neuroimaging Pattern Masks repository, showing its seven collections: multivariate signatures, atlases and parcellations, meta-analysis maps, Neurosynth maps, individual study maps, spatial basis functions, and templates." width="920">
+</p>
+
+<sub>The repository is organized into seven collections of brain maps and reference resources. This figure is a fully editable vector graphic — open [`docs/npm_repository_overview.svg`](docs/npm_repository_overview.svg) directly in PowerPoint or Illustrator.</sub>
+
 Some of these resources are used in other toolboxes, particularly <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a> and the CANlab’s <a href = "https://github.com/canlab/CANlab_help_examples">Help Examples and Batch Scripts</a> repository. They are also very useful when doing interactive analysis with the CAN lab's object-oriented neuroimaging toolbox, <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a>. 
 
 The three types of brain maps included are:
@@ -10,6 +16,16 @@ The three types of brain maps included are:
 - Atlases with pre-defined brain parcels (regions) and networks. This can reduce brain space to a smaller set of (hopefully) meaningful units of analysis. These are saved as Analyze (.img) or NIFTI (.nii) files, and also as "atlas"-type objects, an object type defined in <a href = "https://github.com/canlab/CanlabCore">Canlab Core Tools</a> that facilitates working with brain atlases.
 
 - Brain maps from published meta-analyses of neuroimaging data, which define consensus regions across studies for multiple psychological/task categories -- e.g., emotion, working memory, PTSD, and more. These masks can be used to specify a priori regions of interest or as "patterns of interest" in new studies.
+
+Multivariate signatures at a glance:
+------------------------------------------------------------
+The pre-trained signatures span six domains — **pain**, **physiology**, **aversive / negative affect**, **appetitive / reward**, **cognitive & social**, and **clinical** — each broken into finer sub-branches. Several papers contribute more than one signature and appear in multiple branches. The full list, with citations and loading keywords, is in the [signatures README](Multivariate_signature_patterns/README.md).
+
+<p align="center">
+  <img src="docs/multivariate_signature_taxonomy.svg" alt="Taxonomy of the multivariate signature patterns, grouped into pain, physiology, aversive/negative affect, appetitive/reward, cognitive and social, and clinical domains, with a brain render, name, and first author and year for each signature." width="1000">
+</p>
+
+<sub>Editable vector source: [`docs/multivariate_signature_taxonomy.svg`](docs/multivariate_signature_taxonomy.svg).</sub>
 
 Getting help and additional information:
 ------------------------------------------------------------

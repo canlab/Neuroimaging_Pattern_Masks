@@ -1,0 +1,3 @@
+# Regenerable brain thumbnails (build_thumbnails.py). The finished SVGs in
+# docs/ embed these as base64, so they don't need to be committed.
+_thumbs/

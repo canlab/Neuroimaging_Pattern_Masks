@@ -12,6 +12,12 @@ used throughout the repo, and the
 object-oriented MATLAB toolbox these signatures are designed to be used
 with.
 
+<p align="center">
+  <img src="../docs/multivariate_signature_taxonomy.svg" alt="Taxonomy of the multivariate signature patterns, grouped into pain, physiology, aversive/negative affect, appetitive/reward, cognitive and social, and clinical domains, with a brain render, name, and first author and year for each signature." width="1000">
+</p>
+
+<sub>Signatures grouped by what they predict, across six domains. Several papers contribute patterns to more than one branch. Editable vector source: [`../docs/multivariate_signature_taxonomy.svg`](../docs/multivariate_signature_taxonomy.svg).</sub>
+
 ## Applying signatures to new data
 
 Two convenience wrappers live at the root of this folder:
