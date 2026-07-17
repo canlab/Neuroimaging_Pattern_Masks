@@ -3,7 +3,7 @@
 This repository contains pre-defined brain "signatures" (multivariate predictive patterns), atlases of local regions and networks, and masks and regions derived from published meta-analyses of neuroimaging data. It includes a fairly comprehensive set of such resources developed by the Cognitive and Affective Neuorscience Lab (Tor Wager, PI) and our collaborators, and also includes some products from other groups shared publically or by permission from the creators. [Documentation is here](docs/README.md).  
 
 <p align="center">
-  <img src="docs/npm_repository_overview.svg" alt="Overview of the Neuroimaging Pattern Masks repository, showing its seven collections: multivariate signatures, atlases and parcellations, meta-analysis maps, Neurosynth maps, individual study maps, spatial basis functions, and templates." width="920">
+  <img src="docs/npm_repository_overview_v2.png" alt="Overview of the Neuroimaging Pattern Masks repository, showing its seven collections: multivariate signatures, atlases and parcellations, meta-analysis maps, Neurosynth maps, individual study maps, spatial basis functions, and templates." width="920">
 </p>
 
 <sub>The repository is organized into seven collections of brain maps and reference resources. This figure is a fully editable vector graphic — open [`docs/npm_repository_overview.svg`](docs/npm_repository_overview.svg) directly in PowerPoint or Illustrator.</sub>
