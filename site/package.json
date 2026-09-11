@@ -1,0 +1,1 @@
+{"name":"canlab-neuromarker-gallery","private":true,"type":"module","scripts":{"build":"python3 scripts/build.py","test":"node --test tests/*.test.mjs","dev":"python3 -m http.server 8765 --directory dist"},"devDependencies":{"@playwright/test":"^1.63.0"}}

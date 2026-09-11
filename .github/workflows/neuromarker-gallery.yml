@@ -1,0 +1,62 @@
+name: Neuromarker gallery
+on:
+  push:
+    branches: [master]
+    paths: ['site/**', 'Multivariate_signature_patterns/**', '.github/workflows/neuromarker-gallery.yml']
+  pull_request:
+    paths: ['site/**', 'Multivariate_signature_patterns/**', '.github/workflows/neuromarker-gallery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: neuromarker-gallery-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            site
+            Multivariate_signature_patterns
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: site/requirements.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: pip install -r site/requirements.txt
+      - run: npm ci --prefix site
+      - run: npm test --prefix site
+      - run: python site/scripts/build.py
+      - run: python site/scripts/validate.py
+      - run: npx playwright install --with-deps chromium
+        working-directory: site
+      - name: Browser integration checks
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 --directory site/dist > /tmp/gallery-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node site/tests/browser.mjs
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish gallery
+        id: deployment
+        uses: actions/deploy-pages@v4

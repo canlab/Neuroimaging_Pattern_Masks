@@ -1,0 +1,1886 @@
+{
+  "version": 1,
+  "studies": [
+    {
+      "id": "2011-wager-jneuro-placebo-prediction",
+      "folder": "Multivariate_signature_patterns/2011_Wager_JNeuro_placebo_prediction",
+      "name": "Placebo analgesia",
+      "year": 2011,
+      "description": "Multivariate brain patterns that predict the magnitude of individual placebo analgesia from pre-treatment fMRI activity. Two patterns are provided: one derived from anticipation of pain and one from the pain period itself. Trained with cross-validated multivariate prediction (LASSO-PCR style) on N=47 healthy participants.",
+      "citation": "Wager, T. D., Atlas, L. Y., Leotti, L. A., & Rilling, J. K. (2011). Predicting individual differences in placebo analgesia: contributions of brain activity during anticipation and pain experience. The Journal of Neuroscience, 31(2), 439–452.",
+      "paper": "https://doi.org/10.1523/JNEUROSCI.3420-10.2011",
+      "domains": [
+        "Pain"
+      ],
+      "modalities": [
+        "Somatosensory"
+      ],
+      "targets": [
+        "Placebo response"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "placebopredict-anticipation",
+          "name": "PlaceboPredict Anticipation",
+          "source": "Multivariate_signature_patterns/2011_Wager_JNeuro_placebo_prediction/Multivariate_PlaceboPredict_Anticipation/PlaceboPredict_Anticipation.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Placebo response"
+          ],
+          "description": "PlaceboPredict Anticipation. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "placebobrainpredict-anticipation",
+          "name": "PlaceboBrainPredict Anticipation",
+          "source": "Multivariate_signature_patterns/2011_Wager_JNeuro_placebo_prediction/PlaceboBrainPredict_Anticipation/PlaceboBrainPredict_Anticipation.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Placebo response"
+          ],
+          "description": "PlaceboBrainPredict Anticipation. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "placebopredict-painperiod",
+          "name": "PlaceboPredict PainPeriod",
+          "source": "Multivariate_signature_patterns/2011_Wager_JNeuro_placebo_prediction/Multivariate_PlaceboPredict_PainPeriod/PlaceboPredict_PainPeriod.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Placebo response"
+          ],
+          "description": "PlaceboPredict PainPeriod. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2015-chang-plosbiology-pines",
+      "folder": "Multivariate_signature_patterns/2015_Chang_PLoSBiology_PINES",
+      "name": "PINES · Negative affect",
+      "year": 2015,
+      "description": "The Picture-Induced Negative Emotion Signature (PINES) is a multivariate fMRI brain pattern that predicts the intensity of subjectively reported negative emotion in response to evocative pictures (IAPS). Developed using LASSO-PCR with leave-one-subject-out cross-validation. PINES is sensitive and specific to negative affect and dissociable from physical-pain signatures.",
+      "citation": "Chang, L. J., Gianaros, P. J., Manuck, S. B., Krishnan, A., & Wager, T. D. (2015). A sensitive and specific neural signature for picture-induced negative affect. PLoS Biology, 13(6), e1002180.",
+      "paper": "https://doi.org/10.1371/journal.pbio.1002180",
+      "domains": [
+        "Aversive / negative affect"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Negative affect"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "rating-weights-loso-2",
+          "name": "PINES · full predictive weights",
+          "source": "Multivariate_signature_patterns/2015_Chang_PLoSBiology_PINES/Rating_Weights_LOSO_2.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Negative affect"
+          ],
+          "description": "PINES · full predictive weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "rating-lasso-pcr-boot5000-2-001-unc",
+          "name": "Rating LASSO PCR Boot5000 2 001 unc",
+          "source": "Multivariate_signature_patterns/2015_Chang_PLoSBiology_PINES/Rating_LASSO_PCR_Boot5000_2_001_unc.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Negative affect"
+          ],
+          "description": "Rating LASSO PCR Boot5000 2 001 unc. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "rating-lasso-pcr-boot5000-fdr05-k10-2",
+          "name": "Rating LASSO PCR boot5000 fdr05 k10 2",
+          "source": "Multivariate_signature_patterns/2015_Chang_PLoSBiology_PINES/Rating_LASSO_PCR_boot5000_fdr05_k10_2.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Negative affect"
+          ],
+          "description": "Rating LASSO PCR boot5000 fdr05 k10 2. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2015-kragel-emotionclassificationbpls",
+      "folder": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS",
+      "name": "Emotion categories · BPLS",
+      "year": 2015,
+      "description": "Seven whole-brain bootstrapped partial-least-squares (BPLS) patterns that discriminate 7 emotion categories — amused, angry, content, fearful, neutral, sad, surprised — from one another based on fMRI activity during emotion induction. Each pattern is a bootstrap-z map (BSz, 10,000 iterations) of PLS regression weights.",
+      "citation": "Kragel, P. A., & LaBar, K. S. (2015). Multivariate neural biomarkers of emotional states are categorically distinct. Social Cognitive and Affective Neuroscience, 10(11), 1437–1448.",
+      "paper": "https://doi.org/10.1093/scan/nsv032",
+      "domains": [
+        "Aversive / negative affect",
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Visual",
+        "Auditory"
+      ],
+      "targets": [
+        "Emotion categories"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "mean-3comp-amused-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Amused (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_amused_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Amused"
+          ],
+          "description": "mean 3comp amused group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "mean-3comp-angry-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Angry (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_angry_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Angry"
+          ],
+          "description": "mean 3comp angry group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "mean-3comp-content-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Content (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_content_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Content"
+          ],
+          "description": "mean 3comp content group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "mean-3comp-fearful-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Fearful (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_fearful_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Fearful"
+          ],
+          "description": "mean 3comp fearful group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "mean-3comp-neutral-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Neutral (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_neutral_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Neutral"
+          ],
+          "description": "mean 3comp neutral group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "mean-3comp-sad-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Sad (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_sad_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Sad"
+          ],
+          "description": "mean 3comp sad group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "mean-3comp-surprised-group-emotion-pls-beta-bsz-10000it",
+          "name": "Emotion category · Surprised (bootstrap z)",
+          "source": "Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/mean_3comp_surprised_group_emotion_PLS_beta_BSz_10000it.img",
+          "role": "Bootstrap z map",
+          "targets": [
+            "Surprised"
+          ],
+          "description": "mean 3comp surprised group emotion PLS beta BSz 10000it. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2015-woo-naturecomms-rejection",
+      "folder": "Multivariate_signature_patterns/2015_Woo_NatureComms_Rejection",
+      "name": "Romantic rejection & physical pain",
+      "year": 2014,
+      "description": "A distributed pain-vs-other brain pattern (dpSP) that discriminates social rejection imagery (recalling a recent romantic breakup) from control conditions. Trained with cross-validated multivariate prediction on N=59 participants who had recently experienced an unwanted romantic break-up. The folder also contains an analogous \"hot\" pain pattern from the same study and a 6 mm searchlight pattern in dACC.",
+      "citation": "Woo, C.-W., Koban, L., Kross, E., Lindquist, M. A., Banich, M. T., Ruzic, L., Andrews-Hanna, J. R., & Wager, T. D. (2014). Separate neural representations for physical pain and social rejection. Nature Communications, 5, 5380.",
+      "paper": "https://doi.org/10.1038/ncomms6380",
+      "domains": [
+        "Cognitive & social",
+        "Pain"
+      ],
+      "modalities": [
+        "Visual",
+        "Somatosensory"
+      ],
+      "targets": [
+        "Social rejection"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "dpsp-rejection-vs-others-weights-final",
+          "name": "Social rejection · full predictive weights",
+          "source": "Multivariate_signature_patterns/2015_Woo_NatureComms_Rejection/dpsp_rejection_vs_others_weights_final.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Social rejection"
+          ],
+          "description": "dpsp rejection vs others weights final. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "dpsp-hot-vs-others-weights-final",
+          "name": "dpsp hot vs others weights final",
+          "source": "Multivariate_signature_patterns/2015_Woo_NatureComms_Rejection/dpsp_hot_vs_others_weights_final.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Social rejection"
+          ],
+          "description": "dpsp hot vs others weights final. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2016-eisenbarth-jneuro-autonomic-patterns",
+      "folder": "Multivariate_signature_patterns/2016_Eisenbarth_JNeuro_autonomic_patterns",
+      "name": "Autonomic responses · GSR & HR",
+      "year": 2016,
+      "description": "Brain patterns predicting heart rate and skin conductance responses to social threat.",
+      "citation": "Eisenbarth, H., Chang, L. J., & Wager, T. D. (2016). Multivariate brain prediction of heart rate and skin conductance responses to social threat. The Journal of Neuroscience, 36(47), 11987–11998.",
+      "paper": "https://doi.org/10.1523/JNEUROSCI.3672-15.2016",
+      "domains": [
+        "Physiology"
+      ],
+      "modalities": [
+        "Multimodal"
+      ],
+      "targets": [
+        "Skin conductance",
+        "Heart rate",
+        "Social threat"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "ans-eisenbarth-jn-2016-gsr-pattern",
+          "name": "ANS Eisenbarth JN 2016 GSR pattern",
+          "source": "Multivariate_signature_patterns/2016_Eisenbarth_JNeuro_autonomic_patterns/ANS_Eisenbarth_JN_2016_GSR_pattern.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Skin conductance",
+            "Heart rate",
+            "Social threat"
+          ],
+          "description": "ANS Eisenbarth JN 2016 GSR pattern. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ans-eisenbarth-jn-2016-hr-pattern",
+          "name": "ANS Eisenbarth JN 2016 HR pattern",
+          "source": "Multivariate_signature_patterns/2016_Eisenbarth_JNeuro_autonomic_patterns/ANS_Eisenbarth_JN_2016_HR_pattern.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Skin conductance",
+            "Heart rate",
+            "Social threat"
+          ],
+          "description": "ANS Eisenbarth JN 2016 HR pattern. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ans-eisenbarth-jn-2016-gsr-pattern-p005thr",
+          "name": "ANS Eisenbarth JN 2016 GSR pattern p005thr",
+          "source": "Multivariate_signature_patterns/2016_Eisenbarth_JNeuro_autonomic_patterns/ANS_Eisenbarth_JN_2016_GSR_pattern_p005thr.img.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Skin conductance",
+            "Heart rate",
+            "Social threat"
+          ],
+          "description": "ANS Eisenbarth JN 2016 GSR pattern p005thr. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "ans-eisenbarth-jn-2016-hr-pattern-p005thr",
+          "name": "ANS Eisenbarth JN 2016 HR pattern p005thr",
+          "source": "Multivariate_signature_patterns/2016_Eisenbarth_JNeuro_autonomic_patterns/ANS_Eisenbarth_JN_2016_HR_pattern_p005thr.img.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Skin conductance",
+            "Heart rate",
+            "Social threat"
+          ],
+          "description": "ANS Eisenbarth JN 2016 HR pattern p005thr. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2016-krishnan-elife-vps",
+      "folder": "Multivariate_signature_patterns/2016_Krishnan_eLife_VPS",
+      "name": "VPS · Vicarious pain",
+      "year": 2016,
+      "description": "The Vicarious-Pain Signature (VPS) is a multivariate fMRI brain pattern that predicts observed (vicarious) pain intensity when participants view others in pain. Trained on N=28 in BMRK4 and validated across multiple datasets. The VPS is distinct from somatic-pain signatures — it shares some regions with the NPS/SIIPS but the predictive geometry is different, supporting the view that vicarious and felt pain rely on partly separable brain systems. An occipital-removed variant is also provided to control for early-visual confounds when observing pain imagery.",
+      "citation": "Krishnan, A., Woo, C.-W., Chang, L. J., Ruzic, L., Gu, X., López-Solà, M., Jackson, P. L., Pujol, J., Fan, J., & Wager, T. D. (2016). Somatic and vicarious pain are represented by dissociable multivariate brain patterns. eLife, 5, e15166.",
+      "paper": "https://doi.org/10.7554/eLife.15166",
+      "domains": [
+        "Pain"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Vicarious pain"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "bmrk4-vps-unthresholded",
+          "name": "VPS · full predictive weights",
+          "source": "Multivariate_signature_patterns/2016_Krishnan_eLife_VPS/bmrk4_VPS_unthresholded.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Vicarious pain"
+          ],
+          "description": "bmrk4 VPS unthresholded. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "krishnan-2016-vps-bmrk4-without-occipital-lobe",
+          "name": "Krishnan 2016 VPS bmrk4 Without Occipital Lobe",
+          "source": "Multivariate_signature_patterns/2016_Krishnan_eLife_VPS/Krishnan_2016_VPS_bmrk4_Without_Occipital_Lobe.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Vicarious pain"
+          ],
+          "description": "Krishnan 2016 VPS bmrk4 Without Occipital Lobe. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bmrk4-vps-fdr05",
+          "name": "bmrk4 VPS fdr05",
+          "source": "Multivariate_signature_patterns/2016_Krishnan_eLife_VPS/bmrk4_VPS_fdr05.img.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Vicarious pain"
+          ],
+          "description": "bmrk4 VPS fdr05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2017-ashar-care-distress",
+      "folder": "Multivariate_signature_patterns/2017_Ashar_care_distress",
+      "name": "Empathic care & distress",
+      "year": 2017,
+      "description": "Two multivariate fMRI brain patterns that dissociate empathic care (tender concern, motivation to help) from empathic distress (personal aversive arousal) elicited by stories of others' suffering. Trained on N=66 participants. The two signatures predict different prosocial behaviours and have largely non-overlapping neuroanatomy, supporting the view that care and distress are distinct components of empathy.",
+      "citation": "Ashar, Y. K., Andrews-Hanna, J. R., Dimidjian, S., & Wager, T. D. (2017). Empathic care and distress: predictive brain markers and dissociable brain systems. Neuron, 94(6), 1263–1273.e4.",
+      "paper": "https://doi.org/10.1016/j.neuron.2017.05.014",
+      "domains": [
+        "Cognitive & social",
+        "Aversive / negative affect",
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Auditory"
+      ],
+      "targets": [
+        "Empathic care",
+        "Empathic distress"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "ashar-2017-empathic-care-marker",
+          "name": "Ashar 2017 empathic care marker",
+          "source": "Multivariate_signature_patterns/2017_Ashar_care_distress/Ashar_2017_empathic_care_marker.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Empathic care",
+            "Empathic distress"
+          ],
+          "description": "Ashar 2017 empathic care marker. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ashar-2017-empathic-distress-marker",
+          "name": "Ashar 2017 empathic distress marker",
+          "source": "Multivariate_signature_patterns/2017_Ashar_care_distress/Ashar_2017_empathic_distress_marker.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Empathic care",
+            "Empathic distress"
+          ],
+          "description": "Ashar 2017 empathic distress marker. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ashar-2017-empathic-care-markerfdr-05",
+          "name": "Ashar 2017 empathic care markerFDR 05",
+          "source": "Multivariate_signature_patterns/2017_Ashar_care_distress/Ashar_2017_empathic_care_markerFDR_05.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Empathic care",
+            "Empathic distress"
+          ],
+          "description": "Ashar 2017 empathic care markerFDR 05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "ashar-2017-empathic-distress-markerfdr-05",
+          "name": "Ashar 2017 empathic distress markerFDR 05",
+          "source": "Multivariate_signature_patterns/2017_Ashar_care_distress/Ashar_2017_empathic_distress_markerFDR_05.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Empathic care",
+            "Empathic distress"
+          ],
+          "description": "Ashar 2017 empathic distress markerFDR 05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2017-woo-siips1",
+      "folder": "Multivariate_signature_patterns/2017_Woo_SIIPS1",
+      "name": "SIIPS1 · Cerebral contributions to pain",
+      "year": 2017,
+      "description": "The Stimulus Intensity Independent Pain Signature-1 (SIIPS1) is a multivariate fMRI brain-pattern signature that predicts trial-by-trial pain ratings above and beyond the variance explained by noxious stimulus intensity and by the nociceptive Neurologic Pain Signature (NPS). It captures cerebral contributions to pain — including patterns in the nucleus accumbens, lateral prefrontal cortex, parahippocampal cortex, and other regions — and was developed from 4 training fMRI studies (N = 137) and validated in 2 independent test studies (N = 46). SIIPS1 mediates the pain-modulating effects of expectancy and perceived control, giving an extensible characterisation of higher-order brain contributions to pain and a set of brain targets for interventions.",
+      "citation": "Woo, C.-W., Schmidt, L., Krishnan, A., Jepma, M., Roy, M., Lindquist, M. A., Atlas, L. Y., & Wager, T. D. (2017). Quantifying cerebral contributions to pain beyond nociception. Nature Communications, 8, 14211.",
+      "paper": "https://doi.org/10.1038/ncomms14211",
+      "domains": [
+        "Pain"
+      ],
+      "modalities": [
+        "Somatosensory"
+      ],
+      "targets": [
+        "Pain intensity",
+        "Expectancy",
+        "Perceived control"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "nonnoc-v11-4-137subjmap-weighted-mean",
+          "name": "SIIPS1 · full predictive weights",
+          "source": "Multivariate_signature_patterns/2017_Woo_SIIPS1/nonnoc_v11_4_137subjmap_weighted_mean.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain intensity",
+            "Expectancy",
+            "Perceived control"
+          ],
+          "description": "SIIPS1 · full predictive weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2018-kragel-mfc-generalizability",
+      "folder": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability",
+      "name": "Medial frontal cortex patterns",
+      "year": 2018,
+      "description": "Twenty-one bootstrapped PLS regression (bPLS) brain patterns trained on multi-study meta-analytic data to discriminate pain, negative emotion, and cognitive control within seven medial-frontal-cortex (MFC) subregions and at the whole-brain level. The patterns demonstrate that even within the cingulate, neighbouring subregions carry topographically distinct, generalisable signatures for the three processes.",
+      "citation": "Kragel, P. A., Kano, M., Van Oudenhove, L., Ly, H. G., Dupont, P., Rubio, A., Delon-Martin, C., Bonaz, B. L., Manuck, S. B., Gianaros, P. J., Čeko, M., Reynolds Losin, E. A., Woo, C.-W., Nichols, T. E., & Wager, T. D. (2018). Generalizable representations of pain, cognitive control, and negative emotion in medial frontal cortex. Nature Neuroscience, 21(2), 283–289.",
+      "paper": "https://doi.org/10.1038/s41593-017-0051-7",
+      "domains": [
+        "Pain",
+        "Aversive / negative affect",
+        "Cognitive & social"
+      ],
+      "modalities": [
+        "Multimodal"
+      ],
+      "targets": [
+        "Pain",
+        "Negative affect",
+        "Cognitive control"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "bpls-wholebrain-pain",
+          "name": "Pain · Wholebrain",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_Wholebrain_Pain.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · Wholebrain Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-mfc-cognitive-control",
+          "name": "Cognitive Control · MFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_MFC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · MFC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-mfc-negative-emotion",
+          "name": "Negative Emotion · MFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_MFC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · MFC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-mfc-pain",
+          "name": "Pain · MFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_MFC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · MFC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-wholebrain-cognitive-control",
+          "name": "Cognitive Control · Wholebrain",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_Wholebrain_Cognitive_Control.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · Wholebrain Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-wholebrain-negative-emotion",
+          "name": "Negative Emotion · Wholebrain",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_Wholebrain_Negative_Emotion.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · Wholebrain Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-amcc-cognitive-control",
+          "name": "Cognitive Control · aMCC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_aMCC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · aMCC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-amcc-negative-emotion",
+          "name": "Negative Emotion · aMCC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_aMCC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · aMCC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-amcc-pain",
+          "name": "Pain · aMCC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_aMCC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · aMCC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-dmfc-cognitive-control",
+          "name": "Cognitive Control · dMFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_dMFC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · dMFC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-dmfc-negative-emotion",
+          "name": "Negative Emotion · dMFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_dMFC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · dMFC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-dmfc-pain",
+          "name": "Pain · dMFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_dMFC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · dMFC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-pacc-cognitive-control",
+          "name": "Cognitive Control · pACC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_pACC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · pACC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-pacc-negative-emotion",
+          "name": "Negative Emotion · pACC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_pACC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · pACC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-pacc-pain",
+          "name": "Pain · pACC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_pACC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · pACC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-pmcc-cognitive-control",
+          "name": "Cognitive Control · pMCC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_pMCC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · pMCC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-pmcc-negative-emotion",
+          "name": "Negative Emotion · pMCC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_pMCC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · pMCC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-pmcc-pain",
+          "name": "Pain · pMCC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_pMCC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · pMCC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-sgacc-cognitive-control",
+          "name": "Cognitive Control · sgACC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_sgACC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · sgACC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-sgacc-negative-emotion",
+          "name": "Negative Emotion · sgACC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_sgACC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · sgACC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-sgacc-pain",
+          "name": "Pain · sgACC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_sgACC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · sgACC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-vmpfc-cognitive-control",
+          "name": "Cognitive Control · vmPFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_vmPFC_Cognitive_Control.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · vmPFC Cognitive Control. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-vmpfc-negative-emotion",
+          "name": "Negative Emotion · vmPFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_vmPFC_Negative_Emotion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · vmPFC Negative Emotion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "bpls-vmpfc-pain",
+          "name": "Pain · vmPFC",
+          "source": "Multivariate_signature_patterns/2018_Kragel_MFC_Generalizability/bPLS_vmPFC_Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Negative affect",
+            "Cognitive control"
+          ],
+          "description": "MFC · vmPFC Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2018-reddan-threat-conditioning-imex",
+      "folder": "Multivariate_signature_patterns/2018_Reddan_Threat_Conditioning_ImEx",
+      "name": "ImEx · Conditioned threat",
+      "year": 2018,
+      "description": "A multivariate fMRI support-vector-machine pattern that discriminates conditioned-threat (CS+) trials from safety (CS−) trials during acquisition in a Pavlovian threat-conditioning paradigm — the \"ImEx\" (Imagined Extinction) study.",
+      "citation": "Reddan, M. C., Wager, T. D., & Schiller, D. (2018). Attenuating neural threat expression with imagination. Neuron, 100(4), 994–1005.e4. (Published 21 November 2018.)",
+      "paper": "https://doi.org/10.1016/j.neuron.2018.10.046",
+      "domains": [
+        "Aversive / negative affect"
+      ],
+      "modalities": [
+        "Auditory"
+      ],
+      "targets": [
+        "Fear",
+        "Threat conditioning",
+        "Imagined extinction"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "ie-imex-acq-threat-svm-nothresh",
+          "name": "IE ImEx Acq Threat SVM nothresh",
+          "source": "Multivariate_signature_patterns/2018_Reddan_Threat_Conditioning_ImEx/IE_ImEx_Acq_Threat_SVM_nothresh.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Fear",
+            "Threat conditioning",
+            "Imagined extinction"
+          ],
+          "description": "IE ImEx Acq Threat SVM nothresh. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ie-imex-acq-threat-svm-01thresh",
+          "name": "IE ImEx Acq Threat SVM 01thresh",
+          "source": "Multivariate_signature_patterns/2018_Reddan_Threat_Conditioning_ImEx/IE_ImEx_Acq_Threat_SVM_01thresh.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Fear",
+            "Threat conditioning",
+            "Imagined extinction"
+          ],
+          "description": "IE ImEx Acq Threat SVM 01thresh. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "ie-imex-acq-threat-svm-05fdr",
+          "name": "IE ImEx Acq Threat SVM 05FDR",
+          "source": "Multivariate_signature_patterns/2018_Reddan_Threat_Conditioning_ImEx/IE_ImEx_Acq_Threat_SVM_05FDR.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Fear",
+            "Threat conditioning",
+            "Imagined extinction"
+          ],
+          "description": "IE ImEx Acq Threat SVM 05FDR. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2019-kragel-emotion-schemas",
+      "folder": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas",
+      "name": "Emotion schemas",
+      "year": 2019,
+      "description": "Twenty whole-brain PLS regression patterns — one per emotion category — trained to predict subjective emotional experience from fMRI during a naturalistic emotion-elicitation paradigm. Categories span a broad appetitive/aversive range: Adoration, Aesthetic Appreciation, Amusement, Anxiety, Awe, Boredom, Confusion, Craving, Disgust, Empathic Pain, Entrancement, Excitement, Fear, Horror, Interest, Joy, Romance, Sadness, Sexual Desire, Surprise.",
+      "citation": "Kragel, P. A., Reddan, M. C., LaBar, K. S., & Wager, T. D. (2019). Emotion schemas are embedded in the human visual system. Science Advances, 5(7), eaaw4358.",
+      "paper": "https://doi.org/10.1126/sciadv.aaw4358",
+      "domains": [
+        "Aversive / negative affect",
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Emotion categories"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "pls-betas-adoration",
+          "name": "Emotion schema · Adoration",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Adoration.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Adoration"
+          ],
+          "description": "Emotion schema · Adoration. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-aesthetic-appreciation",
+          "name": "Emotion schema · Aesthetic Appreciation",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Aesthetic Appreciation.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Aesthetic Appreciation"
+          ],
+          "description": "Emotion schema · Aesthetic Appreciation. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-amusement",
+          "name": "Emotion schema · Amusement",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Amusement.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Amusement"
+          ],
+          "description": "Emotion schema · Amusement. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-anxiety",
+          "name": "Emotion schema · Anxiety",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Anxiety.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Anxiety"
+          ],
+          "description": "Emotion schema · Anxiety. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-awe",
+          "name": "Emotion schema · Awe",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Awe.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Awe"
+          ],
+          "description": "Emotion schema · Awe. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-boredom",
+          "name": "Emotion schema · Boredom",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Boredom.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Boredom"
+          ],
+          "description": "Emotion schema · Boredom. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-confusion",
+          "name": "Emotion schema · Confusion",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Confusion.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Confusion"
+          ],
+          "description": "Emotion schema · Confusion. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-craving",
+          "name": "Emotion schema · Craving",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Craving.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Craving"
+          ],
+          "description": "Emotion schema · Craving. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-disgust",
+          "name": "Emotion schema · Disgust",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Disgust.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Disgust"
+          ],
+          "description": "Emotion schema · Disgust. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-empathic-pain",
+          "name": "Emotion schema · Empathic Pain",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Empathic Pain.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Empathic Pain"
+          ],
+          "description": "Emotion schema · Empathic Pain. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-entrancement",
+          "name": "Emotion schema · Entrancement",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Entrancement.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Entrancement"
+          ],
+          "description": "Emotion schema · Entrancement. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-excitement",
+          "name": "Emotion schema · Excitement",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Excitement.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Excitement"
+          ],
+          "description": "Emotion schema · Excitement. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-fear",
+          "name": "Emotion schema · Fear",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Fear.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Fear"
+          ],
+          "description": "Emotion schema · Fear. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-horror",
+          "name": "Emotion schema · Horror",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Horror.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Horror"
+          ],
+          "description": "Emotion schema · Horror. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-interest",
+          "name": "Emotion schema · Interest",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Interest.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Interest"
+          ],
+          "description": "Emotion schema · Interest. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-joy",
+          "name": "Emotion schema · Joy",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Joy.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Joy"
+          ],
+          "description": "Emotion schema · Joy. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-romance",
+          "name": "Emotion schema · Romance",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Romance.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Romance"
+          ],
+          "description": "Emotion schema · Romance. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-sadness",
+          "name": "Emotion schema · Sadness",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Sadness.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Sadness"
+          ],
+          "description": "Emotion schema · Sadness. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-sexual-desire",
+          "name": "Emotion schema · Sexual Desire",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Sexual Desire.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Sexual Desire"
+          ],
+          "description": "Emotion schema · Sexual Desire. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "pls-betas-surprise",
+          "name": "Emotion schema · Surprise",
+          "source": "Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/PLS_betas_Surprise.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Surprise"
+          ],
+          "description": "Emotion schema · Surprise. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2019-lee-jpain-backpain",
+      "folder": "Multivariate_signature_patterns/2019_Lee_JPain_backpain",
+      "name": "Chronic back pain · Perfusion",
+      "year": 2019,
+      "description": "Multivariate brain markers that predict clinical pain intensity in chronic back-pain patients, derived from three distinct neural modalities:",
+      "citation": "Lee, J., Mawla, I., Kim, J., Loggia, M. L., Ortiz, A., Jung, C., Chan, S.-T., Gerber, J., Schmithorst, V. J., Edwards, R. R., Wasan, A. D., Berna, C., Kong, J., Kaptchuk, T. J., Gollub, R. L., Rosen, B. R., & Napadow, V. (2019). Machine learning-based prediction of clinical pain using multimodal neuroimaging and autonomic metrics. PAIN, 160(3), 550–560.",
+      "paper": "https://doi.org/10.1097/j.pain.0000000000001417",
+      "domains": [
+        "Clinical",
+        "Pain"
+      ],
+      "modalities": [
+        "Somatosensory"
+      ],
+      "targets": [
+        "Chronic back pain"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "nilearn-pairedsvm-w-pcasl53",
+          "name": "nilearn pairedSVM W PCASL53",
+          "source": "Multivariate_signature_patterns/2019_Lee_JPain_backpain/PCASL/nilearn_pairedSVM_W_PCASL53.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Chronic back pain"
+          ],
+          "description": "nilearn pairedSVM W PCASL53. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2019-yu-koban-guilt",
+      "folder": "Multivariate_signature_patterns/2019_Yu_Koban_Guilt",
+      "name": "Interpersonal guilt",
+      "year": 2020,
+      "description": "A multivariate fMRI support-vector-machine pattern that discriminates self-responsible guilt (pain caused to a partner is one's own fault, \"sxpo\") from shared-responsibility trials (\"sxpx\") where blame is distributed. The classifier was trained within a Neurosynth meta-analytic emotion mask (forward-inference) to ensure the signal reflects emotion-related activity rather than task confounds, then tested for generalisation across independent samples.",
+      "citation": "Yu, H., Koban, L., Chang, L. J., Wagner, U., Krishnan, A., Vuilleumier, P., Zhou, X., & Wager, T. D. (2020). A generalizable multivariate brain pattern for interpersonal guilt. Cerebral Cortex, 30(6), 3558–3572.",
+      "paper": "https://doi.org/10.1093/cercor/bhz326",
+      "domains": [
+        "Cognitive & social",
+        "Aversive / negative affect"
+      ],
+      "modalities": [
+        "Multimodal"
+      ],
+      "targets": [
+        "Guilt"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "yu-guilt-svm-sxpo-sxpx-emotionforwardmask",
+          "name": "Yu guilt SVM sxpo sxpx EmotionForwardmask",
+          "source": "Multivariate_signature_patterns/2019_Yu_Koban_Guilt/Yu_guilt_SVM_sxpo_sxpx_EmotionForwardmask.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Guilt"
+          ],
+          "description": "Yu guilt SVM sxpo sxpx EmotionForwardmask. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "yu-koban-guilt-01unc-thresh",
+          "name": "Yu Koban Guilt 01unc thresh",
+          "source": "Multivariate_signature_patterns/2019_Yu_Koban_Guilt/tables_and_figures/Yu_Koban_Guilt_01unc_thresh.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Guilt"
+          ],
+          "description": "Yu Koban Guilt 01unc thresh. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "yu-koban-guilt-05fdrthresh",
+          "name": "Yu Koban Guilt 05FDRthresh",
+          "source": "Multivariate_signature_patterns/2019_Yu_Koban_Guilt/tables_and_figures/Yu_Koban_Guilt_05FDRthresh.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Guilt"
+          ],
+          "description": "Yu Koban Guilt 05FDRthresh. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2020-geuter-pain-multivariate-mediation-pdm",
+      "folder": "Multivariate_signature_patterns/2020_Geuter_pain_multivariate_mediation_PDM",
+      "name": "Pain mediation · PDM",
+      "year": 2020,
+      "description": "The combined Principal-Directions-of-Mediation (cPDM) is a multivariate brain pattern whose voxelwise weights identify the direction in which brain activity mediates the stimulus→pain relationship. Unlike signatures trained to predict pain ratings, the cPDM is optimised to capture the causal pathway. The folder also contains the 10 individual orthogonal PDMs and a combined atlas-style .mat object.",
+      "citation": "Geuter, S., Reynolds Losin, E. A., Roy, M., Atlas, L. Y., Schmidt, L., Krishnan, A., Koban, L., Wager, T. D., & Lindquist, M. A. (2020). Multiple brain networks mediating stimulus–pain relationships in humans. Cerebral Cortex, 30(7), 4204–4219.",
+      "paper": "https://doi.org/10.1093/cercor/bhaa048",
+      "domains": [
+        "Pain"
+      ],
+      "modalities": [
+        "Somatosensory"
+      ],
+      "targets": [
+        "Pain mediation"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "geuter-2020-cpdm-combined-pain-map",
+          "name": "cPDM · combined pain mediation",
+          "source": "Multivariate_signature_patterns/2020_Geuter_pain_multivariate_mediation_PDM/Geuter_2020_cPDM_combined_pain_map.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain mediation"
+          ],
+          "description": "cPDM · combined pain mediation. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "all-pdm10-unthresholded",
+          "name": "All PDM10 unthresholded",
+          "source": "Multivariate_signature_patterns/2020_Geuter_pain_multivariate_mediation_PDM/All_PDM10_unthresholded.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain mediation"
+          ],
+          "description": "All PDM10 unthresholded. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "all-pdm10-fdr-thresholded",
+          "name": "All PDM10 FDR thresholded",
+          "source": "Multivariate_signature_patterns/2020_Geuter_pain_multivariate_mediation_PDM/All_PDM10_FDR_thresholded.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain mediation"
+          ],
+          "description": "All PDM10 FDR thresholded. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2020-silvestrini-rainville-pain-cogcontrol-interaction-amcc",
+      "folder": "Multivariate_signature_patterns/2020_Silvestrini_Rainville_Pain_CogControl_interaction_aMCC",
+      "name": "Pain & cognitive control",
+      "year": 2020,
+      "description": "Three multivariate dorsal-anterior-cingulate (dACC / aMCC) patterns from a study of how cognitive control and pain interact in the dACC:",
+      "citation": "Silvestrini, N., Piché, M., Wager, T. D., & Rainville, P. (2020). Differential brain activity for pain and cognitive control in the cingulate cortex. NeuroImage, 217, 116897.",
+      "paper": "https://doi.org/10.1016/j.neuroimage.2020.116897",
+      "domains": [
+        "Pain",
+        "Cognitive & social"
+      ],
+      "modalities": [
+        "Somatosensory",
+        "Visual"
+      ],
+      "targets": [
+        "Pain",
+        "Cognitive control",
+        "Stroop interference"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "dacc-pain-pattern-wani-121416",
+          "name": "dACC pain pattern wani 121416",
+          "source": "Multivariate_signature_patterns/2020_Silvestrini_Rainville_Pain_CogControl_interaction_aMCC/dACC_pain_pattern_wani_121416.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Cognitive control",
+            "Stroop interference"
+          ],
+          "description": "dACC pain pattern wani 121416. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "dacc-task-pattern-wani-121416",
+          "name": "dACC task pattern wani 121416",
+          "source": "Multivariate_signature_patterns/2020_Silvestrini_Rainville_Pain_CogControl_interaction_aMCC/dACC_task_pattern_wani_121416.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Cognitive control",
+            "Stroop interference"
+          ],
+          "description": "dACC task pattern wani 121416. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "stroop-pattern-wani-121416",
+          "name": "stroop pattern wani 121416",
+          "source": "Multivariate_signature_patterns/2020_Silvestrini_Rainville_Pain_CogControl_interaction_aMCC/stroop_pattern_wani_121416.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain",
+            "Cognitive control",
+            "Stroop interference"
+          ],
+          "description": "stroop pattern wani 121416. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2020-zhou-general-vicarious-pain",
+      "folder": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain",
+      "name": "General vicarious pain",
+      "year": 2020,
+      "description": "Three multivariate fMRI brain patterns predicting vicarious-pain ratings from different stimulus modalities:",
+      "citation": "Zhou, F., Li, J., Zhao, W., Xu, L., Zheng, X., Fu, M., Yao, S., Kendrick, K. M., Wager, T. D., & Becker, B. (2020). Empathic pain evoked by sensory and emotional-communicative cues share common and process-specific neural representations. eLife, 9, e56929.",
+      "paper": "https://doi.org/10.7554/eLife.56929",
+      "domains": [
+        "Pain"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Vicarious pain",
+        "Facial expressions"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "general-vicarious-pain-pattern-unthresholded",
+          "name": "General vicarious pain pattern unthresholded",
+          "source": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain/General_vicarious_pain_pattern_unthresholded.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Vicarious pain",
+            "Facial expressions"
+          ],
+          "description": "General vicarious pain pattern unthresholded. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "fe-vicarious-pain-pattern-unthresholded",
+          "name": "FE vicarious pain pattern unthresholded",
+          "source": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain/FE_vicarious_pain_pattern_unthresholded.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Vicarious pain",
+            "Facial expressions"
+          ],
+          "description": "FE vicarious pain pattern unthresholded. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ns-vicarious-pain-pattern-unthresholded",
+          "name": "NS vicarious pain pattern unthresholded",
+          "source": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain/NS_vicarious_pain_pattern_unthresholded.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Vicarious pain",
+            "Facial expressions"
+          ],
+          "description": "NS vicarious pain pattern unthresholded. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "fe-vicarious-pain-pattern-fdr05",
+          "name": "FE vicarious pain pattern FDR05",
+          "source": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain/FE_vicarious_pain_pattern_FDR05.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Vicarious pain",
+            "Facial expressions"
+          ],
+          "description": "FE vicarious pain pattern FDR05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "general-vicarious-pain-pattern-fdr05-boot10000",
+          "name": "General vicarious pain pattern FDR05 Boot10000",
+          "source": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain/General_vicarious_pain_pattern_FDR05_Boot10000.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Vicarious pain",
+            "Facial expressions"
+          ],
+          "description": "General vicarious pain pattern FDR05 Boot10000. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "ns-vicarious-pain-pattern-fdr05",
+          "name": "NS vicarious pain pattern FDR05",
+          "source": "Multivariate_signature_patterns/2020_Zhou_general_vicarious_pain/NS_vicarious_pain_pattern_FDR05.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Vicarious pain",
+            "Facial expressions"
+          ],
+          "description": "NS vicarious pain pattern FDR05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2021-ceko-mpa2-multiaversive",
+      "folder": "Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive",
+      "name": "MPA2 · Multi-aversive patterns",
+      "year": 2022,
+      "description": "The Multi-Aversive Patterns 2 (MPA2) set captures common and stimulus-type-specific representations of aversive experience across four modalities — mechanical pain, thermal pain, aversive sounds, and aversive visual images — plus a pooled general aversive pattern. Trained with bootstrapped PLS regression on N=55 participants and validated in independent samples. The MPA2 generalises across studies, predicts subjective negative affect, and dissociates aversive experience from general salience/arousal.",
+      "citation": "Čeko, M., Kragel, P. A., Woo, C.-W., López-Solà, M., & Wager, T. D. (2022). Common and stimulus-type-specific brain representations of negative affect. Nature Neuroscience, 25(6), 760–770.",
+      "paper": "https://doi.org/10.1038/s41593-022-01082-w",
+      "domains": [
+        "Aversive / negative affect",
+        "Pain"
+      ],
+      "modalities": [
+        "Visual",
+        "Auditory",
+        "Somatosensory"
+      ],
+      "targets": [
+        "Negative affect",
+        "Mechanical pain",
+        "Thermal pain"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "general-bplsf-unthr",
+          "name": "General bplsF unthr",
+          "source": "Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive/General_bplsF_unthr.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "General aversion"
+          ],
+          "description": "General bplsF unthr. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "mechanical-bplsf-unthr",
+          "name": "Mechanical bplsF unthr",
+          "source": "Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive/Mechanical_bplsF_unthr.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Mechanical aversion"
+          ],
+          "description": "Mechanical bplsF unthr. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "sound-bplsf-unthr",
+          "name": "Sound bplsF unthr",
+          "source": "Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive/Sound_bplsF_unthr.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Sound aversion"
+          ],
+          "description": "Sound bplsF unthr. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "thermal-bplsf-unthr",
+          "name": "Thermal bplsF unthr",
+          "source": "Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive/Thermal_bplsF_unthr.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Thermal aversion"
+          ],
+          "description": "Thermal bplsF unthr. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "visual-bplsf-unthr",
+          "name": "Visual bplsF unthr",
+          "source": "Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive/Visual_bplsF_unthr.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Visual aversion"
+          ],
+          "description": "Visual bplsF unthr. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2021-zhou-subjective-fear",
+      "folder": "Multivariate_signature_patterns/2021_Zhou_Subjective_Fear",
+      "name": "VIFS · Subjective fear",
+      "year": 2021,
+      "description": "The Visually-Induced Fear Signature (VIFS) is a multivariate fMRI brain pattern that predicts subjective fear ratings in response to naturalistic fearful videos. Trained with cross-validated multivariate regression on healthy participants and validated across independent samples. VIFS provides a fear-specific brain marker that is distinct from general negative affect or arousal.",
+      "citation": "Zhou, F., Zhao, W., Qi, Z., Geng, Y., Yao, S., Kendrick, K. M., Wager, T. D., & Becker, B. (2021). A distributed fMRI-based signature for the subjective experience of fear. Nature Communications, 12, 6643.",
+      "paper": "https://doi.org/10.1038/s41467-021-26977-3",
+      "domains": [
+        "Aversive / negative affect"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Fear"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "vifs",
+          "name": "VIFS · Subjective fear",
+          "source": "Multivariate_signature_patterns/2021_Zhou_Subjective_Fear/VIFS.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Fear"
+          ],
+          "description": "VIFS · Subjective fear. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2021-vanthoff-basic-sexual-image-classifier",
+      "folder": "Multivariate_signature_patterns/2021_vantHoff_BASIC_sexual_image_classifier",
+      "name": "BASIC · Sexual-image classifier",
+      "year": 2021,
+      "description": "The Brain Activity-based Sexual-Image Classifier (BASIC) is a multivariate fMRI support-vector pattern that distinguishes brain responses to sexual images from responses to neutral or aversive images. Trained on N=49 healthy participants with cross-validated SVM-RFE. Useful as a control / specificity test for affect signatures.",
+      "citation": "van 't Hof, S. R., Cifre, I., Boekel, W., Mengelers, R., Kohn, N., & Smeets, P. A. M. (2021). Brain activity-based pattern classification of sexual images. Cerebral Cortex, 31(8), 3702–3712.",
+      "paper": "https://doi.org/10.1093/cercor/bhab038",
+      "domains": [
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Sexual processing"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "basic-sexual-image-classifier",
+          "name": "BASIC Sexual image classifier",
+          "source": "Multivariate_signature_patterns/2021_vantHoff_BASIC_sexual_image_classifier/BASIC_Sexual_image_classifier.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Sexual processing"
+          ],
+          "description": "BASIC Sexual image classifier. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2022-koban-ncs-craving",
+      "folder": "Multivariate_signature_patterns/2022_Koban_NCS_Craving",
+      "name": "NCS · Craving",
+      "year": 2023,
+      "description": "The Neurobiological Craving Signature (NCS) is a multivariate fMRI brain pattern trained to predict subjective craving across drugs and food. Trained on N=99 participants spanning multiple substance-use and food-cue paradigms, and validated in independent samples. The NCS provides a transdiagnostic brain marker of craving and dissociates craving from general reward and emotion.",
+      "citation": "Koban, L., Wager, T. D., & Kober, H. (2023). A neuromarker for drug and food craving distinguishes drug users from non-users. Nature Neuroscience, 26(2), 316–325.",
+      "paper": "https://doi.org/10.1038/s41593-022-01228-w",
+      "domains": [
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Food craving",
+        "Drug craving"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "craving-wmapn99-boot10k-02-may-2022",
+          "name": "NCS · Drug and food craving",
+          "source": "Multivariate_signature_patterns/2022_Koban_NCS_Craving/craving_wmapN99_boot10K_02-May-2022.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Food craving",
+            "Drug craving"
+          ],
+          "description": "NCS · Drug and food craving. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "wmap-onlydrugs-l2ngm-n99-20220428",
+          "name": "Drug craving · weights",
+          "source": "Multivariate_signature_patterns/2022_Koban_NCS_Craving/Data_code_public/NCS_weightmaps/Food_Drug_wmaps/wmap_onlyDRUGS_l2nGM_N99_20220428.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Drug craving"
+          ],
+          "description": "Drug craving · weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "wmap-onlyfood-l2ngm-n99-20220428",
+          "name": "Food craving · weights",
+          "source": "Multivariate_signature_patterns/2022_Koban_NCS_Craving/Data_code_public/NCS_weightmaps/Food_Drug_wmaps/wmap_onlyFOOD_l2nGM_N99_20220428.img",
+          "role": "Predictive weights",
+          "targets": [
+            "Food craving"
+          ],
+          "description": "Food craving · weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "ncs-gray-p005-k10",
+          "name": "NCS gray p005 k10",
+          "source": "Multivariate_signature_patterns/2022_Koban_NCS_Craving/Data_code_public/NCS_weightmaps/Thresholded_NCS_wmaps/NCS_gray_p005_k10.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Food craving",
+            "Drug craving"
+          ],
+          "description": "NCS gray p005 k10. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "ncs-gray-p05fdr",
+          "name": "NCS gray p05fdr",
+          "source": "Multivariate_signature_patterns/2022_Koban_NCS_Craving/Data_code_public/NCS_weightmaps/Thresholded_NCS_wmaps/NCS_gray_p05fdr.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Food craving",
+            "Drug craving"
+          ],
+          "description": "NCS gray p05fdr. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "ncs-multithr-001k5-005-05-pruned",
+          "name": "NCS multithr 001k5 005 05 pruned",
+          "source": "Multivariate_signature_patterns/2022_Koban_NCS_Craving/Data_code_public/NCS_weightmaps/Thresholded_NCS_wmaps/NCS_multithr_001k5_005_05_pruned.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Food craving",
+            "Drug craving"
+          ],
+          "description": "NCS multithr 001k5 005 05 pruned. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2022-coll-pain-monetary-reward-decision-value",
+      "folder": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value",
+      "name": "Decision value · Pain & money",
+      "year": 2022,
+      "description": "Three multivariate fMRI patterns derived from an economic-choice task in which participants accepted or rejected offers combining various amounts of pain and money (N = 57). Each pattern decodes a different dimension of the offer:",
+      "citation": "Coll, M.-P., Slimani, H., Woo, C.-W., Wager, T. D., Rainville, P., Vachon-Presseau, É., & Roy, M. (2022). The neural signature of the decision value of future pain. PNAS, 119(23), e2119931119.",
+      "paper": "https://doi.org/10.1073/pnas.2119931119",
+      "domains": [
+        "Pain",
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Somatosensory",
+        "Visual"
+      ],
+      "targets": [
+        "Pain decision value",
+        "Monetary reward"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "moneyvalue-weights",
+          "name": "moneyvalue weights",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/moneyvalue_weights.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "moneyvalue weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "painvalue-weights",
+          "name": "painvalue weights",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/painvalue_weights.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "painvalue weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "shockintensity-weights",
+          "name": "shockintensity weights",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/shockintensity_weights.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "shockintensity weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "moneyvalue-bootz",
+          "name": "moneyvalue bootz",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/moneyvalue_bootz.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "moneyvalue bootz. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "moneyvalue-weights-fdr05",
+          "name": "moneyvalue weights fdr05",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/moneyvalue_weights_fdr05.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "moneyvalue weights fdr05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "painvalue-bootz",
+          "name": "painvalue bootz",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/painvalue_bootz.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "painvalue bootz. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "painvalue-weights-fdr05",
+          "name": "painvalue weights fdr05",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/painvalue_weights_fdr05.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "painvalue weights fdr05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "shockintensity-bootz",
+          "name": "shockintensity bootz",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/shockintensity_bootz.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "shockintensity bootz. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "shockintensity-weights-fdr05",
+          "name": "shockintensity weights fdr05",
+          "source": "Multivariate_signature_patterns/2022_coll_pain_monetary_reward_decision_value/shockintensity_weights_fdr05.nii.gz",
+          "role": "Statistical support",
+          "targets": [
+            "Pain decision value",
+            "Monetary reward"
+          ],
+          "description": "shockintensity weights fdr05. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2023-speer-brain-reward-signature-brs",
+      "folder": "Multivariate_signature_patterns/2023_Speer_Brain_Reward_Signature_BRS",
+      "name": "BRS · Brain reward signature",
+      "year": 2023,
+      "description": "The Brain Reward Signature (BRS) is a multivariate fMRI brain pattern that predicts the signed magnitude of monetary rewards vs. losses from whole-brain activity. It was trained on the Monetary Incentive Delay (MID) task (N = 39) with cross-validated machine learning, achieving 92% decoding accuracy between reward and loss trials in cross-validation. Generalisation tests:",
+      "citation": "Speer, S. P. H., Keysers, C., Campdepadrós Barrios, J., Teurlings, C. J. S., Smidts, A., Boksem, M. A. S., Wager, T. D., & Gazzola, V. (2023). A multivariate brain signature for reward. NeuroImage, 271, 119990.",
+      "paper": "https://doi.org/10.1016/j.neuroimage.2023.119990",
+      "domains": [
+        "Appetitive / reward"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Monetary reward"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "reward-signature-bootstrapped-0-5",
+          "name": "BRS · supplied bootstrapped map",
+          "source": "Multivariate_signature_patterns/2023_Speer_Brain_Reward_Signature_BRS/Reward_Signature_bootstrapped_0.5.nii.gz",
+          "role": "Bootstrapped map",
+          "targets": [
+            "Monetary reward"
+          ],
+          "description": "BRS · supplied bootstrapped map. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    },
+    {
+      "id": "2024-feps-facial-expressions-of-pain-signature",
+      "folder": "Multivariate_signature_patterns/2024_FEPS_Facial_Expressions_of_Pain_Signature",
+      "name": "FEPS · Facial expression of pain",
+      "year": 2023,
+      "description": "The Facial-Expressions-of-Pain Signature (FEPS) is a multivariate fMRI brain pattern that predicts facial-expression-based pain ratings. Provided as the mean cross-validated weight map and a z-scored unthresholded variant. Distinct from pain-rating signatures (NPS/SIIPS) in that it targets the facial-display dimension of pain, which is partly dissociable from self-reported intensity.",
+      "citation": "Picard, F., et al. (2023). A distributed brain response predicting the facial expression of acute nociceptive pain. eLife, 12, RP87962.",
+      "paper": "https://elifesciences.org/articles/87962",
+      "domains": [
+        "Pain"
+      ],
+      "modalities": [
+        "Somatosensory"
+      ],
+      "targets": [
+        "Facial expression of pain"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "feps-mean-xval-weights",
+          "name": "FEPS · mean cross-validated weights",
+          "source": "Multivariate_signature_patterns/2024_FEPS_Facial_Expressions_of_Pain_Signature/feps_mean_xval_weights.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Facial expression of pain"
+          ],
+          "description": "FEPS · mean cross-validated weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "feps-z-unthresholded",
+          "name": "FEPS · standardized unthresholded map",
+          "source": "Multivariate_signature_patterns/2024_FEPS_Facial_Expressions_of_Pain_Signature/feps_z_unthresholded.nii.gz",
+          "role": "Predictive weights",
+          "targets": [
+            "Facial expression of pain"
+          ],
+          "description": "FEPS · standardized unthresholded map. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2026-acil-mentalizing-self-other",
+      "folder": "Multivariate_signature_patterns/2026_Acil_Mentalizing_Self_Other",
+      "name": "Mentalizing · Self & other",
+      "year": 2026,
+      "description": "Four multivariate fMRI support-vector-machine patterns that predict mentalizing about self and others from single-subject contrast maps. They were trained on an adult trait-evaluation task (Study 1a, n = 21; Self / Other / non-mentalizing Control conditions) within an inclusive social-cognition mask (union of Neurosynth term-based maps for mentalizing, self-referential, and social) to discourage the classifier from leveraging task-confounded sensory features, then validated in eight independent cohorts (N = 281 total) spanning healthy adults, adolescents (ages 11–18), schizophrenia and bipolar patients, and an implicit social-feedback task in romantic couples.",
+      "citation": "Açıl, D., et al. (2026). Brain neuromarkers predict self- and other-related mentalizing across adult, clinical, and developmental samples. Nature Communications, 17, 7229.",
+      "paper": "https://www.nature.com/articles/s41467-026-73945-w",
+      "domains": [
+        "Cognitive & social"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Self-related processing",
+        "Other-related processing",
+        "Mentalizing"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "mentalization-boot-unthr-11-jun-2024",
+          "name": "MS · Mentalizing",
+          "source": "Multivariate_signature_patterns/2026_Acil_Mentalizing_Self_Other/Mentalization_Boot_Unthr_11-Jun-2024.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Mentalizing"
+          ],
+          "description": "MS · Mentalizing. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "other-boot-unthr-11-jun-2024",
+          "name": "MS-Other · Other-related mentalizing",
+          "source": "Multivariate_signature_patterns/2026_Acil_Mentalizing_Self_Other/Other_Boot_Unthr_11-Jun-2024.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Other-related processing"
+          ],
+          "description": "MS-Other · Other-related mentalizing. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "self-boot-unthr-11-jun-2024",
+          "name": "MS-Self · Self-related mentalizing",
+          "source": "Multivariate_signature_patterns/2026_Acil_Mentalizing_Self_Other/Self_Boot_Unthr_11-Jun-2024.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Self-related processing"
+          ],
+          "description": "MS-Self · Self-related mentalizing. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "svo-boot-unthr-11-jun-2024",
+          "name": "MS-SvO · Self vs. other",
+          "source": "Multivariate_signature_patterns/2026_Acil_Mentalizing_Self_Other/SvO_Boot_Unthr_11-Jun-2024.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Self-related processing",
+            "Other-related processing"
+          ],
+          "description": "MS-SvO · Self vs. other. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        }
+      ]
+    },
+    {
+      "id": "2026-murillo-pifonem",
+      "folder": "Multivariate_signature_patterns/2026_Murillo_PiFoneM",
+      "name": "PiFoneM · Fear of neck movement",
+      "year": 2026,
+      "description": "The Picture-Induced Fear of Neck Movement (PiFoneM) pattern predicts fear ratings while viewing photographs of neck positions in people with whiplash-associated disorders.",
+      "citation": "Murillo, C., Timmers, I., López-Solà, M., Meeus, M., Cagnie, B., & Ashar, Y. K. (2026). A neural pattern for fear of neck movement: Development and response to targeted treatment. Journal of Pain, 40, 106198.",
+      "paper": "https://doi.org/10.1016/j.jpain.2026.106198",
+      "domains": [
+        "Clinical",
+        "Aversive / negative affect",
+        "Pain"
+      ],
+      "modalities": [
+        "Visual"
+      ],
+      "targets": [
+        "Fear of pain",
+        "Neck movement"
+      ],
+      "space": "MNI coordinates; exact template variant not documented",
+      "maps": [
+        {
+          "id": "pifonem-unthresholded",
+          "name": "PiFoneM · full predictive weights",
+          "source": "Multivariate_signature_patterns/2026_Murillo_PiFoneM/PiFoneM_unthresholded.nii",
+          "role": "Predictive weights",
+          "targets": [
+            "Fear of pain",
+            "Neck movement"
+          ],
+          "description": "PiFoneM · full predictive weights. Unthresholded map as supplied in the repository. Display thresholds do not alter the downloaded data."
+        },
+        {
+          "id": "cvlassopcr-boots-thresholdedfdr05-k10-fear",
+          "name": "cvlassopcr boots thresholdedFDR05 k10 fear",
+          "source": "Multivariate_signature_patterns/2026_Murillo_PiFoneM/cvlassopcr_boots_thresholdedFDR05_k10_fear.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Fear of pain",
+            "Neck movement"
+          ],
+          "description": "cvlassopcr boots thresholdedFDR05 k10 fear. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        },
+        {
+          "id": "svm-rfe-importance-pcr-5000by2500-k10",
+          "name": "svm rfe importance pcr 5000by2500 k10",
+          "source": "Multivariate_signature_patterns/2026_Murillo_PiFoneM/svm_rfe_importance_pcr_5000by2500_k10.nii",
+          "role": "Statistical support",
+          "targets": [
+            "Fear of pain",
+            "Neck movement"
+          ],
+          "description": "svm rfe importance pcr 5000by2500 k10. Supplied statistical/support map; use the full predictive weights for pattern expression."
+        }
+      ]
+    }
+  ]
+}

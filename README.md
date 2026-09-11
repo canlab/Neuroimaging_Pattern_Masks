@@ -17,6 +17,8 @@ The three types of brain maps included are:
 
 - Brain maps from published meta-analyses of neuroimaging data, which define consensus regions across studies for multiple psychological/task categories -- e.g., emotion, working memory, PTSD, and more. These masks can be used to specify a priori regions of interest or as "patterns of interest" in new studies.
 
+[Explore the interactive Neuromarker Gallery](https://canlab.github.io/Neuroimaging_Pattern_Masks/) — search by domain or target, inspect maps in three planes and on cortical surfaces, and download the selected pattern.
+
 Multivariate signatures at a glance:
 ------------------------------------------------------------
 The pre-trained signatures span six domains — **pain**, **physiology**, **aversive / negative affect**, **appetitive / reward**, **cognitive & social**, and **clinical** — each broken into finer sub-branches. Several papers contribute more than one signature and appear in multiple branches. The full list, with citations and loading keywords, is in the [signatures README](Multivariate_signature_patterns/README.md).

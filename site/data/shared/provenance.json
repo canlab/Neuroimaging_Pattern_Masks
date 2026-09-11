@@ -1,0 +1,13 @@
+{
+  "canlab_commit": "82c7085959ad7d2a95fe96c4f8035396464a73a4",
+  "atlas": "CANlab2024 (exported CANlab demo label volume)",
+  "anatomy": "CANlab viewer demo MNI underlay",
+  "surface": "HCP S1200 MSMAll fsLR 32k midthickness; nominal MNI coordinates",
+  "files": {
+    "L.surf.gii": "2a42c69cd906397bc115749511a05d796867dd67dc2bc092147c1d93527c2da6",
+    "R.surf.gii": "1673ebc509182061ba9da0a5e74477faa79fbaf89804d97f3b4f06aea501b06c",
+    "atlas-labels.json": "528ee98cc91a97617a1221c1a2b15afbb5b285bdcd12459e26cb215776bc8ec7",
+    "atlas.nii.gz": "4c0b5630144a48ddafcbfe8034c6d5d3ef6f7a30a7bfe003c7d2fc1043831982",
+    "underlay.nii.gz": "06bb64af40b4387b6c2142b00ca7c5edf09f81cd8cf1338949f6dfd6bb18b27f"
+  }
+}
