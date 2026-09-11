@@ -29,5 +29,5 @@ export function matches(study, query, filters) {
 export function parseDisplay(params) {
   const num=(key,fallback,max)=>{const v=Number(params.get(key));return params.has(key)&&Number.isFinite(v)?Math.max(0,Math.min(max,v)):fallback};
   const mode=params.get('mode')==='absolute'?'absolute':'percent';
-  return {mode,positive:num('pos',20,mode==='percent'?100:1e12),negative:num('neg',20,mode==='percent'?100:1e12),sync:params.get('sync')!=='0',sign:['positive','negative'].includes(params.get('sign'))?params.get('sign'):'both',opacity:num('opacity',.8,1),anatomy:num('anatomy',1,1)};
+  return {mode,positive:num('pos',35,mode==='percent'?100:1e12),negative:num('neg',35,mode==='percent'?100:1e12),sync:params.get('sync')!=='0',sign:['positive','negative'].includes(params.get('sign'))?params.get('sign'):'both',opacity:num('opacity',.8,1),anatomy:num('anatomy',1,1)};
 }

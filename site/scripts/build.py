@@ -50,6 +50,7 @@ def main():
  dest=OUT/'assets'/shash; shutil.copytree(shared,dest,dirs_exist_ok=True)
  assets={'viewer':f'assets/{version}/canlab_niivue_viewer.js','niivue':f'assets/{version}/niivue.js','css':f'assets/{version}/canlab_niivue.css','shared':f'assets/{shash}/'}
  # Sample anatomy on each map grid for faithful slice previews.
+ brainmask=nib.load(shared/'preview-brainmask.nii.gz'); brain=brainmask.get_fdata(dtype=np.float32)
  anatomy=nib.load(shared/'underlay.nii.gz'); anatomical=anatomy.get_fdata(dtype=np.float32)
  meshes={}
  for side in ['L','R']:
@@ -91,18 +92,23 @@ def main():
       raw=struct.pack('<HHIII',23117,8,0,len(values),0)+values.tobytes()
       starget.write_bytes(gzip.compress(raw,mtime=0))
      m['surfaces'][side]=surl
-    # One orthographic axial preview: actual map, shared anatomy, per-sign 20%.
-    preview=f'previews/{key}.png'; pp=OUT/preview
+    # Thumbnail-only brain masking. Full downloadable maps and statistics remain intact.
+    preview=f'previews/{key}-brain35-v1.png'; pp=OUT/preview
     if not pp.exists():
      ras=nib.as_closest_canonical(nib.Nifti1Image(arr,img.affine)); v=ras.get_fdata(dtype=np.float32)
-     z=int(np.argmax(np.sum(np.abs(np.nan_to_num(v)),axis=(0,1))))
+     maskcoords=nib.affines.apply_affine(np.linalg.inv(brainmask.affine)@ras.affine,np.indices(v.shape).reshape(3,-1).T)
+     inside=map_coordinates(brain,maskcoords.T,order=0,mode='constant',cval=0).reshape(v.shape)>0
+     z=int(np.argmax(np.sum(np.abs(np.nan_to_num(v))*inside,axis=(0,1))))
      grid=np.indices(v.shape[:2]); ijk=np.stack([grid[0].ravel(),grid[1].ravel(),np.full(grid[0].size,z)],axis=1)
      coords=nib.affines.apply_affine(np.linalg.inv(anatomy.affine)@ras.affine,ijk)
      bg=map_coordinates(anatomical,coords.T,order=1,mode='constant').reshape(v.shape[:2])
      bg=np.clip(bg/(np.percentile(anatomical[anatomical>0],99) or 1),0,1)
      rgb=np.repeat((bg*165)[...,None],3,axis=2); sl=v[:,:,z]
-     pos=(sl>0)&(sl>=m['stats']['positive']['cutoffs'][20]); neg=(sl<0)&(-sl>=m['stats']['negative']['cutoffs'][20])
-     rgb[pos]=[245,134,50]; rgb[neg]=[62,169,234]
+     pos=inside[:,:,z]&(sl>0)&(sl>=m['stats']['positive']['cutoffs'][35]); neg=inside[:,:,z]&(sl<0)&(-sl>=m['stats']['negative']['cutoffs'][35])
+     # Match the pinned CANlab NiiVue inferno and winter color stops.
+     for active,side,stops,colors in [(pos,'positive',[0,64,192,255],[[0,0,4],[120,28,109],[237,105,37],[240,249,33]]),(neg,'negative',[0,128,255],[[0,0,255],[0,128,196],[0,255,128]])]:
+      intensity=np.clip(np.abs(sl[active])/(m['stats'][side]['max'] or 1)*255,0,255)
+      rgb[active]=np.stack([np.interp(intensity,stops,np.array(colors)[:,channel]) for channel in range(3)],axis=-1)
      save_preview(np.rot90(rgb.astype(np.uint8)),pp)
     m['preview']=preview; s['maps'].append(m)
    print('.',end='',flush=True)

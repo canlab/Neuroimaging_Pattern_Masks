@@ -6,20 +6,29 @@ const browser=await chromium.launch({...(process.env.CI?{}:{channel:'chrome'}),h
 const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')console.log('BROWSER:',m.text().slice(0,400))});
 try{
- await page.goto(base);await page.locator('.card').first().waitFor();
- assert.equal(await page.locator('.card').count(),25);
- await page.locator('#search').fill('PINES');assert.equal(await page.locator('.card').count(),1);await page.locator('.card').click();
+ await page.goto(base);await page.locator('.graph-node').first().waitFor();
+ await page.locator('.graph-node').first().focus();await page.locator('#graph-popup').waitFor();await page.keyboard.press('Escape');assert.ok(await page.locator('#graph-popup').count()===0);
+ assert.equal(await page.locator('.graph-node').count(),25);assert.ok(await page.locator('#results').isHidden());
+ await page.locator('.graph-node').first().hover();await page.locator('#graph-popup').waitFor();assert.ok((await page.locator('#graph-popup').textContent()).length>100);await page.keyboard.press('Escape');await page.locator('.graph-node').first().blur();await page.locator('.intro').hover();
+ await page.screenshot({path:'/tmp/neuromarker-graph.png',fullPage:true});
+ await page.locator('#tile-view').click();assert.equal(await page.locator('.card:visible').count(),25);await page.screenshot({path:'/tmp/neuromarker-tiles.png',fullPage:true});await page.locator('#graph-view').click();
+ await page.locator('#search').fill('PINES');assert.equal(await page.locator('.card').count(),1);await page.locator('.graph-node').click();
  await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});
  console.log('Viewer status:',await page.locator('#viewer-status').textContent());console.log('Surface status:',await page.locator('#surface-status').textContent());
  assert.equal(await page.locator('#viewer-status').textContent(),'');assert.equal(await page.locator('#surface-status').textContent(),'');
  assert.ok((await page.locator('#canlab-niivue-controls select').count())>=2);
+ assert.equal(await page.locator('#canlab-niivue-controls select').last().inputValue(),'off');assert.equal(await page.locator('#positive-number').inputValue(),'35');assert.equal(await page.locator('#negative-number').inputValue(),'35');
+ const slices=await page.locator('#gl').boundingBox(),bar=await page.locator('#weight-colorbar').boundingBox();assert.ok(bar.y>=slices.y+slices.height+4);
+ await page.screenshot({path:'/tmp/neuromarker-default-viewer.png',fullPage:true});
  await page.locator('#gl').click({position:{x:160,y:180}});
  await page.waitForFunction(()=>!document.querySelector('#canlab-niivue-readout').textContent.includes('value: ---'));
  console.log('Atlas readout:',await page.locator('#canlab-niivue-readout').textContent());
+ assert.ok(await page.locator('#sync').isChecked());await page.locator('#canlab-niivue-controls select').last().selectOption('outline');await page.waitForFunction(()=>new URLSearchParams(location.search).get('atlas')==='outline');
  await page.locator('#sync').uncheck();await page.locator('#positive-number').fill('10');await page.locator('#negative-number').fill('35');
  await page.waitForFunction(()=>location.search.includes('pos=10')&&location.search.includes('neg=35'));
  assert.equal(await page.locator('#positive-number').inputValue(),'10');assert.equal(await page.locator('#negative-number').inputValue(),'35');
- const share=page.url();await page.reload();await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.equal(await page.locator('#negative-number').inputValue(),'35');
+ assert.match(await page.locator('#canlab-niivue-readout').textContent(),/ — /);
+ const share=page.url();await page.reload();await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.equal(await page.locator('#negative-number').inputValue(),'35');assert.equal(await page.locator('#canlab-niivue-controls select').last().inputValue(),'outline');
  await page.locator('#sign').selectOption('positive');assert.match(await page.locator('#negative-cutoff').textContent(),/hidden/);
  await page.locator('#threshold-mode').selectOption('absolute');assert.equal(await page.locator('#threshold-mode').inputValue(),'absolute');
  await page.locator('#hemisphere').selectOption('L');
@@ -30,7 +39,7 @@ try{
  await page.goto(share+'&embed=1');await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('header').isHidden());
  // Exercise a different NIfTI container, 4D split, and local replacement.
  for(const query of ['NCS','Geuter','mentalizing']) {
-  await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill(query);await page.locator('.card').first().click();
+  await page.goto(base);await page.locator('.graph-node').first().waitFor();await page.locator('#search').fill(query);await page.locator('.graph-node').first().click();
   await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});
   assert.equal(await page.locator('#viewer-status').textContent(),'');assert.equal(await page.locator('#surface-status').textContent(),'');
   const options=await page.locator('#map-select option').evaluateAll(os=>os.map(o=>o.value));
@@ -38,6 +47,8 @@ try{
  }
  await page.locator('#local-file').setInputFiles('/tmp/neuromarker-download.nii');await page.waitForFunction(()=>document.querySelector('#map-role').textContent==='Local overlay');assert.ok(await page.locator('#share').isDisabled());assert.match(await page.locator('#surface-status').textContent(),/No precomputed/);
  await page.locator('#reset').click();await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('#share').isEnabled());
- await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
+ await page.goto(base);await page.locator('.graph-node').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
+ await page.goto(base+'atlas.html');await page.locator('#atlas-rows tr').first().waitFor();assert.equal(await page.locator('#atlas-rows tr').count(),518);await page.locator('#atlas-search').fill('Ctx_p24_L');assert.equal(await page.locator('#atlas-rows tr').count(),1);assert.match(await page.locator('#atlas-rows').textContent(),/Cortex: Area posterior 24, Left/);
+ await page.goto(base);await page.locator('.graph-node').first().waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/tmp/neuromarker-graph-mobile.png',fullPage:true});
  assert.deepEqual(errors,[]);console.log('PASS: catalog, search, volumes, cortical surfaces, independent/synced state, reload, sign controls, absolute mode, hemisphere, NIfTI, PNG, mobile, embed, empty state.');
 }finally{await browser.close()}

@@ -86,3 +86,7 @@ For custom hosting set `GALLERY_ORIGIN` during the build to the canonical base U
 The optional feature-detected WebMCP search tool mirrors the visible search.
 Browsers without a WebMCP context ignore it; the standard browser does not verify
 native WebMCP registration.
+
+The gallery defaults to a domain tree with a tile-view alternative, independently adjustable 35% sign thresholds, no atlas outline, and matte cortical lighting. The color scale is drawn outside the slice canvas and included in PNG exports. Thumbnail overlays are masked with the repository MNI152NLin2009cAsym brain mask; source downloads remain unchanged.
+
+`data/shared/atlas-descriptions.json` and `.csv` provide all 518 short/full parcel names and row-level provenance. `scripts/prepare_labels.py` regenerates these from repository atlas dictionaries; this preparation step is separate from the network-free site build. Cortex names follow Glasser’s neuroanatomical supplement, including “Area posterior 24.” Coarse subcortical components are preserved in the table. The public lookup is `atlas.html`.

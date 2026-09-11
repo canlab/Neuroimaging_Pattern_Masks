@@ -8,6 +8,11 @@
     "R.surf.gii": "1673ebc509182061ba9da0a5e74477faa79fbaf89804d97f3b4f06aea501b06c",
     "atlas-labels.json": "528ee98cc91a97617a1221c1a2b15afbb5b285bdcd12459e26cb215776bc8ec7",
     "atlas.nii.gz": "4c0b5630144a48ddafcbfe8034c6d5d3ef6f7a30a7bfe003c7d2fc1043831982",
-    "underlay.nii.gz": "06bb64af40b4387b6c2142b00ca7c5edf09f81cd8cf1338949f6dfd6bb18b27f"
-  }
+    "underlay.nii.gz": "06bb64af40b4387b6c2142b00ca7c5edf09f81cd8cf1338949f6dfd6bb18b27f",
+    "atlas-descriptions.csv": "6a41a9beebd28e013ea3122be0c824f97679ad88e6ff2a8072e1acd8d6f66302",
+    "atlas-descriptions.json": "6242f428490b9696193507009ef888d7a6e8bb799ff8ecb0b691f3b1923223f6",
+    "preview-brainmask.nii.gz": "e40bb1816736504d4c25abc243c1c8503df1d308f64c048318aa4b829e09a7ae"
+  },
+  "preview_mask": "Repository templates/MNI152NLin2009cAsym_T1_1mm_brainmask.nii.gz; nearest-neighbor resampling in MNI world coordinates, thumbnail display only.",
+  "label_descriptions": "Glasser 2016 neuroanatomical supplement plus CANlab and Brainstem Navigator dictionaries; per-row sources and coarse-group notes in atlas-descriptions.json."
 }
