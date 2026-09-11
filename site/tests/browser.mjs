@@ -1,11 +1,12 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+const base=process.argv[2]||'http://127.0.0.1:8765/';
 const browser=await chromium.launch({...(process.env.CI?{}:{channel:'chrome'}),headless:true,args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')console.log('BROWSER:',m.text().slice(0,400))});
 try{
- await page.goto('http://127.0.0.1:8765/');await page.locator('.card').first().waitFor();
+ await page.goto(base);await page.locator('.card').first().waitFor();
  assert.equal(await page.locator('.card').count(),25);
  await page.locator('#search').fill('PINES');assert.equal(await page.locator('.card').count(),1);await page.locator('.card').click();
  await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});
@@ -29,7 +30,7 @@ try{
  await page.goto(share+'&embed=1');await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('header').isHidden());
  // Exercise a different NIfTI container, 4D split, and local replacement.
  for(const query of ['NCS','Geuter','mentalizing']) {
-  await page.goto('http://127.0.0.1:8765/');await page.locator('.card').first().waitFor();await page.locator('#search').fill(query);await page.locator('.card').first().click();
+  await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill(query);await page.locator('.card').first().click();
   await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});
   assert.equal(await page.locator('#viewer-status').textContent(),'');assert.equal(await page.locator('#surface-status').textContent(),'');
   const options=await page.locator('#map-select option').evaluateAll(os=>os.map(o=>o.value));
@@ -37,6 +38,6 @@ try{
  }
  await page.locator('#local-file').setInputFiles('/tmp/neuromarker-download.nii');await page.waitForFunction(()=>document.querySelector('#map-role').textContent==='Local overlay');assert.ok(await page.locator('#share').isDisabled());assert.match(await page.locator('#surface-status').textContent(),/No precomputed/);
  await page.locator('#reset').click();await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('#share').isEnabled());
- await page.goto('http://127.0.0.1:8765/');await page.locator('.card').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
+ await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
  assert.deepEqual(errors,[]);console.log('PASS: catalog, search, volumes, cortical surfaces, independent/synced state, reload, sign controls, absolute mode, hemisphere, NIfTI, PNG, mobile, embed, empty state.');
 }finally{await browser.close()}

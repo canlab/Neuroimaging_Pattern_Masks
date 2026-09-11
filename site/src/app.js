@@ -24,7 +24,7 @@ function renderFilters(){
 }
 function syncControls(){
  $('threshold-mode').value=display.mode;$('sync').checked=display.sync;$('sign').value=display.sign;$('opacity').value=display.opacity;$('anatomy-opacity').value=display.anatomy;
- for(const side of ['positive','negative']){const max=display.mode==='percent'?100:Math.max(map.stats.positive.max,map.stats.negative.max,1e-9);for(const suffix of ['range','number']){const el=$(side+'-'+suffix);el.max=max;el.step=display.mode==='percent'?1:'any';el.value=display[side];el.disabled=!map.stats[side].count;} }
+ for(const side of ['positive','negative']){const max=display.mode==='percent'?100:Math.max(map.stats.positive.max,map.stats.negative.max,1e-9);for(const suffix of ['range','number']){const el=$(side+'-'+suffix);el.max=max;el.step=display.mode==='percent'?1:'any';if(document.activeElement!==el||el.type!=='number')el.value=display[side];el.disabled=!map.stats[side].count;} }
  document.querySelectorAll('.unit').forEach(e=>e.textContent=display.mode==='percent'?'%':'');
 }
 function applyThreshold(){
@@ -73,14 +73,14 @@ function hemispheres(){if(surface){surface.meshes.forEach((m,i)=>m.visible=$('he
 async function openStudy(s){study=s;document.body.classList.toggle('embed',params().get('embed')==='1');$('browse').hidden=true;document.querySelector('.intro').hidden=true;$('detail').hidden=false;$('study-title').textContent=s.name;$('study-kicker').textContent=`${s.year} · ${s.maps.length} maps`;$('study-tags').innerHTML=tags(s.domains);$('map-select').innerHTML=s.maps.map(m=>`<option value="${esc(m.id)}">${esc(m.name)} — ${esc(m.role)}</option>`).join('');const selected=s.maps.find(m=>m.id===params().get('map'))||s.maps[0];$('map-select').value=selected.id;await loadMap(selected);}
 function browse(){dispose();study=null;document.body.classList.remove('embed');$('detail').hidden=true;$('browse').hidden=false;document.querySelector('.intro').hidden=false;renderCatalog()}
 async function route(){if(busy)return;const s=catalog.studies.find(s=>location.pathname.includes('/marker/'+s.id+'/'));if(s){display=parseDisplay(params());await openStudy(s)}else browse()}
-let raf;function change(side,value){const max=display.mode==='percent'?100:Math.max(map.stats.positive.max,map.stats.negative.max,1e-9);const v=Math.max(0,Math.min(max,Number(value)));if(!Number.isFinite(v))return;display[side]=v;if(display.sync)display[side==='positive'?'negative':'positive']=v;syncControls();cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{applyThreshold();remember()})}
+let raf;function change(side,value){if(String(value).trim()==='')return;const max=display.mode==='percent'?100:Math.max(map.stats.positive.max,map.stats.negative.max,1e-9);const v=Math.max(0,Math.min(max,Number(value)));if(!Number.isFinite(v))return;display[side]=v;if(display.sync)display[side==='positive'?'negative':'positive']=v;syncControls();cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{applyThreshold();remember()})}
 async function copy(text){try{await navigator.clipboard.writeText(text);$('action-status').textContent='Copied to clipboard.'}catch{$('action-status').textContent=text}}
 function downloadBlob(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),10000)}
 async function main(){
  catalog=await fetchJSON('catalog.json');$('inventory').textContent=`${catalog.studies.length} studies · ${catalog.studies.reduce((n,s)=>n+s.maps.length,0)} maps`;
  for(const axis of Object.keys(filters))filters[axis]=params().getAll(axis);$('search').value=params().get('q')||'';$('sort').value=params().get('sort')||'name';renderFilters();
  $('search').oninput=renderCatalog;$('sort').onchange=renderCatalog;$('filters').onchange=e=>{const {axis}=e.target.dataset;if(!axis)return;filters[axis]=Array.from($('filters').querySelectorAll(`input[data-axis="${axis}"]:checked`),x=>x.value);renderCatalog()};$('clear').onclick=()=>{filters={domains:[],modalities:[],targets:[]};$('search').value='';renderFilters();renderCatalog()};
- $('results').onclick=async e=>{const a=e.target.closest('a.card');if(!a)return;e.preventDefault();history.pushState(null,'',a.href);display=parseDisplay(params());await route();window.scrollTo(0,0)};$('back').onclick=()=>{if(!busy){history.pushState(null,'',root);browse()}};window.onpopstate=route;
+ $('results').onclick=async e=>{const a=e.target.closest('a.card');if(!a)return;e.preventDefault();history.pushState(null,'',a.href);display=parseDisplay(params());await route();window.scrollTo(0,0)};$('back').onclick=()=>{if(!busy){history.pushState(null,'',root);browse()}};window.onpopstate=()=>busy?location.reload():route();
  $('map-select').onchange=()=>{display=parseDisplay(new URLSearchParams());loadMap(study.maps.find(m=>m.id===$('map-select').value))};
  for(const side of ['positive','negative'])for(const suffix of ['range','number'])$(side+'-'+suffix).oninput=e=>change(side,e.target.value);
  $('sync').onchange=()=>{display.sync=$('sync').checked;if(display.sync)change('positive',display.positive);remember()};

@@ -1,10 +1,9 @@
 """Reproducible static gallery: no MATLAB, network, or server runtime required."""
 from pathlib import Path
-import copy,gzip,hashlib,html,json,os,re,shutil,struct,tempfile
+import copy,gzip,hashlib,html,json,os,re,shutil,struct,tempfile,zlib
 import nibabel as nib
 import numpy as np
 from scipy.ndimage import map_coordinates
-from PIL import Image
 ROOT=Path(__file__).resolve().parents[2]; SITE=ROOT/'site'; OUT=SITE/'dist'
 def load_source(source):
  if source.name.endswith('.img.gz'):
@@ -25,6 +24,18 @@ def sign_stats(data):
   v=v[np.isfinite(v)]
   result[name]={'count':int(v.size),'max':float(v.max()) if v.size else 0,'cutoffs':[float(np.quantile(v,1-p/100)) if v.size else 0 for p in range(101)]}
  return result
+
+def save_preview(rgb,path):
+ """Write a deterministic RGB PNG without an image-decoding dependency."""
+ height,width=rgb.shape[:2]; scale=min(340/width,240/height)
+ h,w=max(1,int(height*scale)),max(1,int(width*scale))
+ ys=np.minimum((np.arange(h)/scale).astype(int),height-1)
+ xs=np.minimum((np.arange(w)/scale).astype(int),width-1)
+ canvas=np.zeros((260,360,3),dtype=np.uint8)
+ canvas[(260-h)//2:(260-h)//2+h,(360-w)//2:(360-w)//2+w]=rgb[ys[:,None],xs[None,:]]
+ def chunk(kind,data): return struct.pack('>I',len(data))+kind+data+struct.pack('>I',zlib.crc32(kind+data)&0xffffffff)
+ raw=b''.join(b'\0'+row.tobytes() for row in canvas)
+ path.write_bytes(b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',360,260,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(raw,9))+chunk(b'IEND',b''))
 
 def main():
  # Remove only generated output, avoiding stale assets and stale catalog routes.
@@ -81,7 +92,7 @@ def main():
       starget.write_bytes(gzip.compress(raw,mtime=0))
      m['surfaces'][side]=surl
     # One orthographic axial preview: actual map, shared anatomy, per-sign 20%.
-    preview=f'previews/{key}.webp'; pp=OUT/preview
+    preview=f'previews/{key}.png'; pp=OUT/preview
     if not pp.exists():
      ras=nib.as_closest_canonical(nib.Nifti1Image(arr,img.affine)); v=ras.get_fdata(dtype=np.float32)
      z=int(np.argmax(np.sum(np.abs(np.nan_to_num(v)),axis=(0,1))))
@@ -92,7 +103,7 @@ def main():
      rgb=np.repeat((bg*165)[...,None],3,axis=2); sl=v[:,:,z]
      pos=(sl>0)&(sl>=m['stats']['positive']['cutoffs'][20]); neg=(sl<0)&(-sl>=m['stats']['negative']['cutoffs'][20])
      rgb[pos]=[245,134,50]; rgb[neg]=[62,169,234]
-     im=Image.fromarray(np.rot90(rgb.astype(np.uint8))); im.thumbnail((360,260)); canvas=Image.new('RGB',(360,260),(0,0,0)); canvas.paste(im,((360-im.width)//2,(260-im.height)//2)); canvas.save(pp,quality=85)
+     save_preview(np.rot90(rgb.astype(np.uint8)),pp)
     m['preview']=preview; s['maps'].append(m)
    print('.',end='',flush=True)
   emitted.append(s)
