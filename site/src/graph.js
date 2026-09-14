@@ -1,11 +1,11 @@
 // Editorial taxonomy, not a learned embedding or a similarity network.
 const groups=[
- ['Pain','Pain & nociception','#e9ab86'],
- ['Aversive / negative affect','Threat & negative affect','#c3abed'],
- ['Cognitive & social','Self & social cognition','#88bbec'],
- ['Appetitive / reward','Reward & desire','#83dbc3'],
- ['Clinical','Clinical targets','#e89cab'],
- ['Physiology','Body & physiology','#d5d68b']
+ ['Pain','Pain & nociception','#a85c2c'],
+ ['Aversive / negative affect','Threat & negative affect','#7855a3'],
+ ['Cognitive & social','Self & social cognition','#3f6390'],
+ ['Appetitive / reward','Reward & desire','#287b69'],
+ ['Clinical','Clinical targets','#a6506b'],
+ ['Physiology','Body & physiology','#7c7528']
 ];
 const aliases={
  '2011-wager-jneuro-placebo-prediction':'Placebo analgesia',

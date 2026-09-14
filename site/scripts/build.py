@@ -44,6 +44,7 @@ def main():
  for folder in ['assets','maps','previews','marker']: (OUT/folder).mkdir(exist_ok=True)
  for p in (SITE/'src').iterdir():
   if p.is_file(): shutil.copyfile(p,OUT/p.name)
+  elif p.name=='brand': shutil.copytree(p,OUT/p.name)
  version=hashlib.sha256(b''.join(p.read_bytes() for p in sorted((SITE/'vendor').iterdir()))).hexdigest()[:12]
  vendor=OUT/'assets'/version; shutil.copytree(SITE/'vendor',vendor,dirs_exist_ok=True)
  shared=SITE/'data/shared'; shash=digest(shared/'provenance.json')[:12]
@@ -121,8 +122,9 @@ def main():
  for s in emitted:
   p=OUT/'marker'/s['id']; p.mkdir(exist_ok=True)
   markup=template.replace('<head>','<head>\n<base href="../../">').replace('<title>Neuromarker Gallery · CANlab</title>',f'<title>{html.escape(s["name"])} · CANlab</title>')
-  meta=f'<meta property="og:title" content="{html.escape(s["name"],quote=True)}"><meta property="og:description" content="{html.escape(s["description"],quote=True)}"><meta property="og:image" content="{origin}/{s["maps"][0]["preview"]}"><meta property="og:url" content="{origin}/marker/{s["id"]}/"><meta name="twitter:card" content="summary_large_image">'
-  (p/'index.html').write_text(markup.replace('</head>',meta+'</head>'))
+  for prop,value in [('og:title',s['name']),('og:description',s['description']),('og:url',f'{origin}/marker/{s["id"]}/')]:
+   markup=re.sub(r'<meta property="'+prop+r'" content="[^"]*">',lambda match:f'<meta property="{prop}" content="{html.escape(value,quote=True)}">',markup)
+  (p/'index.html').write_text(markup)
  (OUT/'.nojekyll').touch()
  report={'studies':len(emitted),'maps':sum(len(s['maps']) for s in emitted),'unique_sources':len(source_paths),'total_bytes':sum(p.stat().st_size for p in OUT.rglob('*') if p.is_file())}
  write_json(OUT/'build-report.json',report)

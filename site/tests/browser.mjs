@@ -4,9 +4,25 @@ import fs from 'node:fs/promises';
 const base=process.argv[2]||'http://127.0.0.1:8765/';
 const browser=await chromium.launch({...(process.env.CI?{}:{channel:'chrome'}),headless:true,args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];
+page.on('response',r=>{if(r.status()>=400)console.log('HTTP:',r.status(),r.url())});
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')console.log('BROWSER:',m.text().slice(0,400))});
 try{
- await page.goto(base);await page.locator('.graph-node').first().waitFor();
+ await page.goto(base);await page.locator('.card').first().waitFor();
+ assert.equal(await page.locator('.card:visible').count(),25);assert.ok(await page.locator('#graph-panel').isHidden());
+ assert.equal(await page.locator('#tile-view').getAttribute('aria-pressed'),'true');
+ assert.match(await page.locator('.intro-copy').textContent(),/independent participants and independent samples/);
+ assert.ok(await page.locator('.intro a[href="https://www.nature.com/articles/nn.4478"]').count()===1);
+ assert.equal(await page.locator('.hero-pattern').evaluate(e=>getComputedStyle(e).opacity),'0');
+ await page.locator('#hero-brain').hover();await page.waitForFunction(()=>getComputedStyle(document.querySelector('.hero-pattern')).opacity==='1');
+ await page.screenshot({path:'/tmp/neuromarker-hero-hover.png'});
+ await page.locator('#hero-brain').click();assert.equal(await page.locator('#hero-brain').getAttribute('aria-pressed'),'true');await page.locator('#hero-brain').click();await page.locator('#hero-brain').blur();await page.locator('header').hover();
+ await page.waitForFunction(()=>getComputedStyle(document.querySelector('.hero-pattern')).opacity==='0');
+ assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'),'brand/brain-icon.png');
+ const social=await page.locator('meta[property="og:image"]').getAttribute('content');assert.match(social,/brand\/neuromarkers-social.png$/);
+ assert.match(await page.locator('footer').textContent(),/Built by Tor Wager with GPT Astra/);
+ assert.equal(await page.locator('footer a').first().getAttribute('href'),'https://torwager.github.io/canlab/');
+ await page.screenshot({path:'/tmp/neuromarker-home.png'});
+ await page.locator('#graph-view').click();await page.locator('.graph-node').first().waitFor();
  await page.locator('.graph-node').first().focus();await page.locator('#graph-popup').waitFor();await page.keyboard.press('Escape');assert.ok(await page.locator('#graph-popup').count()===0);
  assert.equal(await page.locator('.graph-node').count(),25);assert.ok(await page.locator('#results').isHidden());
  await page.locator('.graph-node').first().hover();await page.locator('#graph-popup').waitFor();assert.ok((await page.locator('#graph-popup').textContent()).length>100);await page.keyboard.press('Escape');await page.locator('.graph-node').first().blur();await page.locator('.intro').hover();
@@ -39,7 +55,7 @@ try{
  await page.goto(share+'&embed=1');await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('header').isHidden());
  // Exercise a different NIfTI container, 4D split, and local replacement.
  for(const query of ['NCS','Geuter','mentalizing']) {
-  await page.goto(base);await page.locator('.graph-node').first().waitFor();await page.locator('#search').fill(query);await page.locator('.graph-node').first().click();
+  await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill(query);await page.locator('.card').first().click();
   await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});
   assert.equal(await page.locator('#viewer-status').textContent(),'');assert.equal(await page.locator('#surface-status').textContent(),'');
   const options=await page.locator('#map-select option').evaluateAll(os=>os.map(o=>o.value));
@@ -47,8 +63,8 @@ try{
  }
  await page.locator('#local-file').setInputFiles('/tmp/neuromarker-download.nii');await page.waitForFunction(()=>document.querySelector('#map-role').textContent==='Local overlay');assert.ok(await page.locator('#share').isDisabled());assert.match(await page.locator('#surface-status').textContent(),/No precomputed/);
  await page.locator('#reset').click();await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('#share').isEnabled());
- await page.goto(base);await page.locator('.graph-node').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
+ await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
  await page.goto(base+'atlas.html');await page.locator('#atlas-rows tr').first().waitFor();assert.equal(await page.locator('#atlas-rows tr').count(),518);await page.locator('#atlas-search').fill('Ctx_p24_L');assert.equal(await page.locator('#atlas-rows tr').count(),1);assert.match(await page.locator('#atlas-rows').textContent(),/Cortex: Area posterior 24, Left/);
- await page.goto(base);await page.locator('.graph-node').first().waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/tmp/neuromarker-graph-mobile.png',fullPage:true});
+ await page.goto(base);await page.locator('.card').first().waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/tmp/neuromarker-home-mobile.png'});
  assert.deepEqual(errors,[]);console.log('PASS: catalog, search, volumes, cortical surfaces, independent/synced state, reload, sign controls, absolute mode, hemisphere, NIfTI, PNG, mobile, embed, empty state.');
 }finally{await browser.close()}

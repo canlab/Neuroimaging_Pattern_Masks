@@ -1,0 +1,8 @@
+{
+  "anatomy": "CANlab canonical left-cutaway mesh; display-only vertex clustering at 1.4 mm",
+  "anatomy_source": "https://github.com/canlab/CanlabCore/blob/master/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/canlab_canonical_brain_surface_left_cutaway.mat",
+  "pattern": "Neurologic Pain Signature (NPS), Wager et al. 2013; strongest 35% per sign, nearest-neighbor sampling at displayed triangle centers",
+  "pattern_source": "https://github.com/canlab/Paradigms_Public/tree/master/2022_Han_Kragel_RTNF_real_time_neurofeedback/updated_code",
+  "paper": "https://doi.org/10.1056/NEJMoa1204471",
+  "note": "Illustrative static rendering; not a surface predictor. Only rendered images are distributed here."
+}

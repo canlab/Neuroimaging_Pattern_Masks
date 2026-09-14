@@ -1,6 +1,8 @@
 import {renderGraph} from './graph.js';
 import {cutoff, maskValues, summarize, matches, parseDisplay} from './state.js';
 const $=id=>document.getElementById(id), root=new URL('./',document.baseURI), url=p=>new URL(p,root).href;
+// Keep static logo/icon URLs stable while SPA navigation changes the document URL.
+const documentBase=document.querySelector('base')||document.head.appendChild(document.createElement('base'));documentBase.href=root.href;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fetchJSON=async p=>{const r=await fetch(url(p));if(!r.ok)throw Error(`${p}: HTTP ${r.status}`);return r.json()};
 let catalog, study, map, nv, surface, original, surfaceOriginal=[], display=parseDisplay(new URLSearchParams(location.search)), busy=false, localFile=null, filters={domains:[],modalities:[],targets:[]};
@@ -79,6 +81,7 @@ let raf;function change(side,value){if(String(value).trim()==='')return;const ma
 async function copy(text){try{await navigator.clipboard.writeText(text);$('action-status').textContent='Copied to clipboard.'}catch{$('action-status').textContent=text}}
 function downloadBlob(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),10000)}
 async function main(){
+ $('hero-brain').onclick=()=>{const button=$('hero-brain');button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'))};
  catalog=await fetchJSON('catalog.json');$('inventory').textContent=`${catalog.studies.length} studies · ${catalog.studies.reduce((n,s)=>n+s.maps.length,0)} maps`;
  for(const axis of Object.keys(filters))filters[axis]=params().getAll(axis);$('search').value=params().get('q')||'';$('sort').value=params().get('sort')||'name';renderFilters();
  for(const view of ['graph','tile'])$(view+'-view').onclick=()=>{const graph=view==='graph';document.querySelector('.skip').href=graph?'#signature-graph':'#results';$('graph-panel').hidden=!graph;$('results').hidden=graph;$('graph-view').setAttribute('aria-pressed',String(graph));$('tile-view').setAttribute('aria-pressed',String(!graph))};
