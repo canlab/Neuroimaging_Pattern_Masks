@@ -17,7 +17,7 @@ function yhat = classify_somatovisceral_pain(dat)
 %
 % :Outputs:
 %
-%   Yhat - a vector with one continous estimate of the probability an image
+%   Yhat - a vector with one continuous estimate of the probability an image
 %   is somatic (positive values) or visceral pain (values near zero)
 %
 %   Uses the model parameters saved in Visceral_vs_Somatic_betas_Yeo_Networks.mat

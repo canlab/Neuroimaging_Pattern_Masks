@@ -52,7 +52,7 @@ for i in range(0, nvox):
     tc_vox = data4D[vox[0], vox[1], vox[2], :]
     # Entropy is calculated on the histogram of the distribution
     counts, bin_edges = np.histogram(tc_vox, bins=nb_bins)
-    # Tranform counts into probability
+    # Transform counts into probability
     p = counts / np.sum(counts, dtype=float)
     binWidth = np.diff(bin_edges)
     # xlogy is with natural logarithm but we should use log base 2 (TO STUDY !!)

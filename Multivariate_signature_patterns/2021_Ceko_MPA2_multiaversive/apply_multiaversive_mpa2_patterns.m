@@ -114,7 +114,7 @@ for i = 1:length(varargin)
     end
 end
 
-% Zero out intercepts if they are not meaninful for chosen similarity metric
+% Zero out intercepts if they are not meaningful for chosen similarity metric
 if strcmp(similarity_metric, 'cosine_similarity') || strcmp(similarity_metric, 'correlation')
     intcpts = [0 0 0 0 0];
 end

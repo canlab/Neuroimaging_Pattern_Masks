@@ -180,7 +180,7 @@ def get_result_volume(data, header, volume):
     # not crashing with as with int8
     # well -- int16 makes things a bit more complicated due to
     # now absent absolute zeros (via intercept/slope), and I think
-    # that is what confuses fslview's historgram viewer
+    # that is what confuses fslview's histogram viewer
     header.set_data_dtype(np.int16)
     #header.set_data_dtype(np.float32)
     data_4d = volume.unmask(data)

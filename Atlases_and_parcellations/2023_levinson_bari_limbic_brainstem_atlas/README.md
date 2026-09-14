@@ -1,6 +1,6 @@
 ## Overview
 
-A brainstem atlas of regions supporting limbic brain function. Open license and probablistic, based on 200+ participants 
+A brainstem atlas of regions supporting limbic brain function. Open license and probabilistic, based on 200+ participants 
 from the HCP study. Five regions (Locus Coeruleus, Ventral Tegmental Area, Periaqueductal Gray, Nucleus Tractus Solitarius,
 Dorsal Raphe) were manually segmented based on anatomical landmarks from "structural MRI scans" (T1w and T2w but possibly
 also DWI images). A neurosurgeon and neuroradiologist evaluated each participant's mask to ensure it was within their
@@ -47,7 +47,7 @@ Colored Patches - Levinson Bari Limbic Brainstem Atlas<br />
 Outlines - Bianciardi equivalents
 
 ![html/compare_with_bianciardi_01.png](html/compare_with_bianciardi_01.png)
-Saggital
+Sagittal
 
 ![html/compare_with_bianciardi_02.png](html/compare_with_bianciardi_02.png)
 Coronal

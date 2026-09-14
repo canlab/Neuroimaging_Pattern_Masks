@@ -7,7 +7,7 @@ RES_DIR=$(readlink -f $ROOT/_resources)
 NPM_DIR=/dartfs-hpc/rc/lab/C/CANlab/modules/Neuroimaging_Pattern_Masks
 
 #make subcortical mask
-# we doubly dilate it so that it encompases the subcortex in the refernece space in spite of whatever
+# we doubly dilate it so that it encompasses the subcortex in the reference space in spite of whatever
 # minor misalignment we may have between the two spaces
 RES_DIR=$(readlink -f ../../_resources);
 

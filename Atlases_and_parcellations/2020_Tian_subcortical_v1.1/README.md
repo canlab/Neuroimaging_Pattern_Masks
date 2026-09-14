@@ -7,7 +7,7 @@ https://github.com/yetianmed/subcortex/tree/e80ee787732536e9e89534c9a623b10aff79
 Group-Parcellation files were copied here for posterity. These may now be obsolete though.
 While the first draft of this atlas was derived from these parcels, subsequently the
 authors shared their individual participant segmentations with me (BP). I used these
-to create probablistic labels which now form the basis of this atlas.
+to create probabilistic labels which now form the basis of this atlas.
 
 This atlas was generated in a hierarchical fashion with finer and finer parcellations
 at each level until a natural stopping condition in the parcellation algorithm
@@ -55,7 +55,7 @@ should be fine to share the parcellations using Tian's subject indexing.
 
 
 The full parcellation that Tian et al release has very clean delineations of large scale
-structures, but the probablistic map I have is not so clean. For instance putamen can
+structures, but the probabilistic map I have is not so clean. For instance putamen can
 bleed into accumbens, thalamus can bleed into the fornix, etc. To achieve a cleaner parcellation 
 I've modified the probability to prevent parcel probability maps from overlapping inappropriate 
 structures by beginning with anatomical priors derived from the cifti structure labels and 
@@ -65,8 +65,8 @@ caudate-accumbens and hippocampus-amygdala jointly since the division between su
 (thalamus, putamen, pallidum, etc.) as distinct regions of their own. Regions of the Tian atlas 
 that overlap with incongruent CIFTI regions had their probabilities set to zero. Probabilities 
 were subsequently renormalized. This resulted in 10 voxels and 18 voxels in the MNI152NLin6Asym 
-and MNI152NLin2009cAsym spaces being asigned no value but in exchange means that all Tian labels 
-are now circumscribed sensibly by contiguious CIFTI regions. This is equivalent to treating the 
+and MNI152NLin2009cAsym spaces being assigned no value but in exchange means that all Tian labels 
+are now circumscribed sensibly by contiguous CIFTI regions. This is equivalent to treating the 
 CIFTI labels as Bayesian priors which are then updated and subdivided based on the high resolution 
 (54 parcel) Tian parcellation.
 

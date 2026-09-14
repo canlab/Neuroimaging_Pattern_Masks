@@ -3,7 +3,7 @@
 # fmriprep was used to align MNI152NLin6Asym 1mm T1 images (non-skull stripped) to the MNI152NLin2009cAsym:res-01 space,
 # which is 1mm space in templateFlow that fmriprep uses to pull its templates. This produced ants format *.h5 files which
 # are composite affine/warp files.
-# these files were created by converting ants *.h5 files into fsl formated files using code like this:
+# these files were created by converting ants *.h5 files into fsl formatted files using code like this:
 
 srcRoot=../ants/
 

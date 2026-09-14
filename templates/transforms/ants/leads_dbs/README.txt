@@ -5,10 +5,10 @@ For more details see here,
 https://www.lead-dbs.org/about-the-mni-spaces/
 
 It seems that they map from MNI152NLin6Sym to MNI152NLin2009bSym, but what we need is a mapping
-from MNI152NLin6Asym to MNI152NLin2009cAsym, the assymetric spaces. The leads_dbs transforms
+from MNI152NLin6Asym to MNI152NLin2009cAsym, the asymmetric spaces. The leads_dbs transforms
 had the involvement of someone from MNI, and are likely to be better mappings that what I've
 managed to generate myself, so which mapping you use depends on what you think matters more:
-a quality inter template matching, or for the templates in question to be the asymetric templates
+a quality inter template matching, or for the templates in question to be the asymmetric templates
 rather than the symmetric templates.
 
 refer to ../../code for code that will help you convert this h5 data to fsl and spm formats

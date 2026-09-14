@@ -2,7 +2,7 @@
 % Redundant for the cortex, but for the subcortex at least.
 
 % run this script to update *.latest files after modifying the atlas and 
-% commit/push your git changes to propogate changes across git clones for 
+% commit/push your git changes to propagate changes across git clones for 
 % all CANLab2023 versions.
 %
 % This takes on the order of an hour on an i7-12700H (12th gen intel core),

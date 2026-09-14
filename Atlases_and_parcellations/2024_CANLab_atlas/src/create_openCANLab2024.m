@@ -461,7 +461,7 @@ writetable(table(canlab.references,'VariableNames',{'references'}),[canlab.atlas
 
 % this isn't quite complete. I need to pregenerate different resolutions
 % and granularities. This will require among other things
-% - generate qsiprep versoin
+% - generate qsiprep version
 % - generate CIFTI file
 
 %% produce low res version of this file
