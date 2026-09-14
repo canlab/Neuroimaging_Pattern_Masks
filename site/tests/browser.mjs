@@ -15,12 +15,16 @@ try{
  assert.deepEqual(paragraphs,[
   'Neuromarkers are population-level patterns of fMRI activity whose expression predicts a stimulus, behavior, mental state, or clinical outcome. In contrast to models individualized for a single person, the models shared here can be applied to data from new participants, allowing open-ended validation across populations, contexts, methodological variations, and outcomes.',
   'These models are in various stages of validation, but all have been successfully validated on at least one independent cohort after model training.',
+  'This site focuses on linear models based on fMRI activity, which can be visualized and applied as pattern maps. It does not (yet) include connectivity-based models, or a broader set of neuromarkers based on pathology, electrophysiology, neurochemistry, or other measures.',
   'Browse, explore, and download these patterns for use in new studies.'
  ]);
+ assert.equal(await page.locator('.review-link').count(),5);
+ assert.deepEqual(await page.locator('.review-link').evaluateAll(links=>links.map(a=>a.getAttribute('href'))),["https://www.nature.com/articles/nn.4478", "https://www.cell.com/neuron/fulltext/S0896-6273(18)30477-X", "https://www.sciencedirect.com/science/article/pii/S105381191600210X", "https://www.cell.com/neuron/fulltext/S0896-6273(14)00967-2", "https://www.sciencedirect.com/science/article/pii/S1053811908012263"]);
+ assert.ok(await page.locator('.review-link img').evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)));
  const revealCount=()=>page.locator('.hero-reveal').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let n=0;for(let i=3;i<d.length;i+=4)if(d[i])n++;return n});
  await page.emulateMedia({reducedMotion:'reduce'});
  assert.equal(await revealCount(),0);
- const hero=await page.locator('#hero-brain').boundingBox();await page.mouse.move(hero.x+hero.width*.57,hero.y+hero.height*.55);
+ await page.locator('#hero-brain').scrollIntoViewIfNeeded();const hero=await page.locator('#hero-brain').boundingBox();await page.locator('#hero-brain').hover({position:{x:hero.width*.57,y:hero.height*.55}});
  await page.waitForFunction(()=>{const c=document.querySelector('.hero-reveal'),d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;return d.some((v,i)=>i%4===3&&v>0)});
  const locality=await page.locator('.hero-reveal').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let n=0,outside=0;for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(d[(y*c.width+x)*4+3]){n++;if(Math.hypot(x-c.width*.57,y-c.height*.55)>c.width*.14)outside++}return {n,outside,total:c.width*c.height}});
  assert.ok(locality.n>100&&locality.n<locality.total*.15);assert.equal(locality.outside,0);
@@ -41,7 +45,7 @@ try{
  assert.equal(await page.locator('footer a').first().getAttribute('href'),'https://torwager.github.io/canlab/');
  await page.screenshot({path:'/tmp/neuromarker-home.png'});
  await page.locator('#graph-view').click();await page.locator('.graph-node').first().waitFor();
- await page.locator('.graph-node').first().focus();await page.locator('#graph-popup').waitFor();await page.keyboard.press('Escape');assert.ok(await page.locator('#graph-popup').count()===0);
+ await page.locator('.graph-node').first().scrollIntoViewIfNeeded();await page.locator('.graph-node').first().focus();await page.locator('#graph-popup').waitFor();await page.keyboard.press('Escape');assert.ok(await page.locator('#graph-popup').count()===0);
  assert.equal(await page.locator('.graph-node').count(),25);assert.ok(await page.locator('#results').isHidden());
  await page.locator('.graph-node').first().hover();await page.locator('#graph-popup').waitFor();assert.ok((await page.locator('#graph-popup').textContent()).length>100);await page.keyboard.press('Escape');await page.locator('.graph-node').first().blur();await page.locator('.intro').hover();
  await page.screenshot({path:'/tmp/neuromarker-graph.png',fullPage:true});
@@ -83,6 +87,6 @@ try{
  await page.locator('#reset').click();await page.waitForFunction(()=>!document.querySelector('#map-select').disabled,{},{timeout:120000});assert.ok(await page.locator('#share').isEnabled());
  await page.goto(base);await page.locator('.card').first().waitFor();await page.locator('#search').fill('nothing-matches-92837');assert.equal(await page.locator('.card').count(),0);
  await page.goto(base+'atlas.html');await page.locator('#atlas-rows tr').first().waitFor();assert.equal(await page.locator('#atlas-rows tr').count(),518);await page.locator('#atlas-search').fill('Ctx_p24_L');assert.equal(await page.locator('#atlas-rows tr').count(),1);assert.match(await page.locator('#atlas-rows').textContent(),/Cortex: Area posterior 24, Left/);
- await page.goto(base);await page.locator('.card').first().waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/tmp/neuromarker-home-mobile.png'});
+ await page.goto(base);await page.locator('.card').first().waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/tmp/neuromarker-home-mobile.png'});await page.locator('.intro').screenshot({path:'/tmp/neuromarker-intro-mobile.png'});
  assert.deepEqual(errors,[]);console.log('PASS: catalog, search, volumes, cortical surfaces, independent/synced state, reload, sign controls, absolute mode, hemisphere, NIfTI, PNG, mobile, embed, empty state.');
-}finally{await browser.close()}
+}catch(error){await page.screenshot({path:'/tmp/neuromarker-test-failure.png',fullPage:true});throw error}finally{await browser.close()}

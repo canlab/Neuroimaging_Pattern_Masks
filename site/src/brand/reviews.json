@@ -1,0 +1,40 @@
+{
+  "thumbnail_note": "Original typographic citation thumbnails, not reproductions of journal covers. Short thumbnail headings are editorial labels; complete publication titles appear alongside each image.",
+  "reviews": [
+    {
+      "id": "woo",
+      "authors_year": "Woo et al. \u00b7 2017",
+      "title": "Building better biomarkers: brain models in translational neuroimaging",
+      "journal": "Nature Neuroscience",
+      "publisher_url": "https://www.nature.com/articles/nn.4478"
+    },
+    {
+      "id": "kragel",
+      "authors_year": "Kragel et al. \u00b7 2018",
+      "title": "Representation, Pattern Information, and Brain Signatures: From Neurons to Neuroimaging",
+      "journal": "Neuron",
+      "publisher_url": "https://www.cell.com/neuron/fulltext/S0896-6273(18)30477-X"
+    },
+    {
+      "id": "arbabshirani",
+      "authors_year": "Arbabshirani, Plis, Sui & Calhoun \u00b7 2017",
+      "title": "Single subject prediction of brain disorders in neuroimaging: Promises and pitfalls",
+      "journal": "NeuroImage",
+      "publisher_url": "https://www.sciencedirect.com/science/article/pii/S105381191600210X"
+    },
+    {
+      "id": "gabrieli",
+      "authors_year": "Gabrieli et al. \u00b7 2015",
+      "title": "Prediction as a Humanitarian and Pragmatic Contribution from Human Cognitive Neuroscience",
+      "journal": "Neuron",
+      "publisher_url": "https://www.cell.com/neuron/fulltext/S0896-6273(14)00967-2"
+    },
+    {
+      "id": "pereira",
+      "authors_year": "Pereira et al. \u00b7 2009",
+      "title": "Machine learning classifiers and fMRI: A tutorial overview",
+      "journal": "NeuroImage",
+      "publisher_url": "https://www.sciencedirect.com/science/article/pii/S1053811908012263"
+    }
+  ]
+}
