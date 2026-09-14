@@ -1,5 +1,5 @@
 function download_warpfield(from, to, format)
-    % from and to should be formated as MNI152NLin6Asym or something standard like that. Options atm are
+    % from and to should be formatted as MNI152NLin6Asym or something standard like that. Options atm are
     % MNI152NLin6Asym
     % MNI152NLin2009cAsym
     % format should be ants, spm or fsl

@@ -94,7 +94,7 @@ end
 
 %% write - this writes only the label image
 
-% Save: if creating from probabilty images only
+% Save: if creating from probability images only
 %
 % if dosave
 %     

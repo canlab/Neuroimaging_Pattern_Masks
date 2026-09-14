@@ -3,7 +3,7 @@
 The Julich Brain Atlas is an ongoing effort to develop a complete digital atlas of human brain cytoarchitecture
 measured using histological methods. It is the basis of the SPM Anatomy Toolbox, but it has grown and developed
 considerably since its original version. Canlab Tools have copies of earlier versions of this atlas, including 
-the spm anatomy toolbox v2.2. This atlas should supercede those, and also supercedes the contemporaneous SPM
+the spm anatomy toolbox v2.2. This atlas should supersede those, and also supersedes the contemporaneous SPM
 Anatomy Toolbox, which has fewer regions than this (e.g. CA2/3 are missing). I don't know why.
 
 The most up to date version of the atlas is stored in a digital repository called EBRAINS. This version was found
@@ -36,8 +36,8 @@ with Vladimir Fonov from the MNI. The transforms were obtained here,
 https://figshare.com/articles/dataset/MNI_T1_6thGen_NLIN_to_MNI_2009b_NLIN_ANTs_transform/3502238
 
 antsApplyTransform from the fmriprep 20.2.3 LTS singularity container was used to perform the alignment on the to 
-probablistic versions of the parcels and was implemented by the script warp_to_MNI152NLin6Asym0.sh. This was in turn
-invoked by warp_to_MNI152NLin6Asym.sh on the Dartmouth HPC system. The probablistic versions of the parcels were then used
+probabilistic versions of the parcels and was implemented by the script warp_to_MNI152NLin6Asym0.sh. This was in turn
+invoked by warp_to_MNI152NLin6Asym.sh on the Dartmouth HPC system. The probabilistic versions of the parcels were then used
 to regenerate the atlas in MNI152NLin6Asym space, and the result is also provided in this directory.
 
 ## References
@@ -46,10 +46,10 @@ The histological atlas is a collaborative global effort and spans multiple teams
 brain areas have different publications associated with them, but there are a number of specific publications
 pertaining to the creation of this combined atlas in particular, listed in order of relevance,
 
-* Amuts K, Mohlberg H, Bludau S, Zilles K. Julich-Brain: A 3D probablistic atlas of the human brain's cytoarchitecture. 
+* Amuts K, Mohlberg H, Bludau S, Zilles K. Julich-Brain: A 3D probabilistic atlas of the human brain's cytoarchitecture. 
 Science 369(6506) 988-992, 2020
 * Amunts K, Zilles K. Architectonic Mapping of the Human Brain beyond Broadmann. Neuron 88(6), 1086-1107, 2015
-* Eikhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. A new SPM toolbox for combining probablistic
+* Eikhoff S, Stephan KE, Mohlberg H, Grefkes C, Fink GR, Amunts K, Zilles K. A new SPM toolbox for combining probabilistic
 cytoarchitectonic maps and functional imaging data. NeuroImage 25(4), 1325-1335, 2005
 
 For citations pertaining to specific parcellation or other details please refer to the Julich Brain Atlas website or 

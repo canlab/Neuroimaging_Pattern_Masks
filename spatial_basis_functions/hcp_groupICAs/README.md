@@ -10,7 +10,7 @@ download this file:
 s3://hcp-openaccess/HCP_Resources/GroupAvg/HCP_PTN1200/groupICA_3T_HCP1200_MSMAll.tar.gz
 
 Note, these individualized ICAs are not the same as those used for functional alignment in Glasser. These are simple
-dual regression ICAs (one spatial regression of groupICAs against subject resting state volumes to obtaine the
+dual regression ICAs (one spatial regression of groupICAs against subject resting state volumes to obtain the
 subject specific timeseries followed by temporal regression of said timeseries back on to the resting state timeseries).
 Glasser et al. use an iterative weighted dual regression procedure to obtain more individualized maps.
 

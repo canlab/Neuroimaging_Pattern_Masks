@@ -65,7 +65,7 @@ def divide_compactor(img, size):
     img: Nifti1Image
         The nifti mask of non-zero voxels to cluster
     size: int
-        The size of each clutser (The last cluster can have a lower number
+        The size of each cluster (The last cluster can have a lower number
         of voxels)
     Returns
     -------

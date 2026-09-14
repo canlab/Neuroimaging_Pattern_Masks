@@ -41,7 +41,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
         'Bianciardi M, Strong C, Toschi N, Edlow BL, Fischl B, Brown EN, Rosen BR, Wald LL. A probabilistic template of human mesopontine tegmental nuclei from in vivo 7T MRI. Neuroimage. 2018 Apr 15;170:222-230. doi: 10.1016/j.neuroimage.2017.04.070. Epub 2017 May 3. PMID: 28476663; PMCID: PMC5670016.',...
         'Bianciardi M, Toschi N, Edlow BL, Eichner C, Setsompop K, Polimeni JR, Brown EN, Kinney HC, Rosen BR, Wald LL. Toward an In Vivo Neuroimaging Template of Human Brainstem Nuclei of the Ascending Arousal, Autonomic, and Motor Systems. Brain Connect. 2015 Dec;5(10):597-607. doi: 10.1089/brain.2015.0347. Epub 2015 Aug 11. PMID: 26066023; PMCID: PMC4684653.'});
     
-    % imort atlas file in MNI152NLin2009cAsym space
+    % import atlas file in MNI152NLin2009cAsym space
     % we bianciast use this as a stand in template that we'll modify later, since
     % this is the wrong space
     bianciaTbl = readtable(which('bianciardi_fine_labels.csv'));
@@ -282,7 +282,7 @@ function bianciaAtlas = bianciardi_create_atlas_obj(space)
     
     % we can't upload the mat file to github due to licensing issues, but
     % we can upload a timestamp that will flag out of date versions and
-    % cause other uesrs to recreate the atlas when appropriate.
+    % cause other users to recreate the atlas when appropriate.
     fid = fopen(fullfile(this_dir.folder, sprintf('%s_atlas_object.latest',bianciaAtlas.atlas_name)), 'w+');
     fprintf(fid,'%s',hash);
     fclose(fid);

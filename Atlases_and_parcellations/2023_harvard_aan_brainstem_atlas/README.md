@@ -33,13 +33,13 @@ the public domain.
 
 The Bianciardi Brainstem atlas is a partially completed comprehensive atlas of
 brainstem nuclei. It's based on multimodal imaging data without ex vivo 
-validation, but is probablistic, based on more participants, and because it
+validation, but is probabilistic, based on more participants, and because it
 tries to account for all brainstem nuclei it's less likely to mislabel regions
 belonging to one nucleis that in fact belong to another. Unfortunately it has
 a restrictive distribution license and is not suitable for all applications as
 a result. The Harvard Ascending Activation Network atlas may be more suitable
 in these circumstances or for use as a histological reference, however limited
-its precision may be (due to small sample size and poor specificaiton of 
+its precision may be (due to small sample size and poor specification of 
 MNI space template used).
 
 All AAN atlas regions have one more or more corresponding regions in 
@@ -73,7 +73,7 @@ regions, also shown in color, with outlines of Bianciardi's equivalent regions
 (possibly merged if there are multiple) overlain.
 
 ![html/compare_with_bianciardi_01.png](html/compare_with_bianciardi_01.png)
-Saggital Brainstem Nuclei
+Sagittal Brainstem Nuclei
 
 ![html/compare_with_bianciardi_02.png](html/compare_with_bianciardi_02.png)
 Coronal Brainstem Nuclei

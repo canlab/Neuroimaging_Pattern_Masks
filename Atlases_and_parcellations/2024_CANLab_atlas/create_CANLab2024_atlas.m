@@ -358,7 +358,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
 
     % we can't upload the mat file to github due to licensing issues, but
     % we can upload a timestamp that will flag out of date versions and
-    % cause other uesrs to recreate the atlas when appropriate.
+    % cause other users to recreate the atlas when appropriate.
     fid = fopen(sprintf('%s/%s_atlas_object.latest', this_dir.folder, atlas_obj.atlas_name),'w+');
     fprintf(fid,'%s',hash);
     fclose(fid);
@@ -370,7 +370,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
     end
 
     if any(ismember(SPACE,{'MNI152NLin2009cAsym'})) && strcmp(SCALE,'coarse') && res == 1
-        fprintf('Creating QSIPrep compatable CANLab2024 %s %s %0.1fmm atlas...\n', SPACE, SCALE, res);
+        fprintf('Creating QSIPrep compatible CANLab2024 %s %s %0.1fmm atlas...\n', SPACE, SCALE, res);
 
         % throw a warning. We don't want to be resampling atlases again. We
         % should only resample once per atlas and this has already been
@@ -437,7 +437,7 @@ function atlas_obj = create_CANLab2024_atlas(SPACE, SCALE, res)
         fprintf(fid, '%s', jsontxt);
         fclose(fid);
 
-        fprintf('Wrote qsiprep compatable atlas to %s/qsiprep/\n', this_dir.folder);
+        fprintf('Wrote qsiprep compatible atlas to %s/qsiprep/\n', this_dir.folder);
     end
 end
 

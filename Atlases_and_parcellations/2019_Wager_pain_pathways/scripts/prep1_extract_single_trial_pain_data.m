@@ -254,7 +254,7 @@ all_ST_data_gray_white_csf_Z = cat(1, mydata{:});
 %figure; imagesc(zscore(all_ST_data_gray_white_csf_Z))
 title('Gray - white - CSF averages')
 
-% Regress out white-matter and CSF averages (doens't make much difference)
+% Regress out white-matter and CSF averages (doesn't make much difference)
 X = all_ST_data_gray_white_csf_Z(:, 2:3);
 resid_fcn = @(Y) Y - X * pinv(X) * Y;
 
@@ -267,7 +267,7 @@ mydata = cellfun(@windsorize_matrix_columnwise, ST_data_NPS_response, 'UniformOu
 mydata = cellfun(@zscore, mydata, 'UniformOutput', false); % Z-score within subject
 mydata = cat(1, mydata{:});
 
-% Regress out white-matter and CSF averages (doens't make much difference)
+% Regress out white-matter and CSF averages (doesn't make much difference)
 v = var(mydata);
 mydata = resid_fcn(mydata);
 vr = var(mydata);
@@ -298,7 +298,7 @@ mydata = cellfun(@windsorize_matrix_columnwise, ST_data_SIIPS_response, 'Uniform
 mydata = cellfun(@zscore, mydata, 'UniformOutput', false); % Z-score within subject
 mydata = cat(1, mydata{:});
 
-% Regress out white-matter and CSF averages (doens't make much difference)
+% Regress out white-matter and CSF averages (doesn't make much difference)
 v = var(mydata);
 mydata = resid_fcn(mydata);
 vr = var(mydata);
@@ -358,7 +358,7 @@ mydata = cellfun(@windsorize_matrix_columnwise, ST_data_region_averages, 'Unifor
 mydata = cellfun(@zscore, mydata, 'UniformOutput', false); % Z-score within subject
 mydata = cat(1, mydata{:});
 
-% Regress out white-matter and CSF averages (doens't make much difference)
+% Regress out white-matter and CSF averages (doesn't make much difference)
 v = var(mydata);
 mydata = resid_fcn(mydata);
 vr = var(mydata);
@@ -387,7 +387,7 @@ mydata = cellfun(@windsorize_matrix_columnwise, ST_data_painpathways_finegrained
 mydata = cellfun(@zscore, mydata, 'UniformOutput', false); % Z-score within subject
 mydata = cat(1, mydata{:});
 
-% Regress out white-matter and CSF averages (doens't make much difference)
+% Regress out white-matter and CSF averages (doesn't make much difference)
 v = var(mydata);
 mydata = resid_fcn(mydata);
 vr = var(mydata);

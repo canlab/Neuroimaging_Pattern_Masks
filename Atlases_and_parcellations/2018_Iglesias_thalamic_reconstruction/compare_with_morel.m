@@ -52,7 +52,7 @@ end
 thisAtlas = [newAtlas1{:}];
 thisMorelAtlas = [newAtlas2{:}];
 
-for orientation = {'saggital','coronal','axial'}
+for orientation = {'sagittal','coronal','axial'}
     %%
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)
@@ -84,7 +84,7 @@ end
 thisAtlas = [newAtlas1{:}];
 thisMorelAtlas = [newAtlas2{:}];
 
-for orientation = {'saggital','coronal','axial'}
+for orientation = {'sagittal','coronal','axial'}
     %%
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)

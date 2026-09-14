@@ -72,7 +72,7 @@ thalamus_atlas.labels_2(ismember(thalamus_atlas.labels_2,{'L_hypothalamus_anteri
 thalamus_atlas.labels_2(ismember(thalamus_atlas.labels_2,{'R_hypothalamus_anterior_superior','R_hypothalamus_tubular_superior'})) = {'R_hypothalamus_anterior_and_tubular_superior'};
 
 %% dilate the cifti atlas to include the entire hypothalamus
-% otherwise this trunctates the chiasmatic nuclei
+% otherwise this truncates the chiasmatic nuclei
 
 cifti_atlas = cifti_atlas.replace_empty();
 hypothal_atlas = hypothal_atlas.resample_space(cifti_atlas);

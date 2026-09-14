@@ -4,7 +4,7 @@ Transformation matrices were computed by running the Colin27 template through fm
 enabled with MNI152NLin6Asym and MNI152NLin2009cAsym selected as output spaces. There are two versions of Colin27, one from 
 1998 and another that's higher resolution and includes T2 and PD images from 2008. They are not coregistered. This was run 
 on the 1998 version. In theory it should be possible to obtain better transforms to MNI152NLin2009cAsym space in particular
-by performing a rigid body transfrom from the 1998 to 2008 data and then running multimodal alignment of T1, T2 and PD data
+by performing a rigid body transform from the 1998 to 2008 data and then running multimodal alignment of T1, T2 and PD data
 to the MNI152NLin2009cAsym equivalents, but this seemed like more work than it was worth.
 
 
