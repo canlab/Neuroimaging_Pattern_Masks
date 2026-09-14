@@ -1,8 +1,8 @@
 {
-  "anatomy": "CANlab canonical left-cutaway mesh; display-only vertex clustering at 1.4 mm",
-  "anatomy_source": "https://github.com/canlab/CanlabCore/blob/master/CanlabCore/canlab_canonical_brains/Canonical_brains_surfaces/canlab_canonical_brain_surface_left_cutaway.mat",
-  "pattern": "Neurologic Pain Signature (NPS), Wager et al. 2013; strongest 35% per sign, nearest-neighbor sampling at displayed triangle centers",
-  "pattern_source": "https://github.com/canlab/Paradigms_Public/tree/master/2022_Han_Kragel_RTNF_real_time_neurofeedback/updated_code",
-  "paper": "https://doi.org/10.1056/NEJMoa1204471",
-  "note": "Illustrative static rendering; not a surface predictor. Only rendered images are distributed here."
+  "source": "ncs_thumbnail.png supplied by Tor Wager",
+  "use": "Hero, logo, browser icon, and social-preview image",
+  "sha256": "43c10f9dd39abae8cc60345a0b95fb7631e195f608a09d928117e6c6e35cc15f",
+  "width": 834,
+  "height": 609,
+  "note": "Original PNG copied without modification. Grayscale appearance at rest is applied only through CSS; hover, focus, or tap shows original colors. Earlier rendered branding assets are retained as backups."
 }

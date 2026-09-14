@@ -17,8 +17,8 @@ try{
  await page.screenshot({path:'/tmp/neuromarker-hero-hover.png'});
  await page.locator('#hero-brain').click();assert.equal(await page.locator('#hero-brain').getAttribute('aria-pressed'),'true');await page.locator('#hero-brain').click();await page.locator('#hero-brain').blur();await page.locator('header').hover();
  await page.waitForFunction(()=>getComputedStyle(document.querySelector('.hero-pattern')).opacity==='0');
- assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'),'brand/brain-icon.png');
- const social=await page.locator('meta[property="og:image"]').getAttribute('content');assert.match(social,/brand\/neuromarkers-social.png$/);
+ assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'),'brand/neuromarkers-ncs.png');
+ const social=await page.locator('meta[property="og:image"]').getAttribute('content');assert.match(social,/brand\/neuromarkers-ncs.png$/);
  assert.match(await page.locator('footer').textContent(),/Built by Tor Wager with GPT Astra/);
  assert.equal(await page.locator('footer a').first().getAttribute('href'),'https://torwager.github.io/canlab/');
  await page.screenshot({path:'/tmp/neuromarker-home.png'});

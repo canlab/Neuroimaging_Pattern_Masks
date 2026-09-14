@@ -15,3 +15,7 @@ header .brand{gap:10px}.brand>img{width:64px;height:60px;object-fit:contain}.bra
 @media(max-width:900px){.intro{grid-template-columns:minmax(0,1.3fr) minmax(230px,.7fr);gap:1rem}.intro h1{font-size:2rem!important}.hero-brain{max-height:300px}}@media(max-width:720px){header .brand{flex-direction:row!important;align-items:center!important;gap:4px!important}.brand>img{width:44px;height:44px}.brand .wordmark{font-size:21px}.wordmark small{font-size:8px;margin-top:4px}.intro{grid-template-columns:1fr;gap:.4rem}.intro .intro-copy>p{font-size:15px}.hero-figure{max-width:280px;justify-self:center;width:100%}.hero-brain{max-height:240px}footer{align-items:flex-start}.hero-figure figcaption{margin-top:0}}@media(prefers-reduced-motion:reduce){.hero-pattern{transition:none}}
 
 .intro .intro-copy>p.inventory{color:#646b75}
+
+.hero-brain{aspect-ratio:834/609;border-radius:8px}.hero-anatomy{filter:grayscale(1)}
+
+.hero-figure figcaption{margin-top:12px}
