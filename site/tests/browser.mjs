@@ -47,7 +47,7 @@ try{
  assert.equal(await page.locator('footer a').first().getAttribute('href'),'https://torwager.github.io/canlab/');
  await page.screenshot({path:'/tmp/neuromarker-home.png'});
  await page.locator('#graph-view').click();await page.locator('.graph-node').first().waitFor();
- await page.locator('.graph-node').first().scrollIntoViewIfNeeded();await page.locator('.graph-node').first().focus();await page.locator('#graph-popup').waitFor();await page.keyboard.press('Escape');assert.ok(await page.locator('#graph-popup').count()===0);
+ await page.locator('.graph-node').first().scrollIntoViewIfNeeded();await page.locator('.graph-node').first().focus();await page.locator('#graph-popup').waitFor();await page.evaluate(()=>window.scrollBy(0,20));await page.locator('#graph-popup').waitFor();await page.keyboard.press('Escape');assert.ok(await page.locator('#graph-popup').count()===0);
  assert.equal(await page.locator('.graph-node').count(),25);assert.ok(await page.locator('#results').isHidden());
  await page.locator('.graph-node').first().hover();await page.locator('#graph-popup').waitFor();assert.ok((await page.locator('#graph-popup').textContent()).length>100);await page.keyboard.press('Escape');await page.locator('.graph-node').first().blur();await page.locator('.intro').hover();
  await page.screenshot({path:'/tmp/neuromarker-graph.png',fullPage:true});

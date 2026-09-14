@@ -36,7 +36,8 @@ const aliases={
 };
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelector('#graph-popup')?.remove()});
-document.addEventListener('scroll',()=>document.querySelector('#graph-popup')?.remove(),{capture:true,passive:true});
+function positionPopup(a,popup){const box=a.getBoundingClientRect();popup.style.left=Math.max(12,Math.min(box.left,innerWidth-popup.offsetWidth-12))+'px';popup.style.top=Math.max(12,box.bottom+8+popup.offsetHeight<innerHeight?box.bottom+8:box.top-popup.offsetHeight-8)+'px'}
+document.addEventListener('scroll',()=>{const popup=document.querySelector('#graph-popup'),a=document.activeElement;if(!popup)return;if(a?.matches('.graph-node')){const box=a.getBoundingClientRect();if(box.bottom>0&&box.top<innerHeight){positionPopup(a,popup);return}}popup.remove()},{capture:true,passive:true});
 export function renderGraph(container,studies,url){
  document.querySelector('#graph-popup')?.remove();
  if(!studies.length){container.innerHTML='<p>No matches. Try fewer filters or a broader search.</p>';return;}
@@ -53,7 +54,7 @@ export function renderGraph(container,studies,url){
    const show=()=>{
     document.querySelector('#graph-popup')?.remove();const popup=document.createElement('div');popup.id='graph-popup';popup.className='graph-popup';popup.setAttribute('role','tooltip');
     popup.innerHTML=`<p class="eyebrow">${esc(s.domains.join(' · '))}</p><h3>${esc(s.name)}</h3><p>${esc(s.description)}</p><div class="tags">${s.targets.slice(0,4).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div><p class="popup-meta">${s.year} · ${s.maps.length} available maps <span>Open study ↗</span></p>`;
-    document.body.append(popup);a.setAttribute('aria-describedby',popup.id);const box=a.getBoundingClientRect();popup.style.left=Math.max(12,Math.min(box.left,innerWidth-popup.offsetWidth-12))+'px';popup.style.top=Math.max(12,box.bottom+8+popup.offsetHeight<innerHeight?box.bottom+8:box.top-popup.offsetHeight-8)+'px';
+    document.body.append(popup);a.setAttribute('aria-describedby',popup.id);positionPopup(a,popup);
    };
    const hide=()=>{document.querySelector('#graph-popup')?.remove();a.removeAttribute('aria-describedby')};
    a.onpointerenter=show;a.onfocus=show;a.onpointerleave=()=>{if(document.activeElement!==a)hide()};a.onblur=hide;a.onclick=hide;a.onkeydown=e=>{if(e.key==='Escape')hide()};branch.append(a);
