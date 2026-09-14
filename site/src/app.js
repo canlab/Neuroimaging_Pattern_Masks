@@ -20,7 +20,7 @@ function renderCatalog(){
  $('count').textContent=`${shown.length} studies · ${shown.reduce((n,s)=>n+s.maps.length,0)} maps`;
  $('results').innerHTML=shown.length?shown.map(s=>`<a class="card" href="${url(`marker/${s.id}/`)}"><img src="${url(s.maps[0].preview)}" loading="lazy" alt="Axial preview: ${esc(s.name)}" width="360" height="260"><div class="card-body"><h3>${esc(s.name)}</h3><div class="tags">${tags(s.targets.slice(0,3))}</div><p>${esc(s.description.slice(0,150))}${s.description.length>150?'…':''}</p></div><div class="card-meta">${s.year} · ${s.maps.length} maps · ${esc(s.citation.split(' (')[0].slice(0,50))}</div></a>`).join(''):'<p>No matches. Try fewer filters or a broader search.</p>';
  renderGraph($('signature-graph'),shown,url);
- const u=new URL(root);if(q)u.searchParams.set('q',q);for(const [axis,selected]of Object.entries(filters))for(const t of selected)u.searchParams.append(axis,t);u.searchParams.set('sort',$('sort').value);history.replaceState(null,'',u);
+ const u=new URL(root);u.hash=location.hash;if(q)u.searchParams.set('q',q);for(const [axis,selected]of Object.entries(filters))for(const t of selected)u.searchParams.append(axis,t);u.searchParams.set('sort',$('sort').value);history.replaceState(null,'',u);
 }
 function renderFilters(){
  $('filters').innerHTML=Object.entries({domains:'Domain',modalities:'Sensory modality',targets:'Target'}).map(([axis,label])=>{
@@ -76,7 +76,7 @@ async function loadMap(selected){
 }
 function hemispheres(){if(surface){surface.meshes.forEach((m,i)=>m.visible=$('hemisphere').value==='both'||$('hemisphere').value===['L','R'][i]);surface.drawScene()}}
 async function openStudy(s){study=s;document.body.classList.toggle('embed',params().get('embed')==='1');$('browse').hidden=true;document.querySelector('.intro').hidden=true;$('detail').hidden=false;$('study-title').textContent=s.name;$('study-kicker').textContent=`${s.year} · ${s.maps.length} maps`;$('study-tags').innerHTML=tags(s.domains);$('map-select').innerHTML=s.maps.map(m=>`<option value="${esc(m.id)}">${esc(m.name)} — ${esc(m.role)}</option>`).join('');const selected=s.maps.find(m=>m.id===params().get('map'))||s.maps[0];$('map-select').value=selected.id;await loadMap(selected);}
-function browse(){dispose();study=null;document.body.classList.remove('embed');$('detail').hidden=true;$('browse').hidden=false;document.querySelector('.intro').hidden=false;renderCatalog()}
+function browse(){dispose();study=null;document.body.classList.remove('embed');$('detail').hidden=true;$('browse').hidden=false;document.querySelector('.intro').hidden=false;renderCatalog();if(location.hash==='#browse'){$('browse').scrollIntoView({block:'start'});$('search').focus({preventScroll:true})}}
 async function route(){if(busy)return;const s=catalog.studies.find(s=>location.pathname.includes('/marker/'+s.id+'/'));if(s){display=parseDisplay(params());await openStudy(s)}else browse()}
 let raf;function change(side,value){if(String(value).trim()==='')return;const max=display.mode==='percent'?100:Math.max(map.stats.positive.max,map.stats.negative.max,1e-9);const v=Math.max(0,Math.min(max,Number(value)));if(!Number.isFinite(v))return;display[side]=v;if(display.sync)display[side==='positive'?'negative':'positive']=v;syncControls();cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{applyThreshold();remember()})}
 async function copy(text){try{await navigator.clipboard.writeText(text);$('action-status').textContent='Copied to clipboard.'}catch{$('action-status').textContent=text}}

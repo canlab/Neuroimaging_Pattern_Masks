@@ -22,7 +22,7 @@ export function initHero(){
  button.addEventListener('pointermove',pointer);button.addEventListener('pointerdown',pointer);button.addEventListener('pointerenter',pointer);button.addEventListener('pointerleave',()=>lastPoint=null);
  button.addEventListener('click',e=>{if(e.detail===0)add(.57,.55)});
  button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))add(.57,.55)});
- function schedule(){clearTimeout(timer);if(!visible||document.hidden||reduced.matches)return;timer=setTimeout(()=>{if(visible&&!document.hidden&&!reduced.matches){const centers=[[.18,.32],[.57,.57],[.47,.68],[.3,.44]],point=centers[Math.floor(Math.random()*centers.length)];add(point[0],point[1],true)}schedule()},14000+Math.random()*8000)}
+ function schedule(){clearTimeout(timer);if(!visible||document.hidden||reduced.matches)return;timer=setTimeout(()=>{if(visible&&!document.hidden&&!reduced.matches){const centers=[[.18,.32],[.57,.57],[.47,.68],[.3,.44]],point=centers[Math.floor(Math.random()*centers.length)];add(point[0],point[1],true)}schedule()},5000+Math.random()*4000)}
  function clear(){spots=[];cancelAnimationFrame(frame);frame=0;ctx.clearRect(0,0,canvas.width,canvas.height);lastPoint=null}
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)clear();schedule()},{threshold:.25}).observe(button);
  new ResizeObserver(resize).observe(button);image.addEventListener('load',resize);resize();
