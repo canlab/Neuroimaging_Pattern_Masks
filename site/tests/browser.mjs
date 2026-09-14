@@ -10,13 +10,31 @@ try{
  await page.goto(base);await page.locator('.card').first().waitFor();
  assert.equal(await page.locator('.card:visible').count(),25);assert.ok(await page.locator('#graph-panel').isHidden());
  assert.equal(await page.locator('#tile-view').getAttribute('aria-pressed'),'true');
- assert.match(await page.locator('.intro-copy').textContent(),/independent participants and independent samples/);
- assert.ok(await page.locator('.intro a[href="https://www.nature.com/articles/nn.4478"]').count()===1);
- assert.equal(await page.locator('.hero-pattern').evaluate(e=>getComputedStyle(e).opacity),'0');
- await page.locator('#hero-brain').hover();await page.waitForFunction(()=>getComputedStyle(document.querySelector('.hero-pattern')).opacity==='1');
- await page.screenshot({path:'/tmp/neuromarker-hero-hover.png'});
- await page.locator('#hero-brain').click();assert.equal(await page.locator('#hero-brain').getAttribute('aria-pressed'),'true');await page.locator('#hero-brain').click();await page.locator('#hero-brain').blur();await page.locator('header').hover();
- await page.waitForFunction(()=>getComputedStyle(document.querySelector('.hero-pattern')).opacity==='0');
+ assert.equal(await page.locator('.intro h1').textContent(),'Neuromarkers: Population-level predictive brain models');
+ const paragraphs=await page.locator('.intro-copy > p:not(.eyebrow):not(.inventory)').allTextContents();
+ assert.deepEqual(paragraphs,[
+  'Neuromarkers are population-level patterns of fMRI activity whose expression predicts a stimulus, behavior, mental state, or clinical outcome. In contrast to models individualized for a single person, the models shared here can be applied to data from new participants, allowing open-ended validation across populations, contexts, methodological variations, and outcomes.',
+  'These models are in various stages of validation, but all have been successfully validated on at least one independent cohort after model training.',
+  'Browse, explore, and download these patterns for use in new studies.'
+ ]);
+ const revealCount=()=>page.locator('.hero-reveal').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let n=0;for(let i=3;i<d.length;i+=4)if(d[i])n++;return n});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ assert.equal(await revealCount(),0);
+ const hero=await page.locator('#hero-brain').boundingBox();await page.mouse.move(hero.x+hero.width*.57,hero.y+hero.height*.55);
+ await page.waitForFunction(()=>{const c=document.querySelector('.hero-reveal'),d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;return d.some((v,i)=>i%4===3&&v>0)});
+ const locality=await page.locator('.hero-reveal').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let n=0,outside=0;for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(d[(y*c.width+x)*4+3]){n++;if(Math.hypot(x-c.width*.57,y-c.height*.55)>c.width*.14)outside++}return {n,outside,total:c.width*c.height}});
+ assert.ok(locality.n>100&&locality.n<locality.total*.15);assert.equal(locality.outside,0);
+ await page.screenshot({path:'/tmp/neuromarker-hero-local.png'});await page.locator('header').hover();
+ await page.waitForTimeout(700);assert.ok(await revealCount()>100);
+ await page.waitForFunction(()=>{const c=document.querySelector('.hero-reveal');return !c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===3&&v>0)},{},{timeout:6000});
+ // An idle, visible hero occasionally blooms without pointer input.
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.waitForFunction(()=>{const c=document.querySelector('.hero-reveal');return c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===3&&v>0)},{},{timeout:25000});
+ await page.waitForTimeout(900);await page.screenshot({path:'/tmp/neuromarker-hero-ambient.png'});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.waitForFunction(()=>{const c=document.querySelector('.hero-reveal');return !c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===3&&v>0)});
+ // Keyboard activation reveals a local patch without a persistent toggle.
+ await page.locator('#hero-brain').focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>{const c=document.querySelector('.hero-reveal');return c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===3&&v>0)});await page.locator('#hero-brain').blur();await page.locator('header').hover();
  assert.equal(await page.locator('link[rel="icon"]').getAttribute('href'),'brand/neuromarkers-ncs.png');
  const social=await page.locator('meta[property="og:image"]').getAttribute('content');assert.match(social,/brand\/neuromarkers-ncs.png$/);
  assert.match(await page.locator('footer').textContent(),/Built by Tor Wager with GPT Astra/);
