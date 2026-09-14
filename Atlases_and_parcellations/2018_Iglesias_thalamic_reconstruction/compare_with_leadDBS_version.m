@@ -64,7 +64,7 @@ thisAtlas = thisAtlas.select_atlas_subset(find(~contains(thisAtlas.labels,{'R_L'
 thisAtlas.probability_maps = [];
 thisLeadsAtlas = leadsAtlas.select_atlas_subset(thisAtlas.labels,'exact').threshold(0.2);
 thisLeadsAtlas.probability_maps = [];
-for orientation = {'saggital','coronal','axial'}
+for orientation = {'sagittal','coronal','axial'}
     %%
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)
@@ -92,7 +92,7 @@ thisAtlas = thisAtlas.select_atlas_subset(find(~contains(thisAtlas.labels,{'PuMm
 thisAtlas.probability_maps = [];
 thisLeadsAtlas = leadsAtlas.select_atlas_subset(thisAtlas.labels,'exact').threshold(0.2);
 thisLeadsAtlas.probability_maps = [];
-for orientation = {'saggital','coronal','axial'}
+for orientation = {'sagittal','coronal','axial'}
     %%
     o2 = thisAtlas.montage('transvalue',0.5,'regioncenters',orientation{1});
     for i = 1:num_regions(thisAtlas)

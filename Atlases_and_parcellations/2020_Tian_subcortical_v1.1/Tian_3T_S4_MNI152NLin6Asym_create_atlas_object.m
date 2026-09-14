@@ -156,7 +156,7 @@ new_map.dat = parcels;
 % macroscale structure (e.g. accumbens/caudate) don't get assigned to a 
 % neighbor (e.g. putamen). This works in part because Tian analyzed their 
 % data in CIFTI space which ensures that all labeled voxels map uniquely 
-% to a labeld CIFTI region (i.e. there are no voxels outside of CIFTI's 
+% to a labeled CIFTI region (i.e. there are no voxels outside of CIFTI's 
 % subcortical segmentation.
 %
 % Note, that "macroscale" structures are contiguous regions, so caudate and

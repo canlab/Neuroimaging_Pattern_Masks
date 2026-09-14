@@ -245,7 +245,7 @@ Phil Kragel's PAG parcellation was redone to provide probablistic labels. 19/24 
 from Phil's dropbox into the same target space as the 2019 paper (IXI549) except linear interpolation was used instead of
 cubic splines to avoid gibbs ringing. The results are saved in the source subfolder here as KragelPAG_MNI152NLin6Asym.nii.gz.
 The space designation is justified because the IXI sample was registered to MNI152NLin6Asym before generating the IXI549
-template used by Dartel to produce the warps used. Although there are differents between these templates the location and
+template used by Dartel to produce the warps used. Although there are differences between these templates the location and
 orientation of the cerebral aqueduct is the same, so there's no need for further alignment to MNI152NLin6Asym space. Individual
 subject alignments (partial volume effects and all) were averaged to produce a probablistic PAG map.
 

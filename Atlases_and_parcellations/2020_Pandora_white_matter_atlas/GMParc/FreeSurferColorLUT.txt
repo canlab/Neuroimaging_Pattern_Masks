@@ -439,7 +439,7 @@
 # labels are the same as in colortable_desikan_killiany.txt, except
 # that left hemisphere has 3000 added to the index and the right has
 # 4000 added. The label names are also prepended with wm-lh or wm-rh.
-# Centrum semiovale is also labled with 5001 (left) and 5002 (right).
+# Centrum semiovale is also labeled with 5001 (left) and 5002 (right).
 # Even further below are the color tables for aparc.a2005s and aparc.a2009s.
 
 #No.    Label Name:                         R   G   B   A

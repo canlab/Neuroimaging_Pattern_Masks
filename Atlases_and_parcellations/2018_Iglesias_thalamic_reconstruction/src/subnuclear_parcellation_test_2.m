@@ -198,7 +198,7 @@ grp_roi_cog = tbl_roi.BOLD(tbl_roi.pain_vic_v_cog > 0 & tbl_roi.parcellation < 0
 
 roi = atlas2region(atlas_obj.threshold(0.2).select_atlas_subset({roi_label},'exact'));
 [f,ax] = deal(cell(3,1));
-orientations = {'saggital','axial','coronal'};
+orientations = {'sagittal','axial','coronal'};
 for i = 1:length(orientations)
     ax{i} = roi.montage('regioncenters','nofigure',orientations{i});
     f{i} = gcf;

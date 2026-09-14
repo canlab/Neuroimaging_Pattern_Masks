@@ -231,7 +231,7 @@ function atlas_obj = create_CANLab2023_atlas(SPACE, SCALE, res)
     end
 
     if strcmp('MNI152NLin6Asym',SPACE) && res == 2
-        % hacky fix fo rshen overwriting the only LC_L region that survives
+        % hacky fix for shen overwriting the only LC_L region that survives
         % neighboring prob maps
         ind = biancia.dat == find(contains(biancia.labels,'LC_L'));
         assert(sum(ind) == 1); % unless bianciardi has changed only one voxel should survive

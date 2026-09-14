@@ -24,7 +24,7 @@ as well.
 The probablistic labels are not directly derived from the original Iglesias
 et al. (2018) Neuroimage parcellation that is used internally by freesurfer.
 Those probablistic labels aren't readily available. They're stored in an
-esoteric format interally by freesurfer, and based on personal correspondence
+esoteric format internally by freesurfer, and based on personal correspondence
 with Iglesias there is no readily available nifti version of the
 probablistic labels available for distribution. There is a version available
 that's packaged with LeadDBS, but the relationship between this version and
