@@ -1,4 +1,4 @@
-# Data-driven amygdala temporal-profile clusters (Bo et al. 2026)
+# Data-driven amygdala temporal-profile clusters (Bo et al. 2026, Elife)
 
 ## Overview
 
@@ -32,7 +32,7 @@ responses.
 
 **Primary reference.** Bo, K., Lindquist, M. A., Gianaros, P. J., &
 Wager, T. D. (2026). *Spatiotemporal dissociation of human amygdala
-response to negative affect.* **bioRxiv.**
+response to negative affect.* **Elife.**
 [doi:10.64898/2026.08.18.745530](https://doi.org/10.64898/2026.08.18.745530)
 · [local PDF](./Bo_2026_amygdala_spatiotemporal_FIR.pdf)
 
@@ -129,7 +129,7 @@ analysis code will be posted at
 
 - Bo K, Lindquist MA, Gianaros PJ, Wager TD (2026). Spatiotemporal
   dissociation of human amygdala response to negative affect.
-  *bioRxiv*.
+  *Elife*.
   [doi:10.64898/2026.08.18.745530](https://doi.org/10.64898/2026.08.18.745530)
 - Amunts K et al. (2005). Cytoarchitectonic mapping of the human
   amygdala, hippocampal region and entorhinal cortex: intersubject
