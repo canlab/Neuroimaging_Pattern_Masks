@@ -35,7 +35,7 @@ def main():
     try:
         nii = nib.load(args.anatomy)
     except:
-        parser.error("Expecting anatomy image as first agument.")
+        parser.error("Expecting anatomy image as first argument.")
 
     for tractogram in args.tractograms:
         if (nib.streamlines.detect_format(tractogram) is not

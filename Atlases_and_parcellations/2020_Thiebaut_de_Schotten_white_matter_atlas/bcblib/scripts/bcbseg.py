@@ -22,7 +22,7 @@ priors = sys.argv[6]
 
 
 def build_argparser():
-    DESCRIPTION = "Brain extraction and segmentation using ANTs softwares"
+    DESCRIPTION = "Brain extraction and segmentation using ANTs software"
     p = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument("-e", "--extraction", action="store_true", help="")
     p.add_argument('anatomy', help='reference anatomy (.nii|.nii.gz.')

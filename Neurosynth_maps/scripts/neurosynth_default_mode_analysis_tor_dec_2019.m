@@ -159,7 +159,7 @@ plot_connectivity(obj_subset, 'partitions', obj_subset.node_clusters, 'partition
 % ------------------------------------------------------------------
 % Connector Hubs: Most frequently connected Def Mode A regions with others
 %
-% connnector hubs in red: includes vmPFC
+% connector hubs in red: includes vmPFC
 % provincial hubs in blue: includes pCC and parts of lateral OFC
 
 b2 = select_atlas_subset(b, {'Def' 'Limbic' 'Cortex_Fronto_ParietalB'}, 'labels_2');
@@ -170,7 +170,7 @@ b2 = select_atlas_subset(b, {'Def' 'Limbic' 'Cortex_Fronto_ParietalB'}, 'labels_
 % ------------------------------------------------------------------
 % Connector Hubs: Most frequently connected Def Mode A regions with others
 %
-% connnector hubs in red: includes vmPFC
+% connector hubs in red: includes vmPFC
 % provincial hubs in blue: includes pCC and parts of lateral OFC
 
 % 'Cortex_Fronto_ParietalB' has OFC, so add that

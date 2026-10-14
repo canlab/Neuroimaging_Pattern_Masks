@@ -102,7 +102,7 @@ https://github.com/Washington-University/HCPpipelines/blob/master/global/templat
 https://github.com/Washington-University/HCPpipelines/blob/master/global/templates/standard_mesh_atlases/fs_R/fs_R-to-fs_LR_fsaverage.R_LR.spherical_std.164k_fs_R.surf.gii
 onto the subject specific registered spherical surface ([lr]h.sphere.reg in the freesurfer output 
 directory). This was then projected into the native subject surface space using the inverse transforms from
-the fmriprep outputed freesurfer directories  and then transformed from native space into 
+the fmriprep outputted freesurfer directories  and then transformed from native space into 
 MNI152NLin2009cAsym and MNI152NLin6Asym spaces. The results for the left and right hemisphere
 concatenated across subjects for each space, study and hemisphere.
 

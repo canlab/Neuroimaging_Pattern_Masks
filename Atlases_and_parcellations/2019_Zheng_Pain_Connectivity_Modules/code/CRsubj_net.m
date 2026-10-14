@@ -4,7 +4,7 @@ function Net_WP = CRsubj_net(mean_data, thresh)
 % if there are multiple levels of temperature in each condition, randomly
 % select one.
 
-% input: mean_data: struct varible from mean_data_cross_trials.m
+% input: mean_data: struct variable from mean_data_cross_trials.m
 %        thresh: temperature threshold of warm and pain (we choose 45.3¡æ)
 
 Nstudies = length(mean_data.study_name);

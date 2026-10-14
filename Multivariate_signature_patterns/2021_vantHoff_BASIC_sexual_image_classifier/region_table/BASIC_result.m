@@ -12,7 +12,7 @@ obj_sex_neu = svm_stats_results{1, 1}.weight_obj;
 obj_sex_pos = svm_stats_results{1, 2}.weight_obj;
 obj_sex_neg = svm_stats_results{1, 3}.weight_obj;
 
-%% Treshold images
+%% Threshold images
 % these weight maps are 0.05 unc by default
 obj_sex_neu_fdr_05 = threshold(obj_sex_neu, 0.05, 'fdr');
 

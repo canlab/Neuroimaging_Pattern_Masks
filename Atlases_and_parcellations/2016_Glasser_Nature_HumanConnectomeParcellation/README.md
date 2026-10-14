@@ -25,13 +25,13 @@ version for improvements now available.
 
 ## Probabilities
 
-The atlas is probablistic. The original atlas is defined on a surface, but this surface is folded in different 
+The atlas is probabilistic. The original atlas is defined on a surface, but this surface is folded in different 
 ways for different people. Misalignment of gyri and sucli results in parcels projecting into different locations
 for different people. The probabilities indicate the likelihood an individual's parcel will project to the 
 designated location. For instance, V1 and V2 probability maps are shown below, and although one is always more
 probable than another there are also regions where identity at the group level is ambiguous.
 
-![Examples of probablistic labels](images/probability_maps_vis_ctx.png)
+![Examples of probabilistic labels](images/probability_maps_vis_ctx.png)
 
 You can threshold the map at different probability values to obtain more or less eroded versions of the atlas 
 using the atlas object's threshold method. This offers a more rigorous dilation/erosion method than was available 
@@ -42,7 +42,7 @@ for the older glasser atlas. Some example thresholds are shown below.
 Probabilities were computed first based on alignments in each of three studies (BMRK5, PainGen, SpaceTop) separately
 and then averaged. Different studies have different acquisition parameters, which can result in systematic
 differences in resulting alignments. Averaging over more studies would be better. In the interest of facilitating
-futher updates to this dataset these three studies have had their subject specific MNI space projections uploaded
+further updates to this dataset these three studies have had their subject specific MNI space projections uploaded
 to figshare. If you want to recompute the probability maps/parcel boundaries you can follow the approach in
 the src subfolder here for a new study and combine it with these maps for an incremental improvement. Maps are here:
 
@@ -76,7 +76,7 @@ from a study previously analyzed and reported in surface space.
 
 To my knowledge Glasser et al. have not published their subject specific region classifiers (as of 10/24/23), 
 nor a multimodal alignment template, so subject specific parcel identification is not yet possible outside the
-Van Essen lab. However, subject specific parcellations may be avialable from the HCP dataset, and might provide 
+Van Essen lab. However, subject specific parcellations may be available from the HCP dataset, and might provide 
 an avenue towards an improved version of this atlas if someone were to obtain appropriate surface to volume
 mappings from the HCP study. Coalsen et al. 2018 PNAS achieve precise this kind of surface to volume mapping 
 that takes variability of the subject specific surface parcellations into account and compares it to a projection 
@@ -91,7 +91,7 @@ were also computed. By enchaining the inverse transform to surface space with th
 space we can get a fsaverage surface to MNI space projection for each subject. The Glasser surface parcellation
 was transformed with this enchained set of transforms for each of 241 unrelated participants in paingen, 88
 participants from BMRK5 and 112 participants from SpaceTop. All transformations were computed by running fmriprep 
-20.2.3 (BMRK5, PainGen) or 21.0.2 (SpaceTop) with recon-all enabled on these participants, so this probablistic 
+20.2.3 (BMRK5, PainGen) or 21.0.2 (SpaceTop) with recon-all enabled on these participants, so this probabilistic 
 atlas is ideally calibrated for use with fmriprep aligned volumes. Resulting parcellations were uploaded to 
 figshare
 
@@ -143,7 +143,7 @@ precision, it's a matter of an imprecise fit to a mean template.
 What we offer here instead is the mean of many precise fits to individual templates, which is clearly better in this 
 regard. While different individuals may have different ventral visual cortical foldings, none of them have have visual 
 cortex in the cerebellum. Finally, the old atlas is necessarily non-probablistic, which limits its versatility. Note that 
-in the figure below underlay is MNI152NLin2009cAsym, which is nearly indistiguishable from MNI152NLin2009aAsym, the 
+in the figure below underlay is MNI152NLin2009cAsym, which is nearly indistinguishable from MNI152NLin2009aAsym, the 
 asymmetric version of the template the old glasser parcellation was projected to. The fmriprep20 registration fusion 
 image it cycles with is thresholded at 20% probability, which is a default threshold used throughout much of this repo.
 
@@ -186,7 +186,7 @@ Alternatively we can look at the difference between studies, since we have three
 greatest agreement, with practically all dice coefficients greater than 0.7. This is fortunate, since it means
 between study variability is small relative to between subject variability, and it means we're closer to the number
 of degrees of freedom we need for stable estimates of parcel boundaries (Using a single study, so no study related 
-error, Wu et al. claim you need 300 participants for boundaries to fully stabalize).
+error, Wu et al. claim you need 300 participants for boundaries to fully stabilize).
 
 <img alt="paingen vs. bmrk5 to MNi152NLin2009cAsym" src="diagnostics/dice_hist_interstudy_glassers_MNI152NLin2009cAsym.png" width="500" />
 

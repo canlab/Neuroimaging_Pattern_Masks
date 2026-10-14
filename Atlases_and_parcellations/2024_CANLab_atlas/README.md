@@ -97,7 +97,7 @@ available anywhere besides the Bianciardi atlas at the moment:
 
 
 Of the substitute atlases in openCANLab2024, the Harvard AAN atlas is not 
-probablistic. We set synthetic probabilities to 0.8 for all labeled voxels and
+probabilistic. We set synthetic probabilities to 0.8 for all labeled voxels and
 dilated the very small regions (MPB_LPB, PTg and PnO) with a 3mm fwhm gaussian 
 smoothing kernel to provide some more consistent behavior between atlases. In 
 all cases these regions remain more conservatively sized than in Bianciardi.

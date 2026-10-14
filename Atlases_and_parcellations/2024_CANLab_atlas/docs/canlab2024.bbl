@@ -133,7 +133,7 @@ Glasser, M\BPBI F.%
 \newblock
 \APACrefnote{Lots here. <br/><br/>MSMAll is derived using myelin and RSN
   ICA/dual regression based alignment. See section 2.4 of supplemental
-  methods.<br/><br/>Includes discussion of group mean template genreation that
+  methods.<br/><br/>Includes discussion of group mean template generation that
   can be useful if developing your own template. See section 2.5 of
   supplemental methods}
 \newblock
@@ -170,7 +170,7 @@ Iglesias, J\BPBI E.%
 \APACjournalVolNumPages{NeuroImage}{183}{}{314-326}.
 \newblock
 \APACrefnote{Freesurfer thalamic subnuclear segmentation<br/><br/>This appears
-  to offer a probabalistic histological thalamic atlas that could supercede
+  to offer a probabilistic histological thalamic atlas that could supersede
   Morel. It has somewhat fewer regions, but in most cases the regions
   correspond to what you might use for a "coarse" morel atlas anyway. I.e.
   morel is nested within these areas and only Morel's finest distinctions are
@@ -178,7 +178,7 @@ Iglesias, J\BPBI E.%
   boundary locations between Krauth (Morel2010) and this atlas (Fig 9
   illustrates it well), and there isn't a great quantitative comparison of the
   performance of the two anywhere. That doesn't leave us much of a way to
-  decide which to use. <br/><br/>This atlas is probablistic and Krauth is more
+  decide which to use. <br/><br/>This atlas is probabilistic and Krauth is more
   granular, but neither really seems trustworthy if they can produce such
   disparate results. Perhaps there's some way to take an average? Use Krauth as
   the prior (assign arbitrary but low probability to each region) and update it

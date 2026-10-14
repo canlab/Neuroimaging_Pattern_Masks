@@ -3,7 +3,7 @@
 
 [cortical_images, linenames, imgnames] = load_image_set('pauli_cortex');
 
-%% POLAR PLOT OF REALATION WITH BUCKNERLAB MAPS
+%% POLAR PLOT OF RELATION WITH BUCKNERLAB MAPS
 
 % !gunzip *gz
 % f = filenames('*nii')
