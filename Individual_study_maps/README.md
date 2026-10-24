@@ -14,7 +14,8 @@ redistributable, `png_images/`).
 | 2024 | [Bo — Emotion-regulation Bayes factor (Nat Neurosci)](./2024_Bo_EmotionRegulation_BayesFactor/contents_description.md) | **Pilot** — four reappraisal-related system maps from a systems-identification approach using Bayes factors. |
 | 2026 | [Miao — Social / ToM Bayes factor](./2026_Miao_Social-ToM_BayesFactor) | t-statistic + Bayes-factor maps for social vs. ToM contrasts across audio / text / conjunction modalities. |
 | 2026 | [Bo — Amygdala FIR temporal clusters (Elife)](./2026_Bo_Amygdala_FIR_Clusters/contents_description.md) | Four data-driven amygdala clusters defined by FIR response timing (N = 358), incl. a delayed centromedial cluster; atlas object + masks. |
+| 2026 | [Kwon — Insula domain-general / domain-selective zones (Nat Commun)](./2026_Kwon_Insula) | Binary masks of domain-general zones and pain-, appetitive-, aversive- and cognitive control-selective zones in the insula, from Bayes factors across 36 studies (N = 540). |
 
-## Conventions
+Conventions
 
 See the [docs README](../docs/README.md).
