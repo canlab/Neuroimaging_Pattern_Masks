@@ -210,6 +210,8 @@ Shared rendering helpers used by every per-folder script live in
 
 - [2024 Bo — Emotion regulation Bayes factor (Nat Neurosci)](../Individual_study_maps/2024_Bo_EmotionRegulation_BayesFactor/contents_description.md) — pilot
 - [2026 Miao — Social/ToM Bayes factor](../Individual_study_maps/2026_Miao_Social-ToM_BayesFactor/contents_description.md)
+- [2026 Bo — Amygdala FIR temporal clusters (Elife)](../Individual_study_maps/2026_Bo_Amygdala_FIR_Clusters/contents_description.md)
+- [2026 Kwon — Insula domain-general / domain-selective zones (Nat Commun)](../Individual_study_maps/2026_Kwon_Insula/contents_description.md) — Bayes-factor masks of a domain-general zone and pain-, appetitive-, aversive- and cognitive control-selective insular zones (N = 540, 36 studies)
 
 ### Spatial basis functions
 
