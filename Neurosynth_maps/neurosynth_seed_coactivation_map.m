@@ -36,7 +36,7 @@
 %         rois = load_atlas('canlab2018_2mm');
 %         vpl = select_atlas_subset(rois, {'VPL'});
 %
-%        This funtion calculates "activation" of the seed region this way:
+%        This function calculates "activation" of the seed region this way:
 %         - Define study contrasts-level activation as any activation within the
 %           region of interest.
 %         - The MKDA setup has already smoothed the peak reported coordinates with

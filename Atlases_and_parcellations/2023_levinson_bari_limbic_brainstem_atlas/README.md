@@ -1,6 +1,6 @@
 ## Overview
 
-A brainstem atlas of regions supporting limbic brain function. Open license and probablistic, based on 200+ participants 
+A brainstem atlas of regions supporting limbic brain function. Open license and probabilistic, based on 200+ participants 
 from the HCP study. Five regions (Locus Coeruleus, Ventral Tegmental Area, Periaqueductal Gray, Nucleus Tractus Solitarius,
 Dorsal Raphe) were manually segmented based on anatomical landmarks from "structural MRI scans" (T1w and T2w but possibly
 also DWI images). A neurosurgeon and neuroradiologist evaluated each participant's mask to ensure it was within their
@@ -20,7 +20,7 @@ distinguishes these templates in the context of brainstem region is their radii,
 To verify the impact of using the inappropriate reference image when applying these transforms I applied the acpc_dc2standard
 transforms to acpc_dc-space T1w data from HCP using both MNI152NLin2009bAsym 0.5mm T1 and MNi152NLin6Asym 1mm T1 templates
 as references. The results when viewed in connectome workbench were identical except for the sampling resolution, which was
-higher in the case of the 0.5mm template. The original data is sampled at 1mm, so upsampling to 0.5mm is unlikely to achive
+higher in the case of the 0.5mm template. The original data is sampled at 1mm, so upsampling to 0.5mm is unlikely to achieve
 much. Consequently, I treat the atlas regions here as having been drawn in MNI152NLin6Asym space.
 
 Data was transformed from MNI152NLin6Asym space to MNI152NLin2009cAsym space using the subcortically weighted transformations
@@ -47,7 +47,7 @@ Colored Patches - Levinson Bari Limbic Brainstem Atlas<br />
 Outlines - Bianciardi equivalents
 
 ![html/compare_with_bianciardi_01.png](html/compare_with_bianciardi_01.png)
-Saggital
+Sagittal
 
 ![html/compare_with_bianciardi_02.png](html/compare_with_bianciardi_02.png)
 Coronal

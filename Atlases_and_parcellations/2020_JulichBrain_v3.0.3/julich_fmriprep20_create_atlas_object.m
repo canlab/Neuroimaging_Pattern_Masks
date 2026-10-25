@@ -13,9 +13,9 @@ addpath(genpath('~/software//canlab/MasksPrivate'))
 
 atlas_name = 'julich_fmriprep20';
 space_description = 'MNI152NLin2009cAsym';
-references = 'Amunts K, Mohlberg H, Blubau S, Zilles K. (2020) Julich_Brain: A 3D probablistic atlas of the human brain''s cytoarchitecture. Science 369(6506), 988-992.';
+references = 'Amunts K, Mohlberg H, Blubau S, Zilles K. (2020) Julich_Brain: A 3D probabilistic atlas of the human brain''s cytoarchitecture. Science 369(6506), 988-992.';
 
-% imort atlas file in MNI152NLin2009cAsym space
+% import atlas file in MNI152NLin2009cAsym space
 MNI152NLin2009cAsym_bilat = which('JulichBrainAtlas_3.0_areas_MPM_b_N10_nlin2ICBM152asym2009c_public_11035603b4744231e17e87fd8ebcaf1a.nii.gz');
 
 juStruct = parseXML(which('JulichBrainAtlas_3.0_areas_MPM_b_N10_nlin2ICBM152asym2009c_public_11035603b4744231e17e87fd8ebcaf1a.xml'));

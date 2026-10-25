@@ -15,7 +15,7 @@ function apply_spm_warp(mvg_img0, fxd_img0, pre_affine_mat, warp_img, post_affin
     % this function is designed to work with the prepared transformations, not arbitrary ones.
     % I couldn't find helpful documentation for SPM and can't make any guarantees that this will work with any other
     % transforms, but if you do want to adapt it have a look at the bb (bounding box) option below. This should be
-    % asigned dynamically based on the input and/or output image at the very least.
+    % assigned dynamically based on the input and/or output image at the very least.
     %
     % This script has only been tested for alignment of 3D templates to one another.
 

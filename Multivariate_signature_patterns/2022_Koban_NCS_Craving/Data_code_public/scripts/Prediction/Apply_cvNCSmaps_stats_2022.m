@@ -192,14 +192,14 @@ pexp2_vector_HC = [pexp.DN{3}; pexp.DL{3}; pexp.FN{3}; pexp.FL{3}; ...
 
 xlsfile = 'NCS_weightmaps/CV_wmaps/Table_PatternExp_byGroupCondition_FINAL.xlsx';
 [~, datname] = xlsread(xlsfile, 'All_byROCcondition', 'A2:A397');
-datset = meancenter(xlsread(xlsfile, 'All_byROCcondition', 'F2:F397'));
+dataset = meancenter(xlsread(xlsfile, 'All_byROCcondition', 'F2:F397'));
 subjects = meancenter(xlsread(xlsfile, 'All_byROCcondition', 'G2:G397'));
 patients = xlsread(xlsfile, 'All_byROCcondition', 'H2:H397') ./2;
 drug = xlsread(xlsfile, 'All_byROCcondition', 'I2:I397') ./2;
 regul = xlsread(xlsfile, 'All_byROCcondition', 'J2:J397') ./2;
 pexp2_val = pexp2_vector;
 
-datpexp2 = table(datname, datset, subjects, patients, drug, regul, pexp2_val);
+datpexp2 = table(datname, dataset, subjects, patients, drug, regul, pexp2_val);
 
 lme = fitlme(datpexp2, 'pexp2_val ~ 1 + patients + drug + regul + drug*regul + patients*drug + patients*regul + patients*regul*drug + (1 + drug + regul + drug*regul |subjects)', 'FitMethod', 'REML');
 anova(lme)
@@ -217,10 +217,10 @@ load('BehavioralData/mean_ratings_behav_N99.mat')
 dnames = {'meanratings_alc'; 'meanratings_coc'; 'meanratings_coc_hc'; 'meanratings_cig'; 'meanratings_cig_hc'};
 
 for ds = 1:5
-    dn{ds} = datpexp2.pexp2_val(datpexp2.datset==ds & datpexp2.drug==1 & datpexp2.regul==1);
-    dl{ds} = datpexp2.pexp2_val(datpexp2.datset==ds & datpexp2.drug==1 & datpexp2.regul==-1);
-    fn{ds} = datpexp2.pexp2_val(datpexp2.datset==ds & datpexp2.drug==-1 & datpexp2.regul==1);
-    fl{ds} = datpexp2.pexp2_val(datpexp2.datset==ds & datpexp2.drug==-1 & datpexp2.regul==-1);    
+    dn{ds} = datpexp2.pexp2_val(datpexp2.dataset==ds & datpexp2.drug==1 & datpexp2.regul==1);
+    dl{ds} = datpexp2.pexp2_val(datpexp2.dataset==ds & datpexp2.drug==1 & datpexp2.regul==-1);
+    fn{ds} = datpexp2.pexp2_val(datpexp2.dataset==ds & datpexp2.drug==-1 & datpexp2.regul==1);
+    fl{ds} = datpexp2.pexp2_val(datpexp2.dataset==ds & datpexp2.drug==-1 & datpexp2.regul==-1);    
 end
 
 %% cross-plots
@@ -285,7 +285,7 @@ beh_vector_U = [reshape(beh_all_meanrate{1}, [numel(beh_all_meanrate{1}),1]); ..
 beh_vector_HC = [reshape(beh_all_meanrate{3}, [numel(beh_all_meanrate{3}),1]); ...
                  reshape(beh_all_meanrate{5}, [numel(beh_all_meanrate{5}),1])];           
 
-datpexp22 = table(datname, datset, subjects, patients, drug, regul, pexp2_val, beh_vector);
+datpexp22 = table(datname, dataset, subjects, patients, drug, regul, pexp2_val, beh_vector);
 
 lme2 = fitlme(datpexp22, 'beh_vector ~ 1 + patients + drug + regul + drug*regul + patients*drug + patients*regul + patients*regul*drug + (1 + drug + regul + drug*regul |subjects)', 'FitMethod', 'REML');
 anova(lme2)
@@ -317,24 +317,24 @@ cilme2 = coefCI(lme2);
 %% only users
 
 [~, datname] = xlsread(xlsfile, 'Users', 'A2:A245');
-datset = xlsread(xlsfile, 'Users', 'F2:F245');
+dataset = xlsread(xlsfile, 'Users', 'F2:F245');
 subjects = xlsread(xlsfile, 'Users', 'G2:G245');
 drug = xlsread(xlsfile, 'Users', 'I2:I245');
 regul = xlsread(xlsfile, 'Users', 'J2:J245');
 pexp2_val_U = pexp2_vector_U;
 
-datpexp2_U = table(datname, datset, subjects, drug, regul, pexp2_val_U);
-glme_U = fitglme(datpexp2_U, 'pexp2_val_U ~ 1 + drug + regul + drug*regul + (1|subjects) + (1|datset)');
+datpexp2_U = table(datname, dataset, subjects, drug, regul, pexp2_val_U);
+glme_U = fitglme(datpexp2_U, 'pexp2_val_U ~ 1 + drug + regul + drug*regul + (1|subjects) + (1|dataset)');
 
 
 %% only NON-users
 
 [~, datname] = xlsread(xlsfile, 'NonUsers', 'A2:A161');
-datset = xlsread(xlsfile, 'NonUsers', 'F2:F161');
+dataset = xlsread(xlsfile, 'NonUsers', 'F2:F161');
 subjects = xlsread(xlsfile, 'NonUsers', 'G2:G161');
 drug = xlsread(xlsfile, 'NonUsers', 'I2:I161');
 regul = xlsread(xlsfile, 'NonUsers', 'J2:J161');
 pexp2_val_C = pexp2_vector_HC;
 
-datpexp2_C = table(datname, datset, subjects, drug, regul, pexp2_val_C);
-glme_C = fitglme(datpexp2_C, 'pexp2_val_C ~ 1 + drug + regul + drug*regul + (1|subjects) + (1|datset)');
+datpexp2_C = table(datname, dataset, subjects, drug, regul, pexp2_val_C);
+glme_C = fitglme(datpexp2_C, 'pexp2_val_C ~ 1 + drug + regul + drug*regul + (1|subjects) + (1|dataset)');

@@ -334,7 +334,7 @@ o2 = montage(pain_regions_cpdm, 'colormap');
 % add outlines:
 for i = 1:length(pain_regions_cpdm)
     o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]);
-    %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map aleady registered, so add 1 here
+    %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map already registered, so add 1 here
 end
 saveas(gcf, fullfile('figures', 'cPDM_painpathways_weights_and_regions.png'));
 
@@ -342,7 +342,7 @@ o2 = removeblobs(o2);
 % add outlines only:
 for i = 1:length(pain_regions_cpdm)
     o2 = addblobs(o2, pain_regions_cpdm(i), 'outline', 'color', [.2 .2 .2]);
-    %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map aleady registered, so add 1 here
+    %set(o2.activation_maps{i + 1}.blobhandles, 'LineWidth', 1);  % one map already registered, so add 1 here
 end
 saveas(gcf, fullfile('figures', 'Painpathways_region_outlines.png'));
 

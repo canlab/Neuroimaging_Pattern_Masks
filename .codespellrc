@@ -1,0 +1,31 @@
+[codespell]
+# Ref: https://github.com/codespell-project/codespell#using-a-config-file
+skip = .git,.git-meta,.gitignore,.gitattributes,*.pdf,*.PDF,*.svg,package-lock.json,vendor,*.css,*.gii,.codespellrc,*.html,*.rtf
+check-hidden = true
+# ignore-regex =
+ignore-words-list =
+  # Proper surnames: E. Reynolds Losin, Jorge Sepulcre, Claus Svarer (neuroscientists)
+  losin,
+  sepulcre,
+  claus,
+  # Journal abbreviations: Hum Brain Mapp (Human Brain Mapping), Nat Commun (Nature Communications)
+  mapp,
+  commun,
+  # Neuroimaging acronyms: TE=Echo Time, FWE=Family-Wise Error, BU=author initials, ANS=Autonomic Nervous System
+  te,
+  fwe,
+  bu,
+  ans,
+  # MATLAB variable/algorithm identifiers: indx=index, som=self-other-map, ttest=t-test function, als=alternating-least-squares
+  indx,
+  som,
+  ttest,
+  als,
+  # Brain region abbreviation: PreS=Presubiculum
+  pres,
+  # Meta-analysis coding category in data files (column name / cell value)
+  anyother,
+  # Dutch surname: Peter De Weerd (neuroscientist, appears in references.bib)
+  weerd,
+  # MATLAB command 'whos' (lists workspace variables; appears in debug session transcript)
+  whos

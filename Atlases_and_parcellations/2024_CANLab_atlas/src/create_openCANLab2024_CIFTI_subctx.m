@@ -87,7 +87,7 @@ function create_CANLab2024_CIFTI_subctx(SPACE,SCALE,res,atlas_obj)
     atlas_obj.probability_maps = [];
 
     if round(res) ~= res
-        warning('Rounding res label in filenmae to nearest integer. This may overwrite any existing labels of different resolution. Update this code to accomodate fractional resolutions more gracefully.');
+        warning('Rounding res label in filename to nearest integer. This may overwrite any existing labels of different resolution. Update this code to accommodate fractional resolutions more gracefully.');
     end
     atlas_obj.fullpath = sprintf('%s/openCANLab2024_%s_%s_%dmm_cifti_vols.nii', this_dir.folder, SPACE, SCALE, round(res));
 

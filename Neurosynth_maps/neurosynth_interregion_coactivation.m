@@ -27,7 +27,7 @@
 %         - The atlas/mask object does not have to be in the same space/voxel size as the neurosynth_data object.
 %         - It will be resampled to the space of neurosynth_data
 %
-%        This funtion calculates "activation" of the seed region this way:
+%        This function calculates "activation" of the seed region this way:
 %         - Define study contrasts-level activation as any activation within the
 %           region of interest.
 %         - The MKDA setup has already smoothed the peak reported coordinates with

@@ -98,7 +98,7 @@ def roization(seed_path, target_path, ROIs_size, res_folder):
 
     # "Seed != Target && Overlap == {0}"
     if len(is_overlapping) == 1:
-        # then we can divide seed and target separatly
+        # then we can divide seed and target separately
         roized_seed = divide(seed_bin, ROIs_size)
         roized_target = divide(t_m_s, ROIs_size)
         print("Case 1")
@@ -319,7 +319,7 @@ def divide_compactor(img, size):
     img: Nifti1Image
         The nifti mask of non-zero voxels to cluster
     size: int
-        The size of each clutser (The last cluster can have a lower number
+        The size of each cluster (The last cluster can have a lower number
         of voxels)
     Returns
     -------

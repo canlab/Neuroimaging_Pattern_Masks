@@ -14,7 +14,7 @@ This is a full brain atlas mashup. It draws from the following,
 * Midbrain SN, RN, STH: T1/T2 contrast (CIT168 amygdala parcellation, Pauli 2018)
 
 There were two goals which motivated atlas construction. In order of priority
-* Provide a probablistic spatial reference for functional localization of (mainly) group level results in multiple references spaces
+* Provide a probabilistic spatial reference for functional localization of (mainly) group level results in multiple references spaces
 * Provide parcels for automated full brain parcelwise analysis
 The first requires a higher level of spatial detail than the second, so a fine scale and coarse scale version of 
 the atlas are provided to facilitate both goals. The coarse atlas is designed for applications that need some slack, 
@@ -51,7 +51,7 @@ Additionally, note that	the morel atlas	is also	restricted, and this usage restr
 Not only can we not distribute it, we also can't provide you with a legitimate resource for obtaining it short of contacting
 the original host institution (see Atlases_and_parcellations/2023_CANLab_atlas/licenses/morel_copyright). Consequently, this
 is the only atlas not individually available through Neuroimaging_Pattern_Masks (it's available to CANLab members in MasksPrivate, a
-private repo). However, due to an oversight it was incorporated into canlab2018, which was distributed publically years ago, 
+private repo). However, due to an oversight it was incorporated into canlab2018, which was distributed publicly years ago, 
 so that cat's out of the bag. Consequently, I (BP) didn't bother to separate the morel parcels out the way I did with 
 Bianciardi's parcels. It's integrated into the 'abridged' version of this atlas directly distributed by this repo. Take
 note if using this atlas in contexts where open licensing may be important to you.
@@ -95,7 +95,7 @@ See "help load_atlas" in matlab for details (make sure CanlabCore is in your pat
 
 Although versions of this atlas have been provided that should be useful to most users most of the time if you have
 exacting applications you may want generate atlases specific to your data and usage intentions. For localization purposes
-probability maps are helpful, but if hard borders are desired probablistic thresholding and parcel defragmentation
+probability maps are helpful, but if hard borders are desired probabilistic thresholding and parcel defragmentation
 may be desired. This can be accomplished using the atlas/threshold function. If you 
 have specific data you intend to use this atlas with it may also make sense to resample it to your target space before 
 thresholding. Presumably your data is already in alignment with the desired MNI template, but may be resampled to a 
@@ -116,7 +116,7 @@ Small regions will be severely affected by partial volume effects during resampl
 best bet is to regenerate brainstem nuclei from source using the scripts in the 2023_Bianciardi* sister folder to this
 directory and incorporate you target space into a custom apply_spm_warps.m script, similar to the existing one in the
 templates/transforms/code folder. The idea is to accomplish all transformations, including your own resampling, in a
-single step to avoid compounding partial volume erors across interpolations. This will probably require some substantial
+single step to avoid compounding partial volume errors across interpolations. This will probably require some substantial
 engineering on your part to achieve, but to put these into perspective, this atlas took 4-5 weeks of dedicated work to 
 assemble. It is likely worthwhile to build off of it rather than starting from scratch even if it takes a day or two of 
 work.
@@ -124,7 +124,7 @@ work.
 
 ### Grayordinates
 
-The CIFTI files are not designed for use with CANLab tools, which as of this time does not support CIFTI formated
+The CIFTI files are not designed for use with CANLab tools, which as of this time does not support CIFTI formatted
 data. They can be used with connectome workbench or other toolboxes though. Run the setup scripts to generate them 
 (see SETUP section above).
 
@@ -169,7 +169,7 @@ Do not change this behavior without permission from Bianciardi.
 ## Mappings between spaces
 
 Source parcellations are generally in idiosyncratic spaces and most needed to be projected into a new space for
-any particlar space of interest. The following projections were used:
+any particular space of interest. The following projections were used:
 
 Registration fusion using fmriprep output to project labels from fsaverage space into MNI space.
 * Glasser parcelation. See README in 2016_Glasser* sister folder of this one for details
@@ -205,26 +205,26 @@ multiple formats for use with ANTs, FSL and SPM but were all computed using ANTs
 * Cortex: likelihood a voxel will be circumscribed by a label in surface space, based on registration fusion
 * Basal Ganglia: Same as cortex. Obtained by personal correspondence with the authors, not available elsewhere to my 
 knowledge.  See Tian atlas directory README for details.
-* MTL, Brainstem nuclei, CIT regions and cerebellum: Probablistic likelihoods that a labeled region was found in a participant 
+* MTL, Brainstem nuclei, CIT regions and cerebellum: Probabilistic likelihoods that a labeled region was found in a participant 
 at a particular voxel after alignment to standard space. Sample sizes are small, so don't expect them to be well
 calibrated.
 * Thalamus: bogus values I assigned since there weren't any natively
-* Brainstem background regions (shen parcels): bogus values I asigned to be 0.35 to provide minimal constraints on nuclear
+* Brainstem background regions (shen parcels): bogus values I assigned to be 0.35 to provide minimal constraints on nuclear
 parcel boundaries. Anywhere these probabilities exceed those of Bianciardi atlas regions I impose a value 0.1 lower than 
-bianciardi's labels. In tihs way I use a greedy algorithm to asign voxels to Bianciardi's brainstem nuclei when available.
+bianciardi's labels. In this way I use a greedy algorithm to assign voxels to Bianciardi's brainstem nuclei when available.
 
 
 ## CANLab2018 Comparison
 
 This atlas was created as a drop in replacement for CANLab2018. Taken individually the differences are relatively 
 minor but extensive, and all together represent a substantial change. Differences are as follows
-* Internally consistent grayordinate and volume formated versions available in register with multiple standard templates
-* Probablistic cortical parcels obtained through registration fusion
+* Internally consistent grayordinate and volume formatted versions available in register with multiple standard templates
+* Probabilistic cortical parcels obtained through registration fusion
 * Removal of redundant Glasser cortical hippocampal segmentation. It doesn't comprehensively cover the hippocampal volume and intersects comprehensive cytoarchitectonic atlases.
-* Different basal ganglia segmentation which better respects gross anatomical subdivisions and is probablistic
-* New brainstem nuclear segmentation that is substantially more accurate and probablistic
+* Different basal ganglia segmentation which better respects gross anatomical subdivisions and is probabilistic
+* New brainstem nuclear segmentation that is substantially more accurate and probabilistic
 * Correction of misalignments of MTL (severe), thalamus (severe), brainstem and cerebellum.
-* (mostly) Probablistic (exceptions: thalamus and some brainstem filler regions)
+* (mostly) Probabilistic (exceptions: thalamus and some brainstem filler regions)
 * no RVM or trigeminal analog. The canlab2018 areas were not credible when compared against Duvernoy's Atlas (which is the
 authoritative reference), so they were not carried over. Most other brainstem regions have analogs here, although potentially
 under a different name (for instance the dorsal motor nucleus of the vagus, or DMNX, is now the viscero-sensory-motor nuclei,
@@ -240,21 +240,21 @@ and to the source scripts in the src subfolder here. Here's a bit re PAG though,
 
 #### PAG
 
-Phil Kragel's PAG parcellation was redone to provide probablistic labels. 19/24 participants had good parcellations (1,2,
+Phil Kragel's PAG parcellation was redone to provide probabilistic labels. 19/24 participants had good parcellations (1,2,
 4-10,12,14,15,17,19,20-24). These participants were reprojected into their target space using transformations obtained
 from Phil's dropbox into the same target space as the 2019 paper (IXI549) except linear interpolation was used instead of
 cubic splines to avoid gibbs ringing. The results are saved in the source subfolder here as KragelPAG_MNI152NLin6Asym.nii.gz.
 The space designation is justified because the IXI sample was registered to MNI152NLin6Asym before generating the IXI549
-template used by Dartel to produce the warps used. Although there are differents between these templates the location and
+template used by Dartel to produce the warps used. Although there are differences between these templates the location and
 orientation of the cerebral aqueduct is the same, so there's no need for further alignment to MNI152NLin6Asym space. Individual
-subject alignments (partial volume effects and all) were averaged to produce a probablistic PAG map.
+subject alignments (partial volume effects and all) were averaged to produce a probabilistic PAG map.
 
-This procedure did not reproduce the PAG columns. These were not derived on a per subject level though so no probablistic
+This procedure did not reproduce the PAG columns. These were not derived on a per subject level though so no probabilistic
 delineation between columns can be made. Instead we simply diluted the existing kragel2019pag atlas from this repository
-to span a mask defined by the probablistic labels derived above and used nearest neighbor interpolation to label the newly
-identified voxels within the dilution mask. These were then used to asign voxel probabilities to each of the individual
+to span a mask defined by the probabilistic labels derived above and used nearest neighbor interpolation to label the newly
+identified voxels within the dilution mask. These were then used to assign voxel probabilities to each of the individual
 columns. Because we do not have subject specific probabilities the intercolumn probabilities are nonintersecting, but the
-exterior margin of each column adopts the newly derived probablistic values.
+exterior margin of each column adopts the newly derived probabilistic values.
 
 ## Parcel Discussion
 

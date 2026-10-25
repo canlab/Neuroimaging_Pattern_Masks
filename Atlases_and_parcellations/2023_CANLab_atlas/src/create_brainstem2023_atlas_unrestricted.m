@@ -11,7 +11,7 @@ addpath('/home/bogdan/.matlab/spm/spm12');
 addpath(genpath('/home/bogdan/.matlab/canlab/CanlabCore'));
 addpath(genpath('/home/bogdan/.matlab/canlab/Neuroimaging_Pattern_Masks'));
 
-% for Diedrichsen mask, which is publically available. I don't know if
+% for Diedrichsen mask, which is publicly available. I don't know if
 % there are restrictions on the rest of the repo, but the mask at least
 % could be moved into a public repo and is only in MasksPrivate for
 % organization reasons (to keep it with the rest of the Diedrichsen atlas
@@ -205,11 +205,11 @@ kragelpmaps = kragelmasks.mean();
 kragelPAG = load_atlas('Kragel2019PAG_atlas_object.mat');
 kragelPAG = kragelPAG.resample_space(kragelpmaps);
 
-% expand columns to fill our new probablistic PAG area using nearest
+% expand columns to fill our new probabilistic PAG area using nearest
 % neighbor labeling
 kragelPAG_dil = dilate(kragelPAG, fmri_mask_image(kragelpmaps));
 
-% split probability map into subregionsand asign labels from column map
+% split probability map into subregionsand assign labels from column map
 % above
 pmap = zeros(size(kragelmasks.dat,1),num_regions(kragelPAG_dil));
 for i = 1:num_regions(kragelPAG_dil)

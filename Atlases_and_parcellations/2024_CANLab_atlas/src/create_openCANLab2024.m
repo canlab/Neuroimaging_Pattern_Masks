@@ -322,7 +322,7 @@ cifti_mask = fmri_mask_image(cifti_atlas.select_atlas_subset(find(contains(cifti
 
 thal_bstem = thal_bstem.apply_mask(cifti_mask);
 
-%% combinate atlases
+%% combine atlases
 
 atlas_obj = hipp_amyg_dil.merge_atlases(cerebellum_dil).merge_atlases(bg_dil).merge_atlases(thal_bstem);
 
@@ -461,7 +461,7 @@ writetable(table(canlab.references,'VariableNames',{'references'}),[canlab.atlas
 
 % this isn't quite complete. I need to pregenerate different resolutions
 % and granularities. This will require among other things
-% - generate qsiprep versoin
+% - generate qsiprep version
 % - generate CIFTI file
 
 %% produce low res version of this file

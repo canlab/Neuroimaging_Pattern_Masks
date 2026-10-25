@@ -23,7 +23,7 @@ def float_in_filename(num):
     elif len(spl) == 1:
         return spl[0]
     else:
-        print("uknown value: " + str(num))
+        print("unknown value: " + str(num))
 
 
 def split_clusters(nii, res_folder, name):
@@ -35,17 +35,17 @@ def split_clusters(nii, res_folder, name):
         the image to split
     res_folder: str
         the path to the result folder. The function will create a folder
-        which will contain all the splitted images
+        which will contain all the split images
     name: str
         suffix for the result files, it will also be used to name the result
         folder
     """
-    # extract the needed informations from the source image
+    # extract the needed information from the source image
     data = nii.get_data()
     affine = nii.affine
 
     folder = os.path.join(res_folder, name)
-    # Try to create the folder and ignore the error in the case it alread exists
+    # Try to create the folder and ignore the error in the case it already exists
     try:
         os.mkdir(folder)
     # note that all the other errors like permissions error will be caught
@@ -74,7 +74,7 @@ def split_clusters(nii, res_folder, name):
         nib.save(img_ROIs, path)
         # The maximum of the remaining values of data
         o_max = np.amax(data)
-    print("All the cluster has been splitted in " + folder)
+    print("All the cluster has been split in " + folder)
     return
     # clu = np.array(np.where(data == i))
     # mask[clu[0,], clu[1,], clu[2,]] = i
